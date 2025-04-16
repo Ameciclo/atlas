@@ -1,9 +1,10 @@
 {
-  "name": "carto",
+  "name": "atlas",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "docker-dev": "pnpm --filter @atlas/docker-dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
