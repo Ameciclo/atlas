@@ -1,6 +1,6 @@
 import { db } from "./index.js";
 import { cyclistProfiles } from "./schema.js";
-import cyclistProfilesData from "./cyclist_profiles.json" assert { type: "json" };
+import cyclistProfilesData from "./cyclist_profiles.json" with { type: "json" };
 
 async function seed() {
   try {
