@@ -1,0 +1,10 @@
+{
+  "files": ["**/*.{js,jsx,ts,tsx,md,json}"],
+  "formatter": true,
+  "linter": {
+    "rules": {
+      "no-unused-vars": "error",
+      "@biome/no-debugger": "error"
+    }
+  }
+}

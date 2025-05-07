@@ -12,7 +12,8 @@
       "cache": false,
       "persistent": true
     },
-    "lint": { "dependsOn": ["^lint"] },
+    "lint": { "dependsOn": ["^lint"], "inputs": ["src/**", "$TURBO_DEFAULT$"] },
+    "format": { "cache": false, "persistent": true, "outputs": [] },
     "test": {
       "dependsOn": ["^test"],
       "cache": false,
