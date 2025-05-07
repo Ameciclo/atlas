@@ -1,22 +1,22 @@
 {
-  "name": "atlas",
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "docker-dev": "pnpm --filter @atlas/docker-dev",
-    "lint": "biome lint",
-    "format": "biome format",
-    "check-types": "turbo run check-types",
-    "test": "turbo run test"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "turbo": "^2.5.3",
-    "typescript": "5.8.2"
-  },
-  "packageManager": "pnpm@9.0.0",
-  "engines": {
-    "node": ">=18"
-  }
+	"name": "atlas",
+	"private": true,
+	"scripts": {
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"docker-dev": "pnpm --filter @atlas/docker-dev",
+		"lint": "biome lint",
+		"format": "biome format",
+		"check-types": "turbo run check-types",
+		"test": "turbo run test"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"turbo": "^2.5.3",
+		"typescript": "5.8.2"
+	},
+	"packageManager": "pnpm@9.0.0",
+	"engines": {
+		"node": ">=18"
+	}
 }
