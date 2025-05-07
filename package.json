@@ -6,13 +6,12 @@
     "dev": "turbo run dev",
     "docker-dev": "pnpm --filter @atlas/docker-dev",
     "lint": "biome lint",
-    "format": "biome fmt",
+    "format": "biome format",
     "check-types": "turbo run check-types",
     "test": "turbo run test"
   },
   "devDependencies": {
-    "biome": "^0.3.3",
-    "prettier": "^3.5.3",
+    "@biomejs/biome": "1.9.4",
     "turbo": "^2.5.3",
     "typescript": "5.8.2"
   },
