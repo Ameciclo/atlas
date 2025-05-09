@@ -1,0 +1,27 @@
+{
+  "name": "@atlas/docs",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "pnpm prepare-openapi && vite build",
+    "lint": "biome lint .",
+    "format": "biome format .",
+    "preview": "vite preview",
+    "pre-dev": "pnpm prepare-openapi",
+    "prepare-openapi": "mkdir -p ./public/openapi && node ./scripts/generate-openapi-index.js",
+    "generate-openapi-index": "node ./scripts/generate-openapi-index.js"
+  },
+  "dependencies": {
+    "@scalar/api-reference-react": "^0.6.29",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "vite": "^6.3.5"
+  }
+}

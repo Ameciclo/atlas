@@ -1,19 +1,34 @@
-import { OpenAPIHono } from "@hono/zod-openapi";
-import { notFound, onError, serveEmojiFavicon } from "stoker/middlewares";
-import { defaultHook } from "stoker/openapi";
-import { createPinoLogger } from "../middlewares/pino-logger.ts";
+import { OpenAPIHono } from '@hono/zod-openapi'
+import { cors } from 'hono/cors'
+import { notFound, onError, serveEmojiFavicon } from 'stoker/middlewares'
+import { defaultHook } from 'stoker/openapi'
+import { createPinoLogger } from '../middlewares/pino-logger.ts'
 
-export function createRouter() {
-	return new OpenAPIHono({
-		strict: false,
-		defaultHook,
-	});
+import type { Schema } from 'hono'
+import type { AppBindings, AppOpenAPI } from './types.ts'
+
+export function createRouter () {
+  return new OpenAPIHono<AppBindings>({
+    strict: false,
+    defaultHook
+  })
 }
 
-export default function createApp() {
-	return new OpenAPIHono()
-		.use(serveEmojiFavicon("☀️"))
-		.use(createPinoLogger())
-		.notFound(notFound)
-		.onError(onError);
+export default function createApp (): OpenAPIHono<AppBindings> {
+  const app: OpenAPIHono<AppBindings> = new OpenAPIHono<AppBindings>({
+    strict: false,
+    defaultHook
+  })
+
+  app.use(cors())
+  app.use(serveEmojiFavicon('☀️'))
+  app.use(createPinoLogger())
+  app.notFound(notFound)
+  app.onError(onError)
+
+  return app
+}
+
+export function createTestApp<S extends Schema> (router: AppOpenAPI<S>) {
+  return createApp().route('/', router)
 }

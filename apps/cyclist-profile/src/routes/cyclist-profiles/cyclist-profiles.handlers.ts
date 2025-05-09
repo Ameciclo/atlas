@@ -12,13 +12,13 @@ export const list: RouteHandler<ListRoute> = async (c) => {
 
 export const getOne: RouteHandler<GetOneRoute> = async (c) => {
 	const { id } = c.req.valid("param");
-	const task = await db.query.cyclistProfiles.findFirst({
+	const cyclistProfile = await db.query.cyclistProfiles.findFirst({
 		where(fields, operators) {
 			return operators.eq(fields.id, id);
 		},
 	});
 
-	if (!task) {
+	if (!cyclistProfile) {
 		return c.json(
 			{
 				message: HttpStatusPhrases.NOT_FOUND,
@@ -27,5 +27,5 @@ export const getOne: RouteHandler<GetOneRoute> = async (c) => {
 		);
 	}
 
-	return c.json(task, HttpStatusCodes.OK);
+	return c.json(cyclistProfile, HttpStatusCodes.OK);
 };
