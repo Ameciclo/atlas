@@ -1,70 +1,44 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "ui": "tui",
-  "tasks": {
-    "build": {
-      "dependsOn": [
-        "^build",
-        "generate-openapi"
-      ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env*"
-      ],
-      "outputs": [
-        "dist/**"
-      ]
-    },
-    "generate-openapi": {
-      "cache": false,
-      "outputs": []
-    },
-    "check-types": {
-      "dependsOn": [
-        "^check-types"
-      ]
-    },
-    "pre-dev": {
-      "cache": false,
-      "outputs": []
-    },
-    "dev": {
-      "dependsOn": [
-        "pre-dev"
-      ],
-      "cache": false,
-      "persistent": true
-    },
-    "lint": {
-      "dependsOn": [
-        "^lint"
-      ],
-      "inputs": [
-        "src/**",
-        "$TURBO_DEFAULT$"
-      ],
-      "outputs": []
-    },
-    "format": {
-      "cache": false,
-      "inputs": [
-        "src/**",
-        "$TURBO_DEFAULT$"
-      ],
-      "outputs": [],
-      "persistent": true
-    },
-    "test": {
-      "dependsOn": [
-        "^test"
-      ],
-      "cache": false,
-      "inputs": [
-        "src/**",
-        "test/**",
-        "$TURBO_DEFAULT$"
-      ],
-      "persistent": true
-    }
-  }
+	"$schema": "https://turbo.build/schema.json",
+	"ui": "tui",
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build", "generate-openapi"],
+			"inputs": ["$TURBO_DEFAULT$", ".env*"],
+			"outputs": ["dist/**"]
+		},
+		"generate-openapi": {
+			"cache": false,
+			"outputs": []
+		},
+		"check-types": {
+			"dependsOn": ["^check-types"]
+		},
+		"pre-dev": {
+			"cache": false,
+			"outputs": []
+		},
+		"dev": {
+			"dependsOn": ["pre-dev"],
+			"cache": false,
+			"persistent": true
+		},
+		"lint": {
+			"dependsOn": ["^lint"],
+			"inputs": ["src/**", "$TURBO_DEFAULT$"],
+			"outputs": []
+		},
+		"format": {
+			"cache": false,
+			"inputs": ["src/**", "$TURBO_DEFAULT$"],
+			"outputs": [],
+			"persistent": true
+		},
+		"test": {
+			"dependsOn": ["^test"],
+			"cache": false,
+			"inputs": ["src/**", "test/**", "$TURBO_DEFAULT$"],
+			"persistent": true
+		}
+	}
 }
