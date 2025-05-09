@@ -2,15 +2,16 @@ import type { RouteHandler } from "@hono/zod-openapi";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
 import type { GetOneRoute, ListRoute } from "./cyclist-profiles.routes.ts";
+import type { AppBindings } from "../../lib/types.ts";
 
-import { db } from "../../db/index.ts";
+import { db } from "../../db/index.js";
 
-export const list: RouteHandler<ListRoute> = async (c) => {
+export const list: RouteHandler<ListRoute, AppBindings> = async (c) => {
 	const cyclistProfiles = await db.query.cyclistProfiles.findMany();
 	return c.json(cyclistProfiles);
 };
 
-export const getOne: RouteHandler<GetOneRoute> = async (c) => {
+export const getOne: RouteHandler<GetOneRoute, AppBindings> = async (c) => {
 	const { id } = c.req.valid("param");
 	const cyclistProfile = await db.query.cyclistProfiles.findFirst({
 		where(fields, operators) {

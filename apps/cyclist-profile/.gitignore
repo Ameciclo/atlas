@@ -26,3 +26,11 @@ lerna-debug.log*
 
 # misc
 .DS_Store
+
+# build outputs
+dist/
+*.js
+*.d.ts
+*.d.ts.map
+*.js.map
+tsconfig.tsbuildinfo

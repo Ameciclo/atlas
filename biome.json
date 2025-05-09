@@ -7,7 +7,18 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": ["templates/generate-openapi.ts"]
+		"maxSize": 5000000,
+		"ignore": [
+			"templates/generate-openapi.ts",
+			"**/node_modules/**",
+			"**/dist/**",
+			"**/build/**",
+			"**/.next/**",
+			"**/out/**",
+			"**/.turbo/**",
+			"**/coverage/**",
+			"**/*.d.ts"
+		]
 	},
 	"formatter": {
 		"enabled": true,

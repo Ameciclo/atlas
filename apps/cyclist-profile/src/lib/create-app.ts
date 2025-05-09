@@ -2,7 +2,7 @@ import { OpenAPIHono } from "@hono/zod-openapi";
 import { cors } from "hono/cors";
 import { notFound, onError, serveEmojiFavicon } from "stoker/middlewares";
 import { defaultHook } from "stoker/openapi";
-import { createPinoLogger } from "../middlewares/pino-logger.ts";
+import { createPinoLogger } from "../middlewares/pino-logger.js";
 
 import type { Schema } from "hono";
 import type { AppBindings, AppOpenAPI } from "./types.ts";

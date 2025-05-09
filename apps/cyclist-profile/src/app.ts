@@ -1,5 +1,5 @@
-import createApp from "./lib/create-app.ts";
-import cyclistProfilesRoutes from "./routes/cyclist-profiles/cyclist-profiles.index.ts";
+import createApp from "./lib/create-app.js";
+import cyclistProfilesRoutes from "./routes/cyclist-profiles/cyclist-profiles.index.js";
 
 const app = createApp().route("/v1/", cyclistProfilesRoutes);
 

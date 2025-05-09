@@ -1,10 +1,10 @@
 import { createRoute, z } from "@hono/zod-openapi";
 import * as HttpStatusCodes from "stoker/http-status-codes";
-import { jsonContent, jsonContentRequired } from "stoker/openapi/helpers";
+import { jsonContent } from "stoker/openapi/helpers";
 import { IdParamsSchema, createErrorSchema } from "stoker/openapi/schemas";
 
-import { selectCyclistProfileSchema } from "../../db/schema.ts";
-import { notFoundSchema } from "../../lib/constants.ts";
+import { selectCyclistProfileSchema } from "../../db/schema.js";
+import { notFoundSchema } from "../../lib/constants.js";
 
 const tags = ["Cyclist Profiles"];
 

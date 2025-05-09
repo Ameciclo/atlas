@@ -1,7 +1,7 @@
-import { createRouter } from "../../lib/create-app.ts";
+import { createRouter } from "../../lib/create-app.js";
 
-import * as handlers from "./cyclist-profiles.handlers.ts";
-import * as routes from "./cyclist-profiles.routes.ts";
+import * as handlers from "./cyclist-profiles.handlers.js";
+import * as routes from "./cyclist-profiles.routes.js";
 
 const router = createRouter()
 	.openapi(routes.list, handlers.list)

@@ -15,7 +15,9 @@
 		"declaration": true,
 		"declarationMap": true,
 		"incremental": true,
-		"rewriteRelativeImportExtensions": true,
-		"erasableSyntaxOnly": true
-	}
+		"outDir": "dist",
+		"rootDir": "src"
+	},
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "dist"]
 }
