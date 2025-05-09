@@ -1,13 +1,21 @@
 {
 	"compilerOptions": {
-		"target": "ESNext",
+		"target": "es2022",
+		"verbatimModuleSyntax": true,
+		"jsxImportSource": "hono/jsx",
 		"module": "NodeNext",
 		"strict": true,
-		"verbatimModuleSyntax": true,
 		"skipLibCheck": true,
 		"types": ["node"],
 		"jsx": "react-jsx",
-		"jsxImportSource": "hono/jsx",
-		"resolveJsonModule": true
+		"resolveJsonModule": true,
+		"moduleResolution": "nodenext",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"declaration": true,
+		"declarationMap": true,
+		"incremental": true,
+		"rewriteRelativeImportExtensions": true,
+		"erasableSyntaxOnly": true
 	}
 }

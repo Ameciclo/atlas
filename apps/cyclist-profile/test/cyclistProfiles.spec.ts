@@ -8,16 +8,14 @@ import {
 	it,
 	vi,
 } from "vitest";
-import * as dbModule from "../src/db/index.js";
+import app from "../src/app.js";
+import { db } from "../src/db/index.js";
 import type { CyclistProfile } from "../src/db/schema.js";
-import { app } from "../src/index.js";
 
-// Create a typed client for your app
 const client = testClient(app);
 
-// Spy on Drizzle methods
-const findMany = vi.spyOn(dbModule.db.query.cyclistProfiles, "findMany");
-const findFirst = vi.spyOn(dbModule.db.query.cyclistProfiles, "findFirst");
+const findMany = vi.spyOn(db.query.cyclistProfiles, "findMany");
+const findFirst = vi.spyOn(db.query.cyclistProfiles, "findFirst");
 
 beforeAll(() => {
 	vi.useFakeTimers();
@@ -36,7 +34,7 @@ describe("GET /", () => {
 	it("200 → empty array if no profiles", async () => {
 		findMany.mockResolvedValueOnce([]);
 
-		const res = await client.index.$get("/");
+		const res = await client.v1["cyclist-profiles"].$get("/");
 		expect(res.status).toBe(200);
 		expect(await res.json()).toEqual([]);
 	});
@@ -54,7 +52,7 @@ describe("GET /", () => {
 		];
 		findMany.mockResolvedValueOnce(fake);
 
-		const res = await client.index.$get("/");
+		const res = await client.v1["cyclist-profiles"].$get("/");
 		expect(res.status).toBe(200);
 		expect(await res.json()).toEqual(
 			fake.map((r) => ({
@@ -68,11 +66,10 @@ describe("GET /", () => {
 	it("500 → when the DB throws", async () => {
 		findMany.mockRejectedValueOnce(new Error("💥"));
 
-		const res = await client.index.$get("/");
+		const res = await client.v1["cyclist-profiles"].$get("/");
 		expect(res.status).toBe(500);
-		expect(await res.json()).toEqual({
-			error: "Failed to fetch cyclist profiles. Database error.",
-		});
+
+		expect(await res.json()).toMatchObject({ message: "💥" });
 	});
 });
 
@@ -92,7 +89,9 @@ describe("GET /:id", () => {
 		};
 		findFirst.mockResolvedValueOnce(fake);
 
-		const res = await client[":id"].$get({ param: { id: "42" } });
+		const res = await client.v1["cyclist-profiles"][":id"].$get({
+			param: { id: 42 },
+		});
 		expect(res.status).toBe(200);
 		expect(await res.json()).toEqual({
 			...fake,
@@ -104,8 +103,11 @@ describe("GET /:id", () => {
 	it("404 → when the profile does not exist", async () => {
 		findFirst.mockResolvedValueOnce(undefined);
 
-		const res = await client[":id"].$get({ param: { id: "42" } });
+		const res = await client.v1["cyclist-profiles"][":id"].$get({
+			param: { id: 42 },
+		});
+
 		expect(res.status).toBe(404);
-		expect(await res.json()).toEqual({ error: "Not found" });
+		expect(await res.json()).toEqual({ message: "Not Found" });
 	});
 });
