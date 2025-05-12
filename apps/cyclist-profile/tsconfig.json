@@ -16,9 +16,9 @@
 		"declarationMap": true,
 		"incremental": true,
 		"outDir": "dist",
-		"rootDir": "src",
+		"rootDir": ".",
 		"noEmit": false
 	},
-	"include": ["src/**/*", "test/**/*"],
-	"exclude": ["node_modules", "dist"]
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "dist", "test/**/*"]
 }
