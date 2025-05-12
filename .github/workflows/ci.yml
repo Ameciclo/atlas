@@ -12,38 +12,32 @@ on:
 
 jobs:
   code_style:
-    name: Code Style
+    name: Code Style & Types
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.15.0
-          cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/common-setup
+        id: setup
+      - name: Skip if no changes
+        if: steps.setup.outputs.skip == 'true'
+        run: |
+          echo "💤 No workspaces changed; skipping code style checks."
+          exit 0
       - name: Run biome check
         run: pnpm biome:ci
+      - name: Run type-check
+        run: pnpm check-types
 
   test:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.15.0
-          cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/common-setup
+        id: setup
+      - name: Skip if no changes
+        if: steps.setup.outputs.skip == 'true'
+        run: |
+          echo "💤 No workspaces changed; skipping tests."
+          exit 0
       - name: Run tests on affected apps/packages
         run: pnpm test --affected
 
@@ -51,121 +45,12 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.15.0
-          cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/common-setup
+        id: setup
+      - name: Skip if no changes
+        if: steps.setup.outputs.skip == 'true'
+        run: |
+          echo "💤 No workspaces changed; skipping builds."
+          exit 0
       - name: Run build on affected apps/packages
         run: pnpm build --affected
-        
-  # validate:
-  #   name: Detect changed apps
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     matrix: ${{ steps.set-matrix.outputs.matrix }}
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
-  #       with:
-  #         fetch-depth: 0
-  #     - name: Check if workflow is needed
-  #       if: github.event_name == 'pull_request'
-  #       run: |
-  #         npx turbo-ignore
-
-  #     - name: Determine affected apps via Turbo JSON
-  #       id: set-matrix
-  #       run: |
-  #         pnpm turbo run build \
-  #           --filter=apps/* \
-  #           --affected \
-  #           --dry=json \
-  #           > turbo.json
-
-  #           APPS=$(jq '[.tasks[] 
-  #                       | select(.task=="build") 
-  #                       | .package 
-  #                       | sub("^@atlas/";"")] 
-  #                     | unique' turbo.json)
-
-  #           MATRIX=$(jq -n --argjson arr "$APPS" '{"include": ($arr | map({app:.}))}')
-
-  #           echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
-
-  # deploy:
-  #   name: Deploy
-  #   needs: [validate]
-  #   if: github.event_name == 'push' && github.ref == 'refs/heads/main' && fromJson(needs.validate.outputs.affected-apps)[0] != null
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     contents: read
-  #     packages: write
-  #   strategy:
-  #     matrix:
-  #       app: ${{ fromJson(needs.validate.outputs.affected-apps) }}
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
-
-  #     # Only download OpenAPI specs for docs app
-  #     - name: Download OpenAPI specs
-  #       if: matrix.app == 'docs'
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: openapi-specs
-  #         path: apps/docs/public/openapi
-
-  #     # For other apps that might need dependencies
-  #     - name: Setup Node.js
-  #       if: matrix.app != 'docs'
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 22.15.0
-
-  #     - name: Setup PNPM
-  #       if: matrix.app != 'docs'
-  #       uses: pnpm/action-setup@v2
-  #       with:
-  #         version: 10.10.0
-
-  #     - name: Install dependencies
-  #       if: matrix.app != 'docs'
-  #       run: pnpm install --frozen-lockfile
-
-  #     - name: Set up Docker Buildx
-  #       uses: docker/setup-buildx-action@v3
-
-  #     - name: Login to GitHub Container Registry
-  #       uses: docker/login-action@v3
-  #       with:
-  #         registry: ghcr.io
-  #         username: ${{ github.actor }}
-  #         password: ${{ secrets.GITHUB_TOKEN }}
-
-  #     - name: Extract metadata for Docker
-  #       id: meta
-  #       uses: docker/metadata-action@v5
-  #       with:
-  #         images: ghcr.io/${{ github.repository }}/${{ matrix.app }}
-  #         tags: |
-  #           type=sha,format=long
-  #           type=ref,event=branch
-  #           type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
-
-  #     - name: Build and push Docker image
-  #       uses: docker/build-push-action@v5
-  #       with:
-  #         context: .
-  #         file: ./apps/${{ matrix.app }}/Dockerfile
-  #         push: true
-  #         tags: ${{ steps.meta.outputs.tags }}
-  #         labels: ${{ steps.meta.outputs.labels }}
-  #         cache-from: type=gha
-  #         cache-to: type=gha,mode=max

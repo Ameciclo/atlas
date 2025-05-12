@@ -1,0 +1,62 @@
+name: "Common CI Setup"
+description: "Checkout, cache, install dependencies, and detect changes via turbo-ignore."
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Cache pnpm store & Turborepo
+      uses: actions/cache@v4
+      id: cache
+      with:
+        path: |
+          ~/.pnpm-store
+          .turbo
+        key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}-turbo-${{ hashFiles('**/turbo.json') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-
+          ${{ runner.os }}-turbo-
+
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22.15.0
+        cache: "pnpm"
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile
+
+    - name: Detect changes with turbo-ignore
+      id: turboignore
+      shell: bash
+      run: npx turbo-ignore .
+      continue-on-error: true
+
+    - name: Set skip output
+      id: set-skip
+      shell: bash
+      run: |
+        echo "skip=false" >> $GITHUB_OUTPUT
+        if [ "${{ steps.turboignore.conclusion }}" = "success" ]; then
+          echo "skip=true" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Expose cache hit
+      shell: bash
+      run: echo "cache-hit=${{ steps.cache.outputs.cache-hit }}" >> $GITHUB_OUTPUT
+      id: expose-cache
+
+outputs:
+  skip:
+    description: "true if no workspaces changed (turbo-ignore success)"
+    value: ${{ steps.set-skip.outputs.skip }}
+  cache-hit:
+    description: "Whether cache was a hit"
+    value: ${{ steps.expose-cache.outputs.cache-hit }}
