@@ -65,6 +65,8 @@ RUN pnpm install --no-frozen-lockfile --prod
 
 # Copy built files from builder stage
 COPY --from=builder /app/apps/cyclist-profile/dist ./apps/cyclist-profile/dist
+# Copy migrations folder
+COPY --from=builder /app/apps/cyclist-profile/src/db/migrations ./apps/cyclist-profile/src/db/migrations
 
 # Set environment variables
 ENV NODE_ENV=production

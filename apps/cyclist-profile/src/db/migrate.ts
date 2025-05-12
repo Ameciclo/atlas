@@ -30,7 +30,9 @@ async function runMigrations() {
 		console.log("Running migrations...");
 
 		await migrate(db, {
-			migrationsFolder: "./apps/cyclist-profile/src/db/migrations",
+			migrationsFolder:
+				process.env.MIGRATIONS_FOLDER ||
+				"./apps/cyclist-profile/src/db/migrations",
 		});
 
 		console.log("Migrations completed successfully!");
