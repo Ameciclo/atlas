@@ -54,19 +54,20 @@ jobs:
         id: affected-apps
         run: |
           BASE_REF=${{ github.event.pull_request.base.ref || 'main' }}
-          AFFECTED=$(pnpm turbo run build --dry-run --affected --filter="./apps/*" --since=origin/$BASE_REF | grep -o 'apps/[a-z-]*' | sort | uniq | sed 's/apps\///' | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          # Use --affected flag with base comparison
+          AFFECTED=$(pnpm turbo run build --dry-run --affected --filter="./apps/*" -- --from=origin/$BASE_REF | grep -o 'apps/[a-z-]*' | sort | uniq | sed 's/apps\///' | jq -R -s -c 'split("\n") | map(select(length > 0))')
           echo "apps=$AFFECTED" >> $GITHUB_OUTPUT
           echo "Affected apps: $AFFECTED"
 
       - name: Run build for affected packages
         run: |
           BASE_REF=${{ github.event.pull_request.base.ref || 'main' }}
-          pnpm build --affected --since=origin/$BASE_REF
+          pnpm build --affected -- --from=origin/$BASE_REF
 
       - name: Run tests for affected packages
         run: |
           BASE_REF=${{ github.event.pull_request.base.ref || 'main' }}
-          pnpm test --affected --since=origin/$BASE_REF
+          pnpm test --affected -- --from=origin/$BASE_REF
 
       - name: Upload OpenAPI specs
         uses: actions/upload-artifact@v4
