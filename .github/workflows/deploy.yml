@@ -1,0 +1,110 @@
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: 'App to deploy (leave empty for all)'
+        required: false
+        type: string
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+  workflow_run:
+    workflows: ["Docker Build & Push"]
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  prepare:
+    name: Prepare Deployment
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' || 
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+    outputs:
+      apps: ${{ steps.set-apps.outputs.apps }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Determine apps to deploy
+        id: set-apps
+        run: |
+          if [[ "${{ github.event.inputs.app }}" != "" ]]; then
+            # Deploy specific app from workflow_dispatch
+            APPS_JSON="[\"${{ github.event.inputs.app }}\"]"
+          else
+            # Find all apps with Dockerfiles
+            APPS_JSON=$(find apps -name "Dockerfile" -type f | cut -d'/' -f2 | sort -u | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          fi
+          echo "apps=${APPS_JSON}" >> $GITHUB_OUTPUT
+          echo "Apps to deploy: ${APPS_JSON}"
+
+  deploy:
+    name: Deploy ${{ matrix.app }}
+    needs: prepare
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: ${{ fromJson(needs.prepare.outputs.apps) }}
+    environment: ${{ github.event.inputs.environment || 'production' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set environment variables
+        id: env
+        run: |
+          APP_NAME="${{ matrix.app }}"
+          IMAGE_NAME="ghcr.io/${{ github.repository }}/${APP_NAME}:latest"
+          echo "image_name=${IMAGE_NAME}" >> $GITHUB_OUTPUT
+          echo "Deploying ${APP_NAME} using image ${IMAGE_NAME}"
+
+      # This is a placeholder for your actual deployment method
+      # You would replace this with your actual deployment to Portainer or other platform
+      - name: Deploy to Portainer (Placeholder)
+        run: |
+          echo "Deploying ${{ steps.env.outputs.image_name }} to ${{ github.event.inputs.environment || 'production' }}"
+          echo "In a real deployment, you would:"
+          echo "1. Connect to Portainer API"
+          echo "2. Update the stack with the new image"
+          echo "3. Restart the service"
+          
+      # Example of how to use curl to update a Portainer stack (you would need to customize this)
+      # - name: Deploy to Portainer
+      #   env:
+      #     PORTAINER_URL: ${{ secrets.PORTAINER_URL }}
+      #     PORTAINER_API_KEY: ${{ secrets.PORTAINER_API_KEY }}
+      #     STACK_ID: ${{ secrets.PORTAINER_STACK_ID }}
+      #     IMAGE_NAME: ${{ steps.env.outputs.image_name }}
+      #   run: |
+      #     # Get authentication token
+      #     TOKEN=$(curl -s -X POST "${PORTAINER_URL}/api/auth" \
+      #       -H "X-API-Key: ${PORTAINER_API_KEY}" | jq -r .jwt)
+      #     
+      #     # Get current stack file
+      #     STACK_FILE=$(curl -s -X GET "${PORTAINER_URL}/api/stacks/${STACK_ID}/file" \
+      #       -H "Authorization: Bearer ${TOKEN}" | jq -r .StackFileContent)
+      #     
+      #     # Update image in stack file
+      #     UPDATED_STACK_FILE=$(echo "${STACK_FILE}" | sed -E "s|image: ghcr.io/.*/atlas/${{ matrix.app }}:.*|image: ${IMAGE_NAME}|g")
+      #     
+      #     # Update the stack
+      #     curl -s -X PUT "${PORTAINER_URL}/api/stacks/${STACK_ID}" \
+      #       -H "Authorization: Bearer ${TOKEN}" \
+      #       -H "Content-Type: application/json" \
+      #       -d "{\"stackFileContent\": \"${UPDATED_STACK_FILE}\"}"
+
+      - name: Notify deployment status
+        if: always()
+        run: |
+          STATUS="${{ job.status }}"
+          echo "Deployment of ${{ matrix.app }} to ${{ github.event.inputs.environment || 'production' }} ${STATUS}"

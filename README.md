@@ -2,6 +2,8 @@
 
 [![][GitHubStars]][GitHubRepo]
 [![][GitHubLicense]][GitHubLicenseUrl]
+[![CI Status](https://github.com/ameciclo/atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/ameciclo/atlas/actions/workflows/ci.yml)
+[![Docker Build Status](https://github.com/ameciclo/atlas/actions/workflows/docker.yml/badge.svg)](https://github.com/ameciclo/atlas/actions/workflows/docker.yml)
 
 **A monorepo for Ameciclo's Atlas platform - a comprehensive solution for cyclist data management and analysis**
 
@@ -197,6 +199,44 @@ To add a new app to the monorepo:
 2. Copy the appropriate template from the `templates` directory
 3. Update the package.json with the correct name and dependencies
 4. Add the app to the CI/CD pipeline if needed
+
+## Testing GitHub Actions Locally
+
+You can test GitHub Actions workflows locally using [Act](https://github.com/nektos/act), which runs your GitHub Actions workflows using Docker.
+
+### Installation
+
+```bash
+# macOS (using Homebrew)
+brew install act
+
+# Other platforms: see https://github.com/nektos/act#installation
+```
+
+### Usage
+
+```bash
+# Run the default workflow
+act
+
+# Run a specific job
+act -j build
+
+# Run a specific workflow
+act -W .github/workflows/ci.yml
+
+# List all available actions
+act -l
+```
+
+### Configuration
+
+Create a `.actrc` file in your repository root to configure Act:
+
+```
+-P ubuntu-latest=ghcr.io/catthehacker/ubuntu:act-latest
+--bind
+```
 
 ## License
 
