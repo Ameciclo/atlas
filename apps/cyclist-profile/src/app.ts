@@ -12,7 +12,7 @@ app.get("/health", async (c) => {
 
 		return c.json(
 			{
-				status: "ok",
+				status: "okay",
 				timestamp: new Date().toISOString(),
 				service: "cyclist-profile",
 				database: "connected",
