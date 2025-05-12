@@ -4,7 +4,12 @@
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build", "generate-openapi"],
-			"inputs": ["$TURBO_DEFAULT$", ".env*"],
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				".env*",
+				"docker-compose.yml",
+				"Dockerfile"
+			],
 			"outputs": ["dist/**"]
 		},
 		"generate-openapi": {

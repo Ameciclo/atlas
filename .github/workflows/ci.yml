@@ -44,19 +44,29 @@ jobs:
       - name: Generate OpenAPI specs
         run: pnpm generate-openapi
 
+      - name: Show changed files
+        run: |
+          BASE_REF=${{ github.event.pull_request.base.ref || 'main' }}
+          echo "Changed files:"
+          git diff --name-only origin/$BASE_REF...HEAD
+
       - name: Determine affected apps
         id: affected-apps
         run: |
           BASE_REF=${{ github.event.pull_request.base.ref || 'main' }}
-          AFFECTED=$(pnpm turbo run build --dry-run --filter="...[origin/$BASE_REF]" | grep -o 'apps/[a-z-]*' | sort | uniq | jq -R -s -c 'split("\n") | map(select(length > 0)) | map(sub("apps/"; ""))')
+          AFFECTED=$(pnpm turbo run build --dry-run --affected --filter="./apps/*" --since=origin/$BASE_REF | grep -o 'apps/[a-z-]*' | sort | uniq | sed 's/apps\///' | jq -R -s -c 'split("\n") | map(select(length > 0))')
           echo "apps=$AFFECTED" >> $GITHUB_OUTPUT
           echo "Affected apps: $AFFECTED"
 
       - name: Run build for affected packages
-        run: pnpm build --filter=...[origin/${{ github.event.pull_request.base.ref || 'main' }}]
+        run: |
+          BASE_REF=${{ github.event.pull_request.base.ref || 'main' }}
+          pnpm build --affected --since=origin/$BASE_REF
 
       - name: Run tests for affected packages
-        run: pnpm test --filter=...[origin/${{ github.event.pull_request.base.ref || 'main' }}]
+        run: |
+          BASE_REF=${{ github.event.pull_request.base.ref || 'main' }}
+          pnpm test --affected --since=origin/$BASE_REF
 
       - name: Upload OpenAPI specs
         uses: actions/upload-artifact@v4
