@@ -1,5 +1,12 @@
 ## Cyclist Profile API
 
+### Requirements
+
+- Node.js 22.15.0
+- pnpm 10.10.0
+
+We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `.tool-versions` file is included in the repository.
+
 ### Development with Docker
 
 The easiest way to get started is using Docker Compose:

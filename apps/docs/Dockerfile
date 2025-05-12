@@ -1,11 +1,11 @@
 # Prune stage - Use turbo to create a subset of the monorepo with only the packages needed
-FROM node:24-slim AS pruner
+FROM node:22.15.0-slim AS pruner
 
 # Set working directory
 WORKDIR /app
 
 # Install pnpm and turbo
-RUN corepack enable && corepack prepare pnpm@9.0.0 --activate && \
+RUN corepack enable && corepack prepare pnpm@10.10.0 --activate && \
     npm install -g turbo
 
 # Copy repo configuration
@@ -19,13 +19,13 @@ COPY packages/typescript-config/package.json ./packages/typescript-config/packag
 RUN turbo prune --scope=@atlas/docs --docker
 
 # Build stage - Use the pruned repo to build the app
-FROM node:24-slim AS builder
+FROM node:22.15.0-slim AS builder
 
 # Set working directory
 WORKDIR /app
 
 # Install pnpm
-RUN corepack enable && corepack prepare pnpm@9.0.0 --activate
+RUN corepack enable && corepack prepare pnpm@10.10.0 --activate
 
 # Copy pruned lockfile and package.json files
 COPY --from=pruner /app/out/json/ .

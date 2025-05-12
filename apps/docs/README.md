@@ -2,6 +2,13 @@
 
 This app provides a user-friendly interface for viewing the OpenAPI documentation for all Atlas APIs.
 
+## Requirements
+
+- Node.js 22.15.0
+- pnpm 10.10.0
+
+We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `.tool-versions` file is included in the repository.
+
 ## Features
 
 - Interactive API documentation using Scalar API Reference

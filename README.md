@@ -16,6 +16,13 @@ This monorepo utilizes pnpm and Turbo for efficient development, building, and d
 *   **Languages:** TypeScript, JavaScript (and potentially others within individual packages/apps)
 *   **Frameworks:** [List frameworks used - e.g., React, Next.js, Node.js, etc. Be specific]
 
+## Requirements
+
+- Node.js 22.15.0
+- pnpm 10.10.0
+
+We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `.tool-versions` file is included in the repository.
+
 ## Getting Started
 
 1.  **Clone the Repository:**
