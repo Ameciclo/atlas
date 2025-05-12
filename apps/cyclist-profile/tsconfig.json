@@ -6,7 +6,7 @@
 		"module": "NodeNext",
 		"strict": true,
 		"skipLibCheck": true,
-		"types": ["node"],
+		"types": ["node", "vitest/globals"],
 		"jsx": "react-jsx",
 		"resolveJsonModule": true,
 		"moduleResolution": "nodenext",
@@ -16,8 +16,9 @@
 		"declarationMap": true,
 		"incremental": true,
 		"outDir": "dist",
-		"rootDir": "src"
+		"rootDir": "src",
+		"noEmit": false
 	},
-	"include": ["src/**/*"],
+	"include": ["src/**/*", "test/**/*"],
 	"exclude": ["node_modules", "dist"]
 }

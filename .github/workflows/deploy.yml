@@ -22,12 +22,17 @@ on:
     branches:
       - main
 
+# Permissions needed for deployment
+permissions:
+  contents: read
+  packages: read
+
 jobs:
   prepare:
     name: Prepare Deployment
     runs-on: ubuntu-latest
     if: |
-      github.event_name == 'workflow_dispatch' || 
+      github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     outputs:
       apps: ${{ steps.set-apps.outputs.apps }}
@@ -68,6 +73,9 @@ jobs:
           echo "image_name=${IMAGE_NAME}" >> $GITHUB_OUTPUT
           echo "Deploying ${APP_NAME} using image ${IMAGE_NAME}"
 
+      # Database migrations have been removed from the workflow
+      # You can add them back later when needed
+
       # This is a placeholder for your actual deployment method
       # You would replace this with your actual deployment to Portainer or other platform
       - name: Deploy to Portainer (Placeholder)
@@ -77,7 +85,7 @@ jobs:
           echo "1. Connect to Portainer API"
           echo "2. Update the stack with the new image"
           echo "3. Restart the service"
-          
+
       # Example of how to use curl to update a Portainer stack (you would need to customize this)
       # - name: Deploy to Portainer
       #   env:
@@ -89,14 +97,14 @@ jobs:
       #     # Get authentication token
       #     TOKEN=$(curl -s -X POST "${PORTAINER_URL}/api/auth" \
       #       -H "X-API-Key: ${PORTAINER_API_KEY}" | jq -r .jwt)
-      #     
+      #
       #     # Get current stack file
       #     STACK_FILE=$(curl -s -X GET "${PORTAINER_URL}/api/stacks/${STACK_ID}/file" \
       #       -H "Authorization: Bearer ${TOKEN}" | jq -r .StackFileContent)
-      #     
+      #
       #     # Update image in stack file
       #     UPDATED_STACK_FILE=$(echo "${STACK_FILE}" | sed -E "s|image: ghcr.io/.*/atlas/${{ matrix.app }}:.*|image: ${IMAGE_NAME}|g")
-      #     
+      #
       #     # Update the stack
       #     curl -s -X PUT "${PORTAINER_URL}/api/stacks/${STACK_ID}" \
       #       -H "Authorization: Bearer ${TOKEN}" \

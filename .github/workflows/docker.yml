@@ -10,6 +10,11 @@ on:
     paths-ignore:
       - "**.md"
 
+# Permissions needed for GitHub Container Registry
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   detect_changes:
     name: Detect Changed Apps
@@ -39,7 +44,7 @@ jobs:
         run: |
           # Get list of all apps with Dockerfiles
           APPS_WITH_DOCKER=$(find apps -name "Dockerfile" -type f | cut -d'/' -f2 | sort -u | jq -R -s -c 'split("\n") | map(select(length > 0))')
-          
+
           # If this is a PR, use the base branch for comparison
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
             BASE_REF="${{ github.base_ref }}"
@@ -47,23 +52,23 @@ jobs:
             # For push to main, use the previous commit
             BASE_REF="HEAD^1"
           fi
-          
+
           # Get list of affected apps
           AFFECTED_APPS=$(npx turbo run build --dry-run=json --affected -- --from=origin/$BASE_REF | jq -c '.tasks | map(.taskId | split(":")[0] | select(startswith("@atlas/"))) | map(sub("@atlas/"; "")) | unique')
-          
+
           # Filter to only include apps with Dockerfiles that were affected
           AFFECTED_DOCKER_APPS=$(echo $APPS_WITH_DOCKER | jq --argjson affected "$AFFECTED_APPS" -c '[.[] | select($affected | index(.))]')
-          
+
           # Set outputs
           echo "matrix=${AFFECTED_DOCKER_APPS}" >> $GITHUB_OUTPUT
-          
+
           # Check if we have any changes
           if [ "$(echo $AFFECTED_DOCKER_APPS | jq 'length')" -gt 0 ]; then
             echo "has_changes=true" >> $GITHUB_OUTPUT
           else
             echo "has_changes=false" >> $GITHUB_OUTPUT
           fi
-          
+
           echo "Detected changes in the following apps with Dockerfiles: ${AFFECTED_DOCKER_APPS}"
 
   build_and_push:
@@ -87,6 +92,8 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+        # Note: For private repositories, you need to ensure GITHUB_TOKEN has the right permissions
+        # or use a personal access token (PAT) with appropriate permissions stored in secrets
 
       - name: Extract metadata for Docker
         id: meta
@@ -103,7 +110,7 @@ jobs:
           # Setup Node.js and pnpm
           npm install -g pnpm
           pnpm install
-          
+
           # Generate OpenAPI specs if needed
           if [ -f "apps/${{ matrix.app }}/src/generate-openapi.ts" ]; then
             echo "Generating OpenAPI specs for ${{ matrix.app }}"

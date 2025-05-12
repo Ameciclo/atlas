@@ -1,0 +1,5 @@
+-P ubuntu-latest=node:22.15.0-slim
+--container-architecture linux/amd64
+--bind
+-s GITHUB_TOKEN=$GITHUB_TOKEN
+--secret-file=.env

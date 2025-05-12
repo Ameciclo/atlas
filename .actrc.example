@@ -1,0 +1,7 @@
+-P ubuntu-latest=node:22.15.0-slim
+--container-architecture linux/amd64
+--bind
+# Uncomment and set your GitHub token if needed
+# -s GITHUB_TOKEN=your_token_here
+# Uncomment to use a secret file
+# --secret-file=.env.local
