@@ -3,5 +3,8 @@
 		{
 			"mode": "auto"
 		}
-	]
+	],
+	"editor.defaultFormatter": "biomejs.biome",
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true
 }

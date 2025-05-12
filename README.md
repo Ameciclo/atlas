@@ -3,18 +3,23 @@
 [![][GitHubStars]][GitHubRepo]
 [![][GitHubLicense]][GitHubLicenseUrl]
 
-**A monorepo for [brief description of what Atlas is/does]**
+**A monorepo for Ameciclo's Atlas platform - a comprehensive solution for cyclist data management and analysis**
 
 ## Overview
 
-This monorepo utilizes pnpm and Turbo for efficient development, building, and deployment of various applications and packages.  It provides a standardized and maintainable environment for all projects within the Atlas ecosystem.
+This monorepo utilizes pnpm and Turbo for efficient development, building, and deployment of various applications and packages. It provides a standardized and maintainable environment for all projects within the Atlas ecosystem, focusing on cyclist data collection, analysis, and visualization.
 
 ## Technologies
 
-*   **Monorepo Management:** pnpm (https://pnpm.io/)
-*   **Build System & Caching:** Turbo (https://turbo.build/)
-*   **Languages:** TypeScript, JavaScript (and potentially others within individual packages/apps)
-*   **Frameworks:** [List frameworks used - e.g., React, Next.js, Node.js, etc. Be specific]
+* **Monorepo Management:** pnpm (https://pnpm.io/)
+* **Build System & Caching:** Turbo (https://turbo.build/)
+* **Code Standardization:** Biome (https://biomejs.dev/)
+* **Languages:** TypeScript
+* **API Frameworks:** Hono, Zod OpenAPI
+* **Database:** PostgreSQL with Drizzle ORM
+* **Documentation:** Scalar API Reference
+* **Containerization:** Docker
+* **CI/CD:** GitHub Actions
 
 ## Requirements
 
@@ -25,81 +30,181 @@ We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `
 
 ## Getting Started
 
-1.  **Clone the Repository:**
-    ```bash
-    git clone [Your Git Repository URL]
-    ```
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/ameciclo/atlas.git
+   cd atlas
+   ```
 
-2.  **Install Dependencies:**
-    ```bash
-    pnpm install
-    ```
+2. **Install Dependencies:**
+   ```bash
+   pnpm install
+   ```
 
-3.  **Development:**
-    *   Navigate to the directory of the application/package you want to develop.
-    *   Run `pnpm dev` to start the development server.
+3. **Development:**
+   ```bash
+   # Start all services
+   pnpm dev
 
-4.  **Building:**
-    *   Run `pnpm build` to build all applications/packages.
+   # Or start a specific service
+   pnpm --filter @atlas/cyclist-profile dev
+   ```
 
-5.  **Testing:**
-    *   Run `pnpm test` to execute the test suite.
+4. **Building:**
+   ```bash
+   # Build all applications/packages
+   pnpm build
+
+   # Or build a specific application
+   pnpm --filter @atlas/cyclist-profile build
+   ```
+
+5. **Testing:**
+   ```bash
+   # Run all tests
+   pnpm test
+
+   # Or test a specific application
+   pnpm --filter @atlas/cyclist-profile test
+   ```
+
+6. **Code Quality:**
+   ```bash
+   # Format code
+   pnpm format
+
+   # Lint code
+   pnpm lint
+
+   # Type check
+   pnpm check-types
+   ```
 
 ## Directory Structure
 
 ```
 atlas/
+├── .github/             # GitHub configuration
+│   └── workflows/       # GitHub Actions workflows
 ├── apps/                # Applications
-│   ├── docs/            # Documentation site
+│   ├── docs/            # API documentation site
 │   └── cyclist-profile/ # Cyclist profile service
 ├── packages/            # Shared packages
 │   └── typescript-config/ # Shared TypeScript configuration
+├── templates/           # Templates for new apps and services
+├── .tool-versions       # Tool versions for mise
+├── biome.json           # Biome configuration
 ├── turbo.json           # Turborepo configuration
 └── pnpm-workspace.yaml  # PNPM workspace configuration
 ```
 
 ## CI/CD Pipeline
 
-The CI/CD pipeline is configured to be intelligent and efficient:
+The CI/CD pipeline is configured to be intelligent and efficient using GitHub Actions:
 
-1. **Smart Dependency Detection**: Uses Turborepo's `--filter` feature to only build and test packages that have changed or are affected by changes.
+1. **Unified Workflow**: A single workflow handles linting, building, testing, and deployment.
 
-2. **Efficient Docker Builds**:
-   - Uses `turbo prune` to create minimal Docker build contexts
+2. **Smart Dependency Detection**:
+   - Uses Turborepo's `--affected` flag to only process packages that have changed
+   - Compares with the base branch for PRs or the previous commit for pushes to main
+   - Automatically detects which apps need to be built and deployed
+
+3. **Efficient Docker Builds**:
    - Only builds Docker images for applications that have changed
+   - Uses GitHub Actions caching for faster builds
    - Pushes images to GitHub Container Registry (ghcr.io)
+   - Tags images with commit SHA, branch name, and 'latest' for main branch
 
-3. **Deployment**:
+4. **Deployment Strategy**:
    - Docker images are deployed using Portainer
    - Each application can be deployed independently
    - Database migrations and seeding are handled by reusing the same Docker image with different commands
 
-### Using Turbo Prune
+### OpenAPI Documentation
 
-For efficient Docker builds, we use `turbo prune` to create a subset of the monorepo with only the packages needed for a specific application:
+The CI/CD pipeline automatically generates OpenAPI specifications for all API services:
+
+1. Each API service defines its routes using Hono with Zod OpenAPI
+2. The `generate-openapi` script creates JSON specifications
+3. The docs app collects and displays these specifications
+4. When changes are pushed to main, a new docs container is built and deployed
+
+### Docker Deployment
+
+For deployment, we use Docker images that are built and pushed to GitHub Container Registry:
 
 ```bash
-# Example: Prune the monorepo for the cyclist-profile app
-npx turbo prune --scope=@atlas/cyclist-profile --docker
+# Pull the latest image for an app
+docker pull ghcr.io/ameciclo/atlas/cyclist-profile:latest
+
+# Run the container
+docker run -p 3000:3000 --env-file .env ghcr.io/ameciclo/atlas/cyclist-profile:latest
 ```
 
-This creates an `out` directory with:
-- `out/json/`: Package JSON files
-- `out/full/`: Source code for the app and its dependencies
-- `out/pnpm-lock.yaml`: Pruned lockfile
-- `out/pnpm-workspace.yaml`: Pruned workspace config
+The same image can be used for different purposes by overriding the command:
+
+```bash
+# Run database migrations
+docker run --env-file .env ghcr.io/ameciclo/atlas/cyclist-profile:latest node apps/cyclist-profile/dist/db/migrate.js
+
+# Seed the database
+docker run --env-file .env ghcr.io/ameciclo/atlas/cyclist-profile:latest node apps/cyclist-profile/dist/db/seed.js
+```
 
 ## Contributing
 
-[Add information about contributing to the project.  Include guidelines, code of conduct, etc.]
+We welcome contributions to the Atlas project! Here's how you can contribute:
+
+### Development Workflow
+
+1. **Fork the repository** and clone it locally
+2. **Create a new branch** for your feature or bugfix
+3. **Make your changes** following our code style guidelines
+4. **Write or update tests** as necessary
+5. **Run the test suite** to ensure everything passes
+6. **Submit a pull request** with a clear description of the changes
+
+### Code Style and Quality
+
+We use Biome for code formatting and linting:
+
+```bash
+# Format code
+pnpm format
+
+# Lint code
+pnpm lint
+```
+
+All code must pass type checking:
+
+```bash
+pnpm check-types
+```
+
+### Git Hooks
+
+We use Husky for Git hooks to ensure code quality before commits:
+
+- **pre-commit**: Runs linting and formatting
+- **pre-push**: Runs type checking and tests
+
+### Adding a New App
+
+To add a new app to the monorepo:
+
+1. Create a new directory in the `apps` folder
+2. Copy the appropriate template from the `templates` directory
+3. Update the package.json with the correct name and dependencies
+4. Add the app to the CI/CD pipeline if needed
 
 ## License
 
-[Specify the license under which the project is released.  Add a link to the license file.]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-[GitHubStars]: https://img.shields.io/github/stars/YourUsername/YourRepo
-[GitHubLicense]: https://img.shields.io/github/license/YourUsername/YourRepo
-[GitHubLicenseUrl]: [Your License URL]
-[GitHubRepo]: [Your Repository URL]
+[GitHubStars]: https://img.shields.io/github/stars/ameciclo/atlas
+[GitHubLicense]: https://img.shields.io/github/license/ameciclo/atlas
+[GitHubLicenseUrl]: https://github.com/ameciclo/atlas/blob/main/LICENSE
+[GitHubRepo]: https://github.com/ameciclo/atlas

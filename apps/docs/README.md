@@ -1,13 +1,13 @@
 # Atlas API Documentation
 
-This app provides a user-friendly interface for viewing the OpenAPI documentation for all Atlas APIs.
+This app provides a user-friendly interface for viewing the OpenAPI documentation for all Atlas APIs. It automatically collects and displays OpenAPI specifications from all API services in the monorepo.
 
 ## Requirements
 
 - Node.js 22.15.0
 - pnpm 10.10.0
 
-We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `.tool-versions` file is included in the repository.
+We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `.tool-versions` file is included in the repository root.
 
 ## Features
 
@@ -63,6 +63,16 @@ For detailed instructions, see the [README-openapi.md](../templates/README-opena
 
 The documentation app can be deployed as a Docker container. The container image is automatically built and pushed to GitHub Container Registry (ghcr.io) when changes are merged to the main branch.
 
+### CI/CD Integration
+
+The CI/CD pipeline automatically:
+
+1. Detects changes to the docs app or any API specs
+2. Generates updated OpenAPI specifications
+3. Builds a new Docker image with the latest specs
+4. Pushes the image to GitHub Container Registry
+5. Tags the image with the commit SHA and 'latest'
+
 ### Running with Docker
 
 To run the documentation app using Docker:
@@ -88,6 +98,20 @@ docker compose up -d
 # Or from the root of the monorepo
 docker build -t atlas-docs -f apps/docs/Dockerfile .
 docker run -p 8080:80 atlas-docs
+```
+
+### Portainer Deployment
+
+For production deployment with Portainer:
+
+```yaml
+version: '3'
+services:
+  docs:
+    image: ghcr.io/ameciclo/atlas/docs:latest
+    ports:
+      - "8080:80"
+    restart: unless-stopped
 ```
 
 ## Technologies Used

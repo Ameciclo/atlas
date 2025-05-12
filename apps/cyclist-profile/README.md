@@ -1,11 +1,14 @@
-## Cyclist Profile API
+# Cyclist Profile API
 
-### Requirements
+The Cyclist Profile API is a service for managing cyclist profiles, including registration, authentication, and profile data. It's built with Hono, Zod OpenAPI, and Drizzle ORM.
+
+## Requirements
 
 - Node.js 22.15.0
 - pnpm 10.10.0
+- PostgreSQL database
 
-We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `.tool-versions` file is included in the repository.
+We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `.tool-versions` file is included in the repository root.
 
 ### Development with Docker
 
@@ -75,6 +78,16 @@ open http://localhost:3000
 ### Docker Deployment
 
 The Cyclist Profile API can be deployed as a Docker container. The container image is automatically built and pushed to GitHub Container Registry (ghcr.io) when changes are merged to the main branch.
+
+#### CI/CD Integration
+
+The CI/CD pipeline automatically:
+
+1. Detects changes to the cyclist-profile app or its dependencies
+2. Builds the application and runs tests
+3. Builds a new Docker image if tests pass
+4. Pushes the image to GitHub Container Registry
+5. Tags the image with the commit SHA and 'latest'
 
 #### Running with Docker
 
@@ -154,6 +167,12 @@ services:
     depends_on:
       - migrate
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
 
   migrate:
     image: ghcr.io/ameciclo/atlas/cyclist-profile:latest
@@ -177,6 +196,8 @@ For the first deployment, you might want to include a seeding service:
       - migrate
     restart: on-failure
 ```
+
+The CI/CD pipeline ensures that the same Docker image can be used for running the API, migrations, or seeding by simply changing the command. This approach simplifies deployment and ensures consistency across environments.
 
 ### Health Check Endpoint
 

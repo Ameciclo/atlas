@@ -1,174 +1,135 @@
-name: CI
+name: CI/CD Pipeline
+
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "**.md"
   pull_request:
     branches: [main]
+    paths-ignore:
+      - "**.md"
 
 jobs:
-  build-test:
+  code_style:
+    name: Code Style
     runs-on: ubuntu-latest
-    outputs:
-      affected-apps: ${{ steps.affected-apps.outputs.apps }}
-    permissions:
-      contents: read
-      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Fetch all history for Turborepo
-
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22.15.0
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v2
-        with:
-          version: 10.10.0
-
+          cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Run biome check
+        run: pnpm check
 
-      - name: Run format check
-        run: pnpm format
+  # validate:
+  #   name: Detect changed apps
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     matrix: ${{ steps.set-matrix.outputs.matrix }}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - name: Check if workflow is needed
+  #       if: github.event_name == 'pull_request'
+  #       run: |
+  #         npx turbo-ignore
 
-      - name: Run lint
-        run: pnpm lint
+  #     - name: Determine affected apps via Turbo JSON
+  #       id: set-matrix
+  #       run: |
+  #         pnpm turbo run build \
+  #           --filter=apps/* \
+  #           --affected \
+  #           --dry=json \
+  #           > turbo.json
 
-      - name: Run type‐check
-        run: pnpm check-types
+  #           APPS=$(jq '[.tasks[] 
+  #                       | select(.task=="build") 
+  #                       | .package 
+  #                       | sub("^@atlas/";"")] 
+  #                     | unique' turbo.json)
 
-      - name: Generate OpenAPI specs
-        run: pnpm generate-openapi
+  #           MATRIX=$(jq -n --argjson arr "$APPS" '{"include": ($arr | map({app:.}))}')
 
-      - name: Show changed files
-        run: |
-          BASE_REF=${{ github.event.pull_request.base.ref || 'main' }}
-          echo "Changed files:"
-          git diff --name-only origin/$BASE_REF...HEAD
+  #           echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
 
-      - name: Determine affected packages
-        id: affected-apps
-        run: |
-          BASE_REF=${{ github.event.pull_request.base.ref || 'main' }}
+  # deploy:
+  #   name: Deploy
+  #   needs: [validate]
+  #   if: github.event_name == 'push' && github.ref == 'refs/heads/main' && fromJson(needs.validate.outputs.affected-apps)[0] != null
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: read
+  #     packages: write
+  #   strategy:
+  #     matrix:
+  #       app: ${{ fromJson(needs.validate.outputs.affected-apps) }}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-          # Get all affected packages using --affected
-          AFFECTED_ALL=$(pnpm turbo run build --dry-run --affected -- --from=origin/$BASE_REF | grep -o '@atlas/[a-z-]*' | sort | uniq)
+  #     # Only download OpenAPI specs for docs app
+  #     - name: Download OpenAPI specs
+  #       if: matrix.app == 'docs'
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: openapi-specs
+  #         path: apps/docs/public/openapi
 
-          # Extract apps (packages in the apps directory)
-          AFFECTED_APPS=$(echo "$AFFECTED_ALL" | grep -v "@atlas/typescript-config" | sed 's/@atlas\///' | jq -R -s -c 'split("\n") | map(select(length > 0))')
+  #     # For other apps that might need dependencies
+  #     - name: Setup Node.js
+  #       if: matrix.app != 'docs'
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 22.15.0
 
-          # Store results
-          echo "apps=$AFFECTED_APPS" >> $GITHUB_OUTPUT
-          echo "Affected apps: $AFFECTED_APPS"
-          echo "All affected packages: $AFFECTED_ALL"
+  #     - name: Setup PNPM
+  #       if: matrix.app != 'docs'
+  #       uses: pnpm/action-setup@v2
+  #       with:
+  #         version: 10.10.0
 
-      - name: Run build for affected packages
-        run: |
-          BASE_REF=${{ github.event.pull_request.base.ref || 'main' }}
-          pnpm turbo run build --affected -- --from=origin/$BASE_REF
+  #     - name: Install dependencies
+  #       if: matrix.app != 'docs'
+  #       run: pnpm install --frozen-lockfile
 
-      - name: Run tests for affected packages
-        run: |
-          BASE_REF=${{ github.event.pull_request.base.ref || 'main' }}
-          pnpm turbo run test --affected -- --from=origin/$BASE_REF
+  #     - name: Set up Docker Buildx
+  #       uses: docker/setup-buildx-action@v3
 
-      - name: Upload OpenAPI specs
-        uses: actions/upload-artifact@v4
-        with:
-          name: openapi-specs
-          path: apps/docs/public/openapi/*.json
-          if-no-files-found: error
+  #     - name: Login to GitHub Container Registry
+  #       uses: docker/login-action@v3
+  #       with:
+  #         registry: ghcr.io
+  #         username: ${{ github.actor }}
+  #         password: ${{ secrets.GITHUB_TOKEN }}
 
-  build-push-docs:
-    needs: [build-test]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(fromJson(needs.build-test.outputs.affected-apps), 'docs')
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  #     - name: Extract metadata for Docker
+  #       id: meta
+  #       uses: docker/metadata-action@v5
+  #       with:
+  #         images: ghcr.io/${{ github.repository }}/${{ matrix.app }}
+  #         tags: |
+  #           type=sha,format=long
+  #           type=ref,event=branch
+  #           type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
 
-      - name: Download OpenAPI specs
-        uses: actions/download-artifact@v4
-        with:
-          name: openapi-specs
-          path: apps/docs/public/openapi
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Extract metadata for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ghcr.io/${{ github.repository }}/docs
-          tags: |
-            type=sha,format=long
-            type=ref,event=branch
-            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./apps/docs/Dockerfile
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
-  build-push-cyclist-profile:
-    needs: [build-test]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(fromJson(needs.build-test.outputs.affected-apps), 'cyclist-profile')
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Extract metadata for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ghcr.io/${{ github.repository }}/cyclist-profile
-          tags: |
-            type=sha,format=long
-            type=ref,event=branch
-            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./apps/cyclist-profile/Dockerfile
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+  #     - name: Build and push Docker image
+  #       uses: docker/build-push-action@v5
+  #       with:
+  #         context: .
+  #         file: ./apps/${{ matrix.app }}/Dockerfile
+  #         push: true
+  #         tags: ${{ steps.meta.outputs.tags }}
+  #         labels: ${{ steps.meta.outputs.labels }}
+  #         cache-from: type=gha
+  #         cache-to: type=gha,mode=max
