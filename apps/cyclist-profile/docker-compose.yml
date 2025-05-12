@@ -16,6 +16,8 @@ services:
     depends_on:
       migrate:
         condition: service_completed_successfully
+      seed:
+        condition: service_completed_successfully
     restart: unless-stopped
 
   migrate:
@@ -32,7 +34,7 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    restart: on-failure
+    restart: "no"
 
   seed:
     image: atlas-cyclist-profile
@@ -48,9 +50,7 @@ services:
     depends_on:
       migrate:
         condition: service_completed_successfully
-    restart: on-failure
-    profiles:
-      - with-seed
+    restart: "no"
 
   postgres:
     image: postgres:16
