@@ -1,4 +1,24 @@
-# Build stage
+# Prune stage - Use turbo to create a subset of the monorepo with only the packages needed
+FROM node:24-slim AS pruner
+
+# Set working directory
+WORKDIR /app
+
+# Install pnpm and turbo
+RUN corepack enable && corepack prepare pnpm@9.0.0 --activate && \
+    npm install -g turbo
+
+# Copy repo configuration
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml turbo.json ./
+
+# Copy the source code needed for turbo prune
+COPY apps/docs/package.json ./apps/docs/package.json
+COPY packages/typescript-config/package.json ./packages/typescript-config/package.json
+
+# Use turbo to prune the monorepo to only the docs app and its dependencies
+RUN turbo prune --scope=@atlas/docs --docker
+
+# Build stage - Use the pruned repo to build the app
 FROM node:24-slim AS builder
 
 # Set working directory
@@ -7,21 +27,26 @@ WORKDIR /app
 # Install pnpm
 RUN corepack enable && corepack prepare pnpm@9.0.0 --activate
 
-# Copy package.json files and workspace config
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY apps/docs/package.json ./apps/docs/
-COPY packages/typescript-config/package.json ./packages/typescript-config/
+# Copy pruned lockfile and package.json files
+COPY --from=pruner /app/out/json/ .
+COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=pruner /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
 
 # Install dependencies
 RUN pnpm install --no-frozen-lockfile
 
-# Copy source files
-COPY . .
+# Copy source files from pruned repo
+COPY --from=pruner /app/out/full/ .
 
-# Install all dependencies to ensure they're available
-RUN pnpm install --no-frozen-lockfile
+# Copy the rest of the source code
+COPY apps/docs ./apps/docs
+COPY packages/typescript-config ./packages/typescript-config
+COPY turbo.json ./turbo.json
 
-# Build the docs app (OpenAPI specs should be generated in CI before this step)
+# Copy OpenAPI specs (these should be generated in CI before this step)
+COPY apps/docs/public/openapi ./apps/docs/public/openapi
+
+# Build the docs app
 RUN pnpm --filter @atlas/docs build
 
 # Production stage

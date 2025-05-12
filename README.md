@@ -40,6 +40,47 @@ This monorepo utilizes pnpm and Turbo for efficient development, building, and d
 
 ## Directory Structure
 
+```
+atlas/
+├── apps/                # Applications
+│   ├── docs/            # Documentation site
+│   └── cyclist-profile/ # Cyclist profile service
+├── packages/            # Shared packages
+│   └── typescript-config/ # Shared TypeScript configuration
+├── turbo.json           # Turborepo configuration
+└── pnpm-workspace.yaml  # PNPM workspace configuration
+```
+
+## CI/CD Pipeline
+
+The CI/CD pipeline is configured to be intelligent and efficient:
+
+1. **Smart Dependency Detection**: Uses Turborepo's `--filter` feature to only build and test packages that have changed or are affected by changes.
+
+2. **Efficient Docker Builds**:
+   - Uses `turbo prune` to create minimal Docker build contexts
+   - Only builds Docker images for applications that have changed
+   - Pushes images to GitHub Container Registry (ghcr.io)
+
+3. **Deployment**:
+   - Docker images are deployed using Portainer
+   - Each application can be deployed independently
+   - Database migrations and seeding are handled by reusing the same Docker image with different commands
+
+### Using Turbo Prune
+
+For efficient Docker builds, we use `turbo prune` to create a subset of the monorepo with only the packages needed for a specific application:
+
+```bash
+# Example: Prune the monorepo for the cyclist-profile app
+npx turbo prune --scope=@atlas/cyclist-profile --docker
+```
+
+This creates an `out` directory with:
+- `out/json/`: Package JSON files
+- `out/full/`: Source code for the app and its dependencies
+- `out/pnpm-lock.yaml`: Pruned lockfile
+- `out/pnpm-workspace.yaml`: Pruned workspace config
 
 ## Contributing
 

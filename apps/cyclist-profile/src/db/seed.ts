@@ -6,6 +6,16 @@ async function seed() {
 	try {
 		for (const item of cyclistProfilesData) {
 			const { created_at, updated_at, ...data } = item;
+
+			if (data.metadata?.date && data.metadata?.hour) {
+				const datePart = data.metadata.date.split("T")[0];
+				const timePart = data.metadata.hour.includes("T")
+					? data.metadata.hour.split("T")[1]
+					: data.metadata.hour;
+
+				data.metadata.date = `${datePart}T${timePart}`;
+			}
+
 			await db.insert(cyclistProfiles).values(data).onConflictDoNothing();
 		}
 
