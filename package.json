@@ -8,6 +8,7 @@
 		"lint": "biome lint",
 		"format": "biome format",
 		"check": "biome check",
+		"biome:ci": "biome ci",
 		"check-types": "turbo run check-types",
 		"test": "turbo run test",
 		"generate-openapi": "turbo run generate-openapi && pnpm --filter @atlas/docs prepare-openapi"

@@ -1,6 +1,6 @@
+import { db } from "./db/index.js";
 import createApp from "./lib/create-app.js";
 import cyclistProfilesRoutes from "./routes/cyclist-profiles/cyclist-profiles.index.js";
-import { db } from "./db/index.js";
 
 const app = createApp();
 
