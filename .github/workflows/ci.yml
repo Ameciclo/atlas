@@ -1,5 +1,5 @@
 name: CI/CD Pipeline
-
+# Runs on push to main and pull requests
 on:
   push:
     branches: [main]
