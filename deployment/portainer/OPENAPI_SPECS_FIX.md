@@ -48,8 +48,30 @@ Updated the Docker workflow to:
 
 **After (CORRECT):**
 ```yaml
+- name: Setup PostgreSQL for OpenAPI generation
+  uses: ikalnytskyi/action-setup-postgres@v7
+  with:
+    username: postgres
+    password: postgres
+    database: atlas
+    port: 5432
+  id: postgres
+
+- name: Run database migrations
+  env:
+    DATABASE_URL: ${{ steps.postgres.outputs.connection-uri }}
+  run: |
+    # Only run migrations if migrations folder exists and has files
+    if [ -d "packages/database/src/migrations" ] && [ "$(ls -A packages/database/src/migrations/*.sql 2>/dev/null)" ]; then
+      pnpm --filter @atlas/database db:migrate
+    else
+      echo "No migrations to run, skipping..."
+    fi
+
 - name: Generate all OpenAPI specs for docs
   if: matrix.app == 'docs'
+  env:
+    DATABASE_URL: ${{ steps.postgres.outputs.connection-uri }}
   run: |
     # Generate OpenAPI for ALL services
     for app_dir in apps/*/; do
@@ -61,24 +83,29 @@ Updated the Docker workflow to:
 ```
 
 Now when building docs:
-1. ✅ Generates OpenAPI specs for **all services** (cyclist-profile, etc.)
-2. ✅ Builds docs Docker image with all specs included
-3. ✅ Docs display correctly with all API documentation
+1. ✅ Sets up PostgreSQL database
+2. ✅ Runs database migrations (if they exist)
+3. ✅ Generates OpenAPI specs for **all services** (cyclist-profile, etc.)
+4. ✅ Builds docs Docker image with all specs included
+5. ✅ Docs display correctly with all API documentation
 
-**Note:** OpenAPI generation doesn't require a database connection - it only reads route definitions from the code!
+**Note:** PostgreSQL is required because the database connection happens at module import time in the apps (e.g., `apps/cyclist-profile/src/db/index.ts` calls `await client.connect()` at the top level).
 
 ## Files Changed
 
 ### `.github/workflows/docker.yml`
 
 **Changes:**
-1. Added loop to generate OpenAPI specs for all services when building docs
-2. Removed unnecessary PostgreSQL setup (OpenAPI generation doesn't need database)
-3. Kept existing logic for other apps unchanged
+1. Added PostgreSQL setup for all app builds (needed for OpenAPI generation)
+2. Added conditional database migration step (only runs if migrations exist)
+3. Added loop to generate OpenAPI specs for all services when building docs
+4. Added DATABASE_URL environment variable to all OpenAPI generation steps
+5. Kept existing logic for other apps unchanged
 
 **Key sections:**
-- Lines 108-139: New OpenAPI generation logic
-  - Conditional setup for Node.js/pnpm
+- Lines 122-163: OpenAPI generation logic
+  - PostgreSQL setup (for all apps)
+  - Conditional database migrations
   - Generate all specs (only for docs)
   - Generate single spec (for other apps)
 
