@@ -1,15 +1,24 @@
 {
-	"extends": "@atlas/typescript-config/base.json",
 	"compilerOptions": {
-		"outDir": "./dist",
-		"rootDir": "./src"
+		"target": "es2022",
+		"verbatimModuleSyntax": true,
+		"jsxImportSource": "hono/jsx",
+		"module": "NodeNext",
+		"strict": true,
+		"skipLibCheck": true,
+		"types": ["node", "vitest/globals"],
+		"jsx": "react-jsx",
+		"resolveJsonModule": true,
+		"moduleResolution": "nodenext",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"declaration": true,
+		"declarationMap": true,
+		"incremental": true,
+		"outDir": "dist",
+		"rootDir": "src",
+		"noEmit": false
 	},
-	"include": [
-		"src/**/*"
-	],
-	"exclude": [
-		"node_modules",
-		"dist",
-		"test"
-	]
+		"include": ["src/**/*"],
+		"exclude": ["node_modules", "dist", "test/**/*"]
 }
