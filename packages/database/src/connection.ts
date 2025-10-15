@@ -1,7 +1,10 @@
 import "dotenv/config";
 import { drizzle } from "drizzle-orm/node-postgres";
 import type { NodePgDatabase } from "drizzle-orm/node-postgres";
-import { Client } from "pg";
+import pg from "pg";
+import type { Client as PgClient } from "pg";
+
+const { Client } = pg;
 
 export interface DatabaseConfig {
 	connectionString?: string;
@@ -15,7 +18,7 @@ export interface DatabaseConfig {
 }
 
 export interface AtlasDatabase extends NodePgDatabase<Record<string, unknown>> {
-	client: Client;
+	client: PgClient;
 }
 
 /**
