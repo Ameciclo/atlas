@@ -50,6 +50,7 @@ We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `
 
    # Or start a specific service
    pnpm --filter @atlas/cyclist-profile dev
+   pnpm --filter @atlas/cyclists-count dev
    ```
 
 4. **Building:**
@@ -59,6 +60,7 @@ We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `
 
    # Or build a specific application
    pnpm --filter @atlas/cyclist-profile build
+   pnpm --filter @atlas/cyclists-count build
    ```
 
 5. **Testing:**
@@ -68,6 +70,7 @@ We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `
 
    # Or test a specific application
    pnpm --filter @atlas/cyclist-profile test
+   pnpm --filter @atlas/cyclists-count test
    ```
 
 6. **Code Quality:**
@@ -90,7 +93,8 @@ atlas/
 │   └── workflows/       # GitHub Actions workflows
 ├── apps/                # Applications
 │   ├── docs/            # API documentation site
-│   └── cyclist-profile/ # Cyclist profile service
+│   ├── cyclist-profile/ # Cyclist profile service
+│   └── cyclists-count/  # Cyclists count service
 ├── docs/                # Documentation
 │   ├── CREATE_NEW_SERVICE.md          # Guide for creating new services
 │   ├── SCAFFOLDING_TOOL.md            # Scaffolding tool documentation
@@ -142,9 +146,11 @@ For deployment, we use Docker images that are built and pushed to GitHub Contain
 ```bash
 # Pull the latest image for an app
 docker pull ghcr.io/ameciclo/atlas/cyclist-profile:latest
+docker pull ghcr.io/ameciclo/atlas/cyclists-count:latest
 
-# Run the container
+# Run the containers
 docker run -p 3000:3000 --env-file .env ghcr.io/ameciclo/atlas/cyclist-profile:latest
+docker run -p 3002:3002 --env-file .env ghcr.io/ameciclo/atlas/cyclists-count:latest
 ```
 
 The same image can be used for different purposes by overriding the command:
@@ -152,9 +158,11 @@ The same image can be used for different purposes by overriding the command:
 ```bash
 # Run database migrations
 docker run --env-file .env ghcr.io/ameciclo/atlas/cyclist-profile:latest node apps/cyclist-profile/dist/db/migrate.js
+docker run --env-file .env ghcr.io/ameciclo/atlas/cyclists-count:latest node apps/cyclists-count/dist/db/migrate.js
 
 # Seed the database
 docker run --env-file .env ghcr.io/ameciclo/atlas/cyclist-profile:latest node apps/cyclist-profile/dist/db/seed.js
+docker run --env-file .env ghcr.io/ameciclo/atlas/cyclists-count:latest node apps/cyclists-count/dist/db/seed.js
 ```
 
 ## Contributing
