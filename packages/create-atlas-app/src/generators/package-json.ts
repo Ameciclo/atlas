@@ -1,7 +1,15 @@
 import type { AppConfig } from "../create-app.js";
 
-export function generatePackageJson(config: AppConfig) {
-	const basePackage: Record<string, unknown> = {
+interface PackageJson {
+	name: string;
+	type: string;
+	scripts: Record<string, string>;
+	dependencies: Record<string, string>;
+	devDependencies: Record<string, string>;
+}
+
+export function generatePackageJson(config: AppConfig): PackageJson {
+	const basePackage: PackageJson = {
 		name: `@atlas/${config.name}`,
 		type: "module",
 		scripts: {
