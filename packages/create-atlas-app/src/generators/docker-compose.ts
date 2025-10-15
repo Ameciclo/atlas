@@ -1,8 +1,8 @@
 import type { AppConfig } from "../create-app.js";
 
 export function generateDockerCompose(config: AppConfig): string {
-	if (!config.includeDatabase) {
-		return `services:
+  if (!config.includeDatabase) {
+    return `services:
   app:
     image: atlas-${config.name}
     build:
@@ -22,9 +22,9 @@ export function generateDockerCompose(config: AppConfig): string {
       retries: 3
       start_period: 10s
 `;
-	}
+  }
 
-	return `services:
+  return `services:
   app:
     image: atlas-${config.name}
     build:
@@ -96,7 +96,7 @@ export function generateDockerCompose(config: AppConfig): string {
       - with-seed
 
   postgres:
-    image: postgres:16-alpine
+    image: postgis/postgis:16-3.4-alpine
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

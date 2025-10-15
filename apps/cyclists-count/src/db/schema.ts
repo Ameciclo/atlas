@@ -1,16 +1,21 @@
-import { jsonb, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
-import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+import { geometry, index, integer, jsonb, pgTable, timestamp } from "drizzle-orm/pg-core";
+import { createSelectSchema } from "drizzle-zod";
 
-export const examples = pgTable("cyclists_count_examples", {
-	id: serial("id").primaryKey(),
-	name: text("name").notNull(),
-	data: jsonb("data").notNull(),
-	created_at: timestamp("created_at").defaultNow().notNull(),
-	updated_at: timestamp("updated_at").defaultNow().notNull(),
-});
+export const cyclistsCounts = pgTable(
+	"cyclists_counts",
+	{
+		id: integer("id").primaryKey(),
+		data: jsonb("data").notNull(),
+		metadata: jsonb("metadata").notNull(),
+		coordinates: geometry("coordinates", { type: "point", mode: "xy", srid: 4326 }),
+		created_at: timestamp("created_at").defaultNow().notNull(),
+		updated_at: timestamp("updated_at").defaultNow().notNull(),
+	},
+	(t) => [
+		index("spatial_index").using("gist", t.coordinates),
+	]
+);
 
-export const insertExampleSchema = createInsertSchema(examples);
-export const selectExampleSchema = createSelectSchema(examples);
+export const selectCyclistsCountSchema = createSelectSchema(cyclistsCounts);
 
-export type Example = typeof examples.$inferSelect;
-export type InsertExample = typeof examples.$inferInsert;
+export type CyclistsCount = typeof cyclistsCounts.$inferSelect;
