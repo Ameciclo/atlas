@@ -1,8 +1,8 @@
 import "dotenv/config";
 import { migrate } from "drizzle-orm/node-postgres/migrator";
-import { createConnectedDatabase, closeDatabase } from "./connection.js";
-import { schemaManager } from "./schema-manager.js";
+import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import type { DatabaseConfig } from "./connection.js";
+import { schemaManager } from "./schema-manager.js";
 
 export interface MigrationConfig extends DatabaseConfig {
 	migrationsFolder?: string;
@@ -12,7 +12,9 @@ export interface MigrationConfig extends DatabaseConfig {
 /**
  * Run migrations for the entire database or a specific service
  */
-export async function runMigrations(config: MigrationConfig = {}): Promise<void> {
+export async function runMigrations(
+	config: MigrationConfig = {},
+): Promise<void> {
 	const db = await createConnectedDatabase(config);
 
 	try {

@@ -1,49 +1,49 @@
 {
-  "name": "@atlas/database",
-  "version": "0.1.0",
-  "description": "Shared database package for Atlas monorepo with Drizzle ORM",
-  "type": "module",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./schemas/cyclist-profile": {
-      "types": "./dist/schemas/cyclist-profile/index.d.ts",
-      "import": "./dist/schemas/cyclist-profile/index.js"
-    },
-    "./migrations/*": {
-      "types": "./dist/migrations/*.d.ts",
-      "import": "./dist/migrations/*.js"
-    }
-  },
-  "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "check-types": "tsc --noEmit",
-    "lint": "biome lint .",
-    "format": "biome format .",
-    "db:studio": "drizzle-kit studio",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "tsx src/migrate.ts",
-    "db:migrate-to-shared": "tsx src/scripts/migrate-to-shared-db.ts"
-  },
-  "dependencies": {
-    "drizzle-orm": "^0.43.1",
-    "drizzle-zod": "^0.7.1",
-    "pg": "^8.14.1",
-    "dotenv": "^16.5.0"
-  },
-  "devDependencies": {
-    "@types/node": "^22.15.17",
-    "@types/pg": "^8.11.13",
-    "drizzle-kit": "^0.31.0",
-    "tsx": "^4.19.3",
-    "typescript": "^5.8.3"
-  },
-  "peerDependencies": {
-    "typescript": "^5.8.3"
-  }
+	"name": "@atlas/database",
+	"version": "0.1.0",
+	"description": "Shared database package for Atlas monorepo with Drizzle ORM",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./schemas/cyclist-profile": {
+			"types": "./dist/schemas/cyclist-profile/index.d.ts",
+			"import": "./dist/schemas/cyclist-profile/index.js"
+		},
+		"./migrations/*": {
+			"types": "./dist/migrations/*.d.ts",
+			"import": "./dist/migrations/*.js"
+		}
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"check-types": "tsc --noEmit",
+		"lint": "biome lint .",
+		"format": "biome format .",
+		"db:studio": "drizzle-kit studio",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "tsx src/migrate.ts",
+		"db:migrate-to-shared": "tsx src/scripts/migrate-to-shared-db.ts"
+	},
+	"dependencies": {
+		"drizzle-orm": "^0.43.1",
+		"drizzle-zod": "^0.7.1",
+		"pg": "^8.14.1",
+		"dotenv": "^16.5.0"
+	},
+	"devDependencies": {
+		"@types/node": "^22.15.17",
+		"@types/pg": "^8.11.13",
+		"drizzle-kit": "^0.31.0",
+		"tsx": "^4.19.3",
+		"typescript": "^5.8.3"
+	},
+	"peerDependencies": {
+		"typescript": "^5.8.3"
+	}
 }
