@@ -12,6 +12,7 @@
 		"test:watch": "NODE_ENV=test vitest --watch",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
+		"db:drop": "drizzle-kit drop",
 		"db:studio": "drizzle-kit studio",
 		"db:seed": "tsx src/db/seed.ts",
 		"db:migrate:js": "node dist/db/migrate.js",
