@@ -1,0 +1,74 @@
+# Portainer Stack: Documentation Service
+#
+# This stack deploys the API documentation site.
+#
+# Optional Environment Variables:
+#   - PORT: Service port (default: 3001)
+#   - LOG_LEVEL: Logging level (default: info)
+#   - IMAGE_TAG: Docker image tag (default: latest)
+#
+# Setup Instructions:
+#   1. In Portainer, create new stack named "atlas-docs"
+#   2. Optionally set PORT and LOG_LEVEL in environment variables
+#   3. Deploy stack
+#   4. Enable webhook for automatic deployments
+#
+# Webhook Setup:
+#   1. Go to Stacks → atlas-docs → Webhooks
+#   2. Enable webhook
+#   3. Copy webhook URL
+#   4. Add to GitHub secrets as PORTAINER_WEBHOOK_DOCS
+#
+# Health Check:
+#   curl http://localhost:3001/
+
+version: '3.8'
+
+services:
+  app:
+    image: ghcr.io/ameciclo/atlas/docs:${IMAGE_TAG:-latest}
+    container_name: atlas-docs
+    
+    environment:
+      # Application settings
+      NODE_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: ${PORT:-3001}
+    
+    ports:
+      - "${PORT:-3001}:${PORT:-3001}"
+    
+    networks:
+      - atlas-network
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:${PORT:-3001}/', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      start_period: 20s
+      retries: 3
+    
+    # Resource limits (adjust based on your server)
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  atlas-network:
+    external: true
+    name: atlas-network
+

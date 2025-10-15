@@ -1,0 +1,79 @@
+version: '3.8'
+
+# Atlas Database Stack
+# This stack provides the shared PostgreSQL database for all Atlas services
+# Each service uses its own schema within this database
+
+services:
+  postgres:
+    image: postgis/postgis:16-3.5
+    container_name: atlas-postgres
+    environment:
+      # Database credentials
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: atlas
+      
+      # PostgreSQL configuration
+      POSTGRES_INITDB_ARGS: "-E UTF8 --locale=en_US.UTF-8"
+      
+      # Performance tuning (adjust based on your server)
+      POSTGRES_SHARED_BUFFERS: ${POSTGRES_SHARED_BUFFERS:-256MB}
+      POSTGRES_EFFECTIVE_CACHE_SIZE: ${POSTGRES_EFFECTIVE_CACHE_SIZE:-1GB}
+      POSTGRES_MAX_CONNECTIONS: ${POSTGRES_MAX_CONNECTIONS:-100}
+    
+    ports:
+      # Expose PostgreSQL port (change if needed)
+      - "${POSTGRES_PORT:-5432}:5432"
+    
+    volumes:
+      # Persistent data storage
+      - atlas-postgres-data:/var/lib/postgresql/data
+      
+      # Optional: Custom PostgreSQL configuration
+      # - ./postgresql.conf:/etc/postgresql/postgresql.conf
+      
+      # Optional: Initialization scripts
+      # - ./init-scripts:/docker-entrypoint-initdb.d
+    
+    networks:
+      - atlas-network
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d atlas"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    
+    # Resource limits (adjust based on your server)
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  atlas-postgres-data:
+    # Use external volume created beforehand
+    # docker volume create atlas-postgres-data
+    external: true
+
+networks:
+  atlas-network:
+    # Use external network created beforehand
+    # docker network create atlas-network
+    external: true
+

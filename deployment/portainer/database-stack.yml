@@ -1,0 +1,90 @@
+# Portainer Stack: Atlas Database
+# 
+# This stack deploys the shared PostgreSQL database for all Atlas services.
+# 
+# Required Environment Variables:
+#   - POSTGRES_PASSWORD: Database password (set as secret in Portainer)
+#
+# Optional Environment Variables:
+#   - POSTGRES_USER: Database user (default: postgres)
+#   - POSTGRES_DB: Database name (default: atlas)
+#
+# Setup Instructions:
+#   1. Create network: docker network create atlas-network
+#   2. In Portainer, create new stack named "atlas-database"
+#   3. Set POSTGRES_PASSWORD in environment variables
+#   4. Deploy stack
+#
+# Health Check:
+#   docker exec atlas-postgres pg_isready -U postgres -d atlas
+
+version: '3.8'
+
+services:
+  postgres:
+    image: postgis/postgis:16-3.5
+    container_name: atlas-postgres
+    
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-atlas}
+      # Performance tuning (adjust based on your server)
+      POSTGRES_SHARED_BUFFERS: ${POSTGRES_SHARED_BUFFERS:-256MB}
+      POSTGRES_EFFECTIVE_CACHE_SIZE: ${POSTGRES_EFFECTIVE_CACHE_SIZE:-1GB}
+      POSTGRES_MAX_CONNECTIONS: ${POSTGRES_MAX_CONNECTIONS:-100}
+    
+    volumes:
+      # Persistent data storage
+      - postgres_data:/var/lib/postgresql/data
+      
+      # Optional: Custom PostgreSQL configuration
+      # - ./postgresql.conf:/etc/postgresql/postgresql.conf
+      
+      # Optional: Initialization scripts
+      # - ./init-scripts:/docker-entrypoint-initdb.d
+    
+    networks:
+      - atlas-network
+    
+    ports:
+      # Expose PostgreSQL port (optional, for external access)
+      # Comment out if you don't need external access
+      - "${POSTGRES_PORT:-5432}:5432"
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-atlas}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    
+    # Resource limits (adjust based on your server)
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  postgres_data:
+    name: atlas-postgres-data
+    driver: local
+
+networks:
+  atlas-network:
+    external: true
+    name: atlas-network
+

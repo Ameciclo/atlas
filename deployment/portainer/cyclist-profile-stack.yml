@@ -1,0 +1,118 @@
+# Portainer Stack: Cyclist Profile Service
+#
+# This stack deploys the Cyclist Profile API service with automatic migrations.
+#
+# Required Environment Variables:
+#   - POSTGRES_PASSWORD: Database password (must match database stack)
+#
+# Optional Environment Variables:
+#   - PORT: Service port (default: 3000)
+#   - LOG_LEVEL: Logging level (default: info)
+#   - IMAGE_TAG: Docker image tag (default: latest)
+#
+# Setup Instructions:
+#   1. Ensure atlas-database stack is running
+#   2. In Portainer, create new stack named "atlas-cyclist-profile"
+#   3. Set POSTGRES_PASSWORD in environment variables
+#   4. Deploy stack
+#   5. Enable webhook for automatic deployments
+#
+# Webhook Setup:
+#   1. Go to Stacks → atlas-cyclist-profile → Webhooks
+#   2. Enable webhook
+#   3. Copy webhook URL
+#   4. Add to GitHub secrets as PORTAINER_WEBHOOK_CYCLIST_PROFILE
+#
+# Health Check:
+#   curl http://localhost:3000/health
+
+version: "3.8"
+
+services:
+  # Migration service - runs before the app starts
+  migrate:
+    image: ghcr.io/ameciclo/atlas/cyclist-profile:${IMAGE_TAG:-latest}
+    container_name: atlas-cyclist-profile-migrate
+
+    command: node packages/database/dist/migrate.js
+
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD}@atlas-postgres:5432/${POSTGRES_DB:-atlas}
+      NODE_ENV: production
+
+    networks:
+      - atlas-network
+
+    restart: "no"
+
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Main application service
+  app:
+    image: ghcr.io/ameciclo/atlas/cyclist-profile:${IMAGE_TAG:-latest}
+    container_name: atlas-cyclist-profile
+
+    environment:
+      # Application settings
+      NODE_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: ${PORT:-3000}
+
+      # Database connection
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD}@atlas-postgres:5432/${POSTGRES_DB:-atlas}
+
+      # Optional: Add other environment variables as needed
+      # API_KEY: ${API_KEY}
+      # JWT_SECRET: ${JWT_SECRET}
+
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+
+    networks:
+      - atlas-network
+
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+    restart: unless-stopped
+
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://localhost:${PORT:-3000}/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))",
+        ]
+      interval: 30s
+      timeout: 10s
+      start_period: 40s
+      retries: 3
+
+    # Resource limits (adjust based on your server)
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+        reservations:
+          cpus: "0.5"
+          memory: 256M
+
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  atlas-network:
+    external: true
+    name: atlas-network

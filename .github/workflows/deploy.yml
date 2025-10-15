@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       app:
-        description: 'App to deploy (leave empty for all)'
+        description: "App to deploy (leave empty for all)"
         required: false
         type: string
       environment:
-        description: 'Environment to deploy to'
+        description: "Environment to deploy to"
         required: true
-        default: 'production'
+        default: "production"
         type: choice
         options:
           - production
@@ -25,94 +25,132 @@ on:
 # Permissions needed for deployment
 permissions:
   contents: read
-  packages: read
+  actions: read
 
 jobs:
-  prepare:
-    name: Prepare Deployment
+  detect_deployed_apps:
+    name: Detect Apps to Deploy
     runs-on: ubuntu-latest
     if: |
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     outputs:
-      apps: ${{ steps.set-apps.outputs.apps }}
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      has_deployments: ${{ steps.set-matrix.outputs.has_deployments }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.15.0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install turbo
+        run: npm install -g turbo
 
       - name: Determine apps to deploy
-        id: set-apps
+        id: set-matrix
         run: |
-          if [[ "${{ github.event.inputs.app }}" != "" ]]; then
-            # Deploy specific app from workflow_dispatch
-            APPS_JSON="[\"${{ github.event.inputs.app }}\"]"
+          # Define all apps with webhooks
+          ALL_APPS='[
+            {"app": "cyclist-profile", "webhook_secret": "PORTAINER_WEBHOOK_CYCLIST_PROFILE"},
+            {"app": "docs", "webhook_secret": "PORTAINER_WEBHOOK_DOCS"}
+          ]'
+
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            # Manual deployment
+            if [[ "${{ github.event.inputs.app }}" != "" ]]; then
+              # Deploy specific app
+              DEPLOY_MATRIX=$(echo $ALL_APPS | jq -c --arg app "${{ github.event.inputs.app }}" '[.[] | select(.app == $app)]')
+            else
+              # Deploy all apps
+              DEPLOY_MATRIX=$ALL_APPS
+            fi
           else
-            # Find all apps with Dockerfiles
-            APPS_JSON=$(find apps -name "Dockerfile" -type f | cut -d'/' -f2 | sort -u | jq -R -s -c 'split("\n") | map(select(length > 0))')
+            # Automatic deployment after Docker build
+            # Detect which apps were actually built
+
+            # Get list of all apps with Dockerfiles
+            APPS_WITH_DOCKER=$(find apps -name "Dockerfile" -type f | cut -d'/' -f2 | sort -u | jq -R -s -c 'split("\n") | map(select(length > 0))')
+
+            # Get list of affected apps (same logic as docker.yml)
+            BASE_REF="HEAD^1"
+            AFFECTED_APPS=$(npx turbo run build --dry-run=json --filter=...[HEAD^1] 2>/dev/null | jq -c '.tasks | map(.taskId | split(":")[0] | select(startswith("@atlas/"))) | map(sub("@atlas/"; "")) | unique' || echo '[]')
+
+            # Filter to only include apps with Dockerfiles that were affected
+            AFFECTED_DOCKER_APPS=$(echo $APPS_WITH_DOCKER | jq --argjson affected "$AFFECTED_APPS" -c '[.[] | select($affected | index(.))]')
+
+            # Map to deployment matrix format
+            DEPLOY_MATRIX=$(echo $ALL_APPS | jq -c --argjson affected "$AFFECTED_DOCKER_APPS" '[.[] | select($affected | index(.app))]')
           fi
-          echo "apps=${APPS_JSON}" >> $GITHUB_OUTPUT
-          echo "Apps to deploy: ${APPS_JSON}"
+
+          echo "matrix=${DEPLOY_MATRIX}" >> $GITHUB_OUTPUT
+
+          # Check if we have any deployments
+          if [ "$(echo $DEPLOY_MATRIX | jq 'length')" -gt 0 ]; then
+            echo "has_deployments=true" >> $GITHUB_OUTPUT
+            echo "✅ Will deploy: $(echo $DEPLOY_MATRIX | jq -r '[.[].app] | join(", ")')"
+          else
+            echo "has_deployments=false" >> $GITHUB_OUTPUT
+            echo "ℹ️  No apps to deploy"
+          fi
 
   deploy:
-    name: Deploy ${{ matrix.app }}
-    needs: prepare
+    name: Deploy ${{ matrix.app }} via Portainer Webhook
+    needs: detect_deployed_apps
+    if: needs.detect_deployed_apps.outputs.has_deployments == 'true'
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app: ${{ fromJson(needs.prepare.outputs.apps) }}
+        include: ${{ fromJson(needs.detect_deployed_apps.outputs.matrix) }}
     environment: ${{ github.event.inputs.environment || 'production' }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set environment variables
-        id: env
+      - name: Trigger Portainer Webhook
         run: |
-          APP_NAME="${{ matrix.app }}"
-          IMAGE_NAME="ghcr.io/${{ github.repository }}/${APP_NAME}:latest"
-          echo "image_name=${IMAGE_NAME}" >> $GITHUB_OUTPUT
-          echo "Deploying ${APP_NAME} using image ${IMAGE_NAME}"
+          WEBHOOK_URL="${{ secrets[matrix.webhook_secret] }}"
 
-      # Database migrations have been removed from the workflow
-      # You can add them back later when needed
+          if [ -z "$WEBHOOK_URL" ]; then
+            echo "⚠️  Warning: Webhook URL not configured for ${{ matrix.app }}"
+            echo "Please set ${{ matrix.webhook_secret }} in GitHub secrets"
+            exit 0
+          fi
 
-      # This is a placeholder for your actual deployment method
-      # You would replace this with your actual deployment to Portainer or other platform
-      - name: Deploy to Portainer (Placeholder)
+          echo "🚀 Triggering deployment for ${{ matrix.app }}..."
+          echo "Environment: ${{ github.event.inputs.environment || 'production' }}"
+
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "$WEBHOOK_URL")
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | head -n-1)
+
+          if [ "$HTTP_CODE" -eq 200 ] || [ "$HTTP_CODE" -eq 204 ]; then
+            echo "✅ Successfully triggered deployment for ${{ matrix.app }}"
+            echo "Portainer is now pulling the latest image and restarting the service"
+          else
+            echo "❌ Failed to trigger deployment for ${{ matrix.app }}"
+            echo "HTTP Code: $HTTP_CODE"
+            echo "Response: $BODY"
+            exit 1
+          fi
+
+      - name: Wait for deployment
         run: |
-          echo "Deploying ${{ steps.env.outputs.image_name }} to ${{ github.event.inputs.environment || 'production' }}"
-          echo "In a real deployment, you would:"
-          echo "1. Connect to Portainer API"
-          echo "2. Update the stack with the new image"
-          echo "3. Restart the service"
+          echo "⏳ Waiting 30 seconds for deployment to complete..."
+          sleep 30
 
-      # Example of how to use curl to update a Portainer stack (you would need to customize this)
-      # - name: Deploy to Portainer
-      #   env:
-      #     PORTAINER_URL: ${{ secrets.PORTAINER_URL }}
-      #     PORTAINER_API_KEY: ${{ secrets.PORTAINER_API_KEY }}
-      #     STACK_ID: ${{ secrets.PORTAINER_STACK_ID }}
-      #     IMAGE_NAME: ${{ steps.env.outputs.image_name }}
-      #   run: |
-      #     # Get authentication token
-      #     TOKEN=$(curl -s -X POST "${PORTAINER_URL}/api/auth" \
-      #       -H "X-API-Key: ${PORTAINER_API_KEY}" | jq -r .jwt)
-      #
-      #     # Get current stack file
-      #     STACK_FILE=$(curl -s -X GET "${PORTAINER_URL}/api/stacks/${STACK_ID}/file" \
-      #       -H "Authorization: Bearer ${TOKEN}" | jq -r .StackFileContent)
-      #
-      #     # Update image in stack file
-      #     UPDATED_STACK_FILE=$(echo "${STACK_FILE}" | sed -E "s|image: ghcr.io/.*/atlas/${{ matrix.app }}:.*|image: ${IMAGE_NAME}|g")
-      #
-      #     # Update the stack
-      #     curl -s -X PUT "${PORTAINER_URL}/api/stacks/${STACK_ID}" \
-      #       -H "Authorization: Bearer ${TOKEN}" \
-      #       -H "Content-Type: application/json" \
-      #       -d "{\"stackFileContent\": \"${UPDATED_STACK_FILE}\"}"
-
-      - name: Notify deployment status
-        if: always()
+      - name: Deployment summary
         run: |
-          STATUS="${{ job.status }}"
-          echo "Deployment of ${{ matrix.app }} to ${{ github.event.inputs.environment || 'production' }} ${STATUS}"
+          echo "📊 Deployment Summary"
+          echo "===================="
+          echo "Service: ${{ matrix.app }}"
+          echo "Environment: ${{ github.event.inputs.environment || 'production' }}"
+          echo "Image: ghcr.io/${{ github.repository }}/${{ matrix.app }}:latest"
+          echo "Status: ${{ job.status }}"
+          echo ""
+          echo "ℹ️  Check Portainer UI for detailed deployment status"
+          echo "ℹ️  Verify service health at the appropriate endpoint"

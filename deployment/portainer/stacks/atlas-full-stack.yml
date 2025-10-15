@@ -1,0 +1,153 @@
+version: '3.8'
+
+# Atlas Full Stack
+# Complete deployment with database and all services
+# Use this for a single-stack deployment or as a reference
+
+services:
+  # ============================================================================
+  # Database Service
+  # ============================================================================
+  postgres:
+    image: postgis/postgis:16-3.5
+    container_name: atlas-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: atlas
+      POSTGRES_SHARED_BUFFERS: ${POSTGRES_SHARED_BUFFERS:-256MB}
+      POSTGRES_EFFECTIVE_CACHE_SIZE: ${POSTGRES_EFFECTIVE_CACHE_SIZE:-1GB}
+      POSTGRES_MAX_CONNECTIONS: ${POSTGRES_MAX_CONNECTIONS:-100}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - atlas-postgres-data:/var/lib/postgresql/data
+    networks:
+      - atlas-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d atlas"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Cyclist Profile Service
+  # ============================================================================
+  cyclist-profile:
+    image: ghcr.io/ameciclo/atlas/cyclist-profile:${CYCLIST_PROFILE_TAG:-latest}
+    container_name: atlas-cyclist-profile
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: ${CYCLIST_PROFILE_PORT:-3000}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD}@postgres:5432/atlas
+    ports:
+      - "${CYCLIST_PROFILE_PORT:-3000}:${CYCLIST_PROFILE_PORT:-3000}"
+    networks:
+      - atlas-network
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:${CYCLIST_PROFILE_PORT:-3000}/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Documentation Service
+  # ============================================================================
+  docs:
+    image: ghcr.io/ameciclo/atlas/docs:${DOCS_TAG:-latest}
+    container_name: atlas-docs
+    environment:
+      NODE_ENV: production
+      PORT: ${DOCS_PORT:-3001}
+    ports:
+      - "${DOCS_PORT:-3001}:${DOCS_PORT:-3001}"
+    networks:
+      - atlas-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:${DOCS_PORT:-3001}/', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 64M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Optional: Reverse Proxy (Nginx)
+  # Uncomment if you want to use Nginx as a reverse proxy
+  # ============================================================================
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: atlas-nginx
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./ssl:/etc/nginx/ssl:ro
+  #   networks:
+  #     - atlas-network
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - cyclist-profile
+  #     - docs
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "3"
+
+volumes:
+  atlas-postgres-data:
+    driver: local
+
+networks:
+  atlas-network:
+    driver: bridge
+

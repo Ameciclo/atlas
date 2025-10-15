@@ -1,0 +1,57 @@
+version: '3.8'
+
+# Atlas Documentation Service Stack
+# Serves API documentation with Scalar
+
+services:
+  docs:
+    image: ghcr.io/ameciclo/atlas/docs:${IMAGE_TAG:-latest}
+    container_name: atlas-docs
+    
+    environment:
+      # Node environment
+      NODE_ENV: production
+      
+      # Server configuration
+      PORT: ${PORT:-3001}
+      
+      # Optional: Custom configuration
+      # API_BASE_URL: ${API_BASE_URL}
+    
+    ports:
+      # Expose docs port
+      - "${PORT:-3001}:${PORT:-3001}"
+    
+    networks:
+      - atlas-network
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:${PORT:-3001}/', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 64M
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  atlas-network:
+    external: true
+
