@@ -105,17 +105,58 @@ jobs:
             type=ref,event=branch
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
 
-      - name: Generate OpenAPI specs
-        run: |
-          # Setup Node.js and pnpm
-          npm install -g pnpm
-          pnpm install
+      - name: Setup Node.js and pnpm
+        if: matrix.app == 'docs' || hashFiles('apps/${{ matrix.app }}/src/generate-openapi.ts') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.15.0
 
-          # Generate OpenAPI specs if needed
-          if [ -f "apps/${{ matrix.app }}/src/generate-openapi.ts" ]; then
-            echo "Generating OpenAPI specs for ${{ matrix.app }}"
-            pnpm --filter @atlas/${{ matrix.app }} generate-openapi
-          fi
+      - name: Setup pnpm
+        if: matrix.app == 'docs' || hashFiles('apps/${{ matrix.app }}/src/generate-openapi.ts') != ''
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        if: matrix.app == 'docs' || hashFiles('apps/${{ matrix.app }}/src/generate-openapi.ts') != ''
+        run: pnpm install
+
+      - name: Setup PostgreSQL for OpenAPI generation
+        if: matrix.app == 'docs'
+        uses: ikalnytskyi/action-setup-postgres@v7
+        with:
+          username: postgres
+          password: postgres
+          database: atlas
+          port: 5432
+        id: postgres
+
+      - name: Run database migrations
+        if: matrix.app == 'docs'
+        env:
+          DATABASE_URL: ${{ steps.postgres.outputs.connection-uri }}
+        run: pnpm --filter @atlas/database db:migrate
+
+      - name: Generate all OpenAPI specs for docs
+        if: matrix.app == 'docs'
+        env:
+          DATABASE_URL: ${{ steps.postgres.outputs.connection-uri }}
+        run: |
+          echo "Generating all OpenAPI specs for docs app..."
+          # Generate OpenAPI for all services that have the script
+          for app_dir in apps/*/; do
+            app_name=$(basename "$app_dir")
+            if [ -f "apps/$app_name/src/generate-openapi.ts" ]; then
+              echo "Generating OpenAPI spec for $app_name"
+              pnpm --filter @atlas/$app_name generate-openapi
+            fi
+          done
+
+      - name: Generate OpenAPI spec for current app
+        if: matrix.app != 'docs' && hashFiles('apps/${{ matrix.app }}/src/generate-openapi.ts') != ''
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/atlas
+        run: |
+          echo "Generating OpenAPI spec for ${{ matrix.app }}"
+          pnpm --filter @atlas/${{ matrix.app }} generate-openapi
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
