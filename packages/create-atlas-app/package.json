@@ -1,0 +1,27 @@
+{
+	"name": "@atlas/create-atlas-app",
+	"version": "1.0.0",
+	"description": "Scaffolding tool for creating new Atlas services",
+	"type": "module",
+	"bin": {
+		"create-atlas-app": "./dist/index.js"
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"check-types": "tsc --noEmit"
+	},
+	"keywords": ["atlas", "scaffolding", "generator", "cli"],
+	"dependencies": {
+		"prompts": "^2.4.2",
+		"chalk": "^5.3.0",
+		"ora": "^8.0.1",
+		"fs-extra": "^11.2.0"
+	},
+	"devDependencies": {
+		"@types/node": "^22.15.17",
+		"@types/prompts": "^2.4.9",
+		"@types/fs-extra": "^11.0.4",
+		"typescript": "^5.8.3"
+	}
+}

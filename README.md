@@ -91,9 +91,13 @@ atlas/
 ├── apps/                # Applications
 │   ├── docs/            # API documentation site
 │   └── cyclist-profile/ # Cyclist profile service
+├── docs/                # Documentation
+│   ├── CREATE_NEW_SERVICE.md          # Guide for creating new services
+│   ├── SCAFFOLDING_TOOL.md            # Scaffolding tool documentation
+│   └── SUMMARY.md                     # Documentation index
 ├── packages/            # Shared packages
-│   └── typescript-config/ # Shared TypeScript configuration
-├── templates/           # Templates for new apps and services
+│   ├── typescript-config/   # Shared TypeScript configuration
+│   └── create-atlas-app/    # Scaffolding tool for new services
 ├── .tool-versions       # Tool versions for mise
 ├── biome.json           # Biome configuration
 ├── turbo.json           # Turborepo configuration
@@ -191,14 +195,26 @@ We use Husky for Git hooks to ensure code quality before commits:
 - **pre-commit**: Runs linting and formatting
 - **pre-push**: Runs type checking and tests
 
-### Adding a New App
+### Adding a New Service
 
-To add a new app to the monorepo:
+We provide a scaffolding tool to quickly create new services with all the necessary boilerplate:
 
-1. Create a new directory in the `apps` folder
-2. Copy the appropriate template from the `templates` directory
-3. Update the package.json with the correct name and dependencies
-4. Add the app to the CI/CD pipeline if needed
+```bash
+# Interactive mode
+pnpm create-atlas-app
+
+# With service name
+pnpm create-atlas-app my-service
+```
+
+The tool will:
+- ✅ Generate complete service structure with TypeScript, Hono, and Zod OpenAPI
+- ✅ Create Dockerfile and docker-compose.yml
+- ✅ Set up database with Drizzle ORM (optional)
+- ✅ Add example routes, tests, and documentation
+- ✅ Configure CI/CD integration automatically
+
+For detailed instructions, see [docs/CREATE_NEW_SERVICE.md](docs/CREATE_NEW_SERVICE.md) and [docs/SCAFFOLDING_TOOL.md](docs/SCAFFOLDING_TOOL.md).
 
 ## Testing GitHub Actions Locally
 

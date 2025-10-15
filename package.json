@@ -11,7 +11,8 @@
 		"biome:ci": "biome ci",
 		"check-types": "turbo run check-types",
 		"test": "turbo run test",
-		"generate-openapi": "turbo run generate-openapi && pnpm --filter @atlas/docs prepare-openapi"
+		"generate-openapi": "turbo run generate-openapi && pnpm --filter @atlas/docs prepare-openapi",
+		"create-atlas-app": "pnpm --filter @atlas/create-atlas-app build && node packages/create-atlas-app/dist/index.js"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
