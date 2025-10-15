@@ -1,0 +1,162 @@
+# Portainer Stack: Atlas (Managed Database)
+#
+# This stack is for deployments using a MANAGED PostgreSQL database (e.g., Digital Ocean).
+# It only contains the application services, not the database.
+#
+# Each service has its own webhook in Portainer for independent deployments.
+#
+# Required Environment Variables:
+#   - DATABASE_URL: Full PostgreSQL connection string to managed database
+#
+# Optional Environment Variables:
+#   - CYCLIST_PROFILE_PORT: Cyclist Profile API port (default: 3000)
+#   - DOCS_PORT: Documentation site port (default: 3001)
+#   - LOG_LEVEL: Logging level (default: info)
+#   - IMAGE_TAG: Docker image tag for all services (default: latest)
+#
+# Setup Instructions:
+#   1. Create network: docker network create atlas-network
+#   2. In Portainer, create new stack named "atlas"
+#   3. Set DATABASE_URL in environment variables
+#   4. Deploy stack
+#   5. Enable webhook for EACH service (cyclist-profile, docs)
+#
+# Webhook Setup (Service-Level):
+#   Each service has its own webhook for independent deployments:
+#
+#   1. In Portainer: Containers → atlas-cyclist-profile → Duplicate/Edit
+#   2. Enable webhook for the service
+#   3. Copy webhook URL
+#   4. Add to GitHub secrets as PORTAINER_WEBHOOK_CYCLIST_PROFILE
+#
+#   Repeat for docs service:
+#   5. In Portainer: Containers → atlas-docs → Duplicate/Edit
+#   6. Enable webhook for the service
+#   7. Copy webhook URL
+#   8. Add to GitHub secrets as PORTAINER_WEBHOOK_DOCS
+#
+# Health Checks:
+#   API:   curl http://localhost:3000/health
+#   Docs:  curl http://localhost:3001/
+
+version: '3.8'
+
+services:
+  # ============================================================================
+  # Cyclist Profile Service - Migration
+  # ============================================================================
+  cyclist-profile-migrate:
+    image: ghcr.io/ameciclo/atlas/cyclist-profile:${IMAGE_TAG:-latest}
+    container_name: atlas-cyclist-profile-migrate
+    
+    command: node packages/database/dist/migrate.js
+    
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      NODE_ENV: production
+    
+    networks:
+      - atlas-network
+    
+    restart: "no"
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Cyclist Profile Service - API
+  # ============================================================================
+  cyclist-profile:
+    image: ghcr.io/ameciclo/atlas/cyclist-profile:${IMAGE_TAG:-latest}
+    container_name: atlas-cyclist-profile
+    
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: ${CYCLIST_PROFILE_PORT:-3000}
+      DATABASE_URL: ${DATABASE_URL}
+    
+    ports:
+      - "${CYCLIST_PROFILE_PORT:-3000}:${CYCLIST_PROFILE_PORT:-3000}"
+    
+    networks:
+      - atlas-network
+    
+    depends_on:
+      cyclist-profile-migrate:
+        condition: service_completed_successfully
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:${CYCLIST_PROFILE_PORT:-3000}/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      start_period: 40s
+      retries: 3
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Documentation Service
+  # ============================================================================
+  docs:
+    image: ghcr.io/ameciclo/atlas/docs:${IMAGE_TAG:-latest}
+    container_name: atlas-docs
+    
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: ${DOCS_PORT:-3001}
+    
+    ports:
+      - "${DOCS_PORT:-3001}:${DOCS_PORT:-3001}"
+    
+    networks:
+      - atlas-network
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:${DOCS_PORT:-3001}/', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      start_period: 20s
+      retries: 3
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  atlas-network:
+    external: true
+    name: atlas-network
+

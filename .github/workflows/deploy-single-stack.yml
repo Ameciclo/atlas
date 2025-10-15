@@ -1,0 +1,155 @@
+name: Deploy to Production (Single Stack)
+
+# This workflow is for deploying to a SINGLE Portainer stack containing all services.
+# Use this instead of deploy.yml if you have one "atlas" stack with all services.
+#
+# Key difference:
+# - Triggers ONE webhook that updates ALL services in the stack
+# - Simpler setup, but less granular control
+# - All services restart even if only one changed
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy to"
+        required: true
+        default: "production"
+        type: choice
+        options:
+          - production
+          - staging
+  workflow_run:
+    workflows: ["Docker Build & Push"]
+    types:
+      - completed
+    branches:
+      - main
+
+# Permissions needed for deployment
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  deploy:
+    name: Deploy Atlas Stack via Portainer Webhook
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+    environment: ${{ github.event.inputs.environment || 'production' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.15.0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install turbo
+        run: npm install -g turbo
+
+      - name: Detect changed apps
+        id: detect-changes
+        run: |
+          # Get list of all apps with Dockerfiles
+          APPS_WITH_DOCKER=$(find apps -name "Dockerfile" -type f | cut -d'/' -f2 | sort -u | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            # Manual deployment - always deploy
+            echo "should_deploy=true" >> $GITHUB_OUTPUT
+            echo "changed_apps=all (manual deployment)" >> $GITHUB_OUTPUT
+          else
+            # Automatic deployment - check what changed
+            BASE_REF="HEAD^1"
+            AFFECTED_APPS=$(npx turbo run build --dry-run=json --filter=...[HEAD^1] 2>/dev/null | jq -c '.tasks | map(.taskId | split(":")[0] | select(startswith("@atlas/"))) | map(sub("@atlas/"; "")) | unique' || echo '[]')
+            
+            # Filter to only include apps with Dockerfiles that were affected
+            AFFECTED_DOCKER_APPS=$(echo $APPS_WITH_DOCKER | jq --argjson affected "$AFFECTED_APPS" -c '[.[] | select($affected | index(.))]')
+            
+            if [ "$(echo $AFFECTED_DOCKER_APPS | jq 'length')" -gt 0 ]; then
+              echo "should_deploy=true" >> $GITHUB_OUTPUT
+              echo "changed_apps=$(echo $AFFECTED_DOCKER_APPS | jq -r 'join(", ")')" >> $GITHUB_OUTPUT
+              echo "✅ Detected changes in: $(echo $AFFECTED_DOCKER_APPS | jq -r 'join(", ")')"
+            else
+              echo "should_deploy=false" >> $GITHUB_OUTPUT
+              echo "changed_apps=none" >> $GITHUB_OUTPUT
+              echo "ℹ️  No apps changed, skipping deployment"
+            fi
+          fi
+
+      - name: Trigger Portainer Webhook
+        if: steps.detect-changes.outputs.should_deploy == 'true'
+        run: |
+          WEBHOOK_URL="${{ secrets.PORTAINER_WEBHOOK_ATLAS }}"
+
+          if [ -z "$WEBHOOK_URL" ]; then
+            echo "❌ Error: PORTAINER_WEBHOOK_ATLAS secret not configured"
+            echo "Please add the webhook URL to GitHub secrets"
+            exit 1
+          fi
+
+          echo "🚀 Triggering deployment for Atlas stack..."
+          echo "Environment: ${{ github.event.inputs.environment || 'production' }}"
+          echo "Changed apps: ${{ steps.detect-changes.outputs.changed_apps }}"
+          echo ""
+          echo "⚠️  Note: All services in the stack will be restarted"
+
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "$WEBHOOK_URL")
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | head -n-1)
+
+          if [ "$HTTP_CODE" -eq 200 ] || [ "$HTTP_CODE" -eq 204 ]; then
+            echo "✅ Successfully triggered deployment"
+            echo "Portainer is now pulling the latest images and restarting services"
+          else
+            echo "❌ Failed to trigger deployment"
+            echo "HTTP Code: $HTTP_CODE"
+            echo "Response: $BODY"
+            exit 1
+          fi
+
+      - name: Wait for deployment
+        if: steps.detect-changes.outputs.should_deploy == 'true'
+        run: |
+          echo "⏳ Waiting 60 seconds for deployment to complete..."
+          echo "(All services need time to restart)"
+          sleep 60
+
+      - name: Deployment summary
+        if: steps.detect-changes.outputs.should_deploy == 'true'
+        run: |
+          echo "📊 Deployment Summary"
+          echo "===================="
+          echo "Stack: atlas"
+          echo "Environment: ${{ github.event.inputs.environment || 'production' }}"
+          echo "Changed apps: ${{ steps.detect-changes.outputs.changed_apps }}"
+          echo ""
+          echo "Services updated:"
+          echo "  - postgres (database)"
+          echo "  - cyclist-profile (API)"
+          echo "  - docs (documentation)"
+          echo ""
+          echo "Images:"
+          echo "  - ghcr.io/${{ github.repository }}/cyclist-profile:latest"
+          echo "  - ghcr.io/${{ github.repository }}/docs:latest"
+          echo ""
+          echo "ℹ️  Check Portainer UI for detailed deployment status"
+          echo "ℹ️  Verify service health:"
+          echo "     Database:  docker exec atlas-postgres pg_isready -U postgres -d atlas"
+          echo "     API:       curl http://localhost:3000/health"
+          echo "     Docs:      curl http://localhost:3001/"
+
+      - name: Skip deployment
+        if: steps.detect-changes.outputs.should_deploy == 'false'
+        run: |
+          echo "ℹ️  Deployment skipped - no apps changed"
+          echo "Changed apps: ${{ steps.detect-changes.outputs.changed_apps }}"
+

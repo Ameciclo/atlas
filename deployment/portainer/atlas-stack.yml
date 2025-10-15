@@ -1,0 +1,225 @@
+# Portainer Stack: Atlas (All Services)
+#
+# This is a single stack containing all Atlas services:
+# - PostgreSQL database
+# - Cyclist Profile API
+# - Documentation site
+#
+# Required Environment Variables:
+#   - POSTGRES_PASSWORD: Database password
+#
+# Optional Environment Variables:
+#   - POSTGRES_USER: Database user (default: postgres)
+#   - POSTGRES_DB: Database name (default: atlas)
+#   - CYCLIST_PROFILE_PORT: Cyclist Profile API port (default: 3000)
+#   - DOCS_PORT: Documentation site port (default: 3001)
+#   - LOG_LEVEL: Logging level (default: info)
+#   - IMAGE_TAG: Docker image tag for all services (default: latest)
+#
+# Setup Instructions:
+#   1. Create network: docker network create atlas-network
+#   2. In Portainer, create new stack named "atlas"
+#   3. Set POSTGRES_PASSWORD in environment variables
+#   4. Deploy stack
+#   5. Enable webhook for automatic deployments
+#
+# Webhook Setup:
+#   Since all services are in one stack, you have two options:
+#
+#   Option 1: Single webhook (updates all services)
+#     1. Go to Stacks → atlas → Webhooks
+#     2. Enable webhook
+#     3. Copy webhook URL
+#     4. Add to GitHub secrets as PORTAINER_WEBHOOK_ATLAS
+#     5. Update deploy.yml to use this single webhook
+#
+#   Option 2: Service-specific webhooks (Portainer Business/Enterprise)
+#     1. Use Portainer's service webhooks feature
+#     2. Create webhook for each service
+#     3. Add to GitHub secrets as PORTAINER_WEBHOOK_CYCLIST_PROFILE, etc.
+#
+# Health Checks:
+#   Database:  docker exec atlas-postgres pg_isready -U postgres -d atlas
+#   API:       curl http://localhost:3000/health
+#   Docs:      curl http://localhost:3001/
+
+version: '3.8'
+
+services:
+  # ============================================================================
+  # Database Service
+  # ============================================================================
+  postgres:
+    image: postgis/postgis:16-3.5
+    container_name: atlas-postgres
+    
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-atlas}
+      # Performance tuning (adjust based on your server)
+      POSTGRES_SHARED_BUFFERS: ${POSTGRES_SHARED_BUFFERS:-256MB}
+      POSTGRES_EFFECTIVE_CACHE_SIZE: ${POSTGRES_EFFECTIVE_CACHE_SIZE:-1GB}
+      POSTGRES_MAX_CONNECTIONS: ${POSTGRES_MAX_CONNECTIONS:-100}
+    
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    
+    networks:
+      - atlas-network
+    
+    ports:
+      # Expose PostgreSQL port (optional, for external access)
+      - "${POSTGRES_PORT:-5432}:5432"
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-atlas}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Cyclist Profile Service - Migration
+  # ============================================================================
+  cyclist-profile-migrate:
+    image: ghcr.io/ameciclo/atlas/cyclist-profile:${IMAGE_TAG:-latest}
+    container_name: atlas-cyclist-profile-migrate
+    
+    command: node packages/database/dist/migrate.js
+    
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-atlas}
+      NODE_ENV: production
+    
+    networks:
+      - atlas-network
+    
+    depends_on:
+      postgres:
+        condition: service_healthy
+    
+    restart: "no"
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Cyclist Profile Service - API
+  # ============================================================================
+  cyclist-profile:
+    image: ghcr.io/ameciclo/atlas/cyclist-profile:${IMAGE_TAG:-latest}
+    container_name: atlas-cyclist-profile
+    
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: ${CYCLIST_PROFILE_PORT:-3000}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-atlas}
+    
+    ports:
+      - "${CYCLIST_PROFILE_PORT:-3000}:${CYCLIST_PROFILE_PORT:-3000}"
+    
+    networks:
+      - atlas-network
+    
+    depends_on:
+      cyclist-profile-migrate:
+        condition: service_completed_successfully
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:${CYCLIST_PROFILE_PORT:-3000}/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      start_period: 40s
+      retries: 3
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Documentation Service
+  # ============================================================================
+  docs:
+    image: ghcr.io/ameciclo/atlas/docs:${IMAGE_TAG:-latest}
+    container_name: atlas-docs
+    
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: ${DOCS_PORT:-3001}
+    
+    ports:
+      - "${DOCS_PORT:-3001}:${DOCS_PORT:-3001}"
+    
+    networks:
+      - atlas-network
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:${DOCS_PORT:-3001}/', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      start_period: 20s
+      retries: 3
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  postgres_data:
+    name: atlas-postgres-data
+    driver: local
+
+networks:
+  atlas-network:
+    external: true
+    name: atlas-network
+

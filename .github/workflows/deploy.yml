@@ -57,10 +57,11 @@ jobs:
       - name: Determine apps to deploy
         id: set-matrix
         run: |
-          # Define all apps with webhooks
+          # Define all apps with service-level webhooks
+          # Note: These are SERVICE webhooks in Portainer, not stack webhooks
           ALL_APPS='[
-            {"app": "cyclist-profile", "webhook_secret": "PORTAINER_WEBHOOK_CYCLIST_PROFILE"},
-            {"app": "docs", "webhook_secret": "PORTAINER_WEBHOOK_DOCS"}
+            {"app": "cyclist-profile", "webhook_secret": "PORTAINER_WEBHOOK_CYCLIST_PROFILE", "service": "atlas-cyclist-profile"},
+            {"app": "docs", "webhook_secret": "PORTAINER_WEBHOOK_DOCS", "service": "atlas-docs"}
           ]'
 
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -111,17 +112,25 @@ jobs:
         include: ${{ fromJson(needs.detect_deployed_apps.outputs.matrix) }}
     environment: ${{ github.event.inputs.environment || 'production' }}
     steps:
-      - name: Trigger Portainer Webhook
+      - name: Trigger Portainer Service Webhook
         run: |
           WEBHOOK_URL="${{ secrets[matrix.webhook_secret] }}"
 
           if [ -z "$WEBHOOK_URL" ]; then
             echo "⚠️  Warning: Webhook URL not configured for ${{ matrix.app }}"
             echo "Please set ${{ matrix.webhook_secret }} in GitHub secrets"
+            echo ""
+            echo "To get the webhook URL:"
+            echo "1. In Portainer: Containers → ${{ matrix.service }}"
+            echo "2. Click 'Duplicate/Edit' or container details"
+            echo "3. Enable webhook for the service"
+            echo "4. Copy webhook URL"
+            echo "5. Add to GitHub secrets as ${{ matrix.webhook_secret }}"
             exit 0
           fi
 
           echo "🚀 Triggering deployment for ${{ matrix.app }}..."
+          echo "Service: ${{ matrix.service }}"
           echo "Environment: ${{ github.event.inputs.environment || 'production' }}"
 
           RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "$WEBHOOK_URL")
@@ -130,7 +139,7 @@ jobs:
 
           if [ "$HTTP_CODE" -eq 200 ] || [ "$HTTP_CODE" -eq 204 ]; then
             echo "✅ Successfully triggered deployment for ${{ matrix.app }}"
-            echo "Portainer is now pulling the latest image and restarting the service"
+            echo "Portainer is now pulling the latest image and restarting ${{ matrix.service }}"
           else
             echo "❌ Failed to trigger deployment for ${{ matrix.app }}"
             echo "HTTP Code: $HTTP_CODE"
