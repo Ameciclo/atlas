@@ -7,13 +7,18 @@ async function seed() {
 	try {
 		for (const item of cyclistsCountsData) {
 			const { id, coordinates, data, metadata } = item;
-			
-			await db.insert(cyclistsCounts).values({
-				id,
-				data,
-				metadata,
-				coordinates: coordinates ? sql`ST_SetSRID(ST_MakePoint(${coordinates.x}, ${coordinates.y}), 4326)` : null
-			}).onConflictDoNothing();
+
+			await db
+				.insert(cyclistsCounts)
+				.values({
+					id,
+					data,
+					metadata,
+					coordinates: coordinates
+						? sql`ST_SetSRID(ST_MakePoint(${coordinates.x}, ${coordinates.y}), 4326)`
+						: null,
+				})
+				.onConflictDoNothing();
 		}
 
 		console.log("Seeding completed successfully!");

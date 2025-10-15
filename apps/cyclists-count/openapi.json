@@ -1,390 +1,354 @@
 {
-  "openapi": "3.1.0",
-  "info": {
-    "title": "CyclistsCount API",
-    "version": "1.0.0",
-    "description": "API service for cyclists-count",
-    "contact": {
-      "name": "Atlas Team",
-      "url": "https://github.com/Ameciclo/atlas"
-    }
-  },
-  "servers": [
-    {
-      "url": "http://localhost:3002",
-      "description": "Local development server"
-    },
-    {
-      "url": "https://api.atlas.example.com",
-      "description": "Production server"
-    }
-  ],
-  "tags": [
-    {
-      "name": "Example",
-      "description": "Example endpoints"
-    },
-    {
-      "name": "System",
-      "description": "System endpoints (health check, etc.)"
-    }
-  ],
-  "components": {
-    "schemas": {},
-    "parameters": {}
-  },
-  "paths": {
-    "/health": {
-      "get": {
-        "tags": [
-          "System"
-        ],
-        "responses": {
-          "200": {
-            "description": "Service is healthy",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "ok",
-                        "error"
-                      ]
-                    },
-                    "timestamp": {
-                      "type": "string"
-                    },
-                    "service": {
-                      "type": "string"
-                    },
-                    "database": {
-                      "type": "string",
-                      "enum": [
-                        "connected",
-                        "disconnected"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "status",
-                    "timestamp",
-                    "service",
-                    "database"
-                  ]
-                }
-              }
-            }
-          },
-          "503": {
-            "description": "Service is unhealthy",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "ok",
-                        "error"
-                      ]
-                    },
-                    "timestamp": {
-                      "type": "string"
-                    },
-                    "service": {
-                      "type": "string"
-                    },
-                    "database": {
-                      "type": "string",
-                      "enum": [
-                        "connected",
-                        "disconnected"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "status",
-                    "timestamp",
-                    "service",
-                    "database"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/cyclists-counts": {
-      "get": {
-        "tags": [
-          "Cyclists Counts"
-        ],
-        "responses": {
-          "200": {
-            "description": "List of cyclists counts",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "integer",
-                        "minimum": -2147483648,
-                        "maximum": 2147483647
-                      },
-                      "data": {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "number"
-                          },
-                          {
-                            "type": "boolean"
-                          },
-                          {
-                            "nullable": true
-                          },
-                          {
-                            "type": "object",
-                            "additionalProperties": {
-                              "nullable": true
-                            }
-                          },
-                          {
-                            "type": "array",
-                            "items": {
-                              "nullable": true
-                            }
-                          },
-                          {
-                            "nullable": true
-                          }
-                        ]
-                      },
-                      "metadata": {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "number"
-                          },
-                          {
-                            "type": "boolean"
-                          },
-                          {
-                            "nullable": true
-                          },
-                          {
-                            "type": "object",
-                            "additionalProperties": {
-                              "nullable": true
-                            }
-                          },
-                          {
-                            "type": "array",
-                            "items": {
-                              "nullable": true
-                            }
-                          },
-                          {
-                            "nullable": true
-                          }
-                        ]
-                      },
-                      "coordinates": {
-                        "type": "object",
-                        "nullable": true,
-                        "properties": {
-                          "x": {
-                            "type": "number"
-                          },
-                          "y": {
-                            "type": "number"
-                          }
-                        },
-                        "required": [
-                          "x",
-                          "y"
-                        ]
-                      },
-                      "created_at": {
-                        "type": "string"
-                      },
-                      "updated_at": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "data",
-                      "metadata",
-                      "coordinates",
-                      "created_at",
-                      "updated_at"
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/cyclists-counts/{id}": {
-      "get": {
-        "tags": [
-          "Cyclists Counts"
-        ],
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "id",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Cyclists count by ID",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "minimum": -2147483648,
-                      "maximum": 2147483647
-                    },
-                    "data": {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "number"
-                        },
-                        {
-                          "type": "boolean"
-                        },
-                        {
-                          "nullable": true
-                        },
-                        {
-                          "type": "object",
-                          "additionalProperties": {
-                            "nullable": true
-                          }
-                        },
-                        {
-                          "type": "array",
-                          "items": {
-                            "nullable": true
-                          }
-                        },
-                        {
-                          "nullable": true
-                        }
-                      ]
-                    },
-                    "metadata": {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "number"
-                        },
-                        {
-                          "type": "boolean"
-                        },
-                        {
-                          "nullable": true
-                        },
-                        {
-                          "type": "object",
-                          "additionalProperties": {
-                            "nullable": true
-                          }
-                        },
-                        {
-                          "type": "array",
-                          "items": {
-                            "nullable": true
-                          }
-                        },
-                        {
-                          "nullable": true
-                        }
-                      ]
-                    },
-                    "coordinates": {
-                      "type": "object",
-                      "nullable": true,
-                      "properties": {
-                        "x": {
-                          "type": "number"
-                        },
-                        "y": {
-                          "type": "number"
-                        }
-                      },
-                      "required": [
-                        "x",
-                        "y"
-                      ]
-                    },
-                    "created_at": {
-                      "type": "string"
-                    },
-                    "updated_at": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "data",
-                    "metadata",
-                    "coordinates",
-                    "created_at",
-                    "updated_at"
-                  ]
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Cyclists count not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "message"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+	"openapi": "3.1.0",
+	"info": {
+		"title": "CyclistsCount API",
+		"version": "1.0.0",
+		"description": "API service for cyclists-count",
+		"contact": {
+			"name": "Atlas Team",
+			"url": "https://github.com/Ameciclo/atlas"
+		}
+	},
+	"servers": [
+		{
+			"url": "http://localhost:3002",
+			"description": "Local development server"
+		},
+		{
+			"url": "https://api.atlas.example.com",
+			"description": "Production server"
+		}
+	],
+	"tags": [
+		{
+			"name": "Example",
+			"description": "Example endpoints"
+		},
+		{
+			"name": "System",
+			"description": "System endpoints (health check, etc.)"
+		}
+	],
+	"components": {
+		"schemas": {},
+		"parameters": {}
+	},
+	"paths": {
+		"/health": {
+			"get": {
+				"tags": ["System"],
+				"responses": {
+					"200": {
+						"description": "Service is healthy",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"status": {
+											"type": "string",
+											"enum": ["ok", "error"]
+										},
+										"timestamp": {
+											"type": "string"
+										},
+										"service": {
+											"type": "string"
+										},
+										"database": {
+											"type": "string",
+											"enum": ["connected", "disconnected"]
+										}
+									},
+									"required": ["status", "timestamp", "service", "database"]
+								}
+							}
+						}
+					},
+					"503": {
+						"description": "Service is unhealthy",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"status": {
+											"type": "string",
+											"enum": ["ok", "error"]
+										},
+										"timestamp": {
+											"type": "string"
+										},
+										"service": {
+											"type": "string"
+										},
+										"database": {
+											"type": "string",
+											"enum": ["connected", "disconnected"]
+										}
+									},
+									"required": ["status", "timestamp", "service", "database"]
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/v1/cyclists-counts": {
+			"get": {
+				"tags": ["Cyclists Counts"],
+				"responses": {
+					"200": {
+						"description": "List of cyclists counts",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"id": {
+												"type": "integer",
+												"minimum": -2147483648,
+												"maximum": 2147483647
+											},
+											"data": {
+												"anyOf": [
+													{
+														"type": "string"
+													},
+													{
+														"type": "number"
+													},
+													{
+														"type": "boolean"
+													},
+													{
+														"nullable": true
+													},
+													{
+														"type": "object",
+														"additionalProperties": {
+															"nullable": true
+														}
+													},
+													{
+														"type": "array",
+														"items": {
+															"nullable": true
+														}
+													},
+													{
+														"nullable": true
+													}
+												]
+											},
+											"metadata": {
+												"anyOf": [
+													{
+														"type": "string"
+													},
+													{
+														"type": "number"
+													},
+													{
+														"type": "boolean"
+													},
+													{
+														"nullable": true
+													},
+													{
+														"type": "object",
+														"additionalProperties": {
+															"nullable": true
+														}
+													},
+													{
+														"type": "array",
+														"items": {
+															"nullable": true
+														}
+													},
+													{
+														"nullable": true
+													}
+												]
+											},
+											"coordinates": {
+												"type": "object",
+												"nullable": true,
+												"properties": {
+													"x": {
+														"type": "number"
+													},
+													"y": {
+														"type": "number"
+													}
+												},
+												"required": ["x", "y"]
+											},
+											"created_at": {
+												"type": "string"
+											},
+											"updated_at": {
+												"type": "string"
+											}
+										},
+										"required": [
+											"id",
+											"data",
+											"metadata",
+											"coordinates",
+											"created_at",
+											"updated_at"
+										]
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/v1/cyclists-counts/{id}": {
+			"get": {
+				"tags": ["Cyclists Counts"],
+				"parameters": [
+					{
+						"schema": {
+							"type": "string"
+						},
+						"required": true,
+						"name": "id",
+						"in": "path"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Cyclists count by ID",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"id": {
+											"type": "integer",
+											"minimum": -2147483648,
+											"maximum": 2147483647
+										},
+										"data": {
+											"anyOf": [
+												{
+													"type": "string"
+												},
+												{
+													"type": "number"
+												},
+												{
+													"type": "boolean"
+												},
+												{
+													"nullable": true
+												},
+												{
+													"type": "object",
+													"additionalProperties": {
+														"nullable": true
+													}
+												},
+												{
+													"type": "array",
+													"items": {
+														"nullable": true
+													}
+												},
+												{
+													"nullable": true
+												}
+											]
+										},
+										"metadata": {
+											"anyOf": [
+												{
+													"type": "string"
+												},
+												{
+													"type": "number"
+												},
+												{
+													"type": "boolean"
+												},
+												{
+													"nullable": true
+												},
+												{
+													"type": "object",
+													"additionalProperties": {
+														"nullable": true
+													}
+												},
+												{
+													"type": "array",
+													"items": {
+														"nullable": true
+													}
+												},
+												{
+													"nullable": true
+												}
+											]
+										},
+										"coordinates": {
+											"type": "object",
+											"nullable": true,
+											"properties": {
+												"x": {
+													"type": "number"
+												},
+												"y": {
+													"type": "number"
+												}
+											},
+											"required": ["x", "y"]
+										},
+										"created_at": {
+											"type": "string"
+										},
+										"updated_at": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"id",
+										"data",
+										"metadata",
+										"coordinates",
+										"created_at",
+										"updated_at"
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Cyclists count not found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": ["message"]
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }

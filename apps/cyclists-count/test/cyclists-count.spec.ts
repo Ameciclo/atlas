@@ -37,7 +37,7 @@ describe("GET /health", () => {
 
 		const res = await app.request("/health");
 		expect(res.status).toBe(200);
-		
+
 		const data = await res.json();
 		expect(data).toHaveProperty("status", "ok");
 		expect(data).toHaveProperty("service", "cyclists-count");
@@ -49,7 +49,7 @@ describe("GET /health", () => {
 
 		const res = await app.request("/health");
 		expect(res.status).toBe(503);
-		
+
 		const data = await res.json();
 		expect(data).toHaveProperty("status", "error");
 		expect(data).toHaveProperty("database", "disconnected");
@@ -63,7 +63,7 @@ describe("GET /v1/cyclists-counts", () => {
 
 	it("200 → empty array if no counts", async () => {
 		select.mockReturnValue({
-			from: vi.fn().mockResolvedValue([])
+			from: vi.fn().mockResolvedValue([]),
 		} as any);
 
 		const res = await app.request("/v1/cyclists-counts");
@@ -84,7 +84,7 @@ describe("GET /v1/cyclists-counts", () => {
 			},
 		];
 		select.mockReturnValue({
-			from: vi.fn().mockResolvedValue(fake)
+			from: vi.fn().mockResolvedValue(fake),
 		} as any);
 
 		const res = await app.request("/v1/cyclists-counts");
@@ -94,7 +94,7 @@ describe("GET /v1/cyclists-counts", () => {
 				...r,
 				created_at: fakeDate.toISOString(),
 				updated_at: fakeDate.toISOString(),
-			}))
+			})),
 		);
 	});
 
@@ -125,8 +125,8 @@ describe("GET /v1/cyclists-counts/:id", () => {
 		};
 		select.mockReturnValue({
 			from: vi.fn().mockReturnValue({
-				where: vi.fn().mockResolvedValue([fake])
-			})
+				where: vi.fn().mockResolvedValue([fake]),
+			}),
 		} as any);
 
 		const res = await app.request("/v1/cyclists-counts/1");
@@ -141,8 +141,8 @@ describe("GET /v1/cyclists-counts/:id", () => {
 	it("404 → when the count does not exist", async () => {
 		select.mockReturnValue({
 			from: vi.fn().mockReturnValue({
-				where: vi.fn().mockResolvedValue([])
-			})
+				where: vi.fn().mockResolvedValue([]),
+			}),
 		} as any);
 
 		const res = await app.request("/v1/cyclists-counts/999");

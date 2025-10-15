@@ -11,11 +11,14 @@ export const list: AppRouteHandler<routes.ListRoute> = async (c) => {
 
 export const getById: AppRouteHandler<routes.GetByIdRoute> = async (c) => {
 	const { id } = c.req.valid("param");
-	const count = await db.select().from(cyclistsCounts).where(eq(cyclistsCounts.id, id));
-	
+	const count = await db
+		.select()
+		.from(cyclistsCounts)
+		.where(eq(cyclistsCounts.id, id));
+
 	if (count.length === 0) {
 		return c.json({ message: "Cyclists count not found" }, 404);
 	}
-	
+
 	return c.json(count[0]);
 };
