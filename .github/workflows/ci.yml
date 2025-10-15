@@ -17,7 +17,7 @@ concurrency:
 
 # Default permissions
 permissions:
-  contents: read
+  contents: write # Needed to commit OpenAPI specs
 
 jobs:
   code_style:
@@ -80,6 +80,66 @@ jobs:
             apps/*/dist
             packages/*/dist
           retention-days: 1
+
+  generate-openapi:
+    name: Generate OpenAPI Specs
+    runs-on: ubuntu-latest
+    needs: build
+    services:
+      postgres:
+        image: postgis/postgis:16-3.5
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: atlas
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - uses: ./.github/actions/common-setup
+        id: setup
+      - name: Skip if no changes
+        if: steps.setup.outputs.skip == 'true'
+        run: |
+          echo "💤 No workspaces changed; skipping OpenAPI generation."
+          exit 0
+
+      - name: Run database migrations
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/atlas
+        run: pnpm --filter @atlas/database db:migrate
+
+      - name: Generate OpenAPI specs for affected apps
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/atlas
+        run: |
+          # Generate OpenAPI for cyclist-profile if it changed
+          if pnpm turbo run generate-openapi --filter=@atlas/cyclist-profile --dry=json | grep -q "cyclist-profile"; then
+            pnpm --filter @atlas/cyclist-profile generate-openapi
+          fi
+
+      - name: Upload OpenAPI specs
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: openapi-specs
+          path: apps/docs/public/openapi/*.json
+          retention-days: 7
+
+      - name: Commit OpenAPI specs
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add apps/docs/public/openapi/*.json || true
+          git diff --staged --quiet || git commit -m "chore: update OpenAPI specs [skip ci]"
+          git push || true
 
   dependency-review:
     name: Dependency Review

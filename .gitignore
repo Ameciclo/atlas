@@ -39,5 +39,6 @@ yarn-error.log*
 .DS_Store
 *.pem
 
-# OpenAPI specs
-apps/docs/public/openapi/*.json
+# OpenAPI specs (generated in CI/CD)
+# Uncomment the line below if you want to ignore them locally
+# apps/docs/public/openapi/*.json
