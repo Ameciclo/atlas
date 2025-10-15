@@ -61,27 +61,24 @@ Updated the Docker workflow to:
 ```
 
 Now when building docs:
-1. ✅ Sets up PostgreSQL database
-2. ✅ Runs database migrations
-3. ✅ Generates OpenAPI specs for **all services** (cyclist-profile, etc.)
-4. ✅ Builds docs Docker image with all specs included
-5. ✅ Docs display correctly with all API documentation
+1. ✅ Generates OpenAPI specs for **all services** (cyclist-profile, etc.)
+2. ✅ Builds docs Docker image with all specs included
+3. ✅ Docs display correctly with all API documentation
+
+**Note:** OpenAPI generation doesn't require a database connection - it only reads route definitions from the code!
 
 ## Files Changed
 
 ### `.github/workflows/docker.yml`
 
 **Changes:**
-1. Added PostgreSQL setup for docs build (needed for OpenAPI generation)
-2. Added database migration step for docs build
-3. Added loop to generate OpenAPI specs for all services when building docs
-4. Kept existing logic for other apps unchanged
+1. Added loop to generate OpenAPI specs for all services when building docs
+2. Removed unnecessary PostgreSQL setup (OpenAPI generation doesn't need database)
+3. Kept existing logic for other apps unchanged
 
 **Key sections:**
-- Lines 108-159: New OpenAPI generation logic
+- Lines 108-139: New OpenAPI generation logic
   - Conditional setup for Node.js/pnpm
-  - PostgreSQL setup (only for docs)
-  - Database migrations (only for docs)
   - Generate all specs (only for docs)
   - Generate single spec (for other apps)
 
