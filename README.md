@@ -43,7 +43,16 @@ We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `
    pnpm install
    ```
 
-3. **Development:**
+3. **Start the Database:**
+   ```bash
+   # Start PostgreSQL with PostGIS
+   docker-compose up -d
+
+   # Run migrations
+   pnpm --filter @atlas/database db:migrate
+   ```
+
+4. **Development:**
    ```bash
    # Start all services
    pnpm dev
@@ -52,7 +61,7 @@ We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `
    pnpm --filter @atlas/cyclist-profile dev
    ```
 
-4. **Building:**
+5. **Building:**
    ```bash
    # Build all applications/packages
    pnpm build
@@ -61,7 +70,7 @@ We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `
    pnpm --filter @atlas/cyclist-profile build
    ```
 
-5. **Testing:**
+6. **Testing:**
    ```bash
    # Run all tests
    pnpm test
@@ -70,7 +79,7 @@ We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `
    pnpm --filter @atlas/cyclist-profile test
    ```
 
-6. **Code Quality:**
+7. **Code Quality:**
    ```bash
    # Format code
    pnpm format
@@ -81,6 +90,8 @@ We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `
    # Type check
    pnpm check-types
    ```
+
+For more detailed instructions, see the [Development Guide](./DEVELOPMENT.md).
 
 ## Directory Structure
 
@@ -96,6 +107,7 @@ atlas/
 │   ├── SCAFFOLDING_TOOL.md            # Scaffolding tool documentation
 │   └── SUMMARY.md                     # Documentation index
 ├── packages/            # Shared packages
+│   ├── database/            # Shared database package with Drizzle ORM
 │   ├── typescript-config/   # Shared TypeScript configuration
 │   └── create-atlas-app/    # Scaffolding tool for new services
 ├── .tool-versions       # Tool versions for mise
@@ -126,14 +138,28 @@ The CI/CD pipeline is configured to be intelligent and efficient using GitHub Ac
    - Each application can be deployed independently
    - Database migrations and seeding are handled by reusing the same Docker image with different commands
 
+### Database Architecture
+
+Atlas uses a **shared database with PostgreSQL schemas** approach:
+
+- **Single Database**: All services connect to the `atlas` database
+- **Schema Isolation**: Each service owns its own PostgreSQL schema (e.g., `cyclist_profile`)
+- **Cross-Service Queries**: Services can query each other's schemas when needed
+- **Centralized Migrations**: Managed through the `@atlas/database` package
+
+See [Database Usage Guide](./packages/database/USAGE.md) and [Migration Guide](./MIGRATION_TO_SHARED_DB.md) for details.
+
 ### OpenAPI Documentation
 
 The CI/CD pipeline automatically generates OpenAPI specifications for all API services:
 
-1. Each API service defines its routes using Hono with Zod OpenAPI
-2. The `generate-openapi` script creates JSON specifications
-3. The docs app collects and displays these specifications
-4. When changes are pushed to main, a new docs container is built and deployed
+1. **Build Phase**: TypeScript is compiled (no database required)
+2. **OpenAPI Generation Phase**:
+   - PostgreSQL service starts in CI
+   - Database migrations run
+   - OpenAPI specs are generated with real database schema
+   - Specs are committed back to the repository
+3. **Deployment**: The docs app displays all OpenAPI specifications
 
 ### Docker Deployment
 
