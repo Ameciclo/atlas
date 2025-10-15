@@ -4,6 +4,6 @@ import exampleRoutes from "./routes/example/example.index.js";
 
 const app = createApp()
 	.route("/", healthRoutes)
-	.route("/v1/", exampleRoutes);
+	.route("/", exampleRoutes);
 
 export default app;
