@@ -1,0 +1,27 @@
+# Shared development database for all Atlas services
+# This provides a single PostgreSQL database with PostGIS extension
+# Each service uses its own schema within this database
+
+services:
+  postgres:
+    image: postgis/postgis:16-3.5
+    container_name: atlas-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: atlas
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d atlas"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    name: atlas-postgres-data
+
