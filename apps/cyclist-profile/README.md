@@ -47,13 +47,28 @@ The application will be available at http://localhost:3000
 
 ### Environment Variables
 
-The following environment variables can be configured:
+Copy the `.env.example` file to `.env` and configure the following variables:
+
+```bash
+cp .env.example .env
+```
+
+**Required Variables:**
+
+- `NODE_ENV` - Node environment (development, production, test)
+- `LOG_LEVEL` - Logging level (fatal, error, warn, info, debug, trace)
+- `PORT` - Server port (default: 3000)
+- `DATABASE_URL` - PostgreSQL connection string (used by the application)
+
+**Database Variables (used by Drizzle Kit for migrations):**
 
 - `DB_HOST` - PostgreSQL host (default: localhost)
 - `DB_PORT` - PostgreSQL port (default: 5432)
 - `DB_USER` - PostgreSQL user (default: postgres)
 - `DB_PASSWORD` - PostgreSQL password (default: postgres)
-- `DB_NAME` - PostgreSQL database name (default: cyclist_profile)
+- `DB_NAME` - PostgreSQL database name (default: cyclist_profile_db)
+
+See `.env.example` for a complete example with all available options.
 
 ### Database Management
 

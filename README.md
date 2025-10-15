@@ -216,44 +216,6 @@ The tool will:
 
 For detailed instructions, see [docs/CREATE_NEW_SERVICE.md](docs/CREATE_NEW_SERVICE.md) and [docs/SCAFFOLDING_TOOL.md](docs/SCAFFOLDING_TOOL.md).
 
-## Testing GitHub Actions Locally
-
-You can test GitHub Actions workflows locally using [Act](https://github.com/nektos/act), which runs your GitHub Actions workflows using Docker.
-
-### Installation
-
-```bash
-# macOS (using Homebrew)
-brew install act
-
-# Other platforms: see https://github.com/nektos/act#installation
-```
-
-### Usage
-
-```bash
-# Run the default workflow
-act
-
-# Run a specific job
-act -j build
-
-# Run a specific workflow
-act -W .github/workflows/ci.yml
-
-# List all available actions
-act -l
-```
-
-### Configuration
-
-Create a `.actrc` file in your repository root to configure Act:
-
-```
--P ubuntu-latest=ghcr.io/catthehacker/ubuntu:act-latest
---bind
-```
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
