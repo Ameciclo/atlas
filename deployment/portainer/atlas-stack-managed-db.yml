@@ -10,9 +10,10 @@
 #
 # Optional Environment Variables:
 #   - CYCLIST_PROFILE_PORT: Cyclist Profile API port (default: 3000)
-#   - DOCS_PORT: Documentation site port (default: 3001)
 #   - LOG_LEVEL: Logging level (default: info)
 #   - IMAGE_TAG: Docker image tag for all services (default: latest)
+#
+# Note: Docs app uses nginx and always listens on port 80 (not configurable)
 #
 # Setup Instructions:
 #   1. Create network: docker network create atlas-network
@@ -37,9 +38,9 @@
 #
 # Health Checks:
 #   API:   curl http://localhost:3000/health
-#   Docs:  curl http://localhost:3001/
+#   Docs:  curl http://localhost/
 
-version: '3.8'
+version: "3.8"
 
 services:
   # ============================================================================
@@ -48,18 +49,18 @@ services:
   cyclist-profile-migrate:
     image: ghcr.io/ameciclo/atlas/cyclist-profile:${IMAGE_TAG:-latest}
     container_name: atlas-cyclist-profile-migrate
-    
+
     command: node packages/database/dist/migrate.js
-    
+
     environment:
       DATABASE_URL: ${DATABASE_URL}
       NODE_ENV: production
-    
+
     networks:
       - atlas-network
-    
+
     restart: "no"
-    
+
     logging:
       driver: "json-file"
       options:
@@ -72,41 +73,47 @@ services:
   cyclist-profile:
     image: ghcr.io/ameciclo/atlas/cyclist-profile:${IMAGE_TAG:-latest}
     container_name: atlas-cyclist-profile
-    
+
     environment:
       NODE_ENV: production
       LOG_LEVEL: ${LOG_LEVEL:-info}
       PORT: ${CYCLIST_PROFILE_PORT:-3000}
       DATABASE_URL: ${DATABASE_URL}
-    
+
     ports:
       - "${CYCLIST_PROFILE_PORT:-3000}:${CYCLIST_PROFILE_PORT:-3000}"
-    
+
     networks:
       - atlas-network
-    
+
     depends_on:
       cyclist-profile-migrate:
         condition: service_completed_successfully
-    
+
     restart: unless-stopped
-    
+
     healthcheck:
-      test: ["CMD", "node", "-e", "require('http').get('http://localhost:${CYCLIST_PROFILE_PORT:-3000}/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://localhost:${CYCLIST_PROFILE_PORT:-3000}/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))",
+        ]
       interval: 30s
       timeout: 10s
       start_period: 40s
       retries: 3
-    
+
     deploy:
       resources:
         limits:
-          cpus: '1'
+          cpus: "1"
           memory: 512M
         reservations:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
-    
+
     logging:
       driver: "json-file"
       options:
@@ -116,39 +123,45 @@ services:
   # ============================================================================
   # Documentation Service
   # ============================================================================
+  # Note: Docs is a static React app served by nginx on port 80
   docs:
     image: ghcr.io/ameciclo/atlas/docs:${IMAGE_TAG:-latest}
     container_name: atlas-docs
-    
-    environment:
-      NODE_ENV: production
-      LOG_LEVEL: ${LOG_LEVEL:-info}
-      PORT: ${DOCS_PORT:-3001}
-    
+
+    # Nginx listens on port 80 (hardcoded in nginx.conf)
+    # Map host port 3001 to container port 80
     ports:
-      - "${DOCS_PORT:-3001}:${DOCS_PORT:-3001}"
-    
+      - "3001:80"
+
     networks:
       - atlas-network
-    
+
     restart: unless-stopped
-    
+
     healthcheck:
-      test: ["CMD", "node", "-e", "require('http').get('http://localhost:${DOCS_PORT:-3001}/', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://localhost/",
+        ]
       interval: 30s
       timeout: 10s
       start_period: 20s
       retries: 3
-    
+
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
         reservations:
-          cpus: '0.25'
+          cpus: "0.25"
           memory: 128M
-    
+
     logging:
       driver: "json-file"
       options:
@@ -159,4 +172,3 @@ networks:
   atlas-network:
     external: true
     name: atlas-network
-

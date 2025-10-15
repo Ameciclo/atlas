@@ -13,8 +13,8 @@ Internet
     ↓
 Kong Gateway (kong-gateway_kong-net)
     ↓
-    ├─→ /api/cyclist-profile → atlas-cyclist-profile:3000
-    └─→ /docs → atlas-docs:3001
+    ├─→ /api/cyclist-profile → atlas-cyclist-profile:3000 (Hono API)
+    └─→ /docs → atlas-docs:80 (nginx static site)
 ```
 
 **Benefits:**
@@ -112,7 +112,7 @@ docker ps | grep atlas
 docker exec atlas-cyclist-profile node -e "require('http').get('http://localhost:3000/health', (r) => console.log(r.statusCode))"
 # Should output: 200
 
-docker exec atlas-docs node -e "require('http').get('http://localhost:3001/', (r) => console.log(r.statusCode))"
+docker exec atlas-docs wget --spider -q http://localhost/ && echo "200" || echo "Failed"
 # Should output: 200
 ```
 
@@ -143,7 +143,7 @@ curl -i -X POST http://localhost:8001/services/atlas-cyclist-profile/routes \
 ```bash
 curl -i -X POST http://localhost:8001/services \
   --data name=atlas-docs \
-  --data url='http://atlas-docs:3001'
+  --data url='http://atlas-docs:80'
 ```
 
 **Create Route for Docs:**
@@ -174,7 +174,7 @@ If you have Kong Manager (Enterprise) or Konga:
 **Docs Service:**
 1. Go to Services → Add New Service
 2. Name: `atlas-docs`
-3. URL: `http://atlas-docs:3001`
+3. URL: `http://atlas-docs:80`
 4. Save
 
 **Docs Route:**
@@ -273,9 +273,10 @@ curl -i -X POST http://localhost:8001/services/atlas-cyclist-profile/plugins \
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
 | `CYCLIST_PROFILE_PORT` | No | `3000` | Internal port for cyclist-profile |
-| `DOCS_PORT` | No | `3001` | Internal port for docs |
 | `LOG_LEVEL` | No | `info` | Logging level (debug, info, warn, error) |
 | `IMAGE_TAG` | No | `latest` | Docker image tag |
+
+**Note:** Docs app uses nginx and always listens on port 80 (not configurable via environment variable).
 
 ### Required in GitHub Secrets
 
