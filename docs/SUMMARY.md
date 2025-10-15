@@ -10,9 +10,14 @@ Welcome to the Atlas project documentation! This guide will help you navigate th
 2. **[Creating a New Service](./CREATE_NEW_SERVICE.md)** - Step-by-step guide for creating new services
 3. **[Scaffolding Tool](./SCAFFOLDING_TOOL.md)** - Detailed documentation for the `create-atlas-app` tool
 
+### Planning & Improvement
+
+4. **[Improvement Plan](./IMPROVEMENT_PLAN.md)** - Comprehensive plan for addressing identified issues
+5. **[Improvement Checklist](./IMPROVEMENT_CHECKLIST.md)** - Quick reference checklist for improvements
+
 ### Package Documentation
 
-4. **[Create Atlas App README](../packages/create-atlas-app/README.md)** - Scaffolding tool package documentation
+6. **[Create Atlas App README](../packages/create-atlas-app/README.md)** - Scaffolding tool package documentation
 
 ## 🚀 Quick Links by Task
 
@@ -143,6 +148,8 @@ git push origin feature/my-feature
 | Project Setup | [Main README](../README.md) |
 | Creating Services | [Creating a New Service](./CREATE_NEW_SERVICE.md) |
 | Scaffolding Tool | [Scaffolding Tool](./SCAFFOLDING_TOOL.md) |
+| Improvements | [Improvement Plan](./IMPROVEMENT_PLAN.md) |
+| Task Tracking | [Improvement Checklist](./IMPROVEMENT_CHECKLIST.md) |
 | CI/CD | [Main README](../README.md) |
 | Docker | [Main README](../README.md) |
 | Testing | [Creating a New Service](./CREATE_NEW_SERVICE.md) |
@@ -208,6 +215,8 @@ When you make changes:
 | Main README | ✅ Complete | 2025-10-15 |
 | Creating a New Service | ✅ Complete | 2025-10-15 |
 | Scaffolding Tool | ✅ Complete | 2025-10-15 |
+| Improvement Plan | ✅ Complete | 2025-10-15 |
+| Improvement Checklist | ✅ Complete | 2025-10-15 |
 | Documentation Summary | ✅ Complete | 2025-10-15 |
 
 ## 🎓 Learning Path
