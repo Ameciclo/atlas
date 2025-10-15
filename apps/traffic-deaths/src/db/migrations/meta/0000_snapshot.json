@@ -1,0 +1,250 @@
+{
+  "id": "5e20eab3-0f9a-4ffd-ab8e-07bd8fbeede4",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.traffic_deaths": {
+      "name": "traffic_deaths",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "contador": {
+          "name": "contador",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tipobito": {
+          "name": "tipobito",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dtobito": {
+          "name": "dtobito",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "horaobito": {
+          "name": "horaobito",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "natural": {
+          "name": "natural",
+          "type": "varchar(3)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "codmunnatu": {
+          "name": "codmunnatu",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dtnasc": {
+          "name": "dtnasc",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "idade": {
+          "name": "idade",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sexo": {
+          "name": "sexo",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "racacor": {
+          "name": "racacor",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "estciv": {
+          "name": "estciv",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "esc2010": {
+          "name": "esc2010",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "seriescfal": {
+          "name": "seriescfal",
+          "type": "varchar(2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ocup": {
+          "name": "ocup",
+          "type": "varchar(6)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "codmunres": {
+          "name": "codmunres",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lococor": {
+          "name": "lococor",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "codmunocor": {
+          "name": "codmunocor",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linhaa": {
+          "name": "linhaa",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linhab": {
+          "name": "linhab",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linhac": {
+          "name": "linhac",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linhad": {
+          "name": "linhad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linhaii": {
+          "name": "linhaii",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "circobito": {
+          "name": "circobito",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "acidtrab": {
+          "name": "acidtrab",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fonte": {
+          "name": "fonte",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "origem": {
+          "name": "origem",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "esc": {
+          "name": "esc",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "exame": {
+          "name": "exame",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cirurgia": {
+          "name": "cirurgia",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dtinvestig": {
+          "name": "dtinvestig",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "causabas_o": {
+          "name": "causabas_o",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "causabas": {
+          "name": "causabas",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "check_sexo": {
+          "name": "check_sexo",
+          "value": "\"traffic_deaths\".\"sexo\" IN ('0', '1', '2') OR \"traffic_deaths\".\"sexo\" IS NULL"
+        },
+        "check_tipobito": {
+          "name": "check_tipobito",
+          "value": "\"traffic_deaths\".\"tipobito\" IN ('1', '2') OR \"traffic_deaths\".\"tipobito\" IS NULL"
+        },
+        "check_acidtrab": {
+          "name": "check_acidtrab",
+          "value": "\"traffic_deaths\".\"acidtrab\" IN ('1', '2', '9') OR \"traffic_deaths\".\"acidtrab\" IS NULL"
+        }
+      },
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

@@ -9,7 +9,7 @@ export default defineConfig({
 		port: Number.parseInt(process.env.DB_PORT || "5432"),
 		user: process.env.DB_USER || "postgres",
 		password: process.env.DB_PASSWORD || "postgres",
-		database: process.env.DB_NAME || "traffic-deaths_db",
+		database: process.env.DB_NAME || "atlas_dev",
 		ssl: process.env.DB_SSL === "true",
 	},
 });

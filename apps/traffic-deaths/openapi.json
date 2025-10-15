@@ -1,0 +1,598 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "TrafficDeaths API",
+    "version": "1.0.0",
+    "description": "API service for traffic_deaths",
+    "contact": {
+      "name": "Atlas Team",
+      "url": "https://github.com/Ameciclo/atlas"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3003",
+      "description": "Local development server"
+    },
+    {
+      "url": "https://api.atlas.example.com",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Example",
+      "description": "Example endpoints"
+    },
+    {
+      "name": "System",
+      "description": "System endpoints (health check, etc.)"
+    }
+  ],
+  "components": {
+    "schemas": {},
+    "parameters": {}
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "service",
+                    "database"
+                  ]
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service is unhealthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "service",
+                    "database"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/traffic-deaths": {
+      "get": {
+        "tags": [
+          "Traffic Deaths"
+        ],
+        "responses": {
+          "200": {
+            "description": "The list of traffic deaths from DATASUS",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      "contador": {
+                        "type": "integer",
+                        "nullable": true,
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      "tipobito": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 1
+                      },
+                      "dtobito": {
+                        "type": "string"
+                      },
+                      "horaobito": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "natural": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 3
+                      },
+                      "codmunnatu": {
+                        "type": "integer",
+                        "nullable": true,
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      "dtnasc": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "idade": {
+                        "type": "integer",
+                        "nullable": true,
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      "sexo": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 1
+                      },
+                      "racacor": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 1
+                      },
+                      "estciv": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 1
+                      },
+                      "esc2010": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 1
+                      },
+                      "seriescfal": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 2
+                      },
+                      "ocup": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 6
+                      },
+                      "codmunres": {
+                        "type": "integer",
+                        "nullable": true,
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      "lococor": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 1
+                      },
+                      "codmunocor": {
+                        "type": "integer",
+                        "nullable": true,
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      "linhaa": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "linhab": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "linhac": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "linhad": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "linhaii": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "circobito": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 1
+                      },
+                      "acidtrab": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 1
+                      },
+                      "fonte": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 1
+                      },
+                      "origem": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 1
+                      },
+                      "esc": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 1
+                      },
+                      "exame": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 1
+                      },
+                      "cirurgia": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 1
+                      },
+                      "dtinvestig": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "causabas_o": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "causabas": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "created_at": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "contador",
+                      "tipobito",
+                      "dtobito",
+                      "horaobito",
+                      "natural",
+                      "codmunnatu",
+                      "dtnasc",
+                      "idade",
+                      "sexo",
+                      "racacor",
+                      "estciv",
+                      "esc2010",
+                      "seriescfal",
+                      "ocup",
+                      "codmunres",
+                      "lococor",
+                      "codmunocor",
+                      "linhaa",
+                      "linhab",
+                      "linhac",
+                      "linhad",
+                      "linhaii",
+                      "circobito",
+                      "acidtrab",
+                      "fonte",
+                      "origem",
+                      "esc",
+                      "exame",
+                      "cirurgia",
+                      "dtinvestig",
+                      "causabas_o",
+                      "causabas",
+                      "created_at"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/traffic-deaths/{id}": {
+      "get": {
+        "tags": [
+          "Traffic Deaths"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "required": [
+                "id"
+              ],
+              "example": 42
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested traffic death record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "contador": {
+                      "type": "integer",
+                      "nullable": true,
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "tipobito": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 1
+                    },
+                    "dtobito": {
+                      "type": "string"
+                    },
+                    "horaobito": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "natural": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 3
+                    },
+                    "codmunnatu": {
+                      "type": "integer",
+                      "nullable": true,
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "dtnasc": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "idade": {
+                      "type": "integer",
+                      "nullable": true,
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "sexo": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 1
+                    },
+                    "racacor": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 1
+                    },
+                    "estciv": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 1
+                    },
+                    "esc2010": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 1
+                    },
+                    "seriescfal": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 2
+                    },
+                    "ocup": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 6
+                    },
+                    "codmunres": {
+                      "type": "integer",
+                      "nullable": true,
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "lococor": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 1
+                    },
+                    "codmunocor": {
+                      "type": "integer",
+                      "nullable": true,
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "linhaa": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "linhab": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "linhac": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "linhad": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "linhaii": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "circobito": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 1
+                    },
+                    "acidtrab": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 1
+                    },
+                    "fonte": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 1
+                    },
+                    "origem": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 1
+                    },
+                    "esc": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 1
+                    },
+                    "exame": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 1
+                    },
+                    "cirurgia": {
+                      "type": "string",
+                      "nullable": true,
+                      "maxLength": 1
+                    },
+                    "dtinvestig": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "causabas_o": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "causabas": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "created_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "contador",
+                    "tipobito",
+                    "dtobito",
+                    "horaobito",
+                    "natural",
+                    "codmunnatu",
+                    "dtnasc",
+                    "idade",
+                    "sexo",
+                    "racacor",
+                    "estciv",
+                    "esc2010",
+                    "seriescfal",
+                    "ocup",
+                    "codmunres",
+                    "lococor",
+                    "codmunocor",
+                    "linhaa",
+                    "linhab",
+                    "linhac",
+                    "linhad",
+                    "linhaii",
+                    "circobito",
+                    "acidtrab",
+                    "fonte",
+                    "origem",
+                    "esc",
+                    "exame",
+                    "cirurgia",
+                    "dtinvestig",
+                    "causabas_o",
+                    "causabas",
+                    "created_at"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Traffic death record not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "example": {
+                    "message": "Not Found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
