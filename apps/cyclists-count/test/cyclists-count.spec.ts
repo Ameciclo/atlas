@@ -64,7 +64,7 @@ describe("GET /v1/cyclists-counts", () => {
 	it("200 → empty array if no counts", async () => {
 		select.mockReturnValue({
 			from: vi.fn().mockResolvedValue([]),
-		} as any);
+		} as ReturnType<typeof db.select>);
 
 		const res = await app.request("/v1/cyclists-counts");
 		expect(res.status).toBe(200);
@@ -85,7 +85,7 @@ describe("GET /v1/cyclists-counts", () => {
 		];
 		select.mockReturnValue({
 			from: vi.fn().mockResolvedValue(fake),
-		} as any);
+		} as ReturnType<typeof db.select>);
 
 		const res = await app.request("/v1/cyclists-counts");
 		expect(res.status).toBe(200);
@@ -127,7 +127,7 @@ describe("GET /v1/cyclists-counts/:id", () => {
 			from: vi.fn().mockReturnValue({
 				where: vi.fn().mockResolvedValue([fake]),
 			}),
-		} as any);
+		} as ReturnType<typeof db.select>);
 
 		const res = await app.request("/v1/cyclists-counts/1");
 		expect(res.status).toBe(200);
@@ -143,7 +143,7 @@ describe("GET /v1/cyclists-counts/:id", () => {
 			from: vi.fn().mockReturnValue({
 				where: vi.fn().mockResolvedValue([]),
 			}),
-		} as any);
+		} as ReturnType<typeof db.select>);
 
 		const res = await app.request("/v1/cyclists-counts/999");
 		expect(res.status).toBe(404);
