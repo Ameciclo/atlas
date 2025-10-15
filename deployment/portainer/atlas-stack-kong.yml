@@ -1,0 +1,181 @@
+# Portainer Stack: Atlas (Kong Gateway Integration)
+#
+# This stack deploys Atlas services connected to Kong Gateway network.
+# Uses a MANAGED PostgreSQL database (e.g., Digital Ocean).
+#
+# Network Configuration:
+#   - Connects to existing Kong network: kong-gateway_kong-net
+#   - Services are accessible via Kong Gateway for routing and authentication
+#
+# Required Environment Variables:
+#   - DATABASE_URL: Full PostgreSQL connection string to managed database
+#     Example: postgresql://user:password@host:5432/atlas
+#
+# Optional Environment Variables:
+#   - CYCLIST_PROFILE_PORT: Cyclist Profile API port (default: 3000)
+#   - DOCS_PORT: Documentation site port (default: 3001)
+#   - LOG_LEVEL: Logging level (default: info)
+#   - IMAGE_TAG: Docker image tag for all services (default: latest)
+#
+# Setup Instructions:
+#   1. Ensure Kong network exists: docker network ls | grep kong-gateway_kong-net
+#   2. In Portainer, create new stack named "atlas"
+#   3. Set DATABASE_URL in environment variables
+#   4. Deploy stack
+#   5. Configure Kong routes to point to services:
+#      - cyclist-profile service: http://atlas-cyclist-profile:3000
+#      - docs service: http://atlas-docs:3001
+#
+# Webhook Setup (Service-Level):
+#   Each service has its own webhook for independent deployments:
+#
+#   Cyclist Profile:
+#   1. In Portainer: Containers → atlas-cyclist-profile
+#   2. Enable webhook for the service
+#   3. Copy webhook URL
+#   4. Add to GitHub secrets as PORTAINER_WEBHOOK_CYCLIST_PROFILE
+#
+#   Docs:
+#   5. In Portainer: Containers → atlas-docs
+#   6. Enable webhook for the service
+#   7. Copy webhook URL
+#   8. Add to GitHub secrets as PORTAINER_WEBHOOK_DOCS
+#
+# Kong Gateway Configuration:
+#   After deployment, configure Kong routes:
+#
+#   Cyclist Profile API:
+#     Service: http://atlas-cyclist-profile:3000
+#     Route: /api/cyclist-profile
+#
+#   Documentation:
+#     Service: http://atlas-docs:3001
+#     Route: /docs
+#
+# Health Checks:
+#   API:   curl http://atlas-cyclist-profile:3000/health
+#   Docs:  curl http://atlas-docs:3001/
+
+version: '3.8'
+
+services:
+  # ============================================================================
+  # Cyclist Profile Service - Migration
+  # ============================================================================
+  cyclist-profile-migrate:
+    image: ghcr.io/ameciclo/atlas/cyclist-profile:${IMAGE_TAG:-latest}
+    container_name: atlas-cyclist-profile-migrate
+    
+    command: node packages/database/dist/migrate.js
+    
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      NODE_ENV: production
+    
+    networks:
+      - kong-net
+    
+    restart: "no"
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Cyclist Profile Service - API
+  # ============================================================================
+  cyclist-profile:
+    image: ghcr.io/ameciclo/atlas/cyclist-profile:${IMAGE_TAG:-latest}
+    container_name: atlas-cyclist-profile
+    
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: ${CYCLIST_PROFILE_PORT:-3000}
+      DATABASE_URL: ${DATABASE_URL}
+    
+    # Expose port internally to Kong network only (no host port binding)
+    expose:
+      - "${CYCLIST_PROFILE_PORT:-3000}"
+    
+    networks:
+      - kong-net
+    
+    depends_on:
+      cyclist-profile-migrate:
+        condition: service_completed_successfully
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:${CYCLIST_PROFILE_PORT:-3000}/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      start_period: 40s
+      retries: 3
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Documentation Service
+  # ============================================================================
+  docs:
+    image: ghcr.io/ameciclo/atlas/docs:${IMAGE_TAG:-latest}
+    container_name: atlas-docs
+    
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: ${DOCS_PORT:-3001}
+    
+    # Expose port internally to Kong network only (no host port binding)
+    expose:
+      - "${DOCS_PORT:-3001}"
+    
+    networks:
+      - kong-net
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:${DOCS_PORT:-3001}/', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      start_period: 20s
+      retries: 3
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  kong-net:
+    external: true
+    name: kong-gateway_kong-net
+
