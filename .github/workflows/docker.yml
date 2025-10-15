@@ -119,26 +119,8 @@ jobs:
         if: matrix.app == 'docs' || hashFiles('apps/${{ matrix.app }}/src/generate-openapi.ts') != ''
         run: pnpm install
 
-      - name: Setup PostgreSQL for OpenAPI generation
-        if: matrix.app == 'docs'
-        uses: ikalnytskyi/action-setup-postgres@v7
-        with:
-          username: postgres
-          password: postgres
-          database: atlas
-          port: 5432
-        id: postgres
-
-      - name: Run database migrations
-        if: matrix.app == 'docs'
-        env:
-          DATABASE_URL: ${{ steps.postgres.outputs.connection-uri }}
-        run: pnpm --filter @atlas/database db:migrate
-
       - name: Generate all OpenAPI specs for docs
         if: matrix.app == 'docs'
-        env:
-          DATABASE_URL: ${{ steps.postgres.outputs.connection-uri }}
         run: |
           echo "Generating all OpenAPI specs for docs app..."
           # Generate OpenAPI for all services that have the script
@@ -152,8 +134,6 @@ jobs:
 
       - name: Generate OpenAPI spec for current app
         if: matrix.app != 'docs' && hashFiles('apps/${{ matrix.app }}/src/generate-openapi.ts') != ''
-        env:
-          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/atlas
         run: |
           echo "Generating OpenAPI spec for ${{ matrix.app }}"
           pnpm --filter @atlas/${{ matrix.app }} generate-openapi
