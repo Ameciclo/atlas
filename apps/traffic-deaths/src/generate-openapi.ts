@@ -22,7 +22,7 @@ async function generateOpenAPISpec() {
 			},
 			servers: [
 				{
-					url: `http://localhost:${process.env.PORT || "3003"}`,
+					url: "http://localhost:3003",
 					description: "Local development server",
 				},
 				{
