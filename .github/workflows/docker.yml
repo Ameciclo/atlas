@@ -54,10 +54,17 @@ jobs:
           fi
 
           # Get list of affected apps
-          AFFECTED_APPS=$(npx turbo run build --dry-run=json --affected -- --from=origin/$BASE_REF | jq -c '.tasks | map(.taskId | split(":")[0] | select(startswith("@atlas/"))) | map(sub("@atlas/"; "")) | unique')
+          AFFECTED_APPS=$(npx turbo run build --dry-run=json --filter=...[origin/$BASE_REF] 2>/dev/null | jq -c '.tasks | map(.taskId | split(":")[0] | select(startswith("@atlas/"))) | map(sub("@atlas/"; "")) | unique' || echo '[]')
 
           # Filter to only include apps with Dockerfiles that were affected
           AFFECTED_DOCKER_APPS=$(echo $APPS_WITH_DOCKER | jq --argjson affected "$AFFECTED_APPS" -c '[.[] | select($affected | index(.))]')
+
+          # Always include docs app (it aggregates OpenAPI specs from all services)
+          # If any service changes, docs should be rebuilt
+          if [ "$(echo $AFFECTED_DOCKER_APPS | jq 'index("docs")')" = "null" ] && [ "$(echo $AFFECTED_APPS | jq 'length')" -gt 0 ]; then
+            echo "Adding docs app to build (aggregates OpenAPI specs from all services)"
+            AFFECTED_DOCKER_APPS=$(echo $AFFECTED_DOCKER_APPS | jq -c '. + ["docs"] | unique')
+          fi
 
           # Set outputs
           echo "matrix=${AFFECTED_DOCKER_APPS}" >> $GITHUB_OUTPUT
