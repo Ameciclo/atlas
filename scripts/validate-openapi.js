@@ -30,7 +30,9 @@ function validateSpec(filePath) {
 
 		// Check OpenAPI version
 		if (spec.openapi !== "3.1.0") {
-			console.error(`  ✖ Invalid OpenAPI version: ${spec.openapi} (expected 3.1.0)`);
+			console.error(
+				`  ✖ Invalid OpenAPI version: ${spec.openapi} (expected 3.1.0)`,
+			);
 			hasErrors = true;
 		} else {
 			console.log(`  ✓ OpenAPI version: ${spec.openapi}`);
@@ -140,7 +142,7 @@ function main() {
 		validateSpec(file);
 	}
 
-	console.log("\n" + "=".repeat(60));
+	console.log(`\n${"=".repeat(60)}`);
 
 	if (hasErrors) {
 		console.error("\n❌ Validation failed with errors\n");
@@ -152,4 +154,3 @@ function main() {
 }
 
 main();
-
