@@ -84,15 +84,12 @@ jobs:
         uses: actions/checkout@v4
       - uses: ./.github/actions/common-setup
         id: setup
-      - name: Skip if no changes
-        if: steps.setup.outputs.skip == 'true'
-        run: |
-          echo "💤 No workspaces changed; skipping builds."
-          exit 0
       - name: Run build on affected apps/packages
+        if: steps.setup.outputs.skip != 'true'
         run: pnpm build --affected
 
       # Upload build artifacts for use in other jobs (e.g., generate-openapi)
+      # Always upload, even if empty, so download doesn't fail
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -101,6 +98,7 @@ jobs:
             apps/*/dist
             packages/*/dist
           retention-days: 1
+          if-no-files-found: ignore
 
   generate-openapi:
     name: Generate OpenAPI Specs
@@ -132,9 +130,13 @@ jobs:
           exit 0
 
       - name: Download build artifacts
+        continue-on-error: true
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
+
+      - name: Build database package
+        run: pnpm --filter @atlas/database build
 
       - name: Run database migrations
         env:
