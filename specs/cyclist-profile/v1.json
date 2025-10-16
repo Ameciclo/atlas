@@ -1,0 +1,23 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Cyclist Profile API",
+    "version": "1.0.0",
+    "description": "API for managing cyclist profiles",
+    "contact": {
+      "name": "Atlas Team",
+      "url": "https://github.com/Ameciclo/atlas"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local development server"
+    },
+    {
+      "url": "https://api.ameciclo.org/cyclist-profile",
+      "description": "Production server"
+    }
+  ],
+  "paths": {}
+}
