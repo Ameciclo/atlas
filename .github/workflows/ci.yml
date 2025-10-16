@@ -92,9 +92,8 @@ jobs:
       - name: Run build on affected apps/packages
         run: pnpm build --affected
 
-      # Upload build artifacts for potential use in other jobs
+      # Upload build artifacts for use in other jobs (e.g., generate-openapi)
       - name: Upload build artifacts
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
