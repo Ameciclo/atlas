@@ -47,17 +47,19 @@ jobs:
 
           # If this is a PR, use the base branch for comparison
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            BASE_REF="${{ github.base_ref }}"
+            BASE_REF="origin/${{ github.base_ref }}"
+            TURBO_REF="origin/${{ github.base_ref }}"
           else
             # For push to main, use the previous commit
             BASE_REF="HEAD^1"
+            TURBO_REF="HEAD^1"
           fi
 
           # Check if workflow files or OpenAPI-related files changed
-          WORKFLOW_CHANGED=$(git diff --name-only origin/$BASE_REF HEAD | grep -E '\.github/workflows/(docker|ci)\.yml|turbo\.json|apps/.*/src/generate-openapi\.ts|apps/docs/public/openapi/' || echo "")
+          WORKFLOW_CHANGED=$(git diff --name-only $BASE_REF HEAD | grep -E '\.github/workflows/(docker|ci)\.yml|turbo\.json|apps/.*/src/generate-openapi\.ts|apps/docs/public/openapi/' || echo "")
 
           # Get list of affected apps (with proper error handling)
-          TURBO_OUTPUT=$(npx turbo run build --dry-run=json --filter=...[origin/$BASE_REF] 2>/dev/null || echo '{"tasks":[]}')
+          TURBO_OUTPUT=$(npx turbo run build --dry-run=json --filter=...[$TURBO_REF] 2>/dev/null || echo '{"tasks":[]}')
           AFFECTED_APPS=$(echo "$TURBO_OUTPUT" | jq -c '.tasks | map(.taskId | split(":")[0] | select(startswith("@atlas/"))) | map(sub("@atlas/"; "")) | unique')
 
           echo "Affected apps: $AFFECTED_APPS"
