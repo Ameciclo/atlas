@@ -1,6 +1,6 @@
-# PublickTransit API
+# publicTransit API
 
-API service for publick-transit
+API service for public-transit
 
 ## Requirements
 
@@ -39,10 +39,10 @@ If you prefer to run the application without Docker:
 pnpm install
 
 # Start the development server
-pnpm --filter @atlas/publick-transit dev
+pnpm --filter @atlas/public-transit dev
 
 # In another terminal, run migrations
-pnpm --filter @atlas/publick-transit db:migrate
+pnpm --filter @atlas/public-transit db:migrate
 
 ```
 
@@ -58,13 +58,13 @@ LOG_LEVEL=info
 PORT=3022
 
 # Database
-DATABASE_URL=postgres://postgres:postgres@localhost:5432/publick-transit_db
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/public-transit_db
 # Or use individual settings:
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=postgres
 DB_PASSWORD=postgres
-DB_NAME=publick-transit_db
+DB_NAME=public-transit_db
 DB_SSL=false
 ```
 
@@ -72,48 +72,48 @@ DB_SSL=false
 
 ```bash
 # Generate new migrations
-pnpm --filter @atlas/publick-transit db:generate
+pnpm --filter @atlas/public-transit db:generate
 
 # Apply migrations
-pnpm --filter @atlas/publick-transit db:migrate
+pnpm --filter @atlas/public-transit db:migrate
 
 # View database with Drizzle Studio
-pnpm --filter @atlas/publick-transit db:studio
+pnpm --filter @atlas/public-transit db:studio
 
 # Seed the database with sample data
-pnpm --filter @atlas/publick-transit db:seed
+pnpm --filter @atlas/public-transit db:seed
 ```
 
 ## Development
 
 ```bash
 # Start development server with hot reload
-pnpm --filter @atlas/publick-transit dev
+pnpm --filter @atlas/public-transit dev
 
 # Run tests
-pnpm --filter @atlas/publick-transit test
+pnpm --filter @atlas/public-transit test
 
 # Run tests in watch mode
-pnpm --filter @atlas/publick-transit test:watch
+pnpm --filter @atlas/public-transit test:watch
 
 # Type checking
-pnpm --filter @atlas/publick-transit check-types
+pnpm --filter @atlas/public-transit check-types
 
 # Linting
-pnpm --filter @atlas/publick-transit lint
+pnpm --filter @atlas/public-transit lint
 
 # Format code
-pnpm --filter @atlas/publick-transit format
+pnpm --filter @atlas/public-transit format
 ```
 
 ## Building
 
 ```bash
 # Build the application
-pnpm --filter @atlas/publick-transit build
+pnpm --filter @atlas/public-transit build
 
 # Start production server
-pnpm --filter @atlas/publick-transit start
+pnpm --filter @atlas/public-transit start
 ```
 
 ## API Documentation
@@ -122,7 +122,7 @@ The API documentation is automatically generated from the OpenAPI specification.
 
 ```bash
 # Generate OpenAPI spec
-pnpm --filter @atlas/publick-transit generate-openapi
+pnpm --filter @atlas/public-transit generate-openapi
 
 # View in the docs app
 pnpm --filter @atlas/docs dev
@@ -131,13 +131,13 @@ pnpm --filter @atlas/docs dev
 
 ## Docker Deployment
 
-The PublickTransit API can be deployed as a Docker container. The container image is automatically built and pushed to GitHub Container Registry (ghcr.io) when changes are merged to the main branch.
+The publicTransit API can be deployed as a Docker container. The container image is automatically built and pushed to GitHub Container Registry (ghcr.io) when changes are merged to the main branch.
 
 ### Running with Docker
 
 ```bash
 # Pull the latest image
-docker pull ghcr.io/ameciclo/atlas/publick-transit:latest
+docker pull ghcr.io/ameciclo/atlas/public-transit:latest
 
 # Run the container with PostgreSQL
 docker compose up -d
@@ -148,12 +148,12 @@ The API will be available at http://localhost:3022
 ### Building Locally
 
 ```bash
-# From the publick-transit app directory
+# From the public-transit app directory
 docker compose up -d
 
 # Or from the root of the monorepo
-docker build -t atlas-publick-transit -f apps/publick-transit/Dockerfile .
-docker run -p 3022:3022 --env-file .env atlas-publick-transit
+docker build -t atlas-public-transit -f apps/public-transit/Dockerfile .
+docker run -p 3022:3022 --env-file .env atlas-public-transit
 ```
 
 ## Health Check
@@ -169,7 +169,7 @@ Response:
 {
   "status": "ok",
   "timestamp": "2023-07-01T12:34:56.789Z",
-  "service": "publick-transit",
+  "service": "public-transit",
   "database": "connected"
 }
 ```
@@ -177,7 +177,7 @@ Response:
 ## Project Structure
 
 ```
-apps/publick-transit/
+apps/public-transit/
 ├── src/
 │   ├── app.ts                 # App configuration
 │   ├── index.ts               # Entry point

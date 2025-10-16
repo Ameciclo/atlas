@@ -12,11 +12,11 @@ RUN corepack enable && corepack prepare pnpm@10.10.0 --activate && \
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml turbo.json ./
 
 # Copy the source code needed for turbo prune
-COPY apps/publick-transit/package.json ./apps/publick-transit/package.json
+COPY apps/public-transit/package.json ./apps/public-transit/package.json
 COPY packages/typescript-config/package.json ./packages/typescript-config/package.json
 
-# Use turbo to prune the monorepo to only the publick-transit app and its dependencies
-RUN turbo prune --scope=@atlas/publick-transit --docker
+# Use turbo to prune the monorepo to only the public-transit app and its dependencies
+RUN turbo prune --scope=@atlas/public-transit --docker
 
 # Build stage - Use the pruned repo to build the app
 FROM node:22.15.0-slim AS builder
@@ -39,12 +39,12 @@ RUN pnpm install --frozen-lockfile
 COPY --from=pruner /app/out/full/ .
 
 # Copy the rest of the source code
-COPY apps/publick-transit ./apps/publick-transit
+COPY apps/public-transit ./apps/public-transit
 COPY packages/typescript-config ./packages/typescript-config
 COPY turbo.json ./turbo.json
 
-# Build the publick-transit app
-RUN pnpm --filter @atlas/publick-transit build
+# Build the public-transit app
+RUN pnpm --filter @atlas/public-transit build
 
 # Production stage
 FROM node:22.15.0-slim AS production
@@ -64,9 +64,9 @@ COPY --from=pruner /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
 RUN pnpm install --frozen-lockfile --prod
 
 # Copy built files from builder stage
-COPY --from=builder /app/apps/publick-transit/dist ./apps/publick-transit/dist
+COPY --from=builder /app/apps/public-transit/dist ./apps/public-transit/dist
 # Copy migrations folder
-COPY --from=builder /app/apps/publick-transit/src/db/migrations ./apps/publick-transit/src/db/migrations
+COPY --from=builder /app/apps/public-transit/src/db/migrations ./apps/public-transit/src/db/migrations
 
 # Set environment variables
 ENV NODE_ENV=production
@@ -77,4 +77,4 @@ ENV PORT=3022
 EXPOSE ${PORT}
 
 # Default command to start the application
-CMD ["node", "apps/publick-transit/dist/index.js"]
+CMD ["node", "apps/public-transit/dist/index.js"]

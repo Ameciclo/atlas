@@ -1,9 +1,9 @@
 services:
   app:
-    image: atlas-publick-transit
+    image: atlas-public-transit
     build:
       context: ../..
-      dockerfile: ./apps/publick-transit/Dockerfile
+      dockerfile: ./apps/public-transit/Dockerfile
     ports:
       - "${PORT:-3022}:${PORT:-3022}"
     environment:
@@ -14,8 +14,8 @@ services:
       - DB_PORT=5432
       - DB_USER=postgres
       - DB_PASSWORD=postgres
-      - DB_NAME=publick-transit_db
-      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/publick-transit_db
+      - DB_NAME=public-transit_db
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/public-transit_db
     depends_on:
       migrate:
         condition: service_completed_successfully
@@ -30,38 +30,38 @@ services:
       start_period: 10s
 
   migrate:
-    image: atlas-publick-transit
+    image: atlas-public-transit
     build:
       context: ../..
-      dockerfile: ./apps/publick-transit/Dockerfile
-    command: node apps/publick-transit/dist/db/migrate.js
+      dockerfile: ./apps/public-transit/Dockerfile
+    command: node apps/public-transit/dist/db/migrate.js
     environment:
       - NODE_ENV=production
       - DB_HOST=postgres
       - DB_PORT=5432
       - DB_USER=postgres
       - DB_PASSWORD=postgres
-      - DB_NAME=publick-transit_db
-      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/publick-transit_db
+      - DB_NAME=public-transit_db
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/public-transit_db
     depends_on:
       postgres:
         condition: service_healthy
     restart: on-failure
 
   seed:
-    image: atlas-publick-transit
+    image: atlas-public-transit
     build:
       context: ../..
-      dockerfile: ./apps/publick-transit/Dockerfile
-    command: node apps/publick-transit/dist/db/seed.js
+      dockerfile: ./apps/public-transit/Dockerfile
+    command: node apps/public-transit/dist/db/seed.js
     environment:
       - NODE_ENV=production
       - DB_HOST=postgres
       - DB_PORT=5432
       - DB_USER=postgres
       - DB_PASSWORD=postgres
-      - DB_NAME=publick-transit_db
-      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/publick-transit_db
+      - DB_NAME=public-transit_db
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/public-transit_db
     depends_on:
       migrate:
         condition: service_completed_successfully
@@ -74,7 +74,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=publick-transit_db
+      - POSTGRES_DB=public-transit_db
     ports:
       - "5432:5432"
     volumes:
