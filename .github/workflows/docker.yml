@@ -53,18 +53,25 @@ jobs:
             BASE_REF="HEAD^1"
           fi
 
+          # Check if workflow files or OpenAPI-related files changed
+          WORKFLOW_CHANGED=$(git diff --name-only origin/$BASE_REF HEAD | grep -E '\.github/workflows/(docker|ci)\.yml|turbo\.json|apps/.*/src/generate-openapi\.ts|apps/docs/public/openapi/' || echo "")
+
           # Get list of affected apps (with proper error handling)
           TURBO_OUTPUT=$(npx turbo run build --dry-run=json --filter=...[origin/$BASE_REF] 2>/dev/null || echo '{"tasks":[]}')
           AFFECTED_APPS=$(echo "$TURBO_OUTPUT" | jq -c '.tasks | map(.taskId | split(":")[0] | select(startswith("@atlas/"))) | map(sub("@atlas/"; "")) | unique')
 
           echo "Affected apps: $AFFECTED_APPS"
+          echo "Workflow changed: $WORKFLOW_CHANGED"
 
           # Filter to only include apps with Dockerfiles that were affected
           AFFECTED_DOCKER_APPS=$(echo "$APPS_WITH_DOCKER" | jq --argjson affected "$AFFECTED_APPS" -c '[.[] | select($affected | index(.))]')
 
-          # Always include docs app (it aggregates OpenAPI specs from all services)
-          # If any service changes, docs should be rebuilt
-          if [ "$(echo "$AFFECTED_DOCKER_APPS" | jq 'index("docs")')" = "null" ] && [ "$(echo "$AFFECTED_APPS" | jq 'length')" -gt 0 ]; then
+          # If workflow/OpenAPI files changed, rebuild all apps
+          if [ -n "$WORKFLOW_CHANGED" ]; then
+            echo "Workflow or OpenAPI-related files changed, building all apps"
+            AFFECTED_DOCKER_APPS=$APPS_WITH_DOCKER
+          # Otherwise, always include docs app if any service changes
+          elif [ "$(echo "$AFFECTED_DOCKER_APPS" | jq 'index("docs")')" = "null" ] && [ "$(echo "$AFFECTED_APPS" | jq 'length')" -gt 0 ]; then
             echo "Adding docs app to build (aggregates OpenAPI specs from all services)"
             AFFECTED_DOCKER_APPS=$(echo "$AFFECTED_DOCKER_APPS" | jq -c '. + ["docs"] | unique')
           fi
