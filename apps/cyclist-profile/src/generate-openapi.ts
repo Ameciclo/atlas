@@ -1,9 +1,28 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import app from "./app.js";
+import createApp from "./lib/create-app.js";
+import { createRouter } from "./lib/create-app.js";
+import * as routes from "./routes/cyclist-profiles/cyclist-profiles.routes.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+/**
+ * Create a spec-only app without importing handlers (which require database)
+ * We only need route schemas for OpenAPI generation, not the actual handlers
+ * The handlers are never called during spec generation, so we use dummy functions
+ */
+function createSpecApp() {
+	const router = createRouter()
+		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
+		.openapi(routes.list, null as any)
+		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
+		.openapi(routes.getOne, null as any);
+
+	return createApp().route("/v1/", router);
+}
+
+const app = createSpecApp();
 
 /**
  * The name of this API service (used in the output filename)
