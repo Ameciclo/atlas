@@ -88,7 +88,9 @@ jobs:
             AFFECTED_DOCKER_APPS=$(echo $APPS_WITH_DOCKER | jq --argjson affected "$AFFECTED_APPS" -c '[.[] | select($affected | index(.))]')
 
             # Map to deployment matrix format
-            DEPLOY_MATRIX=$(echo $ALL_APPS | jq -c --argjson affected "$AFFECTED_DOCKER_APPS" '[.[] | select($affected | index(.app))]')
+            # AFFECTED_DOCKER_APPS is an array of strings like ["cyclist-profile", "docs"]
+            # We need to filter ALL_APPS to only include items where .app is in AFFECTED_DOCKER_APPS
+            DEPLOY_MATRIX=$(echo "$ALL_APPS" | jq -c --argjson affected "$AFFECTED_DOCKER_APPS" '[.[] | select(.app as $app | $affected | index($app))]')
           fi
 
           echo "matrix=${DEPLOY_MATRIX}" >> $GITHUB_OUTPUT
