@@ -5,7 +5,7 @@ import { parse } from "csv-parse/sync";
 import { db } from "./index.js";
 import { traffic_deaths } from "./schema.js";
 
-function parseDate(dateStr: string): Date | null {
+function parseDate(dateStr: string | undefined): Date | null {
 	if (!dateStr || dateStr === "NA") return null;
 	// DATASUS format: DDMMYYYY
 	const day = dateStr.slice(0, 2);
@@ -14,13 +14,13 @@ function parseDate(dateStr: string): Date | null {
 	return new Date(`${year}-${month}-${day}`);
 }
 
-function parseInteger(value: string): number | null {
+function parseInteger(value: string | undefined): number | null {
 	if (!value || value === "NA") return null;
 	const parsed = Number.parseInt(value, 10);
 	return Number.isNaN(parsed) ? null : parsed;
 }
 
-function parseString(value: string): string | null {
+function parseString(value: string | undefined): string | null {
 	return !value || value === "NA" ? null : value;
 }
 
@@ -71,7 +71,7 @@ async function loadCsvFile(filePath: string) {
 				causabas_o: parseString(record.CAUSABAS_O),
 				causabas: parseString(record.CAUSABAS),
 			}))
-			.filter((item) => item.dtobito !== null);
+			.filter((item: { dtobito: Date | null }) => item.dtobito !== null);
 
 		if (data.length > 0) {
 			await db.insert(traffic_deaths).values(data);
