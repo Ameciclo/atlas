@@ -114,6 +114,7 @@ jobs:
         if: steps.setup.outputs.skip != 'true'
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/atlas
+          API_BASE_URL: https://api.ameciclo.org/cyclist-profile
         run: pnpm build --affected
 
       # Upload build artifacts for use in other jobs

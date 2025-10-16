@@ -29,7 +29,9 @@ async function generateOpenAPISpec() {
 					description: "Local development server",
 				},
 				{
-					url: "https://api.atlas.example.com",
+					url:
+						process.env.API_BASE_URL ||
+						"https://api.ameciclo.org/cyclist-profile",
 					description: "Production server",
 				},
 			],
