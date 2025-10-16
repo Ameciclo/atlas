@@ -1,0 +1,89 @@
+services:
+  app:
+    image: atlas-car-speed
+    build:
+      context: ../..
+      dockerfile: ./apps/car-speed/Dockerfile
+    ports:
+      - "${PORT:-3020}:${PORT:-3020}"
+    environment:
+      - NODE_ENV=production
+      - LOG_LEVEL=info
+      - PORT=${PORT:-3020}
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=car-speed_db
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/car-speed_db
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      seed:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3020/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  migrate:
+    image: atlas-car-speed
+    build:
+      context: ../..
+      dockerfile: ./apps/car-speed/Dockerfile
+    command: node apps/car-speed/dist/db/migrate.js
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=car-speed_db
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/car-speed_db
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: on-failure
+
+  seed:
+    image: atlas-car-speed
+    build:
+      context: ../..
+      dockerfile: ./apps/car-speed/Dockerfile
+    command: node apps/car-speed/dist/db/seed.js
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=car-speed_db
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/car-speed_db
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: on-failure
+    profiles:
+      - with-seed
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=car-speed_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
