@@ -1,221 +1,196 @@
-# Portainer Stack Templates
+# Portainer Deployment
 
 This directory contains Docker Compose stack templates for deploying Atlas services in Portainer.
+
+## Available Stacks
+
+### Production Stacks (Recommended)
+
+- **`atlas-stack-kong.yml`** - Complete Atlas stack with Kong Gateway
+  - Includes: Database, Cyclist Profile API, Docs, Kong Gateway
+  - Best for: Production deployments with API gateway
+  - Network: Uses external `kong-gateway_kong-net` network
+
+### Individual Service Stacks
+
+- **`database-stack.yml`** - PostgreSQL with PostGIS
+- **`cyclist-profile-stack.yml`** - Cyclist Profile API service
+- **`docs-stack.yml`** - API documentation site
+
+### Alternative Configurations
+
+- **`atlas-stack.yml`** - Basic stack without Kong
+- **`atlas-stack-managed-db.yml`** - Stack using external managed database
 
 ## Quick Start
 
 ### 1. Prerequisites
 
 - Portainer installed and accessible
-- Docker network created: `docker network create atlas-network`
+- Kong Gateway network created (for Kong stack): `docker network create kong-gateway_kong-net`
 - GitHub Container Registry access configured
 
-### 2. Deployment Order
+### 2. Deploy the Stack
 
-Deploy stacks in this order:
+**Option A: Full Stack with Kong (Recommended)**
 
-1. **Database** (`database-stack.yml`) - PostgreSQL with PostGIS
-2. **Services** - Deploy each service stack
-   - `cyclist-profile-stack.yml`
-   - `docs-stack.yml`
+1. In Portainer: **Stacks** → **Add stack**
+2. Name: `atlas`
+3. Build method: **Web editor**
+4. Paste content from `atlas-stack-kong.yml`
+5. Set environment variables (see below)
+6. Deploy
+
+**Option B: Individual Services**
+
+Deploy in this order:
+1. Database (`database-stack.yml`)
+2. Services (`cyclist-profile-stack.yml`, `docs-stack.yml`)
 
 ### 3. Environment Variables
 
-Each stack requires environment variables. Set these in Portainer:
+**Required:**
+- `POSTGRES_PASSWORD` - Database password (use Portainer secrets)
 
-**Database Stack:**
-- `POSTGRES_PASSWORD` - Database password (required, secret)
+**Optional:**
+- `PORT` - Service port (defaults: cyclist-profile=3000)
+- `LOG_LEVEL` - Logging level (default: info)
+- `NODE_ENV` - Environment (default: production)
 
-**Service Stacks:**
-- `POSTGRES_PASSWORD` - Database password (required, secret)
-- `PORT` - Service port (optional, has defaults)
-- `LOG_LEVEL` - Logging level (optional, default: info)
+### 4. Configure CI/CD Webhooks
 
-### 4. Enable Webhooks
+Enable webhooks for automatic deployments:
 
-For each service stack:
+1. Go to **Stacks** → Select stack → **Webhooks**
+2. Enable webhook and copy URL
+3. Add to GitHub repository secrets:
+   - `PORTAINER_WEBHOOK_CYCLIST_PROFILE`
+   - `PORTAINER_WEBHOOK_DOCS`
 
-1. Go to **Stacks** → Select stack
-2. Click **Webhooks** tab
-3. Enable webhook
-4. Copy webhook URL
-5. Add to GitHub secrets as `PORTAINER_WEBHOOK_<SERVICE_NAME>`
+## Stack Architecture
 
-## Stack Files
+### atlas-stack-kong.yml
 
-### database-stack.yml
-
-Shared PostgreSQL database for all services.
+**Services:**
+- `postgres` - PostgreSQL 16 with PostGIS 3.5
+- `cyclist-profile` - Cyclist Profile API (Node.js)
+- `docs` - API Documentation (Nginx static site)
+- Kong Gateway integration via external network
 
 **Features:**
-- PostGIS extension
-- Health checks
+- Automatic database migrations
+- Health checks for all services
+- Persistent database volumes
+- Production-ready configuration
+
+**Network:**
+- Uses external `kong-gateway_kong-net` network
+- Services accessible via Kong routes:
+  - Cyclist Profile: `/cyclist-profile/*`
+  - Docs: `/docs/*`
+
+### Individual Stacks
+
+**database-stack.yml:**
+- PostgreSQL with PostGIS extension
 - Persistent volumes
-- Automatic restarts
-
-### cyclist-profile-stack.yml
-
-Cyclist Profile API service.
-
-**Features:**
-- Automatic migrations on startup
 - Health checks
-- Configurable port
-- Connected to shared database
 
-### docs-stack.yml
+**cyclist-profile-stack.yml:**
+- Cyclist Profile API service
+- Automatic migrations on startup
+- Configurable port (default: 3000)
 
-API documentation site.
-
-**Features:**
-- Serves OpenAPI specs
+**docs-stack.yml:**
+- Static documentation site (Nginx)
+- Displays OpenAPI specs from all services
 - No database dependency
-- Configurable port
+- Runs on port 80 (internal)
 
-## Webhook URLs
+## Deployment Methods
 
-After enabling webhooks, you'll get URLs like:
+### Automatic (CI/CD)
 
-```
-https://portainer.example.com/api/webhooks/abc123-def456-ghi789
-```
+GitHub Actions automatically deploys when code is pushed to `main`:
 
-Add these to GitHub repository secrets:
+1. Code pushed → Docker images built
+2. Images pushed to GitHub Container Registry
+3. Webhook triggered → Portainer pulls new images
+4. Services automatically redeployed
 
-```bash
-# In GitHub repository settings → Secrets and variables → Actions
+**Setup:** Configure webhooks (see step 4 in Quick Start)
 
-PORTAINER_WEBHOOK_CYCLIST_PROFILE=https://portainer.example.com/api/webhooks/...
-PORTAINER_WEBHOOK_DOCS=https://portainer.example.com/api/webhooks/...
-```
+### Manual (Portainer UI)
 
-## Manual Deployment
+1. **Stacks** → Select stack → **Editor**
+2. Click **Pull and redeploy** to get latest images
+3. Or edit stack configuration and click **Update**
 
-### Via Portainer UI
+### Manual (Webhook)
 
-1. Go to **Stacks** → **Add stack**
-2. Name: `atlas-<service-name>`
-3. Build method: **Web editor**
-4. Paste stack content
-5. Add environment variables
-6. Deploy
-
-### Via Portainer API
-
-```bash
-# Get auth token
-TOKEN=$(curl -s -X POST "https://portainer.example.com/api/auth" \
-  -H "Content-Type: application/json" \
-  -d '{"username":"admin","password":"your-password"}' | jq -r .jwt)
-
-# Create stack
-curl -X POST "https://portainer.example.com/api/stacks" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d @create-stack-payload.json
-```
-
-## Updating Stacks
-
-### Via Webhook (Recommended)
+Trigger deployment via webhook:
 
 ```bash
 curl -X POST "https://portainer.example.com/api/webhooks/your-webhook-id"
 ```
 
-### Via Portainer UI
-
-1. Go to **Stacks** → Select stack
-2. Click **Editor**
-3. Make changes
-4. Click **Update the stack**
-
-### Via Git Sync (Advanced)
-
-Configure Portainer to sync stacks from a Git repository.
-
 ## Troubleshooting
 
-### Service won't start
+### Service Won't Start
 
 **Check logs:**
 ```bash
 docker logs atlas-cyclist-profile
+docker logs atlas-docs
 ```
 
 **Common issues:**
-- Database not ready → Check postgres health
-- Missing environment variables → Check Portainer env vars
-- Port already in use → Change PORT env var
+- Database not ready → Wait for postgres health check to pass
+- Missing environment variables → Check Portainer stack env vars
+- Network not found → Ensure `kong-gateway_kong-net` exists
 
-### Database connection failed
+### Database Connection Failed
 
 **Check database:**
 ```bash
 docker exec -it atlas-postgres psql -U postgres -d atlas
 ```
 
-**Verify network:**
+**Verify connection:**
 ```bash
-docker network inspect atlas-network
+docker exec atlas-postgres pg_isready -U postgres -d atlas
 ```
 
-### Webhook not working
+### Docs Show "No OpenAPI Specs Found"
 
-**Test webhook manually:**
+This issue has been fixed in the CI/CD pipeline. If you still see it:
+
+1. Check that the docs image is up to date: `docker pull ghcr.io/ameciclo/atlas/docs:latest`
+2. Verify OpenAPI specs exist in the image: `docker exec atlas-docs ls -la /usr/share/nginx/html/openapi/`
+3. Redeploy the stack to pull the latest image
+
+### Webhook Not Working
+
+**Test webhook:**
 ```bash
 curl -v -X POST "https://portainer.example.com/api/webhooks/your-webhook-id"
 ```
 
-**Check Portainer logs:**
-```bash
-docker logs portainer
-```
-
-## Best Practices
-
-1. **Use secrets** for sensitive data (passwords, API keys)
-2. **Tag images** with SHA instead of `latest` for production
-3. **Test in staging** before deploying to production
-4. **Monitor health checks** to ensure services are running
-5. **Backup database** regularly
-6. **Document changes** to stack configurations
-
-## Migration Strategy
-
-### Running Migrations
-
-Migrations run automatically via init container in each service stack.
-
-**Manual migration:**
-```bash
-docker run --rm \
-  --network atlas-network \
-  -e DATABASE_URL=postgresql://postgres:password@atlas-postgres:5432/atlas \
-  ghcr.io/ameciclo/atlas/cyclist-profile:latest \
-  node packages/database/dist/migrate.js
-```
-
-### Migration Rollback
-
-If a migration fails:
-
-1. Fix the migration in code
-2. Push to GitHub
-3. CI/CD will build new image
-4. Redeploy via webhook
+**Check GitHub Actions logs** for deployment workflow errors
 
 ## Monitoring
 
-### Health Check Endpoints
+### Health Checks
 
-- Cyclist Profile: `http://localhost:3000/health`
-- Docs: `http://localhost:3001/health` (if implemented)
+All services have health checks configured:
 
-### Database Health
+- **Cyclist Profile:** `GET /health` (port 3000)
+- **Docs:** `wget http://127.0.0.1/` (port 80)
+- **Database:** `pg_isready -U postgres`
 
+**View health status:**
 ```bash
-docker exec atlas-postgres pg_isready -U postgres -d atlas
+docker ps --format "table {{.Names}}\t{{.Status}}"
 ```
 
 ### Container Stats
@@ -224,107 +199,41 @@ docker exec atlas-postgres pg_isready -U postgres -d atlas
 docker stats atlas-cyclist-profile atlas-docs atlas-postgres
 ```
 
-## Scaling
+## Database Management
 
-### Horizontal Scaling
+### Migrations
 
-To run multiple instances of a service:
+Migrations run automatically on service startup. No manual intervention needed.
 
-1. Use a load balancer (nginx, traefik)
-2. Update stack to use replicas
-3. Ensure services are stateless
-
-**Example:**
-```yaml
-services:
-  app:
-    image: ghcr.io/ameciclo/atlas/cyclist-profile:latest
-    deploy:
-      replicas: 3
-      update_config:
-        parallelism: 1
-        delay: 10s
-```
-
-### Vertical Scaling
-
-Increase resources for containers:
-
-```yaml
-services:
-  app:
-    image: ghcr.io/ameciclo/atlas/cyclist-profile:latest
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-          memory: 2G
-        reservations:
-          cpus: '1'
-          memory: 1G
-```
-
-## Security
-
-### Network Isolation
-
-Services communicate via `atlas-network`. External access only through exposed ports.
-
-### Secrets Management
-
-Use Portainer secrets for sensitive data:
-
-```yaml
-services:
-  app:
-    secrets:
-      - postgres_password
-    environment:
-      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@atlas-postgres:5432/atlas
-
-secrets:
-  postgres_password:
-    external: true
-```
-
-### Image Security
-
-- Images are scanned in CI/CD
-- Use specific tags (SHA) for production
-- Regularly update base images
-
-## Backup and Recovery
-
-### Database Backup
-
+**Manual migration (if needed):**
 ```bash
-# Backup
-docker exec atlas-postgres pg_dump -U postgres atlas > backup.sql
-
-# Restore
-docker exec -i atlas-postgres psql -U postgres atlas < backup.sql
+docker exec atlas-cyclist-profile pnpm --filter @atlas/database db:migrate
 ```
 
-### Volume Backup
+### Backups
 
+**Backup database:**
 ```bash
-# Backup volume
-docker run --rm \
-  -v atlas-postgres-data:/data \
-  -v $(pwd):/backup \
-  alpine tar czf /backup/postgres-data-backup.tar.gz /data
-
-# Restore volume
-docker run --rm \
-  -v atlas-postgres-data:/data \
-  -v $(pwd):/backup \
-  alpine tar xzf /backup/postgres-data-backup.tar.gz -C /
+docker exec atlas-postgres pg_dump -U postgres atlas > backup-$(date +%Y%m%d).sql
 ```
 
-## Support
+**Restore database:**
+```bash
+docker exec -i atlas-postgres psql -U postgres atlas < backup-20250116.sql
+```
 
-For issues or questions:
-- Check [DEPLOYMENT_STRATEGY.md](../../DEPLOYMENT_STRATEGY.md)
-- Review [ARCHITECTURE_OVERVIEW.md](../../ARCHITECTURE_OVERVIEW.md)
-- Open an issue on GitHub
+## Best Practices
+
+1. ✅ **Use Portainer secrets** for `POSTGRES_PASSWORD`
+2. ✅ **Monitor health checks** to ensure services are running
+3. ✅ **Backup database regularly** (automated backups recommended)
+4. ✅ **Use CI/CD webhooks** for automatic deployments
+5. ✅ **Test in staging** before deploying to production
+6. ✅ **Review logs** after deployments
+
+## Related Documentation
+
+- **[OpenAPI Workflow](../../docs/OPENAPI_WORKFLOW.md)** - How OpenAPI specs are generated
+- **[Create New Service](../../docs/CREATE_NEW_SERVICE.md)** - Adding new services to Atlas
+- **GitHub Actions Workflows** - See `.github/workflows/` for CI/CD configuration
 
