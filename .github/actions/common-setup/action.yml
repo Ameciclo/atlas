@@ -36,16 +36,20 @@ runs:
     - name: Detect changes with turbo-ignore
       id: turboignore
       shell: bash
-      run: npx turbo-ignore .
-      continue-on-error: true
+      run: |
+        # turbo-ignore exits with 1 even when it says "Proceeding with deployment"
+        # We capture the exit code and always succeed
+        npx turbo-ignore . && echo "result=skip" >> $GITHUB_OUTPUT || echo "result=proceed" >> $GITHUB_OUTPUT
+        exit 0
 
     - name: Set skip output
       id: set-skip
       shell: bash
       run: |
-        echo "skip=false" >> $GITHUB_OUTPUT
-        if [ "${{ steps.turboignore.conclusion }}" = "success" ]; then
+        if [ "${{ steps.turboignore.outputs.result }}" = "skip" ]; then
           echo "skip=true" >> $GITHUB_OUTPUT
+        else
+          echo "skip=false" >> $GITHUB_OUTPUT
         fi
 
     - name: Expose cache hit
