@@ -1,11 +1,9 @@
 import cyclistProfilesData from "./cyclist_profiles.json" with { type: "json" };
-import { closeDb, getDb } from "./index.js";
+import { db } from "./index.js";
 import { cyclistProfiles } from "./schema.js";
 
 async function seed() {
 	try {
-		const db = await getDb();
-
 		for (const item of cyclistProfilesData) {
 			const { created_at, updated_at, ...data } = item;
 
@@ -26,7 +24,6 @@ async function seed() {
 		console.error("Error seeding database:", error);
 		process.exit(1);
 	} finally {
-		await closeDb();
 		process.exit(0);
 	}
 }

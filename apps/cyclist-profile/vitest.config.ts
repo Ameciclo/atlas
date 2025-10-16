@@ -9,5 +9,6 @@ export default defineConfig({
 				process.env.DATABASE_URL ||
 				"postgresql://postgres:postgres@localhost:5432/atlas",
 		},
+		setupFiles: ["./test/setup.ts"],
 	},
 });
