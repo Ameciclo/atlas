@@ -53,24 +53,27 @@ jobs:
             BASE_REF="HEAD^1"
           fi
 
-          # Get list of affected apps
-          AFFECTED_APPS=$(npx turbo run build --dry-run=json --filter=...[origin/$BASE_REF] 2>/dev/null | jq -c '.tasks | map(.taskId | split(":")[0] | select(startswith("@atlas/"))) | map(sub("@atlas/"; "")) | unique' || echo '[]')
+          # Get list of affected apps (with proper error handling)
+          TURBO_OUTPUT=$(npx turbo run build --dry-run=json --filter=...[origin/$BASE_REF] 2>/dev/null || echo '{"tasks":[]}')
+          AFFECTED_APPS=$(echo "$TURBO_OUTPUT" | jq -c '.tasks | map(.taskId | split(":")[0] | select(startswith("@atlas/"))) | map(sub("@atlas/"; "")) | unique')
+
+          echo "Affected apps: $AFFECTED_APPS"
 
           # Filter to only include apps with Dockerfiles that were affected
-          AFFECTED_DOCKER_APPS=$(echo $APPS_WITH_DOCKER | jq --argjson affected "$AFFECTED_APPS" -c '[.[] | select($affected | index(.))]')
+          AFFECTED_DOCKER_APPS=$(echo "$APPS_WITH_DOCKER" | jq --argjson affected "$AFFECTED_APPS" -c '[.[] | select($affected | index(.))]')
 
           # Always include docs app (it aggregates OpenAPI specs from all services)
           # If any service changes, docs should be rebuilt
-          if [ "$(echo $AFFECTED_DOCKER_APPS | jq 'index("docs")')" = "null" ] && [ "$(echo $AFFECTED_APPS | jq 'length')" -gt 0 ]; then
+          if [ "$(echo "$AFFECTED_DOCKER_APPS" | jq 'index("docs")')" = "null" ] && [ "$(echo "$AFFECTED_APPS" | jq 'length')" -gt 0 ]; then
             echo "Adding docs app to build (aggregates OpenAPI specs from all services)"
-            AFFECTED_DOCKER_APPS=$(echo $AFFECTED_DOCKER_APPS | jq -c '. + ["docs"] | unique')
+            AFFECTED_DOCKER_APPS=$(echo "$AFFECTED_DOCKER_APPS" | jq -c '. + ["docs"] | unique')
           fi
 
           # Set outputs
           echo "matrix=${AFFECTED_DOCKER_APPS}" >> $GITHUB_OUTPUT
 
           # Check if we have any changes
-          if [ "$(echo $AFFECTED_DOCKER_APPS | jq 'length')" -gt 0 ]; then
+          if [ "$(echo "$AFFECTED_DOCKER_APPS" | jq 'length')" -gt 0 ]; then
             echo "has_changes=true" >> $GITHUB_OUTPUT
           else
             echo "has_changes=false" >> $GITHUB_OUTPUT
