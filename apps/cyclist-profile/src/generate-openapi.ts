@@ -10,13 +10,28 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
  */
 const API_NAME = "cyclist-profile";
 
+/**
+ * Get version from package.json
+ */
+function getVersion(): string {
+	try {
+		const packageJsonPath = path.resolve(__dirname, "../package.json");
+		const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
+		return packageJson.version || "1.0.0";
+	} catch (error) {
+		console.warn("Could not read version from package.json, using 1.0.0");
+		return "1.0.0";
+	}
+}
+
 async function generateOpenAPISpec() {
 	try {
+		const version = getVersion();
 		const openAPIDoc = app.getOpenAPIDocument({
 			openapi: "3.1.0",
 			info: {
 				title: "Cyclist Profile API",
-				version: "1.0.0",
+				version,
 				description: "API for managing cyclist profiles",
 				contact: {
 					name: "Atlas Team",
@@ -47,17 +62,23 @@ async function generateOpenAPISpec() {
 			],
 		});
 
-		// Create the output directory if it doesn't exist
-		const outputDir = path.resolve(__dirname, "../../docs/public/openapi");
-		fs.mkdirSync(outputDir, { recursive: true });
+		const specJson = JSON.stringify(openAPIDoc, null, 2);
 
-		// Write the OpenAPI spec to a file
-		const outputPath = path.join(outputDir, `${API_NAME}.json`);
-		fs.writeFileSync(outputPath, JSON.stringify(openAPIDoc, null, 2));
+		// 1. Write to centralized specs directory (source of truth)
+		const specsDir = path.resolve(__dirname, "../../../specs", API_NAME);
+		fs.mkdirSync(specsDir, { recursive: true });
+		const specsPath = path.join(specsDir, `v${version.split(".")[0]}.json`);
+		fs.writeFileSync(specsPath, specJson);
+		console.log(`✓ OpenAPI spec written to ${specsPath}`);
 
-		console.log(`OpenAPI spec generated at ${outputPath}`);
-		console.log("Generated OpenAPI spec for routes:");
+		// 2. Write to docs public directory (for serving)
+		const docsDir = path.resolve(__dirname, "../../docs/public/openapi");
+		fs.mkdirSync(docsDir, { recursive: true });
+		const docsPath = path.join(docsDir, `${API_NAME}.json`);
+		fs.writeFileSync(docsPath, specJson);
+		console.log(`✓ OpenAPI spec copied to ${docsPath}`);
 
+		console.log("\nGenerated OpenAPI spec for routes:");
 		const paths = Object.keys(openAPIDoc.paths || {});
 		for (const path of paths) {
 			console.log(`  - ${path}`);

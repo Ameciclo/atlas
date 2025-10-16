@@ -18,7 +18,8 @@
 			"**/.turbo/**",
 			"**/coverage/**",
 			"**/*.d.ts",
-			"**/openapi/**/*.json"
+			"**/openapi/**/*.json",
+			"specs/**/*.json"
 		]
 	},
 	"formatter": {
