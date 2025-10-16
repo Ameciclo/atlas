@@ -132,6 +132,11 @@ jobs:
           echo "💤 No workspaces changed; skipping OpenAPI generation."
           exit 0
 
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+
       - name: Run database migrations
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/atlas
