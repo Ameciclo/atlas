@@ -1,0 +1,89 @@
+services:
+  app:
+    image: atlas-recife-streets
+    build:
+      context: ../..
+      dockerfile: ./apps/recife-streets/Dockerfile
+    ports:
+      - "${PORT:-3011}:${PORT:-3011}"
+    environment:
+      - NODE_ENV=production
+      - LOG_LEVEL=info
+      - PORT=${PORT:-3011}
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=recife-streets_db
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/recife-streets_db
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      seed:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3011/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  migrate:
+    image: atlas-recife-streets
+    build:
+      context: ../..
+      dockerfile: ./apps/recife-streets/Dockerfile
+    command: node apps/recife-streets/dist/db/migrate.js
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=recife-streets_db
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/recife-streets_db
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: on-failure
+
+  seed:
+    image: atlas-recife-streets
+    build:
+      context: ../..
+      dockerfile: ./apps/recife-streets/Dockerfile
+    command: node apps/recife-streets/dist/db/seed.js
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=recife-streets_db
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/recife-streets_db
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: on-failure
+    profiles:
+      - with-seed
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=recife-streets_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
