@@ -2,7 +2,10 @@ import type { AppConfig } from "../create-app.js";
 
 interface PackageJson {
 	name: string;
+	version: string;
+	description: string;
 	type: string;
+	main: string;
 	scripts: Record<string, string>;
 	dependencies: Record<string, string>;
 	devDependencies: Record<string, string>;
@@ -11,7 +14,10 @@ interface PackageJson {
 export function generatePackageJson(config: AppConfig): PackageJson {
 	const basePackage: PackageJson = {
 		name: `@atlas/${config.name}`,
+		version: "0.1.0",
+		description: config.description,
 		type: "module",
+		main: "./dist/index.js",
 		scripts: {
 			dev: "tsx watch src/index.ts",
 			build: "tsc && pnpm generate-openapi",

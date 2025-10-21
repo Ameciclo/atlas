@@ -4,6 +4,7 @@ import type { AppConfig } from "../create-app.js";
 import { generateDatabaseFiles } from "./database-files.js";
 import { generateDockerCompose } from "./docker-compose.js";
 import { generateDockerfile } from "./dockerfile.js";
+import { updateDocsIntegration } from "./docs-integration.js";
 import { generateEnvExample } from "./env-example.js";
 import { generatePackageJson } from "./package-json.js";
 import { generateReadme } from "./readme.js";
@@ -80,6 +81,9 @@ export async function generateFiles(appPath: string, config: AppConfig) {
 		path.join(appPath, "test", `${config.name}.spec.ts`),
 		generateTestFile(config),
 	);
+
+	// Update docs integration
+	await updateDocsIntegration(config);
 }
 
 function generateTestFile(config: AppConfig): string {

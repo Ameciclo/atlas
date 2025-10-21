@@ -1,6 +1,30 @@
 import path from "node:path";
 import fs from "fs-extra";
 import type { AppConfig } from "../create-app.js";
+
+/**
+ * Find the repository root by looking for pnpm-workspace.yaml
+ */
+function findRepoRoot(): string {
+	let currentDir = process.cwd();
+
+	// Try up to 5 levels up
+	for (let i = 0; i < 5; i++) {
+		const workspaceFile = path.join(currentDir, "pnpm-workspace.yaml");
+		if (fs.existsSync(workspaceFile)) {
+			return currentDir;
+		}
+		const parentDir = path.dirname(currentDir);
+		if (parentDir === currentDir) {
+			// Reached filesystem root
+			break;
+		}
+		currentDir = parentDir;
+	}
+
+	// Fallback to process.cwd()
+	return process.cwd();
+}
 import { toSnakeCase } from "../utils.js";
 
 export async function generateDatabaseFiles(
@@ -42,8 +66,9 @@ export * from "@atlas/database/schemas/${config.name}";
 }
 
 async function generateSharedSchema(config: AppConfig) {
+	const repoRoot = findRepoRoot();
 	const schemaPath = path.join(
-		process.cwd(),
+		repoRoot,
 		"packages",
 		"database",
 		"src",
@@ -93,5 +118,40 @@ export type InsertExample = typeof examples.$inferInsert;
 		path.join(schemaPath, "index.ts"),
 		`export * from "./schema.js";
 `,
+	);
+
+	// Update database package.json to export the new schema
+	await updateDatabasePackageExports(config);
+}
+
+async function updateDatabasePackageExports(config: AppConfig) {
+	const repoRoot = findRepoRoot();
+	const packageJsonPath = path.join(
+		repoRoot,
+		"packages",
+		"database",
+		"package.json",
+	);
+
+	const packageJson = await fs.readJSON(packageJsonPath);
+
+	// Add the new schema export
+	if (!packageJson.exports) {
+		packageJson.exports = {};
+	}
+
+	packageJson.exports[`./schemas/${config.name}`] = {
+		types: `./dist/schemas/${config.name}/index.d.ts`,
+		import: `./dist/schemas/${config.name}/index.js`,
+	};
+
+	// Write back to package.json with tabs for consistency
+	await fs.writeFile(
+		packageJsonPath,
+		`${JSON.stringify(packageJson, null, "\t")}\n`,
+	);
+
+	console.log(
+		`✓ Added schema export to @atlas/database: ./schemas/${config.name}`,
 	);
 }
