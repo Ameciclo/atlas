@@ -65,13 +65,14 @@ pnpm dev
 
 ### Shared Database Architecture
 
-All services connect to a single `atlas` database. Each service owns its own PostgreSQL schema:
+All services connect to a single `atlas` database using the default `public` schema:
 
 ```
 atlas database
-├── cyclist_profile schema (cyclist-profile service)
-├── analytics schema (analytics service)
-└── notifications schema (notifications service)
+└── public schema
+    ├── cyclist_profiles (cyclist-profile service)
+    ├── analytics_events (analytics service - future)
+    └── notification_queue (notifications service - future)
 ```
 
 ### Common Database Commands

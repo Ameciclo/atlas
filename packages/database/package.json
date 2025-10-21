@@ -27,8 +27,7 @@
 		"format": "biome format .",
 		"db:studio": "drizzle-kit studio",
 		"db:generate": "drizzle-kit generate",
-		"db:migrate": "tsx src/migrate.ts",
-		"db:migrate-to-shared": "tsx src/scripts/migrate-to-shared-db.ts"
+		"db:migrate": "tsx src/migrate.ts"
 	},
 	"dependencies": {
 		"drizzle-orm": "^0.43.1",

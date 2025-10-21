@@ -1,11 +1,8 @@
-import { jsonb, serial, timestamp } from "drizzle-orm/pg-core";
+import { jsonb, pgTable, serial, timestamp } from "drizzle-orm/pg-core";
 import { createSelectSchema } from "drizzle-zod";
-import { schemaManager } from "../../schema-manager.js";
 
-// Get the cyclist_profile schema
-const cyclistProfileSchema = schemaManager.getSchema("cyclist-profile");
-
-export const cyclistProfiles = cyclistProfileSchema.table("cyclist_profiles", {
+// Table in the public schema
+export const cyclistProfiles = pgTable("cyclist_profiles", {
 	id: serial("id").primaryKey(),
 	data: jsonb("data").notNull(),
 	metadata: jsonb("metadata").notNull(),

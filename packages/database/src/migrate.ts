@@ -2,7 +2,6 @@ import "dotenv/config";
 import { migrate } from "drizzle-orm/node-postgres/migrator";
 import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import type { DatabaseConfig } from "./connection.js";
-import { schemaManager } from "./schema-manager.js";
 
 export interface MigrationConfig extends DatabaseConfig {
 	migrationsFolder?: string;
@@ -19,9 +18,6 @@ export async function runMigrations(
 
 	try {
 		console.log("🔄 Connecting to database...");
-
-		// Create all registered schemas first
-		await schemaManager.createSchemas(db);
 
 		const migrationsFolder =
 			config.migrationsFolder ||
