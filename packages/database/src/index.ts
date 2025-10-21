@@ -62,5 +62,6 @@ export {
 	createConnectedDatabase,
 	createDatabase,
 	type DatabaseConfig,
+	getSSLConfig,
 } from "./connection.js";
 export { runMigrations } from "./migrate.js";
