@@ -1,5 +1,4 @@
 import "dotenv/config";
-import { readFileSync } from "node:fs";
 import type { NodePgDatabase } from "drizzle-orm/node-postgres";
 import { drizzle } from "drizzle-orm/node-postgres";
 import type { Client as PgClient } from "pg";
@@ -26,33 +25,24 @@ export interface AtlasDatabase extends NodePgDatabase<Record<string, unknown>> {
  * Get SSL configuration from environment variables
  *
  * SSL is enabled when DATABASE_SSL_CA is provided.
- * The CA certificate is read from the file path and used for encryption.
  *
- * Note: rejectUnauthorized is set to false to support managed databases
- * like Digital Ocean that may use self-signed certificates in the chain.
+ * Note: We set rejectUnauthorized to false to accept self-signed certificates
+ * in the chain (common with managed databases like Digital Ocean).
+ * We do NOT provide the CA certificate because Node.js TLS will still validate
+ * the chain even with rejectUnauthorized: false when a CA is provided.
  *
  * @returns SSL configuration object or false if SSL is disabled
  */
 export function getSSLConfig():
 	| false
 	| { rejectUnauthorized: boolean; ca?: string } {
-	// If DATABASE_SSL_CA is provided, enable SSL with CA certificate
+	// If DATABASE_SSL_CA is provided, enable SSL
 	if (process.env.DATABASE_SSL_CA) {
-		try {
-			const ca = readFileSync(process.env.DATABASE_SSL_CA, "utf8");
-			return {
-				// Set to false to accept self-signed certificates (common in managed databases)
-				rejectUnauthorized: false,
-				ca,
-			};
-		} catch (error) {
-			console.warn(
-				`Failed to read SSL CA certificate from ${process.env.DATABASE_SSL_CA}:`,
-				error,
-			);
-			// Fall back to basic SSL without CA validation
-			return { rejectUnauthorized: false };
-		}
+		// Return SSL config WITHOUT the CA certificate
+		// This allows the connection to accept self-signed certificates
+		return {
+			rejectUnauthorized: false,
+		};
 	}
 
 	// No SSL if DATABASE_SSL_CA is not provided
