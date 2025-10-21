@@ -40,5 +40,5 @@ yarn-error.log*
 *.pem
 
 # OpenAPI specs (generated in CI/CD)
-# Uncomment the line below if you want to ignore them locally
-# apps/docs/public/openapi/*.json
+apps/*/openapi.json
+apps/docs/public/openapi/*.json
