@@ -451,5 +451,5 @@ All services connect to the same database, different schemas.
 For more details, see:
 - [DEVELOPMENT.md](./DEVELOPMENT.md) - Development guide
 - [packages/database/USAGE.md](./packages/database/USAGE.md) - Database usage
-- [MIGRATION_TO_SHARED_DB.md](./MIGRATION_TO_SHARED_DB.md) - Migration guide
+- [packages/database/SCHEMA_STRATEGY.md](./packages/database/SCHEMA_STRATEGY.md) - Database schema strategy
 
