@@ -19,6 +19,7 @@
 		"fs-extra": "^11.2.0"
 	},
 	"devDependencies": {
+		"@atlas/typescript-config": "workspace:*",
 		"@types/node": "^22.15.17",
 		"@types/prompts": "^2.4.9",
 		"@types/fs-extra": "^11.0.4",

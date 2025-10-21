@@ -36,7 +36,9 @@
   "paths": {
     "/v1/cyclist-profiles": {
       "get": {
-        "tags": ["Cyclist Profiles"],
+        "tags": [
+          "Cyclist Profiles"
+        ],
         "responses": {
           "200": {
             "description": "The list of cyclist profiles",
@@ -138,13 +140,17 @@
     },
     "/v1/cyclist-profiles/{id}": {
       "get": {
-        "tags": ["Cyclist Profiles"],
+        "tags": [
+          "Cyclist Profiles"
+        ],
         "parameters": [
           {
             "schema": {
               "type": "number",
               "nullable": true,
-              "required": ["id"],
+              "required": [
+                "id"
+              ],
               "example": 42
             },
             "required": true,
@@ -256,7 +262,9 @@
                       "type": "string"
                     }
                   },
-                  "required": ["message"],
+                  "required": [
+                    "message"
+                  ],
                   "example": {
                     "message": "Not Found"
                   }
@@ -303,21 +311,29 @@
                                 "type": "string"
                               }
                             },
-                            "required": ["code", "path"]
+                            "required": [
+                              "code",
+                              "path"
+                            ]
                           }
                         },
                         "name": {
                           "type": "string"
                         }
                       },
-                      "required": ["issues", "name"],
+                      "required": [
+                        "issues",
+                        "name"
+                      ],
                       "example": {
                         "issues": [
                           {
                             "code": "invalid_type",
                             "expected": "number",
                             "received": "nan",
-                            "path": ["id"],
+                            "path": [
+                              "id"
+                            ],
                             "message": "Expected number, received nan"
                           }
                         ],
@@ -325,7 +341,10 @@
                       }
                     }
                   },
-                  "required": ["success", "error"]
+                  "required": [
+                    "success",
+                    "error"
+                  ]
                 }
               }
             }

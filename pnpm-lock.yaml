@@ -63,6 +63,9 @@ importers:
         specifier: ^3.24.4
         version: 3.24.4
     devDependencies:
+      '@atlas/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       '@types/node':
         specifier: ^22.15.17
         version: 22.15.17
@@ -125,6 +128,9 @@ importers:
         specifier: ^2.4.2
         version: 2.4.2
     devDependencies:
+      '@atlas/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -153,6 +159,9 @@ importers:
         specifier: ^8.14.1
         version: 8.14.1
     devDependencies:
+      '@atlas/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
       '@types/node':
         specifier: ^22.15.17
         version: 22.15.17
