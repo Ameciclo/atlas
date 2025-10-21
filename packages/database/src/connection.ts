@@ -25,43 +25,21 @@ export interface AtlasDatabase extends NodePgDatabase<Record<string, unknown>> {
 /**
  * Get SSL configuration from environment variables
  *
- * This function checks for SSL configuration in the following order:
- * 1. DATABASE_URL with sslmode=require
- * 2. DB_SSL environment variable set to "true"
- * 3. Falls back to no SSL (false)
- *
- * If SSL is enabled and DATABASE_SSL_CA is provided, it will:
- * - Read the CA certificate from the file path
- * - Accept self-signed certificates (rejectUnauthorized: false)
- * - Use utf8 encoding (following Strapi's approach)
+ * SSL is enabled when DATABASE_SSL_CA is provided.
+ * The CA certificate is read from the file path and used for encryption.
  *
  * Note: rejectUnauthorized is set to false to support managed databases
  * like Digital Ocean that may use self-signed certificates in the chain.
- * The CA certificate is still used for encryption.
  *
  * @returns SSL configuration object or false if SSL is disabled
  */
 export function getSSLConfig():
 	| false
 	| { rejectUnauthorized: boolean; ca?: string } {
-	// If DATABASE_URL contains sslmode=require, enable SSL
-	const databaseUrl = process.env.DATABASE_URL || "";
-	const urlHasSSL = databaseUrl.includes("sslmode=require");
-
-	// Check if SSL is explicitly enabled
-	const sslEnabled = process.env.DB_SSL === "true" || urlHasSSL;
-
-	if (!sslEnabled) {
-		return false;
-	}
-
-	// If DATABASE_SSL_CA is provided, use it for certificate validation
+	// If DATABASE_SSL_CA is provided, enable SSL with CA certificate
 	if (process.env.DATABASE_SSL_CA) {
 		try {
 			const ca = readFileSync(process.env.DATABASE_SSL_CA, "utf8");
-			console.info(
-				`✓ Loaded SSL CA certificate from ${process.env.DATABASE_SSL_CA}`,
-			);
 			return {
 				// Set to false to accept self-signed certificates (common in managed databases)
 				rejectUnauthorized: false,
@@ -77,8 +55,8 @@ export function getSSLConfig():
 		}
 	}
 
-	// Default: SSL enabled but don't validate certificate (for self-signed certs)
-	return { rejectUnauthorized: false };
+	// No SSL if DATABASE_SSL_CA is not provided
+	return false;
 }
 
 /**

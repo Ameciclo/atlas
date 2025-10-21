@@ -26,10 +26,8 @@ DB_PASSWORD=postgres
 DB_NAME=${config.databaseName}
 
 # SSL Configuration
-# Set to 'true' to enable SSL, or include '?sslmode=require' in DATABASE_URL
-DB_SSL=false
-
-# Optional: Path to SSL CA certificate for production databases
+# Path to SSL CA certificate for production databases (e.g., Digital Ocean)
+# When set, SSL will be automatically enabled
 # DATABASE_SSL_CA=/path/to/ca-certificate.crt
 `;
 	}
