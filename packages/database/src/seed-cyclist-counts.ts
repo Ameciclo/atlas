@@ -8,6 +8,10 @@ import * as cyclistCountsSchema from "./schemas/cyclist-counts/index.js";
 
 interface LegacyCountData {
 	id: number;
+	coordinates?: {
+		x: number; // longitude
+		y: number; // latitude
+	};
 	metadata: {
 		name: string;
 		date: string;
@@ -23,10 +27,6 @@ interface LegacyCountData {
 			east: string;
 			south: string;
 			west: string;
-		};
-		coordinates?: {
-			latitude: number;
-			longitude: number;
 		};
 	};
 	data: {
@@ -151,7 +151,7 @@ export async function seedCyclistCounts(config: DatabaseConfig = {}) {
 		// Load the JSON data
 		const dataPath = join(
 			import.meta.dirname,
-			"../seed-data/cyclist-counts.json",
+			"../seed-data/cyclist-counts/data.json",
 		);
 		const rawData = await readFile(dataPath, "utf-8");
 		const legacyData: LegacyCountData[] = JSON.parse(rawData);
@@ -164,13 +164,31 @@ export async function seedCyclistCounts(config: DatabaseConfig = {}) {
 		let movementsCreated = 0;
 
 		for (const item of legacyData) {
-			// 1. Create or get location
+			// 1. Validate coordinates (x = longitude, y = latitude)
+			const lng = item.coordinates?.x;
+			const lat = item.coordinates?.y;
+			const hasValidCoordinates =
+				lat !== null &&
+				lat !== undefined &&
+				lng !== null &&
+				lng !== undefined &&
+				lat !== 0 &&
+				lng !== 0;
+
+			if (!hasValidCoordinates) {
+				console.log(
+					`  ⚠️  Skipping "${item.metadata.name}" - missing or invalid coordinates (lat: ${lat}, lng: ${lng})`,
+				);
+				continue;
+			}
+
+			// 2. Create or get location
 			const locationData = {
 				name: item.metadata.name,
 				city: item.metadata.city.name,
 				state: item.metadata.city.state,
-				latitude: item.metadata.coordinates?.latitude?.toString() || "0",
-				longitude: item.metadata.coordinates?.longitude?.toString() || "0",
+				latitude: lat.toString(),
+				longitude: lng.toString(),
 				metadata: {
 					ibge_city_id: item.metadata.city.id,
 					state_full: item.metadata.city.full_state,
