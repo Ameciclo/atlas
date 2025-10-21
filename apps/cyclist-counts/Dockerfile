@@ -71,8 +71,8 @@ RUN pnpm install --frozen-lockfile --prod
 # Copy built files from builder stage
 COPY --from=builder /app/apps/cyclist-counts/dist ./apps/cyclist-counts/dist
 COPY --from=builder /app/packages/database/dist ./packages/database/dist
-# Copy migrations folder
-COPY --from=builder /app/apps/cyclist-counts/src/db/migrations ./apps/cyclist-counts/src/db/migrations
+# Copy migrations folder from database package
+COPY --from=builder /app/packages/database/src/migrations ./packages/database/src/migrations
 
 # Set environment variables
 ENV NODE_ENV=production
