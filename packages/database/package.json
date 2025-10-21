@@ -37,6 +37,7 @@
 		"dotenv": "^16.5.0"
 	},
 	"devDependencies": {
+		"@atlas/typescript-config": "workspace:*",
 		"@types/node": "^22.15.17",
 		"@types/pg": "^8.11.13",
 		"drizzle-kit": "^0.31.0",
