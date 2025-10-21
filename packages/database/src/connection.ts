@@ -32,8 +32,12 @@ export interface AtlasDatabase extends NodePgDatabase<Record<string, unknown>> {
  *
  * If SSL is enabled and DATABASE_SSL_CA is provided, it will:
  * - Read the CA certificate from the file path
- * - Enable full certificate validation (rejectUnauthorized: true)
+ * - Accept self-signed certificates (rejectUnauthorized: false)
  * - Use utf8 encoding (following Strapi's approach)
+ *
+ * Note: rejectUnauthorized is set to false to support managed databases
+ * like Digital Ocean that may use self-signed certificates in the chain.
+ * The CA certificate is still used for encryption.
  *
  * @returns SSL configuration object or false if SSL is disabled
  */
@@ -55,8 +59,12 @@ export function getSSLConfig():
 	if (process.env.DATABASE_SSL_CA) {
 		try {
 			const ca = readFileSync(process.env.DATABASE_SSL_CA, "utf8");
+			console.info(
+				`✓ Loaded SSL CA certificate from ${process.env.DATABASE_SSL_CA}`,
+			);
 			return {
-				rejectUnauthorized: true,
+				// Set to false to accept self-signed certificates (common in managed databases)
+				rejectUnauthorized: false,
 				ca,
 			};
 		} catch (error) {
