@@ -13,6 +13,7 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml turbo.json ./
 
 # Copy the source code needed for turbo prune
 COPY apps/cyclist-counts/package.json ./apps/cyclist-counts/package.json
+COPY packages/database/package.json ./packages/database/package.json
 COPY packages/typescript-config/package.json ./packages/typescript-config/package.json
 
 # Use turbo to prune the monorepo to only the cyclist-counts app and its dependencies
@@ -40,8 +41,12 @@ COPY --from=pruner /app/out/full/ .
 
 # Copy the rest of the source code
 COPY apps/cyclist-counts ./apps/cyclist-counts
+COPY packages/database ./packages/database
 COPY packages/typescript-config ./packages/typescript-config
 COPY turbo.json ./turbo.json
+
+# Build the database package first (required dependency)
+RUN pnpm --filter @atlas/database build
 
 # Build the cyclist-counts app
 RUN pnpm --filter @atlas/cyclist-counts build
@@ -65,6 +70,7 @@ RUN pnpm install --frozen-lockfile --prod
 
 # Copy built files from builder stage
 COPY --from=builder /app/apps/cyclist-counts/dist ./apps/cyclist-counts/dist
+COPY --from=builder /app/packages/database/dist ./packages/database/dist
 # Copy migrations folder
 COPY --from=builder /app/apps/cyclist-counts/src/db/migrations ./apps/cyclist-counts/src/db/migrations
 
