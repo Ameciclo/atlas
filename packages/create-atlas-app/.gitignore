@@ -1,0 +1,8 @@
+node_modules
+dist
+
+# Test output directories
+test-output/
+apps/
+packages/
+
