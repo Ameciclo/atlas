@@ -33,7 +33,7 @@ export function createDatabase(config: DatabaseConfig = {}): AtlasDatabase {
 			config.password || process.env.DB_PASSWORD || "postgres"
 		}@${config.host || process.env.DB_HOST || "localhost"}:${
 			config.port || Number.parseInt(process.env.DB_PORT || "5432")
-		}/${config.database || process.env.DB_NAME || "atlas"}`;
+		}/${config.database || process.env.DB_NAME || "atlas_dev"}`;
 
 	const client = new Client({
 		connectionString,
