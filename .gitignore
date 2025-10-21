@@ -42,3 +42,7 @@ yarn-error.log*
 # OpenAPI specs (generated in CI/CD)
 apps/*/openapi.json
 apps/docs/public/openapi/*.json
+
+# Test artifacts from create-atlas-app integration tests
+packages/database/src/schemas/test-*
+apps/test-*
