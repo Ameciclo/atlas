@@ -1,10 +1,9 @@
 import type { RouteHandler } from "@hono/zod-openapi";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
+import { db } from "../../db/index.js";
 import type { AppBindings } from "../../lib/types.ts";
 import type { GetOneRoute, ListRoute } from "./cyclist-profiles.routes.ts";
-
-import { db } from "../../db/index.js";
 
 export const list: RouteHandler<ListRoute, AppBindings> = async (c) => {
 	const cyclistProfiles = await db.query.cyclistProfiles.findMany();

@@ -1,9 +1,8 @@
-import type { AppRouteHandler } from "../../lib/types.js";
-import type { GetByIdRoute, ListRoute } from "./locations.routes.js";
-
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
 import { db } from "../../db/index.js";
+import type { AppRouteHandler } from "../../lib/types.js";
+import type { GetByIdRoute, ListRoute } from "./locations.routes.js";
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
 	const { city } = c.req.valid("query");

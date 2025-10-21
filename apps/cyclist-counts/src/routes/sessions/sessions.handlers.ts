@@ -1,10 +1,8 @@
-import type { AppRouteHandler } from "../../lib/types.js";
-import type { GetByEventIdRoute, GetByIdRoute } from "./sessions.routes.js";
-
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
 import { db } from "../../db/index.js";
-import { countingEvents } from "../../db/schema.js";
+import type { AppRouteHandler } from "../../lib/types.js";
+import type { GetByEventIdRoute, GetByIdRoute } from "./sessions.routes.js";
 
 export const getByEventId: AppRouteHandler<GetByEventIdRoute> = async (c) => {
 	const { id } = c.req.valid("param");

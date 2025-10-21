@@ -1,7 +1,7 @@
 import { createRoute, z } from "@hono/zod-openapi";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { jsonContent } from "stoker/openapi/helpers";
-import { IdParamsSchema, createErrorSchema } from "stoker/openapi/schemas";
+import { createErrorSchema, IdParamsSchema } from "stoker/openapi/schemas";
 
 import { selectCyclistProfileSchema } from "../../db/schema.js";
 import { notFoundSchema } from "../../lib/constants.js";

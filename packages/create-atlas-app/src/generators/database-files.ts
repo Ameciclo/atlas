@@ -25,6 +25,7 @@ function findRepoRoot(): string {
 	// Fallback to process.cwd()
 	return process.cwd();
 }
+
 import { toSnakeCase } from "../utils.js";
 
 export async function generateDatabaseFiles(
@@ -44,7 +45,7 @@ export async function generateDatabaseFiles(
 	await generateSharedSchema(config);
 }
 
-function generateDbIndex(config: AppConfig): string {
+function generateDbIndex(_config: AppConfig): string {
 	return `import "dotenv/config";
 import { drizzle } from "drizzle-orm/node-postgres";
 import * as schema from "./schema.js";

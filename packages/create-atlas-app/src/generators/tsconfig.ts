@@ -1,6 +1,6 @@
 import type { AppConfig } from "../create-app.js";
 
-export function generateTsConfig(config: AppConfig) {
+export function generateTsConfig(_config: AppConfig) {
 	return {
 		extends: "@atlas/typescript-config/node-service.json",
 		compilerOptions: {

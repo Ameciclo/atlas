@@ -1,8 +1,8 @@
 import "dotenv/config";
-import { drizzle } from "drizzle-orm/node-postgres";
 import type { NodePgDatabase } from "drizzle-orm/node-postgres";
-import pg from "pg";
+import { drizzle } from "drizzle-orm/node-postgres";
 import type { Client as PgClient } from "pg";
+import pg from "pg";
 
 const { Client } = pg;
 
@@ -32,7 +32,7 @@ export function createDatabase(config: DatabaseConfig = {}): AtlasDatabase {
 		`postgres://${config.user || process.env.DB_USER || "postgres"}:${
 			config.password || process.env.DB_PASSWORD || "postgres"
 		}@${config.host || process.env.DB_HOST || "localhost"}:${
-			config.port || Number.parseInt(process.env.DB_PORT || "5432")
+			config.port || Number.parseInt(process.env.DB_PORT || "5432", 10)
 		}/${config.database || process.env.DB_NAME || "atlas_dev"}`;
 
 	const client = new Client({

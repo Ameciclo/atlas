@@ -1,15 +1,14 @@
+import { and, eq, gte, lte } from "drizzle-orm";
+import * as HttpStatusCodes from "stoker/http-status-codes";
+import * as HttpStatusPhrases from "stoker/http-status-phrases";
+import { db } from "../../db/index.js";
+import { countingEvents, countingLocations } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
 	GetByIdRoute,
 	GetByLocationIdRoute,
 	ListRoute,
 } from "./events.routes.js";
-
-import { and, eq, gte, lte } from "drizzle-orm";
-import * as HttpStatusCodes from "stoker/http-status-codes";
-import * as HttpStatusPhrases from "stoker/http-status-phrases";
-import { db } from "../../db/index.js";
-import { countingEvents, countingLocations } from "../../db/schema.js";
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
 	const { location_id, city, start_date, end_date } = c.req.valid("query");

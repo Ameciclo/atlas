@@ -20,7 +20,7 @@ function getVersion(): string {
 		const packageJsonPath = path.resolve(__dirname, "../package.json");
 		const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
 		return packageJson.version || "1.0.0";
-	} catch (error) {
+	} catch (_error) {
 		console.warn("Could not read version from package.json, using 1.0.0");
 		return "1.0.0";
 	}

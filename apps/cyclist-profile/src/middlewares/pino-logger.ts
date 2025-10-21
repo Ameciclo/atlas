@@ -1,6 +1,6 @@
 import { pinoLogger } from "hono-pino";
-import pino from "pino";
 import type { LoggerOptions } from "pino";
+import pino from "pino";
 
 export function createPinoLogger() {
 	const opts: LoggerOptions = {

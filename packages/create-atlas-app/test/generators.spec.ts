@@ -1,7 +1,6 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import fs from "fs-extra";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import type { AppConfig } from "../src/create-app.js";
 import { generateDockerCompose } from "../src/generators/docker-compose.js";
 import { generateDockerfile } from "../src/generators/dockerfile.js";
@@ -12,7 +11,7 @@ import { generateTsConfig } from "../src/generators/tsconfig.js";
 import { generateVitestConfig } from "../src/generators/vitest-config.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const testDir = path.join(__dirname, "..", "test-output");
+const _testDir = path.join(__dirname, "..", "test-output");
 
 describe("Package JSON Generator", () => {
 	const baseConfig: AppConfig = {
@@ -79,6 +78,7 @@ describe("Dockerfile Generator", () => {
 
 		expect(dockerfile).toContain("FROM node:22.15.0-slim");
 		expect(dockerfile).toContain("pnpm --filter @atlas/test-service build");
+		// biome-ignore lint/suspicious/noTemplateCurlyInString: Testing for literal ${PORT} in Dockerfile
 		expect(dockerfile).toContain("EXPOSE ${PORT}");
 		expect(dockerfile).not.toContain("packages/database");
 	});
@@ -121,6 +121,7 @@ describe("Docker Compose Generator", () => {
 
 		expect(compose).toContain("services:");
 		expect(compose).toContain("app:");
+		// biome-ignore lint/suspicious/noTemplateCurlyInString: Testing for literal ${PORT:-3000} in docker-compose
 		expect(compose).toContain("${PORT:-3000}:${PORT:-3000}");
 		expect(compose).not.toContain("postgres:");
 		expect(compose).not.toContain("DATABASE_URL");
