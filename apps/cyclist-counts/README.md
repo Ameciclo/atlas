@@ -129,6 +129,170 @@ pnpm --filter @atlas/docs dev
 # Then open http://localhost:3001
 ```
 
+### API Endpoints
+
+#### Locations
+
+**List all counting locations**
+```bash
+GET /v1/locations
+GET /v1/locations?city=Recife
+```
+
+Example response:
+```json
+[
+  {
+    "id": 1,
+    "name": "Av. Rui Barbosa x R. Amélia",
+    "city": "Recife",
+    "state": "PE",
+    "latitude": "-8.04511",
+    "longitude": "-34.90207",
+    "metadata": {
+      "ibge_city_id": 2611606,
+      "state_full": "Pernambuco",
+      "is_rmr": true,
+      "directions": {
+        "north": "Parnamirim",
+        "east": "Espinheiro",
+        "south": "Centro",
+        "west": "Torre"
+      }
+    }
+  }
+]
+```
+
+**Get location by ID**
+```bash
+GET /v1/locations/{id}
+```
+
+#### Events
+
+**List all counting events**
+```bash
+GET /v1/events
+GET /v1/events?location_id=1
+GET /v1/events?city=Recife
+GET /v1/events?start_date=2023-01-01&end_date=2023-12-31
+```
+
+Example response:
+```json
+[
+  {
+    "id": 122,
+    "location_id": 36,
+    "counting_date": "2023-11-09",
+    "start_time": "06:00:00",
+    "end_time": "20:00:00",
+    "total_cyclists": 3961,
+    "max_hour_cyclists": 566,
+    "weather_conditions": {
+      "temperature": 28,
+      "condition": "sunny"
+    },
+    "notes": "Normal counting day"
+  }
+]
+```
+
+**Get event by ID**
+```bash
+GET /v1/events/{id}
+```
+
+**Get events by location**
+```bash
+GET /v1/locations/{id}/events
+```
+
+Example:
+```bash
+curl http://localhost:3002/v1/locations/36/events
+```
+
+#### Sessions
+
+**Get sessions by event**
+```bash
+GET /v1/events/{id}/sessions
+```
+
+Example response:
+```json
+[
+  {
+    "id": 1683,
+    "event_id": 122,
+    "session_label": "06-07",
+    "start_time": "2023-11-09T09:00:00.000Z",
+    "end_time": "2023-11-09T10:00:00.000Z",
+    "total_cyclists": 351,
+    "characteristics": {
+      "women": 26,
+      "helmet": 15,
+      "cargo": 90,
+      "motor": 1,
+      "ride": 18,
+      "rain": 0,
+      "sidewalk": 31,
+      "wrong_way": 94,
+      "juveniles": 1,
+      "service": 0,
+      "shared_bike": 2,
+      "other_behaviors": 136,
+      "other_active_modes": 0,
+      "others": 0
+    }
+  }
+]
+```
+
+**Get session by ID**
+```bash
+GET /v1/sessions/{id}
+```
+
+Example:
+```bash
+curl http://localhost:3002/v1/sessions/1683
+```
+
+### Query Parameters
+
+#### Events Filters
+
+- `location_id` (number): Filter events by location ID
+- `city` (string): Filter events by city name
+- `start_date` (date): Filter events from this date (inclusive, format: YYYY-MM-DD)
+- `end_date` (date): Filter events until this date (inclusive, format: YYYY-MM-DD)
+
+#### Locations Filters
+
+- `city` (string): Filter locations by city name
+
+### Example Usage
+
+```bash
+# Get all locations in Recife
+curl http://localhost:3002/v1/locations?city=Recife
+
+# Get all events in 2023
+curl "http://localhost:3002/v1/events?start_date=2023-01-01&end_date=2023-12-31"
+
+# Get events for a specific location
+curl http://localhost:3002/v1/locations/36/events
+
+# Get sessions for an event
+curl http://localhost:3002/v1/events/122/sessions
+
+# Get a specific session
+curl http://localhost:3002/v1/sessions/1683
+```
+
 ## Docker Deployment
 
 The CyclistCounts API can be deployed as a Docker container. The container image is automatically built and pushed to GitHub Container Registry (ghcr.io) when changes are merged to the main branch.
