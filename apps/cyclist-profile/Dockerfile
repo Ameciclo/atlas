@@ -73,6 +73,8 @@ COPY --from=builder /app/packages/database/dist ./packages/database/dist
 # Copy database package files needed at runtime
 COPY --from=builder /app/packages/database/package.json ./packages/database/package.json
 COPY --from=builder /app/packages/database/src/migrations ./packages/database/src/migrations
+# Copy seed data from database package
+COPY --from=builder /app/packages/database/seed-data ./packages/database/seed-data
 
 # Set environment variables
 ENV NODE_ENV=production
