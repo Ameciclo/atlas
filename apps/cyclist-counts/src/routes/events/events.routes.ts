@@ -16,15 +16,10 @@ export const list = createRoute({
 		"Get all cyclist counting events, optionally filtered by location, city, or date range",
 	request: {
 		query: z.object({
-			location_id: z.coerce
-				.number()
-				.int()
-				.positive()
-				.optional()
-				.openapi({
-					description: "Filter events by location ID",
-					example: 1,
-				}),
+			location_id: z.coerce.number().int().positive().optional().openapi({
+				description: "Filter events by location ID",
+				example: 1,
+			}),
 			city: z.string().optional().openapi({
 				description: "Filter events by city name",
 				example: "Recife",
@@ -61,10 +56,7 @@ export const getById = createRoute({
 			selectCountingEventSchema,
 			"Counting event details",
 		),
-		[HttpStatusCodes.NOT_FOUND]: jsonContent(
-			notFoundSchema,
-			"Event not found",
-		),
+		[HttpStatusCodes.NOT_FOUND]: jsonContent(notFoundSchema, "Event not found"),
 	},
 });
 
@@ -92,4 +84,3 @@ export const getByLocationId = createRoute({
 export type ListRoute = typeof list;
 export type GetByIdRoute = typeof getById;
 export type GetByLocationIdRoute = typeof getByLocationId;
-

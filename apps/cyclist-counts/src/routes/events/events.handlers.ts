@@ -50,9 +50,7 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 				countingLocations,
 				eq(countingEvents.location_id, countingLocations.id),
 			)
-			.where(
-				and(eq(countingLocations.city, city), ...conditions),
-			);
+			.where(and(eq(countingLocations.city, city), ...conditions));
 
 		return c.json(events);
 	}
@@ -118,4 +116,3 @@ export const getByLocationId: AppRouteHandler<GetByLocationIdRoute> = async (
 
 	return c.json(events, HttpStatusCodes.OK);
 };
-

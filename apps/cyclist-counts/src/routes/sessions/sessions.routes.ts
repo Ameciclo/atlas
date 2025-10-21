@@ -12,7 +12,8 @@ export const getByEventId = createRoute({
 	method: "get",
 	tags,
 	summary: "Get sessions by event ID",
-	description: "Get all counting sessions (hourly periods) for a specific event",
+	description:
+		"Get all counting sessions (hourly periods) for a specific event",
 	request: {
 		params: IdParamsSchema,
 	},
@@ -21,10 +22,7 @@ export const getByEventId = createRoute({
 			z.array(selectCountingSessionSchema),
 			"List of counting sessions for the event",
 		),
-		[HttpStatusCodes.NOT_FOUND]: jsonContent(
-			notFoundSchema,
-			"Event not found",
-		),
+		[HttpStatusCodes.NOT_FOUND]: jsonContent(notFoundSchema, "Event not found"),
 	},
 });
 
@@ -51,4 +49,3 @@ export const getById = createRoute({
 
 export type GetByEventIdRoute = typeof getByEventId;
 export type GetByIdRoute = typeof getById;
-

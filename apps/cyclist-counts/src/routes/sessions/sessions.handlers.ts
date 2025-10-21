@@ -56,4 +56,3 @@ export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
 
 	return c.json(session, HttpStatusCodes.OK);
 };
-

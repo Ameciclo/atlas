@@ -7,4 +7,3 @@ const router = createRouter()
 	.openapi(routes.getById, handlers.getById);
 
 export default router;
-
