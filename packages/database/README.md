@@ -28,6 +28,34 @@ All services use the default `public` schema, allowing:
 - Cross-service queries when needed
 - Simplified backup and maintenance
 
+## Quick Start
+
+### Development
+
+```bash
+# 1. Start database
+pnpm --filter @atlas/docker-dev dev
+
+# 2. Run migrations
+pnpm --filter @atlas/database db:migrate
+
+# 3. Seed with real data (optional)
+pnpm --filter @atlas/database db:seed
+
+# Or reset everything (migrate + seed)
+pnpm --filter @atlas/database db:reset
+```
+
+### Production
+
+```bash
+# Run migrations
+DATABASE_URL=postgresql://user:pass@host:5432/dbname pnpm --filter @atlas/database db:migrate
+
+# Seed with real data
+DATABASE_URL=postgresql://user:pass@host:5432/dbname pnpm --filter @atlas/database db:seed
+```
+
 ## Usage
 
 ### Basic Setup
