@@ -66,27 +66,12 @@ PostgreSQL Instance
 - ✅ Cross-service queries possible
 - ✅ Simpler backup/restore
 - ✅ Easier local development
-- ✅ Common in enterprise applications
+- ✅ Simplified queries (no schema prefixes)
 
 **Trade-offs:**
 - ⚠️ Services share database instance
 - ⚠️ Requires coordination for migrations
-- ⚠️ Schema-level isolation (not database-level)
-
-### Schema Manager
-
-The `schema-manager.ts` handles schema creation:
-
-```typescript
-// Convert service name to schema name
-"cyclist-profile" → "cyclist_profile"
-
-// Create PostgreSQL schema
-CREATE SCHEMA IF NOT EXISTS "cyclist_profile"
-
-// Tables are created in the schema
-cyclist_profile.cyclist_profiles
-```
+- ⚠️ Table naming conventions important for clarity
 
 ### Database Package Structure
 
@@ -94,16 +79,12 @@ cyclist_profile.cyclist_profiles
 packages/database/
 ├── src/
 │   ├── connection.ts           # Database connection utilities
-│   ├── schema-manager.ts       # Schema creation/management
 │   ├── migrate.ts              # Migration runner
 │   ├── index.ts                # Public API
-│   ├── schemas/                # Service schemas
-│   │   ├── cyclist-profile/
-│   │   │   ├── index.ts
-│   │   │   └── schema.ts       # Table definitions
-│   │   └── analytics/
+│   ├── schemas/                # Service table definitions
+│   │   └── cyclist-profile/
 │   │       ├── index.ts
-│   │       └── schema.ts
+│   │       └── schema.ts       # Table definitions
 │   └── migrations/             # Generated migrations
 │       ├── 0000_initial.sql
 │       └── meta/
@@ -366,61 +347,29 @@ export async function createConnectedDatabase(config: DatabaseConfig = {}): Prom
 
 **Purpose:** Centralized database connection logic
 
-### 2. Schema Manager (`packages/database/src/schema-manager.ts`)
-
-```typescript
-class SchemaManagerImpl {
-  private schemas = new Map<string, PgSchema>()
-  
-  getSchema(serviceName: string): PgSchema {
-    const schemaName = this.normalizeSchemaName(serviceName)
-    
-    if (!this.schemas.has(schemaName)) {
-      const schema = pgSchema(schemaName)
-      this.schemas.set(schemaName, schema)
-    }
-    
-    return this.schemas.get(schemaName)!
-  }
-  
-  async createSchemas(db: AtlasDatabase): Promise<void> {
-    for (const schemaName of this.schemas.keys()) {
-      await db.execute(`CREATE SCHEMA IF NOT EXISTS "${schemaName}"`)
-    }
-  }
-}
-```
-
-**Purpose:** Manage PostgreSQL schemas for services
-
-### 3. Migration Runner (`packages/database/src/migrate.ts`)
+### 2. Migration Runner (`packages/database/src/migrate.ts`)
 
 ```typescript
 export async function runMigrations(config: MigrationConfig = {}): Promise<void> {
   const db = await createConnectedDatabase(config)
-  
-  // Create all schemas first
-  await schemaManager.createSchemas(db)
-  
+
   // Run migrations
   await migrate(db, {
     migrationsFolder: config.migrationsFolder || './src/migrations'
   })
-  
+
   await closeDatabase(db)
 }
 ```
 
-**Purpose:** Run migrations with schema creation
+**Purpose:** Run database migrations
 
-### 4. Service Schema (`packages/database/src/schemas/cyclist-profile/schema.ts`)
+### 3. Service Schema (`packages/database/src/schemas/cyclist-profile/schema.ts`)
 
 ```typescript
-import { schemaManager } from '../../schema-manager.js'
+import { pgTable, serial, jsonb, timestamp } from 'drizzle-orm/pg-core'
 
-const cyclistProfileSchema = schemaManager.getSchema('cyclist-profile')
-
-export const cyclistProfiles = cyclistProfileSchema.table('cyclist_profiles', {
+export const cyclistProfiles = pgTable('cyclist_profiles', {
   id: serial('id').primaryKey(),
   data: jsonb('data').notNull(),
   metadata: jsonb('metadata').notNull(),
@@ -432,7 +381,7 @@ export type CyclistProfile = typeof cyclistProfiles.$inferSelect
 export type NewCyclistProfile = typeof cyclistProfiles.$inferInsert
 ```
 
-**Purpose:** Define tables in service's schema with TypeScript types
+**Purpose:** Define tables in the public schema with TypeScript types
 
 ### 5. App Database Connection (`apps/cyclist-profile/src/db/index.ts`)
 

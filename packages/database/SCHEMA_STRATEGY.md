@@ -2,67 +2,55 @@
 
 ## Overview
 
-The Atlas monorepo uses a single PostgreSQL database named `atlas` with multiple schemas to organize data by service. This approach provides:
+The Atlas monorepo uses a single PostgreSQL database named `atlas` with a single `public` schema for all tables. This approach provides:
 
 - **Centralized Management**: Single database instance to manage
-- **Service Isolation**: Each service owns its PostgreSQL schema
-- **Cross-Service Queries**: Services can query other schemas when needed
+- **Simplified Queries**: No need to specify schema names
+- **Shared Tables**: Services can query each other's tables when needed
 - **Simplified Operations**: Backup, monitoring, and maintenance of one database
+- **Standard Practice**: Uses PostgreSQL's default public schema
 
 ## Database Structure
 
 ```
 atlas (database)
-├── public (default schema - shared utilities, migrations metadata)
-├── cyclist_profile (service schema)
-│   ├── cyclist_profiles
-│   └── cyclist_sessions
-├── analytics (service schema)
-│   ├── events
-│   ├── user_actions
-│   └── performance_metrics
-├── notifications (service schema)
-│   ├── notification_queue
-│   ├── notification_templates
-│   └── delivery_logs
-└── auth (service schema)
-    ├── users
-    ├── sessions
-    └── permissions
+└── public (default schema)
+    ├── cyclist_profiles
+    ├── events (future)
+    ├── notification_queue (future)
+    └── users (future)
 ```
 
-## Schema Naming Convention
+## Naming Convention
 
 - **Service Names**: Use kebab-case in code (`cyclist-profile`, `user-auth`)
-- **PostgreSQL Schemas**: Automatically converted to snake_case (`cyclist_profile`, `user_auth`)
-- **Table Names**: Use snake_case (`cyclist_profiles`, `notification_queue`)
+- **Table Names**: Use snake_case with descriptive names (`cyclist_profiles`, `notification_queue`)
 
 ## Migration Strategy
 
 ### Phase 1: Create Shared Database Package ✅
 - [x] Create `@atlas/database` package
 - [x] Set up connection management
-- [x] Create schema manager utilities
 - [x] Define migration coordination
+- [x] Migrate to single public schema
 
-### Phase 2: Migrate Existing Services
+### Phase 2: Migrate Existing Services ✅
 1. **Cyclist Profile Service**:
-   - Migrate from `cyclist_profile_db` to `atlas.cyclist_profile` schema
-   - Update connection configuration
-   - Migrate existing data
-   - Update application code
+   - Migrated to `atlas` database with public schema
+   - Updated connection configuration
+   - Updated application code
 
 ### Phase 3: Update Scaffolding
 - Update `create-atlas-app` to use shared database
-- Generate service-specific schema configurations
+- Generate service-specific table definitions
 - Update templates and documentation
 
-## Service Schema Management
+## Service Table Management
 
 Each service will:
 
-1. **Define its schema** in `packages/database/src/schemas/{service-name}/`
-2. **Own its tables** within its PostgreSQL schema
+1. **Define its tables** in `packages/database/src/schemas/{service-name}/`
+2. **Own its tables** within the public schema
 3. **Manage its migrations** through the centralized system
 4. **Export types** for other services to use
 
@@ -70,14 +58,14 @@ Each service will:
 
 ```typescript
 // packages/database/src/schemas/cyclist-profile/schema.ts
-import { schemaManager } from "../../schema-manager.js";
+import { pgTable, serial, jsonb, timestamp } from "drizzle-orm/pg-core";
 
-const cyclistProfileSchema = schemaManager.getSchema("cyclist-profile");
-
-export const cyclistProfiles = cyclistProfileSchema.table("cyclist_profiles", {
+export const cyclistProfiles = pgTable("cyclist_profiles", {
   id: serial("id").primaryKey(),
   data: jsonb("data").notNull(),
-  // ... other fields
+  metadata: jsonb("metadata").notNull(),
+  created_at: timestamp("created_at").defaultNow().notNull(),
+  updated_at: timestamp("updated_at").defaultNow().notNull(),
 });
 ```
 
@@ -85,17 +73,21 @@ export const cyclistProfiles = cyclistProfileSchema.table("cyclist_profiles", {
 
 ```typescript
 // apps/cyclist-profile/src/db/index.ts
-import { createDatabase } from "@atlas/database";
-import * as cyclistProfileSchema from "@atlas/database/schemas/cyclist-profile";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { Client } from "pg";
+import * as schema from "@atlas/database/schemas/cyclist-profile";
 
-export const db = createDatabase({
-  schema: cyclistProfileSchema,
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
 });
+await client.connect();
+
+export const db = drizzle(client, { schema });
 ```
 
 ## Cross-Service Queries
 
-Services can import and query other schemas:
+Services can import and query other tables:
 
 ```typescript
 import { cyclistProfiles } from "@atlas/database/schemas/cyclist-profile";

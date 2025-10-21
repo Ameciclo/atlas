@@ -12,21 +12,19 @@ Shared database package for the Atlas monorepo, providing centralized database c
 
 ## Architecture
 
-The package organizes the database using PostgreSQL schemas:
+The package organizes the database using a single public schema:
 
 ```
 atlas (database)
-├── cyclist_profile (schema)
-│   └── cyclist_profiles (table)
-├── analytics (schema)
-│   └── analytics_events (table)
-└── notifications (schema)
-    └── notification_queue (table)
+└── public (schema)
+    ├── cyclist_profiles (table)
+    ├── analytics_events (table - future)
+    └── notification_queue (table - future)
 ```
 
-Each service gets its own PostgreSQL schema, allowing:
-- Clear separation of concerns
-- Independent schema evolution
+All services use the default `public` schema, allowing:
+- Simplified queries (no schema prefixes needed)
+- Clear table ownership through naming
 - Cross-service queries when needed
 - Simplified backup and maintenance
 
@@ -35,7 +33,7 @@ Each service gets its own PostgreSQL schema, allowing:
 ### Basic Setup
 
 ```typescript
-import { createDatabase, schemaManager } from "@atlas/database";
+import { createDatabase } from "@atlas/database";
 
 // Create database connection
 const db = createDatabase({
@@ -46,16 +44,13 @@ const db = createDatabase({
 await db.client.connect();
 ```
 
-### Service-Specific Schema
+### Defining Tables
 
 ```typescript
-import { schemaManager } from "@atlas/database";
+import { pgTable, serial, text } from "drizzle-orm/pg-core";
 
-// Get schema for your service
-const myServiceSchema = schemaManager.getSchema("my-service");
-
-// Define tables in your service's schema
-export const myTable = myServiceSchema.table("my_table", {
+// Define tables in the public schema
+export const myTable = pgTable("my_table", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
 });
@@ -105,22 +100,22 @@ pnpm db:studio
 pnpm db:generate
 ```
 
-## Adding a New Service Schema
+## Adding a New Service Tables
 
 1. Create your schema directory:
    ```
    packages/database/src/schemas/my-service/
    ```
 
-2. Define your schema:
+2. Define your tables:
    ```typescript
    // packages/database/src/schemas/my-service/schema.ts
-   import { schemaManager } from "../../schema-manager.js";
-   
-   const myServiceSchema = schemaManager.getSchema("my-service");
-   
-   export const myTable = myServiceSchema.table("my_table", {
-     // your table definition
+   import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+
+   export const myTable = pgTable("my_service_table", {
+     id: serial("id").primaryKey(),
+     name: text("name").notNull(),
+     created_at: timestamp("created_at").defaultNow().notNull(),
    });
    ```
 
@@ -130,14 +125,17 @@ pnpm db:generate
    export * from "./schema.js";
    ```
 
-4. Update the drizzle config to include your schema in the `schemaFilter`.
+4. Generate migrations:
+   ```bash
+   pnpm --filter @atlas/database db:generate
+   ```
 
 ## Migration Strategy
 
 - All migrations are stored in `packages/database/src/migrations`
 - Migrations are generated using `drizzle-kit generate`
 - Run migrations using `pnpm db:migrate` from the database package
-- Each service's tables are created in their respective PostgreSQL schema
+- All tables are created in the public schema
 
 ## Cross-Service Queries
 

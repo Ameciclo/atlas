@@ -5,7 +5,6 @@ export {
 	type DatabaseConfig,
 	type AtlasDatabase,
 } from "./connection.js";
-export { createSchemaManager, type SchemaManager } from "./schema-manager.js";
 export { runMigrations } from "./migrate.js";
 
 // Re-export commonly used Drizzle utilities

@@ -140,14 +140,14 @@ The CI/CD pipeline is configured to be intelligent and efficient using GitHub Ac
 
 ### Database Architecture
 
-Atlas uses a **shared database with PostgreSQL schemas** approach:
+Atlas uses a **shared database with single schema** approach:
 
 - **Single Database**: All services connect to the `atlas` database
-- **Schema Isolation**: Each service owns its own PostgreSQL schema (e.g., `cyclist_profile`)
-- **Cross-Service Queries**: Services can query each other's schemas when needed
+- **Public Schema**: All tables reside in the default `public` schema
+- **Shared Tables**: Services can query each other's tables when needed
 - **Centralized Migrations**: Managed through the `@atlas/database` package
 
-See [Database Usage Guide](./packages/database/USAGE.md) and [Migration Guide](./MIGRATION_TO_SHARED_DB.md) for details.
+See [Database Usage Guide](./packages/database/USAGE.md) for details.
 
 ### OpenAPI Documentation
 
