@@ -1,0 +1,362 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Cyclist Counts API",
+    "version": "1.0.0",
+    "description": "API service for managing cyclist counting data and locations",
+    "contact": {
+      "name": "Atlas Team",
+      "url": "https://github.com/Ameciclo/atlas"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3002",
+      "description": "Local development server"
+    },
+    {
+      "url": "https://api.ameciclo.org/cyclist-counts",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Locations",
+      "description": "Operations related to counting locations"
+    },
+    {
+      "name": "System",
+      "description": "System operations"
+    }
+  ],
+  "components": {
+    "schemas": {},
+    "parameters": {}
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "service",
+                    "database"
+                  ]
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service is unhealthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "service",
+                    "database"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/locations": {
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "summary": "List all counting locations",
+        "description": "Get all cyclist counting locations, optionally filtered by city",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Filter locations by city name",
+              "example": "Recife"
+            },
+            "required": false,
+            "name": "city",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of counting locations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      "name": {
+                        "type": "string",
+                        "maxLength": 255
+                      },
+                      "city": {
+                        "type": "string",
+                        "maxLength": 100
+                      },
+                      "state": {
+                        "type": "string",
+                        "maxLength": 2
+                      },
+                      "latitude": {
+                        "type": "string"
+                      },
+                      "longitude": {
+                        "type": "string"
+                      },
+                      "metadata": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "nullable": true
+                          },
+                          {
+                            "type": "object",
+                            "additionalProperties": {
+                              "nullable": true
+                            }
+                          },
+                          {
+                            "type": "array",
+                            "items": {
+                              "nullable": true
+                            }
+                          },
+                          {
+                            "nullable": true
+                          }
+                        ]
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name",
+                      "city",
+                      "state",
+                      "latitude",
+                      "longitude",
+                      "metadata",
+                      "created_at",
+                      "updated_at"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/locations/{id}": {
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "summary": "Get location by ID",
+        "description": "Get a specific counting location by its ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "required": [
+                "id"
+              ],
+              "example": 42
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Counting location details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "name": {
+                      "type": "string",
+                      "maxLength": 255
+                    },
+                    "city": {
+                      "type": "string",
+                      "maxLength": 100
+                    },
+                    "state": {
+                      "type": "string",
+                      "maxLength": 2
+                    },
+                    "latitude": {
+                      "type": "string"
+                    },
+                    "longitude": {
+                      "type": "string"
+                    },
+                    "metadata": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "nullable": true
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": {
+                            "nullable": true
+                          }
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "nullable": true
+                          }
+                        },
+                        {
+                          "nullable": true
+                        }
+                      ]
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "city",
+                    "state",
+                    "latitude",
+                    "longitude",
+                    "metadata",
+                    "created_at",
+                    "updated_at"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Location not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "example": {
+                    "message": "Not Found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
