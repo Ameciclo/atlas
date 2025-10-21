@@ -24,9 +24,21 @@ export interface AtlasDatabase extends NodePgDatabase<Record<string, unknown>> {
 
 /**
  * Get SSL configuration from environment variables
+ *
+ * This function checks for SSL configuration in the following order:
+ * 1. DATABASE_URL with sslmode=require
+ * 2. DB_SSL environment variable set to "true"
+ * 3. Falls back to no SSL (false)
+ *
+ * If SSL is enabled and DATABASE_SSL_CA is provided, it will:
+ * - Read the CA certificate from the file path
+ * - Enable full certificate validation (rejectUnauthorized: true)
+ * - Use utf8 encoding (following Strapi's approach)
+ *
+ * @returns SSL configuration object or false if SSL is disabled
  */
-function getSSLConfig():
-	| boolean
+export function getSSLConfig():
+	| false
 	| { rejectUnauthorized: boolean; ca?: string } {
 	// If DATABASE_URL contains sslmode=require, enable SSL
 	const databaseUrl = process.env.DATABASE_URL || "";
@@ -42,7 +54,7 @@ function getSSLConfig():
 	// If DATABASE_SSL_CA is provided, use it for certificate validation
 	if (process.env.DATABASE_SSL_CA) {
 		try {
-			const ca = readFileSync(process.env.DATABASE_SSL_CA, "utf-8");
+			const ca = readFileSync(process.env.DATABASE_SSL_CA, "utf8");
 			return {
 				rejectUnauthorized: true,
 				ca,
