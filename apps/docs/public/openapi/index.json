@@ -1,5 +1,9 @@
 [
   {
+    "url": "/openapi/cyclist-counts.json",
+    "title": "Cyclist Counts API"
+  },
+  {
     "url": "/openapi/cyclist-profile.json",
     "title": "Cyclist Profile API"
   }
