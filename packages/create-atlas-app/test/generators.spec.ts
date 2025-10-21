@@ -1,15 +1,15 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import fs from "fs-extra";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import fs from "fs-extra";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import type { AppConfig } from "../src/create-app.js";
-import { generatePackageJson } from "../src/generators/package-json.js";
-import { generateDockerfile } from "../src/generators/dockerfile.js";
 import { generateDockerCompose } from "../src/generators/docker-compose.js";
+import { generateDockerfile } from "../src/generators/dockerfile.js";
+import { generateEnvExample } from "../src/generators/env-example.js";
+import { generatePackageJson } from "../src/generators/package-json.js";
 import { generateReadme } from "../src/generators/readme.js";
 import { generateTsConfig } from "../src/generators/tsconfig.js";
 import { generateVitestConfig } from "../src/generators/vitest-config.js";
-import { generateEnvExample } from "../src/generators/env-example.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const testDir = path.join(__dirname, "..", "test-output");

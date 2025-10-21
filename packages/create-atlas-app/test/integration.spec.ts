@@ -1,9 +1,9 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import fs from "fs-extra";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { generateFiles } from "../src/generators/index.js";
+import fs from "fs-extra";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import type { AppConfig } from "../src/create-app.js";
+import { generateFiles } from "../src/generators/index.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const testOutputDir = path.join(__dirname, "..", "test-output");

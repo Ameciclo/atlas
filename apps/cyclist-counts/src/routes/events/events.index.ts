@@ -8,4 +8,3 @@ const router = createRouter()
 	.openapi(routes.getByLocationId, handlers.getByLocationId);
 
 export default router;
-

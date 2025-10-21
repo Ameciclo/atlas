@@ -3,10 +3,7 @@ import { testClient } from "hono/testing";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import app from "../src/app.js";
 import { db } from "../src/db/index.js";
-import type {
-	countingEvents,
-	countingSessions,
-} from "../src/db/schema.js";
+import type { countingEvents, countingSessions } from "../src/db/schema.js";
 
 type CountingEvent = InferSelectModel<typeof countingEvents>;
 type CountingSession = InferSelectModel<typeof countingSessions>;
@@ -169,4 +166,3 @@ describe("GET /v1/sessions/:id", () => {
 		expect(await res.json()).toEqual({ message: "Not Found" });
 	});
 });
-

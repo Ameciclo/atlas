@@ -42,4 +42,3 @@ export async function updateDocsIntegration(config: AppConfig) {
 		`  Note: Run 'pnpm --filter @atlas/${config.name} build' to generate the actual spec`,
 	);
 }
-
