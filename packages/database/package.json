@@ -14,6 +14,10 @@
 			"types": "./dist/schemas/cyclist-profile/index.d.ts",
 			"import": "./dist/schemas/cyclist-profile/index.js"
 		},
+		"./schemas/cyclist-counts": {
+			"types": "./dist/schemas/cyclist-counts/index.d.ts",
+			"import": "./dist/schemas/cyclist-counts/index.js"
+		},
 		"./migrations/*": {
 			"types": "./dist/migrations/*.d.ts",
 			"import": "./dist/migrations/*.js"
@@ -30,10 +34,11 @@
 		"db:migrate": "tsx src/migrate.ts"
 	},
 	"dependencies": {
+		"dotenv": "^16.5.0",
 		"drizzle-orm": "^0.43.1",
 		"drizzle-zod": "^0.7.1",
 		"pg": "^8.14.1",
-		"dotenv": "^16.5.0"
+		"zod": "^3.24.4"
 	},
 	"devDependencies": {
 		"@atlas/typescript-config": "workspace:*",

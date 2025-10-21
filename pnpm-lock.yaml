@@ -158,6 +158,9 @@ importers:
       pg:
         specifier: ^8.14.1
         version: 8.14.1
+      zod:
+        specifier: ^3.24.4
+        version: 3.24.4
     devDependencies:
       '@atlas/typescript-config':
         specifier: workspace:*
@@ -966,6 +969,7 @@ packages:
   '@scalar/use-tooltip@1.0.7':
     resolution: {integrity: sha512-hXkLLOhyR/FMSNd2g+WWKETheyv4xQeRVJeiLxwkmixid/qdKSvpCz98+K6WN6QV3qIRtOnkeCYDunts6JX/JA==}
     engines: {node: '>=18'}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   '@swc/helpers@0.5.17':
     resolution: {integrity: sha512-5IKx/Y13RsYd+sauPb2x+U/xZikHjolzfuDgTAl/Tdf3Q8rslRvC19NKDLgAJQ6wsqADk10ntlv08nPFw/gO/A==}
