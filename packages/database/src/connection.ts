@@ -1,4 +1,5 @@
 import "dotenv/config";
+import { readFileSync } from "node:fs";
 import type { NodePgDatabase } from "drizzle-orm/node-postgres";
 import { drizzle } from "drizzle-orm/node-postgres";
 import type { Client as PgClient } from "pg";
@@ -25,24 +26,39 @@ export interface AtlasDatabase extends NodePgDatabase<Record<string, unknown>> {
  * Get SSL configuration from environment variables
  *
  * SSL is enabled when DATABASE_SSL_CA is provided.
+ * The CA certificate is read from the file path and used for encryption.
  *
- * Note: We set rejectUnauthorized to false to accept self-signed certificates
- * in the chain (common with managed databases like Digital Ocean).
- * We do NOT provide the CA certificate because Node.js TLS will still validate
- * the chain even with rejectUnauthorized: false when a CA is provided.
+ * Note: rejectUnauthorized is set to false to support managed databases
+ * like Digital Ocean that may use self-signed certificates in the chain.
+ *
+ * IMPORTANT: The connection string must NOT include ?sslmode=require
+ * when using this SSL configuration, as it conflicts with the pg library's
+ * SSL handling.
  *
  * @returns SSL configuration object or false if SSL is disabled
  */
 export function getSSLConfig():
 	| false
-	| { rejectUnauthorized: boolean; ca?: string } {
-	// If DATABASE_SSL_CA is provided, enable SSL
+	| { rejectUnauthorized: boolean; ca: string } {
+	// If DATABASE_SSL_CA is provided, enable SSL with CA certificate
 	if (process.env.DATABASE_SSL_CA) {
-		// Return SSL config WITHOUT the CA certificate
-		// This allows the connection to accept self-signed certificates
-		return {
-			rejectUnauthorized: false,
-		};
+		try {
+			const ca = readFileSync(process.env.DATABASE_SSL_CA, "utf8");
+			return {
+				ca,
+				rejectUnauthorized: false,
+			};
+		} catch (error) {
+			console.warn(
+				`Failed to read SSL CA certificate from ${process.env.DATABASE_SSL_CA}:`,
+				error,
+			);
+			// Fall back to basic SSL without CA validation
+			return {
+				ca: "",
+				rejectUnauthorized: false,
+			};
+		}
 	}
 
 	// No SSL if DATABASE_SSL_CA is not provided

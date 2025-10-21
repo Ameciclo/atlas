@@ -73,6 +73,8 @@ COPY --from=builder /app/apps/cyclist-counts/dist ./apps/cyclist-counts/dist
 COPY --from=builder /app/packages/database/dist ./packages/database/dist
 # Copy migrations folder from database package
 COPY --from=builder /app/packages/database/src/migrations ./packages/database/src/migrations
+# Copy seed data from database package
+COPY --from=builder /app/packages/database/seed-data ./packages/database/seed-data
 
 # Set environment variables
 ENV NODE_ENV=production

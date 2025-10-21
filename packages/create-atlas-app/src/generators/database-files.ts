@@ -48,13 +48,14 @@ export async function generateDatabaseFiles(
 function generateDbIndex(_config: AppConfig): string {
 	return `import "dotenv/config";
 import { drizzle } from "drizzle-orm/node-postgres";
-import { getSSLConfig } from "@atlas/database";
 import * as schema from "./schema.js";
 
 export const db = drizzle({
 	connection: {
 		connectionString: process.env.DATABASE_URL,
-		ssl: getSSLConfig(),
+		ssl: {
+			ca: process.env.DATABASE_SSL_CA,
+		},
 	},
 	schema,
 });
