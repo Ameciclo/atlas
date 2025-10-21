@@ -6,9 +6,9 @@ This guide explains how to use the `@atlas/database` package in your Atlas appli
 
 The `@atlas/database` package provides a centralized database management system for the Atlas monorepo. It uses:
 - **Single Database**: All services connect to the same `atlas` database
-- **PostgreSQL Schemas**: Each service owns its own PostgreSQL schema for data isolation
+- **Public Schema**: All tables reside in the default `public` schema
 - **Shared Drizzle ORM**: Common database utilities and type-safe queries
-- **Cross-Service Queries**: Services can query each other's schemas when needed
+- **Cross-Service Queries**: Services can query each other's tables when needed
 
 ## Quick Start
 
@@ -74,7 +74,7 @@ export const list = async (c) => {
 }
 ```
 
-## Adding a New Service Schema
+## Adding a New Service Tables
 
 ### 1. Create Schema Files
 
@@ -89,26 +89,24 @@ packages/database/src/schemas/your-service/
 **schema.ts**:
 ```typescript
 import { jsonb, pgTable, serial, timestamp } from 'drizzle-orm/pg-core'
-import { createSelectSchema } from 'drizzle-zod'
-import { createSchemaManager } from '../../schema-manager.js'
+import { createSelectSchema, createInsertSchema } from 'drizzle-zod'
 
-// Create schema manager for your service
-const schemaManager = createSchemaManager()
-const yourServiceSchema = schemaManager.getSchema('your-service')
-
-export const yourTable = pgTable('your_table', {
+// Define tables in the public schema
+// Use descriptive table names to indicate ownership
+export const yourServiceTable = pgTable('your_service_items', {
   id: serial('id').primaryKey(),
   data: jsonb('data').notNull(),
   created_at: timestamp('created_at').defaultNow().notNull(),
   updated_at: timestamp('updated_at').defaultNow().notNull(),
-}, (table) => ({
-  schema: yourServiceSchema
-}))
+})
 
-export const selectYourTableSchema = createSelectSchema(yourTable)
+// Generate Zod schemas for validation
+export const selectYourTableSchema = createSelectSchema(yourServiceTable)
+export const insertYourTableSchema = createInsertSchema(yourServiceTable)
 
-export type YourTableRow = typeof yourTable.$inferSelect
-export type NewYourTableRow = typeof yourTable.$inferInsert
+// Export TypeScript types
+export type YourTableRow = typeof yourServiceTable.$inferSelect
+export type NewYourTableRow = typeof yourServiceTable.$inferInsert
 ```
 
 **index.ts**:
@@ -135,18 +133,12 @@ In `packages/database/package.json`, add your schema to exports:
 }
 ```
 
-### 3. Update Drizzle Config
+### 3. Generate Migrations
 
-In `packages/database/drizzle.config.ts`, add your schema to the filter:
+After creating your schema, generate migrations:
 
-```typescript
-export default {
-  schema: './src/schemas/**/schema.ts',
-  out: './src/migrations',
-  dialect: 'postgresql',
-  schemaFilter: ['public', 'cyclist_profile', 'your_service'],
-  // ...
-}
+```bash
+pnpm --filter @atlas/database db:generate
 ```
 
 ### 4. Build the Package
@@ -177,23 +169,18 @@ pnpm --filter @atlas/database db:studio
 
 ## Environment Variables
 
-Each service needs these environment variables:
+Each service needs this environment variable:
 
 ```env
 # Database connection string
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/atlas
-
-# Individual credentials (for Drizzle Kit)
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=postgres
-DB_PASSWORD=postgres
-DB_NAME=atlas
 ```
+
+This is used by both the application and Drizzle Kit for migrations.
 
 ## Cross-Service Queries
 
-Services can query other services' schemas:
+Services can query other services' tables:
 
 ```typescript
 import { drizzle } from 'drizzle-orm/node-postgres'
@@ -207,20 +194,28 @@ const db = drizzle(client, {
   }
 })
 
-// Query your own schema
+// Query your own tables
 const yourData = await db.query.yourTable.findMany()
 
-// Query another service's schema
+// Query another service's tables
 const otherData = await db.query.otherTable.findMany()
+
+// Join across services
+import { eq } from 'drizzle-orm'
+const joined = await db
+  .select()
+  .from(yourSchema.yourTable)
+  .leftJoin(otherSchema.otherTable, eq(yourSchema.yourTable.id, otherSchema.otherTable.yourId))
 ```
 
 ## Best Practices
 
-1. **Schema Isolation**: Each service should primarily work with its own schema
-2. **Cross-Service Queries**: Use sparingly and document dependencies
-3. **Migrations**: Always generate and run migrations through the shared package
-4. **Type Safety**: Leverage TypeScript types exported from schemas
-5. **Build vs Runtime**: Keep builds database-independent; generate OpenAPI in CI/CD
+1. **Table Naming**: Use clear, descriptive table names that indicate ownership (e.g., `cyclist_profiles`, `analytics_events`)
+2. **Table Ownership**: Each service should primarily work with its own tables
+3. **Cross-Service Queries**: Use sparingly and document dependencies
+4. **Migrations**: Always generate and run migrations through the shared package
+5. **Type Safety**: Leverage TypeScript types exported from schemas
+6. **Build vs Runtime**: Keep builds database-independent; generate OpenAPI in CI/CD
 
 ## Build and OpenAPI Generation
 
@@ -268,5 +263,5 @@ Check that:
 1. PostgreSQL is running
 2. The `atlas` database exists
 3. DATABASE_URL is correctly set
-4. Your service's schema exists in the database
+4. Migrations have been run to create your tables
 

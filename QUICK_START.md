@@ -155,7 +155,7 @@ PORT=3001 pnpm dev
 
 - Read [DEVELOPMENT.md](./DEVELOPMENT.md) for detailed guide
 - Check [packages/database/USAGE.md](./packages/database/USAGE.md) for database usage
-- See [MIGRATION_TO_SHARED_DB.md](./MIGRATION_TO_SHARED_DB.md) for architecture details
+- See [packages/database/SCHEMA_STRATEGY.md](./packages/database/SCHEMA_STRATEGY.md) for schema strategy
 
 ## Getting Help
 

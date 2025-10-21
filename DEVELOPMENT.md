@@ -386,7 +386,7 @@ docker-compose down -v                      # Reset database
 - **Documentation**: Check README files in each package
 - **Database**: See `packages/database/USAGE.md`
 - **CI/CD**: See `.github/workflows/README.md`
-- **Migration Guide**: See `MIGRATION_TO_SHARED_DB.md`
+- **Schema Strategy**: See `packages/database/SCHEMA_STRATEGY.md`
 
 ## Next Steps
 
