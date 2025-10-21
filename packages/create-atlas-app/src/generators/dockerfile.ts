@@ -16,7 +16,12 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml turbo.json ./
 
 # Copy the source code needed for turbo prune
 COPY apps/${config.name}/package.json ./apps/${config.name}/package.json
-COPY packages/typescript-config/package.json ./packages/typescript-config/package.json
+COPY packages/typescript-config/package.json ./packages/typescript-config/package.json${
+			config.includeDatabase
+				? `
+COPY packages/database/package.json ./packages/database/package.json`
+				: ""
+		}
 
 # Use turbo to prune the monorepo to only the ${config.name} app and its dependencies
 RUN turbo prune --scope=@atlas/${config.name} --docker
@@ -43,8 +48,20 @@ COPY --from=pruner /app/out/full/ .
 
 # Copy the rest of the source code
 COPY apps/${config.name} ./apps/${config.name}
-COPY packages/typescript-config ./packages/typescript-config
-COPY turbo.json ./turbo.json
+COPY packages/typescript-config ./packages/typescript-config${
+			config.includeDatabase
+				? `
+COPY packages/database ./packages/database`
+				: ""
+		}
+COPY turbo.json ./turbo.json${
+			config.includeDatabase
+				? `
+
+# Build database package first (required dependency)
+RUN pnpm --filter @atlas/database build`
+				: ""
+		}
 
 # Build the ${config.name} app
 RUN pnpm --filter @atlas/${config.name} build
@@ -70,8 +87,9 @@ RUN pnpm install --frozen-lockfile --prod
 COPY --from=builder /app/apps/${config.name}/dist ./apps/${config.name}/dist${
 		config.includeDatabase
 			? `
-# Copy migrations folder
-COPY --from=builder /app/apps/${config.name}/src/db/migrations ./apps/${config.name}/src/db/migrations`
+COPY --from=builder /app/packages/database/dist ./packages/database/dist
+# Copy migrations folder from database package
+COPY --from=builder /app/packages/database/src/migrations ./packages/database/src/migrations`
 			: ""
 	}
 

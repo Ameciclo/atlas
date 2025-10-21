@@ -44,26 +44,16 @@ export function generatePackageJson(config: AppConfig): PackageJson {
 	};
 
 	if (config.includeDatabase) {
-		basePackage.scripts = {
-			...basePackage.scripts,
-			"db:generate": "drizzle-kit generate",
-			"db:migrate": "drizzle-kit migrate",
-			"db:studio": "drizzle-kit studio",
-			"db:seed": "tsx src/db/seed.ts",
-			"db:migrate:js": "node dist/db/migrate.js",
-		};
-
 		basePackage.dependencies = {
 			...basePackage.dependencies,
+			"@atlas/database": "workspace:*",
 			"drizzle-orm": "^0.43.1",
-			"drizzle-zod": "^0.7.1",
 			pg: "^8.14.1",
 		};
 
 		basePackage.devDependencies = {
 			...basePackage.devDependencies,
 			"@types/pg": "^8.11.13",
-			"drizzle-kit": "^0.31.0",
 		};
 	}
 

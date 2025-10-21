@@ -86,18 +86,20 @@ ${
 		? `
 ## Database Management
 
+This app uses the shared \`@atlas/database\` package for database management.
+
 \`\`\`bash
-# Generate new migrations
-pnpm --filter @atlas/${config.name} db:generate
+# Generate new migrations (from database package)
+pnpm --filter @atlas/database db:generate
 
 # Apply migrations
-pnpm --filter @atlas/${config.name} db:migrate
+pnpm --filter @atlas/database db:migrate
 
 # View database with Drizzle Studio
-pnpm --filter @atlas/${config.name} db:studio
+pnpm --filter @atlas/database db:studio
 
-# Seed the database with sample data
-pnpm --filter @atlas/${config.name} db:seed
+# Seed the database with sample data (if available)
+pnpm --filter @atlas/database db:seed
 \`\`\`
 `
 		: ""
@@ -208,10 +210,7 @@ apps/${config.name}/
 			? `
 │   ├── db/                    # Database
 │   │   ├── index.ts           # Database connection
-│   │   ├── schema.ts          # Database schema
-│   │   ├── migrate.ts         # Migration runner
-│   │   ├── seed.ts            # Database seeder
-│   │   └── migrations/        # Migration files`
+│   │   └── schema.ts          # Re-exports from @atlas/database`
 			: ""
 	}
 │   ├── lib/                   # Shared utilities
@@ -225,15 +224,17 @@ apps/${config.name}/
 │       └── example/           # Example routes
 ├── test/                      # Tests
 ├── Dockerfile                 # Docker configuration
-├── docker-compose.yml         # Docker Compose configuration${
-		config.includeDatabase
-			? "\n├── drizzle.config.ts          # Drizzle ORM configuration"
-			: ""
-	}
+├── docker-compose.yml         # Docker Compose configuration
 ├── package.json               # Dependencies and scripts
 ├── tsconfig.json              # TypeScript configuration
 └── vitest.config.ts           # Vitest configuration
-\`\`\`
+\`\`\`${
+		config.includeDatabase
+			? `
+
+**Note:** Database schema is defined in \`packages/database/src/schemas/${config.name}/schema.ts\` and shared across the monorepo.`
+			: ""
+	}
 
 ## Contributing
 
