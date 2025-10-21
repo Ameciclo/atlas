@@ -1,7 +1,6 @@
 import path from "node:path";
 import fs from "fs-extra";
 import type { AppConfig } from "../create-app.js";
-import { toPascalCase } from "../utils.js";
 
 export async function generateSrcFiles(appPath: string, config: AppConfig) {
 	const srcPath = path.join(appPath, "src");
@@ -51,7 +50,7 @@ serve(
 `;
 }
 
-function generateAppFile(config: AppConfig): string {
+function generateAppFile(_config: AppConfig): string {
 	return `import createApp from "./lib/create-app.js";
 import healthRoutes from "./routes/health.js";
 import exampleRoutes from "./routes/example/example.index.js";
@@ -151,7 +150,7 @@ generateOpenAPISpec();
 `;
 }
 
-async function generateLibFiles(srcPath: string, config: AppConfig) {
+async function generateLibFiles(srcPath: string, _config: AppConfig) {
 	const libPath = path.join(srcPath, "lib");
 	await fs.ensureDir(libPath);
 
@@ -240,7 +239,7 @@ export const notFoundSchema = createMessageObjectSchema(
 	);
 }
 
-async function generateMiddlewares(srcPath: string, config: AppConfig) {
+async function generateMiddlewares(srcPath: string, _config: AppConfig) {
 	const middlewaresPath = path.join(srcPath, "middlewares");
 	await fs.ensureDir(middlewaresPath);
 
@@ -377,7 +376,7 @@ export default router;
 `;
 }
 
-function generateExampleRoutes(config: AppConfig): string {
+function generateExampleRoutes(_config: AppConfig): string {
 	return `import { createRoute, z } from "@hono/zod-openapi";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { jsonContent } from "stoker/openapi/helpers";
@@ -422,7 +421,7 @@ export const list: AppRouteHandler<routes.ListRoute> = async (c) => {
 `;
 }
 
-function generateExampleIndex(config: AppConfig): string {
+function generateExampleIndex(_config: AppConfig): string {
 	return `import { createRouter } from "../../lib/create-app.js";
 import * as handlers from "./example.handlers.js";
 import * as routes from "./example.routes.js";

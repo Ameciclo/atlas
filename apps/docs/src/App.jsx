@@ -1,5 +1,5 @@
 import { ApiReferenceReact } from "@scalar/api-reference-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "@scalar/api-reference-react/style.css";
 import { discoverOpenApiSpecs } from "./utils/openapi-discovery";
 

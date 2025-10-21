@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { migrate } from "drizzle-orm/node-postgres/migrator";
-import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import type { DatabaseConfig } from "./connection.js";
+import { closeDatabase, createConnectedDatabase } from "./connection.js";
 
 export interface MigrationConfig extends DatabaseConfig {
 	migrationsFolder?: string;

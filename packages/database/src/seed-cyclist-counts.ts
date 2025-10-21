@@ -2,8 +2,8 @@ import "dotenv/config";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { eq } from "drizzle-orm";
-import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import type { DatabaseConfig } from "./connection.js";
+import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import * as cyclistCountsSchema from "./schemas/cyclist-counts/index.js";
 
 interface LegacyCountData {

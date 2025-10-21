@@ -13,7 +13,12 @@
 		"test": "NODE_ENV=test vitest --run",
 		"test:watch": "NODE_ENV=test vitest --watch"
 	},
-	"keywords": ["atlas", "scaffolding", "generator", "cli"],
+	"keywords": [
+		"atlas",
+		"scaffolding",
+		"generator",
+		"cli"
+	],
 	"dependencies": {
 		"prompts": "^2.4.2",
 		"chalk": "^5.3.0",

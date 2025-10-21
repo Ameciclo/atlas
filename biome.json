@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.2.6/schema.json",
 	"vcs": {
 		"enabled": false,
 		"clientKind": "git",
@@ -8,31 +8,38 @@
 	"files": {
 		"ignoreUnknown": false,
 		"maxSize": 5000000,
-		"ignore": [
-			"templates/generate-openapi.ts",
-			"**/node_modules/**",
-			"**/dist/**",
-			"**/build/**",
-			"**/.next/**",
-			"**/out/**",
-			"**/.turbo/**",
-			"**/coverage/**",
-			"**/*.d.ts",
-			"**/openapi/**/*.json",
-			"specs/**/*.json"
+		"includes": [
+			"**",
+			"!**/templates/generate-openapi.ts",
+			"!**/node_modules",
+			"!**/dist",
+			"!**/build",
+			"!**/.next",
+			"!**/out",
+			"!**/.turbo",
+			"!**/coverage",
+			"!**/*.d.ts",
+			"!**/openapi/**/*.json",
+			"!**/specs/**/*.json"
 		]
 	},
 	"formatter": {
 		"enabled": true,
 		"indentStyle": "tab"
 	},
-	"organizeImports": {
-		"enabled": true
-	},
+	"assist": { "actions": { "source": { "organizeImports": "on" } } },
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"correctness": {
+				"noUnusedVariables": {
+					"level": "warn",
+					"options": {
+						"ignoreRestSiblings": true
+					}
+				}
+			}
 		}
 	},
 	"javascript": {
