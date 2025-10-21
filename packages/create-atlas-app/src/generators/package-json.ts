@@ -2,7 +2,10 @@ import type { AppConfig } from "../create-app.js";
 
 interface PackageJson {
 	name: string;
+	version: string;
+	description: string;
 	type: string;
+	main: string;
 	scripts: Record<string, string>;
 	dependencies: Record<string, string>;
 	devDependencies: Record<string, string>;
@@ -11,7 +14,10 @@ interface PackageJson {
 export function generatePackageJson(config: AppConfig): PackageJson {
 	const basePackage: PackageJson = {
 		name: `@atlas/${config.name}`,
+		version: "0.1.0",
+		description: config.description,
 		type: "module",
+		main: "./dist/index.js",
 		scripts: {
 			dev: "tsx watch src/index.ts",
 			build: "tsc && pnpm generate-openapi",
@@ -44,26 +50,16 @@ export function generatePackageJson(config: AppConfig): PackageJson {
 	};
 
 	if (config.includeDatabase) {
-		basePackage.scripts = {
-			...basePackage.scripts,
-			"db:generate": "drizzle-kit generate",
-			"db:migrate": "drizzle-kit migrate",
-			"db:studio": "drizzle-kit studio",
-			"db:seed": "tsx src/db/seed.ts",
-			"db:migrate:js": "node dist/db/migrate.js",
-		};
-
 		basePackage.dependencies = {
 			...basePackage.dependencies,
+			"@atlas/database": "workspace:*",
 			"drizzle-orm": "^0.43.1",
-			"drizzle-zod": "^0.7.1",
 			pg: "^8.14.1",
 		};
 
 		basePackage.devDependencies = {
 			...basePackage.devDependencies,
 			"@types/pg": "^8.11.13",
-			"drizzle-kit": "^0.31.0",
 		};
 	}
 

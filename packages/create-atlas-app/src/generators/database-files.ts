@@ -1,6 +1,30 @@
 import path from "node:path";
 import fs from "fs-extra";
 import type { AppConfig } from "../create-app.js";
+
+/**
+ * Find the repository root by looking for pnpm-workspace.yaml
+ */
+function findRepoRoot(): string {
+	let currentDir = process.cwd();
+
+	// Try up to 5 levels up
+	for (let i = 0; i < 5; i++) {
+		const workspaceFile = path.join(currentDir, "pnpm-workspace.yaml");
+		if (fs.existsSync(workspaceFile)) {
+			return currentDir;
+		}
+		const parentDir = path.dirname(currentDir);
+		if (parentDir === currentDir) {
+			// Reached filesystem root
+			break;
+		}
+		currentDir = parentDir;
+	}
+
+	// Fallback to process.cwd()
+	return process.cwd();
+}
 import { toSnakeCase } from "../utils.js";
 
 export async function generateDatabaseFiles(
@@ -9,44 +33,15 @@ export async function generateDatabaseFiles(
 ) {
 	const dbPath = path.join(appPath, "src", "db");
 	await fs.ensureDir(dbPath);
-	await fs.ensureDir(path.join(dbPath, "migrations"));
 
-	// Generate drizzle.config.ts
-	await fs.writeFile(
-		path.join(appPath, "drizzle.config.ts"),
-		generateDrizzleConfig(config),
-	);
-
-	// Generate db/index.ts
+	// Generate db/index.ts (connection only)
 	await fs.writeFile(path.join(dbPath, "index.ts"), generateDbIndex(config));
 
-	// Generate db/schema.ts
+	// Generate db/schema.ts (re-export from shared package)
 	await fs.writeFile(path.join(dbPath, "schema.ts"), generateSchema(config));
 
-	// Generate db/migrate.ts
-	await fs.writeFile(path.join(dbPath, "migrate.ts"), generateMigrate(config));
-
-	// Generate db/seed.ts
-	await fs.writeFile(path.join(dbPath, "seed.ts"), generateSeed(config));
-}
-
-function generateDrizzleConfig(config: AppConfig): string {
-	return `import { defineConfig } from "drizzle-kit";
-
-export default defineConfig({
-	schema: "./src/db/schema.ts",
-	out: "./src/db/migrations",
-	dialect: "postgresql",
-	dbCredentials: {
-		host: process.env.DB_HOST || "localhost",
-		port: Number.parseInt(process.env.DB_PORT || "5432"),
-		user: process.env.DB_USER || "postgres",
-		password: process.env.DB_PASSWORD || "postgres",
-		database: process.env.DB_NAME || "${config.databaseName}",
-		ssl: process.env.DB_SSL === "true",
-	},
-});
-`;
+	// Generate schema in shared database package
+	await generateSharedSchema(config);
 }
 
 function generateDbIndex(config: AppConfig): string {
@@ -65,10 +60,34 @@ export const db = drizzle({
 }
 
 function generateSchema(config: AppConfig): string {
+	return `// Re-export everything from the shared database schema
+export * from "@atlas/database/schemas/${config.name}";
+`;
+}
+
+async function generateSharedSchema(config: AppConfig) {
+	const repoRoot = findRepoRoot();
+	const schemaPath = path.join(
+		repoRoot,
+		"packages",
+		"database",
+		"src",
+		"schemas",
+		config.name,
+	);
+	await fs.ensureDir(schemaPath);
+
 	const tableName = `${toSnakeCase(config.name)}_examples`;
 
-	return `import { jsonb, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+	// Generate schema.ts in shared package
+	await fs.writeFile(
+		path.join(schemaPath, "schema.ts"),
+		`import { jsonb, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+
+// ============================================================================
+// ${config.displayName} Schema
+// ============================================================================
 
 export const examples = pgTable("${tableName}", {
 	id: serial("id").primaryKey(),
@@ -78,82 +97,61 @@ export const examples = pgTable("${tableName}", {
 	updated_at: timestamp("updated_at").defaultNow().notNull(),
 });
 
+// ============================================================================
+// Zod Schemas
+// ============================================================================
+
 export const insertExampleSchema = createInsertSchema(examples);
 export const selectExampleSchema = createSelectSchema(examples);
 
+// ============================================================================
+// TypeScript Types
+// ============================================================================
+
 export type Example = typeof examples.$inferSelect;
 export type InsertExample = typeof examples.$inferInsert;
-`;
+`,
+	);
+
+	// Generate index.ts in shared package
+	await fs.writeFile(
+		path.join(schemaPath, "index.ts"),
+		`export * from "./schema.js";
+`,
+	);
+
+	// Update database package.json to export the new schema
+	await updateDatabasePackageExports(config);
 }
 
-function generateMigrate(config: AppConfig): string {
-	return `import "dotenv/config";
-import { drizzle } from "drizzle-orm/node-postgres";
-import { migrate } from "drizzle-orm/node-postgres/migrator";
-import { fileURLToPath } from "node:url";
-import path from "node:path";
+async function updateDatabasePackageExports(config: AppConfig) {
+	const repoRoot = findRepoRoot();
+	const packageJsonPath = path.join(
+		repoRoot,
+		"packages",
+		"database",
+		"package.json",
+	);
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+	const packageJson = await fs.readJSON(packageJsonPath);
 
-async function runMigrations() {
-	console.log("Running migrations...");
-
-	const db = drizzle({
-		connection: {
-			connectionString: process.env.DATABASE_URL,
-			ssl: process.env.DB_SSL === "true",
-		},
-	});
-
-	await migrate(db, {
-		migrationsFolder: path.join(__dirname, "migrations"),
-	});
-
-	console.log("✓ Migrations completed");
-	process.exit(0);
-}
-
-runMigrations().catch((error) => {
-	console.error("Migration failed:", error);
-	process.exit(1);
-});
-`;
-}
-
-function generateSeed(config: AppConfig): string {
-	return `import "dotenv/config";
-import { db } from "./index.js";
-import { examples } from "./schema.js";
-
-async function seed() {
-	console.log("Seeding database...");
-
-	try {
-		// Insert example data
-		await db.insert(examples).values([
-			{
-				name: "Example 1",
-				data: { description: "First example" },
-			},
-			{
-				name: "Example 2",
-				data: { description: "Second example" },
-			},
-		]);
-
-		console.log("✓ Database seeded successfully");
-	} catch (error) {
-		console.error("Seeding failed:", error);
-		throw error;
+	// Add the new schema export
+	if (!packageJson.exports) {
+		packageJson.exports = {};
 	}
-}
 
-seed()
-	.then(() => process.exit(0))
-	.catch((error) => {
-		console.error(error);
-		process.exit(1);
-	});
-`;
+	packageJson.exports[`./schemas/${config.name}`] = {
+		types: `./dist/schemas/${config.name}/index.d.ts`,
+		import: `./dist/schemas/${config.name}/index.js`,
+	};
+
+	// Write back to package.json with tabs for consistency
+	await fs.writeFile(
+		packageJsonPath,
+		`${JSON.stringify(packageJson, null, "\t")}\n`,
+	);
+
+	console.log(
+		`✓ Added schema export to @atlas/database: ./schemas/${config.name}`,
+	);
 }

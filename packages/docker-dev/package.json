@@ -2,7 +2,9 @@
 	"name": "@atlas/docker-dev",
 	"private": true,
 	"scripts": {
-		"dev": "docker compose up",
-		"db:reset": "docker compose rm --force --stop postgres && docker compose up -d"
+		"dev": "docker compose -f ../../docker-compose.yml up -d",
+		"stop": "docker compose -f ../../docker-compose.yml stop",
+		"logs": "docker compose -f ../../docker-compose.yml logs -f postgres",
+		"db:reset": "docker compose -f ../../docker-compose.yml down -v && docker compose -f ../../docker-compose.yml up -d"
 	}
 }
