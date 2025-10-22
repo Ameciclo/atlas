@@ -5,12 +5,11 @@ import pkg from "pg";
 const { Client } = pkg;
 
 import * as schema from "@atlas/database/schemas/cyclist-profile";
+import { getSSLConfig } from "@atlas/database";
 
 const client = new Client({
 	connectionString: process.env.DATABASE_URL,
-	ssl: {
-		ca: process.env.DATABASE_SSL_CA,
-	},
+	ssl: getSSLConfig(),
 });
 
 await client.connect();
