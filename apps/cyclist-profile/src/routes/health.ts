@@ -54,4 +54,3 @@ router.openapi(healthRoute, async (c) => {
 });
 
 export default router;
-
