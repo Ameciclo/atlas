@@ -1,0 +1,250 @@
+# Portainer Stack: Atlas (Kong Gateway Integration with CI/CD Migrations)
+#
+# This stack deploys Atlas services connected to Kong Gateway network.
+# Uses a MANAGED PostgreSQL database (e.g., Digital Ocean).
+#
+# ⚠️  IMPORTANT: Database migrations are handled by CI/CD pipeline
+#     Migrations run BEFORE deployment via GitHub Actions
+#     No init containers needed in this stack
+#
+# Network Configuration:
+#   - Connects to existing Kong network: kong-gateway_kong-net
+#   - Services are accessible via Kong Gateway for routing and authentication
+#
+# Required Environment Variables:
+#   - DATABASE_URL: Full PostgreSQL connection string to managed database
+#     Example: postgresql://user:password@host:5432/atlas?sslmode=require
+#   - DATABASE_SSL_CA: Path to CA certificate for SSL connections (for self-signed certs)
+#     Example: /run/secrets/pg-ca-cert
+#
+# Optional Environment Variables:
+#   - CYCLIST_PROFILE_PORT: Cyclist Profile API port (default: 3000)
+#   - CYCLIST_COUNTS_PORT: Cyclist Counts API port (default: 3002)
+#   - LOG_LEVEL: Logging level (default: info)
+#   - IMAGE_TAG: Docker image tag for all services (default: latest)
+#
+# Note: Docs app uses nginx and always listens on port 80 (not configurable)
+#
+# Setup Instructions:
+#   1. Ensure Kong network exists: docker network ls | grep kong-gateway_kong-net
+#   2. Create Docker secret for PostgreSQL CA certificate:
+#      - Download CA cert from DigitalOcean: https://docs.digitalocean.com/products/databases/postgresql/how-to/manage-certificates/
+#      - Create secret: docker secret create pg-ca-cert /path/to/ca-certificate.crt
+#   3. In Portainer, create new stack named "atlas"
+#   4. Set DATABASE_URL in environment variables
+#   5. Deploy stack
+#   6. Configure Kong routes to point to services:
+#      - cyclist-profile service: http://atlas-cyclist-profile:3000
+#      - cyclist-counts service: http://atlas-cyclist-counts:3002
+#      - docs service: http://atlas-docs:80
+#
+# Webhook Setup (Service-Level):
+#   Each service has its own webhook for independent deployments:
+#
+#   Cyclist Profile:
+#   1. In Portainer: Containers → atlas-cyclist-profile
+#   2. Enable webhook for the service
+#   3. Copy webhook URL
+#   4. Add to GitHub secrets as PORTAINER_WEBHOOK_CYCLIST_PROFILE
+#
+#   Cyclist Counts:
+#   5. In Portainer: Containers → atlas-cyclist-counts
+#   6. Enable webhook for the service
+#   7. Copy webhook URL
+#   8. Add to GitHub secrets as PORTAINER_WEBHOOK_CYCLIST_COUNTS
+#
+#   Docs:
+#   9. In Portainer: Containers → atlas-docs
+#   10. Enable webhook for the service
+#   11. Copy webhook URL
+#   12. Add to GitHub secrets as PORTAINER_WEBHOOK_DOCS
+#
+# GitHub Secrets Required:
+#   - DATABASE_URL: PostgreSQL connection string
+#   - PORTAINER_WEBHOOK_CYCLIST_PROFILE: Webhook URL for cyclist-profile service
+#   - PORTAINER_WEBHOOK_CYCLIST_COUNTS: Webhook URL for cyclist-counts service
+#   - PORTAINER_WEBHOOK_DOCS: Webhook URL for docs service
+#
+# Kong Gateway Configuration:
+#   After deployment, configure Kong routes:
+#
+#   Cyclist Profile API:
+#     Service: http://atlas-cyclist-profile:3000
+#     Route: /api/cyclist-profile
+#
+#   Cyclist Counts API:
+#     Service: http://atlas-cyclist-counts:3002
+#     Route: /api/cyclist-counts
+#
+#   Documentation:
+#     Service: http://atlas-docs:80
+#     Route: /docs
+#
+# Health Checks:
+#   Cyclist Profile:   curl http://atlas-cyclist-profile:3000/health
+#   Cyclist Counts:    curl http://atlas-cyclist-counts:3002/health
+#   Docs:              curl http://atlas-docs:80/index.html
+
+secrets:
+  pg-ca-cert:
+    external: true
+    name: pg-ca-cert
+
+services:
+  # ============================================================================
+  # Cyclist Profile Service - API
+  # ============================================================================
+  cyclist-profile:
+    image: ghcr.io/ameciclo/atlas/cyclist-profile:${IMAGE_TAG:-latest}
+    container_name: atlas-cyclist-profile
+
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: ${CYCLIST_PROFILE_PORT:-3000}
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_SSL_CA: /run/secrets/pg-ca-cert
+
+    # Expose port internally to Kong network only (no host port binding)
+    expose:
+      - "${CYCLIST_PROFILE_PORT:-3000}"
+
+    networks:
+      - kong-net
+
+    secrets:
+      - pg-ca-cert
+
+    restart: unless-stopped
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'node -e "require(''http'').get(''http://localhost:${CYCLIST_PROFILE_PORT:-3000}/health'', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"',
+        ]
+      interval: 30s
+      timeout: 10s
+      start_period: 40s
+      retries: 3
+
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+        reservations:
+          cpus: "0.5"
+          memory: 256M
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Cyclist Counts Service - API
+  # ============================================================================
+  cyclist-counts:
+    image: ghcr.io/ameciclo/atlas/cyclist-counts:${IMAGE_TAG:-latest}
+    container_name: atlas-cyclist-counts
+
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: ${CYCLIST_COUNTS_PORT:-3002}
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_SSL_CA: /run/secrets/pg-ca-cert
+
+    # Expose port internally to Kong network only (no host port binding)
+    expose:
+      - "${CYCLIST_COUNTS_PORT:-3002}"
+
+    networks:
+      - kong-net
+
+    secrets:
+      - pg-ca-cert
+
+    restart: unless-stopped
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'node -e "require(''http'').get(''http://localhost:${CYCLIST_COUNTS_PORT:-3002}/health'', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"',
+        ]
+      interval: 30s
+      timeout: 10s
+      start_period: 40s
+      retries: 3
+
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+        reservations:
+          cpus: "0.5"
+          memory: 256M
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Documentation Service - Static React App
+  # ============================================================================
+  # Serves static React documentation via Nginx on port 80
+  docs:
+    image: ghcr.io/ameciclo/atlas/docs:${IMAGE_TAG:-latest}
+    container_name: atlas-docs
+
+    # Expose port internally to Kong network only (no host port binding)
+    # Nginx listens on port 80 (hardcoded in nginx.conf)
+    expose:
+      - "80"
+
+    networks:
+      - kong-net
+
+    restart: unless-stopped
+
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://127.0.0.1/",
+        ]
+      interval: 30s
+      timeout: 10s
+      start_period: 20s
+      retries: 3
+
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M
+        reservations:
+          cpus: "0.25"
+          memory: 128M
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  kong-net:
+    external: true
+    name: kong-gateway_kong-net
+
