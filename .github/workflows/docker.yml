@@ -102,6 +102,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Node.js (for OpenAPI generation)
+        if: matrix.app == 'docs'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.15.0
+
+      - name: Setup pnpm (for OpenAPI generation)
+        if: matrix.app == 'docs'
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies (for OpenAPI generation)
+        if: matrix.app == 'docs'
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Generate OpenAPI specs
+        if: matrix.app == 'docs'
+        run: pnpm run generate-openapi
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
