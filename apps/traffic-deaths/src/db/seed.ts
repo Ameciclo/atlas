@@ -74,7 +74,7 @@ function convertToDbRecord(
 	};
 
 	// Helper to parse integer
-	const parseInt = (value: string | null): number | null => {
+	const parseInteger = (value: string | null): number | null => {
 		if (!value) return null;
 		const num = Number.parseInt(value, 10);
 		return Number.isNaN(num) ? null : num;
@@ -82,16 +82,16 @@ function convertToDbRecord(
 
 	return {
 		// Identificação do óbito
-		contador: parseInt(csvRecord.contador),
+		contador: parseInteger(csvRecord.contador),
 		tipobito: csvRecord.tipobito,
 		dtobito: parseDate(csvRecord.dtobito),
 		horaobito: csvRecord.horaobito,
 
 		// Dados do falecido
 		natural: csvRecord.natural,
-		codmunnatu: parseInt(csvRecord.codmunnatu),
+		codmunnatu: parseInteger(csvRecord.codmunnatu),
 		dtnasc: parseDate(csvRecord.dtnasc),
-		idade: parseInt(csvRecord.idade),
+		idade: parseInteger(csvRecord.idade),
 		sexo: csvRecord.sexo,
 		racacor: csvRecord.racacor,
 		estciv: csvRecord.estciv,
@@ -103,11 +103,11 @@ function convertToDbRecord(
 		ocup: csvRecord.ocup,
 
 		// Localização
-		codmunres: parseInt(csvRecord.codmunres),
+		codmunres: parseInteger(csvRecord.codmunres),
 		lococor: csvRecord.lococor,
 		codestab: csvRecord.codestab,
 		estabdescr: csvRecord.estabdescr,
-		codmunocor: parseInt(csvRecord.codmunocor),
+		codmunocor: parseInteger(csvRecord.codmunocor),
 
 		// Causas da morte
 		linhaa: csvRecord.linhaa,
@@ -208,11 +208,11 @@ async function seed() {
 			totalErrors += errors;
 		}
 
-		console.log("=" .repeat(60));
+		console.log("=".repeat(60));
 		console.log("🎉 Seeding completed successfully!");
 		console.log(`   Total records inserted: ${totalInserted}`);
 		console.log(`   Total errors: ${totalErrors}`);
-		console.log("=" .repeat(60));
+		console.log("=".repeat(60));
 	} catch (error) {
 		console.error("❌ Error seeding database:", error);
 		process.exit(1);
@@ -222,4 +222,3 @@ async function seed() {
 }
 
 seed();
-

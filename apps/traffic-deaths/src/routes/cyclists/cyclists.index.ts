@@ -8,4 +8,3 @@ const router = createRouter().openapi(
 );
 
 export default router;
-

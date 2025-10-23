@@ -1,7 +1,7 @@
 import createApp from "./lib/create-app.js";
+import cyclistRoutes from "./routes/cyclists/cyclists.index.js";
 import healthRoutes from "./routes/health.js";
 import summaryRoutes from "./routes/summary/summary.index.js";
-import cyclistRoutes from "./routes/cyclists/cyclists.index.js";
 
 const app = createApp()
 	.route("/", healthRoutes)

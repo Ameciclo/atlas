@@ -5,4 +5,3 @@ import * as routes from "./summary.routes.js";
 const router = createRouter().openapi(routes.getSummary, handlers.getSummary);
 
 export default router;
-

@@ -1,9 +1,9 @@
 import { and, count, eq, like } from "drizzle-orm";
-import type { AppRouteHandler } from "../../lib/types.js";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { db } from "../../db/index.js";
 import { trafficDeaths } from "../../db/schema.js";
-import * as routes from "./cyclists.routes.js";
+import type { AppRouteHandler } from "../../lib/types.js";
+import type * as routes from "./cyclists.routes.js";
 
 export const getCyclistDeaths: AppRouteHandler<
 	typeof routes.getCyclistDeaths
@@ -81,4 +81,3 @@ export const getCyclistDeaths: AppRouteHandler<
 		);
 	}
 };
-

@@ -1,9 +1,9 @@
 import { count, eq } from "drizzle-orm";
-import type { AppRouteHandler } from "../../lib/types.js";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { db } from "../../db/index.js";
 import { trafficDeaths } from "../../db/schema.js";
-import * as routes from "./summary.routes.js";
+import type { AppRouteHandler } from "../../lib/types.js";
+import type * as routes from "./summary.routes.js";
 
 export const getSummary: AppRouteHandler<typeof routes.getSummary> = async (
 	c,
@@ -11,18 +11,12 @@ export const getSummary: AppRouteHandler<typeof routes.getSummary> = async (
 	const { year } = c.req.valid("query");
 
 	try {
-		let result;
-
-		if (year) {
-			// Count deaths for specific year
-			result = await db
-				.select({ count: count() })
-				.from(trafficDeaths)
-				.where(eq(trafficDeaths.data_year, year));
-		} else {
-			// Count all deaths
-			result = await db.select({ count: count() }).from(trafficDeaths);
-		}
+		const result = year
+			? await db
+					.select({ count: count() })
+					.from(trafficDeaths)
+					.where(eq(trafficDeaths.data_year, year))
+			: await db.select({ count: count() }).from(trafficDeaths);
 
 		const total = result[0]?.count ?? 0;
 
@@ -45,4 +39,3 @@ export const getSummary: AppRouteHandler<typeof routes.getSummary> = async (
 		);
 	}
 };
-

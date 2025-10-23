@@ -1,8 +1,8 @@
 import { createRoute, z } from "@hono/zod-openapi";
-import { createRouter } from "../lib/create-app.js";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { jsonContent } from "stoker/openapi/helpers";
 import { db } from "../db/index.js";
+import { createRouter } from "../lib/create-app.js";
 
 const healthSchema = z.object({
 	status: z.enum(["ok", "error"]),
@@ -32,7 +32,7 @@ router.openapi(healthRoute, async (c) => {
 	try {
 		// Simple database check
 		await db.execute("SELECT 1");
-	} catch (error) {
+	} catch (_error) {
 		dbStatus = "disconnected";
 		return c.json(
 			{
