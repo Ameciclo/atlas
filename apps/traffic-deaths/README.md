@@ -57,14 +57,14 @@ NODE_ENV=development
 LOG_LEVEL=info
 PORT=3003
 
-# Database
-DATABASE_URL=postgres://postgres:postgres@localhost:5432/traffic-deaths_db
+# Database (uses shared 'atlas_dev' database in development)
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/atlas_dev
 # Or use individual settings:
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=postgres
 DB_PASSWORD=postgres
-DB_NAME=traffic-deaths_db
+DB_NAME=atlas_dev
 DB_SSL=false
 ```
 

@@ -14,8 +14,8 @@ services:
       - DB_PORT=5432
       - DB_USER=postgres
       - DB_PASSWORD=postgres
-      - DB_NAME=traffic-deaths_db
-      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/traffic-deaths_db
+      - DB_NAME=atlas
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/atlas
     depends_on:
       migrate:
         condition: service_completed_successfully
@@ -41,8 +41,8 @@ services:
       - DB_PORT=5432
       - DB_USER=postgres
       - DB_PASSWORD=postgres
-      - DB_NAME=traffic-deaths_db
-      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/traffic-deaths_db
+      - DB_NAME=atlas
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/atlas
     depends_on:
       postgres:
         condition: service_healthy
@@ -60,8 +60,8 @@ services:
       - DB_PORT=5432
       - DB_USER=postgres
       - DB_PASSWORD=postgres
-      - DB_NAME=traffic-deaths_db
-      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/traffic-deaths_db
+      - DB_NAME=atlas
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/atlas
     depends_on:
       migrate:
         condition: service_completed_successfully
@@ -74,7 +74,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=traffic-deaths_db
+      - POSTGRES_DB=atlas
     ports:
       - "5432:5432"
     volumes:

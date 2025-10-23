@@ -9,7 +9,7 @@ const EnvSchema = z.object({
 	DB_PORT: z.coerce.number().default(5432),
 	DB_USER: z.string().default("postgres"),
 	DB_PASSWORD: z.string().default("postgres"),
-	DB_NAME: z.string().default("traffic-deaths_db"),
+	DB_NAME: z.string().default("atlas_dev"),
 	DB_SSL: z.string().default("false"),
 });
 
