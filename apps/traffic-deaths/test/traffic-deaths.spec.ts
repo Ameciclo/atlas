@@ -53,4 +53,83 @@ describe("TrafficDeaths API", () => {
 		expect(data).toHaveProperty("year", 2023);
 		expect(data).toHaveProperty("message", "Total traffic deaths in 2023");
 	});
+
+	it("should return cyclist deaths for all years", async () => {
+		// Mock the database query chain for cyclist deaths and total deaths
+		// When no filters, the second query doesn't use .where()
+		mockSelect
+			.mockReturnValueOnce({
+				from: vi.fn().mockReturnValue({
+					where: vi.fn().mockResolvedValue([{ count: 12189 }]),
+				}),
+			})
+			.mockReturnValueOnce({
+				from: vi.fn().mockReturnValue({
+					where: vi.fn().mockResolvedValue([{ count: 320320 }]),
+				}),
+			});
+
+		const res = await app.request("/v1/deaths/cyclists");
+		expect(res.status).toBe(200);
+
+		const data = await res.json();
+		expect(data).toHaveProperty("total_cyclist_deaths", 12189);
+		expect(data).toHaveProperty("year", null);
+		expect(data).toHaveProperty("city_code", null);
+		expect(data).toHaveProperty("percentage_of_total", 3.81);
+		expect(data).toHaveProperty(
+			"message",
+			"Cyclist deaths (all years and cities)",
+		);
+	});
+
+	it("should return cyclist deaths filtered by year", async () => {
+		// Mock the database query chain for cyclist deaths and total deaths
+		mockSelect
+			.mockReturnValueOnce({
+				from: vi.fn().mockReturnValue({
+					where: vi.fn().mockResolvedValue([{ count: 1510 }]),
+				}),
+			})
+			.mockReturnValueOnce({
+				from: vi.fn().mockReturnValue({
+					where: vi.fn().mockResolvedValue([{ count: 35938 }]),
+				}),
+			});
+
+		const res = await app.request("/v1/deaths/cyclists?year=2023");
+		expect(res.status).toBe(200);
+
+		const data = await res.json();
+		expect(data).toHaveProperty("total_cyclist_deaths", 1510);
+		expect(data).toHaveProperty("year", 2023);
+		expect(data).toHaveProperty("city_code", null);
+		expect(data).toHaveProperty("percentage_of_total", 4.2);
+		expect(data).toHaveProperty("message", "Cyclist deaths in 2023");
+	});
+
+	it("should return cyclist deaths filtered by city", async () => {
+		// Mock the database query chain for cyclist deaths and total deaths
+		mockSelect
+			.mockReturnValueOnce({
+				from: vi.fn().mockReturnValue({
+					where: vi.fn().mockResolvedValue([{ count: 223 }]),
+				}),
+			})
+			.mockReturnValueOnce({
+				from: vi.fn().mockReturnValue({
+					where: vi.fn().mockResolvedValue([{ count: 4025 }]),
+				}),
+			});
+
+		const res = await app.request("/v1/deaths/cyclists?city_code=261160");
+		expect(res.status).toBe(200);
+
+		const data = await res.json();
+		expect(data).toHaveProperty("total_cyclist_deaths", 223);
+		expect(data).toHaveProperty("year", null);
+		expect(data).toHaveProperty("city_code", 261160);
+		expect(data).toHaveProperty("percentage_of_total", 5.54);
+		expect(data).toHaveProperty("message", "Cyclist deaths in city 261160");
+	});
 });
