@@ -28,7 +28,7 @@ export const trafficDeaths = pgTable(
 		contador: integer("contador"), // Número sequencial do registro
 		tipobito: varchar("tipobito", { length: 1 }), // 1=Fetal, 2=Não fetal
 		dtobito: date("dtobito").notNull(), // Data do óbito
-		horaobito: varchar("horaobito", { length: 4 }), // Hora no formato HHMM
+		horaobito: varchar("horaobito", { length: 10 }), // Hora no formato HHMM (alguns registros têm formato incorreto DDMMYYYY)
 
 		// ====================================================================
 		// DADOS DO FALECIDO
