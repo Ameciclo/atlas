@@ -25,6 +25,10 @@
 		"./schemas/test-db-service": {
 			"types": "./dist/schemas/test-db-service/index.d.ts",
 			"import": "./dist/schemas/test-db-service/index.js"
+		},
+		"./schemas/bicycle-racks": {
+			"types": "./dist/schemas/bicycle-racks/index.d.ts",
+			"import": "./dist/schemas/bicycle-racks/index.js"
 		}
 	},
 	"scripts": {
