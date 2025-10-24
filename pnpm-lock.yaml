@@ -192,7 +192,7 @@ importers:
         specifier: ^0.43.1
         version: 0.43.1(@types/pg@8.15.5)(pg@8.16.3)
       hono:
-        specifier: ^4.7.7
+        specifier: ^4.10.2
         version: 4.10.2
       hono-pino:
         specifier: ^0.8.0

@@ -18,18 +18,18 @@
 		"db:seed": "tsx src/db/seed.ts"
 	},
 	"dependencies": {
+		"@atlas/database": "workspace:*",
 		"@hono/node-server": "^1.14.1",
 		"@hono/zod-openapi": "^0.19.6",
 		"dotenv": "^16.5.0",
-		"hono": "^4.7.7",
+		"drizzle-orm": "^0.43.1",
+		"hono": "^4.10.2",
 		"hono-pino": "^0.8.0",
+		"pg": "^8.14.1",
 		"pino": "^9.6.0",
 		"pino-pretty": "^13.0.0",
 		"stoker": "^1.4.2",
-		"zod": "^3.24.4",
-		"@atlas/database": "workspace:*",
-		"drizzle-orm": "^0.43.1",
-		"pg": "^8.14.1"
+		"zod": "^3.24.4"
 	},
 	"devDependencies": {
 		"@atlas/typescript-config": "workspace:*",
