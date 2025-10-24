@@ -2,9 +2,11 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import app from "../src/app.js";
 import { db } from "../src/db/index.js";
 
-// Mock the database select method
+// Mock the database methods
 const mockSelect = vi.fn();
+const mockExecute = vi.fn();
 vi.spyOn(db, "select").mockImplementation(mockSelect);
+vi.spyOn(db, "execute").mockImplementation(mockExecute);
 
 describe("TrafficDeaths API", () => {
 	beforeEach(() => {
@@ -12,6 +14,9 @@ describe("TrafficDeaths API", () => {
 	});
 
 	it("should return health check (database disconnected in test)", async () => {
+		// Mock database execute to throw an error (simulating disconnection)
+		mockExecute.mockRejectedValue(new Error("Database connection failed"));
+
 		const res = await app.request("/health");
 		// Database is not connected in test environment, so expect 503
 		expect(res.status).toBe(503);
