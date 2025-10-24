@@ -1,0 +1,118 @@
+import { eq, and, gte, lte, sql } from "drizzle-orm";
+import * as HttpStatusCodes from "stoker/http-status-codes";
+import type { AppRouteHandler } from "../lib/types.js";
+import { db } from "../db/index.js";
+import { bicycleRacks } from "@atlas/database/schemas/bicycle-racks";
+import type { ListRoute, GetByIdRoute, NearbyRoute, StatsRoute, GeoJsonRoute } from "./bicycle-racks.routes.js";
+
+export const list: AppRouteHandler<ListRoute> = async (c) => {
+  const { covered, access, capacity_min, capacity_max, operator } = c.req.valid("query");
+  
+  const conditions = [];
+  if (covered) conditions.push(eq(bicycleRacks.covered, covered));
+  if (access) conditions.push(eq(bicycleRacks.access, access));
+  if (operator) conditions.push(eq(bicycleRacks.operator, operator));
+  if (capacity_min) conditions.push(sql`${bicycleRacks.capacity} ~ '^[0-9]+$' AND CAST(${bicycleRacks.capacity} AS INTEGER) >= ${capacity_min}`);
+  if (capacity_max) conditions.push(sql`${bicycleRacks.capacity} ~ '^[0-9]+$' AND CAST(${bicycleRacks.capacity} AS INTEGER) <= ${capacity_max}`);
+  
+  const racks = await db
+    .select()
+    .from(bicycleRacks)
+    .where(conditions.length > 0 ? and(...conditions) : undefined);
+    
+  return c.json(racks, HttpStatusCodes.OK);
+};
+
+export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
+  const { id } = c.req.valid("param");
+  
+  const rack = await db
+    .select()
+    .from(bicycleRacks)
+    .where(eq(bicycleRacks.id, id))
+    .limit(1);
+
+  if (rack.length === 0) {
+    return c.json(
+      { message: "Bicycle rack not found" },
+      HttpStatusCodes.NOT_FOUND,
+    );
+  }
+
+  return c.json(rack[0], HttpStatusCodes.OK);
+};
+
+export const nearby: AppRouteHandler<NearbyRoute> = async (c) => {
+  const { lat, lng, radius } = c.req.valid("query");
+  
+  // Haversine formula for distance calculation
+  const racks = await db.execute(sql`
+    SELECT *, 
+      (6371000 * acos(
+        cos(radians(${lat})) * 
+        cos(radians(latitude)) * 
+        cos(radians(longitude) - radians(${lng})) + 
+        sin(radians(${lat})) * 
+        sin(radians(latitude))
+      )) as distance
+    FROM bicycle_racks 
+    WHERE latitude IS NOT NULL AND longitude IS NOT NULL
+    HAVING distance <= ${radius}
+    ORDER BY distance
+  `);
+  
+  return c.json(racks.rows, HttpStatusCodes.OK);
+};
+
+export const stats: AppRouteHandler<StatsRoute> = async (c) => {
+  const totalResult = await db.execute(sql`SELECT COUNT(*) as total FROM bicycle_racks`);
+  const coveredResult = await db.execute(sql`SELECT COUNT(*) as covered FROM bicycle_racks WHERE covered = 'yes'`);
+  const publicResult = await db.execute(sql`SELECT COUNT(*) as public_access FROM bicycle_racks WHERE access = 'yes'`);
+  const avgCapacityResult = await db.execute(sql`SELECT COALESCE(AVG(CAST(capacity AS INTEGER)), 0) as avg_capacity FROM bicycle_racks WHERE capacity ~ '^[0-9]+$'`);
+  const operatorStats = await db.execute(sql`SELECT operator, COUNT(*) as count FROM bicycle_racks WHERE operator IS NOT NULL GROUP BY operator`);
+  
+  const byOperator: Record<string, number> = {};
+  for (const row of operatorStats.rows) {
+    byOperator[row.operator as string] = Number(row.count);
+  }
+  
+  return c.json({
+    total: Number(totalResult.rows[0].total),
+    covered: Number(coveredResult.rows[0].covered),
+    public_access: Number(publicResult.rows[0].public_access),
+    avg_capacity: Number(avgCapacityResult.rows[0].avg_capacity) || 0,
+    by_operator: byOperator,
+  }, HttpStatusCodes.OK);
+};
+
+export const geojson: AppRouteHandler<GeoJsonRoute> = async (c) => {
+  const racks = await db
+    .select()
+    .from(bicycleRacks)
+    .where(and(
+      sql`latitude IS NOT NULL`,
+      sql`longitude IS NOT NULL`
+    ));
+  
+  const features = racks.map(rack => ({
+    type: "Feature" as const,
+    properties: {
+      id: rack.id,
+      name: rack.name,
+      capacity: rack.capacity,
+      covered: rack.covered,
+      access: rack.access,
+      operator: rack.operator,
+      bicycle_parking: rack.bicycle_parking,
+    },
+    geometry: {
+      type: "Point" as const,
+      coordinates: [Number(rack.longitude), Number(rack.latitude)],
+    },
+  }));
+  
+  return c.json({
+    type: "FeatureCollection",
+    features,
+  }, HttpStatusCodes.OK);
+};
