@@ -13,14 +13,20 @@ function parseCSV(content: string): Record<string, string | null>[] {
 	if (lines.length < 2) return [];
 
 	// Parse header
-	const header = lines[0]
+	const firstLine = lines[0];
+	if (!firstLine) return [];
+
+	const header = firstLine
 		.split(",")
 		.map((h) => h.replace(/^"|"$/g, "").toLowerCase());
 
 	const records: Record<string, string | null>[] = [];
 
 	for (let i = 1; i < lines.length; i++) {
-		const line = lines[i].trim();
+		const currentLine = lines[i];
+		if (!currentLine) continue;
+
+		const line = currentLine.trim();
 		if (!line) continue;
 
 		const values: (string | null)[] = [];
@@ -49,7 +55,11 @@ function parseCSV(content: string): Record<string, string | null>[] {
 		if (values.length === header.length) {
 			const record: Record<string, string | null> = {};
 			for (let k = 0; k < header.length; k++) {
-				record[header[k]] = values[k];
+				const headerKey = header[k];
+				const value = values[k];
+				if (headerKey !== undefined) {
+					record[headerKey] = value ?? null;
+				}
 			}
 			records.push(record);
 		}
@@ -63,9 +73,13 @@ function convertToDbRecord(
 	csvRecord: Record<string, string | null>,
 	year: number,
 	batchId: string,
-) {
+): {
+	dtobito: string;
+	causabas: string;
+	[key: string]: string | number | null;
+} | null {
 	// Helper to parse date in DDMMYYYY format
-	const parseDate = (dateStr: string | null): string | null => {
+	const parseDate = (dateStr: string | null | undefined): string | null => {
 		if (!dateStr || dateStr.length !== 8) return null;
 		const day = dateStr.substring(0, 2);
 		const month = dateStr.substring(2, 4);
@@ -74,74 +88,83 @@ function convertToDbRecord(
 	};
 
 	// Helper to parse integer
-	const parseInteger = (value: string | null): number | null => {
+	const parseInteger = (value: string | null | undefined): number | null => {
 		if (!value) return null;
 		const num = Number.parseInt(value, 10);
 		return Number.isNaN(num) ? null : num;
 	};
 
+	// Parse required fields
+	const dtobito = parseDate(csvRecord.dtobito);
+	const causabas = csvRecord.causabas;
+
+	// Skip records without required fields
+	if (!dtobito || !causabas) {
+		return null;
+	}
+
 	return {
 		// Identificação do óbito
 		contador: parseInteger(csvRecord.contador),
-		tipobito: csvRecord.tipobito,
-		dtobito: parseDate(csvRecord.dtobito),
-		horaobito: csvRecord.horaobito,
+		tipobito: csvRecord.tipobito ?? null,
+		dtobito,
+		horaobito: csvRecord.horaobito ?? null,
 
 		// Dados do falecido
-		natural: csvRecord.natural,
+		natural: csvRecord.natural ?? null,
 		codmunnatu: parseInteger(csvRecord.codmunnatu),
 		dtnasc: parseDate(csvRecord.dtnasc),
 		idade: parseInteger(csvRecord.idade),
-		sexo: csvRecord.sexo,
-		racacor: csvRecord.racacor,
-		estciv: csvRecord.estciv,
+		sexo: csvRecord.sexo ?? null,
+		racacor: csvRecord.racacor ?? null,
+		estciv: csvRecord.estciv ?? null,
 
 		// Escolaridade e ocupação
-		esc: csvRecord.esc,
-		esc2010: csvRecord.esc2010,
-		seriescfal: csvRecord.seriescfal,
-		ocup: csvRecord.ocup,
+		esc: csvRecord.esc ?? null,
+		esc2010: csvRecord.esc2010 ?? null,
+		seriescfal: csvRecord.seriescfal ?? null,
+		ocup: csvRecord.ocup ?? null,
 
 		// Localização
 		codmunres: parseInteger(csvRecord.codmunres),
-		lococor: csvRecord.lococor,
-		codestab: csvRecord.codestab,
-		estabdescr: csvRecord.estabdescr,
+		lococor: csvRecord.lococor ?? null,
+		codestab: csvRecord.codestab ?? null,
+		estabdescr: csvRecord.estabdescr ?? null,
 		codmunocor: parseInteger(csvRecord.codmunocor),
 
 		// Causas da morte
-		linhaa: csvRecord.linhaa,
-		linhab: csvRecord.linhab,
-		linhac: csvRecord.linhac,
-		linhad: csvRecord.linhad,
-		linhaii: csvRecord.linhaii,
-		causabas: csvRecord.causabas || "UNKNOWN", // Required field
-		causabas_o: csvRecord.causabas_o,
-		cb_pre: csvRecord.cb_pre,
+		linhaa: csvRecord.linhaa ?? null,
+		linhab: csvRecord.linhab ?? null,
+		linhac: csvRecord.linhac ?? null,
+		linhad: csvRecord.linhad ?? null,
+		linhaii: csvRecord.linhaii ?? null,
+		causabas,
+		causabas_o: csvRecord.causabas_o ?? null,
+		cb_pre: csvRecord.cb_pre ?? null,
 
 		// Circunstâncias do óbito
-		circobito: csvRecord.circobito,
-		acidtrab: csvRecord.acidtrab,
-		fonte: csvRecord.fonte,
-		origem: csvRecord.origem,
+		circobito: csvRecord.circobito ?? null,
+		acidtrab: csvRecord.acidtrab ?? null,
+		fonte: csvRecord.fonte ?? null,
+		origem: csvRecord.origem ?? null,
 
 		// Procedimentos e investigação
-		assistmed: csvRecord.assistmed,
-		exame: csvRecord.exame,
-		cirurgia: csvRecord.cirurgia,
-		necropsia: csvRecord.necropsia,
+		assistmed: csvRecord.assistmed ?? null,
+		exame: csvRecord.exame ?? null,
+		cirurgia: csvRecord.cirurgia ?? null,
+		necropsia: csvRecord.necropsia ?? null,
 		dtinvestig: parseDate(csvRecord.dtinvestig),
 		dtcadastro: parseDate(csvRecord.dtcadastro),
 		dtrecebim: parseDate(csvRecord.dtrecebim),
 
 		// Controle e versão
-		numerolote: csvRecord.numerolote,
-		tppos: csvRecord.tppos,
-		atestante: csvRecord.atestante,
-		stcodifica: csvRecord.stcodifica,
-		codificado: csvRecord.codificado,
-		versaosist: csvRecord.versaosist,
-		versaoscb: csvRecord.versaoscb,
+		numerolote: csvRecord.numerolote ?? null,
+		tppos: csvRecord.tppos ?? null,
+		atestante: csvRecord.atestante ?? null,
+		stcodifica: csvRecord.stcodifica ?? null,
+		codificado: csvRecord.codificado ?? null,
+		versaosist: csvRecord.versaosist ?? null,
+		versaoscb: csvRecord.versaoscb ?? null,
 
 		// Metadados internos
 		data_year: year,
@@ -167,9 +190,13 @@ async function seedYear(year: number, batchId: string) {
 	const batchSize = 100;
 	for (let i = 0; i < records.length; i += batchSize) {
 		const batch = records.slice(i, i + batchSize);
-		const dbRecords = batch.map((record) =>
-			convertToDbRecord(record, year, batchId),
-		);
+		const dbRecords = batch
+			.map((record) => convertToDbRecord(record, year, batchId))
+			.filter(
+				(record): record is NonNullable<typeof record> => record !== null,
+			);
+
+		if (dbRecords.length === 0) continue;
 
 		try {
 			await db.insert(trafficDeaths).values(dbRecords);

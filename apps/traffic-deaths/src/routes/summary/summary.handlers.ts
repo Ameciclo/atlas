@@ -10,32 +10,23 @@ export const getSummary: AppRouteHandler<typeof routes.getSummary> = async (
 ) => {
 	const { year } = c.req.valid("query");
 
-	try {
-		const result = year
-			? await db
-					.select({ count: count() })
-					.from(trafficDeaths)
-					.where(eq(trafficDeaths.data_year, year))
-			: await db.select({ count: count() }).from(trafficDeaths);
+	const result = year
+		? await db
+				.select({ count: count() })
+				.from(trafficDeaths)
+				.where(eq(trafficDeaths.data_year, year))
+		: await db.select({ count: count() }).from(trafficDeaths);
 
-		const total = result[0]?.count ?? 0;
+	const total = result[0]?.count ?? 0;
 
-		return c.json({
+	return c.json(
+		{
 			total_deaths: total,
 			year: year ?? null,
 			message: year
 				? `Total traffic deaths in ${year}`
 				: "Total traffic deaths (all years)",
-		});
-	} catch (error) {
-		c.get("logger").error("Error fetching summary", { error });
-		return c.json(
-			{
-				total_deaths: 0,
-				year: year ?? null,
-				message: "Error fetching data",
-			},
-			HttpStatusCodes.INTERNAL_SERVER_ERROR,
-		);
-	}
+		},
+		HttpStatusCodes.OK,
+	);
 };
