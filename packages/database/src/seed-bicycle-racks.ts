@@ -1,15 +1,15 @@
 import "dotenv/config";
-import { readFileSync } from "fs";
-import { join } from "path";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import { bicycleRacks } from "./schemas/bicycle-racks/index.js";
 
 interface GeoJSONFeature {
 	type: "Feature";
-	properties: Record<string, any>;
+	properties: Record<string, unknown>;
 	geometry: {
 		type: "Point" | "LineString" | "Polygon" | "MultiPolygon";
-		coordinates: any;
+		coordinates: unknown;
 	};
 	id: string;
 }
@@ -26,14 +26,15 @@ function getPointFromGeometry(
 		case "Point":
 			return geometry.coordinates as [number, number];
 
-		case "LineString":
+		case "LineString": {
 			// Pega o ponto médio da linha
 			const coords = geometry.coordinates as [number, number][];
 			if (coords.length === 0) return null;
 			const midIndex = Math.floor(coords.length / 2);
 			return coords[midIndex] || null;
+		}
 
-		case "Polygon":
+		case "Polygon": {
 			// Calcula centroide simples do primeiro anel
 			const ring = geometry.coordinates[0] as [number, number][];
 			let sumLng = 0,
@@ -43,6 +44,7 @@ function getPointFromGeometry(
 				sumLat += lat;
 			}
 			return [sumLng / ring.length, sumLat / ring.length];
+		}
 
 		default:
 			return null;
