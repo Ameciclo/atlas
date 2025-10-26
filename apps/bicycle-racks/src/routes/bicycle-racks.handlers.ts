@@ -45,19 +45,19 @@ export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
 export const nearby: AppRouteHandler<NearbyRoute> = async (c) => {
   const { lat, lng, radius } = c.req.valid("query");
   
-  // Haversine formula for distance calculation
+  // Using PostGIS for distance calculation
   const racks = await db.execute(sql`
     SELECT *, 
-      (6371000 * acos(
-        cos(radians(${lat})) * 
-        cos(radians(latitude)) * 
-        cos(radians(longitude) - radians(${lng})) + 
-        sin(radians(${lat})) * 
-        sin(radians(latitude))
-      )) as distance
+      ST_Distance(
+        coordinates::geography, 
+        ST_SetSRID(ST_MakePoint(${lng}, ${lat}), 4326)::geography
+      ) as distance
     FROM bicycle_racks 
-    WHERE latitude IS NOT NULL AND longitude IS NOT NULL
-    HAVING distance <= ${radius}
+    WHERE coordinates IS NOT NULL
+      AND ST_Distance(
+        coordinates::geography, 
+        ST_SetSRID(ST_MakePoint(${lng}, ${lat}), 4326)::geography
+      ) <= ${radius}
     ORDER BY distance
   `);
   
@@ -86,15 +86,15 @@ export const stats: AppRouteHandler<StatsRoute> = async (c) => {
 };
 
 export const geojson: AppRouteHandler<GeoJsonRoute> = async (c) => {
-  const racks = await db
-    .select()
-    .from(bicycleRacks)
-    .where(and(
-      sql`latitude IS NOT NULL`,
-      sql`longitude IS NOT NULL`
-    ));
+  const racks = await db.execute(sql`
+    SELECT *, 
+      ST_X(coordinates) as longitude,
+      ST_Y(coordinates) as latitude
+    FROM bicycle_racks 
+    WHERE coordinates IS NOT NULL
+  `);
   
-  const features = racks.map(rack => ({
+  const features = racks.rows.map(rack => ({
     type: "Feature" as const,
     properties: {
       id: rack.id,
