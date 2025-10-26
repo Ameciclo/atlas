@@ -15,20 +15,6 @@
       "when": 1761053268476,
       "tag": "0001_purple_gambit",
       "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1761341295366,
-      "tag": "0002_simple_karnak",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1761342723563,
-      "tag": "0003_flat_plazm",
-      "breakpoints": true
     }
   ]
 }
