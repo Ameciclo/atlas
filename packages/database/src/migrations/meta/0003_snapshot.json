@@ -1,614 +1,595 @@
 {
-  "id": "a1bfc8ba-b9d7-4cd8-957b-937170406f5b",
-  "prevId": "29e0610d-01bc-4aae-ac87-f662a4bcc0e7",
-  "version": "7",
-  "dialect": "postgresql",
-  "tables": {
-    "public.bicycle_racks": {
-      "name": "bicycle_racks",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "osm_id": {
-          "name": "osm_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "osm_type": {
-          "name": "osm_type",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "coordinates": {
-          "name": "coordinates",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "name": {
-          "name": "name",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "description": {
-          "name": "description",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "amenity": {
-          "name": "amenity",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'bicycle_parking'"
-        },
-        "bicycle_parking": {
-          "name": "bicycle_parking",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "capacity": {
-          "name": "capacity",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "access": {
-          "name": "access",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "covered": {
-          "name": "covered",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "fee": {
-          "name": "fee",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "supervised": {
-          "name": "supervised",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "lit": {
-          "name": "lit",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "operator": {
-          "name": "operator",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "operator_type": {
-          "name": "operator_type",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "building": {
-          "name": "building",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "level": {
-          "name": "level",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "surface": {
-          "name": "surface",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "addr_city": {
-          "name": "addr_city",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "addr_street": {
-          "name": "addr_street",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "addr_housenumber": {
-          "name": "addr_housenumber",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "addr_suburb": {
-          "name": "addr_suburb",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "addr_postcode": {
-          "name": "addr_postcode",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "opening_hours": {
-          "name": "opening_hours",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "payment_none": {
-          "name": "payment_none",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "ref": {
-          "name": "ref",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "source": {
-          "name": "source",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "source_date": {
-          "name": "source_date",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wikidata": {
-          "name": "wikidata",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wikipedia": {
-          "name": "wikipedia",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "bicycle_racks_osm_id_unique": {
-          "name": "bicycle_racks_osm_id_unique",
-          "columns": [
-            "osm_id"
-          ],
-          "nullsNotDistinct": false
-        }
-      },
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.counting_events": {
-      "name": "counting_events",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "location_id": {
-          "name": "location_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "counting_date": {
-          "name": "counting_date",
-          "type": "date",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "start_time": {
-          "name": "start_time",
-          "type": "time",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "end_time": {
-          "name": "end_time",
-          "type": "time",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "total_cyclists": {
-          "name": "total_cyclists",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "default": 0
-        },
-        "max_hour_cyclists": {
-          "name": "max_hour_cyclists",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "default": 0
-        },
-        "weather_conditions": {
-          "name": "weather_conditions",
-          "type": "jsonb",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "notes": {
-          "name": "notes",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "counting_events_location_id_counting_locations_id_fk": {
-          "name": "counting_events_location_id_counting_locations_id_fk",
-          "tableFrom": "counting_events",
-          "columnsFrom": [
-            "location_id"
-          ],
-          "tableTo": "counting_locations",
-          "columnsTo": [
-            "id"
-          ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.counting_locations": {
-      "name": "counting_locations",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "name": {
-          "name": "name",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "city": {
-          "name": "city",
-          "type": "varchar(100)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "state": {
-          "name": "state",
-          "type": "varchar(2)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "latitude": {
-          "name": "latitude",
-          "type": "numeric(10, 7)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "longitude": {
-          "name": "longitude",
-          "type": "numeric(10, 7)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "metadata": {
-          "name": "metadata",
-          "type": "jsonb",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.counting_sessions": {
-      "name": "counting_sessions",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "event_id": {
-          "name": "event_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "session_label": {
-          "name": "session_label",
-          "type": "varchar(10)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "start_time": {
-          "name": "start_time",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "end_time": {
-          "name": "end_time",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "total_cyclists": {
-          "name": "total_cyclists",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "default": 0
-        },
-        "characteristics": {
-          "name": "characteristics",
-          "type": "jsonb",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "counting_sessions_event_id_counting_events_id_fk": {
-          "name": "counting_sessions_event_id_counting_events_id_fk",
-          "tableFrom": "counting_sessions",
-          "columnsFrom": [
-            "event_id"
-          ],
-          "tableTo": "counting_events",
-          "columnsTo": [
-            "id"
-          ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.session_movements": {
-      "name": "session_movements",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "session_id": {
-          "name": "session_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "from_direction": {
-          "name": "from_direction",
-          "type": "direction",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "to_direction": {
-          "name": "to_direction",
-          "type": "direction",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "count": {
-          "name": "count",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "default": 0
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "session_movements_session_id_counting_sessions_id_fk": {
-          "name": "session_movements_session_id_counting_sessions_id_fk",
-          "tableFrom": "session_movements",
-          "columnsFrom": [
-            "session_id"
-          ],
-          "tableTo": "counting_sessions",
-          "columnsTo": [
-            "id"
-          ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.cyclist_profiles": {
-      "name": "cyclist_profiles",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "data": {
-          "name": "data",
-          "type": "jsonb",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "metadata": {
-          "name": "metadata",
-          "type": "jsonb",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    }
-  },
-  "enums": {
-    "public.direction": {
-      "name": "direction",
-      "schema": "public",
-      "values": [
-        "north",
-        "east",
-        "south",
-        "west"
-      ]
-    }
-  },
-  "schemas": {},
-  "views": {},
-  "sequences": {},
-  "roles": {},
-  "policies": {},
-  "_meta": {
-    "columns": {},
-    "schemas": {},
-    "tables": {}
-  }
+	"id": "a1bfc8ba-b9d7-4cd8-957b-937170406f5b",
+	"prevId": "29e0610d-01bc-4aae-ac87-f662a4bcc0e7",
+	"version": "7",
+	"dialect": "postgresql",
+	"tables": {
+		"public.bicycle_racks": {
+			"name": "bicycle_racks",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"osm_id": {
+					"name": "osm_id",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"osm_type": {
+					"name": "osm_type",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"coordinates": {
+					"name": "coordinates",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"name": {
+					"name": "name",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"description": {
+					"name": "description",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"amenity": {
+					"name": "amenity",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'bicycle_parking'"
+				},
+				"bicycle_parking": {
+					"name": "bicycle_parking",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"capacity": {
+					"name": "capacity",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"access": {
+					"name": "access",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"covered": {
+					"name": "covered",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"fee": {
+					"name": "fee",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"supervised": {
+					"name": "supervised",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"lit": {
+					"name": "lit",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"operator": {
+					"name": "operator",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"operator_type": {
+					"name": "operator_type",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"building": {
+					"name": "building",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"level": {
+					"name": "level",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"surface": {
+					"name": "surface",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"addr_city": {
+					"name": "addr_city",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"addr_street": {
+					"name": "addr_street",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"addr_housenumber": {
+					"name": "addr_housenumber",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"addr_suburb": {
+					"name": "addr_suburb",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"addr_postcode": {
+					"name": "addr_postcode",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"opening_hours": {
+					"name": "opening_hours",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"payment_none": {
+					"name": "payment_none",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"ref": {
+					"name": "ref",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"source": {
+					"name": "source",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"source_date": {
+					"name": "source_date",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"wikidata": {
+					"name": "wikidata",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"wikipedia": {
+					"name": "wikipedia",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {
+				"bicycle_racks_osm_id_unique": {
+					"name": "bicycle_racks_osm_id_unique",
+					"columns": ["osm_id"],
+					"nullsNotDistinct": false
+				}
+			},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.counting_events": {
+			"name": "counting_events",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"location_id": {
+					"name": "location_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"counting_date": {
+					"name": "counting_date",
+					"type": "date",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"start_time": {
+					"name": "start_time",
+					"type": "time",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"end_time": {
+					"name": "end_time",
+					"type": "time",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"total_cyclists": {
+					"name": "total_cyclists",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"max_hour_cyclists": {
+					"name": "max_hour_cyclists",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"weather_conditions": {
+					"name": "weather_conditions",
+					"type": "jsonb",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"notes": {
+					"name": "notes",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"counting_events_location_id_counting_locations_id_fk": {
+					"name": "counting_events_location_id_counting_locations_id_fk",
+					"tableFrom": "counting_events",
+					"columnsFrom": ["location_id"],
+					"tableTo": "counting_locations",
+					"columnsTo": ["id"],
+					"onUpdate": "no action",
+					"onDelete": "cascade"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.counting_locations": {
+			"name": "counting_locations",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"name": {
+					"name": "name",
+					"type": "varchar(255)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"city": {
+					"name": "city",
+					"type": "varchar(100)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"state": {
+					"name": "state",
+					"type": "varchar(2)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"latitude": {
+					"name": "latitude",
+					"type": "numeric(10, 7)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"longitude": {
+					"name": "longitude",
+					"type": "numeric(10, 7)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"metadata": {
+					"name": "metadata",
+					"type": "jsonb",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.counting_sessions": {
+			"name": "counting_sessions",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"event_id": {
+					"name": "event_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"session_label": {
+					"name": "session_label",
+					"type": "varchar(10)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"start_time": {
+					"name": "start_time",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"end_time": {
+					"name": "end_time",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"total_cyclists": {
+					"name": "total_cyclists",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"characteristics": {
+					"name": "characteristics",
+					"type": "jsonb",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"counting_sessions_event_id_counting_events_id_fk": {
+					"name": "counting_sessions_event_id_counting_events_id_fk",
+					"tableFrom": "counting_sessions",
+					"columnsFrom": ["event_id"],
+					"tableTo": "counting_events",
+					"columnsTo": ["id"],
+					"onUpdate": "no action",
+					"onDelete": "cascade"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.session_movements": {
+			"name": "session_movements",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"session_id": {
+					"name": "session_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"from_direction": {
+					"name": "from_direction",
+					"type": "direction",
+					"typeSchema": "public",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"to_direction": {
+					"name": "to_direction",
+					"type": "direction",
+					"typeSchema": "public",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"count": {
+					"name": "count",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"session_movements_session_id_counting_sessions_id_fk": {
+					"name": "session_movements_session_id_counting_sessions_id_fk",
+					"tableFrom": "session_movements",
+					"columnsFrom": ["session_id"],
+					"tableTo": "counting_sessions",
+					"columnsTo": ["id"],
+					"onUpdate": "no action",
+					"onDelete": "cascade"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.cyclist_profiles": {
+			"name": "cyclist_profiles",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"data": {
+					"name": "data",
+					"type": "jsonb",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"metadata": {
+					"name": "metadata",
+					"type": "jsonb",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		}
+	},
+	"enums": {
+		"public.direction": {
+			"name": "direction",
+			"schema": "public",
+			"values": ["north", "east", "south", "west"]
+		}
+	},
+	"schemas": {},
+	"views": {},
+	"sequences": {},
+	"roles": {},
+	"policies": {},
+	"_meta": {
+		"columns": {},
+		"schemas": {},
+		"tables": {}
+	}
 }

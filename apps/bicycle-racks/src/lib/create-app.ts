@@ -28,6 +28,8 @@ export default function createApp(): OpenAPIHono<AppBindings> {
 	return app;
 }
 
-export function createTestApp<S extends import("hono").Schema>(router: AppOpenAPI<S>) {
+export function createTestApp<S extends import("hono").Schema>(
+	router: AppOpenAPI<S>,
+) {
 	return createApp().route("/", router);
 }
