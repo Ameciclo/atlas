@@ -15,6 +15,20 @@
       "when": 1761053268476,
       "tag": "0001_purple_gambit",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1761486061056,
+      "tag": "0002_rapid_rattler",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1761486100730,
+      "tag": "0003_clammy_raza",
+      "breakpoints": true
     }
   ]
 }

@@ -1,99 +1,134 @@
+import "dotenv/config";
 import { readFileSync } from "fs";
 import { join } from "path";
-import { createConnectedDatabase, closeDatabase } from "./connection.js";
+import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import { bicycleRacks } from "./schemas/bicycle-racks/index.js";
 
-async function seedBicycleRacks() {
-  console.log("🚴 Seeding bicycle racks...");
-  
+interface GeoJSONFeature {
+  type: "Feature";
+  properties: Record<string, any>;
+  geometry: {
+    type: "Point" | "LineString" | "Polygon" | "MultiPolygon";
+    coordinates: any;
+  };
+  id: string;
+}
+
+interface GeoJSONFeatureCollection {
+  type: "FeatureCollection";
+  features: GeoJSONFeature[];
+}
+
+function getPointFromGeometry(geometry: GeoJSONFeature["geometry"]): [number, number] | null {
+  switch (geometry.type) {
+    case "Point":
+      return geometry.coordinates as [number, number];
+    
+    case "LineString":
+      // Pega o ponto médio da linha
+      const coords = geometry.coordinates as [number, number][];
+      const midIndex = Math.floor(coords.length / 2);
+      return coords[midIndex];
+    
+    case "Polygon":
+      // Calcula centroide simples do primeiro anel
+      const ring = geometry.coordinates[0] as [number, number][];
+      let sumLng = 0, sumLat = 0;
+      for (const [lng, lat] of ring) {
+        sumLng += lng;
+        sumLat += lat;
+      }
+      return [sumLng / ring.length, sumLat / ring.length];
+    
+    default:
+      return null;
+  }
+}
+
+async function seedBicycleRacksFromGeoJSON() {
   const db = await createConnectedDatabase();
-
+  
   try {
-    // Ler o arquivo GPX (temporariamente usando dados mock)
-    // const gpxPath = join(process.cwd(), "../../apps/bicycle-racks/src/db/bicicletarios-brasil.gpx");
-    // TODO: Implementar parser GPX ou usar dados GeoJSON
-    
-    // Dados mock para teste
-    const mockData = {
-      features: [
-        {
-          properties: {
-            "@id": "node/1120614474",
-            amenity: "bicycle_parking",
-            name: "bicicletário da CHESF",
-            capacity: "30",
-            covered: "no",
-            access: "permissive"
-          },
-          geometry: {
-            type: "Point",
-            coordinates: [-34.9305952, -8.0653027]
-          }
-        }
-      ]
-    };
-    
-    const geojsonData = mockData;
+    // Lê o arquivo GeoJSON
+    const geojsonPath = join(process.cwd(), "../../apps/bicycle-racks/src/db/bicicletarios-brasil.geojson");
+    const geojsonData = readFileSync(geojsonPath, "utf-8");
+    const geojson: GeoJSONFeatureCollection = JSON.parse(geojsonData);
 
-    const bicycleRacksData = geojsonData.features
-      .filter((feature: any) => feature.properties.amenity === "bicycle_parking")
-      .map((feature: any) => {
-        const props = feature.properties;
-        const coords = feature.geometry.coordinates;
-        
-        return {
-          osm_id: props["@id"],
-          osm_type: props["@id"]?.startsWith("node/") ? "node" : "way",
-          name: props.name || null,
-          description: props.description || null,
-          amenity: props.amenity,
-          bicycle_parking: props.bicycle_parking || null,
-          capacity: props.capacity || null,
-          access: props.access || null,
-          covered: props.covered || null,
-          fee: props.fee || null,
-          supervised: props.supervised || null,
-          lit: props.lit || null,
-          operator: props.operator || null,
-          operator_type: props["operator:type"] || null,
-          ref: props.ref || null,
-          level: props.level || null,
-          surface: props.surface || null,
-          building: props.building || null,
-          payment_none: props["payment:none"] || null,
-          source: props.source || null,
-          source_date: props["source:date"] || null,
-          latitude: feature.geometry.type === "Point" ? coords[1] : null,
-          longitude: feature.geometry.type === "Point" ? coords[0] : null,
-          metadata: {
-            geometry_type: feature.geometry.type,
-            original_properties: props
-          }
-        };
+    console.log(`📍 Processando ${geojson.features.length} features do GeoJSON...`);
+
+    const bicycleRacksData = [];
+
+    for (const feature of geojson.features) {
+      const props = feature.properties;
+      
+      // Só processa se tem amenity=bicycle_parking ou bicycle_parking definido
+      if (!props.amenity?.includes("bicycle_parking") && !props.bicycle_parking) {
+        continue;
+      }
+
+      // Extrai coordenadas (ponto ou centroide)
+      const point = getPointFromGeometry(feature.geometry);
+      if (!point) continue;
+
+      const [lng, lat] = point;
+      const wktPoint = `POINT(${lng} ${lat})`;
+
+      bicycleRacksData.push({
+        osm_id: props["@id"] || feature.id,
+        osm_type: props["@id"]?.split("/")[0] || "unknown",
+        coordinates: wktPoint,
+        name: props.name || null,
+        description: props.description || null,
+        amenity: props.amenity || "bicycle_parking",
+        bicycle_parking: props.bicycle_parking || null,
+        capacity: props.capacity || null,
+        access: props.access || null,
+        covered: props.covered || null,
+        fee: props.fee || null,
+        supervised: props.supervised || null,
+        lit: props.lit || null,
+        operator: props.operator || null,
+        operator_type: props.operator_type || null,
+        building: props.building || null,
+        level: props.level || null,
+        surface: props.surface || null,
+        addr_city: props["addr:city"] || null,
+        addr_street: props["addr:street"] || null,
+        addr_housenumber: props["addr:housenumber"] || null,
+        addr_suburb: props["addr:suburb"] || null,
+        addr_postcode: props["addr:postcode"] || null,
+        opening_hours: props.opening_hours || null,
+        payment_none: props.payment_none || null,
+        ref: props.ref || null,
+        source: props.source || null,
+        source_date: props.source_date || null,
+        wikidata: props.wikidata || null,
+        wikipedia: props.wikipedia || null,
       });
+    }
 
-    // Inserir dados
-    await db.insert(bicycleRacks).values(bicycleRacksData);
-    
-    console.log(`✅ Inserted ${bicycleRacksData.length} bicycle racks`);
+    console.log(`🚲 Inserindo ${bicycleRacksData.length} bicicletários...`);
+
+    // Insere em lotes
+    const batchSize = 100;
+    for (let i = 0; i < bicycleRacksData.length; i += batchSize) {
+      const batch = bicycleRacksData.slice(i, i + batchSize);
+      await db.insert(bicycleRacks).values(batch);
+      console.log(`✅ Inserido lote ${Math.floor(i / batchSize) + 1}/${Math.ceil(bicycleRacksData.length / batchSize)}`);
+    }
+
+    console.log(`🎉 Seed concluído! ${bicycleRacksData.length} bicicletários inseridos.`);
   } catch (error) {
-    console.error("❌ Error seeding bicycle racks:", error);
-    throw error;
+    console.error("❌ Erro no seed:", error);
+    process.exit(1);
   } finally {
     await closeDatabase(db);
   }
 }
 
+// Executa se chamado diretamente
 if (import.meta.url === `file://${process.argv[1]}`) {
-  seedBicycleRacks()
-    .then(() => {
-      console.log("🎉 Bicycle racks seeding completed!");
-      process.exit(0);
-    })
-    .catch((error) => {
-      console.error("💥 Seeding failed:", error);
-      process.exit(1);
-    });
+  seedBicycleRacksFromGeoJSON();
 }
 
-export { seedBicycleRacks };
+export { seedBicycleRacksFromGeoJSON };
