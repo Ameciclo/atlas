@@ -18,7 +18,7 @@ const geoJsonSchema = z.object({
 	features: z.array(
 		z.object({
 			type: z.literal("Feature"),
-			properties: z.record(z.any()),
+			properties: z.record(z.unknown()),
 			geometry: z.object({
 				type: z.literal("Point"),
 				coordinates: z.array(z.number()),

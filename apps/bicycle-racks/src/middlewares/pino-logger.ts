@@ -15,6 +15,6 @@ export function createPinoLogger() {
 				}),
 	};
 
-	const loggerInstance = pino.pino(opts);
+	const loggerInstance = pino(opts);
 	return pinoLogger({ pino: loggerInstance });
 }

@@ -74,7 +74,7 @@ export const nearby: AppRouteHandler<NearbyRoute> = async (c) => {
     ORDER BY distance
   `);
 
-	return c.json(racks.rows, HttpStatusCodes.OK);
+	return c.json(racks.rows as any, HttpStatusCodes.OK);
 };
 
 export const stats: AppRouteHandler<StatsRoute> = async (c) => {

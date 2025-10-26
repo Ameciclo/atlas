@@ -41,7 +41,7 @@ function getPointFromGeometry(
 			let sumLng = 0,
 				sumLat = 0;
 			for (const coord of ring) {
-				if (coord && coord.length >= 2) {
+				if (coord && coord.length >= 2 && typeof coord[0] === 'number' && typeof coord[1] === 'number') {
 					sumLng += coord[0];
 					sumLat += coord[1];
 				}
