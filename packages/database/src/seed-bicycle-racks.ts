@@ -6,10 +6,10 @@ import { bicycleRacks } from "./schemas/bicycle-racks/index.js";
 
 interface GeoJSONFeature {
 	type: "Feature";
-	properties: Record<string, unknown>;
+	properties: Record<string, string | number | boolean | null>;
 	geometry: {
 		type: "Point" | "LineString" | "Polygon" | "MultiPolygon";
-		coordinates: unknown;
+		coordinates: number[] | number[][] | number[][][];
 	};
 	id: string;
 }
@@ -36,12 +36,15 @@ function getPointFromGeometry(
 
 		case "Polygon": {
 			// Calcula centroide simples do primeiro anel
-			const ring = geometry.coordinates[0] as [number, number][];
+			const ring = (geometry.coordinates as number[][][])[0];
+			if (!ring || ring.length === 0) return null;
 			let sumLng = 0,
 				sumLat = 0;
-			for (const [lng, lat] of ring) {
-				sumLng += lng;
-				sumLat += lat;
+			for (const coord of ring) {
+				if (coord && coord.length >= 2) {
+					sumLng += coord[0];
+					sumLat += coord[1];
+				}
 			}
 			return [sumLng / ring.length, sumLat / ring.length];
 		}
@@ -74,7 +77,7 @@ async function seedBicycleRacksFromGeoJSON() {
 
 			// Só processa se tem amenity=bicycle_parking ou bicycle_parking definido
 			if (
-				!props.amenity?.includes("bicycle_parking") &&
+				!(typeof props.amenity === "string" && props.amenity.includes("bicycle_parking")) &&
 				!props.bicycle_parking
 			) {
 				continue;
@@ -88,36 +91,36 @@ async function seedBicycleRacksFromGeoJSON() {
 			const wktPoint = `POINT(${lng} ${lat})`;
 
 			bicycleRacksData.push({
-				osm_id: props["@id"] || feature.id,
-				osm_type: props["@id"]?.split("/")[0] || "unknown",
+				osm_id: (props["@id"] as string) || feature.id,
+				osm_type: (typeof props["@id"] === "string" ? props["@id"].split("/")[0] : null) || "unknown",
 				coordinates: wktPoint,
-				name: props.name || null,
-				description: props.description || null,
-				amenity: props.amenity || "bicycle_parking",
-				bicycle_parking: props.bicycle_parking || null,
-				capacity: props.capacity || null,
-				access: props.access || null,
-				covered: props.covered || null,
-				fee: props.fee || null,
-				supervised: props.supervised || null,
-				lit: props.lit || null,
-				operator: props.operator || null,
-				operator_type: props.operator_type || null,
-				building: props.building || null,
-				level: props.level || null,
-				surface: props.surface || null,
-				addr_city: props["addr:city"] || null,
-				addr_street: props["addr:street"] || null,
-				addr_housenumber: props["addr:housenumber"] || null,
-				addr_suburb: props["addr:suburb"] || null,
-				addr_postcode: props["addr:postcode"] || null,
-				opening_hours: props.opening_hours || null,
-				payment_none: props.payment_none || null,
-				ref: props.ref || null,
-				source: props.source || null,
-				source_date: props.source_date || null,
-				wikidata: props.wikidata || null,
-				wikipedia: props.wikipedia || null,
+				name: (props.name as string) || null,
+				description: (props.description as string) || null,
+				amenity: (props.amenity as string) || "bicycle_parking",
+				bicycle_parking: (props.bicycle_parking as string) || null,
+				capacity: (props.capacity as string) || null,
+				access: (props.access as string) || null,
+				covered: (props.covered as string) || null,
+				fee: (props.fee as string) || null,
+				supervised: (props.supervised as string) || null,
+				lit: (props.lit as string) || null,
+				operator: (props.operator as string) || null,
+				operator_type: (props.operator_type as string) || null,
+				building: (props.building as string) || null,
+				level: (props.level as string) || null,
+				surface: (props.surface as string) || null,
+				addr_city: (props["addr:city"] as string) || null,
+				addr_street: (props["addr:street"] as string) || null,
+				addr_housenumber: (props["addr:housenumber"] as string) || null,
+				addr_suburb: (props["addr:suburb"] as string) || null,
+				addr_postcode: (props["addr:postcode"] as string) || null,
+				opening_hours: (props.opening_hours as string) || null,
+				payment_none: (props.payment_none as string) || null,
+				ref: (props.ref as string) || null,
+				source: (props.source as string) || null,
+				source_date: (props.source_date as string) || null,
+				wikidata: (props.wikidata as string) || null,
+				wikipedia: (props.wikipedia as string) || null,
 			});
 		}
 
