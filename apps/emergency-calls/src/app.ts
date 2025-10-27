@@ -1,9 +1,11 @@
 import createApp from "./lib/create-app.js";
 import healthRoutes from "./routes/health.js";
-import exampleRoutes from "./routes/example/example.index.js";
+import callsRoutes from "./routes/calls/calls.index.js";
+import analyticsRoutes from "./routes/analytics/analytics.index.js";
 
 const app = createApp()
 	.route("/", healthRoutes)
-	.route("/v1/", exampleRoutes);
+	.route("/v1", callsRoutes)
+	.route("/v1", analyticsRoutes);
 
 export default app;
