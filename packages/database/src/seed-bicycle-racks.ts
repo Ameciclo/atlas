@@ -2,7 +2,7 @@ import "dotenv/config";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { closeDatabase, createConnectedDatabase } from "./connection.js";
-import { bicycleRacks } from "./schemas/bicycle-racks/index.js";
+import { bicycleRacks, bicycleRackCities } from "./schemas/bicycle-racks/index.js";
 
 interface GeoJSONFeature {
 	type: "Feature";
@@ -130,7 +130,7 @@ async function seedBicycleRacksFromGeoJSON() {
 		const batchSize = 100;
 		for (let i = 0; i < bicycleRacksData.length; i += batchSize) {
 			const batch = bicycleRacksData.slice(i, i + batchSize);
-			await db.insert(bicycleRacks).values(batch);
+			await db.insert(bicycleRacks).values(batch).onConflictDoNothing();
 			console.log(
 				`✅ Inserido lote ${Math.floor(i / batchSize) + 1}/${Math.ceil(bicycleRacksData.length / batchSize)}`,
 			);
@@ -139,6 +139,9 @@ async function seedBicycleRacksFromGeoJSON() {
 		console.log(
 			`🎉 Seed concluído! ${bicycleRacksData.length} bicicletários inseridos.`,
 		);
+
+		// Agora popula dados do Recife
+		await seedRecifeCities(db);
 	} catch (error) {
 		console.error("❌ Erro no seed:", error);
 		process.exit(1);
@@ -150,6 +153,44 @@ async function seedBicycleRacksFromGeoJSON() {
 // Executa se chamado diretamente
 if (import.meta.url === `file://${process.argv[1]}`) {
 	seedBicycleRacksFromGeoJSON();
+}
+
+async function seedRecifeCities(db: any) {
+	try {
+		// Lê o arquivo GeoJSON do Recife
+		const recifeGeojsonPath = join(
+			process.cwd(),
+			"../../apps/bicycle-racks/src/db/ciclomapa-Recife, Pernambuco, Brasil.geojson",
+		);
+		const recifeData = readFileSync(recifeGeojsonPath, "utf-8");
+		const recifeGeojson = JSON.parse(recifeData);
+
+		// Filtra apenas bicicletários
+		const bicicletarios = recifeGeojson.features.filter(
+			(feature: any) => feature.properties.type === "Bicicletários"
+		);
+
+		console.log(`🏙️ Encontrados ${bicicletarios.length} bicicletários do Recife`);
+
+		// Prepara dados para inserção
+		const cityMappings = bicicletarios.map((feature: any) => ({
+			osm_id: feature.id,
+			city: "Recife",
+			state: "PE",
+		}));
+
+		// Insere no banco (ignora duplicatas)
+		if (cityMappings.length > 0) {
+			await db
+				.insert(bicycleRackCities)
+				.values(cityMappings)
+				.onConflictDoNothing();
+
+			console.log(`✅ Inseridos ${cityMappings.length} mapeamentos OSM ID → Recife`);
+		}
+	} catch (error) {
+		console.error("❌ Erro ao popular dados do Recife:", error);
+	}
 }
 
 export { seedBicycleRacksFromGeoJSON };

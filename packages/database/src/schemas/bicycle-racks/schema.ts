@@ -67,3 +67,22 @@ export const selectBicycleRackSchema = createSelectSchema(bicycleRacks);
 
 export type BicycleRack = typeof bicycleRacks.$inferSelect;
 export type InsertBicycleRack = typeof bicycleRacks.$inferInsert;
+
+// ============================================================================
+// Bicycle Rack Cities Schema
+// ============================================================================
+
+export const bicycleRackCities = pgTable("bicycle_rack_cities", {
+	id: serial("id").primaryKey(),
+	osm_id: text("osm_id").notNull().unique(),
+	city: text("city").notNull(),
+	state: text("state").default("PE"),
+	created_at: timestamp("created_at").defaultNow().notNull(),
+	updated_at: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const insertBicycleRackCitySchema = createInsertSchema(bicycleRackCities);
+export const selectBicycleRackCitySchema = createSelectSchema(bicycleRackCities);
+
+export type BicycleRackCity = typeof bicycleRackCities.$inferSelect;
+export type InsertBicycleRackCity = typeof bicycleRackCities.$inferInsert;
