@@ -75,13 +75,17 @@ export const dangerousStreets = createRoute({
 	method: "get",
 	tags,
 	summary: "Most dangerous streets in Recife",
-	description: "Get the most dangerous streets by accident count and fatality rate",
+	description:
+		"Get the most dangerous streets by accident count and fatality rate",
 	request: {
 		query: z.object({
-			sort_by: z.enum(["accidents", "fatality_rate"]).default("accidents").openapi({
-				description: "Sort by total accidents or fatality rate",
-				example: "accidents",
-			}),
+			sort_by: z
+				.enum(["accidents", "fatality_rate"])
+				.default("accidents")
+				.openapi({
+					description: "Sort by total accidents or fatality rate",
+					example: "accidents",
+				}),
 			limit: z.coerce.number().int().positive().max(50).default(20).openapi({
 				description: "Maximum number of results",
 				example: 20,

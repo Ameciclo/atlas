@@ -116,7 +116,59 @@ pnpm --filter @atlas/{service-name} db:seed # Seed data
   - `GET /v1/analytics/gender-distribution` - Gender distribution
   - `GET /v1/analytics/dangerous-streets` - Most dangerous streets
 
+### 8. OpenAPI Documentation Generation
+- **Generate spec**: Run `npx tsx src/generate-openapi.ts` in app directory
+- **Copy to docs**: `cp apps/{service-name}/openapi.json apps/docs/public/openapi/{service-name}.json`
+- **Update index**: Add entry to `/apps/docs/public/openapi/index.json`
+- **Access docs**: Visit `http://localhost:3001/?api={service-name}-api`
+- **Commands**:
+  ```bash
+  # Generate and copy OpenAPI spec
+  cd apps/{service-name}
+  npx tsx src/generate-openapi.ts
+  cp openapi.json ../docs/public/openapi/{service-name}.json
+  ```
+
+### 9. Testing Implementation
+- **Location**: `/apps/{service-name}/test/{service-name}.spec.ts`
+- **Pattern**: Follow cyclist-counts test structure
+- **Key Points**:
+  - Use Vitest with proper database configuration
+  - Test all endpoints with different scenarios
+  - Include pagination, filtering, and error handling tests
+  - Use `atlas_dev` database for tests (not `atlas`)
+  - Test both success and error responses
+- **Test Categories**:
+  - Health check endpoint
+  - CRUD operations with proper status codes
+  - Filtering and pagination functionality
+  - Analytics endpoints with data validation
+  - Error handling for invalid requests
+- **Commands**:
+  ```bash
+  # Run tests for specific service
+  pnpm --filter @atlas/{service-name} test
+  
+  # Run all tests
+  pnpm test
+  ```
+- **Configuration**: Update `vitest.config.ts` to use correct database name and environment
+
+### 10. Code Quality Checks
+- **Lint**: Run `pnpm lint` to check code quality
+- **Common Issues**:
+  - Missing radix parameter in `parseInt()` - add `10` as second parameter
+  - Unused variables - prefix with underscore (`_error`)
+  - `any` types - replace with proper types like `Record<string, string | null>`
+  - Biome ignore comments - replace `<explanation>` with actual explanation
+  - Schema version mismatch - update biome.json schema URL to match CLI version
+- **Type Check**: Run `pnpm check-types` to verify TypeScript types
+- **Format**: Run `pnpm format` to auto-format code
+
 ## Expected Result
 ✅ Database schema created and data successfully seeded
 ✅ Comprehensive SQL queries created for data validation and exploration
 ✅ RESTful API created following project patterns with OpenAPI documentation
+✅ API documentation available in docs app with interactive interface
+✅ Comprehensive test suite implemented and passing for all endpoints
+✅ Code quality checks passing (lint, type-check, format)

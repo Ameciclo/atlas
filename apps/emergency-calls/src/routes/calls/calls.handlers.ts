@@ -7,7 +7,8 @@ import type { AppRouteHandler } from "../../lib/types.js";
 import type { GetByIdRoute, ListRoute } from "./calls.routes.js";
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
-	const { municipality, subtype, start_date, end_date, limit, offset } = c.req.valid("query");
+	const { municipality, subtype, start_date, end_date, limit, offset } =
+		c.req.valid("query");
 
 	// Build where conditions
 	const conditions = [];

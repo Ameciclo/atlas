@@ -8,7 +8,9 @@ import type {
 	MunicipalityStatsRoute,
 } from "./analytics.routes.js";
 
-export const municipalityStats: AppRouteHandler<MunicipalityStatsRoute> = async (c) => {
+export const municipalityStats: AppRouteHandler<
+	MunicipalityStatsRoute
+> = async (c) => {
 	const result = await db.execute(sql`
 		SELECT 
 			municipality, 
@@ -19,7 +21,7 @@ export const municipalityStats: AppRouteHandler<MunicipalityStatsRoute> = async 
 		ORDER BY call_count DESC 
 		LIMIT 10
 	`);
-	return c.json(result.rows);
+	return c.json(result.rows as { municipality: string; call_count: number }[]);
 };
 
 export const accidentTypes: AppRouteHandler<AccidentTypesRoute> = async (c) => {
@@ -33,10 +35,12 @@ export const accidentTypes: AppRouteHandler<AccidentTypesRoute> = async (c) => {
 		ORDER BY count DESC 
 		LIMIT 10
 	`);
-	return c.json(result.rows);
+	return c.json(result.rows as { subtype: string; count: number }[]);
 };
 
-export const genderDistribution: AppRouteHandler<GenderDistributionRoute> = async (c) => {
+export const genderDistribution: AppRouteHandler<
+	GenderDistributionRoute
+> = async (c) => {
 	const result = await db.execute(sql`
 		SELECT 
 			gender, 
@@ -46,22 +50,33 @@ export const genderDistribution: AppRouteHandler<GenderDistributionRoute> = asyn
 		GROUP BY gender 
 		ORDER BY count DESC
 	`);
-	return c.json(result.rows);
+	return c.json(
+		result.rows as {
+			gender: string | null;
+			count: number;
+			percentage: number;
+		}[],
+	);
 };
 
-export const dangerousStreets: AppRouteHandler<DangerousStreetsRoute> = async (c) => {
+export const dangerousStreets: AppRouteHandler<DangerousStreetsRoute> = async (
+	c,
+) => {
 	const { sort_by, limit } = c.req.valid("query");
-	
-	const orderBy = sort_by === "fatality_rate" 
-		? "fatality_rate DESC, total_accidents DESC"
-		: "total_accidents DESC";
-		
-	const minAccidents = sort_by === "fatality_rate" ? 3 : 5;
-	const fatalityFilter = sort_by === "fatality_rate" 
-		? "AND COUNT(CASE WHEN outcome_reason LIKE '%bito%' THEN 1 END) > 0"
-		: "";
 
-	const result = await db.execute(sql.raw(`
+	const orderBy =
+		sort_by === "fatality_rate"
+			? "fatality_rate DESC, total_accidents DESC"
+			: "total_accidents DESC";
+
+	const minAccidents = sort_by === "fatality_rate" ? 3 : 5;
+	const fatalityFilter =
+		sort_by === "fatality_rate"
+			? "AND COUNT(CASE WHEN outcome_reason LIKE '%bito%' THEN 1 END) > 0"
+			: "";
+
+	const result = await db.execute(
+		sql.raw(`
 		SELECT 
 			COALESCE(pcr_address, address) as street,
 			COUNT(*) as total_accidents,
@@ -75,7 +90,15 @@ export const dangerousStreets: AppRouteHandler<DangerousStreetsRoute> = async (c
 		HAVING COUNT(*) >= ${minAccidents} ${fatalityFilter}
 		ORDER BY ${orderBy}
 		LIMIT ${limit}
-	`));
-	
-	return c.json(result.rows);
+	`),
+	);
+
+	return c.json(
+		result.rows as {
+			street: string;
+			total_accidents: number;
+			fatal_cases: number;
+			fatality_rate: number;
+		}[],
+	);
 };

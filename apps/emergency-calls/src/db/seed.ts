@@ -1,6 +1,5 @@
 import "dotenv/config";
 import { readFileSync } from "node:fs";
-import { join } from "node:path";
 import { createConnectedDatabase, closeDatabase } from "@atlas/database";
 import { emergencyCalls } from "@atlas/database/schemas/emergency-calls";
 
@@ -11,26 +10,26 @@ async function seed() {
 
 	try {
 		// Read the TSV file
-		const tsvPath = join(import.meta.dirname, "sinistros-samu-tudo-final-ruas-corrigidas.tsv");
+		const tsvPath = "./src/db/sinistros-samu-tudo-final-ruas-corrigidas.tsv";
 		const tsvContent = readFileSync(tsvPath, "utf-8");
-		
+
 		// Parse TSV content
 		const lines = tsvContent.trim().split("\n");
 		const headers = lines[0].split("\t");
-		
+
 		const records = lines.slice(1).map((line) => {
 			const values = line.split("\t");
-			const record: any = {};
-			
+			const record: Record<string, string | null> = {};
+
 			headers.forEach((header, index) => {
 				const value = values[index]?.trim();
 				record[header] = value === "" ? null : value;
 			});
-			
+
 			return {
-				original_id: parseInt(record._id),
-				date: new Date(record.data),
-				time_minute: record.hora_minuto,
+				original_id: parseInt(record._id || "0", 10),
+				date: new Date(record.data || ""),
+				time_minute: record.hora_minuto || "",
 				municipality: record.municipio,
 				neighborhood: record.bairro || null,
 				address: record.endereco || null,
@@ -38,7 +37,7 @@ async function seed() {
 				origin_type: record.orig_tipo || null,
 				subtype: record.subtipo || null,
 				gender: record.sexo || null,
-				age: record.idade ? parseInt(record.idade) : null,
+				age: record.idade ? parseInt(record.idade, 10) : null,
 				finalization_reason: record.motivo_finalizacao || null,
 				outcome_reason: record.motivo_desfecho || null,
 				type: record.tipo || null,
@@ -56,10 +55,14 @@ async function seed() {
 		for (let i = 0; i < records.length; i += batchSize) {
 			const batch = records.slice(i, i + batchSize);
 			await db.insert(emergencyCalls).values(batch);
-			console.log(`✅ Inserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(records.length / batchSize)}`);
+			console.log(
+				`✅ Inserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(records.length / batchSize)}`,
+			);
 		}
 
-		console.log(`🎉 Successfully seeded ${records.length} emergency call records!`);
+		console.log(
+			`🎉 Successfully seeded ${records.length} emergency call records!`,
+		);
 	} catch (error) {
 		console.error("❌ Error seeding database:", error);
 		throw error;

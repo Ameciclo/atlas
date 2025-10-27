@@ -2,7 +2,7 @@ import { runMigrations } from "@atlas/database";
 
 async function migrate() {
 	console.log("🔄 Running database migrations...");
-	
+
 	try {
 		await runMigrations();
 		console.log("✅ Database migrations completed successfully");
