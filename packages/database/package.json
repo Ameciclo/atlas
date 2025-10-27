@@ -25,6 +25,10 @@
 		"./schemas/test-db-service": {
 			"types": "./dist/schemas/test-db-service/index.d.ts",
 			"import": "./dist/schemas/test-db-service/index.js"
+		},
+		"./schemas/bicycle-racks": {
+			"types": "./dist/schemas/bicycle-racks/index.d.ts",
+			"import": "./dist/schemas/bicycle-racks/index.js"
 		}
 	},
 	"scripts": {
@@ -35,8 +39,11 @@
 		"format": "biome format .",
 		"db:studio": "drizzle-kit studio",
 		"db:generate": "drizzle-kit generate",
+		"db:generate:custom": "drizzle-kit generate --custom",
+		"db:drop": "drizzle-kit drop",
 		"db:migrate": "tsx src/migrate.ts",
 		"db:seed": "tsx src/seed-cyclist-counts.ts",
+		"db:seed:bicycle-racks": "tsx src/seed-bicycle-racks.ts",
 		"db:reset": "tsx src/migrate.ts && tsx src/seed-cyclist-counts.ts"
 	},
 	"dependencies": {

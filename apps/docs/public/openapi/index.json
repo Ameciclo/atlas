@@ -1,5 +1,9 @@
 [
   {
+    "url": "/openapi/bicycle-racks.json",
+    "title": "Bicycle Racks API"
+  },
+  {
     "url": "/openapi/cyclist-counts.json",
     "title": "Cyclist Counts API"
   },

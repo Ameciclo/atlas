@@ -59,6 +59,7 @@ We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `
 
    # Or start a specific service
    pnpm --filter @atlas/cyclist-profile dev
+   pnpm --filter @atlas/bicycle-racks dev
    ```
 
 5. **Building:**
@@ -68,6 +69,7 @@ We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `
 
    # Or build a specific application
    pnpm --filter @atlas/cyclist-profile build
+   pnpm --filter @atlas/bicycle-racks build
    ```
 
 6. **Testing:**
@@ -77,6 +79,7 @@ We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `
 
    # Or test a specific application
    pnpm --filter @atlas/cyclist-profile test
+   pnpm --filter @atlas/bicycle-racks test
    ```
 
 7. **Code Quality:**
@@ -101,7 +104,8 @@ atlas/
 │   └── workflows/       # GitHub Actions workflows
 ├── apps/                # Applications
 │   ├── docs/            # API documentation site
-│   └── cyclist-profile/ # Cyclist profile service
+│   ├── cyclist-profile/ # Cyclist profile service
+│   └── bicycle-racks/   # Bicycle parking facilities service
 ├── docs/                # Documentation
 │   ├── CREATE_NEW_SERVICE.md          # Guide for creating new services
 │   ├── SCAFFOLDING_TOOL.md            # Scaffolding tool documentation
