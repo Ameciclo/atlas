@@ -1,6 +1,6 @@
-# BicycleRacks API
+# Bicycle Racks API
 
-API service for bicycle_racks
+REST API service for managing and querying bicycle parking facilities data across Brazil, with special focus on Recife city.
 
 ## Requirements
 
@@ -118,6 +118,48 @@ pnpm --filter @atlas/bicycle-racks build
 pnpm --filter @atlas/bicycle-racks start
 ```
 
+## API Endpoints
+
+The API provides the following endpoints with optional city filtering:
+
+### Core Endpoints
+
+- `GET /v1/bicycle-racks` - List all bicycle racks
+- `GET /v1/bicycle-racks/{id}` - Get specific bicycle rack by ID
+- `GET /v1/bicycle-racks/stats` - Get statistics about bicycle racks
+- `GET /v1/bicycle-racks/geojson` - Get bicycle racks as GeoJSON
+- `GET /v1/bicycle-racks/nearby` - Find nearby bicycle racks
+
+### City Filtering
+
+All endpoints support optional `city` parameter for filtering:
+
+```bash
+# Get all bicycle racks in Brazil (5,598 total)
+curl "http://localhost:3005/v1/bicycle-racks"
+
+# Get only Recife bicycle racks (578 total)
+curl "http://localhost:3005/v1/bicycle-racks?city=Recife"
+
+# Get Recife statistics
+curl "http://localhost:3005/v1/bicycle-racks/stats?city=Recife"
+
+# Get Recife data as GeoJSON
+curl "http://localhost:3005/v1/bicycle-racks/geojson?city=Recife"
+
+# Find nearby racks in Recife (Marco Zero area)
+curl "http://localhost:3005/v1/bicycle-racks/nearby?lat=-8.0631&lng=-34.8713&radius=1000&city=Recife"
+```
+
+### Query Parameters
+
+- `city` (optional) - Filter by city name (e.g., "Recife")
+- `covered` (optional) - Filter by covered status ("yes", "no")
+- `access` (optional) - Filter by access type ("yes", "private", "permissive", "customers")
+- `capacity_min` (optional) - Minimum capacity filter
+- `capacity_max` (optional) - Maximum capacity filter
+- `operator` (optional) - Filter by operator name
+
 ## API Documentation
 
 The API documentation is automatically generated from the OpenAPI specification.
@@ -205,6 +247,19 @@ apps/bicycle-racks/
 ```
 
 **Note:** Database schema is defined in `packages/database/src/schemas/bicycle-racks/schema.ts` and shared across the monorepo.
+
+## Data Sources
+
+The API serves bicycle parking facilities data from:
+
+- **Brazil-wide data**: OpenStreetMap bicycle parking facilities across Brazil (5,598 total)
+- **Recife-specific data**: Enhanced dataset with city mapping for precise filtering (578 in Recife)
+- **Real-time filtering**: Efficient JOIN-based queries for city-specific data retrieval
+
+### Database Tables
+
+- `bicycle_racks` - Main table with bicycle parking facilities data
+- `bicycle_rack_cities` - City mapping table for efficient filtering by city name
 
 ## Contributing
 
