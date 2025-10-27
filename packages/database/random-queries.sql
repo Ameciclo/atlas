@@ -371,7 +371,7 @@ SELECT
     ST_AsText(ST_Centroid(ST_Extent(coordinates))) as centro_geometrico
 FROM recife_bounds;
 
--- 26. CORREDORES DE MOBILIDADE DO RECIFE
+-- 26. CORREDORES DE MOBILIDADE DO RECIFE (ANÁLISE GEOGRÁFICA GERAL)
 -- Bicicletários ao longo das principais avenidas
 SELECT 
     CASE 
@@ -399,3 +399,217 @@ GROUP BY
         ELSE 'Outras áreas'
     END
 ORDER BY quantidade_bicicletarios DESC;
+
+-- ============================================================================
+-- TESTES PARA TABELA BICYCLE_RACK_CITIES E BICICLETÁRIOS DO RECIFE
+-- ============================================================================
+
+-- 27. VERIFICAR TABELA DE CIDADES
+-- Estrutura da nova tabela bicycle_rack_cities
+SELECT column_name, data_type, is_nullable 
+FROM information_schema.columns 
+WHERE table_name = 'bicycle_rack_cities' 
+ORDER BY ordinal_position;
+
+-- 28. CONTAGEM POR CIDADE
+-- Quantos bicicletários temos mapeados por cidade
+SELECT 
+    city,
+    state,
+    COUNT(*) as quantidade
+FROM bicycle_rack_cities 
+GROUP BY city, state 
+ORDER BY quantidade DESC;
+
+-- 29. TESTE DO JOIN - BICICLETÁRIOS DO RECIFE
+-- Query que simula o endpoint /bicycle-racks/recife
+SELECT 
+    br.id,
+    br.name,
+    br.capacity,
+    br.access,
+    br.covered,
+    br.operator,
+    br.bicycle_parking,
+    brc.city,
+    brc.state,
+    ST_AsText(br.coordinates) as coordenadas
+FROM bicycle_racks br
+INNER JOIN bicycle_rack_cities brc ON br.osm_id = brc.osm_id
+WHERE brc.city = 'Recife'
+ORDER BY br.name
+LIMIT 10;
+
+-- 30. ESTATÍSTICAS DOS BICICLETÁRIOS DO RECIFE
+-- Análise completa dos bicicletários mapeados do Recife
+SELECT 
+    'Total Recife' as metrica,
+    COUNT(*)::text as valor
+FROM bicycle_racks br
+INNER JOIN bicycle_rack_cities brc ON br.osm_id = brc.osm_id
+WHERE brc.city = 'Recife'
+UNION ALL
+SELECT 
+    'Com nome',
+    COUNT(CASE WHEN br.name IS NOT NULL AND br.name != '' THEN 1 END)::text
+FROM bicycle_racks br
+INNER JOIN bicycle_rack_cities brc ON br.osm_id = brc.osm_id
+WHERE brc.city = 'Recife'
+UNION ALL
+SELECT 
+    'Acesso público',
+    COUNT(CASE WHEN br.access = 'yes' THEN 1 END)::text
+FROM bicycle_racks br
+INNER JOIN bicycle_rack_cities brc ON br.osm_id = brc.osm_id
+WHERE brc.city = 'Recife'
+UNION ALL
+SELECT 
+    'Cobertos',
+    COUNT(CASE WHEN br.covered = 'yes' THEN 1 END)::text
+FROM bicycle_racks br
+INNER JOIN bicycle_rack_cities brc ON br.osm_id = brc.osm_id
+WHERE brc.city = 'Recife'
+UNION ALL
+SELECT 
+    'Com operador',
+    COUNT(CASE WHEN br.operator IS NOT NULL THEN 1 END)::text
+FROM bicycle_racks br
+INNER JOIN bicycle_rack_cities brc ON br.osm_id = brc.osm_id
+WHERE brc.city = 'Recife';
+
+-- 31. TIPOS DE BICICLETÁRIOS NO RECIFE
+-- Distribuição por tipo de bicycle_parking no Recife
+SELECT 
+    br.bicycle_parking,
+    COUNT(*) as quantidade,
+    ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM bicycle_racks br2 INNER JOIN bicycle_rack_cities brc2 ON br2.osm_id = brc2.osm_id WHERE brc2.city = 'Recife'), 2) as percentual
+FROM bicycle_racks br
+INNER JOIN bicycle_rack_cities brc ON br.osm_id = brc.osm_id
+WHERE brc.city = 'Recife'
+GROUP BY br.bicycle_parking 
+ORDER BY quantidade DESC;
+
+-- 32. OPERADORES NO RECIFE
+-- Principais operadores de bicicletários no Recife
+SELECT 
+    br.operator,
+    COUNT(*) as quantidade
+FROM bicycle_racks br
+INNER JOIN bicycle_rack_cities brc ON br.osm_id = brc.osm_id
+WHERE brc.city = 'Recife' AND br.operator IS NOT NULL
+GROUP BY br.operator 
+ORDER BY quantidade DESC;
+
+-- 33. CAPACIDADE DOS BICICLETÁRIOS DO RECIFE
+-- Análise de capacidade específica do Recife
+SELECT 
+    COUNT(CASE WHEN br.capacity ~ '^[0-9]+$' THEN 1 END) as com_capacidade_numerica,
+    MIN(CASE WHEN br.capacity ~ '^[0-9]+$' THEN CAST(br.capacity AS INTEGER) END) as capacidade_minima,
+    MAX(CASE WHEN br.capacity ~ '^[0-9]+$' THEN CAST(br.capacity AS INTEGER) END) as capacidade_maxima,
+    ROUND(AVG(CASE WHEN br.capacity ~ '^[0-9]+$' THEN CAST(br.capacity AS INTEGER) END), 2) as capacidade_media,
+    SUM(CASE WHEN br.capacity ~ '^[0-9]+$' THEN CAST(br.capacity AS INTEGER) ELSE 0 END) as capacidade_total_estimada
+FROM bicycle_racks br
+INNER JOIN bicycle_rack_cities brc ON br.osm_id = brc.osm_id
+WHERE brc.city = 'Recife';
+
+-- 34. VERIFICAR MAPEAMENTO OSM_ID
+-- Conferir se os OSM IDs estão sendo mapeados corretamente
+SELECT 
+    'Total na tabela principal' as tabela,
+    COUNT(*)::text as registros
+FROM bicycle_racks
+UNION ALL
+SELECT 
+    'Total na tabela de cidades',
+    COUNT(*)::text
+FROM bicycle_rack_cities
+UNION ALL
+SELECT 
+    'OSM IDs que fazem match',
+    COUNT(*)::text
+FROM bicycle_racks br
+INNER JOIN bicycle_rack_cities brc ON br.osm_id = brc.osm_id
+UNION ALL
+SELECT 
+    'OSM IDs do Recife',
+    COUNT(*)::text
+FROM bicycle_rack_cities
+WHERE city = 'Recife';
+
+-- 35. BICICLETÁRIOS DO RECIFE COM COORDENADAS
+-- Lista dos bicicletários do Recife com suas coordenadas
+SELECT 
+    br.id,
+    br.name,
+    br.osm_id,
+    br.capacity,
+    br.access,
+    br.covered,
+    ST_X(br.coordinates) as longitude,
+    ST_Y(br.coordinates) as latitude,
+    ST_AsText(br.coordinates) as coordenadas_wkt
+FROM bicycle_racks br
+INNER JOIN bicycle_rack_cities brc ON br.osm_id = brc.osm_id
+WHERE brc.city = 'Recife' 
+    AND br.coordinates IS NOT NULL
+ORDER BY br.name
+LIMIT 15;
+
+-- 36. TESTE DE PERFORMANCE DO JOIN
+-- Verificar performance da query do endpoint
+EXPLAIN ANALYZE
+SELECT br.*
+FROM bicycle_racks br
+INNER JOIN bicycle_rack_cities brc ON br.osm_id = brc.osm_id
+WHERE brc.city = 'Recife'
+ORDER BY br.name;
+
+-- 37. BICICLETÁRIOS DO RECIFE POR REGIÃO
+-- Distribuição geográfica dentro do Recife
+SELECT 
+    CASE 
+        WHEN ST_Y(br.coordinates) BETWEEN -8.0 AND -8.05 AND ST_X(br.coordinates) BETWEEN -34.92 AND -34.85 THEN 'Centro/Recife Antigo'
+        WHEN ST_Y(br.coordinates) BETWEEN -8.05 AND -8.12 AND ST_X(br.coordinates) BETWEEN -34.95 AND -34.85 THEN 'Zona Sul/Boa Viagem'
+        WHEN ST_Y(br.coordinates) BETWEEN -8.0 AND -8.1 AND ST_X(br.coordinates) BETWEEN -35.0 AND -34.95 THEN 'Zona Oeste'
+        WHEN ST_Y(br.coordinates) BETWEEN -7.95 AND -8.05 AND ST_X(br.coordinates) BETWEEN -34.95 AND -34.85 THEN 'Zona Norte'
+        ELSE 'Outras regiões'
+    END as regiao_recife,
+    COUNT(*) as quantidade
+FROM bicycle_racks br
+INNER JOIN bicycle_rack_cities brc ON br.osm_id = brc.osm_id
+WHERE brc.city = 'Recife' AND br.coordinates IS NOT NULL
+GROUP BY 
+    CASE 
+        WHEN ST_Y(br.coordinates) BETWEEN -8.0 AND -8.05 AND ST_X(br.coordinates) BETWEEN -34.92 AND -34.85 THEN 'Centro/Recife Antigo'
+        WHEN ST_Y(br.coordinates) BETWEEN -8.05 AND -8.12 AND ST_X(br.coordinates) BETWEEN -34.95 AND -34.85 THEN 'Zona Sul/Boa Viagem'
+        WHEN ST_Y(br.coordinates) BETWEEN -8.0 AND -8.1 AND ST_X(br.coordinates) BETWEEN -35.0 AND -34.95 THEN 'Zona Oeste'
+        WHEN ST_Y(br.coordinates) BETWEEN -7.95 AND -8.05 AND ST_X(br.coordinates) BETWEEN -34.95 AND -34.85 THEN 'Zona Norte'
+        ELSE 'Outras regiões'
+    END
+ORDER BY quantidade DESC;
+
+-- 38. COMPARAÇÃO: RECIFE vs OUTRAS CIDADES
+-- Comparar estatísticas do Recife com outras cidades (se houver)
+WITH stats_por_cidade AS (
+    SELECT 
+        brc.city,
+        COUNT(*) as total,
+        COUNT(CASE WHEN br.covered = 'yes' THEN 1 END) as cobertos,
+        COUNT(CASE WHEN br.access = 'yes' THEN 1 END) as publicos,
+        COUNT(CASE WHEN br.capacity ~ '^[0-9]+$' THEN 1 END) as com_capacidade,
+        SUM(CASE WHEN br.capacity ~ '^[0-9]+$' THEN CAST(br.capacity AS INTEGER) ELSE 0 END) as capacidade_total
+    FROM bicycle_racks br
+    INNER JOIN bicycle_rack_cities brc ON br.osm_id = brc.osm_id
+    GROUP BY brc.city
+)
+SELECT 
+    city,
+    total,
+    cobertos,
+    ROUND(cobertos * 100.0 / total, 1) as perc_cobertos,
+    publicos,
+    ROUND(publicos * 100.0 / total, 1) as perc_publicos,
+    com_capacidade,
+    capacidade_total
+FROM stats_por_cidade
+ORDER BY total DESC;
