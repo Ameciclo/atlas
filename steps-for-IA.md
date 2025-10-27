@@ -1,7 +1,28 @@
-# Steps for Creating New Database Schema and Seed
+# Manual Database Setup Guide
 
 ## Overview
-Generic guide for creating database schemas and seed files for any new service in the Atlas project.
+Guide for manually creating database schemas and seed files when the automated scaffolding tool doesn't fit your needs. For most cases, use `pnpm create-atlas-app` instead.
+
+## When to Use This Guide
+
+### ✅ Use Manual Approach When:
+- Adding database functionality to existing services
+- Working with complex data imports (TSV, CSV files)
+- Creating custom database schemas not covered by scaffolding
+- Understanding the manual process for troubleshooting
+- Service already exists but needs database integration
+
+### 🚀 Use Automated Scaffolding When:
+- Creating a completely new service
+- Need standard API structure with database
+- Want best practices built-in
+- Need Docker, tests, and CI/CD integration
+
+## Quick Start (Recommended for New Services)
+```bash
+pnpm create-atlas-app my-service
+```
+See [CREATE_NEW_SERVICE.md](docs/CREATE_NEW_SERVICE.md) and [SCAFFOLDING_TOOL.md](docs/SCAFFOLDING_TOOL.md) for details.
 
 ## Key Steps
 
@@ -28,13 +49,12 @@ Generic guide for creating database schemas and seed files for any new service i
   - Handle data type conversions (string to int, dates)
   - Handle null/empty values properly
 
-### 4. Database Connection
+### 4. Database Connection (For Existing Services)
 - **Location**: `/apps/{service-name}/src/db/index.ts`
-- **Pattern**: Follow cyclist-profile pattern
+- **Pattern**: Follow cyclist-profile or emergency-calls pattern
 - **Key Points**:
-  - Use `getSSLConfig()` for production, `ssl: false` for local dev
-  - Import schema from shared package
-  - Use pg Client with drizzle
+  - Use `createConnectedDatabase()` from `@atlas/database`
+  - Import schema from shared package: `@atlas/database/schemas/{service-name}`
 
 ### 5. Migration Workflow
 ```bash
@@ -75,16 +95,15 @@ pnpm --filter @atlas/{service-name} db:seed # Seed data
 
 ## Files to Create/Modify
 
-### New Files:
+### For Existing Services (Manual Setup):
 - `/packages/database/src/schemas/{service-name}/schema.ts`
 - `/packages/database/src/schemas/{service-name}/index.ts`
 - `/apps/{service-name}/src/db/seed.ts`
 - `/apps/{service-name}/src/db/migrate.ts`
 
 ### Files to Modify:
-- `/packages/database/package.json` (add export path and db:drop script)
-- `/apps/{service-name}/package.json` (add db scripts)
-- `/apps/{service-name}/src/db/index.ts` (update connection pattern)
+- `/packages/database/package.json` (add export path)
+- `/apps/{service-name}/package.json` (add db scripts if missing)
 
 ### 6. Database Validation
 - **Location**: `/apps/{service-name}/src/db/random-queries.sql`
@@ -97,8 +116,8 @@ pnpm --filter @atlas/{service-name} db:seed # Seed data
   - Data quality checks (null values)
 - **Usage**: Run in `pnpm --filter @atlas/database db:studio` or direct PostgreSQL connection
 
-### 7. API Creation
-- **Pattern**: Follow cyclist-counts API structure exactly
+### 7. API Creation (If Not Using Scaffolding Tool)
+- **Pattern**: Follow cyclist-counts or emergency-calls API structure
 - **Structure**: Create separate folders for each resource type
   - `/routes/{resource}/` (e.g., calls, analytics, municipalities)
   - Each folder: `{resource}.routes.ts`, `{resource}.handlers.ts`, `{resource}.index.ts`
@@ -108,67 +127,53 @@ pnpm --filter @atlas/{service-name} db:seed # Seed data
   - Create analytics endpoints based on SQL queries
   - Follow RESTful conventions
   - Use typed handlers with proper error handling
-- **Endpoints Created**:
-  - `GET /v1/calls` - List calls with filters
-  - `GET /v1/calls/{id}` - Get specific call
-  - `GET /v1/analytics/municipalities` - Municipality stats
-  - `GET /v1/analytics/accident-types` - Accident type stats
-  - `GET /v1/analytics/gender-distribution` - Gender distribution
-  - `GET /v1/analytics/dangerous-streets` - Most dangerous streets
+- **Note**: The scaffolding tool (`pnpm create-atlas-app`) generates this structure automatically
 
 ### 8. OpenAPI Documentation Generation
-- **Generate spec**: Run `npx tsx src/generate-openapi.ts` in app directory
+- **Generate spec**: `pnpm --filter @atlas/{service-name} generate-openapi`
 - **Copy to docs**: `cp apps/{service-name}/openapi.json apps/docs/public/openapi/{service-name}.json`
 - **Update index**: Add entry to `/apps/docs/public/openapi/index.json`
 - **Access docs**: Visit `http://localhost:3001/?api={service-name}-api`
-- **Commands**:
-  ```bash
-  # Generate and copy OpenAPI spec
-  cd apps/{service-name}
-  npx tsx src/generate-openapi.ts
-  cp openapi.json ../docs/public/openapi/{service-name}.json
-  ```
+- **Note**: The scaffolding tool includes `generate-openapi.ts` automatically
 
-### 9. Testing Implementation
+### 9. Testing Implementation (If Not Using Scaffolding Tool)
 - **Location**: `/apps/{service-name}/test/{service-name}.spec.ts`
-- **Pattern**: Follow cyclist-counts test structure
+- **Pattern**: Follow cyclist-counts or emergency-calls test structure
 - **Key Points**:
   - Use Vitest with proper database configuration
   - Test all endpoints with different scenarios
   - Include pagination, filtering, and error handling tests
   - Use `atlas_dev` database for tests (not `atlas`)
   - Test both success and error responses
-- **Test Categories**:
-  - Health check endpoint
-  - CRUD operations with proper status codes
-  - Filtering and pagination functionality
-  - Analytics endpoints with data validation
-  - Error handling for invalid requests
 - **Commands**:
   ```bash
-  # Run tests for specific service
   pnpm --filter @atlas/{service-name} test
-  
-  # Run all tests
-  pnpm test
   ```
-- **Configuration**: Update `vitest.config.ts` to use correct database name and environment
+- **Note**: The scaffolding tool generates test files and configuration automatically
 
 ### 10. Code Quality Checks
-- **Lint**: Run `pnpm lint` to check code quality
+- **Commands**:
+  ```bash
+  pnpm lint          # Check code quality
+  pnpm check-types   # Verify TypeScript types
+  pnpm format        # Auto-format code
+  ```
 - **Common Issues**:
   - Missing radix parameter in `parseInt()` - add `10` as second parameter
   - Unused variables - prefix with underscore (`_error`)
   - `any` types - replace with proper types like `Record<string, string | null>`
-  - Biome ignore comments - replace `<explanation>` with actual explanation
-  - Schema version mismatch - update biome.json schema URL to match CLI version
-- **Type Check**: Run `pnpm check-types` to verify TypeScript types
-- **Format**: Run `pnpm format` to auto-format code
+  - Use named imports: `import { Client } from "pg"` not default
+  - Add type assertions for query results: `result.rows as { field: type }[]`
 
 ## Expected Result
 ✅ Database schema created and data successfully seeded
 ✅ Comprehensive SQL queries created for data validation and exploration
-✅ RESTful API created following project patterns with OpenAPI documentation
-✅ API documentation available in docs app with interactive interface
-✅ Comprehensive test suite implemented and passing for all endpoints
+✅ RESTful API created following project patterns (if applicable)
+✅ OpenAPI documentation generated and integrated (if applicable)
+✅ Test suite implemented and passing (if applicable)
 ✅ Code quality checks passing (lint, type-check, format)
+
+## Related Documentation
+- [CREATE_NEW_SERVICE.md](docs/CREATE_NEW_SERVICE.md) - Complete guide for new services
+- [SCAFFOLDING_TOOL.md](docs/SCAFFOLDING_TOOL.md) - Automated service generation
+- [Database Usage Guide](packages/database/USAGE.md) - Database patterns and best practices
