@@ -38,6 +38,7 @@ export const list = createRoute({
 			capacity_min: z.string().regex(/^\d+$/).transform(Number).optional(),
 			capacity_max: z.string().regex(/^\d+$/).transform(Number).optional(),
 			operator: z.string().optional(),
+			city: z.string().optional(),
 		}),
 	},
 	responses: {
@@ -91,6 +92,7 @@ export const nearby = createRoute({
 				.regex(/^\d+(\.\d+)?$/, "Radius must be a valid positive number")
 				.transform(Number)
 				.default("1000"),
+			city: z.string().optional(),
 		}),
 	},
 	responses: {
@@ -109,6 +111,11 @@ export const stats = createRoute({
 	path: "/bicycle-racks/stats",
 	method: "get",
 	tags,
+	request: {
+		query: z.object({
+			city: z.string().optional(),
+		}),
+	},
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(statsSchema, "Bicycle racks statistics"),
 	},
@@ -118,6 +125,11 @@ export const geojson = createRoute({
 	path: "/bicycle-racks/geojson",
 	method: "get",
 	tags,
+	request: {
+		query: z.object({
+			city: z.string().optional(),
+		}),
+	},
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			geoJsonSchema,
