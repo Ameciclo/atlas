@@ -10,8 +10,10 @@ export const getCyclistDeaths: AppRouteHandler<
 > = async (c) => {
 	const { year, city_code } = c.req.valid("query");
 
-	// Build conditions for cyclist deaths (CID-10 codes V10-V19)
-	const conditions = [like(trafficDeaths.causabas, "V1%")];
+	// Build conditions for cyclist deaths (CID-10 codes V10-V19) with explicit type
+	const conditions: (ReturnType<typeof like> | ReturnType<typeof eq>)[] = [
+		like(trafficDeaths.causabas, "V1%"),
+	];
 
 	if (year) {
 		conditions.push(eq(trafficDeaths.data_year, year));
@@ -29,8 +31,8 @@ export const getCyclistDeaths: AppRouteHandler<
 
 	const cyclistDeaths = cyclistResult[0]?.count ?? 0;
 
-	// Count total deaths for percentage calculation
-	const totalConditions = [];
+	// Count total deaths for percentage calculation with explicit type
+	const totalConditions: ReturnType<typeof eq>[] = [];
 	if (year) {
 		totalConditions.push(eq(trafficDeaths.data_year, year));
 	}

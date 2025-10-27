@@ -137,4 +137,128 @@ describe("TrafficDeaths API", () => {
 		expect(data).toHaveProperty("percentage_of_total", 5.54);
 		expect(data).toHaveProperty("message", "Cyclist deaths in city 261160");
 	});
+
+	it("should return deaths by city", async () => {
+		// Mock the database query chain
+		mockSelect.mockReturnValue({
+			from: vi.fn().mockReturnValue({
+				where: vi.fn().mockReturnValue({
+					groupBy: vi.fn().mockReturnValue({
+						orderBy: vi.fn().mockResolvedValue([
+							{ city_code: 2611606, total_deaths: 518 },
+							{ city_code: 2607901, total_deaths: 31 },
+							{ city_code: 2602902, total_deaths: 28 },
+						]),
+					}),
+				}),
+			}),
+		});
+
+		const res = await app.request("/v1/deaths/by-city?year=2023");
+		expect(res.status).toBe(200);
+
+		const data = await res.json();
+		expect(data).toHaveProperty("location_type", "occurrence");
+		expect(data).toHaveProperty("year", 2023);
+		expect(data).toHaveProperty("cities");
+		expect(data.cities).toHaveLength(3);
+		expect(data.cities[0]).toHaveProperty("city_code", 2611606);
+		expect(data.cities[0]).toHaveProperty("city_name", "Recife");
+		expect(data.cities[0]).toHaveProperty("total_deaths", 518);
+	});
+
+	it("should return deaths by transport mode", async () => {
+		// Mock the database query chain - will be called multiple times for each transport mode
+		mockSelect.mockReturnValue({
+			from: vi.fn().mockReturnValue({
+				where: vi.fn().mockResolvedValue([{ count: 100 }]),
+			}),
+		});
+
+		const res = await app.request("/v1/deaths/by-transport-mode?year=2023");
+		expect(res.status).toBe(200);
+
+		const data = await res.json();
+		expect(data).toHaveProperty("year", 2023);
+		expect(data).toHaveProperty("city_code", null);
+		expect(data).toHaveProperty("location_type", "occurrence");
+		expect(data).toHaveProperty("transport_modes");
+		expect(data).toHaveProperty("total");
+	});
+
+	it("should return time series data", async () => {
+		// Mock the database query chain
+		mockSelect.mockReturnValue({
+			from: vi.fn().mockReturnValue({
+				where: vi.fn().mockReturnValue({
+					groupBy: vi.fn().mockReturnValue({
+						orderBy: vi.fn().mockResolvedValue([
+							{ year: 2021, total_deaths: 497 },
+							{ year: 2022, total_deaths: 497 },
+							{ year: 2023, total_deaths: 676 },
+						]),
+					}),
+				}),
+			}),
+		});
+
+		const res = await app.request(
+			"/v1/deaths/time-series?start_year=2021&end_year=2023",
+		);
+		expect(res.status).toBe(200);
+
+		const data = await res.json();
+		expect(data).toHaveProperty("start_year", 2021);
+		expect(data).toHaveProperty("end_year", 2023);
+		expect(data).toHaveProperty("data");
+		expect(data.data).toHaveLength(3);
+		expect(data).toHaveProperty("total");
+		expect(data).toHaveProperty("average_per_year");
+	});
+
+	it("should return comprehensive statistics", async () => {
+		// Mock year range query
+		mockSelect
+			.mockReturnValueOnce({
+				from: vi.fn().mockReturnValue({
+					where: vi
+						.fn()
+						.mockResolvedValue([{ min_year: 2015, max_year: 2023 }]),
+				}),
+			})
+			// Mock yearly deaths query
+			.mockReturnValueOnce({
+				from: vi.fn().mockReturnValue({
+					where: vi.fn().mockReturnValue({
+						groupBy: vi.fn().mockReturnValue({
+							orderBy: vi.fn().mockResolvedValue([
+								{ year: 2015, total: 748 },
+								{ year: 2016, total: 713 },
+								{ year: 2017, total: 665 },
+								{ year: 2018, total: 630 },
+								{ year: 2019, total: 567 },
+								{ year: 2020, total: 571 },
+								{ year: 2021, total: 497 },
+								{ year: 2022, total: 497 },
+								{ year: 2023, total: 676 },
+							]),
+						}),
+					}),
+				}),
+			});
+
+		const res = await app.request("/v1/stats");
+		expect(res.status).toBe(200);
+
+		const data = await res.json();
+		expect(data).toHaveProperty("latest_year", 2023);
+		expect(data).toHaveProperty("latest_year_deaths", 676);
+		expect(data).toHaveProperty("previous_year_deaths", 497);
+		expect(data).toHaveProperty("growth_percentage");
+		expect(data).toHaveProperty("most_violent_year");
+		expect(data.most_violent_year).toHaveProperty("year", 2015);
+		expect(data.most_violent_year).toHaveProperty("total_deaths", 748);
+		expect(data).toHaveProperty("last_5_years");
+		expect(data).toHaveProperty("all_time");
+	});
 });

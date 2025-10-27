@@ -236,6 +236,469 @@
           }
         }
       }
+    },
+    "/v1/deaths/by-city": {
+      "get": {
+        "tags": [
+          "Geographic Analysis"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 2015,
+              "maximum": 2030
+            },
+            "required": false,
+            "name": "year",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "occurrence",
+                "residence"
+              ],
+              "default": "occurrence"
+            },
+            "required": false,
+            "name": "location_type",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deaths grouped by city",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "location_type": {
+                      "type": "string",
+                      "enum": [
+                        "occurrence",
+                        "residence"
+                      ]
+                    },
+                    "year": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "cities": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "city_code": {
+                            "type": "number"
+                          },
+                          "city_name": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "total_deaths": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "city_code",
+                          "city_name",
+                          "total_deaths"
+                        ]
+                      }
+                    },
+                    "total": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "location_type",
+                    "year",
+                    "cities",
+                    "total"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/deaths/by-transport-mode": {
+      "get": {
+        "tags": [
+          "Transport Mode Analysis"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 2015,
+              "maximum": 2030
+            },
+            "required": false,
+            "name": "year",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true
+            },
+            "required": false,
+            "name": "city_code",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "occurrence",
+                "residence"
+              ],
+              "default": "occurrence"
+            },
+            "required": false,
+            "name": "location_type",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deaths grouped by transport mode",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "city_code": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "location_type": {
+                      "type": "string",
+                      "enum": [
+                        "occurrence",
+                        "residence"
+                      ]
+                    },
+                    "transport_modes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "mode": {
+                            "type": "string"
+                          },
+                          "cid10_codes": {
+                            "type": "string"
+                          },
+                          "total_deaths": {
+                            "type": "number"
+                          },
+                          "percentage": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "mode",
+                          "cid10_codes",
+                          "total_deaths",
+                          "percentage"
+                        ]
+                      }
+                    },
+                    "total": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "year",
+                    "city_code",
+                    "location_type",
+                    "transport_modes",
+                    "total"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/deaths/time-series": {
+      "get": {
+        "tags": [
+          "Time Series Analysis"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 2015,
+              "maximum": 2030
+            },
+            "required": false,
+            "name": "start_year",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 2015,
+              "maximum": 2030
+            },
+            "required": false,
+            "name": "end_year",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true
+            },
+            "required": false,
+            "name": "city_code",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pedestrian",
+                "cyclist",
+                "motorcyclist",
+                "tricycle",
+                "car",
+                "pickup",
+                "heavy_vehicle",
+                "bus",
+                "other",
+                "unspecified"
+              ]
+            },
+            "required": false,
+            "name": "transport_mode",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "occurrence",
+                "residence"
+              ],
+              "default": "occurrence"
+            },
+            "required": false,
+            "name": "location_type",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Time series of deaths by year",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "start_year": {
+                      "type": "number"
+                    },
+                    "end_year": {
+                      "type": "number"
+                    },
+                    "city_code": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "transport_mode": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "location_type": {
+                      "type": "string",
+                      "enum": [
+                        "occurrence",
+                        "residence"
+                      ]
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "year": {
+                            "type": "number"
+                          },
+                          "total_deaths": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "year",
+                          "total_deaths"
+                        ]
+                      }
+                    },
+                    "total": {
+                      "type": "number"
+                    },
+                    "average_per_year": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "start_year",
+                    "end_year",
+                    "city_code",
+                    "transport_mode",
+                    "location_type",
+                    "data",
+                    "total",
+                    "average_per_year"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/stats": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true
+            },
+            "required": false,
+            "name": "city_code",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "occurrence",
+                "residence"
+              ],
+              "default": "occurrence"
+            },
+            "required": false,
+            "name": "location_type",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comprehensive statistics summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "city_code": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "location_type": {
+                      "type": "string",
+                      "enum": [
+                        "occurrence",
+                        "residence"
+                      ]
+                    },
+                    "latest_year": {
+                      "type": "number"
+                    },
+                    "latest_year_deaths": {
+                      "type": "number"
+                    },
+                    "previous_year_deaths": {
+                      "type": "number"
+                    },
+                    "growth_percentage": {
+                      "type": "number"
+                    },
+                    "most_violent_year": {
+                      "type": "object",
+                      "properties": {
+                        "year": {
+                          "type": "number"
+                        },
+                        "total_deaths": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "year",
+                        "total_deaths"
+                      ]
+                    },
+                    "last_5_years": {
+                      "type": "object",
+                      "properties": {
+                        "total_deaths": {
+                          "type": "number"
+                        },
+                        "average_per_year": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "total_deaths",
+                        "average_per_year"
+                      ]
+                    },
+                    "all_time": {
+                      "type": "object",
+                      "properties": {
+                        "total_deaths": {
+                          "type": "number"
+                        },
+                        "years_covered": {
+                          "type": "number"
+                        },
+                        "average_per_year": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "total_deaths",
+                        "years_covered",
+                        "average_per_year"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "city_code",
+                    "location_type",
+                    "latest_year",
+                    "latest_year_deaths",
+                    "previous_year_deaths",
+                    "growth_percentage",
+                    "most_violent_year",
+                    "last_5_years",
+                    "all_time"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
