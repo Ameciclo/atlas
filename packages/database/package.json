@@ -41,6 +41,7 @@
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "tsx src/migrate.ts",
 		"db:seed": "tsx src/seed-cyclist-counts.ts",
+		"db:seed-crashes": "tsx src/seed-traffic-crashes.ts",
 		"db:reset": "tsx src/migrate.ts && tsx src/seed-cyclist-counts.ts",
 		"db:drop": "drizzle-kit drop",
 		"db:custom": "drizzle-kit generate --custom"

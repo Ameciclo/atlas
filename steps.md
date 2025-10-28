@@ -90,6 +90,95 @@ pnpm --filter @atlas/database db:custom  # Gerar SQL customizado
 - Gerar migração com `drizzle-kit generate`
 - Usar `drizzle-kit custom` para converter coordinates para `geometry(Point, 4326)`
 
+### 10. Migração PostGIS (Se Necessário)
+**Quando usar**: Após criar schema com campo coordinates como text placeholder
+
+**Passos**:
+1. Gerar migração inicial:
+   ```bash
+   pnpm --filter @atlas/database db:generate
+   ```
+
+2. Criar migração customizada:
+   ```bash
+   pnpm --filter @atlas/database db:custom
+   ```
+
+3. Editar o arquivo SQL gerado com:
+   ```sql
+   -- Custom SQL migration file, put your code below! --
+   
+   -- Enable PostGIS extension if not already enabled
+   CREATE EXTENSION IF NOT EXISTS postgis;
+   
+   -- Convert coordinates column from text to PostGIS geometry(Point, 4326)
+   ALTER TABLE "geolocated_crashes" 
+   ALTER COLUMN "coordinates" TYPE geometry(Point, 4326) 
+   USING ST_GeomFromText('POINT(' || coordinates || ')', 4326);
+   ```
+
+4. Aplicar migrações:
+   ```bash
+   pnpm --filter @atlas/database db:migrate
+   ```
+
+**Propósito**: 
+- Habilitar PostGIS se ainda não estiver habilitado
+- Converter coluna coordinates de text para geometry(Point, 4326)
+- Usar ST_GeomFromText para converter texto em geometria válida
+
+### 11. Criar Arquivo de Seed
+**Local**: `/packages/database/src/seed-{service-name}.ts`
+
+**Estrutura do seed**:
+- Seguir padrão do `seed-cyclist-counts.ts`
+- Imports: `dotenv/config`, `readFile` (async), `createConnectedDatabase`
+- Estrutura: `try/catch/finally` com `closeDatabase`
+- Export: função exportada com `DatabaseConfig`
+- Interfaces TypeScript para estrutura dos dados (GeoJSON, etc.)
+
+**Processamento dos dados**:
+- Ler arquivo de dados (GeoJSON, CSV, etc.)
+- Transformar dados para formato do schema
+- Construir timestamp a partir de campos separados
+- Extrair coordenadas para formato PostGIS
+- Separar dados complementares em JSONB
+- Inserir em lotes (1000 registros por vez)
+
+**Adicionar comando no package.json**:
+```json
+"db:seed-{service}": "tsx src/seed-{service-name}.ts"
+```
+
+**Correções comuns**:
+- Path correto: `../../../apps/{service-name}/src/db/arquivo-dados`
+- Verificar níveis de diretório (três `../` do packages/database)
+
+### 12. Executar Seed
+```bash
+pnpm --filter @atlas/database db:seed-{service}
+```
+**Propósito**: Alimentar a base de dados com os dados reais do arquivo fonte
+
+### 13. Criar Queries de Validação
+**Local**: `/apps/{service-name}/src/db/random-queries.sql`
+
+**Propósito**: Testar e validar os dados inseridos na base
+
+**Tipos de queries**:
+- Contagem total de registros
+- Distribuição por período (anos, meses)
+- Estatísticas de feridos/mortos
+- Validação de coordenadas PostGIS
+- Análise de dados complementares (JSONB)
+- Verificação de valores nulos
+- Queries geoespaciais (se aplicável)
+
+**Como executar**:
+- Via Drizzle Studio: `pnpm --filter @atlas/database db:studio`
+- Via conexão direta PostgreSQL
+- Copiar/colar queries no cliente SQL
+
 ## Resultado Esperado
 - ✅ Branch resetada para o estado da main
 - ✅ Todos os arquivos não rastreados removidos
