@@ -1,14 +1,17 @@
-import { jsonb, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { integer, jsonb, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 // ============================================================================
 // TrafficCrashes Schema
 // ============================================================================
 
-export const examples = pgTable("traffic_crashes_examples", {
+export const geolocatedCrashes = pgTable("geolocated_crashes", {
 	id: serial("id").primaryKey(),
-	name: text("name").notNull(),
-	data: jsonb("data").notNull(),
+	timestamp: timestamp("timestamp").notNull(),
+	n_injured: integer("n_injured").notNull().default(0),
+	n_deaths: integer("n_deaths").notNull().default(0),
+	coordinates: text("coordinates").notNull(), // Placeholder for PostGIS point
+	complementary_data: jsonb("complementary_data").notNull(),
 	created_at: timestamp("created_at").defaultNow().notNull(),
 	updated_at: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -17,12 +20,12 @@ export const examples = pgTable("traffic_crashes_examples", {
 // Zod Schemas
 // ============================================================================
 
-export const insertExampleSchema = createInsertSchema(examples);
-export const selectExampleSchema = createSelectSchema(examples);
+export const insertGeolocatedCrashSchema = createInsertSchema(geolocatedCrashes);
+export const selectGeolocatedCrashSchema = createSelectSchema(geolocatedCrashes);
 
 // ============================================================================
 // TypeScript Types
 // ============================================================================
 
-export type Example = typeof examples.$inferSelect;
-export type InsertExample = typeof examples.$inferInsert;
+export type GeolocatedCrash = typeof geolocatedCrashes.$inferSelect;
+export type InsertGeolocatedCrash = typeof geolocatedCrashes.$inferInsert;

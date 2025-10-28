@@ -43,6 +43,53 @@ git status
 ```
 **Propósito**: Confirmar que a branch está limpa e no estado desejado
 
+### 6. Instalar Dependências
+```bash
+pnpm install
+```
+**Propósito**: Instalar todas as dependências do projeto após o reset
+
+### 7. Criar Novo Serviço
+```bash
+pnpm create-atlas-app traffic-crashes
+```
+**Propósito**: Usar a ferramenta de scaffolding para criar um novo serviço com toda a estrutura necessária (API, banco de dados, testes, Docker, CI/CD)
+
+### 8. Configurar Scripts do Database
+**Local**: `/packages/database/package.json`
+
+**Adicionar scripts**:
+```json
+"db:drop": "drizzle-kit drop",
+"db:studio": "drizzle-kit studio",
+"db:custom": "drizzle-kit generate --custom"
+```
+
+**Comandos disponíveis**:
+```bash
+pnpm --filter @atlas/database db:drop    # Dropar migrações
+pnpm --filter @atlas/database db:studio  # Abrir Drizzle Studio
+pnpm --filter @atlas/database db:custom  # Gerar SQL customizado
+```
+
+### 9. Criar Schema do Banco de Dados
+**Local**: `/packages/database/src/schemas/{service-name}/schema.ts`
+
+**Estrutura criada**:
+- Tabela principal com campos específicos do domínio
+- Campos de timestamp, contadores numéricos
+- Campo coordinates (text temporário para depois converter para PostGIS)
+- Campo complementary_data (JSONB) para dados extras
+- Campos created_at e updated_at padrão
+- Schemas Zod para validação
+- Tipos TypeScript gerados automaticamente
+
+**⚠️ IMPORTANTE**: Remover a tabela `examples` do schema gerado pelo scaffolding antes de criar o schema personalizado, senão a migração será gerada incorretamente.
+
+**Próximos passos**:
+- Gerar migração com `drizzle-kit generate`
+- Usar `drizzle-kit custom` para converter coordinates para `geometry(Point, 4326)`
+
 ## Resultado Esperado
 - ✅ Branch resetada para o estado da main
 - ✅ Todos os arquivos não rastreados removidos

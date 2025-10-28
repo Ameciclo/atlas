@@ -1,20 +1,34 @@
 {
-	"version": "7",
-	"dialect": "postgresql",
-	"entries": [
-		{
-			"idx": 0,
-			"version": "7",
-			"when": 1761026761308,
-			"tag": "0000_amused_ender_wiggin",
-			"breakpoints": true
-		},
-		{
-			"idx": 1,
-			"version": "7",
-			"when": 1761053268476,
-			"tag": "0001_purple_gambit",
-			"breakpoints": true
-		}
-	]
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1761026761308,
+      "tag": "0000_amused_ender_wiggin",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1761053268476,
+      "tag": "0001_purple_gambit",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1761663719930,
+      "tag": "0002_safe_shatterstar",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1761663768219,
+      "tag": "0003_cuddly_dragon_man",
+      "breakpoints": true
+    }
+  ]
 }
