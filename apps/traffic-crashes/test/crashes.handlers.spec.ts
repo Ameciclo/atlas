@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
+import type { Context } from "hono";
 
 vi.mock("../src/db/index.js", () => ({
 	db: {
@@ -26,14 +27,14 @@ describe("Crashes Handlers", () => {
 				{ id: 2, timestamp: new Date(), n_injured: 1, n_deaths: 1 },
 			];
 			
-			(db.query.geolocatedCrashes.findMany as any).mockResolvedValue(mockCrashes);
+			(db.query.geolocatedCrashes.findMany as vi.MockedFunction<typeof db.query.geolocatedCrashes.findMany>).mockResolvedValue(mockCrashes);
 
 			const mockContext = {
 				req: { valid: vi.fn().mockReturnValue({}) },
 				json: vi.fn(),
-			};
+			} as unknown as Context;
 
-			await list(mockContext as any);
+			await list(mockContext);
 
 			expect(db.query.geolocatedCrashes.findMany).toHaveBeenCalledWith();
 			expect(mockContext.json).toHaveBeenCalledWith(mockCrashes);
@@ -42,14 +43,14 @@ describe("Crashes Handlers", () => {
 		it("should filter by start_date", async () => {
 			const mockCrashes = [{ id: 1, timestamp: new Date("2023-06-01") }];
 			
-			(db.query.geolocatedCrashes.findMany as any).mockResolvedValue(mockCrashes);
+			(db.query.geolocatedCrashes.findMany as vi.MockedFunction<typeof db.query.geolocatedCrashes.findMany>).mockResolvedValue(mockCrashes);
 
 			const mockContext = {
 				req: { valid: vi.fn().mockReturnValue({ start_date: "2023-01-01" }) },
 				json: vi.fn(),
-			};
+			} as unknown as Context;
 
-			await list(mockContext as any);
+			await list(mockContext);
 
 			expect(db.query.geolocatedCrashes.findMany).toHaveBeenCalledWith({
 				where: expect.any(Function),
@@ -68,14 +69,14 @@ describe("Crashes Handlers", () => {
 				coordinates: "POINT(-34.123 -8.456)"
 			};
 			
-			(db.query.geolocatedCrashes.findFirst as any).mockResolvedValue(mockCrash);
+			(db.query.geolocatedCrashes.findFirst as vi.MockedFunction<typeof db.query.geolocatedCrashes.findFirst>).mockResolvedValue(mockCrash);
 
 			const mockContext = {
 				req: { valid: vi.fn().mockReturnValue({ id: "1" }) },
 				json: vi.fn(),
-			};
+			} as unknown as Context;
 
-			await getById(mockContext as any);
+			await getById(mockContext);
 
 			expect(db.query.geolocatedCrashes.findFirst).toHaveBeenCalledWith({
 				where: expect.any(Function),
@@ -84,14 +85,14 @@ describe("Crashes Handlers", () => {
 		});
 
 		it("should return 404 when crash not found", async () => {
-			(db.query.geolocatedCrashes.findFirst as any).mockResolvedValue(null);
+			(db.query.geolocatedCrashes.findFirst as vi.MockedFunction<typeof db.query.geolocatedCrashes.findFirst>).mockResolvedValue(null);
 
 			const mockContext = {
 				req: { valid: vi.fn().mockReturnValue({ id: "999" }) },
 				json: vi.fn(),
-			};
+			} as unknown as Context;
 
-			await getById(mockContext as any);
+			await getById(mockContext);
 
 			expect(mockContext.json).toHaveBeenCalledWith(
 				{ message: "Not Found" },

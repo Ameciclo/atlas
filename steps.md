@@ -260,6 +260,39 @@ pnpm --filter @atlas/{service-name} test
 - ✅ Sem dependências externas
 - ✅ Execução rápida
 
+### 19. Verificar Qualidade do Código
+**Comandos obrigatórios antes do commit**:
+
+```bash
+# Verificar linting
+pnpm lint
+
+# Verificar tipos TypeScript
+pnpm check-types
+
+# Formatar código (com correções automáticas)
+pnpm format --write
+
+# Verificar formatação final
+pnpm format
+```
+
+**Propósito**: Garantir que o código segue os padrões do projeto antes do commit
+
+### 20. Commit e Push
+```bash
+# Adicionar arquivos
+git add .
+
+# Fazer commit
+git commit -m "feat: add {service-name} API with PostGIS support"
+
+# Push para repositório remoto
+git push origin {branch-name}
+```
+
+**Propósito**: Salvar o trabalho e disponibilizar para revisão/merge
+
 ## Resultado Esperado
 - ✅ Branch resetada para o estado da main
 - ✅ Todos os arquivos não rastreados removidos

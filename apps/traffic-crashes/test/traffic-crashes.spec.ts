@@ -175,7 +175,7 @@ describe("TrafficCrashes API", () => {
 			if (data.length > 0) {
 				const crash = data[0];
 				expect(new Date(crash.timestamp)).toBeInstanceOf(Date);
-				expect(isNaN(new Date(crash.timestamp).getTime())).toBe(false);
+				expect(Number.isNaN(new Date(crash.timestamp).getTime())).toBe(false);
 			}
 		});
 	});

@@ -17,7 +17,7 @@ interface GeoJSONFeature {
 		DIA: number;
 		latitude: number;
 		longitude: number;
-		[key: string]: any;
+		[key: string]: unknown;
 	};
 	geometry: {
 		type: "Point";
@@ -52,15 +52,15 @@ export async function seedTrafficCrashes(config: DatabaseConfig = {}) {
 		
 		// Build timestamp from date and hour
 		const [day, month, year] = properties.Data.split("/").map(Number);
-		const hour = parseInt(properties.HORA_00) || 0;
-		const timestamp = new Date(year!, month! - 1, day!, hour);
+		const hour = parseInt(properties.HORA_00, 10) || 0;
+		const timestamp = new Date(year ?? 0, (month ?? 1) - 1, day ?? 1, hour);
 
 		// Extract coordinates
 		const [longitude, latitude] = geometry.coordinates;
 		const coordinates = `POINT(${longitude} ${latitude})`;
 
 		// Build complementary data (all other properties)
-		const complementaryData: Record<string, any> = { ...properties };
+		const complementaryData: Record<string, unknown> = { ...properties };
 		delete complementaryData["N° de Feridos"];
 		delete complementaryData["N° de Mortos"];
 		delete complementaryData.Data;
