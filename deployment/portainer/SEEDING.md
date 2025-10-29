@@ -82,7 +82,7 @@ ls -lh /data/traffic-deaths/
 # If you have a manually attachable network:
 docker run --rm \
   -v /data/traffic-deaths:/data/csv \
-  -e DATABASE_URL="postgresql://atlas:AVNS_NK_FoQ5fDFAz6tu7hzs@private-ameciclo-postgres-db-do-user-18311227-0.i.db.ondigitalocean.com:25060/atlas?sslmode=require" \
+  -e DATABASE_URL="postgresql://user:password@host:5432/atlas?sslmode=require" \
   -e CSV_DIR=/data/csv \
   --network your-network \
   ghcr.io/ameciclo/atlas/traffic-deaths:latest \
@@ -105,7 +105,7 @@ docker run --rm \
    - **Host path:** `/data/traffic-deaths`
 
 4. **Add environment variables:**
-   - `DATABASE_URL`: Your PostgreSQL connection string (with `?sslmode=require`)
+   - `DATABASE_URL`: `postgresql://user:password@host:5432/atlas?sslmode=require`
    - `CSV_DIR`: `/data/csv`
    - `NODE_ENV`: `production`
 
