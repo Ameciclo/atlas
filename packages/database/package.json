@@ -22,10 +22,7 @@
 			"types": "./dist/migrations/*.d.ts",
 			"import": "./dist/migrations/*.js"
 		},
-		"./schemas/test-db-service": {
-			"types": "./dist/schemas/test-db-service/index.d.ts",
-			"import": "./dist/schemas/test-db-service/index.js"
-		},
+
 		"./schemas/traffic-calls": {
 			"types": "./dist/schemas/traffic-calls/index.d.ts",
 			"import": "./dist/schemas/traffic-calls/index.js"
@@ -41,11 +38,13 @@
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "tsx src/migrate.ts",
 		"db:seed": "tsx src/seed-cyclist-counts.ts",
+		"db:seed-traffic-calls": "tsx src/seed-traffic-calls.ts",
 		"db:reset": "tsx src/migrate.ts && tsx src/seed-cyclist-counts.ts",
 		"db:drop": "drizzle-kit drop",
 		"db:custom": "drizzle-kit generate --custom"
 	},
 	"dependencies": {
+		"csv-parse": "^5.5.6",
 		"dotenv": "^16.5.0",
 		"drizzle-orm": "^0.43.1",
 		"drizzle-zod": "^0.7.1",
