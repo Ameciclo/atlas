@@ -77,12 +77,12 @@ ls -lh /data/traffic-deaths/
 
 ```bash
 # On production server
+
+# DigitalOcean managed database - sslmode=require is sufficient
 docker run --rm \
   -v /data/traffic-deaths:/app/apps/traffic-deaths/src/db \
-  -e DATABASE_URL="postgresql://user:password@atlas-postgres:5432/atlas?sslmode=require" \
-  -e DATABASE_SSL_CA=/run/secrets/pg-ca-cert \
+  -e DATABASE_URL="postgresql://atlas:AVNS_NK_FoQ5fDFAz6tu7hzs@private-ameciclo-postgres-db-do-user-18311227-0.i.db.ondigitalocean.com:25060/atlas?sslmode=require" \
   --network kong-gateway_kong-net \
-  --secret pg-ca-cert \
   ghcr.io/ameciclo/atlas/traffic-deaths:latest \
   node apps/traffic-deaths/dist/db/seed.js
 ```
@@ -103,16 +103,12 @@ docker run --rm \
    - **Host path:** `/data/traffic-deaths`
 
 4. **Add environment variables:**
-   - `DATABASE_URL`: Your PostgreSQL connection string
-   - `DATABASE_SSL_CA`: `/run/secrets/pg-ca-cert`
+   - `DATABASE_URL`: Your PostgreSQL connection string (with `?sslmode=require`)
    - `NODE_ENV`: `production`
 
-5. **Add secret:**
-   - Select `pg-ca-cert` secret
+5. **Deploy container**
 
-6. **Deploy container**
-
-7. **Monitor logs:**
+6. **Monitor logs:**
    - Go to container logs
    - Watch for progress:
      ```
@@ -137,7 +133,7 @@ docker run --rm \
      ============================================================
      ```
 
-8. **Verify completion:**
+7. **Verify completion:**
    - Container should exit with code 0
    - Check database:
      ```sql
@@ -151,7 +147,7 @@ docker run --rm \
      -- Should show counts for 2015-2023
      ```
 
-9. **Remove temporary container:**
+8. **Remove temporary container:**
    - Portainer → Containers → atlas-traffic-deaths-seed-temp → Remove
 
 ---
@@ -200,15 +196,16 @@ docker run --rm \
 
 ### Issue: "SSL certificate verification failed"
 
-**Cause:** DATABASE_SSL_CA not set or secret not mounted
+**Cause:** Missing `sslmode=require` in DATABASE_URL
 
 **Solution:**
 ```bash
-# Verify secret exists
-docker secret ls | grep pg-ca-cert
+# Ensure DATABASE_URL includes sslmode parameter
+# Correct format:
+DATABASE_URL="postgresql://user:pass@host:5432/atlas?sslmode=require"
 
-# Check secret is mounted in container
-docker exec atlas-traffic-deaths-seed-temp cat /run/secrets/pg-ca-cert
+# For DigitalOcean managed databases, sslmode=require is sufficient
+# No need for custom CA certificates
 ```
 
 ### Issue: Seeding stops mid-way
