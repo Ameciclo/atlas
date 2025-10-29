@@ -86,6 +86,15 @@ pnpm --filter @atlas/database db:custom  # Gerar SQL customizado
 
 **⚠️ IMPORTANTE**: Remover a tabela `examples` do schema gerado pelo scaffolding antes de criar o schema personalizado, senão a migração será gerada incorretamente.
 
+**Atualizar package.json do database**:
+Adicionar export path em `/packages/database/package.json`:
+```json
+"./schemas/{service-name}": {
+  "types": "./dist/schemas/{service-name}/index.d.ts",
+  "import": "./dist/schemas/{service-name}/index.js"
+}
+```
+
 **Próximos passos**:
 - Gerar migração com `drizzle-kit generate`
 - Usar `drizzle-kit custom` para converter coordinates para `geometry(Point, 4326)`
@@ -216,11 +225,39 @@ pnpm generate-openapi
 - `/specs/{service-name}/v1.json`
 - `/apps/docs/public/openapi/{service-name}.json`
 
+**Integrar com documentação**:
+1. Copiar OpenAPI para docs:
+   ```bash
+   cp apps/{service-name}/openapi.json apps/docs/public/openapi/{service-name}.json
+   ```
+
+2. Atualizar índice em `/apps/docs/public/openapi/index.json`:
+   ```json
+   {
+     "{service-name}-api": {
+       "title": "{Service Name} API",
+       "path": "./{service-name}.json"
+     }
+   }
+   ```
+
+3. Acessar documentação: `http://localhost:3001/?api={service-name}-api`
+
 ### 17. Testar Endpoints
 **Configuração necessária**:
-- Copiar `.env.example` para `.env`
-- Ajustar `DATABASE_URL` com `?sslmode=disable`
-- Reiniciar servidor após mudanças no `.env`
+1. Copiar `.env.example` para `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Ajustar `DATABASE_URL` no `.env`:
+   ```bash
+   DATABASE_URL="postgresql://postgres:postgres@localhost:5432/atlas?sslmode=disable"
+   PORT=3007
+   NODE_ENV=development
+   ```
+
+3. Reiniciar servidor após mudanças no `.env`
 
 **Testes com curl**:
 ```bash
@@ -292,6 +329,57 @@ git push origin {branch-name}
 ```
 
 **Propósito**: Salvar o trabalho e disponibilizar para revisão/merge
+
+## Boas Práticas e Recomendações
+
+### Configuração e Setup
+- Configure linter e type checker desde o início
+- Execute `pnpm lint` e `pnpm check-types` regularmente durante desenvolvimento
+- Configure hooks de pre-commit para executar verificações automaticamente
+- Mantenha dependências atualizadas
+- Use versões compatíveis entre ferramentas relacionadas
+
+### Práticas de Código TypeScript
+**Evite `any`**:
+```typescript
+// ❌ Evitar
+const data: any = {};
+
+// ✅ Preferir
+const data: Record<string, unknown> = {};
+```
+
+**Use imports nomeados**:
+```typescript
+// ❌ Evitar
+import fs from "node:fs/promises";
+
+// ✅ Preferir
+import { writeFile } from "node:fs/promises";
+```
+
+**Evite non-null assertions desnecessárias**:
+```typescript
+// ❌ Evitar
+const value = array[0]!;
+
+// ✅ Preferir
+const value = array[0] ?? defaultValue;
+```
+
+### Padrões Gerais
+- Sempre especifique radix em `parseInt(value, 10)`
+- Use `Number.isNaN()` ao invés de `isNaN()` global
+- Prefixe variáveis não utilizadas com underscore (`_error`)
+- Configure IDE para mostrar erros em tempo real
+
+### Workflow de Desenvolvimento
+```bash
+# Execute antes de cada commit
+pnpm lint
+pnpm check-types
+pnpm test
+```
 
 ## Resultado Esperado
 - ✅ Branch resetada para o estado da main
