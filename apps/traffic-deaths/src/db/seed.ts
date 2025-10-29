@@ -7,6 +7,11 @@ import { trafficDeaths } from "./schema.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
+// CSV files directory - can be overridden via environment variable
+// In production Docker: /app/apps/traffic-deaths/src/db
+// In development: apps/traffic-deaths/src/db
+const CSV_DIR = process.env.CSV_DIR || __dirname;
+
 // CSV parsing helper
 function parseCSV(content: string): Record<string, string | null>[] {
 	const lines = content.split("\n");
@@ -173,7 +178,7 @@ function convertToDbRecord(
 }
 
 async function seedYear(year: number, batchId: string) {
-	const csvPath = join(__dirname, `mortes_transito_${year}.csv`);
+	const csvPath = join(CSV_DIR, `mortes_transito_${year}.csv`);
 
 	console.log(`📂 Reading CSV file: ${csvPath}`);
 	const csvContent = readFileSync(csvPath, "utf-8");

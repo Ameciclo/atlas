@@ -76,13 +76,15 @@ ls -lh /data/traffic-deaths/
 #### Option A: Using Docker CLI
 
 ```bash
-# On production server
+# Note: This won't work with kong-gateway_kong-net as it's not manually attachable
+# Use Portainer UI method instead (see Option B below)
 
-# DigitalOcean managed database - sslmode=require is sufficient
+# If you have a manually attachable network:
 docker run --rm \
-  -v /data/traffic-deaths:/app/apps/traffic-deaths/src/db \
+  -v /data/traffic-deaths:/data/csv \
   -e DATABASE_URL="postgresql://atlas:AVNS_NK_FoQ5fDFAz6tu7hzs@private-ameciclo-postgres-db-do-user-18311227-0.i.db.ondigitalocean.com:25060/atlas?sslmode=require" \
-  --network kong-gateway_kong-net \
+  -e CSV_DIR=/data/csv \
+  --network your-network \
   ghcr.io/ameciclo/atlas/traffic-deaths:latest \
   node apps/traffic-deaths/dist/db/seed.js
 ```
@@ -99,11 +101,12 @@ docker run --rm \
    - **Restart policy:** `Never`
 
 3. **Add volume:**
-   - **Container path:** `/app/apps/traffic-deaths/src/db`
+   - **Container path:** `/data/csv`
    - **Host path:** `/data/traffic-deaths`
 
 4. **Add environment variables:**
    - `DATABASE_URL`: Your PostgreSQL connection string (with `?sslmode=require`)
+   - `CSV_DIR`: `/data/csv`
    - `NODE_ENV`: `production`
 
 5. **Deploy container**
