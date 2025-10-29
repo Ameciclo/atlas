@@ -179,6 +179,57 @@ pnpm --filter @atlas/database db:seed-{service}
 - Via conexão direta PostgreSQL
 - Copiar/colar queries no cliente SQL
 
+### 14. Implementar API REST
+**Local**: `/apps/{service-name}/src/routes/`
+
+**Estrutura criada**:
+- Diretório `{entity}/` (ex: `crashes/`)
+- `{entity}.routes.ts` - definições OpenAPI das rotas
+- `{entity}.handlers.ts` - lógica de negócio dos endpoints
+- `{entity}.index.ts` - router que conecta rotas aos handlers
+
+**Rotas implementadas**:
+- `GET /{entity}` - listar todos com filtros opcionais
+- `GET /{entity}/{id}` - buscar por ID específico
+- Filtros por query params (ex: `start_date`, `end_date`)
+
+**Correções necessárias**:
+- Import correto: `createRouter` de `../../lib/create-app.js`
+- Conversão de tipos: `Number(id)` para parâmetros numéricos
+- Configuração SSL: adicionar `?sslmode=disable` na `DATABASE_URL`
+
+### 15. Remover API de Exemplo
+**Arquivos removidos**:
+- `/apps/{service-name}/src/routes/example/` (diretório completo)
+
+**Arquivo atualizado**:
+- `/apps/{service-name}/src/app.ts` - trocar import de `exampleRoutes` por `{entity}Routes`
+
+### 16. Gerar Documentação OpenAPI
+```bash
+pnpm generate-openapi
+```
+**Propósito**: Gerar especificação OpenAPI automática e atualizar documentação
+
+**Arquivos gerados**:
+- `/apps/{service-name}/openapi.json`
+- `/specs/{service-name}/v1.json`
+- `/apps/docs/public/openapi/{service-name}.json`
+
+### 17. Testar Endpoints
+**Configuração necessária**:
+- Copiar `.env.example` para `.env`
+- Ajustar `DATABASE_URL` com `?sslmode=disable`
+- Reiniciar servidor após mudanças no `.env`
+
+**Testes com curl**:
+```bash
+curl http://localhost:3007/health
+curl http://localhost:3007/v1/{entity}
+curl "http://localhost:3007/v1/{entity}?start_date=2023-01-01"
+curl http://localhost:3007/v1/{entity}/1
+```
+
 ## Resultado Esperado
 - ✅ Branch resetada para o estado da main
 - ✅ Todos os arquivos não rastreados removidos

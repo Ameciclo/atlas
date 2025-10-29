@@ -53,14 +53,14 @@ export async function seedTrafficCrashes(config: DatabaseConfig = {}) {
 		// Build timestamp from date and hour
 		const [day, month, year] = properties.Data.split("/").map(Number);
 		const hour = parseInt(properties.HORA_00) || 0;
-		const timestamp = new Date(year, month - 1, day, hour);
+		const timestamp = new Date(year!, month! - 1, day!, hour);
 
 		// Extract coordinates
 		const [longitude, latitude] = geometry.coordinates;
 		const coordinates = `POINT(${longitude} ${latitude})`;
 
 		// Build complementary data (all other properties)
-		const complementaryData = { ...properties };
+		const complementaryData: Record<string, any> = { ...properties };
 		delete complementaryData["N° de Feridos"];
 		delete complementaryData["N° de Mortos"];
 		delete complementaryData.Data;
