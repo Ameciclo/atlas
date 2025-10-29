@@ -6,7 +6,8 @@
 	"main": "./dist/index.js",
 	"scripts": {
 		"dev": "tsx watch src/index.ts",
-		"build": "tsc && pnpm generate-openapi",
+		"build": "tsc",
+		"post-build": "pnpm generate-openapi",
 		"start": "node dist/index.js",
 		"lint": "biome lint .",
 		"format": "biome format .",

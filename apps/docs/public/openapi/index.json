@@ -10,5 +10,9 @@
   {
     "url": "/openapi/emergency-calls.json",
     "title": "Emergency Calls API"
+  },
+  {
+    "url": "/openapi/traffic-crashes.json",
+    "title": "Traffic Crashes API"
   }
 ]

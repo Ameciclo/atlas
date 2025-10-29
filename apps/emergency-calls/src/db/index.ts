@@ -9,6 +9,13 @@ const client = new Client({
 	ssl: false, // Disable SSL for local development
 });
 
-client.connect();
+let connected = false;
 
 export const db = drizzle(client, { schema });
+
+export async function ensureConnection() {
+	if (!connected) {
+		await client.connect();
+		connected = true;
+	}
+}
