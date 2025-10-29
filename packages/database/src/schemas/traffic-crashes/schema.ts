@@ -1,4 +1,11 @@
-import { integer, jsonb, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import {
+	integer,
+	jsonb,
+	pgTable,
+	serial,
+	text,
+	timestamp,
+} from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 // ============================================================================
@@ -20,8 +27,10 @@ export const geolocatedCrashes = pgTable("geolocated_crashes", {
 // Zod Schemas
 // ============================================================================
 
-export const insertGeolocatedCrashSchema = createInsertSchema(geolocatedCrashes);
-export const selectGeolocatedCrashSchema = createSelectSchema(geolocatedCrashes);
+export const insertGeolocatedCrashSchema =
+	createInsertSchema(geolocatedCrashes);
+export const selectGeolocatedCrashSchema =
+	createSelectSchema(geolocatedCrashes);
 
 // ============================================================================
 // TypeScript Types

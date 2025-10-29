@@ -1,15 +1,24 @@
 {
-	"extends": "@atlas/typescript-config/node-service.json",
 	"compilerOptions": {
+		"target": "ES2022",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"allowImportingTsExtensions": false,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": false,
+		"declaration": true,
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
 		"outDir": "./dist",
 		"rootDir": "./src"
 	},
-	"include": [
-		"src/**/*"
-	],
-	"exclude": [
-		"node_modules",
-		"dist",
-		"test"
-	]
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "dist", "test"]
 }

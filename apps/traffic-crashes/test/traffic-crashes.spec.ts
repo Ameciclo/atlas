@@ -20,8 +20,8 @@ vi.mock("../src/db/index.js", () => ({
 				]),
 				findFirst: vi.fn().mockImplementation(() => {
 					// Return null for ID 999999 (non-existent), crash for ID 1
-					const url = globalThis.location?.href || '';
-					if (url.includes('999999')) {
+					const url = globalThis.location?.href || "";
+					if (url.includes("999999")) {
 						return Promise.resolve(null);
 					}
 					return Promise.resolve({
@@ -45,7 +45,7 @@ describe("TrafficCrashes API", () => {
 		it("should return health status", async () => {
 			const res = await app.request("/health");
 			expect([200, 503]).toContain(res.status);
-			
+
 			const data = await res.json();
 			expect(data).toHaveProperty("status");
 			expect(data).toHaveProperty("service", "traffic-crashes");
@@ -58,7 +58,7 @@ describe("TrafficCrashes API", () => {
 		it("should return list of crashes", async () => {
 			const res = await app.request("/v1/crashes");
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(Array.isArray(data)).toBe(true);
 		});
@@ -66,7 +66,7 @@ describe("TrafficCrashes API", () => {
 		it("should filter crashes by start_date", async () => {
 			const res = await app.request("/v1/crashes?start_date=2023-01-01");
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(Array.isArray(data)).toBe(true);
 		});
@@ -74,15 +74,17 @@ describe("TrafficCrashes API", () => {
 		it("should filter crashes by end_date", async () => {
 			const res = await app.request("/v1/crashes?end_date=2023-12-31");
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(Array.isArray(data)).toBe(true);
 		});
 
 		it("should filter crashes by date range", async () => {
-			const res = await app.request("/v1/crashes?start_date=2023-01-01&end_date=2023-12-31");
+			const res = await app.request(
+				"/v1/crashes?start_date=2023-01-01&end_date=2023-12-31",
+			);
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(Array.isArray(data)).toBe(true);
 		});
@@ -90,7 +92,7 @@ describe("TrafficCrashes API", () => {
 		it("should return crashes with correct structure", async () => {
 			const res = await app.request("/v1/crashes");
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			if (data.length > 0) {
 				const crash = data[0];
@@ -110,7 +112,7 @@ describe("TrafficCrashes API", () => {
 		it("should return crash by id", async () => {
 			const res = await app.request("/v1/crashes/1");
 			expect([200, 404]).toContain(res.status);
-			
+
 			if (res.status === 200) {
 				const data = await res.json();
 				expect(data).toHaveProperty("id", 1);
@@ -125,7 +127,7 @@ describe("TrafficCrashes API", () => {
 		it("should return 404 for non-existent crash", async () => {
 			const res = await app.request("/v1/crashes/999999");
 			expect([200, 404]).toContain(res.status);
-			
+
 			if (res.status === 404) {
 				const data = await res.json();
 				expect(data).toHaveProperty("message", "Not Found");
@@ -142,7 +144,7 @@ describe("TrafficCrashes API", () => {
 		it("should validate crash data types", async () => {
 			const res = await app.request("/v1/crashes");
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			if (data.length > 0) {
 				const crash = data[0];
@@ -159,7 +161,7 @@ describe("TrafficCrashes API", () => {
 		it("should validate coordinates format", async () => {
 			const res = await app.request("/v1/crashes");
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			if (data.length > 0) {
 				const crash = data[0];
@@ -170,7 +172,7 @@ describe("TrafficCrashes API", () => {
 		it("should validate timestamp format", async () => {
 			const res = await app.request("/v1/crashes");
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			if (data.length > 0) {
 				const crash = data[0];
@@ -197,7 +199,7 @@ describe("TrafficCrashes API", () => {
 			const start = Date.now();
 			const res = await app.request("/v1/crashes");
 			const duration = Date.now() - start;
-			
+
 			expect(res.status).toBe(200);
 			expect(duration).toBeLessThan(5000);
 		});

@@ -2,7 +2,7 @@ import { createRoute, z } from "@hono/zod-openapi";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { jsonContent } from "stoker/openapi/helpers";
 import { IdParamsSchema } from "stoker/openapi/schemas";
-import { selectGeolocatedCrashSchema } from "../../db/schema.js";
+import { selectGeolocatedCrashSchema } from "@atlas/database/schemas/traffic-crashes";
 import { notFoundSchema } from "../../lib/constants.js";
 
 const tags = ["Crashes"];
@@ -48,10 +48,7 @@ export const getById = createRoute({
 			selectGeolocatedCrashSchema,
 			"Traffic crash details",
 		),
-		[HttpStatusCodes.NOT_FOUND]: jsonContent(
-			notFoundSchema,
-			"Crash not found",
-		),
+		[HttpStatusCodes.NOT_FOUND]: jsonContent(notFoundSchema, "Crash not found"),
 	},
 });
 

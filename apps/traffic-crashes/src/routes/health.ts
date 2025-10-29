@@ -28,7 +28,7 @@ const router = createRouter();
 
 router.openapi(healthRoute, async (c) => {
 	let dbStatus: "connected" | "disconnected" = "connected";
-	
+
 	try {
 		// Simple database check
 		await db.execute("SELECT 1");

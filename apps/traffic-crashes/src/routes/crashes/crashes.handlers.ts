@@ -13,12 +13,14 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 			where(fields, operators) {
 				const conditions = [];
 				if (start_date) {
-					conditions.push(operators.gte(fields.timestamp, new Date(start_date)));
+					conditions.push(
+						operators.gte(fields.timestamp, new Date(start_date)),
+					);
 				}
 				if (end_date) {
 					conditions.push(operators.lte(fields.timestamp, new Date(end_date)));
 				}
-				return conditions.length > 1 
+				return conditions.length > 1
 					? operators.and(...conditions)
 					: conditions[0];
 			},

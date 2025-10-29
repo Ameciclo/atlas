@@ -44,45 +44,47 @@ export async function seedTrafficCrashes(config: DatabaseConfig = {}) {
 		const rawData = await readFile(geoJsonPath, "utf-8");
 		const geoJsonData: GeoJSONCollection = JSON.parse(rawData);
 
-	console.log(`📊 Found ${geoJsonData.features.length} crash records`);
+		console.log(`📊 Found ${geoJsonData.features.length} crash records`);
 
-	// Process and insert data
-	const crashes = geoJsonData.features.map((feature) => {
-		const { properties, geometry } = feature;
-		
-		// Build timestamp from date and hour
-		const [day, month, year] = properties.Data.split("/").map(Number);
-		const hour = parseInt(properties.HORA_00, 10) || 0;
-		const timestamp = new Date(year ?? 0, (month ?? 1) - 1, day ?? 1, hour);
+		// Process and insert data
+		const crashes = geoJsonData.features.map((feature) => {
+			const { properties, geometry } = feature;
 
-		// Extract coordinates
-		const [longitude, latitude] = geometry.coordinates;
-		const coordinates = `POINT(${longitude} ${latitude})`;
+			// Build timestamp from date and hour
+			const [day, month, year] = properties.Data.split("/").map(Number);
+			const hour = parseInt(properties.HORA_00, 10) || 0;
+			const timestamp = new Date(year ?? 0, (month ?? 1) - 1, day ?? 1, hour);
 
-		// Build complementary data (all other properties)
-		const complementaryData: Record<string, unknown> = { ...properties };
-		delete complementaryData["N° de Feridos"];
-		delete complementaryData["N° de Mortos"];
-		delete complementaryData.Data;
-		delete complementaryData.HORA_00;
-		delete complementaryData.latitude;
-		delete complementaryData.longitude;
+			// Extract coordinates
+			const [longitude, latitude] = geometry.coordinates;
+			const coordinates = `POINT(${longitude} ${latitude})`;
 
-		return {
-			timestamp,
-			n_injured: properties["N° de Feridos"] || 0,
-			n_deaths: properties["N° de Mortos"] || 0,
-			coordinates,
-			complementary_data: complementaryData,
-		};
-	});
+			// Build complementary data (all other properties)
+			const complementaryData: Record<string, unknown> = { ...properties };
+			delete complementaryData["N° de Feridos"];
+			delete complementaryData["N° de Mortos"];
+			delete complementaryData.Data;
+			delete complementaryData.HORA_00;
+			delete complementaryData.latitude;
+			delete complementaryData.longitude;
+
+			return {
+				timestamp,
+				n_injured: properties["N° de Feridos"] || 0,
+				n_deaths: properties["N° de Mortos"] || 0,
+				coordinates,
+				complementary_data: complementaryData,
+			};
+		});
 
 		// Insert in batches
 		const batchSize = 1000;
 		for (let i = 0; i < crashes.length; i += batchSize) {
 			const batch = crashes.slice(i, i + batchSize);
 			await db.insert(trafficCrashesSchema.geolocatedCrashes).values(batch);
-			console.log(`✅ Inserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(crashes.length / batchSize)}`);
+			console.log(
+				`✅ Inserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(crashes.length / batchSize)}`,
+			);
 		}
 
 		console.log("🎉 Traffic crashes seed completed!");

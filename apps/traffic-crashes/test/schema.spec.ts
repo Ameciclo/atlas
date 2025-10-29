@@ -1,5 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { selectGeolocatedCrashSchema, insertGeolocatedCrashSchema } from "../src/db/schema.js";
+import {
+	selectGeolocatedCrashSchema,
+	insertGeolocatedCrashSchema,
+} from "../src/db/schema.js";
 
 describe("Schema Validation", () => {
 	describe("selectGeolocatedCrashSchema", () => {
