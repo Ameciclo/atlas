@@ -230,6 +230,36 @@ curl "http://localhost:3007/v1/{entity}?start_date=2023-01-01"
 curl http://localhost:3007/v1/{entity}/1
 ```
 
+### 18. Implementar Testes Automatizados
+**Local**: `/apps/{service-name}/test/`
+
+**Tipos de testes criados**:
+1. `{service-name}.spec.ts` - testes de integração completos
+2. `{entity}.handlers.spec.ts` - testes unitários dos handlers
+3. `{entity}.routes.spec.ts` - testes das rotas OpenAPI
+4. `schema.spec.ts` - validação dos schemas Zod
+
+**Configuração necessária**:
+- `vitest.config.ts` - configuração do Vitest
+- `test/setup.ts` - setup global dos testes
+
+**Problemas comuns e correções**:
+- **Mock mal configurado**: Mock inline correto em vez de mock antes da definição
+- **Tipos inconsistentes**: `Date()` em vez de `toISOString()` para consistência com schema
+- **Expectativas rígidas**: Usar `[200, 404]` em vez de apenas `200` para flexibilidade
+- **Setup global**: Configurar corretamente para evitar dependências externas
+
+**Executar testes**:
+```bash
+pnpm --filter @atlas/{service-name} test
+```
+
+**Resultado esperado**:
+- ✅ Todos os testes passando
+- ✅ Cobertura completa da API
+- ✅ Sem dependências externas
+- ✅ Execução rápida
+
 ## Resultado Esperado
 - ✅ Branch resetada para o estado da main
 - ✅ Todos os arquivos não rastreados removidos

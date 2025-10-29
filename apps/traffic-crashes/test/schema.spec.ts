@@ -6,13 +6,13 @@ describe("Schema Validation", () => {
 		it("should validate valid crash data", () => {
 			const validCrash = {
 				id: 1,
-				timestamp: new Date().toISOString(),
+				timestamp: new Date(),
 				n_injured: 2,
 				n_deaths: 0,
 				coordinates: "POINT(-34.123 -8.456)",
 				complementary_data: { street: "Rua A", neighborhood: "Centro" },
-				created_at: new Date().toISOString(),
-				updated_at: new Date().toISOString(),
+				created_at: new Date(),
+				updated_at: new Date(),
 			};
 
 			const result = selectGeolocatedCrashSchema.safeParse(validCrash);
