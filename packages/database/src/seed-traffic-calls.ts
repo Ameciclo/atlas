@@ -58,12 +58,12 @@ function buildDateTime(dateStr: string, timeStr: string): Date {
 	const [year, month, day] = dateStr.split('-');
 	const [hour, minute, second] = timeStr.split(':');
 	return new Date(
-		parseInt(year),
-		parseInt(month) - 1,
-		parseInt(day),
-		parseInt(hour),
-		parseInt(minute),
-		parseInt(second || '0')
+		parseInt(year || '0', 10),
+		parseInt(month || '0', 10) - 1,
+		parseInt(day || '0', 10),
+		parseInt(hour || '0', 10),
+		parseInt(minute || '0', 10),
+		parseInt(second || '0', 10)
 	);
 }
 

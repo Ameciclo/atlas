@@ -9,7 +9,9 @@ import { trafficCalls } from "../../db/schema.js";
 
 export const listCallsHandler = async (c: Context) => {
 	try {
+		console.log('=== DEBUG: Starting listCallsHandler ===');
 		const { start_date, end_date, nature, neighborhood } = c.req.query();
+		console.log('Query params:', { start_date, end_date, nature, neighborhood });
 
 		// Build where conditions
 		const conditions = [];
@@ -32,11 +34,13 @@ export const listCallsHandler = async (c: Context) => {
 
 		// Execute query
 		const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+		console.log('About to execute query...');
 		const calls = await db
 			.select()
 			.from(trafficCalls)
 			.where(whereClause)
 			.orderBy(trafficCalls.datetime);
+		console.log('Query executed, results:', calls.length, 'records');
 
 		return c.json({
 			data: calls,

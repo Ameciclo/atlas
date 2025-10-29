@@ -244,27 +244,44 @@ pnpm generate-openapi
 3. Acessar documentação: `http://localhost:3001/?api={service-name}-api`
 
 ### 17. Testar Endpoints
+**⚠️ ALERTA IMPORTANTE**: O banco correto é `atlas_dev`, não `atlas`!
+
 **Configuração necessária**:
 1. Copiar `.env.example` para `.env`:
    ```bash
    cp .env.example .env
    ```
 
-2. Ajustar `DATABASE_URL` no `.env`:
+2. **CORRIGIR** `DATABASE_URL` no `.env` (usar `atlas_dev`):
    ```bash
-   DATABASE_URL="postgresql://postgres:postgres@localhost:5432/atlas?sslmode=disable"
-   PORT=3007
+   DATABASE_URL="postgresql://postgres:postgres@localhost:5432/atlas_dev?sslmode=disable"
+   PORT=3008  # Verificar porta correta no .env
    NODE_ENV=development
    ```
 
 3. Reiniciar servidor após mudanças no `.env`
 
-**Testes com curl**:
+**⚠️ PROBLEMA COMUM**: Se o health retornar `"database": "disconnected"`, verifique:
+- Se o banco `atlas_dev` existe (não `atlas`)
+- Se a porta está correta no `.env`
+- Se o PostgreSQL está rodando
+
+**Testes com curl** (verificar porta no `.env`):
 ```bash
-curl http://localhost:3007/health
-curl http://localhost:3007/v1/{entity}
-curl "http://localhost:3007/v1/{entity}?start_date=2023-01-01"
-curl http://localhost:3007/v1/{entity}/1
+curl http://localhost:3008/health  # Verificar porta correta
+curl http://localhost:3008/v1/calls
+curl "http://localhost:3008/v1/calls?start_date=2023-01-01"
+curl http://localhost:3008/v1/calls/1
+```
+
+**⚠️ Se health retornar `database: disconnected`**:
+```bash
+# Verificar se banco existe
+psql postgresql://postgres:postgres@localhost:5432/atlas_dev -c "SELECT COUNT(*) FROM traffic_calls;"
+
+# Se não existir, executar migrações
+pnpm --filter @atlas/database db:migrate
+pnpm --filter @atlas/database db:seed-traffic-calls
 ```
 
 ### 18. Implementar Testes Automatizados
