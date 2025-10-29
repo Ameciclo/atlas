@@ -60,6 +60,7 @@ jobs:
           ALL_APPS='[
             {"app": "cyclist-profile", "webhook_secret": "PORTAINER_WEBHOOK_CYCLIST_PROFILE", "service": "atlas-cyclist-profile"},
             {"app": "cyclist-counts", "webhook_secret": "PORTAINER_WEBHOOK_CYCLIST_COUNTS", "service": "atlas-cyclist-counts"},
+            {"app": "traffic-deaths", "webhook_secret": "PORTAINER_WEBHOOK_TRAFFIC_DEATHS", "service": "atlas-traffic-deaths"},
             {"app": "docs", "webhook_secret": "PORTAINER_WEBHOOK_DOCS", "service": "atlas-docs"}
           ]'
 
@@ -104,7 +105,7 @@ jobs:
           fi
 
           # Check if any API apps changed (need migrations)
-          API_APPS='["cyclist-counts", "cyclist-profile"]'
+          API_APPS='["cyclist-counts", "cyclist-profile", "traffic-deaths"]'
           DEPLOYED_APPS=$(echo "$DEPLOY_MATRIX" | jq -r '[.[].app]')
           HAS_API_CHANGES=$(echo "$DEPLOYED_APPS" | jq --argjson api "$API_APPS" '[.[] | select($api | index(.))] | length > 0')
           echo "has_api_changes=${HAS_API_CHANGES}" >> $GITHUB_OUTPUT

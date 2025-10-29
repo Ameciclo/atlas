@@ -44,6 +44,7 @@ DATABASE_URL=postgresql://user:password@host:5432/atlas?sslmode=require
 ```
 PORTAINER_WEBHOOK_CYCLIST_PROFILE=https://portainer.example.com/api/webhooks/...
 PORTAINER_WEBHOOK_CYCLIST_COUNTS=https://portainer.example.com/api/webhooks/...
+PORTAINER_WEBHOOK_TRAFFIC_DEATHS=https://portainer.example.com/api/webhooks/...
 PORTAINER_WEBHOOK_DOCS=https://portainer.example.com/api/webhooks/...
 ```
 
@@ -72,6 +73,7 @@ Replace your current stack with `atlas-stack-kong-cicd.yml`:
 **Key Changes:**
 - ✅ Removed `cyclist-profile-migrate` init container
 - ✅ Removed `cyclist-counts-migrate` init container
+- ✅ Removed `traffic-deaths-migrate` init container
 - ✅ Removed `depends_on` for migration containers
 - ✅ Simplified stack configuration
 
@@ -94,6 +96,14 @@ For each service, enable webhooks in Portainer:
 4. Click "Create a webhook"
 5. Copy the webhook URL
 6. Add to GitHub secrets as `PORTAINER_WEBHOOK_CYCLIST_COUNTS`
+
+#### **Traffic Deaths**
+1. Go to: `Containers` → `atlas-traffic-deaths`
+2. Click container name to view details
+3. Scroll to "Webhook" section
+4. Click "Create a webhook"
+5. Copy the webhook URL
+6. Add to GitHub secrets as `PORTAINER_WEBHOOK_TRAFFIC_DEATHS`
 
 #### **Docs**
 1. Go to: `Containers` → `atlas-docs`
@@ -131,7 +141,7 @@ You can also trigger deployments manually:
 1. Go to: `Actions` → `Deploy with Migrations`
 2. Click "Run workflow"
 3. Select options:
-   - **App**: Leave empty for all, or specify `cyclist-profile`, `cyclist-counts`, or `docs`
+   - **App**: Leave empty for all, or specify `cyclist-profile`, `cyclist-counts`, `traffic-deaths`, or `docs`
    - **Skip migrations**: Check to skip migrations (use with caution!)
 4. Click "Run workflow"
 
@@ -149,6 +159,7 @@ View deployment progress:
    - ✅ Run Database Migrations
    - ✅ Deploy Cyclist Profile
    - ✅ Deploy Cyclist Counts
+   - ✅ Deploy Traffic Deaths
    - ✅ Deploy Docs
 
 ### **Portainer**
@@ -158,6 +169,7 @@ View container status:
 2. Check status of:
    - `atlas-cyclist-profile`
    - `atlas-cyclist-counts`
+   - `atlas-traffic-deaths`
    - `atlas-docs`
 3. View logs for each container
 

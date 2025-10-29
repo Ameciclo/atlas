@@ -20,6 +20,7 @@
 # Optional Environment Variables:
 #   - CYCLIST_PROFILE_PORT: Cyclist Profile API port (default: 3000)
 #   - CYCLIST_COUNTS_PORT: Cyclist Counts API port (default: 3002)
+#   - TRAFFIC_DEATHS_PORT: Traffic Deaths API port (default: 3003)
 #   - LOG_LEVEL: Logging level (default: info)
 #   - IMAGE_TAG: Docker image tag for all services (default: latest)
 #
@@ -36,6 +37,7 @@
 #   6. Configure Kong routes to point to services:
 #      - cyclist-profile service: http://atlas-cyclist-profile:3000
 #      - cyclist-counts service: http://atlas-cyclist-counts:3002
+#      - traffic-deaths service: http://atlas-traffic-deaths:3003
 #      - docs service: http://atlas-docs:80
 #
 # Webhook Setup (Service-Level):
@@ -53,16 +55,23 @@
 #   7. Copy webhook URL
 #   8. Add to GitHub secrets as PORTAINER_WEBHOOK_CYCLIST_COUNTS
 #
-#   Docs:
-#   9. In Portainer: Containers → atlas-docs
+#   Traffic Deaths:
+#   9. In Portainer: Containers → atlas-traffic-deaths
 #   10. Enable webhook for the service
 #   11. Copy webhook URL
-#   12. Add to GitHub secrets as PORTAINER_WEBHOOK_DOCS
+#   12. Add to GitHub secrets as PORTAINER_WEBHOOK_TRAFFIC_DEATHS
+#
+#   Docs:
+#   13. In Portainer: Containers → atlas-docs
+#   14. Enable webhook for the service
+#   15. Copy webhook URL
+#   16. Add to GitHub secrets as PORTAINER_WEBHOOK_DOCS
 #
 # GitHub Secrets Required:
 #   - DATABASE_URL: PostgreSQL connection string
 #   - PORTAINER_WEBHOOK_CYCLIST_PROFILE: Webhook URL for cyclist-profile service
 #   - PORTAINER_WEBHOOK_CYCLIST_COUNTS: Webhook URL for cyclist-counts service
+#   - PORTAINER_WEBHOOK_TRAFFIC_DEATHS: Webhook URL for traffic-deaths service
 #   - PORTAINER_WEBHOOK_DOCS: Webhook URL for docs service
 #
 # Kong Gateway Configuration:
@@ -76,6 +85,10 @@
 #     Service: http://atlas-cyclist-counts:3002
 #     Route: /api/cyclist-counts
 #
+#   Traffic Deaths API:
+#     Service: http://atlas-traffic-deaths:3003
+#     Route: /api/traffic-deaths
+#
 #   Documentation:
 #     Service: http://atlas-docs:80
 #     Route: /docs
@@ -83,6 +96,7 @@
 # Health Checks:
 #   Cyclist Profile:   curl http://atlas-cyclist-profile:3000/health
 #   Cyclist Counts:    curl http://atlas-cyclist-counts:3002/health
+#   Traffic Deaths:    curl http://atlas-traffic-deaths:3003/health
 #   Docs:              curl http://atlas-docs:80/index.html
 
 secrets:
@@ -196,6 +210,60 @@ services:
         max-file: "3"
 
   # ============================================================================
+  # Traffic Deaths Service - API
+  # ============================================================================
+  # Provides access to Brazil's DATASUS traffic mortality data (2015-2023)
+  # Migrations are handled by CI/CD pipeline before deployment
+  traffic-deaths:
+    image: ghcr.io/ameciclo/atlas/traffic-deaths:${IMAGE_TAG:-latest}
+    container_name: atlas-traffic-deaths
+
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: ${TRAFFIC_DEATHS_PORT:-3003}
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_SSL_CA: /run/secrets/pg-ca-cert
+
+    # Expose port internally to Kong network only (no host port binding)
+    expose:
+      - "${TRAFFIC_DEATHS_PORT:-3003}"
+
+    networks:
+      - kong-net
+
+    secrets:
+      - pg-ca-cert
+
+    restart: unless-stopped
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'node -e "require(''http'').get(''http://localhost:${TRAFFIC_DEATHS_PORT:-3003}/health'', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"',
+        ]
+      interval: 30s
+      timeout: 10s
+      start_period: 40s
+      retries: 3
+
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+        reservations:
+          cpus: "0.5"
+          memory: 256M
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
   # Documentation Service - Static React App
   # ============================================================================
   # Serves static React documentation via Nginx on port 80
@@ -247,4 +315,3 @@ networks:
   kong-net:
     external: true
     name: kong-gateway_kong-net
-
