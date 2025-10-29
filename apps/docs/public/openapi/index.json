@@ -6,5 +6,9 @@
   {
     "url": "/openapi/cyclist-profile.json",
     "title": "Cyclist Profile API"
+  },
+  {
+    "url": "/openapi/traffic-deaths.json",
+    "title": "Traffic Deaths API"
   }
 ]
