@@ -1,6 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { Context } from "hono";
-import { listCallsHandler, getCallHandler } from "../src/routes/calls/calls.handlers.js";
+import type { Context } from "hono";
+import {
+	listCallsHandler,
+	getCallHandler,
+} from "../src/routes/calls/calls.handlers.js";
 
 // Mock database with proper chaining
 vi.mock("../src/db/index.js", () => {
@@ -45,7 +48,9 @@ describe("Calls Handlers", () => {
 	describe("listCallsHandler", () => {
 		it("should return all calls when no filters", async () => {
 			const mockCalls = [mockTrafficCall];
-			(db.limit as any).mockResolvedValue(mockCalls);
+			(
+				db.limit as unknown as { mockResolvedValue: (value: unknown) => void }
+			).mockResolvedValue(mockCalls);
 
 			const mockContext = {
 				req: {
@@ -57,14 +62,18 @@ describe("Calls Handlers", () => {
 			await listCallsHandler(mockContext);
 
 			expect(mockContext.json).toHaveBeenCalled();
-			const callArgs = (mockContext.json as any).mock.calls[0][0];
+			const callArgs = (
+				mockContext.json as unknown as { mock: { calls: unknown[][] } }
+			).mock.calls[0][0];
 			expect(callArgs).toHaveProperty("data");
 			expect(callArgs).toHaveProperty("total");
 		});
 
 		it("should filter by date range", async () => {
 			const mockCalls = [mockTrafficCall];
-			(db.limit as any).mockResolvedValue(mockCalls);
+			(
+				db.limit as unknown as { mockResolvedValue: (value: unknown) => void }
+			).mockResolvedValue(mockCalls);
 
 			const mockContext = {
 				req: {
@@ -79,13 +88,17 @@ describe("Calls Handlers", () => {
 			await listCallsHandler(mockContext);
 
 			expect(mockContext.json).toHaveBeenCalled();
-			const callArgs = (mockContext.json as any).mock.calls[0][0];
+			const callArgs = (
+				mockContext.json as unknown as { mock: { calls: unknown[][] } }
+			).mock.calls[0][0];
 			expect(callArgs).toHaveProperty("data");
 			expect(callArgs).toHaveProperty("total");
 		});
 
 		it("should handle database errors", async () => {
-			(db.limit as any).mockRejectedValue(new Error("Database error"));
+			(
+				db.limit as unknown as { mockRejectedValue: (error: Error) => void }
+			).mockRejectedValue(new Error("Database error"));
 
 			const mockContext = {
 				req: {
@@ -103,7 +116,9 @@ describe("Calls Handlers", () => {
 
 	describe("getCallHandler", () => {
 		it("should return call by valid ID", async () => {
-			(db.limit as any).mockResolvedValue([mockTrafficCall]);
+			(
+				db.limit as unknown as { mockResolvedValue: (value: unknown) => void }
+			).mockResolvedValue([mockTrafficCall]);
 
 			const mockContext = {
 				req: {
@@ -120,7 +135,9 @@ describe("Calls Handlers", () => {
 		});
 
 		it("should return 404 for non-existent call", async () => {
-			(db.limit as any).mockResolvedValue([]);
+			(
+				db.limit as unknown as { mockResolvedValue: (value: unknown) => void }
+			).mockResolvedValue([]);
 
 			const mockContext = {
 				req: {
@@ -136,7 +153,7 @@ describe("Calls Handlers", () => {
 					error: "NOT_FOUND",
 					message: "Traffic call not found",
 				},
-				404
+				404,
 			);
 		});
 
@@ -155,7 +172,7 @@ describe("Calls Handlers", () => {
 					error: "INVALID_ID",
 					message: "Invalid call ID format",
 				},
-				400
+				400,
 			);
 		});
 	});

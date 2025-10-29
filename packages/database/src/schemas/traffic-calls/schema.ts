@@ -14,32 +14,30 @@ import { z } from "zod";
 // Enums
 // ============================================================================
 
-
-
 // ============================================================================
 // Traffic Crashes Schema
 // ============================================================================
 
 export const trafficCalls = pgTable("traffic_calls", {
 	id: serial("id").primaryKey(),
-	
+
 	// Campos essenciais
 	datetime: timestamp("datetime").notNull(),
 	nature: varchar("nature", { length: 50 }).notNull(),
 	total_victims: integer("total_victims").default(0),
 	injured_victims: integer("injured_victims").default(0),
 	fatal_victims: integer("fatal_victims").default(0),
-	
+
 	// Localização
 	street_name: varchar("street_name", { length: 255 }).notNull(),
 	neighborhood: varchar("neighborhood", { length: 100 }).notNull(),
 	coordinates: text("coordinates"), // PostGIS depois
-	
+
 	// Dados flexíveis
 	crash_data: jsonb("crash_data").notNull(),
 	environmental_data: jsonb("environmental_data"),
 	metadata: jsonb("metadata"),
-	
+
 	created_at: timestamp("created_at").defaultNow().notNull(),
 	updated_at: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -90,8 +88,6 @@ export const metadataSchema = z
 	})
 	.optional();
 
-
-
 // Traffic Calls schemas
 export const selectTrafficCallSchema = createSelectSchema(trafficCalls);
 export const insertTrafficCallSchema = createInsertSchema(trafficCalls, {
@@ -99,8 +95,6 @@ export const insertTrafficCallSchema = createInsertSchema(trafficCalls, {
 	environmental_data: environmentalDataSchema,
 	metadata: metadataSchema,
 });
-
-
 
 // ============================================================================
 // TypeScript Types
@@ -111,4 +105,3 @@ export type NewTrafficCall = typeof trafficCalls.$inferInsert;
 export type CrashData = z.infer<typeof crashDataSchema>;
 export type EnvironmentalData = z.infer<typeof environmentalDataSchema>;
 export type Metadata = z.infer<typeof metadataSchema>;
-

@@ -4,7 +4,7 @@ import { notFound, onError, serveEmojiFavicon } from "stoker/middlewares";
 import { defaultHook } from "stoker/openapi";
 import { createPinoLogger } from "../middlewares/pino-logger.js";
 
-import type { AppBindings, AppOpenAPI } from "./types.js";
+import type { AppBindings } from "./types.js";
 
 export function createRouter() {
 	return new OpenAPIHono<AppBindings>({
@@ -28,6 +28,9 @@ export default function createApp(): OpenAPIHono<AppBindings> {
 	return app;
 }
 
-export function createTestApp<S extends import("hono").Schema>(router: AppOpenAPI<S>) {
+export function createTestApp(
+	// biome-ignore lint/suspicious/noExplicitAny: Required for Hono compatibility
+	router: any,
+) {
 	return createApp().route("/", router);
 }

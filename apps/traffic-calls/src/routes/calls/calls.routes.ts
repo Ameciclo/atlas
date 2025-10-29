@@ -6,49 +6,64 @@ import { selectTrafficCallSchema } from "../../db/schema.js";
 // ============================================================================
 
 const listQuerySchema = z.object({
-	start_date: z.string().optional().openapi({
-		param: {
-			name: "start_date",
-			in: "query",
-		},
-		example: "2023-01-01",
-		description: "Filter calls from this date (YYYY-MM-DD)",
-	}),
-	end_date: z.string().optional().openapi({
-		param: {
-			name: "end_date", 
-			in: "query",
-		},
-		example: "2023-12-31",
-		description: "Filter calls until this date (YYYY-MM-DD)",
-	}),
-	nature: z.string().optional().openapi({
-		param: {
-			name: "nature",
-			in: "query",
-		},
-		example: "COLISÃO",
-		description: "Filter by call nature",
-	}),
-	neighborhood: z.string().optional().openapi({
-		param: {
-			name: "neighborhood",
-			in: "query", 
-		},
-		example: "BOA VIAGEM",
-		description: "Filter by neighborhood",
-	}),
+	start_date: z
+		.string()
+		.optional()
+		.openapi({
+			param: {
+				name: "start_date",
+				in: "query",
+			},
+			example: "2023-01-01",
+			description: "Filter calls from this date (YYYY-MM-DD)",
+		}),
+	end_date: z
+		.string()
+		.optional()
+		.openapi({
+			param: {
+				name: "end_date",
+				in: "query",
+			},
+			example: "2023-12-31",
+			description: "Filter calls until this date (YYYY-MM-DD)",
+		}),
+	nature: z
+		.string()
+		.optional()
+		.openapi({
+			param: {
+				name: "nature",
+				in: "query",
+			},
+			example: "COLISÃO",
+			description: "Filter by call nature",
+		}),
+	neighborhood: z
+		.string()
+		.optional()
+		.openapi({
+			param: {
+				name: "neighborhood",
+				in: "query",
+			},
+			example: "BOA VIAGEM",
+			description: "Filter by neighborhood",
+		}),
 });
 
 const paramsSchema = z.object({
-	id: z.string().min(1).openapi({
-		param: {
-			name: "id",
-			in: "path",
-		},
-		example: "1",
-		description: "Traffic call ID",
-	}),
+	id: z
+		.string()
+		.min(1)
+		.openapi({
+			param: {
+				name: "id",
+				in: "path",
+			},
+			example: "1",
+			description: "Traffic call ID",
+		}),
 });
 
 // ============================================================================
@@ -103,7 +118,7 @@ export const listCallsRoute = createRoute({
 });
 
 export const getCallRoute = createRoute({
-	method: "get", 
+	method: "get",
 	path: "/calls/{id}",
 	request: {
 		params: paramsSchema,

@@ -3,7 +3,9 @@ import { listCallsRoute, getCallRoute } from "./calls.routes.js";
 import { listCallsHandler, getCallHandler } from "./calls.handlers.js";
 
 const router = createRouter()
-	.openapi(listCallsRoute, listCallsHandler)
-	.openapi(getCallRoute, getCallHandler);
+	// biome-ignore lint/suspicious/noExplicitAny: Required for Hono OpenAPI compatibility
+	.openapi(listCallsRoute, listCallsHandler as any)
+	// biome-ignore lint/suspicious/noExplicitAny: Required for Hono OpenAPI compatibility
+	.openapi(getCallRoute, getCallHandler as any);
 
 export default router;

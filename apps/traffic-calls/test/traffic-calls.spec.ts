@@ -45,7 +45,7 @@ describe("TrafficCalls API Integration", () => {
 		it("should return health status", async () => {
 			const res = await app.request("/health");
 			expect([200, 503]).toContain(res.status);
-			
+
 			const data = await res.json();
 			expect(data).toHaveProperty("service", "traffic-calls");
 			expect(data).toHaveProperty("database");
@@ -54,28 +54,38 @@ describe("TrafficCalls API Integration", () => {
 
 	describe("GET /v1/calls", () => {
 		it("should return list of calls", async () => {
-			(db.limit as any).mockResolvedValue([mockTrafficCall]);
+			(
+				db.limit as unknown as { mockResolvedValue: (value: unknown) => void }
+			).mockResolvedValue([mockTrafficCall]);
 
 			const res = await app.request("/v1/calls");
 			expect([200, 500]).toContain(res.status);
 		});
 
 		it("should accept date filters", async () => {
-			(db.limit as any).mockResolvedValue([mockTrafficCall]);
+			(
+				db.limit as unknown as { mockResolvedValue: (value: unknown) => void }
+			).mockResolvedValue([mockTrafficCall]);
 
-			const res = await app.request("/v1/calls?start_date=2023-01-01&end_date=2023-12-31");
+			const res = await app.request(
+				"/v1/calls?start_date=2023-01-01&end_date=2023-12-31",
+			);
 			expect([200, 500]).toContain(res.status);
 		});
 
 		it("should accept nature filter", async () => {
-			(db.limit as any).mockResolvedValue([mockTrafficCall]);
+			(
+				db.limit as unknown as { mockResolvedValue: (value: unknown) => void }
+			).mockResolvedValue([mockTrafficCall]);
 
 			const res = await app.request("/v1/calls?nature=COLISÃO");
 			expect([200, 500]).toContain(res.status);
 		});
 
 		it("should accept neighborhood filter", async () => {
-			(db.limit as any).mockResolvedValue([mockTrafficCall]);
+			(
+				db.limit as unknown as { mockResolvedValue: (value: unknown) => void }
+			).mockResolvedValue([mockTrafficCall]);
 
 			const res = await app.request("/v1/calls?neighborhood=BOA VIAGEM");
 			expect([200, 500]).toContain(res.status);
@@ -84,7 +94,9 @@ describe("TrafficCalls API Integration", () => {
 
 	describe("GET /v1/calls/{id}", () => {
 		it("should return specific call", async () => {
-			(db.limit as any).mockResolvedValue([mockTrafficCall]);
+			(
+				db.limit as unknown as { mockResolvedValue: (value: unknown) => void }
+			).mockResolvedValue([mockTrafficCall]);
 
 			const res = await app.request("/v1/calls/1");
 			expect([200, 404, 500]).toContain(res.status);
@@ -97,7 +109,9 @@ describe("TrafficCalls API Integration", () => {
 		});
 
 		it("should return 404 for non-existent call", async () => {
-			(db.limit as any).mockResolvedValue([]);
+			(
+				db.limit as unknown as { mockResolvedValue: (value: unknown) => void }
+			).mockResolvedValue([]);
 
 			const res = await app.request("/v1/calls/999");
 			expect([404, 500]).toContain(res.status);

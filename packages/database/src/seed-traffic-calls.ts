@@ -52,25 +52,23 @@ interface CsvRow {
 	Protocolo: string;
 }
 
-
-
 function buildDateTime(dateStr: string, timeStr: string): Date {
-	const [year, month, day] = dateStr.split('-');
-	const [hour, minute, second] = timeStr.split(':');
+	const [year, month, day] = dateStr.split("-");
+	const [hour, minute, second] = timeStr.split(":");
 	return new Date(
-		parseInt(year || '0', 10),
-		parseInt(month || '0', 10) - 1,
-		parseInt(day || '0', 10),
-		parseInt(hour || '0', 10),
-		parseInt(minute || '0', 10),
-		parseInt(second || '0', 10)
+		parseInt(year || "0", 10),
+		parseInt(month || "0", 10) - 1,
+		parseInt(day || "0", 10),
+		parseInt(hour || "0", 10),
+		parseInt(minute || "0", 10),
+		parseInt(second || "0", 10),
 	);
 }
 
 function parseNumber(str: string): number {
-	if (!str || str.trim() === '') return 0;
-	const num = parseInt(str.trim());
-	return isNaN(num) ? 0 : num;
+	if (!str || str.trim() === "") return 0;
+	const num = parseInt(str.trim(), 10);
+	return Number.isNaN(num) ? 0 : num;
 }
 
 /**
@@ -88,24 +86,59 @@ export async function seedTrafficCalls(config: DatabaseConfig = {}) {
 			"../../../apps/traffic-calls/src/db/sinistros-cttu-2016-2024-vias-corrigidas.csv",
 		);
 		const rawData = await readFile(dataPath, "utf-8");
-		
+
 		// Parse CSV with proper library
 		const records = parse(rawData, {
 			columns: [
-				'data', 'hora', 'natureza_acidente', 'situacao', 'bairro', 'endereco', '',
-				'numero', 'detalhe_endereco_acidente', 'complemento', 'endereco_cruzamento',
-				'numero_cruzamento', 'referencia_cruzamento', 'bairro_cruzamento', 'tipo',
-				'descricao', 'auto', 'moto', 'ciclom', 'ciclista', 'pedestre', 'onibus',
-				'caminhao', 'viatura', 'outros', 'vitimas', 'vitimasfatais', 'num_semaforo',
-				'sentido_via', 'acidente_verificado', 'tempo_clima', 'situacao_semaforo',
-				'sinalizacao', 'condicao_via', 'conservacao_via', 'ponto_controle',
-				'situacao_placa', 'velocidade_max_via', 'mao_direcao', 'divisao_via1',
-				'divisao_via2', 'divisao_via3', '_id', 'Protocolo'
+				"data",
+				"hora",
+				"natureza_acidente",
+				"situacao",
+				"bairro",
+				"endereco",
+				"",
+				"numero",
+				"detalhe_endereco_acidente",
+				"complemento",
+				"endereco_cruzamento",
+				"numero_cruzamento",
+				"referencia_cruzamento",
+				"bairro_cruzamento",
+				"tipo",
+				"descricao",
+				"auto",
+				"moto",
+				"ciclom",
+				"ciclista",
+				"pedestre",
+				"onibus",
+				"caminhao",
+				"viatura",
+				"outros",
+				"vitimas",
+				"vitimasfatais",
+				"num_semaforo",
+				"sentido_via",
+				"acidente_verificado",
+				"tempo_clima",
+				"situacao_semaforo",
+				"sinalizacao",
+				"condicao_via",
+				"conservacao_via",
+				"ponto_controle",
+				"situacao_placa",
+				"velocidade_max_via",
+				"mao_direcao",
+				"divisao_via1",
+				"divisao_via2",
+				"divisao_via3",
+				"_id",
+				"Protocolo",
 			],
 			skip_empty_lines: true,
-			from_line: 2 // Skip header
+			from_line: 2, // Skip header
 		}) as CsvRow[];
-		
+
 		console.log(`📊 Found ${records.length} crashes to import`);
 
 		let crashesCreated = 0;
@@ -113,13 +146,13 @@ export async function seedTrafficCalls(config: DatabaseConfig = {}) {
 
 		for (let i = 0; i < records.length; i += batchSize) {
 			const batch = records.slice(i, i + batchSize);
-			const crashData: typeof trafficCallsSchema.trafficCalls.$inferInsert[] = [];
+			const crashData: (typeof trafficCallsSchema.trafficCalls.$inferInsert)[] =
+				[];
 
 			for (const row of batch) {
 				try {
-
 					// Skip if not FINALIZADA
-					if (row.situacao !== 'FINALIZADA') {
+					if (row.situacao !== "FINALIZADA") {
 						continue;
 					}
 
@@ -129,45 +162,46 @@ export async function seedTrafficCalls(config: DatabaseConfig = {}) {
 					const fatalVictims = parseNumber(row.vitimasfatais);
 					const totalVictims = nonFatalVictims + fatalVictims;
 
-					const crashRecord: typeof trafficCallsSchema.trafficCalls.$inferInsert = {
-						datetime,
-						nature: row.natureza_acidente,
-						total_victims: totalVictims,
-						injured_victims: nonFatalVictims,
-						fatal_victims: fatalVictims,
-						street_name: row.endereco,
-						neighborhood: row.bairro,
-						coordinates: null, // Will be handled later with PostGIS
-						crash_data: {
-							type: row.tipo,
-							description: row.descricao,
-							address: row.endereco,
-							vehicles: {
-								cars: parseNumber(row.auto),
-								motorcycles: parseNumber(row.moto),
-								bicycles: parseNumber(row.ciclom),
-								cyclists: parseNumber(row.ciclista),
-								pedestrians: parseNumber(row.pedestre),
-								buses: parseNumber(row.onibus),
-								trucks: parseNumber(row.caminhao),
-								police_vehicles: parseNumber(row.viatura),
-								others: parseNumber(row.outros),
-							}
-						},
-						environmental_data: {
-							weather: row.tempo_clima,
-							traffic_light_status: row.situacao_semaforo,
-							signage: row.sinalizacao,
-							road_conditions: row.condicao_via,
-							road_conservation: row.conservacao_via,
-							max_speed: row.velocidade_max_via,
-						},
-						metadata: {
-							original_id: row._id,
-							protocol: row.Protocolo,
-							verified: row.acidente_verificado === 'SIM',
-						}
-					};
+					const crashRecord: typeof trafficCallsSchema.trafficCalls.$inferInsert =
+						{
+							datetime,
+							nature: row.natureza_acidente,
+							total_victims: totalVictims,
+							injured_victims: nonFatalVictims,
+							fatal_victims: fatalVictims,
+							street_name: row.endereco,
+							neighborhood: row.bairro,
+							coordinates: null, // Will be handled later with PostGIS
+							crash_data: {
+								type: row.tipo,
+								description: row.descricao,
+								address: row.endereco,
+								vehicles: {
+									cars: parseNumber(row.auto),
+									motorcycles: parseNumber(row.moto),
+									bicycles: parseNumber(row.ciclom),
+									cyclists: parseNumber(row.ciclista),
+									pedestrians: parseNumber(row.pedestre),
+									buses: parseNumber(row.onibus),
+									trucks: parseNumber(row.caminhao),
+									police_vehicles: parseNumber(row.viatura),
+									others: parseNumber(row.outros),
+								},
+							},
+							environmental_data: {
+								weather: row.tempo_clima,
+								traffic_light_status: row.situacao_semaforo,
+								signage: row.sinalizacao,
+								road_conditions: row.condicao_via,
+								road_conservation: row.conservacao_via,
+								max_speed: row.velocidade_max_via,
+							},
+							metadata: {
+								original_id: row._id,
+								protocol: row.Protocolo,
+								verified: row.acidente_verificado === "SIM",
+							},
+						};
 
 					crashData.push(crashRecord);
 				} catch (error) {
@@ -178,7 +212,9 @@ export async function seedTrafficCalls(config: DatabaseConfig = {}) {
 			if (crashData.length > 0) {
 				await db.insert(trafficCallsSchema.trafficCalls).values(crashData);
 				crashesCreated += crashData.length;
-				console.log(`  ✓ Processed batch ${Math.floor(i / batchSize) + 1}: ${crashData.length} crashes`);
+				console.log(
+					`  ✓ Processed batch ${Math.floor(i / batchSize) + 1}: ${crashData.length} crashes`,
+				);
 			}
 		}
 

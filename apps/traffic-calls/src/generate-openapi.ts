@@ -1,11 +1,11 @@
 import "dotenv/config";
-import fs from "node:fs/promises";
-import path from "node:path";
+import { writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import app from "./app.js";
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = dirname(__filename);
 
 async function generateOpenAPISpec() {
 	try {
@@ -42,8 +42,8 @@ async function generateOpenAPISpec() {
 			],
 		});
 
-		const outputPath = path.join(__dirname, "..", "openapi.json");
-		await fs.writeFile(outputPath, JSON.stringify(openAPIDoc, null, 2));
+		const outputPath = join(__dirname, "..", "openapi.json");
+		await writeFile(outputPath, JSON.stringify(openAPIDoc, null, 2));
 
 		console.log(`✓ OpenAPI spec generated at ${outputPath}`);
 	} catch (error) {

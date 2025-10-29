@@ -1,7 +1,10 @@
 import { describe, it, expect, vi } from "vitest";
 import { testClient } from "hono/testing";
 import { OpenAPIHono } from "@hono/zod-openapi";
-import { listCallsRoute, getCallRoute } from "../src/routes/calls/calls.routes.js";
+import {
+	listCallsRoute,
+	getCallRoute,
+} from "../src/routes/calls/calls.routes.js";
 
 describe("Calls Routes", () => {
 	describe("Route Definitions", () => {
@@ -24,7 +27,7 @@ describe("Calls Routes", () => {
 	describe("OpenAPI Integration", () => {
 		it("should integrate routes with OpenAPI app", () => {
 			const app = new OpenAPIHono();
-			
+
 			// Mock handlers
 			const mockListHandler = vi.fn();
 			const mockGetHandler = vi.fn();
