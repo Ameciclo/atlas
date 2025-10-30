@@ -13,7 +13,13 @@
 		"test": "turbo run test",
 		"generate-openapi": "turbo run generate-openapi && pnpm --filter @atlas/docs prepare-openapi",
 		"openapi:validate": "node scripts/validate-openapi.js",
-		"create-atlas-app": "pnpm --filter @atlas/create-atlas-app build && node packages/create-atlas-app/dist/index.js"
+		"create-atlas-app": "pnpm --filter @atlas/create-atlas-app build && node packages/create-atlas-app/dist/index.js",
+		"db:migrate": "pnpm --filter @atlas/database db:migrate",
+		"db:seed": "pnpm --filter @atlas/database db:seed",
+		"db:reset": "pnpm --filter @atlas/database db:reset",
+		"db:reset:seed": "pnpm --filter @atlas/database db:reset:seed",
+		"db:studio": "pnpm --filter @atlas/database db:studio",
+		"db:generate": "pnpm --filter @atlas/database db:generate"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.7",
@@ -25,5 +31,9 @@
 	"packageManager": "pnpm@10.10.0",
 	"engines": {
 		"node": ">=18"
+	},
+	"dependencies": {
+		"chalk": "^5.6.2",
+		"drizzle-seed": "^0.3.1"
 	}
 }
