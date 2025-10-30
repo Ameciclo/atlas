@@ -121,11 +121,123 @@ pnpm build
 # Run migrations
 pnpm db:migrate
 
+# Seed the database
+pnpm db:seed
+
+# Reset database (truncate all tables)
+pnpm db:reset
+
 # Open Drizzle Studio
 pnpm db:studio
 
 # Generate new migrations
 pnpm db:generate
+```
+
+## Database Seeding
+
+The Atlas database includes a comprehensive seeding system that populates the database with initial data. All seed functions are **idempotent** - they can be run multiple times without creating duplicates.
+
+### Running Seeds
+
+```bash
+# Run all seeds
+pnpm db:seed
+
+# Run specific seeds
+pnpm db:seed --only=counts,profiles
+
+# Skip specific seeds
+pnpm db:seed --skip=deaths
+
+# Reset database and seed (truncate + migrate + seed)
+pnpm db:reset && pnpm db:migrate && pnpm db:seed
+```
+
+### Available Seeds
+
+- **counts** - Cyclist counting data (locations, events, sessions, movements)
+- **profiles** - Cyclist profile data (500 profiles from cyclist-profile app)
+- **deaths** - Traffic deaths data (from DATASUS CSV files)
+
+### Adding a New Seed Function
+
+1. **Create a seed file** at `packages/database/src/seed-{app-name}.ts`
+
+2. **Use the seed template** as a reference:
+   ```bash
+   cat packages/database/SEED_TEMPLATE.ts
+   ```
+
+3. **Implement your seed function** following these principles:
+   - **Idempotency**: Check if data exists before inserting
+   - **Error Handling**: Wrap operations in try-catch, continue on errors
+   - **Logging**: Use chalk for colored output
+   - **Performance**: Batch operations when possible
+
+4. **Register the seed** in `packages/database/src/seed.ts`:
+   ```typescript
+   import seedMyApp from "./seed-my-app.js";
+
+   const seedTasks = [
+     // ... existing tasks
+     { id: "my-app", name: "My App", fn: seedMyApp },
+   ];
+   ```
+
+5. **Test your seed**:
+   ```bash
+   # Run your seed
+   pnpm db:seed --only=my-app
+
+   # Run again to verify idempotency
+   pnpm db:seed --only=my-app
+   ```
+
+### Seed Data Organization
+
+Seed data files should be organized in `packages/database/seed-data/`:
+
+```
+packages/database/seed-data/
+├── cyclist-profiles/
+│   └── data.json          # 500 cyclist profiles
+├── traffic-deaths/
+│   └── mortes_transito_*.csv  # Traffic death statistics
+└── cyclist-counts/
+    └── (data if needed)
+```
+
+### Idempotency Patterns
+
+**Simple equality check:**
+```typescript
+const existing = await db
+  .select()
+  .from(schema.table)
+  .where(eq(schema.table.uniqueField, value))
+  .limit(1);
+
+if (existing.length > 0) {
+  skipped++;
+  continue;
+}
+```
+
+**JSONB containment check (for complex objects):**
+```typescript
+const existing = await db
+  .select()
+  .from(schema.table)
+  .where(
+    sql`${schema.table.metadata} @> ${JSON.stringify({ id: value })}`
+  )
+  .limit(1);
+
+if (existing.length > 0) {
+  skipped++;
+  continue;
+}
 ```
 
 ## Adding a New Service Tables
