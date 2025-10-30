@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { eq, sql } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import type { DatabaseConfig } from "./connection.js";
 import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import * as cyclistProfileSchema from "./schemas/cyclist-profile/index.js";

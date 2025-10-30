@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { reset } from "drizzle-seed";
-import { createConnectedDatabase, closeDatabase } from "./connection.js";
+import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import * as schema from "./schemas/index.js";
 
 async function resetDatabase() {
