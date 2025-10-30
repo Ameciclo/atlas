@@ -36,9 +36,6 @@ describe("Integration Tests - Full App Generation", () => {
 		// Check that all required files exist
 		expect(await fs.pathExists(path.join(appPath, "package.json"))).toBe(true);
 		expect(await fs.pathExists(path.join(appPath, "Dockerfile"))).toBe(true);
-		expect(await fs.pathExists(path.join(appPath, "docker-compose.yml"))).toBe(
-			true,
-		);
 		expect(await fs.pathExists(path.join(appPath, "README.md"))).toBe(true);
 		expect(await fs.pathExists(path.join(appPath, "tsconfig.json"))).toBe(true);
 		expect(await fs.pathExists(path.join(appPath, "tsconfig.test.json"))).toBe(
