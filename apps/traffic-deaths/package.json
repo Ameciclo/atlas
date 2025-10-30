@@ -14,8 +14,7 @@
 		"test": "NODE_ENV=test vitest --run",
 		"test:watch": "NODE_ENV=test vitest --watch",
 		"generate-openapi": "tsx src/generate-openapi.ts",
-		"pre-dev": "pnpm generate-openapi",
-		"db:seed": "tsx src/db/seed.ts"
+		"pre-dev": "pnpm generate-openapi"
 	},
 	"dependencies": {
 		"@atlas/database": "workspace:*",

@@ -82,5 +82,9 @@ ENV PORT=3003
 # Expose port (can be overridden at runtime)
 EXPOSE ${PORT}
 
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+  CMD node -e "require('http').get('http://localhost:${PORT}/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"
+
 # Default command to start the application
 CMD ["node", "apps/traffic-deaths/dist/index.js"]

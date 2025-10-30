@@ -101,6 +101,10 @@ ENV PORT=${config.port}
 # Expose port (can be overridden at runtime)
 EXPOSE \${PORT}
 
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \\
+  CMD node -e "require('http').get('http://localhost:\${PORT}/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"
+
 # Default command to start the application
 CMD ["node", "apps/${config.name}/dist/index.js"]
 `;

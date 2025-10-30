@@ -2,13 +2,8 @@
 	"extends": "@atlas/typescript-config/node-service.json",
 	"compilerOptions": {
 		"outDir": "./dist",
-		"rootDir": ".",
-		"verbatimModuleSyntax": true,
-		"jsxImportSource": "hono/jsx",
-		"types": ["node", "vitest/globals"],
-		"jsx": "react-jsx",
-		"incremental": true
+		"rootDir": "./src"
 	},
 	"include": ["src/**/*"],
-	"exclude": ["node_modules", "dist", "test/**/*"]
+	"exclude": ["node_modules", "dist", "test"]
 }

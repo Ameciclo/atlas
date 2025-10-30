@@ -73,8 +73,6 @@ COPY --from=builder /app/apps/cyclist-counts/dist ./apps/cyclist-counts/dist
 COPY --from=builder /app/packages/database/dist ./packages/database/dist
 # Copy migrations folder from database package
 COPY --from=builder /app/packages/database/src/migrations ./packages/database/src/migrations
-# Copy seed data from database package
-COPY --from=builder /app/packages/database/seed-data ./packages/database/seed-data
 
 # Set environment variables
 ENV NODE_ENV=production
@@ -83,6 +81,10 @@ ENV PORT=3002
 
 # Expose port (can be overridden at runtime)
 EXPOSE ${PORT}
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+  CMD node -e "require('http').get('http://localhost:${PORT}/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"
 
 # Default command to start the application
 CMD ["node", "apps/cyclist-counts/dist/index.js"]
