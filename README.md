@@ -91,6 +91,15 @@ We recommend using [mise](https://mise.jdx.dev/) for managing tool versions. A `
    pnpm check-types
    ```
 
+8. **OpenAPI Documentation:**
+   ```bash
+   # Auto-discover and generate all OpenAPI specs
+   pnpm generate-openapi
+
+   # Specs are automatically copied to the docs app
+   # View them at http://localhost:5173 (after running pnpm --filter @atlas/docs dev)
+   ```
+
 For more detailed instructions, see the [Development Guide](./DEVELOPMENT.md).
 
 ## Directory Structure
@@ -149,17 +158,24 @@ Atlas uses a **shared database with single schema** approach:
 
 See [Database Usage Guide](./packages/database/USAGE.md) for details.
 
-### OpenAPI Documentation
+### OpenAPI Auto-Discovery
 
-The CI/CD pipeline automatically generates OpenAPI specifications for all API services:
+Atlas features an **automatic OpenAPI discovery system** that eliminates manual registration:
 
-1. **Build Phase**: TypeScript is compiled (no database required)
-2. **OpenAPI Generation Phase**:
-   - PostgreSQL service starts in CI
-   - Database migrations run
-   - OpenAPI specs are generated with real database schema
-   - Specs are committed back to the repository
-3. **Deployment**: The docs app displays all OpenAPI specifications
+**How it works:**
+- Apps are auto-discovered if they have:
+  1. A `generate-openapi` script in `package.json`
+  2. A `src/generate-openapi.ts` file
+- Running `pnpm generate-openapi` automatically finds and generates specs for all API apps
+- No manual registration needed - just create the files and you're done!
+
+**Benefits:**
+- ✅ Zero configuration - new apps are automatically discovered
+- ✅ Consistent behavior across all API services
+- ✅ Single command generates all OpenAPI specs
+- ✅ Specs are automatically copied to the docs app
+
+See [OpenAPI Discovery Documentation](./docs/OPENAPI_DISCOVERY.md) for details.
 
 ### Docker Deployment
 
