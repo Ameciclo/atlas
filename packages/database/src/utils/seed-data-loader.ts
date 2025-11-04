@@ -80,20 +80,18 @@ export class SeedDataLoader {
 
 			// Convert stream to buffer
 			const chunks: Uint8Array[] = [];
-			const body = response.Body as unknown;
+			const body = response.Body as unknown as {
+				transformToByteArray?: () => Promise<Uint8Array>;
+				[Symbol.asyncIterator]?: () => AsyncIterator<Uint8Array>;
+			};
 
-			if (body && typeof body === "object" && "transformToByteArray" in body) {
-				const bodyObj = body as Record<string, unknown>;
-				if (typeof bodyObj.transformToByteArray === "function") {
-					const result = await (
-						bodyObj.transformToByteArray as () => Promise<Uint8Array>
-					)();
-					return Buffer.from(result);
-				}
+			// Try transformToByteArray first (newer SDK versions)
+			if (typeof body?.transformToByteArray === "function") {
+				return Buffer.from(await body.transformToByteArray());
 			}
 
 			// Fallback to async iteration
-			if (body && typeof body === "object" && Symbol.asyncIterator in body) {
+			if (body && Symbol.asyncIterator in body) {
 				for await (const chunk of body as AsyncIterable<Uint8Array>) {
 					chunks.push(chunk);
 				}
