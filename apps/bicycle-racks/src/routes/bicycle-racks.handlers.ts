@@ -84,7 +84,7 @@ export const nearby: AppRouteHandler<NearbyRoute> = async (c) => {
 				) <= ${radius}
 			ORDER BY distance
 		`);
-		return c.json(racks.rows as Record<string, unknown>[], HttpStatusCodes.OK);
+		return c.json(racks.rows as any, HttpStatusCodes.OK);
 	} else {
 		const racks = await db.execute(sql`
 			SELECT *, 
@@ -100,7 +100,7 @@ export const nearby: AppRouteHandler<NearbyRoute> = async (c) => {
 				) <= ${radius}
 			ORDER BY distance
 		`);
-		return c.json(racks.rows as Record<string, unknown>[], HttpStatusCodes.OK);
+		return c.json(racks.rows as any, HttpStatusCodes.OK);
 	}
 };
 
