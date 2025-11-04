@@ -10,9 +10,62 @@ import * as schema from "@atlas/database/schemas/traffic-violations";
 
 const client = new Client({
 	connectionString: process.env.DATABASE_URL,
-	ssl: getSSLConfig(),
+	ssl: false, // Disable SSL for local development
 });
 
-await client.connect();
+let connected = false;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const db = drizzle(client, { schema });
+
+export async function ensureConnection() {
+	if (!connected) {
+		await client.connect();
+		connected = true;
+	}
+}
