@@ -45,4 +45,3 @@ export interface SeedDataManifest {
 		[key: string]: Dataset;
 	};
 }
-

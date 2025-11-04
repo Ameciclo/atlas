@@ -1,25 +1,25 @@
 import "dotenv/config";
-import { readFile } from "node:fs/promises";
 import { readFileSync } from "node:fs";
+import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { sql } from "drizzle-orm";
 import type { DatabaseConfig } from "./connection.js";
 import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import * as cyclistProfileSchema from "./schemas/cyclist-profile/index.js";
-import { createSeedDataLoader } from "./utils/seed-data-loader.js";
 import type { SeedDataManifest } from "./types/seed-manifest.js";
+import { createSeedDataLoader } from "./utils/seed-data-loader.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 // Load manifest for S3 configuration
-let manifest: SeedDataManifest | null = null;
+let cachedManifest: SeedDataManifest | null = null;
 async function loadManifest(): Promise<SeedDataManifest> {
-	if (manifest) return manifest;
+	if (cachedManifest) return cachedManifest;
 	const manifestPath = join(__dirname, "../seed-data/manifest.json");
 	const manifestContent = readFileSync(manifestPath, "utf-8");
-	manifest = JSON.parse(manifestContent);
-	return manifest;
+	cachedManifest = JSON.parse(manifestContent) as SeedDataManifest;
+	return cachedManifest;
 }
 
 interface CyclistProfileData {
@@ -51,18 +51,19 @@ export async function seedCyclistProfiles(config: DatabaseConfig = {}) {
 			// Load from S3 using manifest
 			const manifestData = await loadManifest();
 			const loader = createSeedDataLoader({ useS3 });
-			const fileInfo = manifestData.datasets["cyclist-profiles"].s3.files[0];
+			const cyclistProfilesDataset = manifestData.datasets["cyclist-profiles"];
 
-			if (!fileInfo) {
+			if (!cyclistProfilesDataset?.s3?.files?.[0]) {
 				throw new Error("Cyclist profiles file not found in manifest");
 			}
 
+			const fileInfo = cyclistProfilesDataset.s3.files[0];
 			console.log(`📂 Loading from S3: ${fileInfo.key}`);
 			profilesData = await loader.loadJSON(
 				{
 					type: "s3",
 					path: fileInfo.key,
-					bucket: manifestData.datasets["cyclist-profiles"].s3.bucket,
+					bucket: cyclistProfilesDataset.s3.bucket,
 				},
 				fileInfo.checksum,
 			);

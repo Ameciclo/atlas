@@ -1,7 +1,7 @@
-import * as dotenv from "dotenv";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import chalk from "chalk";
+import * as dotenv from "dotenv";
 import { seedCyclistCounts } from "./seed-cyclist-counts.js";
 import { seedCyclistProfiles } from "./seed-cyclist-profiles.js";
 import { seedTrafficDeaths } from "./seed-traffic-deaths.js";

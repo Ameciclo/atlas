@@ -6,8 +6,8 @@ import { eq } from "drizzle-orm";
 import type { DatabaseConfig } from "./connection.js";
 import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import * as trafficDeathsSchema from "./schemas/traffic-deaths/index.js";
-import { createSeedDataLoader } from "./utils/seed-data-loader.js";
 import type { SeedDataManifest } from "./types/seed-manifest.js";
+import { createSeedDataLoader } from "./utils/seed-data-loader.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
@@ -16,13 +16,13 @@ const CSV_DIR =
 	process.env.CSV_DIR || join(__dirname, "../seed-data/traffic-deaths");
 
 // Load manifest for S3 configuration
-let manifest: SeedDataManifest | null = null;
+let cachedManifest: SeedDataManifest | null = null;
 async function loadManifest(): Promise<SeedDataManifest> {
-	if (manifest) return manifest;
+	if (cachedManifest) return cachedManifest;
 	const manifestPath = join(__dirname, "../seed-data/manifest.json");
 	const manifestContent = readFileSync(manifestPath, "utf-8");
-	manifest = JSON.parse(manifestContent);
-	return manifest;
+	cachedManifest = JSON.parse(manifestContent) as SeedDataManifest;
+	return cachedManifest;
 }
 
 interface TrafficDeathRecord {
@@ -125,7 +125,6 @@ function parseDATASUSDate(dateStr: string | null): string | null {
 	// Validate date components
 	const dayNum = parseInt(day, 10);
 	const monthNum = parseInt(month, 10);
-	const yearNum = parseInt(year, 10);
 
 	if (dayNum < 1 || dayNum > 31 || monthNum < 1 || monthNum > 12) {
 		return null;
@@ -168,11 +167,16 @@ export async function seedTrafficDeaths(config: DatabaseConfig = {}) {
 			let csvContent: string;
 
 			try {
-				if (useS3 && manifestData) {
+				if (useS3) {
 					// Load from S3 using manifest
+					if (!manifestData?.datasets?.["traffic-deaths"]?.s3?.files) {
+						throw new Error("Manifest data not loaded or invalid");
+					}
+
 					const fileInfo = manifestData.datasets[
 						"traffic-deaths"
 					].s3.files.find((f) => f.name === `mortes_transito_${year}.csv`);
+
 					if (!fileInfo) {
 						console.log(`⚠️  File not found in manifest for year ${year}`);
 						continue;
