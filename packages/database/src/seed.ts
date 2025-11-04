@@ -3,6 +3,8 @@ import chalk from "chalk";
 import { seedCyclistCounts } from "./seed-cyclist-counts.js";
 import { seedCyclistProfiles } from "./seed-cyclist-profiles.js";
 import { seedTrafficDeaths } from "./seed-traffic-deaths.js";
+import { seedOfficialStreets } from "./seed-official-streets.js";
+import { seedTrafficViolations } from "./seed-traffic-violations.js";
 
 interface SeedResult {
 	name: string;
@@ -91,6 +93,20 @@ async function masterSeed(options: SeedOptions = {}) {
 			icon: "🚗",
 			color: chalk.red,
 			fn: seedTrafficDeaths,
+		},
+		{
+			name: "Official Streets",
+			id: "streets",
+			icon: "🛣️",
+			color: chalk.green,
+			fn: seedOfficialStreets,
+		},
+		{
+			name: "Traffic Violations",
+			id: "violations",
+			icon: "🚨",
+			color: chalk.magenta,
+			fn: seedTrafficViolations,
 		},
 	];
 
