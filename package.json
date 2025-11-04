@@ -19,7 +19,8 @@
 		"db:seed": "pnpm --filter @atlas/database db:seed",
 		"db:reset": "pnpm --filter @atlas/database db:reset",
 		"db:reset:seed": "pnpm --filter @atlas/database db:reset:seed",
-		"db:generate": "pnpm --filter @atlas/database db:generate"
+		"db:generate": "pnpm --filter @atlas/database db:generate",
+		"db:drop": "pnpm --filter @atlas/database db:drop"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.7",

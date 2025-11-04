@@ -1,1 +1,0 @@
-ALTER TABLE "traffic_deaths" ALTER COLUMN "horaobito" SET DATA TYPE varchar(10);

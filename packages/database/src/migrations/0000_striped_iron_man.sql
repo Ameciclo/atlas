@@ -127,6 +127,14 @@ CREATE TABLE "emergency_calls" (
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
+CREATE TABLE "test_db_service_examples" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"name" text NOT NULL,
+	"data" jsonb NOT NULL,
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"updated_at" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE "traffic_calls" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"datetime" timestamp NOT NULL,
@@ -198,6 +206,23 @@ CREATE TABLE "traffic_deaths" (
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
+CREATE TABLE "official_streets" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"code" integer NOT NULL,
+	"name_concatenated" text NOT NULL,
+	"official_name" text NOT NULL,
+	"short_name" text NOT NULL,
+	"pavement_code" text,
+	"pavement_description" text,
+	"transport_corridor" boolean DEFAULT false,
+	"perimeter_road" boolean DEFAULT false,
+	"neighborhood_code" integer,
+	"neighborhood_name" text,
+	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
+	CONSTRAINT "official_streets_code_unique" UNIQUE("code")
+);
+--> statement-breakpoint
 CREATE TABLE "traffic_violations" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"violation_date" timestamp with time zone NOT NULL,
@@ -209,6 +234,7 @@ CREATE TABLE "traffic_violations" (
 	"description" text NOT NULL,
 	"location_description" text NOT NULL,
 	"coordinates" text,
+	"street_code" integer,
 	"complementary_data" jsonb,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
 	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
@@ -217,6 +243,7 @@ CREATE TABLE "traffic_violations" (
 ALTER TABLE "counting_events" ADD CONSTRAINT "counting_events_location_id_counting_locations_id_fk" FOREIGN KEY ("location_id") REFERENCES "public"."counting_locations"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "counting_sessions" ADD CONSTRAINT "counting_sessions_event_id_counting_events_id_fk" FOREIGN KEY ("event_id") REFERENCES "public"."counting_events"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "session_movements" ADD CONSTRAINT "session_movements_session_id_counting_sessions_id_fk" FOREIGN KEY ("session_id") REFERENCES "public"."counting_sessions"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "traffic_violations" ADD CONSTRAINT "traffic_violations_street_code_official_streets_code_fk" FOREIGN KEY ("street_code") REFERENCES "public"."official_streets"("code") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 CREATE INDEX "idx_dtobito" ON "traffic_deaths" USING btree ("dtobito");--> statement-breakpoint
 CREATE INDEX "idx_codmunocor" ON "traffic_deaths" USING btree ("codmunocor");--> statement-breakpoint
 CREATE INDEX "idx_codmunres" ON "traffic_deaths" USING btree ("codmunres");--> statement-breakpoint
