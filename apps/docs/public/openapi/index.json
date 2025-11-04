@@ -12,10 +12,6 @@
     "title": "Emergency Calls API"
   },
   {
-    "url": "/openapi/traffic-calls.json",
-    "title": "Traffic Calls API"
-  },
-  {
     "url": "/openapi/traffic-crashes.json",
     "title": "Traffic Crashes API"
   }

@@ -33,6 +33,10 @@
 		"./schemas/traffic-calls": {
 			"types": "./dist/schemas/traffic-calls/index.d.ts",
 			"import": "./dist/schemas/traffic-calls/index.js"
+		},
+		"./schemas/emergency-calls": {
+			"types": "./dist/schemas/emergency-calls/index.d.ts",
+			"import": "./dist/schemas/emergency-calls/index.js"
 		}
 	},
 	"scripts": {

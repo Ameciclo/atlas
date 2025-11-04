@@ -1,5 +1,5 @@
 {
-	"id": "d7d34795-6eec-4a26-94e8-294db32250aa",
+	"id": "962f65ed-daff-4146-bf39-7ddb0a07a145",
 	"prevId": "8a96ae9a-371f-43ae-b349-4bfef99b93cb",
 	"version": "7",
 	"dialect": "postgresql",
@@ -354,8 +354,8 @@
 			"checkConstraints": {},
 			"isRLSEnabled": false
 		},
-		"public.traffic_calls": {
-			"name": "traffic_calls",
+		"public.emergency_calls": {
+			"name": "emergency_calls",
 			"schema": "",
 			"columns": {
 				"id": {
@@ -364,72 +364,123 @@
 					"primaryKey": true,
 					"notNull": true
 				},
-				"datetime": {
-					"name": "datetime",
+				"original_id": {
+					"name": "original_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"date": {
+					"name": "date",
 					"type": "timestamp",
 					"primaryKey": false,
 					"notNull": true
 				},
-				"nature": {
-					"name": "nature",
-					"type": "varchar(50)",
+				"time_minute": {
+					"name": "time_minute",
+					"type": "text",
 					"primaryKey": false,
 					"notNull": true
 				},
-				"total_victims": {
-					"name": "total_victims",
-					"type": "integer",
-					"primaryKey": false,
-					"notNull": false,
-					"default": 0
-				},
-				"injured_victims": {
-					"name": "injured_victims",
-					"type": "integer",
-					"primaryKey": false,
-					"notNull": false,
-					"default": 0
-				},
-				"fatal_victims": {
-					"name": "fatal_victims",
-					"type": "integer",
-					"primaryKey": false,
-					"notNull": false,
-					"default": 0
-				},
-				"street_name": {
-					"name": "street_name",
-					"type": "varchar(255)",
-					"primaryKey": false,
-					"notNull": true
-				},
-				"neighborhood": {
-					"name": "neighborhood",
-					"type": "varchar(100)",
-					"primaryKey": false,
-					"notNull": true
-				},
-				"coordinates": {
-					"name": "coordinates",
+				"municipality": {
+					"name": "municipality",
 					"type": "text",
 					"primaryKey": false,
 					"notNull": false
 				},
-				"crash_data": {
-					"name": "crash_data",
-					"type": "jsonb",
-					"primaryKey": false,
-					"notNull": true
-				},
-				"environmental_data": {
-					"name": "environmental_data",
-					"type": "jsonb",
+				"neighborhood": {
+					"name": "neighborhood",
+					"type": "text",
 					"primaryKey": false,
 					"notNull": false
 				},
-				"metadata": {
-					"name": "metadata",
-					"type": "jsonb",
+				"address": {
+					"name": "address",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"call_origin": {
+					"name": "call_origin",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"origin_type": {
+					"name": "origin_type",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"subtype": {
+					"name": "subtype",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"gender": {
+					"name": "gender",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"age": {
+					"name": "age",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"finalization_reason": {
+					"name": "finalization_reason",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"outcome_reason": {
+					"name": "outcome_reason",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"type": {
+					"name": "type",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"category": {
+					"name": "category",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"finalization_reason_normalized": {
+					"name": "finalization_reason_normalized",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"outcome_reason_normalized": {
+					"name": "outcome_reason_normalized",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"finalization_category": {
+					"name": "finalization_category",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"outcome_category": {
+					"name": "outcome_category",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"pcr_address": {
+					"name": "pcr_address",
+					"type": "text",
 					"primaryKey": false,
 					"notNull": false
 				},

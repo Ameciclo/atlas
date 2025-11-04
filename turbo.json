@@ -3,7 +3,7 @@
 	"ui": "tui",
 	"tasks": {
 		"build": {
-			"dependsOn": ["^build", "generate-openapi"],
+			"dependsOn": ["^build"],
 			"inputs": [
 				"$TURBO_DEFAULT$",
 				".env*",
@@ -13,7 +13,7 @@
 			"outputs": ["dist/**"]
 		},
 		"generate-openapi": {
-			"dependsOn": ["^build"],
+			"dependsOn": ["^build", "build"],
 			"cache": false,
 			"outputs": []
 		},
