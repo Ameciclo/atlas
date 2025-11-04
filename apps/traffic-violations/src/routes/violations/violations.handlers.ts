@@ -2,13 +2,18 @@ import { eq, and, gte, lte } from "drizzle-orm";
 import { db } from "../../db/index.js";
 import { trafficViolations } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
-import type { listViolationsRoute, getViolationRoute } from "./violations.routes.js";
+import type {
+	listViolationsRoute,
+	getViolationRoute,
+} from "./violations.routes.js";
 
 // ============================================================================
 // Handlers
 // ============================================================================
 
-export const listViolationsHandler: AppRouteHandler<typeof listViolationsRoute> = async (c) => {
+export const listViolationsHandler: AppRouteHandler<
+	typeof listViolationsRoute
+> = async (c) => {
 	const {
 		start_date,
 		end_date,
@@ -65,7 +70,9 @@ export const listViolationsHandler: AppRouteHandler<typeof listViolationsRoute> 
 	}
 };
 
-export const getViolationHandler: AppRouteHandler<typeof getViolationRoute> = async (c) => {
+export const getViolationHandler: AppRouteHandler<
+	typeof getViolationRoute
+> = async (c) => {
 	const { id } = c.req.valid("param");
 
 	try {
@@ -84,5 +91,4 @@ export const getViolationHandler: AppRouteHandler<typeof getViolationRoute> = as
 		console.error("Error fetching violation:", error);
 		return c.json({ error: "Internal server error" }, 500);
 	}
-};
 };

@@ -4,7 +4,9 @@ import { officialStreets } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type { listStreetsRoute, getStreetRoute } from "./streets.routes.js";
 
-export const listStreets: AppRouteHandler<typeof listStreetsRoute> = async (c) => {
+export const listStreets: AppRouteHandler<typeof listStreetsRoute> = async (
+	c,
+) => {
 	const { page, limit, search, neighborhood } = c.req.valid("query");
 	const offset = (page - 1) * limit;
 
@@ -12,13 +14,11 @@ export const listStreets: AppRouteHandler<typeof listStreetsRoute> = async (c) =
 		// Build where conditions
 		const conditions = [];
 		if (search) {
-			conditions.push(
-				ilike(officialStreets.official_name, `%${search}%`)
-			);
+			conditions.push(ilike(officialStreets.official_name, `%${search}%`));
 		}
 		if (neighborhood) {
 			conditions.push(
-				ilike(officialStreets.neighborhood_name, `%${neighborhood}%`)
+				ilike(officialStreets.neighborhood_name, `%${neighborhood}%`),
 			);
 		}
 
@@ -54,20 +54,23 @@ export const listStreets: AppRouteHandler<typeof listStreetsRoute> = async (c) =
 			.offset(offset)
 			.orderBy(officialStreets.official_name);
 
-		return c.json({
-			data: streets,
-			pagination: {
-				page,
-				limit,
-				total,
-				totalPages,
+		return c.json(
+			{
+				data: streets,
+				pagination: {
+					page,
+					limit,
+					total,
+					totalPages,
+				},
 			},
-		}, 200);
+			200,
+		);
 	} catch (error) {
 		console.error("Error fetching streets:", error);
 		return c.json({ error: "Internal server error" }, 500);
 	}
-}
+};
 
 export const getStreet: AppRouteHandler<typeof getStreetRoute> = async (c) => {
 	const { code } = c.req.valid("param");
@@ -88,4 +91,4 @@ export const getStreet: AppRouteHandler<typeof getStreetRoute> = async (c) => {
 		console.error("Error fetching street:", error);
 		return c.json({ error: "Internal server error" }, 500);
 	}
-}
+};

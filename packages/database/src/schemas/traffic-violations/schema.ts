@@ -64,36 +64,39 @@ export const trafficViolations = pgTable("traffic_violations", {
 // Relations
 // ============================================================================
 
-export const officialStreetsRelations = relations(officialStreets, ({ many }) => ({
-	trafficViolations: many(trafficViolations),
-}));
-
-export const trafficViolationsRelations = relations(trafficViolations, ({ one }) => ({
-	street: one(officialStreets, {
-		fields: [trafficViolations.street_code],
-		references: [officialStreets.code],
+export const officialStreetsRelations = relations(
+	officialStreets,
+	({ many }) => ({
+		trafficViolations: many(trafficViolations),
 	}),
-}));
+);
+
+export const trafficViolationsRelations = relations(
+	trafficViolations,
+	({ one }) => ({
+		street: one(officialStreets, {
+			fields: [trafficViolations.street_code],
+			references: [officialStreets.code],
+		}),
+	}),
+);
 
 // ============================================================================
 // Zod Schemas
 // ============================================================================
 
-export const insertOfficialStreetSchema = createInsertSchema(
-	officialStreets,
-	{
-		code: z.number().int().positive(),
-		name_concatenated: z.string().min(1),
-		official_name: z.string().min(1),
-		short_name: z.string().min(1),
-		pavement_code: z.string().optional(),
-		pavement_description: z.string().optional(),
-		transport_corridor: z.boolean().optional(),
-		perimeter_road: z.boolean().optional(),
-		neighborhood_code: z.number().int().optional(),
-		neighborhood_name: z.string().optional(),
-	},
-);
+export const insertOfficialStreetSchema = createInsertSchema(officialStreets, {
+	code: z.number().int().positive(),
+	name_concatenated: z.string().min(1),
+	official_name: z.string().min(1),
+	short_name: z.string().min(1),
+	pavement_code: z.string().optional(),
+	pavement_description: z.string().optional(),
+	transport_corridor: z.boolean().optional(),
+	perimeter_road: z.boolean().optional(),
+	neighborhood_code: z.number().int().optional(),
+	neighborhood_name: z.string().optional(),
+});
 
 export const selectOfficialStreetSchema = createSelectSchema(officialStreets);
 

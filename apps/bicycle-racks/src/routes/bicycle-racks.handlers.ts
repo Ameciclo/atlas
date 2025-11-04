@@ -2,7 +2,10 @@ import { eq, and, sql } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import type { AppRouteHandler } from "../lib/types.js";
 import { db } from "../db/index.js";
-import { bicycleRacks, bicycleRackCities } from "@atlas/database/schemas/bicycle-racks";
+import {
+	bicycleRacks,
+	bicycleRackCities,
+} from "@atlas/database/schemas/bicycle-racks";
 import type {
 	ListRoute,
 	GetByIdRoute,
@@ -33,9 +36,15 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 		const racks = await db
 			.select()
 			.from(bicycleRacks)
-			.innerJoin(bicycleRackCities, eq(bicycleRacks.osm_id, bicycleRackCities.osm_id))
+			.innerJoin(
+				bicycleRackCities,
+				eq(bicycleRacks.osm_id, bicycleRackCities.osm_id),
+			)
 			.where(conditions.length > 0 ? and(...conditions) : undefined);
-		return c.json(racks.map(item => item.bicycle_racks), HttpStatusCodes.OK);
+		return c.json(
+			racks.map((item) => item.bicycle_racks),
+			HttpStatusCodes.OK,
+		);
 	} else {
 		const racks = await db
 			.select()
@@ -84,7 +93,12 @@ export const nearby: AppRouteHandler<NearbyRoute> = async (c) => {
 				) <= ${radius}
 			ORDER BY distance
 		`);
-		return c.json(racks.rows as any, HttpStatusCodes.OK);
+		return c.json(
+			racks.rows as Array<
+				typeof bicycleRacks.$inferSelect & { distance: number }
+			>,
+			HttpStatusCodes.OK,
+		);
 	} else {
 		const racks = await db.execute(sql`
 			SELECT *, 
@@ -100,7 +114,12 @@ export const nearby: AppRouteHandler<NearbyRoute> = async (c) => {
 				) <= ${radius}
 			ORDER BY distance
 		`);
-		return c.json(racks.rows as any, HttpStatusCodes.OK);
+		return c.json(
+			racks.rows as Array<
+				typeof bicycleRacks.$inferSelect & { distance: number }
+			>,
+			HttpStatusCodes.OK,
+		);
 	}
 };
 

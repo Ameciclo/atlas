@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "test") {
 		connectionString: process.env.DATABASE_URL,
 		ssl: getSSLConfig(),
 	});
-	
+
 	// Connect asynchronously
 	client.connect().catch(console.error);
 	db = drizzle(client, { schema });

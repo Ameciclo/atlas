@@ -2,7 +2,10 @@ import "dotenv/config";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { closeDatabase, createConnectedDatabase } from "./connection.js";
-import { bicycleRacks, bicycleRackCities } from "./schemas/bicycle-racks/index.js";
+import {
+	bicycleRacks,
+	bicycleRackCities,
+} from "./schemas/bicycle-racks/index.js";
 
 interface GeoJSONFeature {
 	type: "Feature";
@@ -41,7 +44,12 @@ function getPointFromGeometry(
 			let sumLng = 0,
 				sumLat = 0;
 			for (const coord of ring) {
-				if (coord && coord.length >= 2 && typeof coord[0] === 'number' && typeof coord[1] === 'number') {
+				if (
+					coord &&
+					coord.length >= 2 &&
+					typeof coord[0] === "number" &&
+					typeof coord[1] === "number"
+				) {
 					sumLng += coord[0];
 					sumLat += coord[1];
 				}
@@ -77,7 +85,10 @@ async function seedBicycleRacksFromGeoJSON() {
 
 			// Só processa se tem amenity=bicycle_parking ou bicycle_parking definido
 			if (
-				!(typeof props.amenity === "string" && props.amenity.includes("bicycle_parking")) &&
+				!(
+					typeof props.amenity === "string" &&
+					props.amenity.includes("bicycle_parking")
+				) &&
 				!props.bicycle_parking
 			) {
 				continue;
@@ -92,7 +103,10 @@ async function seedBicycleRacksFromGeoJSON() {
 
 			bicycleRacksData.push({
 				osm_id: (props["@id"] as string) || feature.id,
-				osm_type: (typeof props["@id"] === "string" ? props["@id"].split("/")[0] : null) || "unknown",
+				osm_type:
+					(typeof props["@id"] === "string"
+						? props["@id"].split("/")[0]
+						: null) || "unknown",
 				coordinates: wktPoint,
 				name: (props.name as string) || null,
 				description: (props.description as string) || null,
@@ -155,7 +169,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 	seedBicycleRacksFromGeoJSON();
 }
 
-async function seedRecifeCities(db: Awaited<ReturnType<typeof createConnectedDatabase>>) {
+async function seedRecifeCities(
+	db: Awaited<ReturnType<typeof createConnectedDatabase>>,
+) {
 	try {
 		// Lê o arquivo GeoJSON do Recife
 		const recifeGeojsonPath = join(
@@ -167,10 +183,12 @@ async function seedRecifeCities(db: Awaited<ReturnType<typeof createConnectedDat
 
 		// Filtra apenas bicicletários
 		const bicicletarios = recifeGeojson.features.filter(
-			(feature: GeoJSONFeature) => feature.properties.type === "Bicicletários"
+			(feature: GeoJSONFeature) => feature.properties.type === "Bicicletários",
 		);
 
-		console.log(`🏙️ Encontrados ${bicicletarios.length} bicicletários do Recife`);
+		console.log(
+			`🏙️ Encontrados ${bicicletarios.length} bicicletários do Recife`,
+		);
 
 		// Prepara dados para inserção
 		const cityMappings = bicicletarios.map((feature: GeoJSONFeature) => ({
@@ -186,7 +204,9 @@ async function seedRecifeCities(db: Awaited<ReturnType<typeof createConnectedDat
 				.values(cityMappings)
 				.onConflictDoNothing();
 
-			console.log(`✅ Inseridos ${cityMappings.length} mapeamentos OSM ID → Recife`);
+			console.log(
+				`✅ Inseridos ${cityMappings.length} mapeamentos OSM ID → Recife`,
+			);
 		}
 	} catch (error) {
 		console.error("❌ Erro ao popular dados do Recife:", error);

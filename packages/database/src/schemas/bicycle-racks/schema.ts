@@ -81,8 +81,10 @@ export const bicycleRackCities = pgTable("bicycle_rack_cities", {
 	updated_at: timestamp("updated_at").defaultNow().notNull(),
 });
 
-export const insertBicycleRackCitySchema = createInsertSchema(bicycleRackCities);
-export const selectBicycleRackCitySchema = createSelectSchema(bicycleRackCities);
+export const insertBicycleRackCitySchema =
+	createInsertSchema(bicycleRackCities);
+export const selectBicycleRackCitySchema =
+	createSelectSchema(bicycleRackCities);
 
 export type BicycleRackCity = typeof bicycleRackCities.$inferSelect;
 export type InsertBicycleRackCity = typeof bicycleRackCities.$inferInsert;

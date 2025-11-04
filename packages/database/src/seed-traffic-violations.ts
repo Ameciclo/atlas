@@ -67,17 +67,17 @@ export async function seedTrafficViolations(config: DatabaseConfig = {}) {
 
 		const violationDict: ViolationDict = JSON.parse(violationDictRaw);
 		const locationDict: LocationDict = JSON.parse(locationDictRaw);
-		
+
 		// Get existing street codes from official_streets table
 		const existingStreets = await db
 			.select({ code: trafficViolationsSchema.officialStreets.code })
 			.from(trafficViolationsSchema.officialStreets);
-		const existingStreetCodes = new Set(existingStreets.map(s => s.code));
-		
+		const existingStreetCodes = new Set(existingStreets.map((s) => s.code));
+
 		// Parse CSV data
 		const addressLines = addressDataRaw.trim().split("\n");
 		const addressDataLines = addressLines.slice(1);
-		
+
 		// Create address lookup by local_id
 		const addressLookup: { [key: number]: AddressData } = {};
 		for (const line of addressDataLines) {
@@ -88,7 +88,7 @@ export async function seedTrafficViolations(config: DatabaseConfig = {}) {
 				const longitude = Number(values[2]) || 0;
 				const local_id = Number(values[values.length - 1]) || 0;
 				const endereco_infracao = values.slice(3, -1).join(",");
-				
+
 				addressLookup[local_id] = {
 					codigo_logradouro,
 					latitude,
@@ -148,13 +148,17 @@ export async function seedTrafficViolations(config: DatabaseConfig = {}) {
 				// Get address info from CSV data
 				const addressInfo = addressLookup[violationData.local_id];
 				const prefeituraAddress = locationDescription;
-				
+
 				// Get street code from address info (only if it exists in official_streets)
 				let streetCode: number | null = null;
 				if (addressInfo?.codigo_logradouro) {
 					const code = Number(addressInfo.codigo_logradouro);
 					// Only set if it's a valid number, not 0, and exists in official_streets
-					if (!Number.isNaN(code) && code > 0 && existingStreetCodes.has(code)) {
+					if (
+						!Number.isNaN(code) &&
+						code > 0 &&
+						existingStreetCodes.has(code)
+					) {
 						streetCode = code;
 					}
 				}

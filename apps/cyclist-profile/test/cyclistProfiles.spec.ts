@@ -14,8 +14,16 @@ import type { CyclistProfile } from "../src/db/schema.js";
 
 const client = testClient(app);
 
-const findMany = vi.spyOn(db.query.cyclistProfiles, "findMany");
-const findFirst = vi.spyOn(db.query.cyclistProfiles, "findFirst");
+// Mock the entire db module
+vi.mock("../src/db/index.js", () => ({
+	db: {
+		select: vi.fn().mockReturnValue({
+			from: vi.fn().mockResolvedValue([]),
+		}),
+	},
+}));
+
+const mockDb = vi.mocked(db);
 
 beforeAll(() => {
 	vi.useFakeTimers();
@@ -32,7 +40,7 @@ describe("GET /", () => {
 	});
 
 	it("200 → empty array if no profiles", async () => {
-		findMany.mockResolvedValueOnce([]);
+		(mockDb.select().from as any).mockResolvedValueOnce([]);
 
 		const res = await client.v1["cyclist-profiles"].$get("/");
 		expect(res.status).toBe(200);
@@ -50,7 +58,7 @@ describe("GET /", () => {
 				updated_at: fakeDate,
 			},
 		];
-		findMany.mockResolvedValueOnce(fake);
+		(mockDb.select().from as any).mockResolvedValueOnce(fake);
 
 		const res = await client.v1["cyclist-profiles"].$get("/");
 		expect(res.status).toBe(200);
@@ -64,7 +72,7 @@ describe("GET /", () => {
 	});
 
 	it("500 → when the DB throws", async () => {
-		findMany.mockRejectedValueOnce(new Error("💥"));
+		(mockDb.select().from as any).mockRejectedValueOnce(new Error("💥"));
 
 		const res = await client.v1["cyclist-profiles"].$get("/");
 		expect(res.status).toBe(500);
@@ -87,7 +95,11 @@ describe("GET /:id", () => {
 			created_at: fakeDate,
 			updated_at: fakeDate,
 		};
-		findFirst.mockResolvedValueOnce(fake);
+		(mockDb.select().from as any).mockReturnValue({
+			where: vi.fn().mockReturnValue({
+				limit: vi.fn().mockResolvedValueOnce([fake]),
+			}),
+		});
 
 		const res = await client.v1["cyclist-profiles"][":id"].$get({
 			param: { id: 42 },
@@ -101,7 +113,11 @@ describe("GET /:id", () => {
 	});
 
 	it("404 → when the profile does not exist", async () => {
-		findFirst.mockResolvedValueOnce(undefined);
+		(mockDb.select().from as any).mockReturnValue({
+			where: vi.fn().mockReturnValue({
+				limit: vi.fn().mockResolvedValueOnce([]),
+			}),
+		});
 
 		const res = await client.v1["cyclist-profiles"][":id"].$get({
 			param: { id: 42 },

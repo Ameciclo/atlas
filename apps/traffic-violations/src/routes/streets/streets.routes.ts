@@ -7,7 +7,8 @@ export const listStreetsRoute = createRoute({
 	path: "/streets",
 	tags,
 	summary: "List official streets",
-	description: "Get a paginated list of official streets with optional filtering",
+	description:
+		"Get a paginated list of official streets with optional filtering",
 	request: {
 		query: z.object({
 			page: z.coerce.number().min(1).default(1).openapi({
