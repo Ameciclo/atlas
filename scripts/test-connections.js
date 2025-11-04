@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
 const services = [
-  { name: 'cyclist-profile', port: 3000, endpoints: ['/health', '/cyclist-profiles'] },
-  { name: 'bicycle-racks', port: 3005, endpoints: ['/health', '/bicycle-racks'] },
+  { name: 'cyclist-profile', port: 3000, endpoints: ['/health', '/v1/cyclist-profiles'] },
+  { name: 'bicycle-racks', port: 3005, endpoints: ['/health', '/v1/bicycle-racks'] },
   { name: 'cyclist-counts', port: 3001, endpoints: ['/health', '/events', '/locations', '/sessions'] },
-  { name: 'emergency-calls', port: 3010, endpoints: ['/health', '/calls', '/analytics'] },
-  { name: 'traffic-calls', port: 3019, endpoints: ['/health', '/calls'] },
-  { name: 'traffic-deaths', port: 3003, endpoints: ['/health', '/cyclists', '/stats', '/summary'] },
-  { name: 'traffic-violations', port: 3013, endpoints: ['/health', '/violations', '/streets'] },
+  { name: 'emergency-calls', port: 3010, endpoints: ['/health', '/v1/calls', '/v1/analytics/municipalities'] },
+  { name: 'traffic-calls', port: 3019, endpoints: ['/health', '/v1/calls'] },
+  { name: 'traffic-deaths', port: 3003, endpoints: ['/health', '/v1/deaths/cyclists', '/v1/stats', '/v1/summary'] },
+  { name: 'traffic-violations', port: 3013, endpoints: ['/health', '/v1/violations', '/v1/streets'] },
   { name: 'docs', port: 3004, endpoints: ['/'] }
 ];
 
