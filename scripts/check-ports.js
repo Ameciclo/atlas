@@ -2,12 +2,12 @@
 
 const net = require('net');
 
-const ports = [3000, 3001, 3003, 3004, 3005, 3010, 3013, 3019];
+const ports = [3000, 3001, 3002, 3003, 3005, 3010, 3013, 3019];
 const services = {
   3000: 'cyclist-profile',
-  3001: 'cyclist-counts', 
+  3001: 'docs',
+  3002: 'cyclist-counts', 
   3003: 'traffic-deaths',
-  3004: 'docs',
   3005: 'bicycle-racks',
   3010: 'emergency-calls',
   3013: 'traffic-violations',

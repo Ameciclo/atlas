@@ -22,7 +22,8 @@
 		"db:generate": "pnpm --filter @atlas/database db:generate",
 		"db:drop": "pnpm --filter @atlas/database db:drop",
 		"test-connections": "node scripts/test-connections.js",
-		"check-ports": "node scripts/check-ports.js"
+		"check-ports": "node scripts/check-ports.js",
+		"test-health": "node scripts/test-health.js"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.7",
@@ -37,6 +38,7 @@
 	},
 	"dependencies": {
 		"chalk": "^5.6.2",
+		"dotenv": "^16.6.1",
 		"drizzle-seed": "^0.3.1"
 	}
 }
