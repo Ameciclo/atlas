@@ -1,0 +1,20 @@
+CREATE TABLE "shared_bike_stations" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"osm_id" text NOT NULL,
+	"name" text NOT NULL,
+	"ref" text,
+	"coordinates" text NOT NULL,
+	"capacity" integer NOT NULL,
+	"network" text NOT NULL,
+	"operator" text DEFAULT 'Tembici' NOT NULL,
+	"operator_type" text DEFAULT 'private',
+	"bicycle_rental_type" text,
+	"fee" boolean DEFAULT true,
+	"payment_credit_cards" boolean DEFAULT true,
+	"payment_debit_cards" boolean DEFAULT false,
+	"alt_name" text,
+	"properties" jsonb,
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"updated_at" timestamp DEFAULT now() NOT NULL,
+	CONSTRAINT "shared_bike_stations_osm_id_unique" UNIQUE("osm_id")
+);
