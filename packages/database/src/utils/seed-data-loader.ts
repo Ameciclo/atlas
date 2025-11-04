@@ -35,10 +35,13 @@ export class SeedDataLoader {
 			this.s3Client = new S3Client({
 				region: config.s3Region || process.env.DO_SPACE_REGION || "nyc3",
 				endpoint:
-					config.s3Endpoint || process.env.DO_ENDPOINT || "https://nyc3.digitaloceanspaces.com",
+					config.s3Endpoint ||
+					process.env.DO_ENDPOINT ||
+					"https://nyc3.digitaloceanspaces.com",
 				credentials: {
 					accessKeyId: config.s3AccessKeyId || process.env.DO_ACCESS_KEY || "",
-					secretAccessKey: config.s3SecretAccessKey || process.env.DO_SPACE_SECRET || "",
+					secretAccessKey:
+						config.s3SecretAccessKey || process.env.DO_SPACE_SECRET || "",
 				},
 				forcePathStyle: true,
 			});
@@ -82,7 +85,18 @@ export class SeedDataLoader {
 			}
 			return Buffer.concat(chunks);
 		} catch (error) {
-			throw new Error(`Failed to load from S3 (${key}): ${error instanceof Error ? error.message : String(error)}`);
+			const errorMessage =
+				error instanceof Error ? error.message : String(error);
+			const errorCode =
+				error instanceof Error && "code" in error
+					? (error as any).code
+					: "UNKNOWN";
+			console.error(
+				`  S3 Error Details: Code=${errorCode}, Message=${errorMessage}`,
+			);
+			console.error(`  Bucket: ${bucket}, Key: ${key}`);
+			console.error(`  Credentials loaded: ${!!process.env.DO_ACCESS_KEY}`);
+			throw new Error(`Failed to load from S3 (${key}): ${errorMessage}`);
 		}
 	}
 
@@ -93,7 +107,9 @@ export class SeedDataLoader {
 		try {
 			return await readFile(filePath);
 		} catch (error) {
-			throw new Error(`Failed to load from local file (${filePath}): ${error instanceof Error ? error.message : String(error)}`);
+			throw new Error(
+				`Failed to load from local file (${filePath}): ${error instanceof Error ? error.message : String(error)}`,
+			);
 		}
 	}
 
@@ -110,7 +126,9 @@ export class SeedDataLoader {
 		const cached = this.cache.get(cacheKey);
 		if (cached && this.isCacheValid(cached)) {
 			if (expectedChecksum && cached.checksum !== expectedChecksum) {
-				console.warn(`⚠️  Checksum mismatch for ${cacheKey} (cached vs expected)`);
+				console.warn(
+					`⚠️  Checksum mismatch for ${cacheKey} (cached vs expected)`,
+				);
 			}
 			return cached.data;
 		}
@@ -178,7 +196,10 @@ export class SeedDataLoader {
 	 */
 	getCacheStats(): { size: number; entries: number } {
 		return {
-			size: Array.from(this.cache.values()).reduce((sum, entry) => sum + entry.data.length, 0),
+			size: Array.from(this.cache.values()).reduce(
+				(sum, entry) => sum + entry.data.length,
+				0,
+			),
 			entries: this.cache.size,
 		};
 	}
@@ -187,7 +208,8 @@ export class SeedDataLoader {
 /**
  * Create a seed data loader instance with environment variables
  */
-export function createSeedDataLoader(config?: SeedDataLoaderConfig): SeedDataLoader {
+export function createSeedDataLoader(
+	config?: SeedDataLoaderConfig,
+): SeedDataLoader {
 	return new SeedDataLoader(config);
 }
-
