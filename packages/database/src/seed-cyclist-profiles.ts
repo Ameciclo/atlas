@@ -1,10 +1,26 @@
 import "dotenv/config";
 import { readFile } from "node:fs/promises";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { sql } from "drizzle-orm";
 import type { DatabaseConfig } from "./connection.js";
 import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import * as cyclistProfileSchema from "./schemas/cyclist-profile/index.js";
+import { createSeedDataLoader } from "./utils/seed-data-loader.js";
+import type { SeedDataManifest } from "./types/seed-manifest.js";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+
+// Load manifest for S3 configuration
+let manifest: SeedDataManifest | null = null;
+async function loadManifest(): Promise<SeedDataManifest> {
+	if (manifest) return manifest;
+	const manifestPath = join(__dirname, "../seed-data/manifest.json");
+	const manifestContent = readFileSync(manifestPath, "utf-8");
+	manifest = JSON.parse(manifestContent);
+	return manifest;
+}
 
 interface CyclistProfileData {
 	id?: number;
@@ -15,22 +31,50 @@ interface CyclistProfileData {
 }
 
 /**
- * Seed cyclist profiles data from JSON file
+ * Seed cyclist profiles data from JSON file (Git or S3)
  * Idempotent: Uses top-level id field mapped to metadata.id to prevent duplicates
  */
 export async function seedCyclistProfiles(config: DatabaseConfig = {}) {
 	const db = await createConnectedDatabase(config);
+	const useS3 = process.env.SEED_DATA_USE_S3 === "true";
 
 	try {
 		console.log("🚴 Starting cyclist profiles seed...");
+		console.log(
+			`📍 Data source: ${useS3 ? "S3 (DigitalOcean Spaces)" : "Local files"}\n`,
+		);
 
 		// Load the JSON data
-		const dataPath = join(
-			import.meta.dirname,
-			"../seed-data/cyclist-profiles/data.json",
-		);
-		const rawData = await readFile(dataPath, "utf-8");
-		const profilesData: CyclistProfileData[] = JSON.parse(rawData);
+		let profilesData: CyclistProfileData[];
+
+		if (useS3) {
+			// Load from S3 using manifest
+			const manifestData = await loadManifest();
+			const loader = createSeedDataLoader({ useS3 });
+			const fileInfo = manifestData.datasets["cyclist-profiles"].s3.files[0];
+
+			if (!fileInfo) {
+				throw new Error("Cyclist profiles file not found in manifest");
+			}
+
+			console.log(`📂 Loading from S3: ${fileInfo.key}`);
+			profilesData = await loader.loadJSON(
+				{
+					type: "s3",
+					path: fileInfo.key,
+					bucket: manifestData.datasets["cyclist-profiles"].s3.bucket,
+				},
+				fileInfo.checksum,
+			);
+		} else {
+			// Load from local file
+			const dataPath = join(
+				import.meta.dirname,
+				"../seed-data/cyclist-profiles/data.json",
+			);
+			const rawData = await readFile(dataPath, "utf-8");
+			profilesData = JSON.parse(rawData);
+		}
 
 		console.log(`📊 Found ${profilesData.length} cyclist profiles to import`);
 

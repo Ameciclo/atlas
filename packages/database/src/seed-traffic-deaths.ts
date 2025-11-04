@@ -6,12 +6,24 @@ import { eq } from "drizzle-orm";
 import type { DatabaseConfig } from "./connection.js";
 import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import * as trafficDeathsSchema from "./schemas/traffic-deaths/index.js";
+import { createSeedDataLoader } from "./utils/seed-data-loader.js";
+import type { SeedDataManifest } from "./types/seed-manifest.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 // CSV files directory - can be overridden via environment variable
 const CSV_DIR =
 	process.env.CSV_DIR || join(__dirname, "../seed-data/traffic-deaths");
+
+// Load manifest for S3 configuration
+let manifest: SeedDataManifest | null = null;
+async function loadManifest(): Promise<SeedDataManifest> {
+	if (manifest) return manifest;
+	const manifestPath = join(__dirname, "../seed-data/manifest.json");
+	const manifestContent = readFileSync(manifestPath, "utf-8");
+	manifest = JSON.parse(manifestContent);
+	return manifest;
+}
 
 interface TrafficDeathRecord {
 	[key: string]: string | number | null;
@@ -52,28 +64,63 @@ function parseCSV(content: string): TrafficDeathRecord[] {
 }
 
 /**
- * Seed traffic deaths data from CSV files
+ * Seed traffic deaths data from CSV files (Git or S3)
  * Idempotent: Uses import_batch to track already-imported data
  */
 export async function seedTrafficDeaths(config: DatabaseConfig = {}) {
 	const db = await createConnectedDatabase(config);
 	const batchId = `seed-${new Date().toISOString()}`;
 	const years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
+	const useS3 = process.env.SEED_DATA_USE_S3 === "true";
 
 	try {
 		console.log("🚗 Starting traffic deaths data seeding...");
-		console.log(`📦 Batch ID: ${batchId}\n`);
+		console.log(`📦 Batch ID: ${batchId}`);
+		console.log(
+			`📍 Data source: ${useS3 ? "S3 (DigitalOcean Spaces)" : "Local files"}\n`,
+		);
 
 		let totalInserted = 0;
 		let totalSkipped = 0;
 		let totalErrors = 0;
 
+		// Load manifest if using S3
+		let manifestData: SeedDataManifest | null = null;
+		if (useS3) {
+			manifestData = await loadManifest();
+		}
+
+		const loader = createSeedDataLoader({ useS3 });
+
 		for (const year of years) {
-			const csvPath = join(CSV_DIR, `mortes_transito_${year}.csv`);
+			let csvContent: string;
 
 			try {
-				console.log(`📂 Reading CSV file: ${csvPath}`);
-				const csvContent = readFileSync(csvPath, "utf-8");
+				if (useS3 && manifestData) {
+					// Load from S3 using manifest
+					const fileInfo = manifestData.datasets[
+						"traffic-deaths"
+					].s3.files.find((f) => f.name === `mortes_transito_${year}.csv`);
+					if (!fileInfo) {
+						console.log(`⚠️  File not found in manifest for year ${year}`);
+						continue;
+					}
+
+					console.log(`📂 Loading from S3: ${fileInfo.key}`);
+					csvContent = await loader.loadCSV(
+						{
+							type: "s3",
+							path: fileInfo.key,
+							bucket: manifestData.datasets["traffic-deaths"].s3.bucket,
+						},
+						fileInfo.checksum,
+					);
+				} else {
+					// Load from local file
+					const csvPath = join(CSV_DIR, `mortes_transito_${year}.csv`);
+					console.log(`📂 Reading CSV file: ${csvPath}`);
+					csvContent = readFileSync(csvPath, "utf-8");
+				}
 
 				console.log(`📊 Parsing CSV data for year ${year}...`);
 				const records = parseCSV(csvContent);
