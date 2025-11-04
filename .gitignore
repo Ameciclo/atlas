@@ -46,9 +46,3 @@ apps/docs/public/openapi/*.json
 # Test artifacts from create-atlas-app integration tests
 packages/database/src/schemas/test-*
 apps/test-*
-
-# Large data files (>100MB)
-*.tsv
-*_otimizado.json
-enderecos_otimizado.json
-infracoes_reduzido.tsv

@@ -3,6 +3,9 @@ import chalk from "chalk";
 import { seedCyclistCounts } from "./seed-cyclist-counts.js";
 import { seedCyclistProfiles } from "./seed-cyclist-profiles.js";
 import { seedTrafficDeaths } from "./seed-traffic-deaths.js";
+import { seedBicycleRacksFromGeoJSON } from "./seed-bicycle-racks.js";
+import { seedTrafficCalls } from "./seed-traffic-calls.js";
+import { seedTrafficViolations } from "./seed-traffic-violations.js";
 
 interface SeedResult {
 	name: string;
@@ -91,6 +94,27 @@ async function masterSeed(options: SeedOptions = {}) {
 			icon: "🚗",
 			color: chalk.red,
 			fn: seedTrafficDeaths,
+		},
+		{
+			name: "Bicycle Racks",
+			id: "racks",
+			icon: "🚲",
+			color: chalk.green,
+			fn: seedBicycleRacksFromGeoJSON,
+		},
+		{
+			name: "Traffic Calls",
+			id: "calls",
+			icon: "🚨",
+			color: chalk.gray,
+			fn: seedTrafficCalls,
+		},
+		{
+			name: "Traffic Violations",
+			id: "violations",
+			icon: "🚔",
+			color: chalk.magenta,
+			fn: seedTrafficViolations,
 		},
 	];
 

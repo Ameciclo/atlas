@@ -22,16 +22,11 @@ interface LocationDict {
 }
 
 interface AddressData {
-	[key: string]: {
-		codigo_logradouro: string;
-		coordenadas: {
-			latitude: number;
-			longitude: number;
-			fonte: string;
-			confiabilidade: string;
-		};
-		ocorrencias: number;
-	};
+	codigo_logradouro: string;
+	latitude: number;
+	longitude: number;
+	endereco_infracao: string;
+	local_id: number;
 }
 
 /**
@@ -62,7 +57,7 @@ export async function seedTrafficViolations(config: DatabaseConfig = {}) {
 		);
 		const violationDictPath = join(basePath, "dict_infracoes_v2.json");
 		const locationDictPath = join(basePath, "dict_locais_v2.json");
-		const addressDataPath = join(basePath, "enderecos_otimizado.json");
+		const addressDataPath = join(basePath, "enderecos_otimizado.csv");
 		const dataPath = join(basePath, "infracoes_reduzido.tsv");
 
 		const violationDictRaw = await readFile(violationDictPath, "utf-8");
@@ -72,7 +67,31 @@ export async function seedTrafficViolations(config: DatabaseConfig = {}) {
 
 		const violationDict: ViolationDict = JSON.parse(violationDictRaw);
 		const locationDict: LocationDict = JSON.parse(locationDictRaw);
-		const addressData: AddressData = JSON.parse(addressDataRaw);
+		
+		// Parse CSV data
+		const addressLines = addressDataRaw.trim().split("\n");
+		const addressDataLines = addressLines.slice(1);
+		
+		// Create address lookup by local_id
+		const addressLookup: { [key: number]: AddressData } = {};
+		for (const line of addressDataLines) {
+			const values = line.split(",");
+			if (values.length >= 5) {
+				const codigo_logradouro = values[0] || "";
+				const latitude = Number(values[1]) || 0;
+				const longitude = Number(values[2]) || 0;
+				const local_id = Number(values[values.length - 1]) || 0;
+				const endereco_infracao = values.slice(3, -1).join(",");
+				
+				addressLookup[local_id] = {
+					codigo_logradouro,
+					latitude,
+					longitude,
+					endereco_infracao,
+					local_id,
+				};
+			}
+		}
 
 		// Reverse dictionaries for lookup
 		const violationLookup = Object.fromEntries(
@@ -120,8 +139,8 @@ export async function seedTrafficViolations(config: DatabaseConfig = {}) {
 				const { violation_code, law_code, description } =
 					parseViolationDescription(violationDescription);
 
-				// Get address info from prefeitura data
-				const addressInfo = addressData[locationDescription];
+				// Get address info from CSV data
+				const addressInfo = addressLookup[violationData.local_id];
 				const prefeituraAddress = locationDescription;
 
 				// COORDINATES DISABLED: Field is already PostGIS geometry, not text
