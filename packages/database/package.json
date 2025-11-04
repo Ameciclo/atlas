@@ -41,6 +41,10 @@
 		"./schemas/traffic-violations": {
 			"types": "./dist/schemas/traffic-violations/index.d.ts",
 			"import": "./dist/schemas/traffic-violations/index.js"
+		},
+		"./schemas/test-db-service": {
+			"types": "./dist/schemas/test-db-service/index.d.ts",
+			"import": "./dist/schemas/test-db-service/index.js"
 		}
 	},
 	"scripts": {
@@ -54,10 +58,11 @@
 		"db:generate:custom": "drizzle-kit generate --custom",
 		"db:drop": "drizzle-kit drop",
 		"db:migrate": "tsx src/migrate.ts",
-		"db:seed": "tsx src/seed-cyclist-counts.ts",
+		"db:seed": "tsx src/seed.ts",
+		"db:seed:cyclist-counts": "tsx src/seed-cyclist-counts.ts",
 		"db:seed:bicycle-racks": "tsx src/seed-bicycle-racks.ts",
 		"db:seed-traffic-calls": "tsx src/seed-traffic-calls.ts",
-		"db:reset": "tsx src/migrate.ts && tsx src/seed-cyclist-counts.ts"
+		"db:reset": "tsx src/reset.ts"
 	},
 	"dependencies": {
 		"csv-parse": "^5.5.6",

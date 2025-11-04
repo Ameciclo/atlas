@@ -5,6 +5,7 @@ import { seedCyclistProfiles } from "./seed-cyclist-profiles.js";
 import { seedTrafficDeaths } from "./seed-traffic-deaths.js";
 import { seedBicycleRacksFromGeoJSON } from "./seed-bicycle-racks.js";
 import { seedTrafficCalls } from "./seed-traffic-calls.js";
+import { seedOfficialStreets } from "./seed-official-streets.js";
 import { seedTrafficViolations } from "./seed-traffic-violations.js";
 
 interface SeedResult {
@@ -105,14 +106,21 @@ async function masterSeed(options: SeedOptions = {}) {
 		{
 			name: "Traffic Calls",
 			id: "calls",
-			icon: "🚨",
+			icon: "📞",
 			color: chalk.gray,
 			fn: seedTrafficCalls,
 		},
 		{
+			name: "Official Streets",
+			id: "streets",
+			icon: "🛣️",
+			color: chalk.cyan,
+			fn: seedOfficialStreets,
+		},
+		{
 			name: "Traffic Violations",
 			id: "violations",
-			icon: "🚔",
+			icon: "🚨",
 			color: chalk.magenta,
 			fn: seedTrafficViolations,
 		},

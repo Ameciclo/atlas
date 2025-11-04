@@ -67,6 +67,7 @@ describe("Traffic Violations Schema", () => {
 				description: "Estacionar em local proibido",
 				location_description: "Rua das Flores, 100",
 				coordinates: "-8.0476 -34.8770",
+				street_code: 12345,
 				complementary_data: { additional_info: "test" },
 				created_at: new Date("2023-01-15T10:30:00Z"),
 				updated_at: new Date("2023-01-15T10:30:00Z"),
