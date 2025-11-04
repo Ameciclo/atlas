@@ -9,10 +9,14 @@
 #
 # Required Environment Variables:
 #   - DATABASE_URL: Full PostgreSQL connection string to managed database
-#     Example: postgresql://user:password@host:5432/atlas
+#     Example: postgresql://user:password@host:5432/atlas?sslmode=require
+#   - DATABASE_SSL_CA: Path to CA certificate for SSL connections (for self-signed certs)
+#     Example: /run/secrets/pg-ca-cert
 #
 # Optional Environment Variables:
 #   - CYCLIST_PROFILE_PORT: Cyclist Profile API port (default: 3000)
+#   - CYCLIST_COUNTS_PORT: Cyclist Counts API port (default: 3002)
+#   - TRAFFIC_DEATHS_PORT: Traffic Deaths API port (default: 3003)
 #   - LOG_LEVEL: Logging level (default: info)
 #   - IMAGE_TAG: Docker image tag for all services (default: latest)
 #
@@ -20,12 +24,17 @@
 #
 # Setup Instructions:
 #   1. Ensure Kong network exists: docker network ls | grep kong-gateway_kong-net
-#   2. In Portainer, create new stack named "atlas"
-#   3. Set DATABASE_URL in environment variables
-#   4. Deploy stack
-#   5. Configure Kong routes to point to services:
+#   2. Create Docker secret for PostgreSQL CA certificate:
+#      - Download CA cert from DigitalOcean: https://docs.digitalocean.com/products/databases/postgresql/how-to/manage-certificates/
+#      - Create secret: docker secret create pg-ca-cert /path/to/ca-certificate.crt
+#   3. In Portainer, create new stack named "atlas"
+#   4. Set DATABASE_URL in environment variables
+#   5. Deploy stack
+#   6. Configure Kong routes to point to services:
 #      - cyclist-profile service: http://atlas-cyclist-profile:3000
-#      - docs service: http://atlas-docs:3001
+#      - cyclist-counts service: http://atlas-cyclist-counts:3002
+#      - traffic-deaths service: http://atlas-traffic-deaths:3003
+#      - docs service: http://atlas-docs:80
 #
 # Webhook Setup (Service-Level):
 #   Each service has its own webhook for independent deployments:
@@ -36,11 +45,23 @@
 #   3. Copy webhook URL
 #   4. Add to GitHub secrets as PORTAINER_WEBHOOK_CYCLIST_PROFILE
 #
-#   Docs:
-#   5. In Portainer: Containers → atlas-docs
+#   Cyclist Counts:
+#   5. In Portainer: Containers → atlas-cyclist-counts
 #   6. Enable webhook for the service
 #   7. Copy webhook URL
-#   8. Add to GitHub secrets as PORTAINER_WEBHOOK_DOCS
+#   8. Add to GitHub secrets as PORTAINER_WEBHOOK_CYCLIST_COUNTS
+#
+#   Traffic Deaths:
+#   9. In Portainer: Containers → atlas-traffic-deaths
+#   10. Enable webhook for the service
+#   11. Copy webhook URL
+#   12. Add to GitHub secrets as PORTAINER_WEBHOOK_TRAFFIC_DEATHS
+#
+#   Docs:
+#   13. In Portainer: Containers → atlas-docs
+#   14. Enable webhook for the service
+#   15. Copy webhook URL
+#   16. Add to GitHub secrets as PORTAINER_WEBHOOK_DOCS
 #
 # Kong Gateway Configuration:
 #   After deployment, configure Kong routes:
@@ -49,15 +70,32 @@
 #     Service: http://atlas-cyclist-profile:3000
 #     Route: /api/cyclist-profile
 #
-#   Documentation (nginx static site):
+#   Cyclist Counts API:
+#     Service: http://atlas-cyclist-counts:3002
+#     Route: /api/cyclist-counts
+#
+#   Traffic Deaths API:
+#     Service: http://atlas-traffic-deaths:3003
+#     Route: /api/traffic-deaths
+#
+#   Documentation:
 #     Service: http://atlas-docs:80
 #     Route: /docs
 #
 # Health Checks:
-#   API:   curl http://atlas-cyclist-profile:3000/health
-#   Docs:  curl http://atlas-docs/
+#   Cyclist Profile:   curl http://atlas-cyclist-profile:3000/health
+#   Cyclist Counts:    curl http://atlas-cyclist-counts:3002/health
+#   Traffic Deaths:    curl http://atlas-traffic-deaths:3003/health
+#   Docs:              curl http://atlas-docs:80/index.html
+#
+# Data Seeding (Traffic Deaths):
+#   The traffic-deaths service requires initial data seeding.
+#   See deployment/portainer/SEEDING.md for instructions.
 
-version: "3.8"
+secrets:
+  pg-ca-cert:
+    external: true
+    name: pg-ca-cert
 
 services:
   # ============================================================================
@@ -71,12 +109,20 @@ services:
 
     environment:
       DATABASE_URL: ${DATABASE_URL}
+      DATABASE_SSL_CA: /run/secrets/pg-ca-cert
       NODE_ENV: production
+      MIGRATIONS_FOLDER: ./packages/database/src/migrations
 
     networks:
       - kong-net
 
+    secrets:
+      - pg-ca-cert
+
     restart: "no"
+
+    deploy:
+      replicas: 0
 
     logging:
       driver: "json-file"
@@ -96,6 +142,7 @@ services:
       LOG_LEVEL: ${LOG_LEVEL:-info}
       PORT: ${CYCLIST_PROFILE_PORT:-3000}
       DATABASE_URL: ${DATABASE_URL}
+      DATABASE_SSL_CA: /run/secrets/pg-ca-cert
 
     # Expose port internally to Kong network only (no host port binding)
     expose:
@@ -104,19 +151,19 @@ services:
     networks:
       - kong-net
 
+    secrets:
+      - pg-ca-cert
+
     depends_on:
-      cyclist-profile-migrate:
-        condition: service_completed_successfully
+      - cyclist-profile-migrate
 
     restart: unless-stopped
 
     healthcheck:
       test:
         [
-          "CMD",
-          "node",
-          "-e",
-          "require('http').get('http://localhost:${CYCLIST_PROFILE_PORT:-3000}/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))",
+          "CMD-SHELL",
+          'node -e "require(''http'').get(''http://localhost:${CYCLIST_PROFILE_PORT:-3000}/health'', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"',
         ]
       interval: 30s
       timeout: 10s
@@ -139,9 +186,183 @@ services:
         max-file: "3"
 
   # ============================================================================
-  # Documentation Service
+  # Cyclist Counts Service - Migration
   # ============================================================================
-  # Note: Docs is a static React app served by nginx on port 80
+  cyclist-counts-migrate:
+    image: ghcr.io/ameciclo/atlas/cyclist-counts:${IMAGE_TAG:-latest}
+    container_name: atlas-cyclist-counts-migrate
+
+    command: node packages/database/dist/migrate.js
+
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_SSL_CA: /run/secrets/pg-ca-cert
+      NODE_ENV: production
+      MIGRATIONS_FOLDER: ./packages/database/src/migrations
+
+    networks:
+      - kong-net
+
+    secrets:
+      - pg-ca-cert
+
+    restart: "no"
+
+    deploy:
+      replicas: 0
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Cyclist Counts Service - API
+  # ============================================================================
+  cyclist-counts:
+    image: ghcr.io/ameciclo/atlas/cyclist-counts:${IMAGE_TAG:-latest}
+    container_name: atlas-cyclist-counts
+
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: ${CYCLIST_COUNTS_PORT:-3002}
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_SSL_CA: /run/secrets/pg-ca-cert
+
+    # Expose port internally to Kong network only (no host port binding)
+    expose:
+      - "${CYCLIST_COUNTS_PORT:-3002}"
+
+    networks:
+      - kong-net
+
+    secrets:
+      - pg-ca-cert
+
+    depends_on:
+      - cyclist-counts-migrate
+
+    restart: unless-stopped
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'node -e "require(''http'').get(''http://localhost:${CYCLIST_COUNTS_PORT:-3002}/health'', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"',
+        ]
+      interval: 30s
+      timeout: 10s
+      start_period: 40s
+      retries: 3
+
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+        reservations:
+          cpus: "0.5"
+          memory: 256M
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Traffic Deaths Service - Migration
+  # ============================================================================
+  traffic-deaths-migrate:
+    image: ghcr.io/ameciclo/atlas/traffic-deaths:${IMAGE_TAG:-latest}
+    container_name: atlas-traffic-deaths-migrate
+
+    command: node packages/database/dist/migrate.js
+
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_SSL_CA: /run/secrets/pg-ca-cert
+      NODE_ENV: production
+      MIGRATIONS_FOLDER: ./packages/database/src/migrations
+
+    networks:
+      - kong-net
+
+    secrets:
+      - pg-ca-cert
+
+    restart: "no"
+
+    deploy:
+      replicas: 0
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Traffic Deaths Service - API
+  # ============================================================================
+  traffic-deaths:
+    image: ghcr.io/ameciclo/atlas/traffic-deaths:${IMAGE_TAG:-latest}
+    container_name: atlas-traffic-deaths
+
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PORT: ${TRAFFIC_DEATHS_PORT:-3003}
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_SSL_CA: /run/secrets/pg-ca-cert
+
+    # Expose port internally to Kong network only (no host port binding)
+    expose:
+      - "${TRAFFIC_DEATHS_PORT:-3003}"
+
+    networks:
+      - kong-net
+
+    secrets:
+      - pg-ca-cert
+
+    depends_on:
+      - traffic-deaths-migrate
+
+    restart: unless-stopped
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'node -e "require(''http'').get(''http://localhost:${TRAFFIC_DEATHS_PORT:-3003}/health'', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"',
+        ]
+      interval: 30s
+      timeout: 10s
+      start_period: 40s
+      retries: 3
+
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+        reservations:
+          cpus: "0.5"
+          memory: 256M
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================================
+  # Documentation Service - Static React App
+  # ============================================================================
+  # Serves static React documentation via Nginx on port 80
   docs:
     image: ghcr.io/ameciclo/atlas/docs:${IMAGE_TAG:-latest}
     container_name: atlas-docs

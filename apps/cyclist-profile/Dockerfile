@@ -34,7 +34,7 @@ COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=pruner /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
 
 # Install dependencies
-RUN pnpm install --no-frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 # Copy source files from pruned repo
 COPY --from=pruner /app/out/full/ .
@@ -64,17 +64,13 @@ COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=pruner /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
 
 # Install production dependencies only
-RUN pnpm install --no-frozen-lockfile --prod
+RUN pnpm install --frozen-lockfile --prod
 
 # Copy built files from builder stage
 COPY --from=builder /app/apps/cyclist-profile/dist ./apps/cyclist-profile/dist
 COPY --from=builder /app/packages/database/dist ./packages/database/dist
-
-# Copy database package files needed at runtime
-COPY --from=builder /app/packages/database/package.json ./packages/database/package.json
+# Copy migrations folder from database package
 COPY --from=builder /app/packages/database/src/migrations ./packages/database/src/migrations
-# Copy seed data from database package
-COPY --from=builder /app/packages/database/seed-data ./packages/database/seed-data
 
 # Set environment variables
 ENV NODE_ENV=production
@@ -89,4 +85,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
   CMD node -e "require('http').get('http://localhost:${PORT}/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"
 
 # Default command to start the application
-CMD ["node", "apps/cyclist-profile/dist/src/index.js"]
+CMD ["node", "apps/cyclist-profile/dist/index.js"]

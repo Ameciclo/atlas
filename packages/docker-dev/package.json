@@ -5,6 +5,6 @@
 		"dev": "docker compose -f ../../docker-compose.yml up -d",
 		"stop": "docker compose -f ../../docker-compose.yml stop",
 		"logs": "docker compose -f ../../docker-compose.yml logs -f postgres",
-		"db:reset": "docker compose -f ../../docker-compose.yml down -v && docker compose -f ../../docker-compose.yml up -d"
+		"db:reset": "docker compose -f ../../docker-compose.yml down -v --remove-orphans && docker volume rm atlas_postgres_data 2>/dev/null || true && docker compose -f ../../docker-compose.yml up -d"
 	}
 }

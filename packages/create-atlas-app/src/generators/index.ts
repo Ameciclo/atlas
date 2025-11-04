@@ -2,7 +2,6 @@ import path from "node:path";
 import fs from "fs-extra";
 import type { AppConfig } from "../create-app.js";
 import { generateDatabaseFiles } from "./database-files.js";
-import { generateDockerCompose } from "./docker-compose.js";
 import { generateDockerfile } from "./dockerfile.js";
 import { updateDocsIntegration } from "./docs-integration.js";
 import { generateEnvExample } from "./env-example.js";
@@ -24,12 +23,6 @@ export async function generateFiles(appPath: string, config: AppConfig) {
 	await fs.writeFile(
 		path.join(appPath, "Dockerfile"),
 		generateDockerfile(config),
-	);
-
-	// Generate docker-compose.yml
-	await fs.writeFile(
-		path.join(appPath, "docker-compose.yml"),
-		generateDockerCompose(config),
 	);
 
 	// Generate README.md

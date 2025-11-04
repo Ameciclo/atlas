@@ -1,26 +1,23 @@
-name: Deploy to Production
+name: Deploy with Migrations
 
 on:
-  workflow_dispatch:
-    inputs:
-      app:
-        description: "App to deploy (leave empty for all)"
-        required: false
-        type: string
-      environment:
-        description: "Environment to deploy to"
-        required: true
-        default: "production"
-        type: choice
-        options:
-          - production
-          - staging
   workflow_run:
     workflows: ["Docker Build & Push"]
     types:
       - completed
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      app:
+        description: "App to deploy (leave empty for all)"
+        required: false
+        type: string
+      skip_migrations:
+        description: "Skip database migrations"
+        required: false
+        type: boolean
+        default: false
 
 # Permissions needed for deployment
 permissions:
@@ -37,6 +34,7 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
       has_deployments: ${{ steps.set-matrix.outputs.has_deployments }}
+      has_api_changes: ${{ steps.set-matrix.outputs.has_api_changes }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -61,6 +59,8 @@ jobs:
           # Note: These are SERVICE webhooks in Portainer, not stack webhooks
           ALL_APPS='[
             {"app": "cyclist-profile", "webhook_secret": "PORTAINER_WEBHOOK_CYCLIST_PROFILE", "service": "atlas-cyclist-profile"},
+            {"app": "cyclist-counts", "webhook_secret": "PORTAINER_WEBHOOK_CYCLIST_COUNTS", "service": "atlas-cyclist-counts"},
+            {"app": "traffic-deaths", "webhook_secret": "PORTAINER_WEBHOOK_TRAFFIC_DEATHS", "service": "atlas-traffic-deaths"},
             {"app": "docs", "webhook_secret": "PORTAINER_WEBHOOK_DOCS", "service": "atlas-docs"}
           ]'
 
@@ -104,15 +104,91 @@ jobs:
             echo "ℹ️  No apps to deploy"
           fi
 
+          # Check if any API apps changed (need migrations)
+          API_APPS='["cyclist-counts", "cyclist-profile", "traffic-deaths"]'
+          DEPLOYED_APPS=$(echo "$DEPLOY_MATRIX" | jq -r '[.[].app]')
+          HAS_API_CHANGES=$(echo "$DEPLOYED_APPS" | jq --argjson api "$API_APPS" '[.[] | select($api | index(.))] | length > 0')
+          echo "has_api_changes=${HAS_API_CHANGES}" >> $GITHUB_OUTPUT
+          echo "API apps to deploy: ${HAS_API_CHANGES}"
+
+  # ============================================================================
+  # Run Database Migrations (before deployment)
+  # ============================================================================
+  run_migrations:
+    name: Run Database Migrations
+    needs: detect_deployed_apps
+    if: |
+      needs.detect_deployed_apps.outputs.has_api_changes == 'true' &&
+      github.event.inputs.skip_migrations != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.15.0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build database package
+        run: pnpm --filter @atlas/database build
+
+      - name: Run migrations
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NODE_ENV: production
+        run: |
+          echo "🔄 Running database migrations..."
+          node packages/database/dist/migrate.js
+
+          if [ $? -eq 0 ]; then
+            echo "✅ Migrations completed successfully"
+          else
+            echo "❌ Migrations failed"
+            exit 1
+          fi
+
+      - name: Verify database connection
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          echo "🔍 Verifying database connection..."
+          pnpm add -g pg
+          node -e "
+            const { Pool } = require('pg');
+            const pool = new Pool({
+              connectionString: process.env.DATABASE_URL,
+              ssl: { rejectUnauthorized: false }
+            });
+            pool.query('SELECT NOW() as current_time, version() as pg_version', (err, res) => {
+              if (err) {
+                console.error('❌ Database connection failed:', err);
+                process.exit(1);
+              }
+              console.log('✅ Database connection successful');
+              console.log('   Current time:', res.rows[0].current_time);
+              console.log('   PostgreSQL version:', res.rows[0].pg_version);
+              pool.end();
+            });
+          "
+
   deploy:
     name: Deploy ${{ matrix.app }} via Portainer Webhook
-    needs: detect_deployed_apps
-    if: needs.detect_deployed_apps.outputs.has_deployments == 'true'
+    needs: [detect_deployed_apps, run_migrations]
+    if: |
+      always() &&
+      needs.detect_deployed_apps.outputs.has_deployments == 'true' &&
+      (needs.run_migrations.result == 'success' || needs.run_migrations.result == 'skipped')
     runs-on: ubuntu-latest
     strategy:
       matrix:
         include: ${{ fromJson(needs.detect_deployed_apps.outputs.matrix) }}
-    environment: ${{ github.event.inputs.environment || 'production' }}
     steps:
       - name: Trigger Portainer Service Webhook
         run: |
@@ -133,7 +209,6 @@ jobs:
 
           echo "🚀 Triggering deployment for ${{ matrix.app }}..."
           echo "Service: ${{ matrix.service }}"
-          echo "Environment: ${{ github.event.inputs.environment || 'production' }}"
 
           RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "$WEBHOOK_URL")
           HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
@@ -151,15 +226,14 @@ jobs:
 
       - name: Wait for deployment
         run: |
-          echo "⏳ Waiting 30 seconds for deployment to complete..."
-          sleep 30
+          echo "⏳ Waiting 45 seconds for deployment to complete..."
+          sleep 45
 
       - name: Deployment summary
         run: |
           echo "📊 Deployment Summary"
           echo "===================="
           echo "Service: ${{ matrix.app }}"
-          echo "Environment: ${{ github.event.inputs.environment || 'production' }}"
           echo "Image: ghcr.io/${{ github.repository }}/${{ matrix.app }}:latest"
           echo "Status: ${{ job.status }}"
           echo ""

@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import type { DatabaseConfig } from "./connection.js";
 import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import * as cyclistCountsSchema from "./schemas/cyclist-counts/index.js";
@@ -274,19 +274,46 @@ export async function seedCyclistCounts(config: DatabaseConfig = {}) {
 					max_hour_cyclists: maxHourCyclists,
 				};
 
-			const [event] = await db
-				.insert(cyclistCountsSchema.countingEvents)
-				.values(eventData)
-				.returning();
+			// Check if event already exists for this location and date
+			const existingEvent = await db
+				.select()
+				.from(cyclistCountsSchema.countingEvents)
+				.where(
+					and(
+						eq(cyclistCountsSchema.countingEvents.location_id, locationId),
+						eq(
+							cyclistCountsSchema.countingEvents.counting_date,
+							eventData.counting_date,
+						),
+					),
+				)
+				.limit(1);
 
-			if (!event) {
-				throw new Error(`Failed to create event for ${item.metadata.name}`);
+			let event: typeof cyclistCountsSchema.countingEvents.$inferSelect;
+
+			if (existingEvent.length > 0 && existingEvent[0]) {
+				event = existingEvent[0];
+				console.log(
+					`  ↪ Using existing event on ${eventData.counting_date} (${totalCyclists} cyclists)`,
+				);
+				// Skip creating sessions for existing events
+				continue;
+			} else {
+				const [newEvent] = await db
+					.insert(cyclistCountsSchema.countingEvents)
+					.values(eventData)
+					.returning();
+
+				if (!newEvent) {
+					throw new Error(`Failed to create event for ${item.metadata.name}`);
+				}
+
+				event = newEvent;
+				eventsCreated++;
+				console.log(
+					`  ✓ Created event on ${eventDate.toISOString().split("T")[0]} (${totalCyclists} cyclists)`,
+				);
 			}
-
-			eventsCreated++;
-			console.log(
-				`  ✓ Created event on ${eventDate.toISOString().split("T")[0]} (${totalCyclists} cyclists)`,
-			);
 
 			// 3. Create sessions and movements
 			for (const sessionData of sessions) {

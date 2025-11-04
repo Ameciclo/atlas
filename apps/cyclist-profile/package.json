@@ -4,18 +4,15 @@
 	"type": "module",
 	"scripts": {
 		"dev": "tsx watch src/index.ts",
-		"build": "tsc",
-		"start": "node dist/src/index.js",
+		"build": "tsc && pnpm generate-openapi",
+		"start": "node dist/index.js",
 		"lint": "biome lint .",
 		"format": "biome format .",
 		"check-types": "tsc --noEmit --project tsconfig.test.json",
 		"test": "NODE_ENV=test vitest --run",
 		"test:watch": "NODE_ENV=test vitest --watch",
-		"db:generate": "pnpm --filter @atlas/database db:generate",
-		"db:migrate": "pnpm --filter @atlas/database db:migrate",
-		"db:studio": "pnpm --filter @atlas/database db:studio",
-		"db:seed": "tsx src/db/seed.ts",
-		"generate-openapi": "tsx src/generate-openapi.ts"
+		"generate-openapi": "tsx src/generate-openapi.ts",
+		"pre-dev": "pnpm generate-openapi"
 	},
 	"dependencies": {
 		"@atlas/database": "workspace:*",
