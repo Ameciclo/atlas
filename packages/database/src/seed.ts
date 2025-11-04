@@ -1,5 +1,7 @@
-import "dotenv/config";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import chalk from "chalk";
+import * as dotenv from "dotenv";
 import { seedCyclistCounts } from "./seed-cyclist-counts.js";
 import { seedCyclistProfiles } from "./seed-cyclist-profiles.js";
 import { seedTrafficDeaths } from "./seed-traffic-deaths.js";
@@ -7,6 +9,12 @@ import { seedBicycleRacksFromGeoJSON } from "./seed-bicycle-racks.js";
 import { seedTrafficCalls } from "./seed-traffic-calls.js";
 import { seedOfficialStreets } from "./seed-official-streets.js";
 import { seedTrafficViolations } from "./seed-traffic-violations.js";
+
+// Load environment variables from .env.local first, then .env
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const rootDir = __dirname.replace("/packages/database/src", "");
+dotenv.config({ path: join(rootDir, ".env.local") });
+dotenv.config({ path: join(rootDir, ".env") });
 
 interface SeedResult {
 	name: string;

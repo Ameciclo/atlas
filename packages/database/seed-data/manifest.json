@@ -1,0 +1,136 @@
+{
+	"version": "1.0",
+	"lastUpdated": "2025-11-04T17:45:00Z",
+	"datasets": {
+		"traffic-deaths": {
+			"name": "Traffic Deaths (DATASUS)",
+			"description": "Brazilian traffic mortality data 2015-2023",
+			"storage": "s3",
+			"s3": {
+				"bucket": "ameciclo-space",
+				"region": "nyc3",
+				"endpoint": "https://nyc3.digitaloceanspaces.com",
+				"prefix": "seed/traffic-deaths/",
+				"files": [
+					{
+						"name": "mortes_transito_2015.csv",
+						"key": "seed/traffic-deaths/mortes_transito_2015.csv",
+						"size": 17407259,
+						"checksum": "sha256:210cace3a34e7a2c4b9313a5853eba16ef81c2e614272ce91e247511b839a5b9",
+						"uploadedAt": "2025-11-04T17:43:00Z"
+					},
+					{
+						"name": "mortes_transito_2016.csv",
+						"key": "seed/traffic-deaths/mortes_transito_2016.csv",
+						"size": 16862445,
+						"checksum": "sha256:9403aa2e266a3081b52bdd657d905812f6e5e0480cde541aea0d1fccc9267a97",
+						"uploadedAt": "2025-11-04T17:43:00Z"
+					},
+					{
+						"name": "mortes_transito_2017.csv",
+						"key": "seed/traffic-deaths/mortes_transito_2017.csv",
+						"size": 16083889,
+						"checksum": "sha256:a1b7ee1542abd7fa894e309861e9e9922aaebcd4db403f323684c8778a106edf",
+						"uploadedAt": "2025-11-04T17:43:00Z"
+					},
+					{
+						"name": "mortes_transito_2018.csv",
+						"key": "seed/traffic-deaths/mortes_transito_2018.csv",
+						"size": 14863606,
+						"checksum": "sha256:7d675a9e63866e8736018a8e614122d770584dbc18291e325a61caa8ec04badf",
+						"uploadedAt": "2025-11-04T17:43:00Z"
+					},
+					{
+						"name": "mortes_transito_2019.csv",
+						"key": "seed/traffic-deaths/mortes_transito_2019.csv",
+						"size": 14277944,
+						"checksum": "sha256:5a82bf03f285a2723827c757dc67037725cfe412f456f369ad01c656420ce0f0",
+						"uploadedAt": "2025-11-04T17:43:00Z"
+					},
+					{
+						"name": "mortes_transito_2020.csv",
+						"key": "seed/traffic-deaths/mortes_transito_2020.csv",
+						"size": 14620192,
+						"checksum": "sha256:087af89f2c90de4f20acabe9214c7da8472cc7124d3a545181c9c280bab49dd7",
+						"uploadedAt": "2025-11-04T17:43:00Z"
+					},
+					{
+						"name": "mortes_transito_2021.csv",
+						"key": "seed/traffic-deaths/mortes_transito_2021.csv",
+						"size": 15210489,
+						"checksum": "sha256:148db40c3b1bc85153ddb1c484210348d47919b8b7dfb5b27c7b1e1b9e5d7a78",
+						"uploadedAt": "2025-11-04T17:43:00Z"
+					},
+					{
+						"name": "mortes_transito_2022.csv",
+						"key": "seed/traffic-deaths/mortes_transito_2022.csv",
+						"size": 15166830,
+						"checksum": "sha256:5c4ec7766b2acdc6046df6aa6140426fe8f8733a366fc3b612a6de4421a01081",
+						"uploadedAt": "2025-11-04T17:43:00Z"
+					},
+					{
+						"name": "mortes_transito_2023.csv",
+						"key": "seed/traffic-deaths/mortes_transito_2023.csv",
+						"size": 15636007,
+						"checksum": "sha256:55543fc15023fe3efd7dea19616ee6502eaeaa176ad86430a88a679c992dd61b",
+						"uploadedAt": "2025-11-04T17:43:00Z"
+					}
+				]
+			},
+			"metadata": {
+				"recordCount": 320000,
+				"years": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023],
+				"format": "csv",
+				"encoding": "utf-8"
+			}
+		},
+		"cyclist-counts": {
+			"name": "Cyclist Counts",
+			"description": "Cyclist counting event data",
+			"storage": "s3",
+			"s3": {
+				"bucket": "ameciclo-space",
+				"region": "nyc3",
+				"endpoint": "https://nyc3.digitaloceanspaces.com",
+				"prefix": "seed/cyclist-counts/",
+				"files": [
+					{
+						"name": "data.json",
+						"key": "seed/cyclist-counts/data.json",
+						"size": 720443,
+						"checksum": "sha256:437da484f2da3f622e790c4a608e298a520f41895f504dc38113aac7eb0cdc78",
+						"uploadedAt": "2025-11-04T17:43:20Z"
+					}
+				]
+			},
+			"metadata": {
+				"recordCount": 8923,
+				"format": "json"
+			}
+		},
+		"cyclist-profiles": {
+			"name": "Cyclist Profiles",
+			"description": "Sample cyclist profile data",
+			"storage": "s3",
+			"s3": {
+				"bucket": "ameciclo-space",
+				"region": "nyc3",
+				"endpoint": "https://nyc3.digitaloceanspaces.com",
+				"prefix": "seed/cyclist-profiles/",
+				"files": [
+					{
+						"name": "data.json",
+						"key": "seed/cyclist-profiles/data.json",
+						"size": 691515,
+						"checksum": "sha256:f12e9191d3d0dae7a83786468b06ad21d90a969fe6faa829b1c5e669479df8b9",
+						"uploadedAt": "2025-11-04T17:43:20Z"
+					}
+				]
+			},
+			"metadata": {
+				"recordCount": 500,
+				"format": "json"
+			}
+		}
+	}
+}
