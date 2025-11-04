@@ -1,5 +1,5 @@
 {
-	"id": "29f2f8b2-e3d0-4556-8fa2-f1009cacdd3a",
+	"id": "d7d34795-6eec-4a26-94e8-294db32250aa",
 	"prevId": "8a96ae9a-371f-43ae-b349-4bfef99b93cb",
 	"version": "7",
 	"dialect": "postgresql",
@@ -354,8 +354,8 @@
 			"checkConstraints": {},
 			"isRLSEnabled": false
 		},
-		"public.test_db_service_examples": {
-			"name": "test_db_service_examples",
+		"public.traffic_calls": {
+			"name": "traffic_calls",
 			"schema": "",
 			"columns": {
 				"id": {
@@ -364,17 +364,74 @@
 					"primaryKey": true,
 					"notNull": true
 				},
-				"name": {
-					"name": "name",
-					"type": "text",
+				"datetime": {
+					"name": "datetime",
+					"type": "timestamp",
 					"primaryKey": false,
 					"notNull": true
 				},
-				"data": {
-					"name": "data",
+				"nature": {
+					"name": "nature",
+					"type": "varchar(50)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"total_victims": {
+					"name": "total_victims",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false,
+					"default": 0
+				},
+				"injured_victims": {
+					"name": "injured_victims",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false,
+					"default": 0
+				},
+				"fatal_victims": {
+					"name": "fatal_victims",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false,
+					"default": 0
+				},
+				"street_name": {
+					"name": "street_name",
+					"type": "varchar(255)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"neighborhood": {
+					"name": "neighborhood",
+					"type": "varchar(100)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"coordinates": {
+					"name": "coordinates",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"crash_data": {
+					"name": "crash_data",
 					"type": "jsonb",
 					"primaryKey": false,
 					"notNull": true
+				},
+				"environmental_data": {
+					"name": "environmental_data",
+					"type": "jsonb",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"metadata": {
+					"name": "metadata",
+					"type": "jsonb",
+					"primaryKey": false,
+					"notNull": false
 				},
 				"created_at": {
 					"name": "created_at",
@@ -392,424 +449,6 @@
 				}
 			},
 			"indexes": {},
-			"foreignKeys": {},
-			"compositePrimaryKeys": {},
-			"uniqueConstraints": {},
-			"policies": {},
-			"checkConstraints": {},
-			"isRLSEnabled": false
-		},
-		"public.traffic_deaths": {
-			"name": "traffic_deaths",
-			"schema": "",
-			"columns": {
-				"id": {
-					"name": "id",
-					"type": "serial",
-					"primaryKey": true,
-					"notNull": true
-				},
-				"contador": {
-					"name": "contador",
-					"type": "integer",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"tipobito": {
-					"name": "tipobito",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"dtobito": {
-					"name": "dtobito",
-					"type": "date",
-					"primaryKey": false,
-					"notNull": true
-				},
-				"horaobito": {
-					"name": "horaobito",
-					"type": "varchar(4)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"natural": {
-					"name": "natural",
-					"type": "varchar(3)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"codmunnatu": {
-					"name": "codmunnatu",
-					"type": "integer",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"dtnasc": {
-					"name": "dtnasc",
-					"type": "date",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"idade": {
-					"name": "idade",
-					"type": "integer",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"sexo": {
-					"name": "sexo",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"racacor": {
-					"name": "racacor",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"estciv": {
-					"name": "estciv",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"esc": {
-					"name": "esc",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"esc2010": {
-					"name": "esc2010",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"seriescfal": {
-					"name": "seriescfal",
-					"type": "varchar(2)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"ocup": {
-					"name": "ocup",
-					"type": "varchar(6)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"codmunres": {
-					"name": "codmunres",
-					"type": "integer",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"lococor": {
-					"name": "lococor",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"codestab": {
-					"name": "codestab",
-					"type": "varchar(7)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"estabdescr": {
-					"name": "estabdescr",
-					"type": "text",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"codmunocor": {
-					"name": "codmunocor",
-					"type": "integer",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"linhaa": {
-					"name": "linhaa",
-					"type": "text",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"linhab": {
-					"name": "linhab",
-					"type": "text",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"linhac": {
-					"name": "linhac",
-					"type": "text",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"linhad": {
-					"name": "linhad",
-					"type": "text",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"linhaii": {
-					"name": "linhaii",
-					"type": "text",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"causabas": {
-					"name": "causabas",
-					"type": "text",
-					"primaryKey": false,
-					"notNull": true
-				},
-				"causabas_o": {
-					"name": "causabas_o",
-					"type": "text",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"cb_pre": {
-					"name": "cb_pre",
-					"type": "text",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"circobito": {
-					"name": "circobito",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"acidtrab": {
-					"name": "acidtrab",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"fonte": {
-					"name": "fonte",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"origem": {
-					"name": "origem",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"assistmed": {
-					"name": "assistmed",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"exame": {
-					"name": "exame",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"cirurgia": {
-					"name": "cirurgia",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"necropsia": {
-					"name": "necropsia",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"dtinvestig": {
-					"name": "dtinvestig",
-					"type": "date",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"dtcadastro": {
-					"name": "dtcadastro",
-					"type": "date",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"dtrecebim": {
-					"name": "dtrecebim",
-					"type": "date",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"numerolote": {
-					"name": "numerolote",
-					"type": "varchar(20)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"tppos": {
-					"name": "tppos",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"atestante": {
-					"name": "atestante",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"stcodifica": {
-					"name": "stcodifica",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"codificado": {
-					"name": "codificado",
-					"type": "varchar(1)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"versaosist": {
-					"name": "versaosist",
-					"type": "varchar(10)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"versaoscb": {
-					"name": "versaoscb",
-					"type": "varchar(10)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"data_year": {
-					"name": "data_year",
-					"type": "integer",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"import_batch": {
-					"name": "import_batch",
-					"type": "varchar(50)",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"created_at": {
-					"name": "created_at",
-					"type": "timestamp",
-					"primaryKey": false,
-					"notNull": true,
-					"default": "now()"
-				},
-				"updated_at": {
-					"name": "updated_at",
-					"type": "timestamp",
-					"primaryKey": false,
-					"notNull": true,
-					"default": "now()"
-				}
-			},
-			"indexes": {
-				"idx_dtobito": {
-					"name": "idx_dtobito",
-					"columns": [
-						{
-							"expression": "dtobito",
-							"isExpression": false,
-							"asc": true,
-							"nulls": "last"
-						}
-					],
-					"isUnique": false,
-					"concurrently": false,
-					"method": "btree",
-					"with": {}
-				},
-				"idx_codmunocor": {
-					"name": "idx_codmunocor",
-					"columns": [
-						{
-							"expression": "codmunocor",
-							"isExpression": false,
-							"asc": true,
-							"nulls": "last"
-						}
-					],
-					"isUnique": false,
-					"concurrently": false,
-					"method": "btree",
-					"with": {}
-				},
-				"idx_codmunres": {
-					"name": "idx_codmunres",
-					"columns": [
-						{
-							"expression": "codmunres",
-							"isExpression": false,
-							"asc": true,
-							"nulls": "last"
-						}
-					],
-					"isUnique": false,
-					"concurrently": false,
-					"method": "btree",
-					"with": {}
-				},
-				"idx_causabas": {
-					"name": "idx_causabas",
-					"columns": [
-						{
-							"expression": "causabas",
-							"isExpression": false,
-							"asc": true,
-							"nulls": "last"
-						}
-					],
-					"isUnique": false,
-					"concurrently": false,
-					"method": "btree",
-					"with": {}
-				},
-				"idx_data_year": {
-					"name": "idx_data_year",
-					"columns": [
-						{
-							"expression": "data_year",
-							"isExpression": false,
-							"asc": true,
-							"nulls": "last"
-						}
-					],
-					"isUnique": false,
-					"concurrently": false,
-					"method": "btree",
-					"with": {}
-				},
-				"idx_year_munocor": {
-					"name": "idx_year_munocor",
-					"columns": [
-						{
-							"expression": "data_year",
-							"isExpression": false,
-							"asc": true,
-							"nulls": "last"
-						},
-						{
-							"expression": "codmunocor",
-							"isExpression": false,
-							"asc": true,
-							"nulls": "last"
-						}
-					],
-					"isUnique": false,
-					"concurrently": false,
-					"method": "btree",
-					"with": {}
-				}
-			},
 			"foreignKeys": {},
 			"compositePrimaryKeys": {},
 			"uniqueConstraints": {},

@@ -29,6 +29,10 @@
 		"./schemas/traffic-deaths": {
 			"types": "./dist/schemas/traffic-deaths/index.d.ts",
 			"import": "./dist/schemas/traffic-deaths/index.js"
+		},
+		"./schemas/traffic-calls": {
+			"types": "./dist/schemas/traffic-calls/index.d.ts",
+			"import": "./dist/schemas/traffic-calls/index.js"
 		}
 	},
 	"scripts": {
@@ -44,9 +48,11 @@
 		"db:migrate": "tsx src/migrate.ts",
 		"db:seed": "tsx src/seed-cyclist-counts.ts",
 		"db:seed:bicycle-racks": "tsx src/seed-bicycle-racks.ts",
+		"db:seed-traffic-calls": "tsx src/seed-traffic-calls.ts",
 		"db:reset": "tsx src/migrate.ts && tsx src/seed-cyclist-counts.ts"
 	},
 	"dependencies": {
+		"csv-parse": "^5.5.6",
 		"dotenv": "^16.5.0",
 		"drizzle-orm": "^0.43.1",
 		"drizzle-zod": "^0.7.1",

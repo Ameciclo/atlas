@@ -1,9 +1,5 @@
 [
   {
-    "url": "/openapi/bicycle-racks.json",
-    "title": "Bicycle Racks API"
-  },
-  {
     "url": "/openapi/cyclist-counts.json",
     "title": "Cyclist Counts API"
   },
@@ -12,7 +8,15 @@
     "title": "Cyclist Profile API"
   },
   {
-    "url": "/openapi/traffic-deaths.json",
-    "title": "Traffic Deaths API"
+    "url": "/openapi/emergency-calls.json",
+    "title": "Emergency Calls API"
+  },
+  {
+    "url": "/openapi/traffic-calls.json",
+    "title": "Traffic Calls API"
+  },
+  {
+    "url": "/openapi/traffic-crashes.json",
+    "title": "Traffic Crashes API"
   }
 ]

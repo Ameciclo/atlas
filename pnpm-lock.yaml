@@ -7,13 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      chalk:
-        specifier: ^5.6.2
-        version: 5.6.2
-      drizzle-seed:
-        specifier: ^0.3.1
-        version: 0.3.1(drizzle-orm@0.43.1(@types/pg@8.15.5)(pg@8.16.3))
     devDependencies:
       '@biomejs/biome':
         specifier: 2.2.7
@@ -30,61 +23,6 @@ importers:
       typescript:
         specifier: 5.9.3
         version: 5.9.3
-
-  apps/bicycle-racks:
-    dependencies:
-      '@atlas/database':
-        specifier: workspace:*
-        version: link:../../packages/database
-      '@hono/node-server':
-        specifier: ^1.14.1
-        version: 1.19.5(hono@4.10.2)
-      '@hono/zod-openapi':
-        specifier: ^0.19.6
-        version: 0.19.10(hono@4.10.2)(zod@3.25.76)
-      dotenv:
-        specifier: ^16.5.0
-        version: 16.6.1
-      drizzle-orm:
-        specifier: ^0.43.1
-        version: 0.43.1(@types/pg@8.15.5)(pg@8.16.3)
-      hono:
-        specifier: ^4.7.7
-        version: 4.10.2
-      hono-pino:
-        specifier: ^0.8.0
-        version: 0.8.0(hono@4.10.2)(pino@9.14.0)
-      pg:
-        specifier: ^8.14.1
-        version: 8.16.3
-      pino:
-        specifier: ^9.6.0
-        version: 9.14.0
-      pino-pretty:
-        specifier: ^13.0.0
-        version: 13.1.2
-      stoker:
-        specifier: ^1.4.2
-        version: 1.4.3(@asteasolutions/zod-to-openapi@7.3.0(zod@3.25.76))(@hono/zod-openapi@0.19.10(hono@4.10.2)(zod@3.25.76))(hono@4.10.2)(openapi3-ts@4.5.0)
-      zod:
-        specifier: ^3.24.4
-        version: 3.25.76
-    devDependencies:
-      '@types/node':
-        specifier: ^22.15.17
-        version: 22.18.12
-      '@types/pg':
-        specifier: ^8.11.13
-        version: 8.15.5
-      tsx:
-        specifier: ^4.19.3
-        version: 4.20.6
-      typescript:
-        specifier: ^5.8.3
-        version: 5.9.3
-      vitest:
-        specifier: ^3.1.3
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@22.18.12)(tsx@4.20.6)(yaml@2.8.1)
 
   apps/cyclist-counts:
     dependencies:
@@ -236,7 +174,7 @@ importers:
         specifier: ^6.3.5
         version: 6.4.1(@types/node@22.18.12)(tsx@4.20.6)(yaml@2.8.1)
 
-  apps/traffic-deaths:
+  apps/traffic-calls:
     dependencies:
       '@atlas/database':
         specifier: workspace:*
@@ -254,7 +192,7 @@ importers:
         specifier: ^0.43.1
         version: 0.43.1(@types/pg@8.15.5)(pg@8.16.3)
       hono:
-        specifier: ^4.10.2
+        specifier: ^4.7.7
         version: 4.10.2
       hono-pino:
         specifier: ^0.8.0
@@ -275,9 +213,6 @@ importers:
         specifier: ^3.24.4
         version: 3.25.76
     devDependencies:
-      '@atlas/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
       '@types/node':
         specifier: ^22.15.17
         version: 22.18.12
@@ -330,6 +265,9 @@ importers:
 
   packages/database:
     dependencies:
+      csv-parse:
+        specifier: ^5.5.6
+        version: 5.6.0
       dotenv:
         specifier: ^16.5.0
         version: 16.6.1
@@ -1625,6 +1563,10 @@ packages:
     resolution: {integrity: sha512-mCuXncKXk5iCLhfhwTc0izo0gtEmpz5CtG2y8GiOINBlMVS6v8TMRc5TaLWKS6692m9+dVVfzgeVxR5UxWHTYw==}
     engines: {node: '>=12'}
 
+  chalk@5.4.1:
+    resolution: {integrity: sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
+
   chalk@5.6.2:
     resolution: {integrity: sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
@@ -1687,6 +1629,9 @@ packages:
 
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
+
+  csv-parse@5.6.0:
+    resolution: {integrity: sha512-l3nz3euub2QMg5ouu5U09Ew9Wf6/wQ8I++ch1loQ0ljmzhmfZYrH9fflS22i/PQEvsPvxCwxgz5q7UB8K1JO4Q==}
 
   cva@1.0.0-beta.2:
     resolution: {integrity: sha512-dqcOFe247I5pKxfuzqfq3seLL5iMYsTgo40Uw7+pKZAntPgFtR7Tmy59P5IVIq/XgB0NQWoIvYDt9TwHkuK8Cg==}
@@ -1829,14 +1774,6 @@ packages:
       sql.js:
         optional: true
       sqlite3:
-        optional: true
-
-  drizzle-seed@0.3.1:
-    resolution: {integrity: sha512-F/0lgvfOAsqlYoHM/QAGut4xXIOXoE5VoAdv2FIl7DpGYVXlAzKuJO+IphkKUFK3Dz+rFlOsQLnMNrvoQ0cx7g==}
-    peerDependencies:
-      drizzle-orm: '>=0.36.4'
-    peerDependenciesMeta:
-      drizzle-orm:
         optional: true
 
   drizzle-zod@0.7.1:
@@ -2553,9 +2490,6 @@ packages:
 
   pump@3.0.2:
     resolution: {integrity: sha512-tUPXtzlGM8FE3P0ZL6DVs/3P58k9nk8/jZeQCurTJylQA8qFYzHFfhBJkuqyE0FifOsQ0uKWekiZ5g8wtr28cw==}
-
-  pure-rand@6.1.0:
-    resolution: {integrity: sha512-bVWawvoZoBYpp6yIoQtQXHZjmz35RSVHnUOTefl8Vcjr8snTPY1wnpSPMWekcFwbxI6gtmT7rSYPFvz71ldiOA==}
 
   quick-format-unescaped@4.0.4:
     resolution: {integrity: sha512-tYC1Q1hgyRuHgloV/YXs2w15unPVh8qfu/qCTfhTYamaw7fyhumKa2yGpdSo87vY32rIclj+4fWYQXUMs9EHvg==}
@@ -4454,6 +4388,8 @@ snapshots:
       loupe: 3.1.3
       pathval: 2.0.0
 
+  chalk@5.4.1: {}
+
   chalk@5.6.2: {}
 
   character-entities-html4@2.1.0: {}
@@ -4507,6 +4443,8 @@ snapshots:
 
   csstype@3.1.3: {}
 
+  csv-parse@5.6.0: {}
+
   cva@1.0.0-beta.2(typescript@5.9.3):
     dependencies:
       clsx: 2.1.1
@@ -4552,12 +4490,6 @@ snapshots:
     optionalDependencies:
       '@types/pg': 8.15.5
       pg: 8.16.3
-
-  drizzle-seed@0.3.1(drizzle-orm@0.43.1(@types/pg@8.15.5)(pg@8.16.3)):
-    dependencies:
-      pure-rand: 6.1.0
-    optionalDependencies:
-      drizzle-orm: 0.43.1(@types/pg@8.15.5)(pg@8.16.3)
 
   drizzle-zod@0.7.1(drizzle-orm@0.43.1(@types/pg@8.15.5)(pg@8.16.3))(zod@3.25.76):
     dependencies:
@@ -4972,7 +4904,7 @@ snapshots:
 
   lint-staged@15.5.2:
     dependencies:
-      chalk: 5.6.2
+      chalk: 5.4.1
       commander: 13.1.0
       debug: 4.4.0
       execa: 8.0.1
@@ -5537,8 +5469,6 @@ snapshots:
     dependencies:
       end-of-stream: 1.4.4
       once: 1.4.0
-
-  pure-rand@6.1.0: {}
 
   quick-format-unescaped@4.0.4: {}
 
