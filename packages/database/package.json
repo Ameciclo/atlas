@@ -37,6 +37,10 @@
 		"./schemas/emergency-calls": {
 			"types": "./dist/schemas/emergency-calls/index.d.ts",
 			"import": "./dist/schemas/emergency-calls/index.js"
+		},
+		"./schemas/traffic-violations": {
+			"types": "./dist/schemas/traffic-violations/index.d.ts",
+			"import": "./dist/schemas/traffic-violations/index.js"
 		}
 	},
 	"scripts": {

@@ -19,6 +19,7 @@
 		"db:migrate:js": "node dist/db/migrate.js"
 	},
 	"dependencies": {
+		"@atlas/database": "workspace:*",
 		"@hono/node-server": "^1.14.1",
 		"@hono/zod-openapi": "^0.19.6",
 		"dotenv": "^16.5.0",
