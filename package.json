@@ -19,7 +19,6 @@
 		"db:seed": "pnpm --filter @atlas/database db:seed",
 		"db:reset": "pnpm --filter @atlas/database db:reset",
 		"db:reset:seed": "pnpm --filter @atlas/database db:reset:seed",
-		"db:studio": "pnpm --filter @atlas/database db:studio",
 		"db:generate": "pnpm --filter @atlas/database db:generate"
 	},
 	"devDependencies": {
