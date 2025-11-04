@@ -198,25 +198,13 @@ export async function seedTrafficDeaths(config: DatabaseConfig = {}) {
 				const records = parseCSV(csvContent);
 				console.log(`   Found ${records.length} records`);
 
-				// Debug: Show first record structure
-				if (records.length > 0) {
-					console.log(
-						`   📋 First record keys: ${Object.keys(records[0]).join(", ")}`,
-					);
-					console.log(`   📋 First record sample:`, {
-						dtobito: records[0].dtobito,
-						...Object.fromEntries(Object.entries(records[0]).slice(0, 5)),
-					});
-				}
-
 				// Check if this year's data is already imported
-				const existingRecords = await db
-					.select()
+				const existingCount = await db
+					.select({ count: trafficDeathsSchema.trafficDeaths.id })
 					.from(trafficDeathsSchema.trafficDeaths)
-					.where(eq(trafficDeathsSchema.trafficDeaths.data_year, year))
-					.limit(1);
+					.where(eq(trafficDeathsSchema.trafficDeaths.data_year, year));
 
-				if (existingRecords.length > 0) {
+				if (existingCount.length > 0) {
 					console.log(
 						`  ↪ Year ${year} already imported (${records.length} records skipped)`,
 					);
@@ -247,68 +235,87 @@ export async function seedTrafficDeaths(config: DatabaseConfig = {}) {
 
 					try {
 						// Convert all records in batch
-						const convertedBatch = batch.map((record) => ({
-							...record,
-							data_year: year,
-							import_batch: batchId,
-							// Convert date fields
-							dtobito: parseDATASUSDate(record.dtobito as string),
-							dtnasc: parseDATASUSDate(record.dtnasc as string),
-							dtinvestig: parseDATASUSDate(record.dtinvestig as string),
-							dtcadastro: parseDATASUSDate(record.dtcadastro as string),
-							dtrecebim: parseDATASUSDate(record.dtrecebim as string),
-							dtatestado: parseDATASUSDate(record.dtatestado as string),
-							dtrecoriga: parseDATASUSDate(record.dtrecoriga as string),
-							dtcadinv: parseDATASUSDate(record.dtcadinv as string),
-							dtconinv: parseDATASUSDate(record.dtconinv as string),
-							dtconcaso: parseDATASUSDate(record.dtconcaso as string),
-							// Convert numeric fields
-							contador: record.contador
-								? parseInt(record.contador as string, 10)
-								: null,
-							codmunnatu: record.codmunnatu
-								? parseInt(record.codmunnatu as string, 10)
-								: null,
-							idade: record.idade ? parseInt(record.idade as string, 10) : null,
-							codmunres: record.codmunres
-								? parseInt(record.codmunres as string, 10)
-								: null,
-							codmunocor: record.codmunocor
-								? parseInt(record.codmunocor as string, 10)
-								: null,
-							idademae: record.idademae
-								? parseInt(record.idademae as string, 10)
-								: null,
-							qtdfilvivo: record.qtdfilvivo
-								? parseInt(record.qtdfilvivo as string, 10)
-								: null,
-							qtdfilmort: record.qtdfilmort
-								? parseInt(record.qtdfilmort as string, 10)
-								: null,
-							semagestac: record.semagestac
-								? parseInt(record.semagestac as string, 10)
-								: null,
-							peso: record.peso ? parseInt(record.peso as string, 10) : null,
-							nudiasobco: record.nudiasobco
-								? parseInt(record.nudiasobco as string, 10)
-								: null,
-							nudiasobin: record.nudiasobin
-								? parseInt(record.nudiasobin as string, 10)
-								: null,
-							nudiasinf: record.nudiasinf
-								? parseInt(record.nudiasinf as string, 10)
-								: null,
-						}));
+						const convertedBatch = batch
+							.map((record) => {
+								// Skip records with missing required fields
+								if (!record.dtobito || !record.causabas) {
+									return null;
+								}
+
+								return {
+									// Preserve all original fields
+									...record,
+									// Override with converted values
+									data_year: year,
+									import_batch: batchId,
+									// Convert date fields (override original string values)
+									dtobito: parseDATASUSDate(record.dtobito as string) || "",
+									dtnasc: parseDATASUSDate(record.dtnasc as string),
+									dtinvestig: parseDATASUSDate(record.dtinvestig as string),
+									dtcadastro: parseDATASUSDate(record.dtcadastro as string),
+									dtrecebim: parseDATASUSDate(record.dtrecebim as string),
+									dtatestado: parseDATASUSDate(record.dtatestado as string),
+									dtrecoriga: parseDATASUSDate(record.dtrecoriga as string),
+									dtcadinv: parseDATASUSDate(record.dtcadinv as string),
+									dtconinv: parseDATASUSDate(record.dtconinv as string),
+									dtconcaso: parseDATASUSDate(record.dtconcaso as string),
+									// Convert numeric fields
+									contador: record.contador
+										? parseInt(record.contador as string, 10)
+										: null,
+									codmunnatu: record.codmunnatu
+										? parseInt(record.codmunnatu as string, 10)
+										: null,
+									idade: record.idade
+										? parseInt(record.idade as string, 10)
+										: null,
+									codmunres: record.codmunres
+										? parseInt(record.codmunres as string, 10)
+										: null,
+									codmunocor: record.codmunocor
+										? parseInt(record.codmunocor as string, 10)
+										: null,
+									idademae: record.idademae
+										? parseInt(record.idademae as string, 10)
+										: null,
+									qtdfilvivo: record.qtdfilvivo
+										? parseInt(record.qtdfilvivo as string, 10)
+										: null,
+									qtdfilmort: record.qtdfilmort
+										? parseInt(record.qtdfilmort as string, 10)
+										: null,
+									semagestac: record.semagestac
+										? parseInt(record.semagestac as string, 10)
+										: null,
+									peso: record.peso
+										? parseInt(record.peso as string, 10)
+										: null,
+									nudiasobco: record.nudiasobco
+										? parseInt(record.nudiasobco as string, 10)
+										: null,
+									nudiasobin: record.nudiasobin
+										? parseInt(record.nudiasobin as string, 10)
+										: null,
+									nudiasinf: record.nudiasinf
+										? parseInt(record.nudiasinf as string, 10)
+										: null,
+								} as unknown as typeof trafficDeathsSchema.trafficDeaths.$inferInsert;
+							})
+							.filter(
+								(record) => record !== null,
+							) as (typeof trafficDeathsSchema.trafficDeaths.$inferInsert)[];
+
+						if (convertedBatch.length === 0) {
+							continue;
+						}
 
 						// Insert entire batch at once
 						await db
 							.insert(trafficDeathsSchema.trafficDeaths)
-							.values(
-								convertedBatch as (typeof trafficDeathsSchema.trafficDeaths.$inferInsert)[],
-							)
+							.values(convertedBatch)
 							.onConflictDoNothing();
 
-						inserted += batch.length;
+						inserted += convertedBatch.length;
 					} catch (error) {
 						errors += batch.length;
 						if (errors <= 5) {

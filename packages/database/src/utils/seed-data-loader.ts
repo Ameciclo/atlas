@@ -80,17 +80,32 @@ export class SeedDataLoader {
 
 			// Convert stream to buffer
 			const chunks: Uint8Array[] = [];
-			for await (const chunk of response.Body) {
-				chunks.push(chunk);
+			const body = response.Body as unknown;
+
+			if (body && typeof body === "object" && "transformToByteArray" in body) {
+				const bodyObj = body as Record<string, unknown>;
+				if (typeof bodyObj.transformToByteArray === "function") {
+					const result = await (
+						bodyObj.transformToByteArray as () => Promise<Uint8Array>
+					)();
+					return Buffer.from(result);
+				}
 			}
-			return Buffer.concat(chunks);
+
+			// Fallback to async iteration
+			if (body && typeof body === "object" && Symbol.asyncIterator in body) {
+				for await (const chunk of body as AsyncIterable<Uint8Array>) {
+					chunks.push(chunk);
+				}
+				return Buffer.concat(chunks);
+			}
+
+			throw new Error("Unable to read S3 response body");
 		} catch (error) {
 			const errorMessage =
 				error instanceof Error ? error.message : String(error);
 			const errorCode =
-				error instanceof Error && "code" in error
-					? (error as any).code
-					: "UNKNOWN";
+				error instanceof Error && "code" in error ? error.code : "UNKNOWN";
 			console.error(
 				`  S3 Error Details: Code=${errorCode}, Message=${errorMessage}`,
 			);
