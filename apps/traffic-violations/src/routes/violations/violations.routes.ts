@@ -84,6 +84,16 @@ export const listViolationsRoute = createRoute({
 			},
 			description: "List of traffic violations",
 		},
+		500: {
+			content: {
+				"application/json": {
+					schema: z.object({
+						error: z.string(),
+					}),
+				},
+			},
+			description: "Internal server error",
+		},
 	},
 });
 
@@ -114,6 +124,16 @@ export const getViolationRoute = createRoute({
 				},
 			},
 			description: "Traffic violation not found",
+		},
+		500: {
+			content: {
+				"application/json": {
+					schema: z.object({
+						error: z.string(),
+					}),
+				},
+			},
+			description: "Internal server error",
 		},
 	},
 });

@@ -154,7 +154,7 @@ export async function seedTrafficViolations(config: DatabaseConfig = {}) {
 				if (addressInfo?.codigo_logradouro) {
 					const code = Number(addressInfo.codigo_logradouro);
 					// Only set if it's a valid number, not 0, and exists in official_streets
-					if (!isNaN(code) && code > 0 && existingStreetCodes.has(code)) {
+					if (!Number.isNaN(code) && code > 0 && existingStreetCodes.has(code)) {
 						streetCode = code;
 					}
 				}

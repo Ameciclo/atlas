@@ -6,4 +6,11 @@ export {
 	type NewTrafficViolation,
 	type TrafficViolationInsert,
 	type TrafficViolationSelect,
+	officialStreets,
+	insertOfficialStreetSchema,
+	selectOfficialStreetSchema,
+	type OfficialStreet,
+	type NewOfficialStreet,
+	type OfficialStreetInsert,
+	type OfficialStreetSelect,
 } from "@atlas/database/schemas/traffic-violations";

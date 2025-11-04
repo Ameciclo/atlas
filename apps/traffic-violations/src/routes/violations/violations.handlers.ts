@@ -1,13 +1,14 @@
 import { eq, and, gte, lte } from "drizzle-orm";
-import type { Context } from "hono";
 import { db } from "../../db/index.js";
 import { trafficViolations } from "../../db/schema.js";
+import type { AppRouteHandler } from "../../lib/types.js";
+import type { listViolationsRoute, getViolationRoute } from "./violations.routes.js";
 
 // ============================================================================
 // Handlers
 // ============================================================================
 
-export const listViolationsHandler = async (c: any) => {
+export const listViolationsHandler: AppRouteHandler<typeof listViolationsRoute> = async (c) => {
 	const {
 		start_date,
 		end_date,
@@ -57,28 +58,28 @@ export const listViolationsHandler = async (c: any) => {
 			.limit(limit)
 			.offset(offset);
 
-		return c.json(violations);
+		return c.json(violations, 200);
 	} catch (error) {
 		console.error("Error fetching violations:", error);
 		return c.json({ error: "Internal server error" }, 500);
 	}
 };
 
-export const getViolationHandler = async (c: any) => {
+export const getViolationHandler: AppRouteHandler<typeof getViolationRoute> = async (c) => {
 	const { id } = c.req.valid("param");
 
 	try {
 		const violation = await db
 			.select()
 			.from(trafficViolations)
-			.where(eq(trafficViolations.id, Number(id)))
+			.where(eq(trafficViolations.id, id))
 			.limit(1);
 
 		if (violation.length === 0) {
 			return c.json({ error: "Traffic violation not found" }, 404);
 		}
 
-		return c.json(violation[0]);
+		return c.json(violation[0], 200);
 	} catch (error) {
 		console.error("Error fetching violation:", error);
 		return c.json({ error: "Internal server error" }, 500);
