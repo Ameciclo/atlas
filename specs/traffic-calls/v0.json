@@ -1,0 +1,628 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Traffic Calls API",
+    "version": "0.1.0",
+    "description": "API for managing traffic calls data",
+    "contact": {
+      "name": "Atlas Team",
+      "url": "https://github.com/Ameciclo/atlas"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3019",
+      "description": "Local development server"
+    },
+    {
+      "url": "https://api.ameciclo.org/traffic-calls",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Traffic Calls",
+      "description": "Operations related to traffic calls"
+    },
+    {
+      "name": "System",
+      "description": "System operations"
+    }
+  ],
+  "components": {
+    "schemas": {},
+    "parameters": {}
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "service",
+                    "database"
+                  ]
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service is unhealthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "service",
+                    "database"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/calls": {
+      "get": {
+        "tags": [
+          "Traffic Calls"
+        ],
+        "summary": "List traffic calls",
+        "description": "Get a list of traffic calls with optional filters",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Filter calls from this date (YYYY-MM-DD)",
+              "example": "2023-01-01"
+            },
+            "required": false,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Filter calls until this date (YYYY-MM-DD)",
+              "example": "2023-12-31"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Filter by call nature",
+              "example": "COLISÃO"
+            },
+            "required": false,
+            "name": "nature",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Filter by neighborhood",
+              "example": "BOA VIAGEM"
+            },
+            "required": false,
+            "name": "neighborhood",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of traffic calls",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
+                          },
+                          "datetime": {
+                            "type": "string"
+                          },
+                          "nature": {
+                            "type": "string",
+                            "maxLength": 50
+                          },
+                          "total_victims": {
+                            "type": "integer",
+                            "nullable": true,
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
+                          },
+                          "injured_victims": {
+                            "type": "integer",
+                            "nullable": true,
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
+                          },
+                          "fatal_victims": {
+                            "type": "integer",
+                            "nullable": true,
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
+                          },
+                          "street_name": {
+                            "type": "string",
+                            "maxLength": 255
+                          },
+                          "neighborhood": {
+                            "type": "string",
+                            "maxLength": 100
+                          },
+                          "coordinates": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "crash_data": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              },
+                              {
+                                "nullable": true
+                              },
+                              {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "nullable": true
+                                }
+                              },
+                              {
+                                "type": "array",
+                                "items": {
+                                  "nullable": true
+                                }
+                              },
+                              {
+                                "nullable": true
+                              }
+                            ]
+                          },
+                          "environmental_data": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              },
+                              {
+                                "nullable": true
+                              },
+                              {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "nullable": true
+                                }
+                              },
+                              {
+                                "type": "array",
+                                "items": {
+                                  "nullable": true
+                                }
+                              },
+                              {
+                                "nullable": true
+                              }
+                            ]
+                          },
+                          "metadata": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              },
+                              {
+                                "nullable": true
+                              },
+                              {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "nullable": true
+                                }
+                              },
+                              {
+                                "type": "array",
+                                "items": {
+                                  "nullable": true
+                                }
+                              },
+                              {
+                                "nullable": true
+                              }
+                            ]
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "datetime",
+                          "nature",
+                          "total_victims",
+                          "injured_victims",
+                          "fatal_victims",
+                          "street_name",
+                          "neighborhood",
+                          "coordinates",
+                          "crash_data",
+                          "environmental_data",
+                          "metadata",
+                          "created_at",
+                          "updated_at"
+                        ]
+                      }
+                    },
+                    "total": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "total"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/calls/{id}": {
+      "get": {
+        "tags": [
+          "Traffic Calls"
+        ],
+        "summary": "Get traffic call by ID",
+        "description": "Get details of a specific traffic call",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Traffic call ID",
+              "example": "1"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Traffic call details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "nullable": true,
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "minimum": -2147483648,
+                          "maximum": 2147483647
+                        },
+                        "datetime": {
+                          "type": "string"
+                        },
+                        "nature": {
+                          "type": "string",
+                          "maxLength": 50
+                        },
+                        "total_victims": {
+                          "type": "integer",
+                          "nullable": true,
+                          "minimum": -2147483648,
+                          "maximum": 2147483647
+                        },
+                        "injured_victims": {
+                          "type": "integer",
+                          "nullable": true,
+                          "minimum": -2147483648,
+                          "maximum": 2147483647
+                        },
+                        "fatal_victims": {
+                          "type": "integer",
+                          "nullable": true,
+                          "minimum": -2147483648,
+                          "maximum": 2147483647
+                        },
+                        "street_name": {
+                          "type": "string",
+                          "maxLength": 255
+                        },
+                        "neighborhood": {
+                          "type": "string",
+                          "maxLength": 100
+                        },
+                        "coordinates": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "crash_data": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            },
+                            {
+                              "nullable": true
+                            },
+                            {
+                              "type": "object",
+                              "additionalProperties": {
+                                "nullable": true
+                              }
+                            },
+                            {
+                              "type": "array",
+                              "items": {
+                                "nullable": true
+                              }
+                            },
+                            {
+                              "nullable": true
+                            }
+                          ]
+                        },
+                        "environmental_data": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            },
+                            {
+                              "nullable": true
+                            },
+                            {
+                              "type": "object",
+                              "additionalProperties": {
+                                "nullable": true
+                              }
+                            },
+                            {
+                              "type": "array",
+                              "items": {
+                                "nullable": true
+                              }
+                            },
+                            {
+                              "nullable": true
+                            }
+                          ]
+                        },
+                        "metadata": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            },
+                            {
+                              "nullable": true
+                            },
+                            {
+                              "type": "object",
+                              "additionalProperties": {
+                                "nullable": true
+                              }
+                            },
+                            {
+                              "type": "array",
+                              "items": {
+                                "nullable": true
+                              }
+                            },
+                            {
+                              "nullable": true
+                            }
+                          ]
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "datetime",
+                        "nature",
+                        "total_victims",
+                        "injured_victims",
+                        "fatal_victims",
+                        "street_name",
+                        "neighborhood",
+                        "coordinates",
+                        "crash_data",
+                        "environmental_data",
+                        "metadata",
+                        "created_at",
+                        "updated_at"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Traffic call not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

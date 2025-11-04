@@ -1,0 +1,721 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Emergency Calls API",
+    "version": "0.1.0",
+    "description": "API for managing emergency calls data",
+    "contact": {
+      "name": "Atlas Team",
+      "url": "https://github.com/Ameciclo/atlas"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3010",
+      "description": "Local development server"
+    },
+    {
+      "url": "https://api.ameciclo.org/emergency-calls",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Emergency Calls",
+      "description": "Operations related to emergency calls"
+    },
+    {
+      "name": "System",
+      "description": "System operations"
+    }
+  ],
+  "components": {
+    "schemas": {},
+    "parameters": {}
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "service",
+                    "database"
+                  ]
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service is unhealthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "service",
+                    "database"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/calls": {
+      "get": {
+        "tags": [
+          "Emergency Calls"
+        ],
+        "summary": "List emergency calls",
+        "description": "Get emergency calls with optional filters and pagination",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Filter by municipality",
+              "example": "RECIFE"
+            },
+            "required": false,
+            "name": "municipality",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Filter by accident subtype",
+              "example": "ACIDENTMOTO"
+            },
+            "required": false,
+            "name": "subtype",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "Filter from this date (inclusive)",
+              "example": "2018-01-01"
+            },
+            "required": false,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "Filter until this date (inclusive)",
+              "example": "2018-12-31"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "maximum": 1000,
+              "default": 100,
+              "description": "Maximum number of results",
+              "example": 100
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 0,
+              "default": 0,
+              "description": "Number of results to skip",
+              "example": 0
+            },
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of emergency calls with pagination",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
+                          },
+                          "original_id": {
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
+                          },
+                          "date": {
+                            "type": "string"
+                          },
+                          "time_minute": {
+                            "type": "string"
+                          },
+                          "municipality": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "neighborhood": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "address": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "call_origin": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "origin_type": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "subtype": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "gender": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "age": {
+                            "type": "integer",
+                            "nullable": true,
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
+                          },
+                          "finalization_reason": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "outcome_reason": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "type": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "category": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "finalization_reason_normalized": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "outcome_reason_normalized": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "finalization_category": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "outcome_category": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "pcr_address": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "original_id",
+                          "date",
+                          "time_minute",
+                          "municipality",
+                          "neighborhood",
+                          "address",
+                          "call_origin",
+                          "origin_type",
+                          "subtype",
+                          "gender",
+                          "age",
+                          "finalization_reason",
+                          "outcome_reason",
+                          "type",
+                          "category",
+                          "finalization_reason_normalized",
+                          "outcome_reason_normalized",
+                          "finalization_category",
+                          "outcome_category",
+                          "pcr_address",
+                          "created_at",
+                          "updated_at"
+                        ]
+                      }
+                    },
+                    "total": {
+                      "type": "number"
+                    },
+                    "limit": {
+                      "type": "number"
+                    },
+                    "offset": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "total",
+                    "limit",
+                    "offset"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/calls/{id}": {
+      "get": {
+        "tags": [
+          "Emergency Calls"
+        ],
+        "summary": "Get emergency call by ID",
+        "description": "Get a specific emergency call by its ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "required": [
+                "id"
+              ],
+              "example": 42
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Emergency call details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "original_id": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "date": {
+                      "type": "string"
+                    },
+                    "time_minute": {
+                      "type": "string"
+                    },
+                    "municipality": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "neighborhood": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "address": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "call_origin": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "origin_type": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "subtype": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "gender": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "age": {
+                      "type": "integer",
+                      "nullable": true,
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "finalization_reason": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "outcome_reason": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "type": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "category": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "finalization_reason_normalized": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "outcome_reason_normalized": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "finalization_category": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "outcome_category": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "pcr_address": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "original_id",
+                    "date",
+                    "time_minute",
+                    "municipality",
+                    "neighborhood",
+                    "address",
+                    "call_origin",
+                    "origin_type",
+                    "subtype",
+                    "gender",
+                    "age",
+                    "finalization_reason",
+                    "outcome_reason",
+                    "type",
+                    "category",
+                    "finalization_reason_normalized",
+                    "outcome_reason_normalized",
+                    "finalization_category",
+                    "outcome_category",
+                    "pcr_address",
+                    "created_at",
+                    "updated_at"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Call not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "example": {
+                    "message": "Not Found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/analytics/municipalities": {
+      "get": {
+        "tags": [
+          "Analytics"
+        ],
+        "summary": "Municipality statistics",
+        "description": "Get emergency call statistics by municipality",
+        "responses": {
+          "200": {
+            "description": "Municipality statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "municipality": {
+                        "type": "string"
+                      },
+                      "call_count": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "municipality",
+                      "call_count"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/analytics/accident-types": {
+      "get": {
+        "tags": [
+          "Analytics"
+        ],
+        "summary": "Accident type statistics",
+        "description": "Get statistics by accident type",
+        "responses": {
+          "200": {
+            "description": "Accident type statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "subtype": {
+                        "type": "string"
+                      },
+                      "count": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "subtype",
+                      "count"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/analytics/gender-distribution": {
+      "get": {
+        "tags": [
+          "Analytics"
+        ],
+        "summary": "Gender distribution",
+        "description": "Get gender distribution of emergency calls",
+        "responses": {
+          "200": {
+            "description": "Gender distribution",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "gender": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "count": {
+                        "type": "number"
+                      },
+                      "percentage": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "gender",
+                      "count",
+                      "percentage"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/analytics/dangerous-streets": {
+      "get": {
+        "tags": [
+          "Analytics"
+        ],
+        "summary": "Most dangerous streets in Recife",
+        "description": "Get the most dangerous streets by accident count and fatality rate",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "accidents",
+                "fatality_rate"
+              ],
+              "default": "accidents",
+              "description": "Sort by total accidents or fatality rate",
+              "example": "accidents"
+            },
+            "required": false,
+            "name": "sort_by",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "maximum": 50,
+              "default": 20,
+              "description": "Maximum number of results",
+              "example": 20
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Most dangerous streets",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "street": {
+                        "type": "string"
+                      },
+                      "total_accidents": {
+                        "type": "number"
+                      },
+                      "fatal_cases": {
+                        "type": "number"
+                      },
+                      "fatality_rate": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "street",
+                      "total_accidents",
+                      "fatal_cases",
+                      "fatality_rate"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

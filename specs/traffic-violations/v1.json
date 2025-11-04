@@ -1,0 +1,832 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Traffic Violations API",
+    "version": "1.0.0",
+    "description": "API for managing traffic violations data",
+    "contact": {
+      "name": "Atlas Team",
+      "url": "https://github.com/Ameciclo/atlas"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3013",
+      "description": "Local development server"
+    },
+    {
+      "url": "https://api.ameciclo.org/traffic-violations",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Traffic Violations",
+      "description": "Operations related to traffic violations"
+    },
+    {
+      "name": "System",
+      "description": "System operations"
+    }
+  ],
+  "components": {
+    "schemas": {},
+    "parameters": {}
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "service",
+                    "database"
+                  ]
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service is unhealthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "service",
+                    "database"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/violations": {
+      "get": {
+        "tags": [
+          "Traffic Violations"
+        ],
+        "summary": "List traffic violations",
+        "description": "Retrieve a list of traffic violations with optional filters",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "Filter violations from this date (YYYY-MM-DD)",
+              "example": "2023-01-01"
+            },
+            "required": false,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "Filter violations until this date (YYYY-MM-DD)",
+              "example": "2023-12-31"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "description": "Filter by agent ID",
+              "example": 1
+            },
+            "required": false,
+            "name": "agent_id",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "description": "Filter by violation type ID",
+              "example": 5
+            },
+            "required": false,
+            "name": "violation_type_id",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "description": "Filter by location ID",
+              "example": 10
+            },
+            "required": false,
+            "name": "location_id",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "description": "Number of records to return (1-100)",
+              "example": 10
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 0,
+              "default": 0,
+              "description": "Number of records to skip",
+              "example": 0
+            },
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of traffic violations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      "violation_date": {
+                        "type": "string"
+                      },
+                      "agent_id": {
+                        "type": "integer",
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      "violation_type_id": {
+                        "type": "integer",
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      "location_id": {
+                        "type": "integer",
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      "violation_code": {
+                        "type": "string"
+                      },
+                      "law_code": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "location_description": {
+                        "type": "string"
+                      },
+                      "coordinates": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "street_code": {
+                        "type": "integer",
+                        "nullable": true,
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      "complementary_data": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "nullable": true
+                          },
+                          {
+                            "type": "object",
+                            "additionalProperties": {
+                              "nullable": true
+                            }
+                          },
+                          {
+                            "type": "array",
+                            "items": {
+                              "nullable": true
+                            }
+                          },
+                          {
+                            "nullable": true
+                          }
+                        ]
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "violation_date",
+                      "agent_id",
+                      "violation_type_id",
+                      "location_id",
+                      "violation_code",
+                      "law_code",
+                      "description",
+                      "location_description",
+                      "coordinates",
+                      "street_code",
+                      "complementary_data",
+                      "created_at",
+                      "updated_at"
+                    ],
+                    "description": "Traffic violation data"
+                  },
+                  "description": "List of traffic violations"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/violations/{id}": {
+      "get": {
+        "tags": [
+          "Traffic Violations"
+        ],
+        "summary": "Get traffic violation by ID",
+        "description": "Retrieve a specific traffic violation by its ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "description": "Traffic violation ID",
+              "example": 1
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Traffic violation data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "violation_date": {
+                      "type": "string"
+                    },
+                    "agent_id": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "violation_type_id": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "location_id": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "violation_code": {
+                      "type": "string"
+                    },
+                    "law_code": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "location_description": {
+                      "type": "string"
+                    },
+                    "coordinates": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "street_code": {
+                      "type": "integer",
+                      "nullable": true,
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "complementary_data": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "nullable": true
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": {
+                            "nullable": true
+                          }
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "nullable": true
+                          }
+                        },
+                        {
+                          "nullable": true
+                        }
+                      ]
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "violation_date",
+                    "agent_id",
+                    "violation_type_id",
+                    "location_id",
+                    "violation_code",
+                    "law_code",
+                    "description",
+                    "location_description",
+                    "coordinates",
+                    "street_code",
+                    "complementary_data",
+                    "created_at",
+                    "updated_at"
+                  ],
+                  "description": "Traffic violation data"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Traffic violation not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/streets": {
+      "get": {
+        "tags": [
+          "Streets"
+        ],
+        "summary": "List official streets",
+        "description": "Get a paginated list of official streets with optional filtering",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "minimum": 1,
+              "default": 1,
+              "description": "Page number",
+              "example": 1
+            },
+            "required": false,
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "description": "Number of items per page",
+              "example": 20
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Search in street names",
+              "example": "rua"
+            },
+            "required": false,
+            "name": "search",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Filter by neighborhood name",
+              "example": "BOA VIAGEM"
+            },
+            "required": false,
+            "name": "neighborhood",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of streets",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "code": {
+                            "type": "number"
+                          },
+                          "name_concatenated": {
+                            "type": "string"
+                          },
+                          "official_name": {
+                            "type": "string"
+                          },
+                          "short_name": {
+                            "type": "string"
+                          },
+                          "pavement_code": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "pavement_description": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "transport_corridor": {
+                            "type": "boolean",
+                            "nullable": true
+                          },
+                          "perimeter_road": {
+                            "type": "boolean",
+                            "nullable": true
+                          },
+                          "neighborhood_code": {
+                            "type": "number",
+                            "nullable": true
+                          },
+                          "neighborhood_name": {
+                            "type": "string",
+                            "nullable": true
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "code",
+                          "name_concatenated",
+                          "official_name",
+                          "short_name",
+                          "pavement_code",
+                          "pavement_description",
+                          "transport_corridor",
+                          "perimeter_road",
+                          "neighborhood_code",
+                          "neighborhood_name"
+                        ]
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "number"
+                        },
+                        "limit": {
+                          "type": "number"
+                        },
+                        "total": {
+                          "type": "number"
+                        },
+                        "totalPages": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "page",
+                        "limit",
+                        "total",
+                        "totalPages"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "pagination"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/streets/{code}": {
+      "get": {
+        "tags": [
+          "Streets"
+        ],
+        "summary": "Get street by code",
+        "description": "Get detailed information about a specific street by its code",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "Street code",
+              "example": 6939
+            },
+            "required": false,
+            "name": "code",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Street details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "code": {
+                      "type": "number"
+                    },
+                    "name_concatenated": {
+                      "type": "string"
+                    },
+                    "official_name": {
+                      "type": "string"
+                    },
+                    "short_name": {
+                      "type": "string"
+                    },
+                    "pavement_code": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "pavement_description": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "transport_corridor": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "perimeter_road": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "neighborhood_code": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "neighborhood_name": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "code",
+                    "name_concatenated",
+                    "official_name",
+                    "short_name",
+                    "pavement_code",
+                    "pavement_description",
+                    "transport_corridor",
+                    "perimeter_road",
+                    "neighborhood_code",
+                    "neighborhood_name",
+                    "created_at",
+                    "updated_at"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Street not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
