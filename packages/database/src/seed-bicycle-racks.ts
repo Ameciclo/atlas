@@ -155,7 +155,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 	seedBicycleRacksFromGeoJSON();
 }
 
-async function seedRecifeCities(db: any) {
+async function seedRecifeCities(db: Awaited<ReturnType<typeof createConnectedDatabase>>) {
 	try {
 		// Lê o arquivo GeoJSON do Recife
 		const recifeGeojsonPath = join(
@@ -167,13 +167,13 @@ async function seedRecifeCities(db: any) {
 
 		// Filtra apenas bicicletários
 		const bicicletarios = recifeGeojson.features.filter(
-			(feature: any) => feature.properties.type === "Bicicletários"
+			(feature: GeoJSONFeature) => feature.properties.type === "Bicicletários"
 		);
 
 		console.log(`🏙️ Encontrados ${bicicletarios.length} bicicletários do Recife`);
 
 		// Prepara dados para inserção
-		const cityMappings = bicicletarios.map((feature: any) => ({
+		const cityMappings = bicicletarios.map((feature: GeoJSONFeature) => ({
 			osm_id: feature.id,
 			city: "Recife",
 			state: "PE",

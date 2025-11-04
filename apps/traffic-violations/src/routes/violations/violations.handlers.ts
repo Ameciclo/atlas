@@ -1,5 +1,4 @@
 import { eq, and, gte, lte } from "drizzle-orm";
-import type { Context } from "hono";
 import { db } from "../../db/index.js";
 import { trafficViolations } from "../../db/schema.js";
 
@@ -7,7 +6,7 @@ import { trafficViolations } from "../../db/schema.js";
 // Handlers
 // ============================================================================
 
-export const listViolationsHandler = async (c: any) => {
+export const listViolationsHandler = async (c: { req: { valid: (type: string) => Record<string, unknown> }; json: (data: unknown, status?: number) => Response }) => {
 	const {
 		start_date,
 		end_date,
@@ -64,7 +63,7 @@ export const listViolationsHandler = async (c: any) => {
 	}
 };
 
-export const getViolationHandler = async (c: any) => {
+export const getViolationHandler = async (c: { req: { valid: (type: string) => Record<string, unknown> }; json: (data: unknown, status?: number) => Response }) => {
 	const { id } = c.req.valid("param");
 
 	try {
