@@ -224,21 +224,30 @@ export async function seedTrafficDeaths(config: DatabaseConfig = {}) {
 					continue;
 				}
 
-				console.log(`💾 Inserting records into database...`);
+				console.log(`💾 Inserting records into database (batch size: 100)...`);
 				let inserted = 0;
 				let errors = 0;
 				const totalRecords = records.length;
+				const BATCH_SIZE = 100;
 
-				for (let idx = 0; idx < records.length; idx++) {
-					const record = records[idx];
-					if (idx % 5000 === 0) {
+				// Process records in batches
+				for (
+					let batchStart = 0;
+					batchStart < records.length;
+					batchStart += BATCH_SIZE
+				) {
+					const batchEnd = Math.min(batchStart + BATCH_SIZE, records.length);
+					const batch = records.slice(batchStart, batchEnd);
+
+					if (batchStart % 5000 === 0) {
 						console.log(
-							`   Progress: ${idx}/${totalRecords} records processed...`,
+							`   Progress: ${batchStart}/${totalRecords} records processed...`,
 						);
 					}
+
 					try {
-						// Convert DATASUS date fields from DDMMYYYY to YYYY-MM-DD
-						const recordData: Record<string, unknown> = {
+						// Convert all records in batch
+						const convertedBatch = batch.map((record) => ({
 							...record,
 							data_year: year,
 							import_batch: batchId,
@@ -289,20 +298,21 @@ export async function seedTrafficDeaths(config: DatabaseConfig = {}) {
 							nudiasinf: record.nudiasinf
 								? parseInt(record.nudiasinf as string, 10)
 								: null,
-						};
+						}));
 
+						// Insert entire batch at once
 						await db
 							.insert(trafficDeathsSchema.trafficDeaths)
 							.values(
-								recordData as typeof trafficDeathsSchema.trafficDeaths.$inferInsert,
+								convertedBatch as (typeof trafficDeathsSchema.trafficDeaths.$inferInsert)[],
 							)
 							.onConflictDoNothing();
 
-						inserted++;
+						inserted += batch.length;
 					} catch (error) {
-						errors++;
+						errors += batch.length;
 						if (errors <= 5) {
-							console.error(`   Error inserting record:`, error);
+							console.error(`   Error inserting batch:`, error);
 						}
 					}
 				}
