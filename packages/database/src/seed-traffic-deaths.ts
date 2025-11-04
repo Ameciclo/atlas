@@ -30,7 +30,8 @@ interface TrafficDeathRecord {
 }
 
 /**
- * Parse CSV content into records
+ * Parse quoted CSV content into records
+ * Handles CSV files with quoted fields like: "FIELD1","FIELD2","VALUE"
  */
 function parseCSV(content: string): TrafficDeathRecord[] {
 	const lines = content.trim().split("\n");
@@ -39,21 +40,31 @@ function parseCSV(content: string): TrafficDeathRecord[] {
 	const headerLine = lines[0];
 	if (!headerLine) return [];
 
-	const headers = headerLine.split(",").map((h) => h.trim());
+	// Parse header line - remove quotes from field names
+	const headers = parseCSVLine(headerLine).map((h) =>
+		h.toLowerCase().replace(/^"|"$/g, ""),
+	);
 	const records: TrafficDeathRecord[] = [];
 
 	for (let i = 1; i < lines.length; i++) {
 		const line = lines[i];
 		if (!line) continue;
 
-		const values = line.split(",").map((v) => v.trim());
+		const values = parseCSVLine(line);
 		const record: TrafficDeathRecord = {};
 
 		for (let j = 0; j < headers.length; j++) {
 			const header = headers[j];
-			const value = values[j] ?? "";
+			let value = values[j] ?? "";
+
+			// Remove surrounding quotes if present
+			if (value.startsWith('"') && value.endsWith('"')) {
+				value = value.slice(1, -1);
+			}
+
 			if (header) {
-				record[header] = value === "" ? null : value;
+				// Convert "NA" strings to null
+				record[header] = value === "" || value === "NA" ? null : value;
 			}
 		}
 
@@ -61,6 +72,67 @@ function parseCSV(content: string): TrafficDeathRecord[] {
 	}
 
 	return records;
+}
+
+/**
+ * Parse a single CSV line handling quoted fields
+ * Properly handles commas inside quoted fields
+ */
+function parseCSVLine(line: string): string[] {
+	const result: string[] = [];
+	let current = "";
+	let insideQuotes = false;
+
+	for (let i = 0; i < line.length; i++) {
+		const char = line[i];
+
+		if (char === '"') {
+			insideQuotes = !insideQuotes;
+			current += char;
+		} else if (char === "," && !insideQuotes) {
+			result.push(current);
+			current = "";
+		} else {
+			current += char;
+		}
+	}
+
+	if (current) {
+		result.push(current);
+	}
+
+	return result;
+}
+
+/**
+ * Convert DATASUS date format (DDMMYYYY) to ISO date format (YYYY-MM-DD)
+ */
+function parseDATASUSDate(dateStr: string | null): string | null {
+	if (!dateStr || dateStr === "NA") return null;
+
+	// Remove any whitespace
+	dateStr = dateStr.trim();
+
+	// Check if it's in DDMMYYYY format (8 digits)
+	if (!/^\d{8}$/.test(dateStr)) {
+		return null;
+	}
+
+	const day = dateStr.substring(0, 2);
+	const month = dateStr.substring(2, 4);
+	const year = dateStr.substring(4, 8);
+
+	// Validate date components
+	const dayNum = parseInt(day, 10);
+	const monthNum = parseInt(month, 10);
+	const yearNum = parseInt(year, 10);
+
+	if (dayNum < 1 || dayNum > 31 || monthNum < 1 || monthNum > 12) {
+		return null;
+	}
+
+	// Return in ISO format YYYY-MM-DD
+	return `${year}-${month}-${day}`;
 }
 
 /**
@@ -126,6 +198,17 @@ export async function seedTrafficDeaths(config: DatabaseConfig = {}) {
 				const records = parseCSV(csvContent);
 				console.log(`   Found ${records.length} records`);
 
+				// Debug: Show first record structure
+				if (records.length > 0) {
+					console.log(
+						`   📋 First record keys: ${Object.keys(records[0]).join(", ")}`,
+					);
+					console.log(`   📋 First record sample:`, {
+						dtobito: records[0].dtobito,
+						...Object.fromEntries(Object.entries(records[0]).slice(0, 5)),
+					});
+				}
+
 				// Check if this year's data is already imported
 				const existingRecords = await db
 					.select()
@@ -144,13 +227,68 @@ export async function seedTrafficDeaths(config: DatabaseConfig = {}) {
 				console.log(`💾 Inserting records into database...`);
 				let inserted = 0;
 				let errors = 0;
+				const totalRecords = records.length;
 
-				for (const record of records) {
+				for (let idx = 0; idx < records.length; idx++) {
+					const record = records[idx];
+					if (idx % 5000 === 0) {
+						console.log(
+							`   Progress: ${idx}/${totalRecords} records processed...`,
+						);
+					}
 					try {
+						// Convert DATASUS date fields from DDMMYYYY to YYYY-MM-DD
 						const recordData: Record<string, unknown> = {
 							...record,
 							data_year: year,
 							import_batch: batchId,
+							// Convert date fields
+							dtobito: parseDATASUSDate(record.dtobito as string),
+							dtnasc: parseDATASUSDate(record.dtnasc as string),
+							dtinvestig: parseDATASUSDate(record.dtinvestig as string),
+							dtcadastro: parseDATASUSDate(record.dtcadastro as string),
+							dtrecebim: parseDATASUSDate(record.dtrecebim as string),
+							dtatestado: parseDATASUSDate(record.dtatestado as string),
+							dtrecoriga: parseDATASUSDate(record.dtrecoriga as string),
+							dtcadinv: parseDATASUSDate(record.dtcadinv as string),
+							dtconinv: parseDATASUSDate(record.dtconinv as string),
+							dtconcaso: parseDATASUSDate(record.dtconcaso as string),
+							// Convert numeric fields
+							contador: record.contador
+								? parseInt(record.contador as string, 10)
+								: null,
+							codmunnatu: record.codmunnatu
+								? parseInt(record.codmunnatu as string, 10)
+								: null,
+							idade: record.idade ? parseInt(record.idade as string, 10) : null,
+							codmunres: record.codmunres
+								? parseInt(record.codmunres as string, 10)
+								: null,
+							codmunocor: record.codmunocor
+								? parseInt(record.codmunocor as string, 10)
+								: null,
+							idademae: record.idademae
+								? parseInt(record.idademae as string, 10)
+								: null,
+							qtdfilvivo: record.qtdfilvivo
+								? parseInt(record.qtdfilvivo as string, 10)
+								: null,
+							qtdfilmort: record.qtdfilmort
+								? parseInt(record.qtdfilmort as string, 10)
+								: null,
+							semagestac: record.semagestac
+								? parseInt(record.semagestac as string, 10)
+								: null,
+							peso: record.peso ? parseInt(record.peso as string, 10) : null,
+							nudiasobco: record.nudiasobco
+								? parseInt(record.nudiasobco as string, 10)
+								: null,
+							nudiasobin: record.nudiasobin
+								? parseInt(record.nudiasobin as string, 10)
+								: null,
+							nudiasinf: record.nudiasinf
+								? parseInt(record.nudiasinf as string, 10)
+								: null,
 						};
 
 						await db
