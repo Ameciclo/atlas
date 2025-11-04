@@ -402,6 +402,13 @@ export async function seedCyclistCounts(config: DatabaseConfig = {}) {
 		console.log(`   📅 Events: ${eventsCreated} created`);
 		console.log(`   ⏰ Sessions: ${sessionsCreated} created`);
 		console.log(`   🔄 Movements: ${movementsCreated} created`);
+
+		return {
+			locationsCreated,
+			eventsCreated,
+			sessionsCreated,
+			movementsCreated,
+		};
 	} catch (error) {
 		console.error("❌ Error seeding data:", error);
 		throw error;
