@@ -44,7 +44,7 @@ interface GeoJSONCollection {
 
 function parseCSV(content: string): Record<string, string>[] {
   const lines = content.trim().split('\n');
-  const headers = lines[0].split(',');
+  const headers = lines[0]?.split(',') || [];
   
   return lines.slice(1).map(line => {
     const values = line.split(',');
@@ -67,7 +67,7 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
     // 1. Seed Cities
     console.log("📊 Loading cities...");
     const citiesContent = await readFile(join(dataPath, "cities.csv"), "utf-8");
-    const citiesData = parseCSV(citiesContent) as CSVCity[];
+    const citiesData = parseCSV(citiesContent) as unknown as CSVCity[];
     
     console.log(`Found ${citiesData.length} cities`);
     
@@ -85,7 +85,7 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
     // 2. Seed Relations
     console.log("🔗 Loading relations...");
     const relationsContent = await readFile(join(dataPath, "relations.csv"), "utf-8");
-    const relationsData = parseCSV(relationsContent) as CSVRelation[];
+    const relationsData = parseCSV(relationsContent) as unknown as CSVRelation[];
     
     console.log(`Found ${relationsData.length} relations`);
     
