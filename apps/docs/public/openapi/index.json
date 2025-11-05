@@ -4,6 +4,10 @@
     "title": "Bicycle Racks API"
   },
   {
+    "url": "/openapi/cycling-infra.json",
+    "title": "Cycling Infra API"
+  },
+  {
     "url": "/openapi/cyclist-counts.json",
     "title": "Cyclist Counts API"
   },

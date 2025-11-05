@@ -45,6 +45,10 @@
 		"./schemas/test-db-service": {
 			"types": "./dist/schemas/test-db-service/index.d.ts",
 			"import": "./dist/schemas/test-db-service/index.js"
+		},
+		"./schemas/cycling-infra": {
+			"types": "./dist/schemas/cycling-infra/index.d.ts",
+			"import": "./dist/schemas/cycling-infra/index.js"
 		}
 	},
 	"scripts": {
@@ -57,11 +61,13 @@
 		"db:generate": "drizzle-kit generate",
 		"db:generate:custom": "drizzle-kit generate --custom",
 		"db:drop": "drizzle-kit drop",
+		"db:custom": "drizzle-kit generate --custom",
 		"db:migrate": "tsx src/migrate.ts",
 		"db:seed": "tsx src/seed.ts",
 		"db:seed:cyclist-counts": "tsx src/seed-cyclist-counts.ts",
 		"db:seed:bicycle-racks": "tsx src/seed-bicycle-racks.ts",
 		"db:seed-traffic-calls": "tsx src/seed-traffic-calls.ts",
+		"db:seed-cycling-infra": "tsx src/seed-cycling-infra.ts",
 		"db:reset": "tsx src/reset.ts"
 	},
 	"dependencies": {
