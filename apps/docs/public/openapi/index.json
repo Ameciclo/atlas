@@ -4,7 +4,15 @@
     "title": "Cycling Infra API"
   },
   {
+    "url": "/openapi/cyclist-counts.json",
+    "title": "Cyclist Counts API"
+  },
+  {
     "url": "/openapi/cyclist-profile.json",
     "title": "Cyclist Profile API"
+  },
+  {
+    "url": "/openapi/traffic-deaths.json",
+    "title": "Traffic Deaths API"
   }
 ]
