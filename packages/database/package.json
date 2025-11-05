@@ -49,6 +49,11 @@
 		"./schemas/cycling-infra": {
 			"types": "./dist/schemas/cycling-infra/index.d.ts",
 			"import": "./dist/schemas/cycling-infra/index.js"
+		},
+		"./schemas/shared-bike": {
+			"types": "./dist/schemas/shared-bike/index.d.ts",
+			"import": "./dist/schemas/shared-bike/index.js"
+		}
 		}
 	},
 	"scripts": {
@@ -68,6 +73,7 @@
 		"db:seed:bicycle-racks": "tsx src/seed-bicycle-racks.ts",
 		"db:seed-traffic-calls": "tsx src/seed-traffic-calls.ts",
 		"db:seed-cycling-infra": "tsx src/seed-cycling-infra.ts",
+		"db:seed-shared-bike": "tsx src/seed-shared-bike.ts",
 		"db:reset": "tsx src/reset.ts"
 	},
 	"dependencies": {

@@ -65,3 +65,4 @@ export {
 	getSSLConfig,
 } from "./connection.js";
 export { runMigrations } from "./migrate.js";
+export * from "./schemas/index.js";

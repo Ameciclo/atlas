@@ -20,6 +20,10 @@
     "title": "Emergency Calls API"
   },
   {
+    "url": "/openapi/shared-bike.json",
+    "title": "Shared Bike API"
+  },
+  {
     "url": "/openapi/traffic-calls.json",
     "title": "Traffic Calls API"
   },
