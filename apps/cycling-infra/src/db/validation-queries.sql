@@ -10,6 +10,9 @@ SELECT
   'cyclist_infra_relations' as table_name, COUNT(*) as total_records FROM cyclist_infra_relations
 UNION ALL
 SELECT 
+  'cyclist_infra_relation_cities' as table_name, COUNT(*) as total_records FROM cyclist_infra_relation_cities
+UNION ALL
+SELECT 
   'pdc_relation_ways' as table_name, COUNT(*) as total_records FROM pdc_relation_ways
 UNION ALL
 SELECT 
@@ -104,3 +107,47 @@ FROM ciclomapa_infra;
 SELECT 
   ST_Extent(coordinates) as bbox_ways  
 FROM pdc_relation_ways;
+
+-- 13. ANÁLISE DE RELACIONAMENTOS CIDADE-PROJETO
+-- Projetos por cidade
+SELECT c.name as city_name, COUNT(rc.relation_id) as projects_count
+FROM cities c
+JOIN cyclist_infra_relation_cities rc ON c.id = rc.city_id
+GROUP BY c.id, c.name
+ORDER BY projects_count DESC
+LIMIT 10;
+
+-- Cidades por projeto
+SELECT r.pdc_ref, r.pdc_typology, COUNT(rc.city_id) as cities_count
+FROM cyclist_infra_relations r
+JOIN cyclist_infra_relation_cities rc ON r.id = rc.relation_id
+GROUP BY r.id, r.pdc_ref, r.pdc_typology
+ORDER BY cities_count DESC
+LIMIT 10;
+
+-- Projetos específicos de Recife
+SELECT r.pdc_ref, r.pdc_typology, r.name, r.pdc_stretch
+FROM cyclist_infra_relations r
+JOIN cyclist_infra_relation_cities rc ON r.id = rc.relation_id
+JOIN cities c ON rc.city_id = c.id
+WHERE c.name = 'Recife'
+ORDER BY r.pdc_ref;
+
+-- Projetos que atravessam múltiplas cidades
+SELECT r.pdc_ref, r.pdc_typology, 
+       STRING_AGG(c.name, ', ' ORDER BY c.name) as cities,
+       COUNT(c.id) as city_count
+FROM cyclist_infra_relations r
+JOIN cyclist_infra_relation_cities rc ON r.id = rc.relation_id
+JOIN cities c ON rc.city_id = c.id
+GROUP BY r.id, r.pdc_ref, r.pdc_typology
+HAVING COUNT(c.id) > 1
+ORDER BY COUNT(c.id) DESC;
+
+-- Validação de integridade referencial
+SELECT 
+  COUNT(*) as total_relations,
+  COUNT(DISTINCT rc.relation_id) as relations_with_cities,
+  COUNT(*) - COUNT(DISTINCT rc.relation_id) as relations_without_cities
+FROM cyclist_infra_relations r
+LEFT JOIN cyclist_infra_relation_cities rc ON r.id = rc.relation_id;
