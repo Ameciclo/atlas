@@ -107,7 +107,7 @@ export async function seedSharedBike(config?: DatabaseConfig) {
 					alt_name: props.alt_name || null,
 					properties: props, // Store all original properties as JSONB
 				};
-			}).filter(Boolean); // Remove null entries
+			}).filter((station): station is NonNullable<typeof station> => station !== null); // Remove null entries
 			
 			if (stationsData.length === 0) {
 				console.warn(`⚠️  No valid stations in batch ${i / batchSize + 1}`);
