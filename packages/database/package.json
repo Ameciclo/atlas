@@ -25,6 +25,10 @@
 		"./schemas/traffic-deaths": {
 			"types": "./dist/schemas/traffic-deaths/index.d.ts",
 			"import": "./dist/schemas/traffic-deaths/index.js"
+		},
+		"./schemas/cycling-infra": {
+			"types": "./dist/schemas/cycling-infra/index.d.ts",
+			"import": "./dist/schemas/cycling-infra/index.js"
 		}
 	},
 	"scripts": {
@@ -35,6 +39,8 @@
 		"format": "biome format .",
 		"db:studio": "drizzle-kit studio",
 		"db:generate": "drizzle-kit generate",
+		"db:drop": "drizzle-kit drop",
+		"db:custom": "drizzle-kit generate --custom",
 		"db:migrate": "tsx src/migrate.ts",
 		"db:seed": "tsx src/seed.ts",
 		"db:reset": "tsx src/reset.ts"

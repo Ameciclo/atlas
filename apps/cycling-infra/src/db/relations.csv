@@ -1,0 +1,273 @@
+id,osm_id,pdc_ref,pdc_typology,name,pdc_stretch,pdc_cities,pdc_notes,notes,pdc_km
+0,,NOTPDC,,Não está no PDC-RMR,,,,existing,0
+1,15980035,CM01,Ciclovia,PE-009,Entre Rua Esperança e Rua Cristovão de Souza Leão,Ipojuca,Ciclovia existente,existing,9.1
+2,15980034,CM02,Ciclovia,PE-038,Entre Rua Cristovão de Souza Leão e PE-060,Ipojuca,,proposed,8.8
+3,15997277,CM03,Ciclovia,PE-060,Entre Av. Pres. Getúlio Vargas e limite com Município do Ipojuca,Cabo de Santo Agostinho / Ipojuca,,proposed,19.2
+4,15999831,CM04,Ciclovia,BR-101 Sul,Entre PE-060 e limite com Município do Jaboatão dos Guararapes,Cabo de Santo Agostinho / Jaboatão dos Guararapes,,proposed,16.5
+5,16000488,CM05,Ciclovia,Av. Dr. Júlio Maranhão/ Estrada da Batalha,Entre PE-060 e limite com Município do Jaboatão dos Guararapes,Jaboatão dos Guararapes,,proposed,3.4
+6,16005002,CM06,Ciclovia,Av. Mal. Mascarenhas de Morais,Entre limite com Município do Jabotaão dos Guararapes e Av. Gen. Mac. Artur,Recife / Jaboatão dos Guararapes,,proposed,7.6
+7,16000461,CM07,Ciclovia,BR-101,Entre Av. Dr. Júlio Maranhão e limite com Município do Recife,Jaboatão dos Guararapes / Paulista / Recife,,proposed,30.2
+8,16000034,CM08,Ciclovia,Av. Pres. Castelo Branco,Entre limite com Município do Jabotaão dos Guararapes e Av. Gen. Mac. Artur,Jaboatão dos Guararapes,,proposed,3.4
+9,16000483,CM09,Ciclovia,R. Padre Manoel da Cunha,Entre Av. Armindo Moura e limite com Município do Recife,Jaboatão dos Guararapes,,proposed,0.2
+10,16000484,CM10,Ciclovia,Av. Ayton Senna da Silva,Entre Av. Barreto de Menezes e Rua Osório Borba,Jaboatão dos Guararapes / Jaboatão dos Guararapes,,proposed,3.2
+11,16002184,CM11,Ciclovia,"Av. Visconde de Jequitinhonha/ Av.
+ Fernando Simões Barbosa",Entre Rua Osório Borba e limite com Município do Recife,Jaboatão dos Guararapes / Recife,,proposed,5.2
+12,16004643,CM12,Ciclovia,Av. General Mac. Arthur,Entre limite com Município do Jaboatão dos Guararapes e limite com Município de Paulista,Recife,,proposed,1.4
+13,15997436,CM13,Ciclovia,PE-007,Entre Rua Sete de Setembro e limite com Município do Jaboatão dos Guararapes,Jaboatão dos Guararapes / Moreno,,proposed,8.3
+14,15997435,CM14,Ciclovia,"Rua Alto Barão de Lucena/ Av. Gen. Manoel
+ Rabelo",Entre Av. Pres. Castelo Branco e Rua Ayrton Senna da Silva,Jaboatão dos Guararapes,,proposed,5.3
+15,16001885,CM15,Ciclovia,Av. Gen. Manoel Rabelo,Entre Rua Pde. Manoel da Cunha e Av. Barreto de Menezes,Jaboatão dos Guararapes,,proposed,1.2
+16,16001884,CM16,Ciclovia,Av. Falcão de Lacerda,Entre BR-101 e limite com Município do Jaboatão dos Guararapes,Recife / Jaboatão dos Guararapes,,proposed,2.8
+17,16001874,CM17,Ciclovia,Av. Dr. José Rufino/ Rua São Miguel,Entre Rua Osório Borba e limite com Município do Recife,Recife,,proposed,5
+18,16002174,CM18,Ciclovia,Estrada dos Remédios,Entre Jaboatão dos Guararapes e Rua Antônio Falcão,Recife,,proposed,2.4
+19,15997447,CM19,Ciclovia,Av. Caxangá,Entre Av. Fernando Simões Barbosa e Av. Mal. Mascarenhas de Moraes,Recife,,proposed,6.5
+20,15997448,CM20,Ciclovia,Av. Joaquim Ribeiro,Entre Rua Barão do Moreno e limite com Município do Moreno,Recife,,proposed,1.7
+21,15997449,CM21,Ciclovia,Av. Gen. Newton Cavalcante (PE027),Entre Rua Sete de Setembro e limite com Município do Jaboatão dos Guararapes,Camaragibe,,proposed,10.4
+22,15997450,CM22,Ciclovia,"Av.Dr.BelmiroCorreia/RuaTelemaco
+ Borba/ Rua Manoel Honorato da Costa",Entre Rua Barão do Moreno e Rua Leão Pereira Carneiro,Camaragibe,,proposed,4.8
+23,15997451,CM23,Ciclovia,BR-408,Entre limite com Município de Camaragibe e Rua Tiúma,Camaragibe / São Lourenço da Mata,,proposed,7.2
+24,16002171,CM24,Ciclovia,"Rua Benfica/ Av. Doutor Severino Pinheiro/
+ Praça Derby",Entre BR-101 e limite com Município do Jaboatão dos Guararapes,Recife,,proposed,1.1
+25,16002114,CM25,Ciclovia,Av. Gov. Agamenon Magalhães,Entre Rua Paissandu e limite com Município de Olinda,Olinda / Recife,,proposed,6.9
+26,16002092,CM26,Ciclovia,Av. Visc. De Albuquerque/ Rua José Bonifácio,Entre Rua Conde de Irajá e Av. Prof. José dos Anjos,Recife / Recife,,proposed,4.3
+27,15997674,CM27,Ciclovia,"Rua José Bonifácio/ Rua João Tude de Melo/ Rua
+Pde. Roma/ Rua Cônego Barata",Entre Rua São Miguel e Av. Caxangá,Recife,,proposed,2.9
+28,15997675,CM28,Ciclovia,Estrada Velha da Água Fria/ Av. Beberibe,Entre Estrada dos Remédios e Av. Joaquim Ribeiro,Recife,Ciclovia contemplada em projeto de sistema viário,planned,1.1
+29,15997690,CM29,Ciclovia,Av. Beberibe,Entre Rua Ribeiro Pessoa e limite com Município de Camaragibe,Recife,,proposed,1.1
+30,15997691,CM30,Ciclovia,Av. Cidade Monteiro,Entre limite com Município de Olinda e Av. Pres. Kennedy,Recife / Olinda,,proposed,0.7
+31,15997694,CM31,Ciclovia,Av. Senador Nilo Coelho,Entre Av. Márcia de Wilkison e Av. Gen. Newton Cavalcante,Olinda,Ciclovia contemplada em projeto de sistema viário,planned,1.6
+32,15997695,CM32,Ciclovia,Av. Senador Nilo Coelho,Entre Av. Márcia de Wilkison e limite com Município de São Lourenço da Mata,Olinda,,proposed,2.5
+33,15997713,CM33,Ciclovia,PE-015 (Pan Nordestina),Entre limite com Município de Camaragibe e Rua Tiúma,Olinda,,proposed,1.3
+34,15997714,CM34,Ciclovia,PE-015,Entre Estrada dos Remédios e Av. Gov. Agamenon Magalhães,Olinda,,proposed,2.9
+35,15997715,CM35,Ciclovia,PE-015,Entre limite com Município de Olinda e BR-101,Olinda / Paulista,Ciclovia existente (requalificação prevista),existing,8.2
+36,15997464,CM36,Ciclovia,BR-101,Entre PE-015 e limite com Município de Abreu e Lima,Abreu e Lima / Paulista,Ciclovia contemplada em projeto de sistema viário,planned,2.1
+37,15997465,CM37,Ciclovia,BR-101,Entre limite com Município de Igarassu e PE-035,Abreu e Lima / Igarassu,,proposed,8.7
+38,15997469,CM38,Ciclovia,PE-035,Entre limite com Município de Itapissuma e PE-001,Itapissuma / Igarassu / Ilha de Itamaracá,,proposed,14.4
+39,15997716,CM39,Ciclovia,Av. C (Antiga Estrada do Frio),Entre Rua Conde de Irajá e Av. Prof. José dos Anjos,Paulista,,proposed,3.5
+40,15997717,CM40,Ciclovia,PE-022,Entre Av. Prof. José dos Anjos e Rua da Regeneração,Paulista,,proposed,9.8
+41,16002036,CM41,Ciclovia,"Rua Santos Araújo/ Rua Cosme Viana/ Av. Prof.
+ Trajano de Mendonça",Entre Rua da Regeneração e Av. Cidade Monteiro,Recife,,proposed,4.3
+42,,CM42,Ciclovia,Bultrins/Fragoso,Entre Av. Beberibe e limite com Município de Olinda,Olinda,,proposed,4.8
+43,,CM43,Ciclovia,Bultrins/Fragoso,Entre Av. Chico Science e Bultrins/Fragoso,Olinda,Em projeto,planned,2.3
+44,16002035,CM44,Ciclovia,Av. Arq. Luiz Nunes,Entre limite com Município do Recife e Av. Pres. Kennedy,,,proposed,3.3
+45,16001871,CCV01,Ciclovia,Av. João Cabral de Melo Neto/ R. Ten. Mindelo,Entre Av. Pres. Kennedy e Av. Antônio da Costa Azevedo,Recife,,proposed,0.7
+46,16001870,CCV02,Ciclovia,Av. Gen. San Martin,Entre Av. Antônio da Costa Azevedo e PE-015,Recife,,proposed,1.2
+47,16004428,CCV03,Ciclovia,"Av. Eng. José Estelita/ Av. Sul/ Caminho da Alfândega/
+ Caminho do Apolo",Entre Av. Pres. Kennedy e Av. Joaquim Nabuco,Recife,Ciclovia existente (requalificação prevista),existing,2.8
+48,16002119,CCV04,Ciclovia,Rua José Luiz da S. Barros/ Rua Amélia,Entre Av. Joaquim Nabuco e Av. Sen. Nilo Coelho,Recife,Ciclovia existente (requalificação prevista),existing,1.7
+49,15997672,CCV05,Ciclovia,Av. Eng. Agamenon Magalhães Melo,Entre Av. Senador Nilo Coelho e limite com Município de Paulista,Recife,Ciclovia existente (requalificação prevista),existing,0.5
+50,16004645,CCV06,Ciclovia,Av. Boa Viagem/ Av. Beira Mar,Entre limite com Município de Olinda e BR-101,Recife,Ciclovia existente (requalificação prevista),existing,7.9
+51,15997701,CCV07,Ciclovia,Av. Beira-Mar,Entre Rua Cap. José Primo e limite com Município de Paulista,Olinda,,proposed,3.9
+52,15997689,CCV08,Ciclovia,Av. Antonio da Costa Azevedo,Entre PE-015 e limite com Município de Abreu e Lima,Olinda,,proposed,2.7
+53,15997702,CCV09,Ciclovia,Av. Dr. Claudio José Gueiros Leite,Entre limite com Município de Abreu e Lima e PE- 035,Paulista,,proposed,2.6
+54,15997703,CCV10,Ciclovia,Av. Dr. Claudio José Gueiros Leite,Entre Rua Cap. José Primo e limite com Município de Igarassu,Paulista,,proposed,2.1
+55,15980071,CCV11,Ciclovia,Rua da Macaíba/ Rua do Comércio,Entre limite com Município de Igarassu e limite com Município de Ilha de Itamaracá,Ipojuca,,proposed,0.4
+56,15980074,CCV12,Ciclovia,Rua Esperança,Entre Av. Duarte Carlos Coelho e limite com Município de Itapissuma,Ipojuca,,proposed,1.3
+57,16006092,CCV13,Ciclovia,Rua Barão de Souza Leão,Entre limite com Município de Itapissuma e PE-001,Recife,,proposed,0.5
+58,16006025,CCV14,Ciclovia,"Rua Cristóvão José da Silva / Av. Francisco Alves de
+ Souza",Entre BR-101 e PE-015,Ipojuca,,proposed,0.4
+59,16001882,CCV15,Ciclovia,Av. Getúlio Vargas – BR232,Entre PE-015 e Av. Cláudio José Gueiros Leite,Recife/ Jaboatão dos Guararapes,,proposed,11.2
+60,16005000,CCV16,Ciclovia,"Rua Adolfo Faro/ Rua Landelino Câmara/ Rua Dr
+ Conzaga Maranhão/ Rua Potengy/ Rua Pampulha",Entre Rua José Bonifácio e R. São Miguel,Recife,,proposed,1.8
+61,15997666,CCV17,Ciclovia,Rua Paula Batista/ Estrada das Ubaias,Entre PE-015 e Ponte do Janga,Recife,Em projeto,planned,0.5
+62,16000468,CCV18,Ciclovia,Av. Ulysses Montarroyos,Entre Av. Chico Science e Bultrins/Fragoso,Jaboatão dos Guararapes,Em projeto,planned,0.6
+63,16000469,CCV19,Ciclovia,Av. Ulysses Montarroyos,Entre Rua Pampulha e Rua São Miguel,Jaboatão dos Guararapes,Planejada,planned,0.8
+64,15997670,CCV20,Ciclovia,Av. Beberibe/ Rua Castro Alves,Entre Av. Recife e Rua Comendador Franco Ferreira,Recife,,proposed,2.9
+65,16000465,CCV21,Ciclovia,Av. Quatro de Outubro,Entre Av. Eng. Abdias de Carvalho e Av. Caxangá,Jaboatão dos Guararapes/ Recife,,proposed,1.1
+66,15997667,CCV22,Ciclovia,"Estr. do Encanamento/ Rua Padre Roma/ Rua Sebastião
+ Alves",Entre Av. Engenheiro Antônio Góes e Av. Rio Branco,Recife,,proposed,1.9
+67,16002183,CCV23,Ciclovia,Av. Des. José Neves/ Av. Dom João VI,Entre Av. Gov. Agamenon Magalhães e Rua José Bonifácio,Recife,,proposed,6.2
+68,16002168,CCV24,Ciclovia,Estrada do Bongi/ R. Dr. Severino Jatobá,Entre Av. Norte e Av. Prof. José dos Anjos,Recife,,proposed,1.4
+69,15997462,CCV25,Ciclovia,Av. Dr. Claudio José Gueiros Leite,Entre Rua Dr. Arlindo dos Santos e Rua Bem-te-vi,Paulista,Ciclovia existente,existing,7.4
+70,16004524,CCV26,Ciclovia,Av. Beira-Rio/ R. Benfica,Entre Rua Tertuliano Francisco Feitosa e limite com Município de Paulista,Recife,Em projeto,planned,2.4
+71,15997683,CCV27,Ciclovia,Av. A,Entre Av. Senador Nilo Coelho e Rua Farias Neves,Paulista,,proposed,1.3
+72,16001879,CCV28,Ciclovia,"Rua Senador Alberto Pasqualine/ Pça. Do Jardim São
+ Paulo/ Rua Luís Carvalho de Castro/ Av. São Paulo/ R.
+ Leandro Barreto",Entre Av. São João de Deus e limite com Município de Olinda,Recife,,proposed,2.6
+73,16002185,CCV29,Ciclovia,"Rua Dez de Julho/ Rua Cap. Zuzinha/ Rua Dr. Vicente
+ Gomes",Entre Rua Honorato Fernandes da Paz e Avenida São João de Deus,Recife,,proposed,1.9
+74,15997444,CCV30,Ciclovia,Av. Prof. Luiz Freire,Entre Rua Manoel Braz de Oliveira e Rua do Cruzeiro,Recife,,proposed,1.2
+75,16001868,CCV31,Ciclovia,Av. Eng. Abdias de Carvalho,Entre a Rua Bejupira e Rua Salina 3,Recife,,proposed,0.8
+76,16000042,CCV32,Ciclovia,Av. Gov. Agamenon Magalhães,Entre Rua Rio Azul e Rua Sá e Souza,Jaboatão dos Guararapes,,proposed,3
+77,16004432,CCV33,Ciclovia,"Rua Francisco Alves/ Rua dos Coelhos/ Rua Dr. José
+ Mariano",Entre Rua José Alves de Souza e PE-060,Recife,,proposed,1.6
+78,16001881,CCV34,Ciclovia,Rua da Liberdade/ Rua Onze de Agosto,Entre Estrada da Luz e Av. Forte do Arraial Novo do Bom Jesus,Recife,,proposed,3.2
+79,15997698,CCV35,Ciclovia,Av. Chico Science,Entre Av. Mal. Mascarenhas de Morais e Rua Padre Lima e Sá,Olinda,,proposed,1.1
+80,15997679,CCV36,Ciclovia,Av. Norte,Entre Estrada do Encanamento e Estrada do Arraial,Recife,Infraestrutura cicloviária existente,existing,7
+81,15997446,CCV37,Ciclovia,"Rua do Bom Pastor/ Rua Monoel Estevão da Costa/ Rua
+ Antônio Curado",Entre Av. Quatro de Outubro e Rua Floriano Peixoto,Recife,,proposed,2.3
+82,16004574,CCV38,Ciclovia,Ponte Agamenon Magalhães/ Av. Eng. Antonio de Goes,Entre Av. Barreto de Menezes e Rua Floriano Peixoto,Recife,,proposed,2
+83,16004381,CCV39,Ciclovia,"Av. Cruz Cabugá/ Av. Olinda/ Rua do Sol/ Av. Santos
+ Dumont/ Av. Sigismundo Gonçalves/ R. Dr. Farias N.
+ Sobrinho",Entre Estrada Velha de Água Fria e Av. Gov. Agamenon Magalhães,Recife/ Olinda,Previsão de implantação de BRS,planned,5.8
+84,16001869,CCV40,Ciclovia,Av. Eng. Abdias de Carvalho,Entre Estação Monte dos Guararapes e Avenida Beira-Mar,Recife,,proposed,2
+85,15997680,CCV41,Ciclovia,Av. Prof. José dos Anjos,Entre Estrada do Arraial e Prof. Álvaro Lima,Recife,Infraestrutura cicloviária existente,existing,3.6
+86,16001875,CCV42,Ciclovia,Av. Recife,Entre Rua Cap. Zuzinha e Rua Antônio Falcão,Recife,,proposed,1.9
+87,16004403,CCV43,Ciclovia,Av. Norte,Entre Estrada dos Remédios e Av. Eng. Abdias de Carvalho,Recife,,proposed,1.5
+88,16004564,CCV44,Ciclovia,Rua João Marques dos Anjos,Entre Rua Honorato Fernandes da Paz e Av. José Pereira de Amorim,Recife,,proposed,1.2
+89,15997700,CCV45,Ciclovia,Av. Ministro Marcos Freita/ Rua Beira-Mar,Entre Av. Doutor Severino Pinheiro e Av. Central,Olinda,,proposed,2.2
+90,15980036,CCV46,Ciclovia,Estrada de Maracaípe,Entre Av. B e Av. E,Ipojuca,,proposed,2.6
+91,16001876,CCV47,Ciclovia,Av. Recife,Entre Rua da Liberdade e Av. Recife,Recife,,proposed,3.1
+92,16006352,CCV48,Ciclovia,Rua Joana D'arc Sampaio,Entre Av. Boa Viagem e Av. Mal. Mascarenhas de Morais,Olinda,,proposed,0.1
+93,16000041,CCV49,Ciclovia,Rua Dr. George Willian Butler,Entre BR-101 e Rua Acadêmico Hélio Ramos,Recife,,proposed,2
+94,16000040,CCV50,Ciclovia,Acesso à Rodoviária,Entre Av. Forte Arraial do Novo Bom Jesus e Av. Gen. San Martin,Recife,Previsão de implantação de BRS,planned,0.6
+95,16000460,CCV51,Ciclovia,Av. Barreto de Menezes,Entre Av. Falcão de Lacerda e BR-232,Jaboatão dos Guararapes,,proposed,3.5
+96,16004405,CCV52,Ciclovia,Rua Taurino Batista,Entre Av. Gov. Agamenon Magalhães e Rua Velha,Recife,,proposed,0.7
+97,15980000,CCV53,Ciclovia,Estrada de acesso a Serrambi,Entre Av. Getulio Vargas (BR232) e Av. José Rufino,Ipojuca,,proposed,10.5
+98,15980005,CCV54,Ciclovia,Estrada de acesso a Camela – PE-051,Entre Av. Pan Nordestina e Av. Governador Carlos de Lima Cavalcante,Ipojuca,,proposed,3.4
+99,15997461,CCV55,Ciclovia,"Rua General Castelo Branco/ Rua João Pereira de
+ Oliveira",Entre Rua Augusto Rodrigues e BR-101,Paulista,,proposed,3.1
+100,15997463,CCV56,Ciclovia,Estrada de Nova Cruz,Entre Rua José dos Santos e Av. Caxangá,Igarassu,,proposed,9.8
+101,15997467,CCV57,Ciclovia,BR-101,Entre Av. Eng. José Estelita e Av. Boa Viagem,Igarassu,,proposed,4.1
+102,15997455,CCV58,Ciclovia,Av. A,Entre Av. Min Marcos Freire e Av. Norte,Abreu e Lima,,proposed,2
+103,16004644,CCV59,Ciclovia,Rua Antônio Falcão,Entre Estrada dos Remédios e Av. Gen. San Martin,Paulista,Previsão de implantação de BRS,planned,0.9
+104,15997439,CCV60,Ciclovia,Av. Bicentenário da Revolução Francesa,Entre Av. Norte e Av. Luiz Correia de Brito,Recife,,proposed,1.7
+105,15997443,CCV61,Ciclovia,Rua Acadêmico Hélio Ramos/ Av. Prof. Artur de Sá,Entre Av. Pres. Kennedy e Rua Dr José Rufino,Recife,Previsão de implantação de BRS,planned,2.1
+106,15997442,CCV62,Ciclovia,Rua Gen. Polidoro,Entre Rua da Aurora e Av. Governador Agamenon Magalhães,Recife,,proposed,1.1
+107,15997668,CCV63,Ciclovia,Estrada do Arraial,Brasília Teimosa - Entre Mal. Hermes e Litoral,Recife,Ciclofaixa existente,existing,0.5
+108,16000033,CCV64,Ciclovia,Rua Dr. Elphego Jorge de Souza,Entre Rua Dr. Farias N. Sobrinho e Rua Tertuliano Francisco Feitosa,Recife,Ciclovia existente,existing,0.7
+109,15997708,CCV65,Ciclovia,Riacho Lava Tripa,Entre Orla e Rua Esperança,Olinda,Ciclovia existente,existing,1.4
+110,15997707,CCV66,Ciclovia,Rio Beberibe,Entre Av. Dr. José Rufino e BR-101,Olinda,Previsão de implantação de BRS,planned,1.3
+111,15999830,CCV67,Ciclovia,Ciclovia do Paiva,Entre Av. José Augusto Moreira e Av. Beira-Mar,Cabo de Santo Agostinho,,proposed,6.4
+112,16000038,CCV68,Ciclovia,Ponte do Paiva,Entre BR-232 e acesso à Rodoviária,Cabo de Santo Agostinho,,proposed,0.4
+113,16000037,CCV69,Ciclovia,Rua Nove/ Rua Soure,Entre BR-408 e Rodoviária,Jaboatão dos Guararapes,,proposed,1.9
+114,16002259,CCV70,Ciclovia,Av. Conde da Boa Vista/ Av. dos Guararapes,Entre BR-101 e Av. Senador Paulo Pessoa Guerra,Recife,,proposed,2.8
+115,16004427,CCV71,Ciclovia,Av. Martins de Barros,Entre Av. Cruz Cabugá e Av. Governador Agamenon Magalhães,Recife,,proposed,0.8
+116,16004404,CCV72,Ciclovia,Av. Prefeito Artur Lima Cavalcanti,Entre Porto de Galinhas e Serrambi,Recife,Infraestrutura cicloviária existente,existing,0.8
+117,16004412,CCV73,Ciclovia,Av. Mário Melo/ Rua dos Palmares,Entre PE-060 e Camela,Recife,Infraestrutura cicloviária existente,existing,1.7
+118,16002116,CCV74,Ciclovia,Av. João de Barros,Entre Av. Dr. Cláudio José Gueiros Leite e PE-022,Recife,,proposed,3.7
+119,16004523,CCV75,Ciclovia,Viaduto Capitão Temudo,Entre BR-101 e Praia de Mangue Seco,Recife,,proposed,2
+120,10645820,CCV76,Ciclovia,Ramal da Copa,Entre Indústria Ondunorte e Alto do Céu,São Lourenço da Mata/ Camaragibe,,proposed,4.3
+121,16001952,CCV77,Ciclovia,Ramal da Copa,Entre Av. Gov. Nilo Coelho e Av. Ingo Hering,Recife,,proposed,0.8
+122,16001953,CCV78,Ciclovia,Ramal da Copa,Entre Rua Gen. Edson Amâncio Ramalho e Av. Boa Viagem,Recife,,proposed,0.4
+123,16001955,CCV79,Ciclovia,Via Projetada,Entre Av. Forte do Arraial Novo Bom Jesus e BR-101,Olinda,,proposed,1.3
+124,16004605,CCV80,Ciclovia,Via Mangue,Entorno UFPE,Recife,,proposed,5.4
+125,16001867,CCV81,Ciclovia,Rua Comendador Franco Ferreira,Entre Av. Prof. Artur de Sá e Av. Caxangá,Recife,,proposed,1.1
+126,15997687,CCV82,Ciclovia,"Av. José Cariolando/ Rua Girafa/ Rua Austro Costa/ R. Dr
+ Sérgio Loretto",Entre Rua Des. Góes Cavalcante e Rua Padre Roma,Olinda,,proposed,3.1
+127,15997693,CCV83,Ciclovia,Av. Antonio da Costa Azevedo,Entre Rua Comendador Franco Ferreira e Av. Eng. Abdias de Carvalho,Olinda,Infraestrutura cicloviária existente,existing,1.4
+128,16002091,CCV84,Ciclovia,Ponte do Monteiro - Parque do Santana,Entre Estrada do Caenga e Av. Sen. Nilo Coelho,Recife,Infraestrutura cicloviária existente (conclusão recente),existing,4.8
+129,15997440,CCV85,Ciclovia,Av. Forte do Arraial Novo do Bom Jesus,Entre Estrada do Caenga e Av. Cidade Monteiro,Recife,Infraestrutura cicloviária existente (conclusão recente),existing,1.8
+130,16002038,CCV86,Ciclovia,Rua 21 de Abril,Reserva do Paiva,Recife,Infraestrutura cicloviária existente,existing,3.3
+131,16002037,CCV87,Ciclovia,Rua 21 de Abril,Reserva do Paiva,Recife,Infraestrutura cicloviária existente,existing,0.4
+132,16004563,CCV88,Ciclovia,Av. Central/ Av. Rio Capibaribe,Entre Estrada de Curcurana e Ponte do Paiva,Recife,,proposed,2.7
+133,16005003,CCV89,Ciclovia,Av. Central,Entre Av. Dantas Barreto e Av. Gov. Agamenon Magalhães,Recife,,proposed,0.9
+134,15997454,CCV90,Ciclovia,Av. Assedipe/ Av. Gov. Nilo Coelho,Entre Praça da República e Av. Sul,Abreu e Lima,,proposed,2.1
+135,16002115,CCV91,Ciclovia,Rua Paulino Gomes de Souza/ Av. Santos Dumont,Entre Av. Norte e Av. Cruz Cabugá,Recife,,proposed,1.2
+136,15997671,CCV92,Ciclovia,Rua José Alexandre Caçador/ Rua Mem de Sá,Entre Av. João de Barros e Rua da Aurora,Recife,,proposed,0.3
+137,16004429,CCV93,Ciclovia,Praça da República/ Av. Rio Branco,Entre Av. Conde da Boa Vista e Rua Odorico Mendes,Recife,,proposed,0.6
+138,16004410,CCV94,Ciclovia,Rua São Gonçalo/ Rua Santa Cruz /Rua Gervásio Pires,Entre Ponte Eng. Antonio de Góes e Rua Gen. Joaquim,Recife,,proposed,2.5
+139,16004430,CCV95,Ciclovia,Rua do Sol,,Recife,Em fase de implantação,existing,0.5
+140,16006132,CCV96,Ciclovia,Rua Corinto / Rua Eduardo Jorge / Rua Mal. Hermes,,Recife,Em fase de implantação,existing,0.4
+141,16002175,CCV97,Ciclovia,Av. Dois Rios/ Av. Dom Helder Camara,,Recife,Em fase de implantação,existing,2.4
+142,16000039,CCV98,Ciclovia,R. Capecurumirim/ Estrada de Curcurana,Entre Av. Luis Correia de Brito e Av. Gov. Agamenon Magalhães,Jaboatão dos Guararapes/ Cabo de Santo Agostinho,Em projeto,planned,4
+143,16000036,CCV99,Ciclovia,Rua Padre Nestor de Alencar,Entre Av. Gen. Mac Arthur e Ponte Eng. Antônio de Góes,Jaboatão dos Guararapes,Em fase de implantação,existing,0.9
+144,16000035,CCV100,Ciclovia,Rua Araguai/ Av. Pres. Kennedy/ Rua Cap. Med. Ozias,Entre Rua Ten. Mindelo e Rua Dr. Elphego Jorge de Sousa,Jaboatão dos Guararapes,Infraestrutura cicloviária existente,existing,0.7
+145,16001863,CCV101,Ciclovia,Rua S D 5367,Entre Av. Pan Nordestina e Av. Senador Nilo Coelho,Recife,,proposed,0.7
+146,16001864,CCV102,Ciclovia,Travessa Visconde de São Leopoldo,Entre Av. Sen. Nilo Coelho e Av. José Cariolano,Recife,,proposed,0.6
+147,16001877,CCV103,Ciclovia,Travessa Washington Duarte Espíndola,Margens do Rio Capibaribe,Recife,Em projeto,planned,1.1
+148,16002156,CCV104,Ciclovia,1a Travessa Eng. Abdias de Carvalho,Entre Av. Eng. Abdias de Carvalho e Av. Caxangá,Recife,Ciclofaixa existente,existing,0.8
+149,16001865,CCV105,Ciclovia,Rua Dr. Flávio Ferreira da Silva Morojo,Entre Av. Gen. San Martin e Rua José Miranda,Recife,Ciclofaixa existente (apenas sinalização vertical),existing,1.1
+150,16002258,CCV106,Ciclovia,Rua Dom Bosco,Entre Rua José Miranda e Estrada dos Remédios,Recife,,proposed,0.7
+151,16004522,CCV107,Ciclovia,Rua Gen. Joaquim Iquinácio,Entre Rua Cabo Eutrópio e Ponte Boa Vista,Recife,,proposed,0.3
+152,16006355,CCV108,Ciclovia,Rua S D 5366,Entre Rua Vinte e Um de Abril e Rua Cb. Eutrópio,Recife,,proposed,0.3
+153,16002214,CCV109,Ciclovia,Av. São Paulo,Entre BR-101 e Av. D,Recife,,proposed,0.5
+154,16002034,CCV110,Ciclovia,Av. Manoel Gonçalves da Luz,Entre Rua Salvador de Sá e Rua do Futuro,Recife,,proposed,1.1
+155,16002172,CCV111,Ciclovia,Rua Gomes Taborda/ Dr. Miguel Vieira Ferreira,Entre Av. Beberibe e Rua Salvador de Sá,Recife,,proposed,2
+156,16002173,CCV112,Ciclovia,Rua Carlos Gomes,Entre Ponte Princesa Isabel e Caminho do Apolo,Recife,,proposed,0.4
+157,15997441,CCV113,Ciclovia,Av. Mário Alves Pereira de Lira,Entre Travessa Júlio Bernardo e Av. Norte,Recife,,proposed,1.1
+158,16002096,CCV114,Ciclovia,Rua Conselheiro Teodoro/ Rua Conde de Irajá,Entre Ponte Princesa Isabel e Ponte Boa Vista,Recife,,proposed,1.5
+159,15997678,CCV115,Ciclovia,Rua Denh. Eulino Santos/ Rua da Regeneração,Entre Av. Boa Viagem e Rua João Marques dos Anjos,Recife,,proposed,1.5
+160,15997437,CCV116,Ciclovia,Rua de Apipucos/ Rua Dois Irmãos,Entre Av. Recife e BR-101,Recife,,proposed,2
+161,15997669,CCV117,Ciclovia,Estrada do Arraial,Entre Av. Conde da Boa Vista e Rua Padre Nestor de Alencar,Recife,,proposed,2.4
+162,16001992,CCV118,Ciclovia,"Av. Dezessete de Agosto/ Rua São Matheus/ Estr. do
+ Barbalho",Entre Estrada de Curcurana e Rua Araguai,Recife,,proposed,2.2
+163,16002182,CCV119,Ciclovia,Rua Barão de Souza Leão,Entre Rua Padre Nestor de Alencar e Av. Pres. Castelo Branco,Recife,,proposed,0.7
+164,16002094,CCV120,Ciclovia,Ponte do Monteiro - Parque do Santana,Entre Av. Getulio Vargas e BR-101,Recife,,proposed,2.3
+165,16001888,CCV121,Ciclovia,Margens do Rio Capibaribe,Entre Av. Getulio Vargas e BR-101,Recife,,proposed,2.9
+166,16006390,CCV122,Ciclovia,Margens do Rio Capibaribe,Entre Av. Prof. Luis Freire e Av. Eng. Abdias de Carvalho,Recife,,proposed,1.6
+167,16000464,CCF01,Ciclofaixa,Av. Beira-Mar,Entre Av. Eng. Abdias de Carvalho e BR- 101,Jaboatão dos Guararapes,,proposed,0.9
+168,16004411,CCF02,Ciclofaixa,Rua Dr. José Mariano/ Rua da Aurora,Entre Av. Recife e Av. Eng. Abdias de Carvalho,Recife,,proposed,2.1
+169,15997709,CCF03,Ciclofaixa,Estrada do Caenga,Entre Av. Gov. Agamenon Magalhães e Av. Manoel Borba,Olinda,,proposed,0.6
+170,15997704,CCF04,Ciclofaixa,Av. Brasil/ Av. Cel. Frederico Lundgren,Entre Av. Gov. Agamenon Magalhães e Rua Lins Petit,Olinda,,proposed,2.8
+171,15997697,CCF05,Ciclofaixa,Rua Alberto Lundgren,Entre Av. Recife e BR-101,Olinda,,proposed,0.8
+172,15997276,CCF06,Ciclofaixa,"Av. Historiador Pereira da Costa/ Rua Dr. Antonio de
+ Souza Leão",Entre Rua Luis Carvalho de Castro e Rua Pacaembu,Cabo de Santo Agostinho,,proposed,1.1
+173,16000463,CCF07,Ciclofaixa,Av. Beira-Mar,Entre Rua 21 de Abril e Estrada do Bongi,Jaboatão dos Guararapes,,proposed,0.6
+174,15997458,CCF08,Ciclofaixa,Av. D,Entre Rua Carlos Gomes e Av. Forte do Arraial Novo,Abreu e Lima,,proposed,2.9
+175,15997688,CCF09,Ciclofaixa,Rua Brasilia/ Av. Conselheiro Antônio Carlos Ferreira,Entre Av. Eng. Abdias de Carvalho e Rua Gomes Taborda,Olinda,,proposed,1.5
+176,15997692,CCF10,Ciclofaixa,Av. Transamazônica,Entre Rua Manoel Esteves da Costa e Av. Caxangá,Olinda,Infraestrutura cicloviária existente,existing,1.2
+177,15997696,CCF11,Ciclofaixa,"Av. Governador Carlos de Lima Cavalcante/ Rua São
+ Miguel",Entre Av. Caxangá e Rua José Bonifácio,Olinda,,proposed,1.4
+178,15997466,CCF12,Ciclofaixa,"Rua Vinte e Sete de Setembro/ Rua Dantas Barreto/ Rua
+ São Sebastião/ PE-035",Entre Rua Marquês de Baibendi e Av. Beberibe,Igarassu,,proposed,2.7
+179,15997705,CCF13,Ciclofaixa,Avenida Brasil,Entre BR-101 e Av. Dezessete de Agosto,Paulista,,proposed,2.4
+180,15997706,CCF14,Ciclofaixa,Avenida Colibri/ Rua Nelson Ferreira,Entre Rua Des. Góes Cavalcante e Av. Dezessete de Agosto,Paulista,Infraestrutura cicloviária existente,existing,1.7
+181,16006232,CCF15,Ciclofaixa,Av. Jules Rimet/ Rua Fenelon Átila Leite/ Rua Um,Entre Estrada do Arraial e Av. Caxangá,Olinda,,proposed,1.2
+182,15997711,CCF16,Ciclofaixa,Marginal Rio Beberibe,Entre Av. Boa Viagem e Rua Sá e Souza,Olinda,,proposed,2.8
+183,15997712,CCF17,Ciclofaixa,Av. Leopoldino Canuto/ Estrada do Passarinho,Margens do Rio Capibaribe,Olinda e Recife,,proposed,4.8
+184,16000032,CCF18,Ciclofaixa,Rua Alcina Coelho Carvalho,Entre Av. Caxangá e Estrada do Barbalho,Olinda,Planejada,planned,0.7
+185,16002093,CCR01,Ciclorrota,Rua do Futuro,Entre Rua Conde de Irajá e Rua Benfica,Recife,Planejada,planned,1.5
+186,16001889,CCR02,Ciclorrota,"Rua Ribeiro Pessoa/ Rua Manoel Simões/ Rua Dois
+ Irmãos",Rua Argentina Castelo Branco e Rua Álvaro Pinto Carvalheira,Recife,Ciclofaixa existente,existing,3.1
+187,16006327,CCR03,Ciclorrota,Av. Armindo Moura,Entre Rua Velha e Av. Norte,Jaboatão dos Guararapes e Recife,Ciclofaixa aos domingos e feriados,planned,1.3
+188,16001883,CCR04,Ciclorrota,Acesso ao Terminal Coqueiral,Entre Rio Beberibe e Riacho Lava Tripa,Recife,,proposed,0.3
+189,16002170,CCR05,Ciclorrota,Rua Gregório Junior,Entre limite com Município de Paulista e Av. Jules Rimet e entre Rua Um e Av. Beira Mar,Recife,,proposed,0.6
+190,16000489,CCR06,Ciclorrota,Rua Dr. Luis Regueira,Entre Av. Gov. Carlos de Lima Cavalcante e Av. Min. Marcos Freire,Jaboatão dos Guararapes,,proposed,2.3
+191,16006336,CCR07,Ciclorrota,Travessa Otávio Cruz,Entre PE-060 e Terminal do Cabo,Jaboatão dos Guararapes,,proposed,0.1
+192,16000466,CCR08,Ciclorrota,"Av. Linha Férrea Sul/ Passarela de Transposição da linha
+ férrea",Entre Rua Dr. Arlindo dos Santos e Rua Álvaro Pinto,Jaboatão dos Guararapes,Ciclofaixa existente em alguns trechos,existing,0.5
+193,16000467,CCR09,Ciclorrota,Rua Prof Nilo Peçanha,Entre Av. A e Rua Cento e Noventa e Seis,Jaboatão dos Guararapes,,proposed,0.7
+194,15997459,CCR10,Ciclorrota,Rua Oitenta e Quatro,Entre Av. Antonio Costa Azevedo e Av. Pan Nordestina,Paulista,Proposta existente,existing,0.2
+195,16002039,CCR11,Ciclorrota,Rua Dr. João Elisio/ Av. Central/ Rua Jovelino Silva,Entre Av. Antonio Costa Azevedo e Av. Senador Nilo,Recife,Proposta existente,existing,0.8
+196,16001872,CCR12,Ciclorrota,Rua Morais e Silva,Entre Av. Luis Gomes e a Av. Chico Science,Recife,,proposed,0.6
+197,15997686,CCR13,Ciclorrota,Av. Joaquim Nabuco,Entre BR-101 e Av. Duarte Carlos Coelho,Olinda,,proposed,1.5
+198,15997685,CCR14,Ciclorrota,"Rua Peixe Agulha / Rua Argentina Castelo Branco/ Av.
+ Romeu Jacobino de Figueiredo",Entre PE-022 e limite com Município de Olinda,Olinda,,proposed,2.5
+199,15997676,CCR15,Ciclorrota,Av. das Garças,Entre PE-022 e Av. Brasil,Olinda,,proposed,0.5
+200,15997681,CCR16,Ciclorrota,Av. Paulista/ Av. Lindolfo Collor,Entre Av. Cel. Frederico Lundgren,Paulista,,proposed,3.4
+201,15997682,CCR17,Ciclorrota,Av. B,Entre Estrada Passarinho e Estrada do Caenga,Paulista,Em projeto,planned,0.3
+202,15997460,CCR18,Ciclorrota,Av. E,Entre Estrada do Caenga e BR-101,Paulista,Em projeto,planned,0.6
+203,15997684,CCR19,Ciclorrota,Rua N. Sra. do Carmo do Jangá,Entre Av. Beira Mar e Rua Arthur Serpa,Paulista,,proposed,0.6
+204,16004565,CCR20,Ciclorrota,Rua São João,Entre Rua Amélia e Rua Padre Roma,Recife,,proposed,0.6
+205,15999872,CCR21,Ciclorrota,Rua Quatorze/ Rua Cinco,Entre Av. Caxangá e BR-101,Cabo de Santo Agostinho,,proposed,1.2
+206,15980073,CCR22,Ciclorrota,Rua do Governador,Entre Av. Beira Mar e Estrada da Batalha,Ipojuca,,proposed,0.6
+207,16006053,CCR23,Ciclorrota,Rua Santa Margarida,A partir da Av. Falcão de Lacerda até Rua Manoel Conrado,Cabo de Santo Agostinho,,proposed,0.5
+208,15980070,CCR24,Ciclorrota,Rua do Cruzeiro/ Rua Cristovão de Souza Leão,Entre Rua Gomes Taborda e Av. Caxangá,Ipojuca,,proposed,0.6
+209,15980072,CCR25,Ciclorrota,Rua Dezessete,Entre Av. Barreto de Menezes e BR-101,Ipojuca,,proposed,0.8
+210,16006342,CCR26,Ciclorrota,Rua Bezerra de Palma,Entre Av. Barreto de Menezes e Av. Linha Férrea Sul,Recife,,proposed,0.1
+211,16001946,CCR27,Ciclorrota,Rua Bulhões Marques,Entre Travessa Otávio Cruz e Rua Prof. Nilo Peçanha,Jaboatão dos Guararapes,,proposed,0.2
+212,16004999,CCR28,Ciclorrota,Rua Jatici,Entre Av. Linha Férrea Sul e Av. Ulisses Montarroyos,Recife,,proposed,0.3
+213,15997457,CCR29,Ciclorrota,Rua Quarenta/ Rua Quarenta e Um,Entre Rua Oitenta e Av. A,Abreu e Lima,,proposed,1.5
+214,15997456,CCR30,Ciclorrota,"Rua do Eucalipto/ Rua Ananias Lacerda de Andrade /
+ Rua Quartzo / Rua da Bidoca/ Rua Caruaru",Entre Rua São Miguel e Rua Vinte e Um de Abril,Abreu e Lima,,proposed,1.7
+215,16006341,CCR31,Ciclorrota,Rua Carvalho de Mendonça,Entre Av. Central e Av. Gen. San Martin,Recife,,proposed,0.3
+216,16001873,CCR32,Ciclorrota,Rua Humberto de Campos/ Rua Santa Luzia,Entre Av. Pan Nordestina e Av. Sigismundo Gonçalves,Recife,,proposed,0.2
+217,16001878,CCR33,Ciclorrota,Acesso ao Terminal Barro,Entre Av. Pan Nordestina e Terminal Ouro Preto,Recife,,proposed,0.3
+218,15997275,CCR34,Ciclorrota,"Rua José Lins Teles/ Rua Trapiche/ Rua Vereador Volney
+ da Costa Machado",Entre Av. Brasil e Terminal Rodoviário,Cabo de Santo Agostinho,,proposed,1.1
+219,16001941,CCR35,Ciclorrota,"Av. Tiradentes/ Rua do Progresso/ Rua Antonio Rêgo
+ Araújo/ Rua Cel. Antônio",Entre PE-015 e Av. C,Moreno,,proposed,2
+220,16001939,CCR36,Ciclorrota,Rua Treze de Novembro/ Av. Sofrônio Portela,Entre PE-022 e Av. A,Moreno,,proposed,1.4
+221,16001940,CCR37,Ciclorrota,Praça da Bandeira,Entre PE-022 e Av. A,Moreno,,proposed,0.1
+222,16001938,CCR38,Ciclorrota,Av. Cleto Campelo/ Rua S. Antonio J C,Entre Rua Dr. Cláudio José Gueiros Leite e Rua Altinho,Moreno,,proposed,1.7
+223,15980004,CCR39,Ciclorrota,Av. Agamenon Magalhães – Distrito de Bonança,Entre Eng. José Estelita e Terminal Integrado,Moreno,,proposed,0.9
+224,15979999,CCR40,Ciclorrota,Av. Pres. Vargas,Entre Antiga BR-101 e Rua da Estação,Araçoiaba,,proposed,1.1
+225,15980003,CCR41,Ciclorrota,Av. Brasil,Entre Estrada de Maracaípe e PE-009,Araçoiaba,,proposed,0.9
+226,15980001,CCR42,Ciclorrota,Av. Duque de Caxias/ Rua Antonio Carneiro,Entre Rua TV do Cemitério e Antiga BR- 101,Araçoiaba,,proposed,1.3
+227,15980002,CCR43,Ciclorrota,Av. João Pessoa Guerra/ Rua João Felipe de Barros,Entre PE-038 e Rua do Comércio,Araçoiaba,,proposed,1.6
+228,16002257,CCR44,Ciclorrota,"Av. Manoel Borba/ Rua Dona Benvinda/ Av. Lins Petit/ R.
+ Estado de Israel/ Pça Miguel de Cervantes",Entre Rua da Macaíba e Rua Dezesseis,Recife,,proposed,1.8
+229,16005001,CCR45,Ciclorrota,"Rua Dr. Tavares Correia/ Av. Sen. Robert Kennedy/ Rua
+ Alexandre Almeida/ Rua David Perneta/ Rua Padre Lima
+ e Sá/ Av. Saldanha Marinho/ R. Pintor Antônio
+ Albuquerque/ Rua Abdias Cabral de Moura",Entre Estação Ipiranga e Rua Vinte e Um de Abril,Recife,,proposed,3
+230,16004640,CCR46,Ciclorrota,Rua Alameda das Hortências,Entre Estação Eng. Velho e Rua Gen. Manoel Rabelo,Recife,,proposed,0.2
+231,16004641,CCR47,Ciclorrota,Rua Guarabira,Entre Av. Mal. Mascarenhas de Morais e Av. Sul,Recife,,proposed,0.2
+232,16004642,CCR48,Ciclorrota,Rua José da Silva Lucena,Entre Rua do Eucalipto e Av. Gov. Nilo Coelho,Recife,,proposed,0.4
+233,15997445,CCR49,Ciclorrota,Rua José dos Santos,Entre Rua Quarenta e Um e BR-101,Recife,,proposed,0.4
+234,16001880,CCR50,Ciclorrota,Rua Padre Ibiapina,Entre Rua São Miguel e Estação Ipiranga,Recife,,proposed,0.6
+235,16002213,CCR51,Ciclorrota,Rua José Natário,Entre Av. Dr. José Rufino e Terminal Santa Luzia,Recife,,proposed,0.7
+236,16002215,CCR52,Ciclorrota,Rua Pacaembu,Entre BR-101 e Estação Barro,Recife,,proposed,0.2
+237,16002243,CCR53,Ciclorrota,Rua São Caetano,Entre PE-060 e Estação Santo Inácio,Recife,,proposed,0.8
+238,15997677,CCR54,Ciclorrota,Rua Mario Sete/ Rua Marquês de Baipendi,Entre R. Pedro de Sá e Rua da Liberdade,Recife,Em projeto,planned,1
