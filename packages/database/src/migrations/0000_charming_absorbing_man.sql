@@ -1,5 +1,9 @@
-CREATE TYPE "public"."direction" AS ENUM('north', 'east', 'south', 'west');--> statement-breakpoint
-CREATE TABLE "bicycle_rack_cities" (
+DO $$ BEGIN
+    CREATE TYPE "public"."direction" AS ENUM('north', 'east', 'south', 'west');
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "bicycle_rack_cities" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"osm_id" text NOT NULL,
 	"city" text NOT NULL,
@@ -9,7 +13,7 @@ CREATE TABLE "bicycle_rack_cities" (
 	CONSTRAINT "bicycle_rack_cities_osm_id_unique" UNIQUE("osm_id")
 );
 --> statement-breakpoint
-CREATE TABLE "bicycle_racks" (
+CREATE TABLE IF NOT EXISTS "bicycle_racks" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"osm_id" text,
 	"osm_type" text,
@@ -46,7 +50,63 @@ CREATE TABLE "bicycle_racks" (
 	CONSTRAINT "bicycle_racks_osm_id_unique" UNIQUE("osm_id")
 );
 --> statement-breakpoint
-CREATE TABLE "counting_events" (
+CREATE TABLE IF NOT EXISTS "ciclomapa_infra" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"osm_id" text NOT NULL,
+	"name" text,
+	"infra_type" text NOT NULL,
+	"coordinates" text NOT NULL,
+	"geojson" jsonb NOT NULL,
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"updated_at" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "cities" (
+	"id" integer PRIMARY KEY NOT NULL,
+	"name" text NOT NULL,
+	"state" text NOT NULL,
+	"full_state" text NOT NULL,
+	"rmr" boolean DEFAULT false NOT NULL,
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"updated_at" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "cyclist_infra_relation_cities" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"relation_id" integer NOT NULL,
+	"city_id" integer NOT NULL,
+	"created_at" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "cyclist_infra_relations" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"osm_id" text,
+	"pdc_ref" text,
+	"pdc_typology" text,
+	"name" text,
+	"pdc_stretch" text,
+	"pdc_cities" text,
+	"pdc_notes" text,
+	"notes" text,
+	"pdc_km" real,
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"updated_at" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "pdc_relation_ways" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"osm_id" text NOT NULL,
+	"relation_id" integer,
+	"name" text,
+	"geometry_type" text NOT NULL,
+	"coordinates" text NOT NULL,
+	"osm_properties" jsonb NOT NULL,
+	"geojson" jsonb NOT NULL,
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"updated_at" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "counting_events" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"location_id" integer NOT NULL,
 	"counting_date" date NOT NULL,
@@ -60,7 +120,7 @@ CREATE TABLE "counting_events" (
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "counting_locations" (
+CREATE TABLE IF NOT EXISTS "counting_locations" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar(255) NOT NULL,
 	"city" varchar(100) NOT NULL,
@@ -72,7 +132,7 @@ CREATE TABLE "counting_locations" (
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "counting_sessions" (
+CREATE TABLE IF NOT EXISTS "counting_sessions" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"event_id" integer NOT NULL,
 	"session_label" varchar(10) NOT NULL,
@@ -84,7 +144,7 @@ CREATE TABLE "counting_sessions" (
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "session_movements" (
+CREATE TABLE IF NOT EXISTS "session_movements" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"session_id" integer NOT NULL,
 	"from_direction" "direction" NOT NULL,
@@ -93,7 +153,7 @@ CREATE TABLE "session_movements" (
 	"created_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "cyclist_profiles" (
+CREATE TABLE IF NOT EXISTS "cyclist_profiles" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"data" jsonb NOT NULL,
 	"metadata" jsonb NOT NULL,
@@ -101,7 +161,7 @@ CREATE TABLE "cyclist_profiles" (
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "emergency_calls" (
+CREATE TABLE IF NOT EXISTS "emergency_calls" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"original_id" integer NOT NULL,
 	"date" timestamp NOT NULL,
@@ -127,7 +187,7 @@ CREATE TABLE "emergency_calls" (
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "test_db_service_examples" (
+CREATE TABLE IF NOT EXISTS "test_db_service_examples" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" text NOT NULL,
 	"data" jsonb NOT NULL,
@@ -135,7 +195,7 @@ CREATE TABLE "test_db_service_examples" (
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "traffic_calls" (
+CREATE TABLE IF NOT EXISTS "traffic_calls" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"datetime" timestamp NOT NULL,
 	"nature" varchar(50) NOT NULL,
@@ -152,7 +212,7 @@ CREATE TABLE "traffic_calls" (
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "traffic_deaths" (
+CREATE TABLE IF NOT EXISTS "traffic_deaths" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"contador" integer,
 	"tipobito" varchar(1),
@@ -206,7 +266,7 @@ CREATE TABLE "traffic_deaths" (
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "official_streets" (
+CREATE TABLE IF NOT EXISTS "official_streets" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"code" integer NOT NULL,
 	"name_concatenated" text NOT NULL,
@@ -223,7 +283,7 @@ CREATE TABLE "official_streets" (
 	CONSTRAINT "official_streets_code_unique" UNIQUE("code")
 );
 --> statement-breakpoint
-CREATE TABLE "traffic_violations" (
+CREATE TABLE IF NOT EXISTS "traffic_violations" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"violation_date" timestamp with time zone NOT NULL,
 	"agent_id" integer NOT NULL,
@@ -240,13 +300,44 @@ CREATE TABLE "traffic_violations" (
 	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-ALTER TABLE "counting_events" ADD CONSTRAINT "counting_events_location_id_counting_locations_id_fk" FOREIGN KEY ("location_id") REFERENCES "public"."counting_locations"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "counting_sessions" ADD CONSTRAINT "counting_sessions_event_id_counting_events_id_fk" FOREIGN KEY ("event_id") REFERENCES "public"."counting_events"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "session_movements" ADD CONSTRAINT "session_movements_session_id_counting_sessions_id_fk" FOREIGN KEY ("session_id") REFERENCES "public"."counting_sessions"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "traffic_violations" ADD CONSTRAINT "traffic_violations_street_code_official_streets_code_fk" FOREIGN KEY ("street_code") REFERENCES "public"."official_streets"("code") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-CREATE INDEX "idx_dtobito" ON "traffic_deaths" USING btree ("dtobito");--> statement-breakpoint
-CREATE INDEX "idx_codmunocor" ON "traffic_deaths" USING btree ("codmunocor");--> statement-breakpoint
-CREATE INDEX "idx_codmunres" ON "traffic_deaths" USING btree ("codmunres");--> statement-breakpoint
-CREATE INDEX "idx_causabas" ON "traffic_deaths" USING btree ("causabas");--> statement-breakpoint
-CREATE INDEX "idx_data_year" ON "traffic_deaths" USING btree ("data_year");--> statement-breakpoint
-CREATE INDEX "idx_year_munocor" ON "traffic_deaths" USING btree ("data_year","codmunocor");
+DO $$ BEGIN
+    ALTER TABLE "cyclist_infra_relation_cities" ADD CONSTRAINT "cyclist_infra_relation_cities_relation_id_cyclist_infra_relations_id_fk" FOREIGN KEY ("relation_id") REFERENCES "public"."cyclist_infra_relations"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;--> statement-breakpoint
+DO $$ BEGIN
+    ALTER TABLE "cyclist_infra_relation_cities" ADD CONSTRAINT "cyclist_infra_relation_cities_city_id_cities_id_fk" FOREIGN KEY ("city_id") REFERENCES "public"."cities"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;--> statement-breakpoint
+DO $$ BEGIN
+    ALTER TABLE "pdc_relation_ways" ADD CONSTRAINT "pdc_relation_ways_relation_id_cyclist_infra_relations_id_fk" FOREIGN KEY ("relation_id") REFERENCES "public"."cyclist_infra_relations"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;--> statement-breakpoint
+DO $$ BEGIN
+    ALTER TABLE "counting_events" ADD CONSTRAINT "counting_events_location_id_counting_locations_id_fk" FOREIGN KEY ("location_id") REFERENCES "public"."counting_locations"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;--> statement-breakpoint
+DO $$ BEGIN
+    ALTER TABLE "counting_sessions" ADD CONSTRAINT "counting_sessions_event_id_counting_events_id_fk" FOREIGN KEY ("event_id") REFERENCES "public"."counting_events"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;--> statement-breakpoint
+DO $$ BEGIN
+    ALTER TABLE "session_movements" ADD CONSTRAINT "session_movements_session_id_counting_sessions_id_fk" FOREIGN KEY ("session_id") REFERENCES "public"."counting_sessions"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;--> statement-breakpoint
+DO $$ BEGIN
+    ALTER TABLE "traffic_violations" ADD CONSTRAINT "traffic_violations_street_code_official_streets_code_fk" FOREIGN KEY ("street_code") REFERENCES "public"."official_streets"("code") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "idx_dtobito" ON "traffic_deaths" USING btree ("dtobito");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "idx_codmunocor" ON "traffic_deaths" USING btree ("codmunocor");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "idx_codmunres" ON "traffic_deaths" USING btree ("codmunres");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "idx_causabas" ON "traffic_deaths" USING btree ("causabas");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "idx_data_year" ON "traffic_deaths" USING btree ("data_year");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "idx_year_munocor" ON "traffic_deaths" USING btree ("data_year","codmunocor");
