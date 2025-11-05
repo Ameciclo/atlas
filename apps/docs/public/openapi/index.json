@@ -4,10 +4,6 @@
     "title": "Bicycle Racks API"
   },
   {
-    "url": "/openapi/cycling-infra.json",
-    "title": "Cycling Infra API"
-  },
-  {
     "url": "/openapi/cyclist-counts.json",
     "title": "Cyclist Counts API"
   },
@@ -18,10 +14,6 @@
   {
     "url": "/openapi/emergency-calls.json",
     "title": "Emergency Calls API"
-  },
-  {
-    "url": "/openapi/shared-bike.json",
-    "title": "Shared Bike API"
   },
   {
     "url": "/openapi/traffic-calls.json",

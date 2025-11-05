@@ -529,6 +529,1077 @@
         }
       }
     },
+    "/v1/calls/summary": {
+      "get": {
+        "tags": [
+          "Emergency Calls"
+        ],
+        "summary": "Get emergency calls summary",
+        "description": "Get general summary of emergency calls data",
+        "responses": {
+          "200": {
+            "description": "Emergency calls summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total_calls": {
+                      "type": "number"
+                    },
+                    "data_period": {
+                      "type": "object",
+                      "properties": {
+                        "start": {
+                          "type": "string"
+                        },
+                        "end": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "start",
+                        "end"
+                      ]
+                    },
+                    "calls_per_year": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    },
+                    "municipalities_count": {
+                      "type": "number"
+                    },
+                    "top_city": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "total_calls": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "total_calls"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "total_calls",
+                    "data_period",
+                    "calls_per_year",
+                    "municipalities_count",
+                    "top_city"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/calls/cities": {
+      "get": {
+        "tags": [
+          "Emergency Calls"
+        ],
+        "summary": "Get cities ranking",
+        "description": "Get complete ranking of cities by emergency calls",
+        "responses": {
+          "200": {
+            "description": "Cities ranking by emergency calls",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "cities": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ranking": {
+                            "type": "number"
+                          },
+                          "municipality": {
+                            "type": "string"
+                          },
+                          "total_calls": {
+                            "type": "number"
+                          },
+                          "percentage": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "ranking",
+                          "municipality",
+                          "total_calls",
+                          "percentage"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "cities"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/calls/cities/{city}/stats": {
+      "get": {
+        "tags": [
+          "Emergency Calls"
+        ],
+        "summary": "Get city statistics",
+        "description": "Get statistics for a specific city",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "City name",
+              "example": "RECIFE"
+            },
+            "required": true,
+            "name": "city",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "City emergency calls statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "city": {
+                      "type": "string"
+                    },
+                    "ranking": {
+                      "type": "number"
+                    },
+                    "yearly_history": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "required": [
+                    "city",
+                    "ranking",
+                    "yearly_history"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/calls/outcomes": {
+      "get": {
+        "tags": [
+          "Emergency Calls"
+        ],
+        "summary": "Get call outcomes",
+        "description": "Get emergency call outcomes by city and year",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "City name (required)",
+              "example": "RECIFE"
+            },
+            "required": true,
+            "name": "city",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Emergency call outcomes by year",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "city": {
+                      "type": "string"
+                    },
+                    "outcomes_by_year": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "city",
+                    "outcomes_by_year"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/calls/profiles": {
+      "get": {
+        "tags": [
+          "Emergency Calls"
+        ],
+        "summary": "Get call profiles",
+        "description": "Get demographic profiles of emergency calls",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "City name (required)",
+              "example": "RECIFE"
+            },
+            "required": true,
+            "name": "city",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "description": "Start year",
+              "example": 2020
+            },
+            "required": false,
+            "name": "start_year",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "description": "End year",
+              "example": 2022
+            },
+            "required": false,
+            "name": "end_year",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Emergency call demographic profiles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "city": {
+                      "type": "string"
+                    },
+                    "period": {
+                      "type": "object",
+                      "properties": {
+                        "start_year": {
+                          "type": "number"
+                        },
+                        "end_year": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "start_year",
+                        "end_year"
+                      ]
+                    },
+                    "by_gender": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    },
+                    "by_age_group": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    },
+                    "by_transport_mode": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "required": [
+                    "city",
+                    "period",
+                    "by_gender",
+                    "by_age_group",
+                    "by_transport_mode"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/unsafe-streets/cities/{city}/summary": {
+      "get": {
+        "tags": [
+          "Unsafe Streets"
+        ],
+        "summary": "Get city accidents summary",
+        "description": "Get summary of accidents by city",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "City name",
+              "example": "RECIFE"
+            },
+            "required": true,
+            "name": "city",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "City accidents summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "city": {
+                      "type": "string"
+                    },
+                    "total_accidents": {
+                      "type": "number"
+                    },
+                    "accidents_per_year": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    },
+                    "total_streets": {
+                      "type": "number"
+                    },
+                    "most_dangerous_street": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "total_accidents": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "total_accidents"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "city",
+                    "total_accidents",
+                    "accidents_per_year",
+                    "total_streets",
+                    "most_dangerous_street"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/unsafe-streets/cities/{city}/concentration": {
+      "get": {
+        "tags": [
+          "Unsafe Streets"
+        ],
+        "summary": "Get accident concentration data",
+        "description": "Get concentration of accidents by intervals",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "City name",
+              "example": "RECIFE"
+            },
+            "required": true,
+            "name": "city",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "Interval for concentration (1, 5, 10, 15, 20)",
+              "example": 10
+            },
+            "required": false,
+            "name": "interval",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Accident concentration data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "city": {
+                      "type": "string"
+                    },
+                    "interval": {
+                      "type": "number"
+                    },
+                    "concentration_data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ranking": {
+                            "type": "number"
+                          },
+                          "total_accidents": {
+                            "type": "number"
+                          },
+                          "street_extension_km": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "ranking",
+                          "total_accidents",
+                          "street_extension_km"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "city",
+                    "interval",
+                    "concentration_data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/unsafe-streets/cities/{city}/geojson": {
+      "get": {
+        "tags": [
+          "Unsafe Streets"
+        ],
+        "summary": "Get city streets GeoJSON",
+        "description": "Get geospatial data of dangerous streets",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "City name",
+              "example": "RECIFE"
+            },
+            "required": true,
+            "name": "city",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "Starting ranking position",
+              "example": 1
+            },
+            "required": false,
+            "name": "ranking_from",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "Ending ranking position",
+              "example": 10
+            },
+            "required": false,
+            "name": "ranking_to",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Streets GeoJSON data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "FeatureCollection"
+                      ]
+                    },
+                    "features": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "Feature"
+                            ]
+                          },
+                          "geometry": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string"
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number"
+                                  }
+                                }
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ]
+                          },
+                          "properties": {
+                            "type": "object",
+                            "properties": {
+                              "accidents_count": {
+                                "type": "number"
+                              },
+                              "ranking": {
+                                "type": "number"
+                              },
+                              "extension_km": {
+                                "type": "number"
+                              },
+                              "street_name": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "accidents_count",
+                              "ranking",
+                              "extension_km",
+                              "street_name"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "geometry",
+                          "properties"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "features"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/unsafe-streets/streets/{street_name}/summary": {
+      "get": {
+        "tags": [
+          "Unsafe Streets"
+        ],
+        "summary": "Get street summary",
+        "description": "Get summary for a specific street",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Street name",
+              "example": "Av. Boa Viagem"
+            },
+            "required": true,
+            "name": "street_name",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "City name for filtering",
+              "example": "RECIFE"
+            },
+            "required": false,
+            "name": "city",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Street accidents summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "street_name": {
+                      "type": "string"
+                    },
+                    "total_victims": {
+                      "type": "number"
+                    },
+                    "victims_per_year": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    },
+                    "street_extension_km": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "street_name",
+                    "total_victims",
+                    "victims_per_year",
+                    "street_extension_km"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/unsafe-streets/streets/{street_name}/profiles": {
+      "get": {
+        "tags": [
+          "Unsafe Streets"
+        ],
+        "summary": "Get victim profiles for street",
+        "description": "Get victim profiles by gender, age, and accident type for a specific street",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Street name",
+              "example": "Av. Boa Viagem"
+            },
+            "required": true,
+            "name": "street_name",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "City name for filtering",
+              "example": "RECIFE"
+            },
+            "required": false,
+            "name": "city",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Street victim profiles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "street_name": {
+                      "type": "string"
+                    },
+                    "victim_profiles": {
+                      "type": "object",
+                      "properties": {
+                        "by_gender": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        },
+                        "by_age_group": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        },
+                        "by_accident_type": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "required": [
+                        "by_gender",
+                        "by_age_group",
+                        "by_accident_type"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "street_name",
+                    "victim_profiles"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/unsafe-streets/streets/{street_name}/geojson": {
+      "get": {
+        "tags": [
+          "Unsafe Streets"
+        ],
+        "summary": "Get street GeoJSON",
+        "description": "Get geospatial data for a specific street",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Street name",
+              "example": "Av. Boa Viagem"
+            },
+            "required": true,
+            "name": "street_name",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "City name for filtering",
+              "example": "RECIFE"
+            },
+            "required": false,
+            "name": "city",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Street GeoJSON data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "FeatureCollection"
+                      ]
+                    },
+                    "features": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "Feature"
+                            ]
+                          },
+                          "geometry": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string"
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number"
+                                  }
+                                }
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ]
+                          },
+                          "properties": {
+                            "type": "object",
+                            "properties": {
+                              "street_name": {
+                                "type": "string"
+                              },
+                              "accidents_count": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "street_name",
+                              "accidents_count"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "geometry",
+                          "properties"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "features"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/unsafe-streets/streets/{street_name}/evolution": {
+      "get": {
+        "tags": [
+          "Unsafe Streets"
+        ],
+        "summary": "Get street accident evolution",
+        "description": "Get temporal evolution of accidents for a specific street",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Street name",
+              "example": "Av. Boa Viagem"
+            },
+            "required": true,
+            "name": "street_name",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "City name for filtering",
+              "example": "RECIFE"
+            },
+            "required": false,
+            "name": "city",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "Start year",
+              "example": 2020
+            },
+            "required": false,
+            "name": "start_year",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "End year",
+              "example": 2022
+            },
+            "required": false,
+            "name": "end_year",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Street accident evolution",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "street_name": {
+                      "type": "string"
+                    },
+                    "period": {
+                      "type": "object",
+                      "properties": {
+                        "start_year": {
+                          "type": "number"
+                        },
+                        "end_year": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "start_year",
+                        "end_year"
+                      ]
+                    },
+                    "by_month": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    },
+                    "by_weekday": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    },
+                    "by_hour": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "required": [
+                    "street_name",
+                    "period",
+                    "by_month",
+                    "by_weekday",
+                    "by_hour"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/unsafe-streets/streets/{street_name}/records": {
+      "get": {
+        "tags": [
+          "Unsafe Streets"
+        ],
+        "summary": "Get street accident records",
+        "description": "Get individual accident records for a specific street",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Street name",
+              "example": "Av. Boa Viagem"
+            },
+            "required": true,
+            "name": "street_name",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "City name for filtering",
+              "example": "RECIFE"
+            },
+            "required": false,
+            "name": "city",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "Year filter",
+              "example": 2022
+            },
+            "required": false,
+            "name": "year",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Street accident records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "street_name": {
+                      "type": "string"
+                    },
+                    "year": {
+                      "type": "number"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "datetime": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string"
+                          },
+                          "gender": {
+                            "type": "string"
+                          },
+                          "age": {
+                            "type": "number",
+                            "nullable": true
+                          },
+                          "outcome": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "datetime",
+                          "category",
+                          "gender",
+                          "age",
+                          "outcome"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "street_name",
+                    "records"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/analytics/municipalities": {
       "get": {
         "tags": [

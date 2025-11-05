@@ -192,8 +192,8 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 			})
 			.filter(row => row.relation_id && row.city_id && row.relation_id.trim() !== "" && row.city_id.trim() !== "")
 			.map(row => ({
-				relation_id: parseInt(row.relation_id),
-				city_id: parseInt(row.city_id)
+				relation_id: parseInt(row.relation_id!),
+				city_id: parseInt(row.city_id!)
 			}))
 			.filter(row => !isNaN(row.relation_id) && !isNaN(row.city_id));
 
