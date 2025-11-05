@@ -42,18 +42,18 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
 **Descrição:** Contagem de ciclistas em eventos
 
 ### Endpoints Events:
-- ✅ `GET /events` - Lista eventos de contagem
+- ✅ `GET /v1/events` - Lista eventos de contagem
   - Filtros: `location_id`, `city`, `start_date`, `end_date`
-- ✅ `GET /events/{id}` - Detalhes de um evento
-- ✅ `GET /locations/{id}/events` - Eventos por localização
+- ✅ `GET /v1/events/{id}` - Detalhes de um evento
+- ✅ `GET /v1/locations/{id}/events` - Eventos por localização
 
 ### Endpoints Locations:
-- ✅ `GET /locations` - Lista localizações de contagem
-- ✅ `GET /locations/{id}` - Detalhes de uma localização
+- ✅ `GET /v1/locations` - Lista localizações de contagem
+- ✅ `GET /v1/locations/{id}` - Detalhes de uma localização
 
 ### Endpoints Sessions:
-- ✅ `GET /sessions` - Lista sessões de contagem
-- ✅ `GET /sessions/{id}` - Detalhes de uma sessão
+- ✅ `GET /v1/sessions/{id}` - Detalhes de uma sessão
+- ✅ `GET /v1/events/{id}/sessions` - Sessões por evento
 
 ---
 
@@ -278,13 +278,13 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
 **Descrição:** Dados de mortes no trânsito
 
 ### Endpoints:
-- ✅ `GET /deaths/cyclists` - Estatísticas de mortes de ciclistas
+- ✅ `GET /v1/deaths/cyclists` - Estatísticas de mortes de ciclistas
   - Filtros: `year`, `city_code`
-- ✅ `GET /deaths/by-city` - Mortes agrupadas por cidade
-- ✅ `GET /deaths/by-transport-mode` - Mortes por modo de transporte
-- ✅ `GET /deaths/stats` - Estatísticas gerais
-- ✅ `GET /deaths/summary` - Resumo das mortes
-- ✅ `GET /deaths/time-series` - Série temporal das mortes
+- ✅ `GET /v1/deaths/by-city` - Mortes agrupadas por cidade
+- ✅ `GET /v1/deaths/by-transport-mode` - Mortes por modo de transporte
+- ✅ `GET /v1/stats` - Estatísticas gerais
+- ✅ `GET /v1/summary` - Resumo das mortes
+- ✅ `GET /v1/deaths/time-series` - Série temporal das mortes
 
 ---
 
@@ -540,23 +540,12 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
 **Descrição:** Estações de bike compartilhado
 
 ### Endpoints:
-- ✅ `GET /stations` - Lista estações
-- ✅ `GET /stations/{id}` - Detalhes de uma estação
+- ✅ `GET /v1/stations` - Lista estações
+- ✅ `GET /v1/stations/{id}` - Detalhes de uma estação
 
 ---
 
-## 🏙️ **10. Brazil Cities API**
 
-**Serviço:** `apps/brazil-cities`  
-**Descrição:** Dados de cidades brasileiras
-
-### Endpoints:
-- 🚧 `GET /cities` - Lista cidades brasileiras
-- 🚧 `GET /cities/{id}` - Detalhes de uma cidade
-- 🚧 `GET /states` - Lista estados
-- 🚧 `GET /states/{id}/cities` - Cidades por estado
-
----
 
 ## 📋 **Padrões Identificados**
 
@@ -619,7 +608,6 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
 | **Traffic Violations** | 6 | 7 | 0 | 13 |
 | **Cycling Infrastructure** | 6 | 0 | 0 | 6 |
 | **Shared Bike** | 2 | 0 | 0 | 2 |
-| **Brazil Cities** | 0 | 0 | 4 | 4 |
 
 ### **Próximas Prioridades:**
 
@@ -628,8 +616,7 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
 - Traffic Violations - Streets: 4 endpoints restantes  
 - Traffic Violations - Análises: 3 endpoints restantes
 
-**📋 Média Prioridade (4 endpoints):**
-- Brazil Cities API: 4 endpoints básicos
+
 
 ### **Filtros Comuns:**
 - **Datas:** `start_date`, `end_date`
@@ -648,5 +635,5 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
 ---
 
 **Última atualização:** Janeiro 2025  
-**Total de serviços:** 10  
-**Total de endpoints:** 44 (25 ✅ + 15 📝 + 4 🚧)
+**Total de serviços:** 9  
+**Total de endpoints:** 40 (25 ✅ + 15 📝)

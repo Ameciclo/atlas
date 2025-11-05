@@ -152,7 +152,7 @@ export const streetsRanking: AppRouteHandler<typeof streetsRankingRoute> = async
 			transport_corridor: street.transport_corridor,
 		}));
 
-		return c.json({ streets }, 200);
+		return c.json({ streets }, 200) as any;
 	} catch (error) {
 		console.error("Error fetching streets ranking:", error);
 		return c.json({ error: "Internal server error" }, 500);
@@ -228,7 +228,7 @@ export const streetSummary: AppRouteHandler<typeof streetSummaryRoute> = async (
 				violations_per_year: violationsPerYear,
 				top_violation_types: topViolationTypes,
 			},
-		}, 200);
+		}, 200) as any;
 	} catch (error) {
 		console.error("Error fetching street summary:", error);
 		return c.json({ error: "Internal server error" }, 500);
@@ -285,7 +285,7 @@ export const streetViolations: AppRouteHandler<typeof streetViolationsRoute> = a
 				offset,
 				total: totalResult?.count || 0,
 			},
-		}, 200);
+		}, 200) as any;
 	} catch (error) {
 		console.error("Error fetching street violations:", error);
 		return c.json({ error: "Internal server error" }, 500);
@@ -333,7 +333,7 @@ export const neighborhoods: AppRouteHandler<typeof neighborhoodsRoute> = async (
 				ranking: index + 1,
 			}));
 
-		return c.json({ neighborhoods }, 200);
+		return c.json({ neighborhoods }, 200) as any;
 	} catch (error) {
 		console.error("Error fetching neighborhoods:", error);
 		return c.json({ error: "Internal server error" }, 500);

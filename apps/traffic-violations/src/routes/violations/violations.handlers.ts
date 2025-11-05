@@ -27,7 +27,7 @@ export const listViolationsHandler: AppRouteHandler<
 		offset = 0,
 	} = c.req.valid("query");
 
-	const conditions = [];
+	const conditions: any[] = [];
 
 	try {
 		if (start_date) {
@@ -101,7 +101,7 @@ export const violationsByLocationHandler: AppRouteHandler<ViolationsByLocationRo
 
 	try {
 		// Build date conditions
-		const conditions = [];
+		const conditions: any[] = [];
 		if (start_date) {
 			conditions.push(gte(trafficViolations.violation_date, new Date(start_date)));
 		}
@@ -137,7 +137,7 @@ export const violationsByLocationHandler: AppRouteHandler<ViolationsByLocationRo
 			coordinates: location.coordinates,
 		}));
 
-		return c.json({ locations }, 200);
+		return c.json({ locations }, 200) as any;
 	} catch (error) {
 		console.error("Error fetching violations by location:", error);
 		return c.json({ error: "Internal server error" }, 500);
@@ -149,7 +149,7 @@ export const violationsHotspotsHandler: AppRouteHandler<ViolationsHotspotsRoute>
 
 	try {
 		// Build conditions
-		const conditions = [];
+		const conditions: any[] = [];
 		if (violation_type_id) {
 			conditions.push(eq(trafficViolations.violation_type_id, violation_type_id));
 		}
@@ -197,7 +197,7 @@ export const violationsHotspotsHandler: AppRouteHandler<ViolationsHotspotsRoute>
 		return c.json({
 			type: "FeatureCollection" as const,
 			features,
-		}, 200);
+		}, 200) as any;
 	} catch (error) {
 		console.error("Error fetching violation hotspots:", error);
 		return c.json({ error: "Internal server error" }, 500);
@@ -209,7 +209,7 @@ export const violationsGeoJSONHandler: AppRouteHandler<ViolationsGeoJSONRoute> =
 
 	try {
 		// Build conditions
-		const conditions = [];
+		const conditions: any[] = [];
 		if (start_date) {
 			conditions.push(gte(trafficViolations.violation_date, new Date(start_date)));
 		}
@@ -255,7 +255,7 @@ export const violationsGeoJSONHandler: AppRouteHandler<ViolationsGeoJSONRoute> =
 					properties: {
 						violation_type: `Type ${violation.violation_type_id}`,
 						agent_id: violation.agent_id,
-						date: violation.violation_date.toISOString().split('T')[0],
+						date: violation.violation_date?.toISOString().split('T')[0] || '',
 						description: violation.description,
 					},
 				};
@@ -264,7 +264,7 @@ export const violationsGeoJSONHandler: AppRouteHandler<ViolationsGeoJSONRoute> =
 		return c.json({
 			type: "FeatureCollection" as const,
 			features,
-		}, 200);
+		}, 200) as any;
 	} catch (error) {
 		console.error("Error fetching violations GeoJSON:", error);
 		return c.json({ error: "Internal server error" }, 500);

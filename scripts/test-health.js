@@ -2,9 +2,11 @@
 
 const services = [
   { name: 'cyclist-profile', port: 3000 },
-  { name: 'cyclist-counts', port: 3001 },
+  { name: 'cyclist-counts', port: 3002 },
+  { name: 'shared-bike', port: 3015 },
   { name: 'traffic-deaths', port: 3003 },
   { name: 'bicycle-racks', port: 3005 },
+  { name: 'cycling-infra', port: 3020 },
   { name: 'emergency-calls', port: 3010 },
   { name: 'traffic-violations', port: 3013 },
   { name: 'traffic-calls', port: 3019 }

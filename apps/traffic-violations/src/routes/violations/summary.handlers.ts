@@ -77,7 +77,7 @@ export const byType = async (c: any) => {
 	const { start_date, end_date, limit } = c.req.valid("query");
 
 	// Build conditions
-	const conditions = [];
+	const conditions: any[] = [];
 	if (start_date) {
 		conditions.push(gte(trafficViolations.violation_date, new Date(start_date)));
 	}
@@ -118,7 +118,7 @@ export const byType = async (c: any) => {
 				.where(
 					and(
 						eq(trafficViolations.violation_type_id, type.violation_type_id),
-						...(conditions.length > 0 ? conditions : [])
+						...(conditions.length > 0 ? conditions : [] as any[])
 					)
 				)
 				.groupBy(sql`EXTRACT(YEAR FROM ${trafficViolations.violation_date})`)
@@ -147,7 +147,7 @@ export const byAgent = async (c: any) => {
 	const { start_date, end_date, limit } = c.req.valid("query");
 
 	// Build conditions
-	const conditions = [];
+	const conditions: any[] = [];
 	if (start_date) {
 		conditions.push(gte(trafficViolations.violation_date, new Date(start_date)));
 	}
@@ -181,7 +181,7 @@ export const byAgent = async (c: any) => {
 				.where(
 					and(
 						eq(trafficViolations.agent_id, agent.agent_id),
-						...(conditions.length > 0 ? conditions : [])
+						...(conditions.length > 0 ? conditions : [] as any[])
 					)
 				)
 				.groupBy(sql`TO_CHAR(${trafficViolations.violation_date}, 'YYYY-MM')`)
@@ -208,7 +208,7 @@ export const temporalAnalysis = async (c: any) => {
 	const { start_date, end_date, violation_type_id } = c.req.valid("query");
 
 	// Build conditions
-	const conditions = [];
+	const conditions: any[] = [];
 	if (start_date) {
 		conditions.push(gte(trafficViolations.violation_date, new Date(start_date)));
 	}
