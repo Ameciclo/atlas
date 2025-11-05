@@ -1,4 +1,12 @@
-import { boolean, integer, jsonb, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import {
+	boolean,
+	integer,
+	jsonb,
+	pgTable,
+	serial,
+	text,
+	timestamp,
+} from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 // ============================================================================
@@ -29,8 +37,10 @@ export const sharedBikeStations = pgTable("shared_bike_stations", {
 // Zod Schemas
 // ============================================================================
 
-export const insertSharedBikeStationSchema = createInsertSchema(sharedBikeStations);
-export const selectSharedBikeStationSchema = createSelectSchema(sharedBikeStations);
+export const insertSharedBikeStationSchema =
+	createInsertSchema(sharedBikeStations);
+export const selectSharedBikeStationSchema =
+	createSelectSchema(sharedBikeStations);
 
 // ============================================================================
 // TypeScript Types
