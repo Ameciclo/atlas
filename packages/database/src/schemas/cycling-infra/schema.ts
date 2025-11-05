@@ -21,7 +21,7 @@ export const cities = pgTable("cities", {
 
 export const cyclistInfraRelations = pgTable("cyclist_infra_relations", {
 	id: serial("id").primaryKey(),
-	osm_id: integer("osm_id"),
+	osm_id: text("osm_id"),
 	pdc_ref: text("pdc_ref"), // CM01, CCV01, CCF01, CCR01
 	pdc_typology: text("pdc_typology"), // Ciclovia, Ciclofaixa, Ciclorrota
 	name: text("name"),
