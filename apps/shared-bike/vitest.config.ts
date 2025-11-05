@@ -7,7 +7,9 @@ export default defineConfig({
 		env: {
 			DATABASE_URL:
 				process.env.DATABASE_URL ||
-				"postgresql://postgres:postgres@localhost:5432/atlas",
+				"postgresql://postgres:postgres@localhost:5432/atlas_dev?sslmode=disable",
+			NODE_ENV: "test",
 		},
+		setupFiles: ["./test/setup.ts"],
 	},
 });
