@@ -43,11 +43,55 @@ interface GeoJSONCollection {
 }
 
 function parseCSV(content: string): Record<string, string>[] {
-	const lines = content.trim().split("\n");
-	const headers = lines[0]?.split(",") || [];
-
-	return lines.slice(1).map((line) => {
-		const values = line.split(",");
+	const lines: string[] = [];
+	let currentLine = "";
+	let inQuotes = false;
+	
+	// Parse CSV properly handling quoted fields with line breaks
+	for (let i = 0; i < content.length; i++) {
+		const char = content[i];
+		
+		if (char === '"') {
+			inQuotes = !inQuotes;
+		}
+		
+		if (char === '\n' && !inQuotes) {
+			lines.push(currentLine.trim());
+			currentLine = "";
+		} else {
+			currentLine += char;
+		}
+	}
+	
+	// Add last line if exists
+	if (currentLine.trim()) {
+		lines.push(currentLine.trim());
+	}
+	
+	const headers = lines[0]?.split(",").map(h => h.replace(/"/g, '').trim()) || [];
+	
+	return lines.slice(1).filter(line => line.trim()).map((line) => {
+		const values: string[] = [];
+		let currentValue = "";
+		let inQuotes = false;
+		
+		// Parse values properly handling quoted fields
+		for (let i = 0; i < line.length; i++) {
+			const char = line[i];
+			
+			if (char === '"') {
+				inQuotes = !inQuotes;
+			} else if (char === ',' && !inQuotes) {
+				values.push(currentValue.replace(/"/g, '').trim());
+				currentValue = "";
+			} else {
+				currentValue += char;
+			}
+		}
+		
+		// Add last value
+		values.push(currentValue.replace(/"/g, '').trim());
+		
 		const row: Record<string, string> = {};
 		headers.forEach((header, i) => {
 			row[header] = values[i] || "";
@@ -123,6 +167,47 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 			.values(relationsToInsert)
 			.onConflictDoNothing();
 		console.log(`✅ Inserted ${relationsToInsert.length} relations\n`);
+
+		// 2.5. Seed Relation-Cities relationships
+		console.log("🔗 Loading relation-cities...");
+		const relationCitiesContent = await readFile(
+			join(dataPath, "relations_cities.csv"),
+			"utf-8"
+		);
+		const relationCitiesData = parseCSV(relationCitiesContent);
+
+		console.log(`Found ${relationCitiesData.length} relation-city rows`);
+		console.log('First few rows:', relationCitiesData.slice(0, 3));
+
+		const relationCitiesToInsert = relationCitiesData
+			.map(row => {
+				// Clean up keys and values from \r characters
+				const cleanRow: Record<string, string> = {};
+				for (const [key, value] of Object.entries(row)) {
+					const cleanKey = key.replace(/\r/g, '');
+					const cleanValue = value.replace(/\r/g, '');
+					cleanRow[cleanKey] = cleanValue;
+				}
+				return cleanRow;
+			})
+			.filter(row => row.relation_id && row.city_id && row.relation_id.trim() !== "" && row.city_id.trim() !== "")
+			.map(row => ({
+				relation_id: parseInt(row.relation_id),
+				city_id: parseInt(row.city_id)
+			}))
+			.filter(row => !isNaN(row.relation_id) && !isNaN(row.city_id));
+
+		if (relationCitiesToInsert.length === 0) {
+			console.log('⚠️ No valid relation-city relationships to insert');
+			return;
+		}
+
+		await db
+			.insert(cyclingInfraSchema.cyclistInfraRelationCities)
+			.values(relationCitiesToInsert)
+			.onConflictDoNothing();
+
+		console.log(`✅ Inserted ${relationCitiesToInsert.length} relation-city relationships\n`);
 
 		// 3. Seed Ways (PDC Relations)
 		console.log("🛣️ Loading ways...");
@@ -205,6 +290,7 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 		return {
 			cities: citiesToInsert.length,
 			relations: relationsToInsert.length,
+			relationCities: relationCitiesToInsert.length,
 			ways: waysToInsert.length,
 			ciclomapa: ciclomapaToInsert.length,
 		};
