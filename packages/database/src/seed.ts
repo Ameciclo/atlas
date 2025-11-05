@@ -10,6 +10,7 @@ import { seedTrafficCalls } from "./seed-traffic-calls.js";
 import { seedOfficialStreets } from "./seed-official-streets.js";
 import { seedTrafficViolations } from "./seed-traffic-violations.js";
 import { seedCyclingInfra } from "./seed-cycling-infra.js";
+import { seedSharedBike } from "./seed-shared-bike.js";
 
 // Load environment variables from .env.local first, then .env
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
@@ -139,6 +140,13 @@ async function masterSeed(options: SeedOptions = {}) {
 			icon: "🚴‍♂️",
 			color: chalk.green,
 			fn: seedCyclingInfra,
+		},
+		{
+			name: "Shared Bike Stations",
+			id: "shared-bike",
+			icon: "🚲",
+			color: chalk.blue,
+			fn: seedSharedBike,
 		},
 	];
 

@@ -54,7 +54,6 @@
 			"types": "./dist/schemas/shared-bike/index.d.ts",
 			"import": "./dist/schemas/shared-bike/index.js"
 		}
-		}
 	},
 	"scripts": {
 		"build": "tsc",
