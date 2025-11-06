@@ -3,6 +3,30 @@ import * as HttpStatusCodes from "stoker/http-status-codes";
 import { jsonContent } from "stoker/openapi/helpers";
 import { selectPdcRelationWaysSchema } from "../../db/schema.js";
 
+// Original format schema
+const OriginalWaySchema = z.object({
+	osmId: z.number(),
+	name: z.string().nullable(),
+	length: z.number(),
+	highway: z.string(),
+	hasCycleway: z.boolean(),
+	cyclewayTypology: z.string(),
+	relationId: z.number(),
+	geojson: z.object({
+		type: z.literal("FeatureCollection"),
+		features: z.array(z.object({
+			id: z.string(),
+			type: z.literal("Feature"),
+			geometry: z.any(),
+			properties: z.record(z.any())
+		}))
+	}),
+	lastUpdated: z.null(),
+	cityId: z.number(),
+	dualCarriageway: z.boolean(),
+	pdcTypology: z.string()
+});
+
 const tags = ["Ways"];
 
 const WaysSummarySchema = z.object({
@@ -46,8 +70,8 @@ export const list = createRoute({
 	description: "Get all PDC relation ways",
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
-			z.array(selectPdcRelationWaysSchema),
-			"List of PDC ways",
+			z.array(OriginalWaySchema),
+			"List of PDC ways in original format",
 		),
 	},
 });
