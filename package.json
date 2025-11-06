@@ -20,6 +20,7 @@
 		"db:reset": "pnpm --filter @atlas/database db:reset",
 		"db:reset:seed": "pnpm --filter @atlas/database db:reset:seed",
 		"db:generate": "pnpm --filter @atlas/database db:generate",
+		"db:custom": "pnpm --filter @atlas/database db:custom",
 		"db:drop": "pnpm --filter @atlas/database db:drop",
 		"test-connections": "node scripts/test-connections.js",
 		"check-ports": "node scripts/check-ports.js",

@@ -28,6 +28,21 @@ interface CSVRelation {
 	pdc_km: string;
 }
 
+interface CSVWay {
+	osm_id: string;
+	name: string;
+	length: string;
+	highway: string;
+	has_cycleway: string;
+	cycleway_typology: string;
+	relation_id: string;
+	geojson: string;
+	lastupdated: string;
+	city_id: string;
+	dual_carriageway: string;
+	pdc_typology: string;
+}
+
 interface GeoJSONFeature {
 	type: "Feature";
 	properties: Record<string, any>;
@@ -209,34 +224,59 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 
 		console.log(`✅ Inserted ${relationCitiesToInsert.length} relation-city relationships\n`);
 
-		// 3. Seed Ways (PDC Relations)
-		console.log("🛣️ Loading ways...");
-		const waysContent = await readFile(join(dataPath, "ways.geojson"), "utf-8");
-		const waysData: GeoJSONCollection = JSON.parse(waysContent);
+		// 3. Seed Ways (Processed OSM Data)
+		console.log("🛣️ Loading processed ways...");
+		const waysContent = await readFile(join(dataPath, "processed_ways.json"), "utf-8");
+		const waysData = JSON.parse(waysContent);
 
-		console.log(`Found ${waysData.features.length} ways features`);
+		console.log(`Found ${waysData.length} processed ways`);
 
 		// Get all relations to match relation_id
 		const allRelations = await db.select().from(cyclingInfraSchema.cyclistInfraRelations);
-		const relationMap = new Map(allRelations.map(r => [r.osm_id, r.id]));
+		console.log(`Found ${allRelations.length} relations in DB`);
+		console.log('Sample relations:', allRelations.slice(0, 3).map(r => ({ id: r.id, osm_id: r.osm_id })));
 
-		const waysToInsert = waysData.features.map((feature) => {
-			const osmId = feature.properties["@id"] || "";
-			// Extract relation ID from way's osm_id (e.g., "relation/16000464" -> find matching relation)
+		const relationMap = new Map(allRelations.map(r => [r.osm_id, r.id]));
+		console.log('RelationMap keys:', Array.from(relationMap.keys()).slice(0, 5));
+		console.log('Sample way relation_ids:', waysData.slice(0, 5).map(w => w.relation_id));
+
+		const waysToInsert = waysData.map((way: any) => {
+			// Parse GeoJSON from string (it's double-encoded)
+			const geojsonData = JSON.parse(way.geojson);
+			const geometry = geojsonData.features[0].geometry;
+			
+			// Find relation by relation_id from JSON
 			let relationId = null;
-			if (osmId.startsWith("relation/")) {
-				relationId = relationMap.get(osmId) || null;
+			if (way.relation_id && way.relation_id !== 0 && way.relation_id !== "0") {
+				// Find relation by matching the relation_id from our processed data
+				relationId = relationMap.get(way.relation_id) || null;
+				
+				// Debug first few
+				if (waysData.indexOf(way) < 3) {
+					console.log(`Way ${way.osm_id}: relation_id=${way.relation_id} found=${relationId}`);
+				}
 			}
 
+
 			return {
-				osm_id: osmId,
+				osm_id: `way/${way.osm_id}`,
 				relation_id: relationId,
-				geometry_type: feature.geometry.type,
-				coordinates: JSON.stringify(feature.geometry), // Full geometry object for ST_GeomFromGeoJSON
-				osm_properties: feature.properties,
-				geojson: feature,
+				name: way.name || null,
+				geometry_type: geometry?.type || "LineString",
+				coordinates: geometry ? JSON.stringify(geometry) : null,
+				osm_properties: {
+					length: way.length,
+					highway: way.highway,
+					has_cycleway: way.has_cycleway,
+					cycleway_typology: way.cycleway_typology,
+					city_id: way.city_id,
+					dual_carriageway: way.dual_carriageway,
+					pdc_typology: way.pdc_typology,
+					lastupdated: way.lastupdated
+				},
+				geojson: geojsonData,
 			};
-		});
+		}).filter(way => way.coordinates !== null);
 
 		// Insert in batches
 		const batchSize = 1000;
