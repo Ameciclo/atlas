@@ -69,5 +69,13 @@ export const getSummary = createRoute({
 			},
 			description: "Summary of cyclist counting data",
 		},
+		500: {
+			content: {
+				"application/json": {
+					schema: z.object({ error: z.string() }),
+				},
+			},
+			description: "Internal server error",
+		},
 	},
 });

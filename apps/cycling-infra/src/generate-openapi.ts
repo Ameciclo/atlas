@@ -32,8 +32,16 @@ async function generateOpenAPISpec() {
 			],
 			tags: [
 				{
-					name: "Example",
-					description: "Example endpoints",
+					name: "Infrastructure",
+					description: "Cycling infrastructure operations",
+				},
+				{
+					name: "Relations",
+					description: "PDC cycling infrastructure relations",
+				},
+				{
+					name: "Ways",
+					description: "Cycling infrastructure ways",
 				},
 				{
 					name: "System",

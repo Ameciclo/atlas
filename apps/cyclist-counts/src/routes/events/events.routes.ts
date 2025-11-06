@@ -81,6 +81,69 @@ export const getByLocationId = createRoute({
 	},
 });
 
+const EventDetailsSchema = z.object({
+	id: z.number(),
+	slug: z.string(),
+	name: z.string(),
+	date: z.string(),
+	city: z.object({
+		id: z.number(),
+		name: z.string(),
+		state: z.string(),
+		full_state: z.string(),
+		rmr: z.boolean(),
+	}),
+	coordinates: z.array(z.object({
+		point: z.object({
+			x: z.number(),
+			y: z.number(),
+		}),
+		type: z.string(),
+		name: z.string(),
+	})),
+	directions: z.record(z.string()),
+	sessions: z.record(z.object({
+		start_time: z.string(),
+		end_time: z.string(),
+		total_cyclists: z.number(),
+		quantitative: z.record(z.number()),
+		characteristics: z.record(z.number()),
+	})),
+	summary: z.object({
+		max_hour: z.number(),
+		total_cyclists: z.number(),
+		total_cargo: z.number(),
+		total_helmet: z.number(),
+		total_juveniles: z.number(),
+		total_motor: z.number(),
+		total_ride: z.number(),
+		total_service: z.number(),
+		total_shared_bike: z.number(),
+		total_sidewalk: z.number(),
+		total_women: z.number(),
+		total_wrong_way: z.number(),
+	}),
+});
+
+export const getDetailsById = createRoute({
+	path: "/events/{id}/details",
+	method: "get",
+	tags,
+	summary: "Get detailed event data by ID",
+	description: "Get comprehensive event details including sessions, characteristics, directions and summary",
+	request: {
+		params: IdParamsSchema,
+	},
+	responses: {
+		[HttpStatusCodes.OK]: jsonContent(
+			EventDetailsSchema,
+			"Detailed event data",
+		),
+		[HttpStatusCodes.NOT_FOUND]: jsonContent(notFoundSchema, "Event not found"),
+	},
+});
+
 export type ListRoute = typeof list;
 export type GetByIdRoute = typeof getById;
 export type GetByLocationIdRoute = typeof getByLocationId;
+export type GetDetailsByIdRoute = typeof getDetailsById;

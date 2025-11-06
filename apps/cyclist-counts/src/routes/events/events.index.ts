@@ -5,6 +5,7 @@ import * as routes from "./events.routes.js";
 const router = createRouter()
 	.openapi(routes.list, handlers.list)
 	.openapi(routes.getById, handlers.getById)
-	.openapi(routes.getByLocationId, handlers.getByLocationId);
+	.openapi(routes.getByLocationId, handlers.getByLocationId)
+	.openapi(routes.getDetailsById, handlers.getDetailsById);
 
 export default router;

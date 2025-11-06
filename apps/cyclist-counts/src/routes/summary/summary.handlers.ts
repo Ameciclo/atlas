@@ -37,7 +37,10 @@ export const getSummaryHandler: AppRouteHandler<typeof getSummary> = async (c) =
 		const cityMapping = new Map(cities.map(city => [`${city.name}-${city.state}`, city]));
 
 		for (const event of events) {
-			const { id, counting_date, location_id } = event.counting_events;
+			const eventData = event.counting_events;
+			if (!eventData) continue;
+			
+			const { id, counting_date, location_id } = eventData;
 			const location = event.counting_locations;
 
 			const totalCyclistsResult = await db
@@ -96,7 +99,7 @@ export const getSummaryHandler: AppRouteHandler<typeof getSummary> = async (c) =
 		let summary = {
 			total_cyclists: total_cyclists_summary,
 			number_counts: events.length,
-			different_counts_points: new Set(events.map(e => e.counting_events.location_id)).size,
+			different_counts_points: new Set(events.map(e => e.counting_events?.location_id).filter(Boolean)).size,
 			where_max_count,
 			total_cargo: 0,
 			total_helmet: 0,
@@ -127,7 +130,7 @@ export const getSummaryHandler: AppRouteHandler<typeof getSummary> = async (c) =
 			}
 		}
 
-		return c.json({ counts: editionsRes, summary });
+		return c.json({ counts: editionsRes, summary }, 200);
 	} catch (error) {
 		console.error("Error executing SQL queries:", error);
 		return c.json({ error: "Internal Server Error" }, 500);

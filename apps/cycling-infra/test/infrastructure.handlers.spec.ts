@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import type { Context } from "hono";
 import {
-	listInfrastructure,
-	getInfrastructure,
+	list,
+	getById,
 } from "../src/routes/infrastructure/infrastructure.handlers.js";
 
 // Mock the database
@@ -51,11 +51,11 @@ describe("Infrastructure Handlers", () => {
 		vi.clearAllMocks();
 	});
 
-	describe("listInfrastructure", () => {
+	describe("list", () => {
 		it("should return infrastructure list", async () => {
 			const mockContext = createMockContext();
 
-			await listInfrastructure(mockContext);
+			await list(mockContext);
 
 			expect(mockContext.json).toHaveBeenCalledWith([mockInfrastructure]);
 		});
@@ -63,7 +63,7 @@ describe("Infrastructure Handlers", () => {
 		it("should filter by type when provided", async () => {
 			const mockContext = createMockContext({ type: "Ciclofaixa" });
 
-			await listInfrastructure(mockContext);
+			await list(mockContext);
 
 			expect(mockContext.json).toHaveBeenCalledWith([mockInfrastructure]);
 		});
@@ -71,7 +71,7 @@ describe("Infrastructure Handlers", () => {
 		it("should apply limit when provided", async () => {
 			const mockContext = createMockContext({ limit: "5" });
 
-			await listInfrastructure(mockContext);
+			await list(mockContext);
 
 			expect(mockContext.json).toHaveBeenCalledWith([mockInfrastructure]);
 		});
@@ -92,7 +92,7 @@ describe("Infrastructure Handlers", () => {
 
 			const mockContext = createMockContext();
 
-			await listInfrastructure(mockContext);
+			await list(mockContext);
 
 			expect(mockContext.json).toHaveBeenCalledWith(
 				{ error: "Internal server error" },
@@ -101,11 +101,21 @@ describe("Infrastructure Handlers", () => {
 		});
 	});
 
-	describe("getInfrastructure", () => {
+	describe("getById", () => {
 		it("should return infrastructure by ID", async () => {
+			const { createConnectedDatabase } = await import("@atlas/database");
+			const mockDb = {
+				select: vi.fn(() => ({
+					from: vi.fn(() => ({
+						where: vi.fn(() => Promise.resolve([mockInfrastructure])),
+					})),
+				})),
+			};
+			vi.mocked(createConnectedDatabase).mockResolvedValueOnce(mockDb as never);
+
 			const mockContext = createMockContext({}, { id: "1" });
 
-			await getInfrastructure(mockContext);
+			await getById(mockContext);
 
 			expect(mockContext.json).toHaveBeenCalledWith(mockInfrastructure);
 		});
@@ -113,7 +123,7 @@ describe("Infrastructure Handlers", () => {
 		it("should return 400 for invalid ID", async () => {
 			const mockContext = createMockContext({}, { id: "invalid" });
 
-			await getInfrastructure(mockContext);
+			await getById(mockContext);
 
 			expect(mockContext.json).toHaveBeenCalledWith(
 				{ error: "Invalid ID" },
@@ -126,9 +136,7 @@ describe("Infrastructure Handlers", () => {
 			const mockDb = {
 				select: vi.fn(() => ({
 					from: vi.fn(() => ({
-						where: vi.fn(() => ({
-							limit: vi.fn(() => Promise.resolve([])),
-						})),
+						where: vi.fn(() => Promise.resolve([])),
 					})),
 				})),
 			};
@@ -136,7 +144,7 @@ describe("Infrastructure Handlers", () => {
 
 			const mockContext = createMockContext({}, { id: "999" });
 
-			await getInfrastructure(mockContext);
+			await getById(mockContext);
 
 			expect(mockContext.json).toHaveBeenCalledWith(
 				{ error: "Infrastructure not found" },

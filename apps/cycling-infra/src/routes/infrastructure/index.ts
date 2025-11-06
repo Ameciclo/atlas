@@ -1,13 +1,9 @@
 import { createRouter } from "../../lib/create-app.js";
-import {
-	listInfrastructureRoute,
-	getInfrastructureRoute,
-} from "./infrastructure.routes.js";
-import {
-	listInfrastructure,
-	getInfrastructure,
-} from "./infrastructure.handlers.js";
+import * as handlers from "./infrastructure.handlers.js";
+import * as routes from "./infrastructure.routes.js";
 
-export const infrastructureRoutes = createRouter()
-	.openapi(listInfrastructureRoute, listInfrastructure)
-	.openapi(getInfrastructureRoute, getInfrastructure);
+const router = createRouter()
+	.openapi(routes.list, handlers.list)
+	.openapi(routes.getById, handlers.getById);
+
+export default router;

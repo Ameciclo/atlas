@@ -1,122 +1,85 @@
 import { createRoute, z } from "@hono/zod-openapi";
+import * as HttpStatusCodes from "stoker/http-status-codes";
+import { jsonContent } from "stoker/openapi/helpers";
+import { selectPdcRelationWaysSchema } from "../../db/schema.js";
 
-const WaySchema = z.object({
-	id: z.number(),
-	osm_id: z.string(),
-	relation_id: z.number().nullable(),
-	name: z.string().nullable(),
-	geometry_type: z.string(),
-	coordinates: z.any(),
-	osm_properties: z.any(),
-	geojson: z.any(),
-	created_at: z.string(),
-	updated_at: z.string(),
-});
+const tags = ["Ways"];
 
-const WayListSchema = z.array(WaySchema);
-
-const GeoJSONFeatureCollectionSchema = z.object({
-	type: z.literal("FeatureCollection"),
-	features: z.array(z.any()),
-});
-
-const SummarySchema = z.object({
+const WaysSummarySchema = z.object({
 	all: z.object({
 		pdc_feito: z.number(),
 		out_pdc: z.number(),
 		pdc_total: z.number(),
 		percent: z.number(),
 	}),
-	byCity: z.record(
-		z.object({
-			pdc_feito: z.number(),
-			out_pdc: z.number(),
-			pdc_total: z.number(),
-			percent: z.number(),
-		}),
-	),
+	byCity: z.record(z.object({
+		pdc_feito: z.number(),
+		out_pdc: z.number(),
+		pdc_total: z.number(),
+		percent: z.number(),
+	})),
 });
 
-export const listWaysRoute = createRoute({
+const GeoJSONFeatureSchema = z.object({
+	type: z.literal("Feature"),
+	geometry: z.any(),
+	properties: z.object({
+		STATUS: z.enum(["Realizada", "Projeto", "NotPDC"]),
+	}).and(z.record(z.any())),
+});
+
+const GeoJSONCollectionSchema = z.object({
+	type: z.literal("FeatureCollection"),
+	features: z.array(GeoJSONFeatureSchema),
+});
+
+const AllWaysResponseSchema = z.object({
+	all: GeoJSONCollectionSchema,
+	byCity: z.record(GeoJSONCollectionSchema),
+});
+
+export const list = createRoute({
+	path: "/ways",
 	method: "get",
-	path: "/v1/ways",
-	summary: "List PDC ways",
-	description: "Get all ways from PDC relations (planned routes)",
+	tags,
+	summary: "List all PDC ways",
+	description: "Get all PDC relation ways",
 	responses: {
-		200: {
-			content: {
-				"application/json": {
-					schema: WayListSchema,
-				},
-			},
-			description: "List of PDC ways",
-		},
-		500: {
-			content: {
-				"application/json": {
-					schema: z.object({
-						error: z.string(),
-					}),
-				},
-			},
-			description: "Internal server error",
-		},
+		[HttpStatusCodes.OK]: jsonContent(
+			z.array(selectPdcRelationWaysSchema),
+			"List of PDC ways",
+		),
 	},
 });
 
-export const getWaysSummaryRoute = createRoute({
+export const getSummary = createRoute({
+	path: "/ways/summary",
 	method: "get",
-	path: "/v1/ways/summary",
-	summary: "Get ways summary",
-	description: "Get summary statistics of PDC implementation",
+	tags,
+	summary: "Get ways summary statistics",
+	description: "Get summary statistics of PDC ways implementation",
 	responses: {
-		200: {
-			content: {
-				"application/json": {
-					schema: SummarySchema,
-				},
-			},
-			description: "Summary statistics",
-		},
-		500: {
-			content: {
-				"application/json": {
-					schema: z.object({
-						error: z.string(),
-					}),
-				},
-			},
-			description: "Internal server error",
-		},
+		[HttpStatusCodes.OK]: jsonContent(
+			WaysSummarySchema,
+			"Ways summary statistics",
+		),
 	},
 });
 
-export const getAllWaysGeoJSONRoute = createRoute({
+export const getAll = createRoute({
+	path: "/ways/all-ways",
 	method: "get",
-	path: "/v1/ways/all-ways",
+	tags,
 	summary: "Get all ways as GeoJSON",
-	description: "Get all ways combined as GeoJSON FeatureCollection",
+	description: "Get all PDC ways formatted as GeoJSON FeatureCollection",
 	responses: {
-		200: {
-			content: {
-				"application/json": {
-					schema: z.object({
-						all: GeoJSONFeatureCollectionSchema,
-						byCity: z.record(GeoJSONFeatureCollectionSchema),
-					}),
-				},
-			},
-			description: "GeoJSON FeatureCollection of all ways",
-		},
-		500: {
-			content: {
-				"application/json": {
-					schema: z.object({
-						error: z.string(),
-					}),
-				},
-			},
-			description: "Internal server error",
-		},
+		[HttpStatusCodes.OK]: jsonContent(
+			AllWaysResponseSchema,
+			"GeoJSON FeatureCollection of all ways",
+		),
 	},
 });
+
+export type ListRoute = typeof list;
+export type GetSummaryRoute = typeof getSummary;
+export type GetAllRoute = typeof getAll;

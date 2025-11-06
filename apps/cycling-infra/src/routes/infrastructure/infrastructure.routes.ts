@@ -1,4 +1,10 @@
 import { createRoute, z } from "@hono/zod-openapi";
+import * as HttpStatusCodes from "stoker/http-status-codes";
+import { jsonContent } from "stoker/openapi/helpers";
+import { IdParamsSchema } from "stoker/openapi/schemas";
+import { notFoundSchema } from "../../lib/constants.js";
+
+const tags = ["Infrastructure"];
 
 const InfrastructureSchema = z.object({
 	id: z.number(),
@@ -11,14 +17,12 @@ const InfrastructureSchema = z.object({
 	updated_at: z.string(),
 });
 
-const InfrastructureListSchema = z.array(InfrastructureSchema);
-
-export const listInfrastructureRoute = createRoute({
+export const list = createRoute({
+	path: "/infrastructure",
 	method: "get",
-	path: "/v1/infrastructure",
+	tags,
 	summary: "List cycling infrastructure",
-	description:
-		"Get all cycling infrastructure from ciclomapa (existing infrastructure)",
+	description: "Get all cycling infrastructure from ciclomapa (existing infrastructure)",
 	request: {
 		query: z.object({
 			type: z.string().optional().openapi({
@@ -32,58 +36,33 @@ export const listInfrastructureRoute = createRoute({
 		}),
 	},
 	responses: {
-		200: {
-			content: {
-				"application/json": {
-					schema: InfrastructureListSchema,
-				},
-			},
-			description: "List of cycling infrastructure",
-		},
+		[HttpStatusCodes.OK]: jsonContent(
+			z.array(InfrastructureSchema),
+			"List of cycling infrastructure",
+		),
 	},
 });
 
-export const getInfrastructureRoute = createRoute({
+export const getById = createRoute({
+	path: "/infrastructure/{id}",
 	method: "get",
-	path: "/v1/infrastructure/{id}",
+	tags,
 	summary: "Get infrastructure by ID",
 	description: "Get specific cycling infrastructure by ID",
 	request: {
-		params: z.object({
-			id: z.string().openapi({
-				description: "Infrastructure ID",
-				example: "1",
-			}),
-		}),
+		params: IdParamsSchema,
 	},
 	responses: {
-		200: {
-			content: {
-				"application/json": {
-					schema: InfrastructureSchema,
-				},
-			},
-			description: "Infrastructure details",
-		},
-		400: {
-			content: {
-				"application/json": {
-					schema: z.object({
-						error: z.string(),
-					}),
-				},
-			},
-			description: "Invalid ID",
-		},
-		404: {
-			content: {
-				"application/json": {
-					schema: z.object({
-						error: z.string(),
-					}),
-				},
-			},
-			description: "Infrastructure not found",
-		},
+		[HttpStatusCodes.OK]: jsonContent(
+			InfrastructureSchema,
+			"Infrastructure details",
+		),
+		[HttpStatusCodes.NOT_FOUND]: jsonContent(
+			notFoundSchema,
+			"Infrastructure not found",
+		),
 	},
 });
+
+export type ListRoute = typeof list;
+export type GetByIdRoute = typeof getById;

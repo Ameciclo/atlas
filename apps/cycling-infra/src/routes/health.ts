@@ -3,7 +3,6 @@ import { createRouter } from "../lib/create-app.js";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { jsonContent } from "stoker/openapi/helpers";
 import { createConnectedDatabase } from "@atlas/database";
-import type { AppRouteHandler } from "../lib/types.js";
 
 const healthSchema = z.object({
 	status: z.enum(["ok", "error"]),
@@ -27,7 +26,7 @@ const healthRoute = createRoute({
 
 const router = createRouter();
 
-const healthHandler: AppRouteHandler<typeof healthRoute> = async (c) => {
+router.openapi(healthRoute, async (c) => {
 	let dbStatus: "connected" | "disconnected" = "connected";
 
 	try {
@@ -53,8 +52,6 @@ const healthHandler: AppRouteHandler<typeof healthRoute> = async (c) => {
 		service: "cycling-infra",
 		database: dbStatus,
 	});
-};
-
-router.openapi(healthRoute, healthHandler);
+});
 
 export default router;

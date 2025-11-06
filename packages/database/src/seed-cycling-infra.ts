@@ -216,13 +216,27 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 
 		console.log(`Found ${waysData.features.length} ways features`);
 
-		const waysToInsert = waysData.features.map((feature) => ({
-			osm_id: feature.properties["@id"] || "",
-			geometry_type: feature.geometry.type,
-			coordinates: JSON.stringify(feature.geometry), // Full geometry object for ST_GeomFromGeoJSON
-			osm_properties: feature.properties,
-			geojson: feature,
-		}));
+		// Get all relations to match relation_id
+		const allRelations = await db.select().from(cyclingInfraSchema.cyclistInfraRelations);
+		const relationMap = new Map(allRelations.map(r => [r.osm_id, r.id]));
+
+		const waysToInsert = waysData.features.map((feature) => {
+			const osmId = feature.properties["@id"] || "";
+			// Extract relation ID from way's osm_id (e.g., "relation/16000464" -> find matching relation)
+			let relationId = null;
+			if (osmId.startsWith("relation/")) {
+				relationId = relationMap.get(osmId) || null;
+			}
+
+			return {
+				osm_id: osmId,
+				relation_id: relationId,
+				geometry_type: feature.geometry.type,
+				coordinates: JSON.stringify(feature.geometry), // Full geometry object for ST_GeomFromGeoJSON
+				osm_properties: feature.properties,
+				geojson: feature,
+			};
+		});
 
 		// Insert in batches
 		const batchSize = 1000;

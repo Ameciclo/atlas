@@ -95,16 +95,14 @@ describe("Cycling Infrastructure API Integration Tests", () => {
 			});
 		});
 
-		it("GET /v1/infrastructure/{id} should return 400 for invalid ID", async () => {
+		it("GET /v1/infrastructure/{id} should return 422 for invalid ID", async () => {
 			const res = await client.v1.infrastructure[":id"].$get({
 				param: { id: "invalid" },
 			});
-			expect(res.status).toBe(400);
+			expect(res.status).toBe(422);
 
 			const data = await res.json();
-			expect(data).toMatchObject({
-				error: "Invalid ID",
-			});
+			expect(data).toHaveProperty("error");
 		});
 	});
 

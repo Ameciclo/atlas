@@ -462,33 +462,31 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
 **Descrição:** Infraestrutura cicloviária
 
 ### Endpoints Infrastructure:
-- ✅ `GET /v1/infrastructure` - Lista infraestrutura existente
-  - Filtros: `type`, `limit`
-- ✅ `GET /v1/infrastructure/{id}` - Detalhes de infraestrutura
-- ✅ `GET /v1/infrastructure/summary` - Resumo executivo da infraestrutura cicloviária
-  - **Resposta:** Métricas gerais (existing_km, planned_km, implemented_km, coverage_%)
-  - **Filtros opcionais:** `city`, `type`
-- ✅ `GET /v1/infrastructure/cycleways` - **NOVO** - GeoJSON das ciclovias com métricas
+- ✅ `GET /v1/infrastructure` - Lista infraestrutura existente (ciclomapa)
+  - **Filtros:** `type`, `limit`
+  - **Descrição:** Infraestrutura cicloviária existente do ciclomapa
+- ✅ `GET /v1/infrastructure/{id}` - Detalhes de infraestrutura específica
+- ✅ `GET /v1/infrastructure/summary` - Resumo executivo da infraestrutura
+  - **Filtros:** `city`, `type`
   - **Resposta:**
     ```json
     {
-      "type": "FeatureCollection",
-      "features": [...],
-      "summary": {
-        "existing_infrastructure_km": 120.5,
-        "planned_infrastructure_km": 200.0,
-        "implemented_from_plan_km": 45.2,
-        "plan_coverage_percentage": 22.6,
-        "by_type": {
-          "ciclovia": { "existing": 80.2, "planned": 120.0, "implemented": 30.1 },
-          "ciclofaixa": { "existing": 40.3, "planned": 80.0, "implemented": 15.1 }
-        },
-        "last_updated": "2024-01-15T10:30:00Z"
-      }
+      "existing_infrastructure_km": 120.5,
+      "planned_infrastructure_km": 200.0,
+      "implemented_from_plan_km": 45.2,
+      "plan_coverage_percentage": 22.6,
+      "by_type": {
+        "ciclovia": { "existing": 80.2, "planned": 120.0, "implemented": 30.1 },
+        "ciclofaixa": { "existing": 40.3, "planned": 80.0, "implemented": 15.1 }
+      },
+      "last_updated": "2024-01-15T10:30:00Z"
     }
     ```
-  - **Filtros opcionais:** `city`, `type`
-- ✅ `GET /v1/infrastructure/city-coverage` - **NOVO** - Cobertura por cidade
+- ✅ `GET /v1/infrastructure/cycleways` - GeoJSON das ciclovias com métricas
+  - **Filtros:** `city`, `type`
+  - **Resposta:** FeatureCollection + summary (mesmo formato do summary)
+- ✅ `GET /v1/infrastructure/city-coverage` - Cobertura por cidade
+  - **Filtros:** `state`, `region`
   - **Resposta:**
     ```json
     {
@@ -509,10 +507,9 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
       ]
     }
     ```
-  - **Filtros opcionais:** `state`, `region`
-- ✅ `GET /v1/infrastructure/cities/{city_id}/summary` - **NOVO** - Resumo por cidade específica
-  - **Resposta:** Mesmo formato do summary geral, mas filtrado por cidade
-  - **Dados PDC Recife adicionais:**
+- ✅ `GET /v1/infrastructure/cities/{city_id}/summary` - Resumo por cidade específica
+  - **Resposta:** Summary + dados PDC Recife opcionais
+  - **Dados PDC Recife:**
     ```json
     {
       "pdc_recife": {
@@ -530,7 +527,43 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
     ```
 
 ### Endpoints Ways:
-- ✅ `GET /v1/ways` - Vias cicláveis
+- ✅ `GET /v1/ways` - Lista vias do PDC (rotas planejadas)
+- ✅ `GET /v1/ways/summary` - Resumo estatístico da implementação do PDC
+  - **Resposta:**
+    ```json
+    {
+      "all": {
+        "pdc_feito": 25000,
+        "out_pdc": 5000,
+        "pdc_total": 30000,
+        "percent": 0.833
+      },
+      "byCity": {
+        "2611606": {
+          "pdc_feito": 15000,
+          "out_pdc": 3000,
+          "pdc_total": 18000,
+          "percent": 0.833
+        }
+      }
+    }
+    ```
+- ✅ `GET /v1/ways/all-ways` - Todas as vias como GeoJSON
+  - **Resposta:**
+    ```json
+    {
+      "all": {
+        "type": "FeatureCollection",
+        "features": [...]
+      },
+      "byCity": {
+        "2611606": {
+          "type": "FeatureCollection",
+          "features": [...]
+        }
+      }
+    }
+    ```
 
 ---
 
@@ -590,10 +623,10 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
 ## 📊 **Resumo de Implementação**
 
 ### **Status Geral:**
-- ✅ **Implementados:** 25 endpoints
-- 📝 **Especificados (não implementados):** 15 endpoints  
-- 🚧 **Planejados:** 4 endpoints
-- **Total:** 44 endpoints
+- ✅ **Implementados:** 27 endpoints
+- 📝 **Especificados (não implementados):** 13 endpoints  
+- 🚧 **Planejados:** 0 endpoints
+- **Total:** 40 endpoints
 
 ### **Por Serviço:**
 
@@ -606,7 +639,7 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
 | **Traffic Calls** | 2 | 0 | 0 | 2 |
 | **Traffic Deaths** | 6 | 0 | 0 | 6 |
 | **Traffic Violations** | 6 | 7 | 0 | 13 |
-| **Cycling Infrastructure** | 6 | 0 | 0 | 6 |
+| **Cycling Infrastructure** | 8 | 0 | 0 | 8 |
 | **Shared Bike** | 2 | 0 | 0 | 2 |
 
 ### **Próximas Prioridades:**
@@ -636,4 +669,4 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
 
 **Última atualização:** Janeiro 2025  
 **Total de serviços:** 9  
-**Total de endpoints:** 40 (25 ✅ + 15 📝)
+**Total de endpoints:** 40 (27 ✅ + 13 📝)
