@@ -123,7 +123,9 @@ export const getSummary: AppRouteHandler<GetSummaryRoute> = async (c) => {
 			prw.relation_id,
 			(prw.osm_properties->>'length')::float as length,
 			COALESCE(circ.city_id, (prw.osm_properties->>'city_id')::int, 2611606) as city_id,
-			(prw.osm_properties->>'has_cycleway')::boolean as has_cycleway
+			(prw.osm_properties->>'has_cycleway')::boolean as has_cycleway,
+			prw.osm_properties->>'pdc_typology' as pdc_typology,
+			prw.osm_properties->>'cycleway_typology' as cycleway_typology
 		FROM pdc_relation_ways prw
 		LEFT JOIN cyclist_infra_relation_cities circ ON prw.relation_id = circ.relation_id
 		WHERE prw.osm_properties IS NOT NULL
@@ -145,7 +147,9 @@ export const getSummary: AppRouteHandler<GetSummaryRoute> = async (c) => {
 		cities[cityId].push({
 			length: parseFloat(row.length) || 0,
 			hasCycleway: row.has_cycleway === true,
-			relationId: row.relation_id || 0
+			relationId: row.relation_id || 0,
+			pdcTypology: row.pdc_typology,
+			cyclewayTypology: row.cycleway_typology
 		});
 	});
 	
@@ -180,7 +184,9 @@ export const getSummary: AppRouteHandler<GetSummaryRoute> = async (c) => {
 				pdc_feito: 0,
 				out_pdc: 0,
 				pdc_total: 0,
-				percent: 0
+				real_pdc: 0,
+				percent: 0,
+				real_percent: 0
 			};
 		}
 	});
@@ -199,8 +205,9 @@ function generateCitySummary(cityData: any[]) {
 		const pdc_feito = hasCycleway && isNotOutPDC ? d.length : 0;
 		const out_pdc = hasCycleway && !isNotOutPDC ? d.length : 0;
 		const pdc_total = isNotOutPDC ? d.length : 0;
+		const real_pdc = hasCycleway && isNotOutPDC && d.pdcTypology === d.cyclewayTypology ? d.length : 0;
 		
-		return { pdc_feito, out_pdc, pdc_total };
+		return { pdc_feito, out_pdc, pdc_total, real_pdc };
 	});
 	
 	const kms = newData.reduce(
@@ -208,14 +215,16 @@ function generateCitySummary(cityData: any[]) {
 			accumulator.pdc_feito += currentData.pdc_feito;
 			accumulator.out_pdc += currentData.out_pdc;
 			accumulator.pdc_total += currentData.pdc_total;
+			accumulator.real_pdc += currentData.real_pdc;
 			return accumulator;
 		},
-		{ pdc_feito: 0, out_pdc: 0, pdc_total: 0 }
+		{ pdc_feito: 0, out_pdc: 0, pdc_total: 0, real_pdc: 0 }
 	);
 	
 	const percent = kms.pdc_total > 0 ? kms.pdc_feito / kms.pdc_total : 0;
+	const real_percent = kms.pdc_total > 0 ? kms.real_pdc / kms.pdc_total : 0;
 	
-	return { ...kms, percent };
+	return { ...kms, percent, real_percent };
 }
 
 export const getAll: AppRouteHandler<GetAllRoute> = async (c) => {
