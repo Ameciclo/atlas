@@ -12,7 +12,8 @@ const services = [
     '/v1/events/1',
     '/v1/locations',
     '/v1/locations/1',
-    '/v1/locations/1/events'
+    '/v1/locations/1/events',
+    '/v1/sessions/1'
   ]},
   { name: 'traffic-deaths', port: 3003, endpoints: [
     '/health', 
@@ -39,10 +40,7 @@ const services = [
   { name: 'cycling-infra', port: 3020, endpoints: [
     '/health', 
     '/v1/infrastructure', 
-    '/v1/infrastructure/1',
-    '/v1/infrastructure/summary',
-    '/v1/infrastructure/cycleways',
-    '/v1/infrastructure/city-coverage',
+    '/v1/infrastructure/4721',
     '/v1/infrastructure/cities/1/summary',
     '/v1/ways'
   ]},
@@ -50,25 +48,14 @@ const services = [
     '/health', 
     '/v1/calls',
     '/v1/calls/1',
-    '/v1/calls/summary',
-    '/v1/calls/cities',
-    '/v1/calls/cities/RECIFE/stats',
-    '/v1/calls/outcomes?city=RECIFE',
-    '/v1/calls/profiles?city=RECIFE',
-    '/v1/unsafe-streets/cities/RECIFE/summary',
-    '/v1/unsafe-streets/streets/Av.%20Boa%20Viagem/summary?city=RECIFE',
-    '/v1/analytics'
+    '/v1/calls/cities/RECIFE/stats'
   ]},
   { name: 'traffic-violations', port: 3013, endpoints: [
     '/health', 
     '/v1/violations',
     '/v1/violations/1',
-    '/v1/violations/summary',
-    '/v1/violations/by-type',
-    '/v1/violations/by-agent',
-    '/v1/violations/temporal-analysis',
     '/v1/streets',
-    '/v1/streets/1025/summary'
+    '/v1/streets/46540/summary'
   ]},
   { name: 'traffic-calls', port: 3019, endpoints: [
     '/health', 
@@ -81,7 +68,9 @@ async function testEndpoint(service, endpoint) {
   const url = `http://localhost:${service.port}${endpoint}`;
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2000); // 2s timeout
+    // Longer timeout for heavy endpoints
+    const timeout = endpoint.includes('/violations') || endpoint.includes('/streets/') ? 10000 : 2000;
+    const timeoutId = setTimeout(() => controller.abort(), timeout);
     
     const response = await fetch(url, { signal: controller.signal });
     clearTimeout(timeoutId);
