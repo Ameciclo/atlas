@@ -42,7 +42,7 @@ export const cities = createRoute({
 				cities: z.array(
 					z.object({
 						ranking: z.number(),
-						municipality: z.string(),
+						municipality: z.string().nullable(),
 						total_calls: z.number(),
 						percentage: z.number(),
 					}),
@@ -138,7 +138,7 @@ export const profiles = createRoute({
 				}),
 				by_gender: z.record(z.number()),
 				by_age_group: z.record(z.number()),
-				by_transport_mode: z.record(z.number()),
+				by_type: z.record(z.number()),
 			}),
 			"Emergency call demographic profiles",
 		),

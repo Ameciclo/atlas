@@ -38,7 +38,7 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 	// Get total streets (approximate based on location descriptions)
 	const [streetsResult] = await db
 		.select({
-			count: sql<number>`COUNT(DISTINCT ${emergencyCalls.location_description})`,
+			count: sql<number>`COUNT(DISTINCT ${emergencyCalls.address})`,
 		})
 		.from(emergencyCalls)
 		.where(eq(emergencyCalls.municipality, city));
@@ -46,12 +46,12 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 	// Get most dangerous street
 	const [topStreetResult] = await db
 		.select({
-			location: emergencyCalls.location_description,
+			location: emergencyCalls.address,
 			count: count(),
 		})
 		.from(emergencyCalls)
 		.where(eq(emergencyCalls.municipality, city))
-		.groupBy(emergencyCalls.location_description)
+		.groupBy(emergencyCalls.address)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(1);
 
@@ -79,7 +79,7 @@ export const streetSummary: AppRouteHandler<StreetSummaryRoute> = async (c) => {
 
 	// Build conditions
 	const conditions = [
-		sql`${emergencyCalls.location_description} ILIKE ${`%${street_name}%`}`,
+		sql`${emergencyCalls.address} ILIKE ${`%${street_name}%`}`,
 	];
 
 	if (city) {
@@ -126,12 +126,12 @@ export const cityConcentration: AppRouteHandler<CityConcentrationRoute> = async 
 	// Get top streets by accident count
 	const topStreets = await db
 		.select({
-			location: emergencyCalls.location_description,
+			location: emergencyCalls.address,
 			count: count(),
 		})
 		.from(emergencyCalls)
 		.where(eq(emergencyCalls.municipality, city))
-		.groupBy(emergencyCalls.location_description)
+		.groupBy(emergencyCalls.address)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(interval);
 
@@ -156,12 +156,12 @@ export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
 	// Get top streets by accident count
 	const topStreets = await db
 		.select({
-			location: emergencyCalls.location_description,
+			location: emergencyCalls.address,
 			count: count(),
 		})
 		.from(emergencyCalls)
 		.where(eq(emergencyCalls.municipality, city))
-		.groupBy(emergencyCalls.location_description)
+		.groupBy(emergencyCalls.address)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(ranking_to)
 		.offset(ranking_from - 1);
@@ -192,7 +192,7 @@ export const streetProfiles: AppRouteHandler<StreetProfilesRoute> = async (c) =>
 	const { city } = c.req.valid("query");
 
 	const conditions = [
-		sql`${emergencyCalls.location_description} ILIKE ${`%${street_name}%`}`,
+		sql`${emergencyCalls.address} ILIKE ${`%${street_name}%`}`,
 	];
 
 	if (city) {
@@ -278,7 +278,7 @@ export const streetGeoJSON: AppRouteHandler<StreetGeoJSONRoute> = async (c) => {
 	const { city } = c.req.valid("query");
 
 	const conditions = [
-		sql`${emergencyCalls.location_description} ILIKE ${`%${street_name}%`}`,
+		sql`${emergencyCalls.address} ILIKE ${`%${street_name}%`}`,
 	];
 
 	if (city) {
@@ -316,7 +316,7 @@ export const streetEvolution: AppRouteHandler<StreetEvolutionRoute> = async (c) 
 	const { city, start_year = 2020, end_year = 2022 } = c.req.valid("query");
 
 	const conditions = [
-		sql`${emergencyCalls.location_description} ILIKE ${`%${street_name}%`}`,
+		sql`${emergencyCalls.address} ILIKE ${`%${street_name}%`}`,
 		sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) >= ${start_year}`,
 		sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) <= ${end_year}`,
 	];
@@ -363,9 +363,9 @@ export const streetEvolution: AppRouteHandler<StreetEvolutionRoute> = async (c) 
 		.select({
 			hour_group: sql<string>`
 				CASE 
-					WHEN EXTRACT(HOUR FROM ${emergencyCalls.time}) BETWEEN 6 AND 9 THEN '06-09'
-					WHEN EXTRACT(HOUR FROM ${emergencyCalls.time}) BETWEEN 12 AND 14 THEN '12-14'
-					WHEN EXTRACT(HOUR FROM ${emergencyCalls.time}) BETWEEN 17 AND 19 THEN '17-19'
+					WHEN EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time) BETWEEN 6 AND 9 THEN '06-09'
+					WHEN EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time) BETWEEN 12 AND 14 THEN '12-14'
+					WHEN EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time) BETWEEN 17 AND 19 THEN '17-19'
 					ELSE 'outros'
 				END
 			`,
@@ -375,9 +375,9 @@ export const streetEvolution: AppRouteHandler<StreetEvolutionRoute> = async (c) 
 		.where(whereClause)
 		.groupBy(sql`
 			CASE 
-				WHEN EXTRACT(HOUR FROM ${emergencyCalls.time}) BETWEEN 6 AND 9 THEN '06-09'
-				WHEN EXTRACT(HOUR FROM ${emergencyCalls.time}) BETWEEN 12 AND 14 THEN '12-14'
-				WHEN EXTRACT(HOUR FROM ${emergencyCalls.time}) BETWEEN 17 AND 19 THEN '17-19'
+				WHEN EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time) BETWEEN 6 AND 9 THEN '06-09'
+				WHEN EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time) BETWEEN 12 AND 14 THEN '12-14'
+				WHEN EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time) BETWEEN 17 AND 19 THEN '17-19'
 				ELSE 'outros'
 			END
 		`);
@@ -412,7 +412,7 @@ export const streetRecords: AppRouteHandler<StreetRecordsRoute> = async (c) => {
 	const { city, year } = c.req.valid("query");
 
 	const conditions = [
-		sql`${emergencyCalls.location_description} ILIKE ${`%${street_name}%`}`,
+		sql`${emergencyCalls.address} ILIKE ${`%${street_name}%`}`,
 	];
 
 	if (city) {
@@ -428,15 +428,15 @@ export const streetRecords: AppRouteHandler<StreetRecordsRoute> = async (c) => {
 	const records = await db
 		.select({
 			date: emergencyCalls.date,
-			time: emergencyCalls.time,
+			time: emergencyCalls.time_minute,
 			subtype: emergencyCalls.subtype,
 			gender: emergencyCalls.gender,
 			age: emergencyCalls.age,
-			outcome: emergencyCalls.outcome,
+			outcome: emergencyCalls.outcome_category,
 		})
 		.from(emergencyCalls)
 		.where(whereClause)
-		.orderBy(emergencyCalls.date, emergencyCalls.time)
+		.orderBy(emergencyCalls.date, emergencyCalls.time_minute)
 		.limit(100);
 
 	const formattedRecords = records.map(record => ({

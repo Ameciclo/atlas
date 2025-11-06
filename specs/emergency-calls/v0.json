@@ -625,7 +625,8 @@
                             "type": "number"
                           },
                           "municipality": {
-                            "type": "string"
+                            "type": "string",
+                            "nullable": true
                           },
                           "total_calls": {
                             "type": "number"
@@ -835,7 +836,7 @@
                         "type": "number"
                       }
                     },
-                    "by_transport_mode": {
+                    "by_type": {
                       "type": "object",
                       "additionalProperties": {
                         "type": "number"
@@ -847,7 +848,7 @@
                     "period",
                     "by_gender",
                     "by_age_group",
-                    "by_transport_mode"
+                    "by_type"
                   ]
                 }
               }

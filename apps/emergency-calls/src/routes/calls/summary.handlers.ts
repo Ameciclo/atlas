@@ -151,14 +151,14 @@ export const outcomes: AppRouteHandler<OutcomesRoute> = async (c) => {
 	const outcomesData = await db
 		.select({
 			year: sql<string>`EXTRACT(YEAR FROM ${emergencyCalls.date})::text`,
-			outcome: emergencyCalls.outcome,
+			outcome: emergencyCalls.outcome_category,
 			count: count(),
 		})
 		.from(emergencyCalls)
 		.where(eq(emergencyCalls.municipality, city))
 		.groupBy(
 			sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`,
-			emergencyCalls.outcome
+			emergencyCalls.outcome_category
 		)
 		.orderBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`);
 
@@ -228,15 +228,15 @@ export const profiles: AppRouteHandler<ProfilesRoute> = async (c) => {
 			END
 		`);
 
-	// Get transport mode distribution
+	// Get type distribution
 	const transportData = await db
 		.select({
-			transport_mode: emergencyCalls.transport_mode,
+			type: emergencyCalls.type,
 			count: count(),
 		})
 		.from(emergencyCalls)
 		.where(whereClause)
-		.groupBy(emergencyCalls.transport_mode);
+		.groupBy(emergencyCalls.type);
 
 	const byGender = genderData.reduce((acc, item) => {
 		acc[item.gender || 'unknown'] = item.count;
@@ -248,8 +248,8 @@ export const profiles: AppRouteHandler<ProfilesRoute> = async (c) => {
 		return acc;
 	}, {} as Record<string, number>);
 
-	const byTransportMode = transportData.reduce((acc, item) => {
-		acc[item.transport_mode || 'unknown'] = item.count;
+	const byType = transportData.reduce((acc, item) => {
+		acc[item.type || 'unknown'] = item.count;
 		return acc;
 	}, {} as Record<string, number>);
 
@@ -261,6 +261,6 @@ export const profiles: AppRouteHandler<ProfilesRoute> = async (c) => {
 		},
 		by_gender: byGender,
 		by_age_group: byAgeGroup,
-		by_transport_mode: byTransportMode,
+		by_type: byType,
 	});
 };

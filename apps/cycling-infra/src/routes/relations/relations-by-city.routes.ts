@@ -6,7 +6,7 @@ import { z } from "zod";
 const tags = ["Relations"];
 
 export const relationsByCityRoute = createRoute({
-	path: "/v1/relations/by-city",
+	path: "/relations/by-city",
 	method: "get",
 	summary: "Get relations grouped by city",
 	description: "Get all cycling infrastructure relations grouped by city with statistics",

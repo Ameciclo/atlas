@@ -1,86 +1,52 @@
 import { eq } from "drizzle-orm";
-import * as HttpStatusCodes from "stoker/http-status-codes";
 import { createConnectedDatabase } from "@atlas/database";
-import { 
-	cities, 
-	cyclistInfraRelations, 
-	cyclistInfraRelationCities,
-	pdcRelationWays 
-} from "@atlas/database/schemas/cycling-infra";
-import type { AppRouteHandler } from "../../lib/types.js";
+import { cities, cyclistInfraRelations, cyclistInfraRelationCities } from "@atlas/database/schemas/cycling-infra";
+import type { AppRouteHandler } from "../../lib/types";
+import type { RelationsByCityRoute } from "./relations-by-city.routes";
 
-export const relationsByCity: AppRouteHandler<any> = async (c) => {
-	try {
-		const db = await createConnectedDatabase();
+export const relationsByCity: AppRouteHandler<RelationsByCityRoute> = async (c) => {
+	const db = await createConnectedDatabase();
+	
+	const result = await db
+		.select({
+			city_id: cities.id,
+			name: cities.name,
+			state: cities.state,
+			relation_id: cyclistInfraRelations.id,
+			pdc_ref: cyclistInfraRelations.pdc_ref,
+			relation_name: cyclistInfraRelations.name,
+			pdc_typology: cyclistInfraRelations.pdc_typology,
+		})
+		.from(cities)
+		.innerJoin(cyclistInfraRelationCities, eq(cities.id, cyclistInfraRelationCities.city_id))
+		.innerJoin(cyclistInfraRelations, eq(cyclistInfraRelationCities.relation_id, cyclistInfraRelations.id));
 
-		// Get cities with their relations
-		const citiesData = await db
-			.select()
-			.from(cities)
-			.innerJoin(
-				cyclistInfraRelationCities,
-				eq(cities.id, cyclistInfraRelationCities.city_id)
-			);
+	const groupedData: Record<string, any> = {};
 
-		// Get all relations
-		const relationsData = await db.select().from(cyclistInfraRelations);
+	for (const row of result) {
+		const cityKey = row.city_id.toString();
+		
+		if (!groupedData[cityKey]) {
+			groupedData[cityKey] = {
+				city_id: row.city_id,
+				name: row.name,
+				state: row.state,
+				relations: []
+			};
+		}
 
-		// Get all ways
-		const waysData = await db.select().from(pdcRelationWays);
-
-		const citiesWithInfo: { [key: number]: any } = {};
-
-		citiesData.forEach((cityData) => {
-			const city = cityData.cities;
-			const relationCity = cityData.cyclist_infra_relation_cities;
-
-			if (!citiesWithInfo[city.id]) {
-				citiesWithInfo[city.id] = {
-					city_id: city.id,
-					name: city.name,
-					state: city.state,
-					relations: [],
-				};
-			}
-
-			const relation = relationsData.find(r => r.id === relationCity.relation_id);
-			if (relation) {
-				const relationWays = waysData.filter(way => way.relation_id === relation.id);
-				
-				// Calculate total length (assuming coordinates contain length info)
-				const relationLength = relationWays.length;
-				const relationHasCyclewayLength = relationWays.length;
-
-				// Extract typologies from OSM properties
-				const typologies = relationWays.reduce((typologiesObj: { [key: string]: number }, way) => {
-					const props = way.osm_properties as any;
-					if (props?.cycleway || props?.highway) {
-						const typology = props.cycleway || props.highway;
-						typologiesObj[typology] = (typologiesObj[typology] || 0) + 1;
-					}
-					return typologiesObj;
-				}, {});
-
-				citiesWithInfo[city.id].relations.push({
-					relation_id: relation.id,
-					pdc_ref: relation.pdc_ref,
-					name: relation.name,
-					cod_name: `(${relation.pdc_ref}) ${relation.name}`,
-					length: relationLength,
-					has_cycleway_length: relationHasCyclewayLength,
-					pdc_typology: relation.pdc_typology,
-					typologies_str: Object.keys(typologies).join(", "),
-					typologies,
-				});
-			}
+		groupedData[cityKey].relations.push({
+			relation_id: row.relation_id,
+			pdc_ref: row.pdc_ref,
+			name: row.relation_name,
+			cod_name: `(${row.pdc_ref}) ${row.relation_name}`,
+			length: 0,
+			has_cycleway_length: 0,
+			pdc_typology: row.pdc_typology,
+			typologies_str: "none",
+			typologies: { "none": 0 }
 		});
-
-		return c.json(citiesWithInfo, HttpStatusCodes.OK);
-	} catch (error) {
-		console.error("Error fetching relations by city:", error);
-		return c.json(
-			{ message: "Internal Server Error" },
-			HttpStatusCodes.INTERNAL_SERVER_ERROR,
-		);
 	}
+
+	return c.json(groupedData, 200);
 };

@@ -30,7 +30,7 @@ export const getWaysByRelationId: AppRouteHandler<GetWaysByRelationIdRoute> = as
 		const relation = await db
 			.select()
 			.from(cyclistInfraRelations)
-			.where(eq(cyclistInfraRelations.osm_id, id))
+			.where(eq(cyclistInfraRelations.osm_id, id.toString()))
 			.limit(1);
 
 		if (relation.length === 0) {
