@@ -115,16 +115,17 @@ export const getSummary: AppRouteHandler<GetSummaryRoute> = async (c) => {
 	
 	console.log('Debug data:', debugData.rows);
 	
-	// Query usando dados do CSV ways
+	// Query ways com city_id correto via JOIN
 	const waysData = await db.execute(`
 		SELECT 
 			prw.id,
 			prw.osm_id,
 			prw.relation_id,
 			(prw.osm_properties->>'length')::float as length,
-			(prw.osm_properties->>'city_id')::int as city_id,
+			COALESCE(circ.city_id, (prw.osm_properties->>'city_id')::int, 2611606) as city_id,
 			(prw.osm_properties->>'has_cycleway')::boolean as has_cycleway
 		FROM pdc_relation_ways prw
+		LEFT JOIN cyclist_infra_relation_cities circ ON prw.relation_id = circ.relation_id
 		WHERE prw.osm_properties IS NOT NULL
 	`);
 	
@@ -148,8 +149,21 @@ export const getSummary: AppRouteHandler<GetSummaryRoute> = async (c) => {
 		});
 	});
 	
+	// Buscar todas as cidades que têm relações PDC
+	const allPdcCities = await db.execute(`
+		SELECT DISTINCT 
+			c.id as city_id,
+			c.name as city_name
+		FROM cities c
+		INNER JOIN cyclist_infra_relation_cities circ ON c.id = circ.city_id
+		ORDER BY c.name
+	`);
+
+	console.log('PDC Cities found:', allPdcCities.rows.length);
+
 	const summaryByCity: { [key: string]: any } = {};
 	
+	// Processar cidades com dados
 	for (const city in cities) {
 		if (cities.hasOwnProperty(city) && city !== '0') {
 			const cityData = cities[city];
@@ -157,6 +171,19 @@ export const getSummary: AppRouteHandler<GetSummaryRoute> = async (c) => {
 			summaryByCity[city] = citySummary;
 		}
 	}
+
+	// Adicionar cidades PDC sem dados (zeros)
+	allPdcCities.rows.forEach((cityRow: any) => {
+		const cityId = cityRow.city_id.toString();
+		if (!summaryByCity[cityId]) {
+			summaryByCity[cityId] = {
+				pdc_feito: 0,
+				out_pdc: 0,
+				pdc_total: 0,
+				percent: 0
+			};
+		}
+	});
 	
 	const allCityData = Object.values(cities).flat();
 	const allCitySummary = generateCitySummary(allCityData);

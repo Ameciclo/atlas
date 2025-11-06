@@ -226,7 +226,7 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 
 		// 3. Seed Ways (Processed OSM Data)
 		console.log("🛣️ Loading processed ways...");
-		const waysContent = await readFile(join(dataPath, "processed_ways.json"), "utf-8");
+		const waysContent = await readFile(join(dataPath, "pdc_ways.json"), "utf-8");
 		const waysData = JSON.parse(waysContent);
 
 		console.log(`Found ${waysData.length} processed ways`);
@@ -292,52 +292,114 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 		}
 		console.log(`✅ Inserted ${waysToInsert.length} ways\n`);
 
-		// 4. Seed Ciclomapa (filtered)
-		console.log("🚴 Loading ciclomapa...");
-		const ciclomapaContent = await readFile(
-			join(dataPath, "ciclomapa-Recife, Pernambuco, Brasil.geojson"),
-			"utf-8",
-		);
-		const ciclomapaData: GeoJSONCollection = JSON.parse(ciclomapaContent);
+		// 4. Seed Non-PDC Ways (existing cycling infrastructure)
+		console.log("🚴 Loading non-PDC ways...");
+		const nonPdcContent = await readFile(join(dataPath, "non_pdc_ways.json"), "utf-8");
+		const nonPdcData = JSON.parse(nonPdcContent);
 
-		// Filter: only LineString + cycling infrastructure types
-		const cyclingTypes = [
-			"Ciclovia",
-			"Ciclofaixa",
-			"Ciclorrota",
-			"Calçada compartilhada",
-		];
-		const filteredFeatures = ciclomapaData.features.filter(
-			(feature) =>
-				feature.geometry.type === "LineString" &&
-				cyclingTypes.includes(feature.properties.type),
-		);
+		console.log(`Found ${nonPdcData.length} non-PDC ways`);
 
-		console.log(`Found ${ciclomapaData.features.length} total features`);
-		console.log(
-			`Filtered to ${filteredFeatures.length} cycling infrastructure LineStrings`,
-		);
+		const nonPdcToInsert = nonPdcData.map((way: any) => {
+			// Parse GeoJSON from string
+			const geojsonData = JSON.parse(way.geojson);
+			const geometry = geojsonData.features[0].geometry;
 
-		const ciclomapaToInsert = filteredFeatures.map((feature) => ({
-			osm_id: feature.properties.id || "",
-			name: feature.properties.name || null,
-			infra_type: feature.properties.type,
-			coordinates: JSON.stringify(feature.geometry), // Full geometry object for ST_GeomFromGeoJSON
-			geojson: feature,
-		}));
+			return {
+				osm_id: `way/${way.osm_id}`,
+				relation_id: null, // Non-PDC = null relation_id
+				name: way.name || null,
+				geometry_type: geometry?.type || "LineString",
+				coordinates: JSON.stringify(geometry),
+				osm_properties: {
+					length: way.length,
+					highway: way.highway,
+					has_cycleway: way.has_cycleway,
+					cycleway_typology: way.cycleway_typology,
+					city_id: way.city_id,
+					dual_carriageway: way.dual_carriageway,
+					pdc_typology: way.pdc_typology,
+					lastupdated: way.lastupdated
+				},
+				geojson: geojsonData,
+			};
+		});
 
 		// Insert in batches
-		for (let i = 0; i < ciclomapaToInsert.length; i += batchSize) {
-			const batch = ciclomapaToInsert.slice(i, i + batchSize);
+		for (let i = 0; i < nonPdcToInsert.length; i += batchSize) {
+			const batch = nonPdcToInsert.slice(i, i + batchSize);
+			await db
+				.insert(cyclingInfraSchema.pdcRelationWays)
+				.values(batch)
+				.onConflictDoNothing();
+			console.log(
+				`  ✓ Inserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(nonPdcToInsert.length / batchSize)}`,
+			);
+		}
+		console.log(`✅ Inserted ${nonPdcToInsert.length} non-PDC ways\n`);
+
+		// 5. Seed Ciclomapa Infrastructure
+		console.log("🚴 Loading ciclomapa data...");
+		const ciclomapaFiles = [
+			"ciclomapa-Recife, Pernambuco, Brasil.geojson",
+			"ciclomapa-Olinda, Pernambuco, Brasil.geojson",
+			"ciclomapa-Paulista, Pernambuco, Brasil.geojson",
+			"ciclomapa-Camaragibe, Pernambuco, Brasil.geojson",
+			"ciclomapa-São Lourenço da Mata, Pernambuco, Brasil.geojson",
+			"ciclomapa-Abreu e Lima, Pernambuco, Brasil.geojson",
+			"ciclomapa-Igarassu, Pernambuco, Brasil.geojson",
+			"ciclomapa-Cabo de Santo Agostinho, Pernambuco, Brasil.geojson",
+			"ciclomapa-Ipojuca, Pernambuco, Brasil.geojson"
+		];
+
+		const cyclingTypes = ["Ciclovia", "Ciclofaixa", "Ciclorrota", "Calçada compartilhada"];
+		const ciclomapaFeatures = [];
+		const osmIdsSeen = new Set();
+
+		for (const filename of ciclomapaFiles) {
+			try {
+				const filePath = join(dataPath, filename);
+				const content = await readFile(filePath, "utf-8");
+				const geojsonData = JSON.parse(content);
+
+				for (const feature of geojsonData.features) {
+					if (feature.geometry?.type === "LineString" && 
+						cyclingTypes.includes(feature.properties?.type)) {
+						
+						const osmId = feature.id;
+						if (!osmId?.startsWith("way/") || osmIdsSeen.has(osmId)) {
+							continue;
+						}
+
+						osmIdsSeen.add(osmId);
+						ciclomapaFeatures.push({
+							osm_id: osmId,
+							name: feature.properties?.name || null,
+							infra_type: feature.properties.type,
+							coordinates: JSON.stringify(feature.geometry),
+							geojson: feature
+						});
+					}
+				}
+				console.log(`  ✓ Processed ${filename}: ${geojsonData.features.length} features`);
+			} catch (error) {
+				console.log(`  ⚠️ Skipped ${filename}: ${error.message}`);
+			}
+		}
+
+		console.log(`Found ${ciclomapaFeatures.length} unique ciclomapa features`);
+
+		// Insert ciclomapa data in batches
+		for (let i = 0; i < ciclomapaFeatures.length; i += batchSize) {
+			const batch = ciclomapaFeatures.slice(i, i + batchSize);
 			await db
 				.insert(cyclingInfraSchema.ciclomapaInfra)
 				.values(batch)
 				.onConflictDoNothing();
 			console.log(
-				`  ✓ Inserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(ciclomapaToInsert.length / batchSize)}`,
+				`  ✓ Inserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(ciclomapaFeatures.length / batchSize)}`,
 			);
 		}
-		console.log(`✅ Inserted ${ciclomapaToInsert.length} ciclomapa features\n`);
+		console.log(`✅ Inserted ${ciclomapaFeatures.length} ciclomapa features\n`);
 
 		console.log("✅ Cycling infrastructure seed completed successfully!");
 
@@ -346,7 +408,8 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 			relations: relationsToInsert.length,
 			relationCities: relationCitiesToInsert.length,
 			ways: waysToInsert.length,
-			ciclomapa: ciclomapaToInsert.length,
+			nonPdcWays: nonPdcToInsert.length,
+			ciclomapa: ciclomapaFeatures.length,
 		};
 	} catch (error) {
 		console.error("❌ Error seeding cycling infrastructure:", error);
