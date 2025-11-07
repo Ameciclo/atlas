@@ -91,6 +91,20 @@ const LocationGenderQuerySchema = z.object({
 	year: z.coerce.number().optional(),
 });
 
+const GeneralAnalysisQuerySchema = z.object({
+	// Location filters
+	lat: z.coerce.number().optional(),
+	lon: z.coerce.number().optional(),
+	radius: z.coerce.number().optional().default(1000),
+	// Demographic filters
+	year: z.coerce.number().optional(),
+	gender: z.string().optional(),
+	race: z.string().optional(),
+	income: z.string().optional(),
+	education: z.string().optional(),
+	age_category: z.string().optional(),
+});
+
 export const surveyLocations = createRoute({
 	path: "/cyclist-profiles/survey-locations",
 	method: "get",
@@ -125,9 +139,29 @@ export const genderAnalysisByLocation = createRoute({
 	},
 });
 
+export const generalAnalysis = createRoute({
+	path: "/cyclist-profiles/analysis",
+	method: "get",
+	request: {
+		query: GeneralAnalysisQuerySchema,
+	},
+	tags,
+	responses: {
+		[HttpStatusCodes.OK]: jsonContent(
+			z.unknown(),
+			"General cyclist analysis with multiple filters",
+		),
+		[HttpStatusCodes.UNPROCESSABLE_ENTITY]: jsonContent(
+			createErrorSchema(GeneralAnalysisQuerySchema),
+			"Invalid parameters",
+		),
+	},
+});
+
 export type SummaryRoute = typeof summary;
 export type TrendsRoute = typeof trends;
 export type GenderAnalysisRoute = typeof genderAnalysis;
 export type SafetyAnalysisRoute = typeof safetyAnalysis;
 export type SurveyLocationsRoute = typeof surveyLocations;
 export type GenderAnalysisByLocationRoute = typeof genderAnalysisByLocation;
+export type GeneralAnalysisRoute = typeof generalAnalysis;

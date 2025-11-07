@@ -140,7 +140,65 @@ const cleanApp = new Hono()
 		return c.json(profiles);
 	})
 	.get("/v1/cyclist-profiles/safety-analysis", analyticsHandlers.safetyAnalysis)
-	.get("/v1/cyclist-profiles/survey-locations", analyticsHandlers.surveyLocations);
+	.get("/v1/cyclist-profiles/survey-locations", analyticsHandlers.surveyLocations)
+	.get("/v1/cyclist-profiles/analysis", async (c) => {
+		try {
+			const lat = c.req.query("lat") ? Number(c.req.query("lat")) : undefined;
+			const lon = c.req.query("lon") ? Number(c.req.query("lon")) : undefined;
+			const radius = Number(c.req.query("radius") || 1000);
+			const year = c.req.query("year") ? Number(c.req.query("year")) : undefined;
+			const gender = c.req.query("gender");
+			const race = c.req.query("race");
+			const income = c.req.query("income");
+			const education = c.req.query("education");
+			const age_category = c.req.query("age_category");
+			
+			// Build filters
+			let filters = [];
+			
+			if (lat && lon) {
+				filters.push(sql`coordinates IS NOT NULL AND ST_DWithin(coordinates, ST_SetSRID(ST_MakePoint(${lon}, ${lat}), 4326), ${radius})`);
+			}
+			if (year) filters.push(sql`metadata->>'survey_year' = ${year.toString()}`);
+			if (gender) filters.push(sql`data->>'gender' = ${gender}`);
+			if (race) filters.push(sql`data->>'color_race' = ${race}`);
+			if (income) filters.push(sql`data->>'age_standard' = ${income}`);
+			if (education) filters.push(sql`data->>'schooling' = ${education}`);
+			if (age_category) filters.push(sql`data->>'age_category' = ${age_category}`);
+			
+			const whereClause = filters.length > 0 ? sql.join(filters, sql` AND `) : sql`1=1`;
+			
+			const [totalResult] = await db
+				.select({ count: sql<number>`count(*)` })
+				.from(cyclistProfiles)
+				.where(whereClause);
+			
+			const genderStats = await db
+				.select({
+					gender: sql<string>`data->>'gender'`,
+					count: sql<number>`count(*)`
+				})
+				.from(cyclistProfiles)
+				.where(whereClause)
+				.groupBy(sql`data->>'gender'`);
+			
+			const total = totalResult.count;
+			
+			return c.json({
+				filters: { lat, lon, radius, year, gender, race, income, education, age_category },
+				total_responses: total,
+				demographics: {
+					gender: genderStats.filter(s => s.gender).map(s => ({
+						gender: s.gender,
+						count: s.count,
+						percentage: Number(((s.count / total) * 100).toFixed(1))
+					}))
+				}
+			});
+		} catch (error) {
+			return c.json({ error: error.message }, 500);
+		}
+	});
 
 // OpenAPI app (with validation issues)
 const openApiApp = new OpenAPIHono({

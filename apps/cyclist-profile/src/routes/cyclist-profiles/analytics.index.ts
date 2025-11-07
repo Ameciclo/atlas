@@ -8,6 +8,7 @@ const router = createRouter()
 	.openapi(routes.trends, handlers.trends)
 	.openapi(routes.genderAnalysis, handlers.genderAnalysis)
 	.openapi(routes.genderAnalysisByLocation, handlers.genderAnalysisByLocation)
+	.openapi(routes.generalAnalysis, handlers.generalAnalysis)
 	.openapi(routes.safetyAnalysis, handlers.safetyAnalysis)
 	.openapi(routes.surveyLocations, handlers.surveyLocations);
 

@@ -4,7 +4,7 @@ import * as HttpStatusCodes from "stoker/http-status-codes";
 import { db } from "../../db/index.js";
 import { cyclistProfiles } from "@atlas/database/schemas/cyclist-profile";
 import type { AppBindings } from "../../lib/types.ts";
-import type { SummaryRoute, TrendsRoute, GenderAnalysisRoute, SafetyAnalysisRoute, SurveyLocationsRoute, GenderAnalysisByLocationRoute } from "./analytics.routes.ts";
+import type { SummaryRoute, TrendsRoute, GenderAnalysisRoute, SafetyAnalysisRoute, SurveyLocationsRoute, GenderAnalysisByLocationRoute, GeneralAnalysisRoute } from "./analytics.routes.ts";
 
 export const summary: RouteHandler<SummaryRoute, AppBindings> = async (c) => {
 	try {
@@ -507,6 +507,91 @@ export const surveyLocations: RouteHandler<SurveyLocationsRoute, AppBindings> = 
 	}, HttpStatusCodes.OK);
 	} catch (error) {
 		console.error('Survey locations error:', error);
+		return c.json({ error: error.message }, 500);
+	}
+};
+
+export const generalAnalysis: RouteHandler<GeneralAnalysisRoute, AppBindings> = async (c) => {
+	try {
+		const { lat, lon, radius, year, gender, race, income, education, age_category } = c.req.valid("query");
+		
+		// Build filters
+		let filters = [];
+		
+		// Location filter
+		if (lat && lon) {
+			filters.push(sql`coordinates IS NOT NULL AND ST_DWithin(coordinates, ST_SetSRID(ST_MakePoint(${lon}, ${lat}), 4326), ${radius})`);
+		}
+		
+		// Demographic filters
+		if (year) filters.push(sql`metadata->>'survey_year' = ${year.toString()}`);
+		if (gender) filters.push(sql`data->>'gender' = ${gender}`);
+		if (race) filters.push(sql`data->>'color_race' = ${race}`);
+		if (income) filters.push(sql`data->>'age_standard' = ${income}`);
+		if (education) filters.push(sql`data->>'schooling' = ${education}`);
+		if (age_category) filters.push(sql`data->>'age_category' = ${age_category}`);
+		
+		const whereClause = filters.length > 0 ? sql.join(filters, sql` AND `) : sql`1=1`;
+		
+		// Get total count
+		const [totalResult] = await db
+			.select({ count: sql<number>`count(*)` })
+			.from(cyclistProfiles)
+			.where(whereClause);
+		
+		// Demographics breakdown
+		const genderStats = await db
+			.select({
+				gender: sql<string>`data->>'gender'`,
+				count: sql<number>`count(*)`
+			})
+			.from(cyclistProfiles)
+			.where(whereClause)
+			.groupBy(sql`data->>'gender'`);
+		
+		// Usage patterns
+		const [avgDaysResult] = await db
+			.select({
+				avg_days: sql<number>`avg((data->'days_usage'->>'total')::numeric)`
+			})
+			.from(cyclistProfiles)
+			.where(whereClause);
+		
+		// Top motivations
+		const motivationStats = await db
+			.select({
+				motivation: sql<string>`data->>'motivation_to_continue'`,
+				count: sql<number>`count(*)`
+			})
+			.from(cyclistProfiles)
+			.where(whereClause)
+			.groupBy(sql`data->>'motivation_to_continue'`)
+			.orderBy(sql`count(*) desc`)
+			.limit(5);
+		
+		const total = totalResult.count;
+		
+		return c.json({
+			filters: { lat, lon, radius, year, gender, race, income, education, age_category },
+			total_responses: total,
+			demographics: {
+				gender: genderStats.filter(s => s.gender).map(s => ({
+					gender: s.gender,
+					count: s.count,
+					percentage: Number(((s.count / total) * 100).toFixed(1))
+				}))
+			},
+			usage_patterns: {
+				avg_days_per_week: avgDaysResult.avg_days ? Number(Number(avgDaysResult.avg_days).toFixed(1)) : 0
+			},
+			top_motivations: motivationStats.filter(s => s.motivation).map(s => ({
+				motivation: s.motivation,
+				count: s.count,
+				percentage: Number(((s.count / total) * 100).toFixed(1))
+			}))
+		}, HttpStatusCodes.OK);
+	} catch (error) {
+		console.error('General analysis error:', error);
 		return c.json({ error: error.message }, 500);
 	}
 };

@@ -10,6 +10,7 @@ const services = [
     '/v1/cyclist-profiles/trends',
     '/v1/cyclist-profiles/gender-analysis',
     '/v1/cyclist-profiles/gender-analysis-by-location?lat=-8.05&lon=-34.88',
+    '/v1/cyclist-profiles/analysis?gender=Feminino&year=2024',
     '/v1/cyclist-profiles/safety-analysis',
     '/v1/cyclist-profiles/survey-locations'
   ]},
@@ -47,7 +48,7 @@ const services = [
   { name: 'cycling-infra', port: 3020, endpoints: [
     '/health', 
     '/v1/infrastructure', 
-    '/v1/infrastructure/4721',
+    '/v1/infrastructure/1350',
     '/v1/infrastructure/cities/1/summary',
     '/v1/ways'
   ]},
