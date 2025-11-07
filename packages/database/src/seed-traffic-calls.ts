@@ -1,8 +1,8 @@
 import "dotenv/config";
-import { sql } from "drizzle-orm";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { sql } from "drizzle-orm";
 import type { DatabaseConfig } from "./connection.js";
 import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import * as trafficCallsSchema from "./schemas/traffic-calls/index.js";
@@ -101,7 +101,7 @@ function parseCSVLine(line: string): string[] {
 function parseIntOrZero(value: string | undefined): number {
 	if (!value || value === "") return 0;
 	const parsed = parseInt(value, 10);
-	return isNaN(parsed) ? 0 : parsed;
+	return Number.isNaN(parsed) ? 0 : parsed;
 }
 
 /**
@@ -219,7 +219,7 @@ export async function seedTrafficCalls(config: DatabaseConfig = {}) {
 		);
 
 		let totalInserted = 0;
-		let totalSkipped = 0;
+		const totalSkipped = 0;
 		let totalErrors = 0;
 
 		// Check if data already exists
@@ -305,7 +305,7 @@ export async function seedTrafficCalls(config: DatabaseConfig = {}) {
 					.map((record) => {
 						try {
 							return convertRecord(record);
-						} catch (error) {
+						} catch (_error) {
 							totalErrors++;
 							return null;
 						}
