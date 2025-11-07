@@ -89,6 +89,13 @@ const services = [
     '/health', 
     '/v1/calls',
     '/v1/calls/1'
+  ]},
+  { name: 'pcr-streets', port: 3016, endpoints: [
+    '/health', 
+    '/v1/streets/names',
+    '/v1/streets/search?query=cedro',
+    '/v1/streets/name/RUA CEDRO',
+    '/v1/streets/code/15989'
   ]}
 ];
 

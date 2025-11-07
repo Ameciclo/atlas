@@ -1,5 +1,5 @@
 {
-	"extends": "@atlas/typescript-config/node-service.json",
+	"extends": "../../packages/typescript-config/node-service.json",
 	"compilerOptions": {
 		"outDir": "./dist",
 		"rootDir": "./src"

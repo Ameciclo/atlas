@@ -20,6 +20,10 @@
     "title": "Emergency Calls API"
   },
   {
+    "url": "/openapi/pcr-streets.json",
+    "title": "Pcr Streets API"
+  },
+  {
     "url": "/openapi/shared-bike.json",
     "title": "Shared Bike API"
   },
