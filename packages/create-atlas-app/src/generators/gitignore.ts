@@ -14,7 +14,5 @@ dist/
 *.csv
 
 # OpenAPI spec (generated)
-openapi.json
-`;
+openapi.json`;
 }
-
