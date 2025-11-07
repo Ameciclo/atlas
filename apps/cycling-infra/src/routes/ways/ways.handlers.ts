@@ -303,7 +303,7 @@ export const getNearby: AppRouteHandler<GetNearbyRoute> = async (c) => {
 	const longitude = parseFloat(lon);
 	const radiusMeters = parseInt(radius, 10);
 	
-	// Query PDC ways within radius using PostGIS coordinates field
+	// Query PDC ways within radius with relation info and total length
 	const result = await db.execute(`
 		SELECT 
 			prw.id,
@@ -311,10 +311,13 @@ export const getNearby: AppRouteHandler<GetNearbyRoute> = async (c) => {
 			prw.name,
 			prw.geojson,
 			prw.osm_properties,
+			cir.id as relation_id,
+			cir.osm_id as relation_osm_id,
 			cir.pdc_ref,
 			cir.name as relation_name,
 			cir.pdc_typology,
 			cir.pdc_stretch,
+			cir.pdc_km as relation_total_km,
 			(prw.osm_properties->>'length')::float as length_km,
 			(prw.osm_properties->>'has_cycleway')::boolean as executed,
 			ST_Distance(
@@ -347,6 +350,15 @@ export const getNearby: AppRouteHandler<GetNearbyRoute> = async (c) => {
 			executed: way.executed || false,
 			length_km: parseFloat((way.length_km || 0).toFixed(3)),
 			distance_meters: Math.round(way.distance_meters || 0),
+			relation: way.relation_id ? {
+				id: way.relation_id,
+				osm_id: way.relation_osm_id,
+				pdc_ref: way.pdc_ref,
+				name: way.relation_name,
+				total_length_km: parseFloat((way.relation_total_km || 0).toFixed(3)),
+				description: way.pdc_stretch,
+				typology: way.pdc_typology
+			} : null,
 		},
 		geometry: way.geojson?.geometry || null,
 	}));
