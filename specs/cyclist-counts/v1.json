@@ -232,6 +232,163 @@
         }
       }
     },
+    "/v1/locations/nearby": {
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "summary": "Get counting locations near a point",
+        "description": "Get cyclist counting locations within a radius from a lat/lon point",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Latitude",
+              "example": "-8.0476"
+            },
+            "required": true,
+            "name": "lat",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Longitude",
+              "example": "-34.8770"
+            },
+            "required": true,
+            "name": "lon",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Radius in meters",
+              "example": "1000"
+            },
+            "required": false,
+            "name": "radius",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Counting locations near the specified point",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "FeatureCollection"
+                      ]
+                    },
+                    "features": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "Feature"
+                            ]
+                          },
+                          "id": {
+                            "type": "number"
+                          },
+                          "properties": {
+                            "allOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "city": {
+                                    "type": "string"
+                                  },
+                                  "distance_meters": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "city",
+                                  "distance_meters"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "nullable": true
+                                }
+                              }
+                            ]
+                          },
+                          "geometry": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "Point"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id",
+                          "properties",
+                          "geometry"
+                        ]
+                      }
+                    },
+                    "summary": {
+                      "type": "object",
+                      "properties": {
+                        "total_locations": {
+                          "type": "number"
+                        },
+                        "by_city": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "required": [
+                        "total_locations",
+                        "by_city"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "features",
+                    "summary"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/locations/{id}": {
       "get": {
         "tags": [

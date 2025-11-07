@@ -74,3 +74,41 @@ export const getStationRoute = createRoute({
 		},
 	},
 });
+export const nearbyStationsRoute = createRoute({
+	method: "get",
+	path: "/stations/nearby",
+	tags,
+	summary: "Find nearby bike sharing stations",
+	request: {
+		query: z.object({
+			lat: z.string().openapi({
+				description: "Latitude",
+				example: "-8.05",
+			}),
+			lon: z.string().openapi({
+				description: "Longitude",
+				example: "-34.88",
+			}),
+			radius: z.string().optional().openapi({
+				description: "Search radius in meters",
+				example: "1000",
+				default: "1000",
+			}),
+			limit: z.string().optional().openapi({
+				description: "Maximum number of results",
+				example: "10",
+				default: "50",
+			}),
+		}),
+	},
+	responses: {
+		200: {
+			content: {
+				"application/json": {
+					schema: z.array(selectSharedBikeStationSchema),
+				},
+			},
+			description: "List of nearby bike sharing stations",
+		},
+	},
+});

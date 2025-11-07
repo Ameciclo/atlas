@@ -59,6 +59,41 @@ export const getOne = createRoute({
 	},
 });
 
+const NearbyQuerySchema = z.object({
+	lat: z.coerce.number(),
+	lon: z.coerce.number(),
+	radius: z.coerce.number().optional().default(1000),
+	limit: z.coerce.number().optional().default(50),
+});
+
+const NearbyResponseSchema = z.object({
+	id: z.number(),
+	data: z.any(),
+	metadata: z.any(),
+	coordinates: z.any().optional(),
+	created_at: z.string(),
+	updated_at: z.string(),
+});
+
+export const nearby = createRoute({
+	path: "/cyclist-profiles/nearby",
+	method: "get",
+	request: {
+		query: NearbyQuerySchema,
+	},
+	tags,
+	responses: {
+		[HttpStatusCodes.OK]: jsonContent(
+			z.unknown(),
+			"Cyclist profiles within radius",
+		),
+		[HttpStatusCodes.UNPROCESSABLE_ENTITY]: jsonContent(
+			createErrorSchema(NearbyQuerySchema),
+			"Invalid parameters",
+		),
+	},
+});
+
 // export const patch = createRoute({
 // 	path: "/tasks/{id}",
 // 	method: "patch",
@@ -99,5 +134,6 @@ export const getOne = createRoute({
 export type ListRoute = typeof list;
 // export type CreateRoute = typeof create;
 export type GetOneRoute = typeof getOne;
+export type NearbyRoute = typeof nearby;
 // export type PatchRoute = typeof patch;
 // export type RemoveRoute = typeof remove;

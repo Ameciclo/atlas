@@ -1,11 +1,11 @@
 import type { RouteHandler } from "@hono/zod-openapi";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
 import { db } from "../../db/index.js";
 import { cyclistProfiles } from "@atlas/database/schemas/cyclist-profile";
 import type { AppBindings } from "../../lib/types.ts";
-import type { GetOneRoute, ListRoute } from "./cyclist-profiles.routes.ts";
+import type { GetOneRoute, ListRoute, NearbyRoute } from "./cyclist-profiles.routes.ts";
 
 export const list: RouteHandler<ListRoute, AppBindings> = async (c) => {
 	const profiles = await db.select().from(cyclistProfiles);
@@ -30,4 +30,21 @@ export const getOne: RouteHandler<GetOneRoute, AppBindings> = async (c) => {
 	}
 
 	return c.json(profile[0], HttpStatusCodes.OK);
+};
+
+export const nearby: RouteHandler<NearbyRoute, AppBindings> = async (c) => {
+	const { lat, lon, radius, limit } = c.req.valid("query");
+	
+	const profiles = await db
+		.select()
+		.from(cyclistProfiles)
+		.where(
+			sql`ST_DWithin(coordinates, ST_SetSRID(ST_MakePoint(${lon}, ${lat}), 4326), ${radius})`
+		)
+		.orderBy(
+			sql`ST_Distance(coordinates, ST_SetSRID(ST_MakePoint(${lon}, ${lat}), 4326))`
+		)
+		.limit(limit);
+
+	return c.json(profiles, HttpStatusCodes.OK);
 };

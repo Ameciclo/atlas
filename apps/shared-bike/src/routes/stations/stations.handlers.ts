@@ -1,5 +1,5 @@
 import type { Context } from "hono";
-import { and, eq, gte, lte, ilike } from "@atlas/database";
+import { and, eq, gte, lte, ilike, sql } from "@atlas/database";
 import { db } from "../../db/index.js";
 import { sharedBikeStations } from "@atlas/database";
 
@@ -60,4 +60,33 @@ export async function getStation(c: Context) {
 	}
 
 	return c.json(station[0]);
+}
+export async function nearbyStations(c: Context) {
+	const { lat, lon, radius = "1000", limit = "50" } = c.req.query();
+
+	if (!lat || !lon) {
+		return c.json({ error: "Latitude and longitude are required" }, 400);
+	}
+
+	const latitude = Number(lat);
+	const longitude = Number(lon);
+	const searchRadius = Number(radius);
+	const maxLimit = Number(limit);
+
+	if (isNaN(latitude) || isNaN(longitude) || isNaN(searchRadius) || isNaN(maxLimit)) {
+		return c.json({ error: "Invalid numeric parameters" }, 400);
+	}
+
+	const stations = await db
+		.select()
+		.from(sharedBikeStations)
+		.where(
+			sql`coordinates IS NOT NULL AND ST_DWithin(ST_SetSRID(ST_GeomFromWKB(decode(coordinates, 'hex')), 4326)::geography, ST_SetSRID(ST_MakePoint(${longitude}, ${latitude}), 4326)::geography, ${searchRadius})`
+		)
+		.orderBy(
+			sql`ST_Distance(ST_SetSRID(ST_GeomFromWKB(decode(coordinates, 'hex')), 4326)::geography, ST_SetSRID(ST_MakePoint(${longitude}, ${latitude}), 4326)::geography)`
+		)
+		.limit(maxLimit);
+
+	return c.json(stations);
 }

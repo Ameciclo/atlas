@@ -69,6 +69,7 @@
 		"db:migrate": "tsx src/migrate.ts",
 		"db:seed": "tsx src/seed.ts",
 		"db:seed:cyclist-counts": "tsx src/seed-cyclist-counts.ts",
+		"db:seed:cyclist-profiles": "tsx src/seed-cyclist-profiles.ts",
 		"db:seed:bicycle-racks": "tsx src/seed-bicycle-racks.ts",
 		"db:seed-traffic-calls": "tsx src/seed-traffic-calls.ts",
 		"db:seed-cycling-infra": "tsx src/seed-cycling-infra.ts",

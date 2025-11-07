@@ -15,6 +15,20 @@
       "when": 1762461943847,
       "tag": "0001_magenta_owl",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1762478416174,
+      "tag": "0002_shiny_pestilence",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1762481937268,
+      "tag": "0003_stormy_sway",
+      "breakpoints": true
     }
   ]
 }
