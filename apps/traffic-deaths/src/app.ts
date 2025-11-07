@@ -6,14 +6,16 @@ import healthRoutes from "./routes/health.js";
 import statsRoutes from "./routes/stats/stats.index.js";
 import summaryRoutes from "./routes/summary/summary.index.js";
 import timeSeriesRoutes from "./routes/time-series/time-series.index.js";
+import v1Routes from "./routes/v1/index.js";
 
 const app = createApp()
 	.route("/", healthRoutes)
-	.route("/v1/", summaryRoutes)
-	.route("/v1/", cyclistRoutes)
-	.route("/v1/", byCityRoutes)
-	.route("/v1/", byTransportModeRoutes)
-	.route("/v1/", timeSeriesRoutes)
-	.route("/v1/", statsRoutes);
+	.route("/v1", v1Routes)
+	.route("/v2/", summaryRoutes)
+	.route("/v2/", cyclistRoutes)
+	.route("/v2/", byCityRoutes)
+	.route("/v2/", byTransportModeRoutes)
+	.route("/v2/", timeSeriesRoutes)
+	.route("/v2/", statsRoutes);
 
 export default app;

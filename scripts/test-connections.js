@@ -25,12 +25,17 @@ const services = [
   ]},
   { name: 'traffic-deaths', port: 3003, endpoints: [
     '/health', 
-    '/v1/deaths/cyclists', 
-    '/v1/deaths/by-city',
-    '/v1/deaths/by-transport-mode',
-    '/v1/stats', 
     '/v1/summary',
-    '/v1/deaths/time-series'
+    '/v1/cities-by-year',
+    '/v1/filtros',
+    '/v1/matrix',
+    '/v1/causas-secundarias',
+    '/v2/summary',
+    '/v2/deaths/cyclists', 
+    '/v2/deaths/by-city',
+    '/v2/deaths/by-transport-mode',
+    '/v2/stats',
+    '/v2/deaths/time-series'
   ]},
   { name: 'bicycle-racks', port: 3005, endpoints: [
     '/health', 
