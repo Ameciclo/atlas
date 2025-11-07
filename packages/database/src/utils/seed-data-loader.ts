@@ -1,6 +1,6 @@
+import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
-import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
 export interface SeedDataLoaderConfig {
 	useS3?: boolean;

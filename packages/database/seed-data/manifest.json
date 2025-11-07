@@ -9,7 +9,7 @@
 			"s3": {
 				"bucket": "ameciclo-space",
 				"region": "nyc3",
-				"endpoint": "https://nyc3.digitaloceanspaces.com",
+				"endpoint": "https://ameciclo-space.nyc3.digitaloceanspaces.com",
 				"prefix": "seed/traffic-deaths/",
 				"files": [
 					{
@@ -91,7 +91,7 @@
 			"s3": {
 				"bucket": "ameciclo-space",
 				"region": "nyc3",
-				"endpoint": "https://nyc3.digitaloceanspaces.com",
+				"endpoint": "https://ameciclo-space.nyc3.digitaloceanspaces.com",
 				"prefix": "seed/cyclist-counts/",
 				"files": [
 					{
@@ -115,7 +115,7 @@
 			"s3": {
 				"bucket": "ameciclo-space",
 				"region": "nyc3",
-				"endpoint": "https://nyc3.digitaloceanspaces.com",
+				"endpoint": "https://ameciclo-space.nyc3.digitaloceanspaces.com",
 				"prefix": "seed/cyclist-profiles/",
 				"files": [
 					{
@@ -139,7 +139,7 @@
 			"s3": {
 				"bucket": "ameciclo-space",
 				"region": "nyc3",
-				"endpoint": "https://nyc3.digitaloceanspaces.com",
+				"endpoint": "https://ameciclo-space.nyc3.digitaloceanspaces.com",
 				"prefix": "seed/traffic-calls/",
 				"files": [
 					{
