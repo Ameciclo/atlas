@@ -80,8 +80,10 @@ const services = [
   ]},
   { name: 'traffic-violations', port: 3013, endpoints: [
     '/health', 
-    '/v1/violations',
+    '/v1/violations?month=12&year=2023',
     '/v1/violations/1',
+    '/v1/violations/by-location?month=12&year=2023',
+    '/v1/violations/geojson?month=12&year=2023',
     '/v1/streets',
     '/v1/streets/46540/summary'
   ]},

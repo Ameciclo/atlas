@@ -20,9 +20,9 @@ import {
 
 const violationsRouter = createRouter()
 	.openapi(listViolationsRoute, listViolationsHandler)
-	.openapi(getViolationRoute, getViolationHandler)
 	.openapi(violationsByLocationRoute, violationsByLocationHandler)
 	.openapi(violationsHotspotsRoute, violationsHotspotsHandler)
-	.openapi(violationsGeoJSONRoute, violationsGeoJSONHandler);
+	.openapi(violationsGeoJSONRoute, violationsGeoJSONHandler)
+	.openapi(getViolationRoute, getViolationHandler);
 
 export default violationsRouter;

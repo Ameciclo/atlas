@@ -18,8 +18,8 @@ export const listViolationsHandler: AppRouteHandler<
 	typeof listViolationsRoute
 > = async (c) => {
 	const {
-		start_date,
-		end_date,
+		month,
+		year,
 		agent_id,
 		violation_type_id,
 		location_id,
@@ -30,17 +30,15 @@ export const listViolationsHandler: AppRouteHandler<
 	const conditions: any[] = [];
 
 	try {
-		if (start_date) {
-			conditions.push(
-				gte(trafficViolations.violation_date, new Date(start_date)),
-			);
-		}
-
-		if (end_date) {
-			conditions.push(
-				lte(trafficViolations.violation_date, new Date(end_date)),
-			);
-		}
+		// Primeiro dia do mês
+		const startOfMonth = new Date(year, month - 1, 1);
+		// Último dia do mês
+		const endOfMonth = new Date(year, month, 0, 23, 59, 59, 999);
+		
+		conditions.push(
+			gte(trafficViolations.violation_date, startOfMonth),
+			lte(trafficViolations.violation_date, endOfMonth)
+		);
 
 		if (agent_id) {
 			conditions.push(eq(trafficViolations.agent_id, agent_id));
@@ -97,17 +95,21 @@ export const getViolationHandler: AppRouteHandler<
 };
 
 export const violationsByLocationHandler: AppRouteHandler<ViolationsByLocationRoute> = async (c) => {
-	const { start_date, end_date, limit = 50 } = c.req.valid("query");
+	const { month, year, limit = 50 } = c.req.valid("query");
 
 	try {
 		// Build date conditions
 		const conditions: any[] = [];
-		if (start_date) {
-			conditions.push(gte(trafficViolations.violation_date, new Date(start_date)));
-		}
-		if (end_date) {
-			conditions.push(lte(trafficViolations.violation_date, new Date(end_date)));
-		}
+		
+		// Primeiro dia do mês
+		const startOfMonth = new Date(year, month - 1, 1);
+		// Último dia do mês
+		const endOfMonth = new Date(year, month, 0, 23, 59, 59, 999);
+		
+		conditions.push(
+			gte(trafficViolations.violation_date, startOfMonth),
+			lte(trafficViolations.violation_date, endOfMonth)
+		);
 
 		const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
 
@@ -205,17 +207,21 @@ export const violationsHotspotsHandler: AppRouteHandler<ViolationsHotspotsRoute>
 };
 
 export const violationsGeoJSONHandler: AppRouteHandler<ViolationsGeoJSONRoute> = async (c) => {
-	const { start_date, end_date, violation_type_id, agent_id, limit = 100 } = c.req.valid("query");
+	const { month, year, violation_type_id, agent_id, limit = 100 } = c.req.valid("query");
 
 	try {
 		// Build conditions
 		const conditions: any[] = [];
-		if (start_date) {
-			conditions.push(gte(trafficViolations.violation_date, new Date(start_date)));
-		}
-		if (end_date) {
-			conditions.push(lte(trafficViolations.violation_date, new Date(end_date)));
-		}
+		
+		// Primeiro dia do mês
+		const startOfMonth = new Date(year, month - 1, 1);
+		// Último dia do mês
+		const endOfMonth = new Date(year, month, 0, 23, 59, 59, 999);
+		
+		conditions.push(
+			gte(trafficViolations.violation_date, startOfMonth),
+			lte(trafficViolations.violation_date, endOfMonth)
+		);
 		if (violation_type_id) {
 			conditions.push(eq(trafficViolations.violation_type_id, violation_type_id));
 		}

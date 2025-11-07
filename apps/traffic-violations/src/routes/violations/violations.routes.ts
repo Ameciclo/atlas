@@ -6,13 +6,13 @@ import { selectTrafficViolationSchema } from "../../db/schema.js";
 // ============================================================================
 
 const listViolationsQuerySchema = z.object({
-	start_date: z.string().date().optional().openapi({
-		description: "Filter violations from this date (YYYY-MM-DD)",
-		example: "2023-01-01",
+	month: z.coerce.number().int().min(1).max(12).openapi({
+		description: "Filter by month (1-12). Required parameter",
+		example: 12,
 	}),
-	end_date: z.string().date().optional().openapi({
-		description: "Filter violations until this date (YYYY-MM-DD)",
-		example: "2023-12-31",
+	year: z.coerce.number().int().min(2020).max(2030).openapi({
+		description: "Filter by year. Required parameter",
+		example: 2023,
 	}),
 	agent_id: z.coerce.number().int().positive().optional().openapi({
 		description: "Filter by agent ID",
@@ -150,13 +150,13 @@ export const violationsByLocationRoute = createRoute({
 	description: "Get violations grouped by location",
 	request: {
 		query: z.object({
-			start_date: z.string().date().optional().openapi({
-				description: "Start date (YYYY-MM-DD)",
-				example: "2023-01-01",
+			month: z.coerce.number().int().min(1).max(12).openapi({
+				description: "Filter by month (1-12). Required parameter",
+				example: 12,
 			}),
-			end_date: z.string().date().optional().openapi({
-				description: "End date (YYYY-MM-DD)",
-				example: "2023-12-31",
+			year: z.coerce.number().int().min(2020).max(2030).openapi({
+				description: "Filter by year. Required parameter",
+				example: 2023,
 			}),
 			limit: z.coerce.number().min(1).max(100).default(50).optional().openapi({
 				description: "Number of results",
@@ -240,13 +240,13 @@ export const violationsGeoJSONRoute = createRoute({
 	description: "Get violations in GeoJSON format",
 	request: {
 		query: z.object({
-			start_date: z.string().date().optional().openapi({
-				description: "Start date (YYYY-MM-DD)",
-				example: "2023-01-01",
+			month: z.coerce.number().int().min(1).max(12).openapi({
+				description: "Filter by month (1-12). Required parameter",
+				example: 12,
 			}),
-			end_date: z.string().date().optional().openapi({
-				description: "End date (YYYY-MM-DD)",
-				example: "2023-12-31",
+			year: z.coerce.number().int().min(2020).max(2030).openapi({
+				description: "Filter by year. Required parameter",
+				example: 2023,
 			}),
 			violation_type_id: z.coerce.number().optional().openapi({
 				description: "Filter by violation type ID",
