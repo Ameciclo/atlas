@@ -53,6 +53,10 @@
 		"./schemas/shared-bike": {
 			"types": "./dist/schemas/shared-bike/index.d.ts",
 			"import": "./dist/schemas/shared-bike/index.js"
+		},
+		"./schemas/pcr-streets": {
+			"types": "./dist/schemas/pcr-streets/index.d.ts",
+			"import": "./dist/schemas/pcr-streets/index.js"
 		}
 	},
 	"scripts": {
