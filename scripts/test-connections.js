@@ -61,7 +61,22 @@ const services = [
     '/health', 
     '/v1/calls',
     '/v1/calls/1',
-    '/v1/calls/cities/RECIFE/stats'
+    '/v1/calls/cities/RECIFE/stats',
+    '/v1/summary',
+    '/v1/filters',
+    '/v1/streets/summary',
+    '/v1/streets/top',
+    '/v1/streets/search?nome=Boa Viagem',
+    '/v1/streets/history?nome=Avenida Boa Viagem',
+    '/v1/cities',
+    '/v2/unsafe-streets/cities/RECIFE/summary',
+    '/v2/unsafe-streets/cities/RECIFE/concentration',
+    '/v2/unsafe-streets/cities/RECIFE/geojson',
+    '/v2/unsafe-streets/streets/Av. Boa Viagem/summary',
+    '/v2/unsafe-streets/streets/Av. Boa Viagem/profiles',
+    '/v2/unsafe-streets/streets/Av. Boa Viagem/geojson',
+    '/v2/unsafe-streets/streets/Av. Boa Viagem/evolution',
+    '/v2/unsafe-streets/streets/Av. Boa Viagem/records'
   ]},
   { name: 'traffic-violations', port: 3013, endpoints: [
     '/health', 
