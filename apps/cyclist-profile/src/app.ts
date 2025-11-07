@@ -7,6 +7,8 @@ import { cyclistProfiles } from "@atlas/database/schemas/cyclist-profile";
 import cyclistProfilesRoutes from "./routes/cyclist-profiles/cyclist-profiles.index.js";
 import healthRoutes from "./routes/health.js";
 
+import * as analyticsHandlers from "./routes/cyclist-profiles/analytics.handlers.js";
+
 // Completely clean Hono app without any hooks
 const cleanApp = new Hono()
 	.get("/test", (c) => c.text("Clean app works!"))
@@ -47,7 +49,13 @@ const cleanApp = new Hono()
 			.limit(limit);
 		
 		return c.json(profiles);
-	});
+	})
+	// Analytics endpoints
+	.get("/v1/cyclist-profiles/summary", analyticsHandlers.summary)
+	.get("/v1/cyclist-profiles/trends", analyticsHandlers.trends)
+	.get("/v1/cyclist-profiles/gender-analysis", analyticsHandlers.genderAnalysis)
+	.get("/v1/cyclist-profiles/safety-analysis", analyticsHandlers.safetyAnalysis)
+	.get("/v1/cyclist-profiles/survey-locations", analyticsHandlers.surveyLocations);
 
 // OpenAPI app (with validation issues)
 const openApiApp = new OpenAPIHono({

@@ -117,7 +117,6 @@
                         ]
                       },
                       "coordinates": {
-                        "type": "string",
                         "nullable": true
                       },
                       "created_at": {
@@ -131,7 +130,6 @@
                       "id",
                       "data",
                       "metadata",
-                      "coordinates",
                       "created_at",
                       "updated_at"
                     ]
@@ -239,7 +237,6 @@
                       ]
                     },
                     "coordinates": {
-                      "type": "string",
                       "nullable": true
                     },
                     "created_at": {
@@ -253,7 +250,6 @@
                     "id",
                     "data",
                     "metadata",
-                    "coordinates",
                     "created_at",
                     "updated_at"
                   ]
