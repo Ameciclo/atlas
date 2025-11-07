@@ -114,6 +114,50 @@ export const getAll = createRoute({
 	},
 });
 
+export const getNearby = createRoute({
+	path: "/ways/nearby",
+	method: "get",
+	tags,
+	summary: "Get PDC ways near a location",
+	description: "Get PDC ways within a radius from a lat/lon point with execution status",
+	request: {
+		query: z.object({
+			lat: z.string().openapi({ description: "Latitude", example: "-8.0476" }),
+			lon: z.string().openapi({ description: "Longitude", example: "-34.8770" }),
+			radius: z.string().optional().openapi({ description: "Radius in meters", example: "1000" }),
+		}),
+	},
+	responses: {
+		[HttpStatusCodes.OK]: jsonContent(
+			z.object({
+				type: z.literal("FeatureCollection"),
+				features: z.array(z.object({
+					type: z.literal("Feature"),
+					id: z.string(),
+					properties: z.object({
+						pdc_ref: z.string().nullable(),
+						name: z.string().nullable(),
+						pdc_typology: z.string().nullable(),
+						executed: z.boolean(),
+						length_km: z.number(),
+						distance_meters: z.number(),
+					}).and(z.record(z.any())),
+					geometry: z.any(),
+				})),
+				summary: z.object({
+					total_ways: z.number(),
+					executed_ways: z.number(),
+					total_length_km: z.number(),
+					executed_length_km: z.number(),
+					execution_percentage: z.number(),
+				}),
+			}),
+			"PDC ways near location with execution status",
+		),
+	},
+});
+
 export type ListRoute = typeof list;
 export type GetSummaryRoute = typeof getSummary;
 export type GetAllRoute = typeof getAll;
+export type GetNearbyRoute = typeof getNearby;

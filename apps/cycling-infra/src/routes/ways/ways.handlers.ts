@@ -1,7 +1,7 @@
 import { createConnectedDatabase } from "@atlas/database";
 import { pdcRelationWays } from "@atlas/database/schemas/cycling-infra";
 import type { AppRouteHandler } from "../../lib/types.js";
-import type { ListRoute, GetSummaryRoute, GetAllRoute } from "./ways.routes.js";
+import type { ListRoute, GetSummaryRoute, GetAllRoute, GetNearbyRoute } from "./ways.routes.js";
 
 // Helper function to calculate distance between two coordinates
 function calculateDistance(coord1: [number, number], coord2: [number, number]): number {
@@ -293,4 +293,81 @@ export const getAll: AppRouteHandler<GetAllRoute> = async (c) => {
 	};
 
 	return c.json(response);
+};
+
+export const getNearby: AppRouteHandler<GetNearbyRoute> = async (c) => {
+	const { lat, lon, radius = "1000" } = c.req.valid("query");
+	const db = await createConnectedDatabase();
+	
+	const latitude = parseFloat(lat);
+	const longitude = parseFloat(lon);
+	const radiusMeters = parseInt(radius, 10);
+	
+	// Query PDC ways within radius using PostGIS coordinates field
+	const result = await db.execute(`
+		SELECT 
+			prw.id,
+			prw.osm_id,
+			prw.name,
+			prw.geojson,
+			prw.osm_properties,
+			cir.pdc_ref,
+			cir.name as relation_name,
+			cir.pdc_typology,
+			cir.pdc_stretch,
+			(prw.osm_properties->>'length')::float as length_km,
+			(prw.osm_properties->>'has_cycleway')::boolean as executed,
+			ST_Distance(
+				prw.coordinates::geography,
+				ST_SetSRID(ST_MakePoint(${longitude}, ${latitude}), 4326)::geography
+			) as distance_meters
+		FROM pdc_relation_ways prw
+		LEFT JOIN cyclist_infra_relations cir ON prw.relation_id = cir.id
+		WHERE ST_DWithin(
+			prw.coordinates::geography,
+			ST_SetSRID(ST_MakePoint(${longitude}, ${latitude}), 4326)::geography,
+			${radiusMeters}
+		)
+		AND prw.coordinates IS NOT NULL
+		ORDER BY distance_meters
+	`);
+	
+	const ways = result.rows as any[];
+	
+	// Convert to GeoJSON features
+	const features = ways.map(way => ({
+		type: "Feature" as const,
+		id: way.osm_id,
+		properties: {
+			...(way.osm_properties || {}),
+			pdc_ref: way.pdc_ref,
+			name: way.relation_name || way.name,
+			pdc_typology: way.pdc_typology,
+			description: way.pdc_stretch,
+			executed: way.executed || false,
+			length_km: parseFloat((way.length_km || 0).toFixed(3)),
+			distance_meters: Math.round(way.distance_meters || 0),
+		},
+		geometry: way.geojson?.geometry || null,
+	}));
+	
+	// Calculate summary
+	const totalWays = features.length;
+	const executedWays = features.filter(f => f.properties.executed).length;
+	const totalLength = features.reduce((sum, f) => sum + f.properties.length_km, 0);
+	const executedLength = features
+		.filter(f => f.properties.executed)
+		.reduce((sum, f) => sum + f.properties.length_km, 0);
+	
+	return c.json({
+		type: "FeatureCollection" as const,
+		features,
+		summary: {
+			total_ways: totalWays,
+			executed_ways: executedWays,
+			total_length_km: parseFloat(totalLength.toFixed(3)),
+			executed_length_km: parseFloat(executedLength.toFixed(3)),
+			execution_percentage: totalLength > 0 ? parseFloat(((executedLength / totalLength) * 100).toFixed(1)) : 0,
+		},
+	});
 };
