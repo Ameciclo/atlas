@@ -4,6 +4,7 @@ import * as routes from "./locations.routes.js";
 
 const router = createRouter()
 	.openapi(routes.list, handlers.list)
+	.openapi(routes.getNearby, handlers.getNearby)
 	.openapi(routes.getById, handlers.getById);
 
 export default router;
