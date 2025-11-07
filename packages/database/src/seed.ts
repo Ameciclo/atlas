@@ -4,6 +4,7 @@ import chalk from "chalk";
 import * as dotenv from "dotenv";
 import { seedCyclistCounts } from "./seed-cyclist-counts.js";
 import { seedCyclistProfiles } from "./seed-cyclist-profiles.js";
+import { seedTrafficCalls } from "./seed-traffic-calls.js";
 import { seedTrafficDeaths } from "./seed-traffic-deaths.js";
 
 // Load environment variables from .env.local first, then .env
@@ -99,6 +100,13 @@ async function masterSeed(options: SeedOptions = {}) {
 			icon: "🚗",
 			color: chalk.red,
 			fn: seedTrafficDeaths,
+		},
+		{
+			name: "Traffic Calls",
+			id: "calls",
+			icon: "🚦",
+			color: chalk.magenta,
+			fn: seedTrafficCalls,
 		},
 	];
 
