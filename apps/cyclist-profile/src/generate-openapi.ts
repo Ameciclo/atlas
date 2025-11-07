@@ -32,6 +32,10 @@ function createSpecApp() {
 		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
 		.openapi(analyticsRoutes.genderAnalysis, null as any)
 		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
+		.openapi(analyticsRoutes.genderAnalysisByLocation, null as any)
+		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
+		.openapi(analyticsRoutes.generalAnalysis, null as any)
+		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
 		.openapi(analyticsRoutes.safetyAnalysis, null as any)
 		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
 		.openapi(analyticsRoutes.surveyLocations, null as any);
