@@ -34,7 +34,7 @@ export function generatePackageJson(config: AppConfig): PackageJson {
 			"@hono/node-server": "^1.14.1",
 			"@hono/zod-openapi": "^0.19.6",
 			dotenv: "^16.5.0",
-			hono: "^4.7.7",
+			hono: "^4.10.2",
 			"hono-pino": "^0.8.0",
 			pino: "^9.6.0",
 			"pino-pretty": "^13.0.0",
@@ -42,6 +42,7 @@ export function generatePackageJson(config: AppConfig): PackageJson {
 			zod: "^3.24.4",
 		},
 		devDependencies: {
+			"@atlas/typescript-config": "workspace:*",
 			"@types/node": "^22.15.17",
 			tsx: "^4.19.3",
 			typescript: "^5.8.3",
