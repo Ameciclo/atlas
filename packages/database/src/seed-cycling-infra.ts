@@ -238,7 +238,7 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 
 		const relationMap = new Map(allRelations.map(r => [r.osm_id, r.id]));
 		console.log('RelationMap keys:', Array.from(relationMap.keys()).slice(0, 5));
-		console.log('Sample way relation_ids:', waysData.slice(0, 5).map(w => w.relation_id));
+		console.log('Sample way relation_ids:', waysData.slice(0, 5).map((w: any) => w.relation_id));
 
 		const waysToInsert = waysData.map((way: any) => {
 			// Parse GeoJSON from string (it's double-encoded)
@@ -276,7 +276,7 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 				},
 				geojson: geojsonData,
 			};
-		}).filter(way => way.coordinates !== null);
+		}).filter((way: any) => way.coordinates !== null);
 
 		// Insert in batches
 		const batchSize = 1000;
@@ -382,7 +382,7 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 				}
 				console.log(`  ✓ Processed ${filename}: ${geojsonData.features.length} features`);
 			} catch (error) {
-				console.log(`  ⚠️ Skipped ${filename}: ${error.message}`);
+				console.log(`  ⚠️ Skipped ${filename}: ${(error as Error).message}`);
 			}
 		}
 

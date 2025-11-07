@@ -64,5 +64,44 @@ export const getById = createRoute({
 	},
 });
 
+export const getNearby = createRoute({
+	path: "/infrastructure/nearby",
+	method: "get",
+	tags,
+	summary: "Get existing cycling infrastructure near a location",
+	description: "Get existing cycling infrastructure within a radius from a lat/lon point",
+	request: {
+		query: z.object({
+			lat: z.string().openapi({ description: "Latitude", example: "-8.0476" }),
+			lon: z.string().openapi({ description: "Longitude", example: "-34.8770" }),
+			radius: z.string().optional().openapi({ description: "Radius in meters", example: "1000" }),
+			type: z.string().optional().openapi({ description: "Filter by infrastructure type", example: "Ciclofaixa" }),
+		}),
+	},
+	responses: {
+		[HttpStatusCodes.OK]: jsonContent(
+			z.object({
+				type: z.literal("FeatureCollection"),
+				features: z.array(z.object({
+					type: z.literal("Feature"),
+					id: z.string(),
+					properties: z.object({
+						name: z.string().nullable(),
+						infra_type: z.string(),
+						distance_meters: z.number(),
+					}).and(z.record(z.any())),
+					geometry: z.any(),
+				})),
+				summary: z.object({
+					total_infrastructure: z.number(),
+					by_type: z.record(z.number()),
+				}),
+			}),
+			"Existing cycling infrastructure near location",
+		),
+	},
+});
+
 export type ListRoute = typeof list;
 export type GetByIdRoute = typeof getById;
+export type GetNearbyRoute = typeof getNearby;
