@@ -4,7 +4,7 @@ import * as HttpStatusCodes from "stoker/http-status-codes";
 import { db } from "../../db/index.js";
 import { cyclistProfiles } from "@atlas/database/schemas/cyclist-profile";
 import type { AppBindings } from "../../lib/types.ts";
-import type { SummaryRoute, TrendsRoute, GenderAnalysisRoute, SafetyAnalysisRoute, SurveyLocationsRoute } from "./analytics.routes.ts";
+import type { SummaryRoute, TrendsRoute, GenderAnalysisRoute, SafetyAnalysisRoute, SurveyLocationsRoute, GenderAnalysisByLocationRoute } from "./analytics.routes.ts";
 
 export const summary: RouteHandler<SummaryRoute, AppBindings> = async (c) => {
 	try {
@@ -265,6 +265,80 @@ export const genderAnalysis: RouteHandler<GenderAnalysisRoute, AppBindings> = as
 	}
 };
 
+export const genderAnalysisByLocation: RouteHandler<GenderAnalysisByLocationRoute, AppBindings> = async (c) => {
+	try {
+		const { lat, lon, radius, year } = c.req.valid("query");
+		
+		let filters = [sql`coordinates IS NOT NULL AND ST_DWithin(coordinates, ST_SetSRID(ST_MakePoint(${lon}, ${lat}), 4326), ${radius})`];
+		
+		if (year) {
+			filters.push(sql`metadata->>'survey_year' = ${year.toString()}`);
+		}
+		
+		const whereClause = sql.join(filters, sql` AND `);
+		
+		// Usage by gender in location
+		const usageByGender = await db
+			.select({
+				gender: sql<string>`data->>'gender'`,
+				avg_days: sql<number>`avg((data->'days_usage'->>'total')::numeric)`,
+				count: sql<number>`count(*)`
+			})
+			.from(cyclistProfiles)
+			.where(whereClause)
+			.groupBy(sql`data->>'gender'`);
+		
+		// Motivations by gender in location
+		const motivationsByGender = await db
+			.select({
+				gender: sql<string>`data->>'gender'`,
+				motivation: sql<string>`data->>'motivation_to_continue'`,
+				count: sql<number>`count(*)`
+			})
+			.from(cyclistProfiles)
+			.where(whereClause)
+			.groupBy(sql`data->>'gender'`, sql`data->>'motivation_to_continue'`);
+		
+		// Issues by gender in location
+		const issuesByGender = await db
+			.select({
+				gender: sql<string>`data->>'gender'`,
+				issue: sql<string>`data->>'biggest_issue'`,
+				count: sql<number>`count(*)`
+			})
+			.from(cyclistProfiles)
+			.where(whereClause)
+			.groupBy(sql`data->>'gender'`, sql`data->>'biggest_issue'`);
+		
+		return c.json({
+			location: { lat, lon, radius },
+			year: year || "all",
+			usage_by_gender: usageByGender.filter(u => u.gender).map(u => ({
+				gender: u.gender,
+				avg_days_per_week: u.avg_days ? Number(Number(u.avg_days).toFixed(1)) : 0,
+				total_responses: u.count
+			})),
+			motivations_by_gender: motivationsByGender
+				.filter(m => m.gender && m.motivation)
+				.reduce((acc, curr) => {
+					if (!acc[curr.gender]) acc[curr.gender] = {};
+					acc[curr.gender][curr.motivation] = curr.count;
+					return acc;
+				}, {} as any),
+			issues_by_gender: issuesByGender
+				.filter(i => i.gender && i.issue)
+				.reduce((acc, curr) => {
+					if (!acc[curr.gender]) acc[curr.gender] = {};
+					acc[curr.gender][curr.issue] = curr.count;
+					return acc;
+				}, {} as any)
+		}, HttpStatusCodes.OK);
+	} catch (error) {
+		console.error('Gender analysis by location error:', error);
+		return c.json({ error: error.message }, 500);
+	}
+};
+
 export const safetyAnalysis: RouteHandler<SafetyAnalysisRoute, AppBindings> = async (c) => {
 	const year = c.req.query("year") ? Number(c.req.query("year")) : undefined;
 	const yearFilter = year ? sql`metadata->>'survey_year' = ${year.toString()}` : sql`1=1`;
@@ -347,7 +421,7 @@ export const surveyLocations: RouteHandler<SurveyLocationsRoute, AppBindings> = 
 		const gender = c.req.query("gender");
 		const race = c.req.query("race");
 		const income = c.req.query("income");
-	
+
 	// Build filters
 	let filters = [sql`coordinates IS NOT NULL`];
 	

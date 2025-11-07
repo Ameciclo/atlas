@@ -96,6 +96,45 @@ const cleanApp = new Hono()
 	.get("/v1/cyclist-profiles/summary", analyticsHandlers.summary)
 	.get("/v1/cyclist-profiles/trends", analyticsHandlers.trends)
 	.get("/v1/cyclist-profiles/gender-analysis", analyticsHandlers.genderAnalysis)
+	.get("/v1/cyclist-profiles/gender-analysis-by-location", async (c) => {
+		try {
+			const lat = Number(c.req.query("lat") || -8.05);
+			const lon = Number(c.req.query("lon") || -34.88);
+			const radius = Number(c.req.query("radius") || 1000);
+			const year = c.req.query("year") ? Number(c.req.query("year")) : undefined;
+			
+			let filters = [sql`coordinates IS NOT NULL AND ST_DWithin(coordinates, ST_SetSRID(ST_MakePoint(${lon}, ${lat}), 4326), ${radius})`];
+			
+			if (year) {
+				filters.push(sql`metadata->>'survey_year' = ${year.toString()}`);
+			}
+			
+			const whereClause = sql.join(filters, sql` AND `);
+			
+			// Usage by gender in location
+			const usageByGender = await db
+				.select({
+					gender: sql<string>`data->>'gender'`,
+					avg_days: sql<number>`avg((data->'days_usage'->>'total')::numeric)`,
+					count: sql<number>`count(*)`
+				})
+				.from(cyclistProfiles)
+				.where(whereClause)
+				.groupBy(sql`data->>'gender'`);
+			
+			return c.json({
+				location: { lat, lon, radius },
+				year: year || "all",
+				usage_by_gender: usageByGender.filter(u => u.gender).map(u => ({
+					gender: u.gender,
+					avg_days_per_week: u.avg_days ? Number(Number(u.avg_days).toFixed(1)) : 0,
+					total_responses: u.count
+				}))
+			});
+		} catch (error) {
+			return c.json({ error: error.message }, 500);
+		}
+	})
 	.get("/v1/cyclist-profiles", async (c) => {
 		const profiles = await db.select().from(cyclistProfiles);
 		return c.json(profiles);

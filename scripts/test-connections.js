@@ -9,6 +9,7 @@ const services = [
     '/v1/cyclist-profiles/summary',
     '/v1/cyclist-profiles/trends',
     '/v1/cyclist-profiles/gender-analysis',
+    '/v1/cyclist-profiles/gender-analysis-by-location?lat=-8.05&lon=-34.88',
     '/v1/cyclist-profiles/safety-analysis',
     '/v1/cyclist-profiles/survey-locations'
   ]},
