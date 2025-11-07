@@ -11,6 +11,7 @@ import { seedOfficialStreets } from "./seed-official-streets.js";
 import { seedTrafficViolations } from "./seed-traffic-violations.js";
 import { seedCyclingInfra } from "./seed-cycling-infra.js";
 import { seedSharedBike } from "./seed-shared-bike.js";
+import { seedPcrStreets } from "./seed-pcr-streets.js";
 
 // Load environment variables from .env.local first, then .env
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
@@ -147,6 +148,13 @@ async function masterSeed(options: SeedOptions = {}) {
 			icon: "🚲",
 			color: chalk.blue,
 			fn: seedSharedBike,
+		},
+		{
+			name: "PCR Streets",
+			id: "pcr-streets",
+			icon: "🛣️",
+			color: chalk.yellow,
+			fn: seedPcrStreets,
 		},
 	];
 
