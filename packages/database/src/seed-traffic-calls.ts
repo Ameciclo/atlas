@@ -114,12 +114,44 @@ function parseBoolean(value: string | undefined): boolean {
 }
 
 /**
+ * Normalize time format to HH:MM:SS (zero-padded)
+ */
+function normalizeTimeFormat(timeStr: string): string {
+	// Handle cases like "6:05:00" -> "06:05:00"
+	const parts = timeStr.split(":");
+	if (parts.length !== 3) {
+		return timeStr; // Return as-is if format is unexpected
+	}
+
+	const hour = parts[0].padStart(2, "0");
+	const minute = parts[1].padStart(2, "0");
+	const second = parts[2].padStart(2, "0");
+
+	return `${hour}:${minute}:${second}`;
+}
+
+/**
  * Convert CSV record to database record
  */
 function convertRecord(record: CSVRecord) {
 	// Combine date and time into a Date object
-	const dateStr = record.data || "";
-	const timeStr = record.hora || "00:00:00";
+	let dateStr = record.data || "";
+	let timeStr = record.hora || "00:00:00";
+
+	// Handle case where dateStr already contains time (e.g., "2023-01-01T00:00:00")
+	// Extract just the date part if it contains a T
+	if (dateStr.includes("T")) {
+		dateStr = dateStr.split("T")[0];
+	}
+
+	// Handle case where timeStr contains date (shouldn't happen, but be safe)
+	if (timeStr.includes("T")) {
+		timeStr = timeStr.split("T")[1] || "00:00:00";
+	}
+
+	// Normalize time format to ensure zero-padded hours/minutes/seconds
+	timeStr = normalizeTimeFormat(timeStr);
+
 	const datetime = new Date(`${dateStr}T${timeStr}`);
 
 	// Validate datetime
@@ -219,8 +251,9 @@ export async function seedTrafficCalls(config: DatabaseConfig = {}) {
 		);
 
 		let totalInserted = 0;
-		const totalSkipped = 0;
+		let totalSkipped = 0;
 		let totalErrors = 0;
+		const errorReasons: Record<string, number> = {};
 
 		// Check if data already exists
 		const existingCount = await db
@@ -305,8 +338,11 @@ export async function seedTrafficCalls(config: DatabaseConfig = {}) {
 					.map((record) => {
 						try {
 							return convertRecord(record);
-						} catch (_error) {
-							totalErrors++;
+						} catch (error) {
+							const errorMsg =
+								error instanceof Error ? error.message : String(error);
+							errorReasons[errorMsg] = (errorReasons[errorMsg] || 0) + 1;
+							totalSkipped++;
 							return null;
 						}
 					})
@@ -328,7 +364,17 @@ export async function seedTrafficCalls(config: DatabaseConfig = {}) {
 		console.log(`\n✅ Seeding complete!`);
 		console.log(`   Inserted: ${totalInserted}`);
 		console.log(`   Skipped: ${totalSkipped}`);
-		console.log(`   Errors: ${totalErrors}\n`);
+		console.log(`   Errors: ${totalErrors}`);
+
+		if (totalSkipped > 0) {
+			console.log(`\n📋 Skipped records breakdown:`);
+			Object.entries(errorReasons)
+				.sort((a, b) => b[1] - a[1])
+				.forEach(([reason, count]) => {
+					console.log(`   - ${reason}: ${count}`);
+				});
+		}
+		console.log();
 
 		return {
 			totalInserted,
