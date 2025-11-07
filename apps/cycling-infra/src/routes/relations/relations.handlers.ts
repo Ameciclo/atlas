@@ -4,7 +4,7 @@ import * as HttpStatusPhrases from "stoker/http-status-phrases";
 import { createConnectedDatabase } from "@atlas/database";
 import { pdcRelationWays, cyclistInfraRelations } from "@atlas/database/schemas/cycling-infra";
 import type { AppRouteHandler } from "../../lib/types.js";
-import type { GetWaysByRelationIdRoute, ListRoute } from "./relations.routes.js";
+import type { GetByIdRoute, GetWaysByRelationIdRoute, ListRoute } from "./relations.routes.js";
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
 	try {
@@ -13,6 +13,66 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 		return c.json(relations, HttpStatusCodes.OK);
 	} catch (error) {
 		console.error("Error fetching relations:", error);
+		return c.json(
+			{ message: "Internal Server Error" },
+			HttpStatusCodes.INTERNAL_SERVER_ERROR,
+		);
+	}
+};
+
+export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
+	const { id } = c.req.valid("param");
+
+	try {
+		const db = await createConnectedDatabase();
+		
+		// Find relation by OSM ID only
+		const relation = await db
+			.select()
+			.from(cyclistInfraRelations)
+			.where(eq(cyclistInfraRelations.osm_id, id))
+			.limit(1);
+
+		if (relation.length === 0) {
+			return c.json(
+				{ message: "Relation not found" },
+				HttpStatusCodes.NOT_FOUND,
+			);
+		}
+
+		// Get ways for this relation using relation_id
+		const relationWays = await db
+			.select()
+			.from(pdcRelationWays)
+			.where(eq(pdcRelationWays.relation_id, relation[0].id));
+
+		if (relationWays.length === 0) {
+			return c.json({
+				type: "FeatureCollection" as const,
+				features: [],
+			}, HttpStatusCodes.OK);
+		}
+
+		// Convert to GeoJSON FeatureCollection
+		const features = relationWays.map(way => ({
+			type: "Feature" as const,
+			id: `relation/${relation[0].osm_id}`,
+			properties: {
+				...(way.osm_properties as Record<string, any>),
+				name: relation[0].name,
+				ref: relation[0].pdc_ref,
+				description: relation[0].pdc_stretch,
+				pdc_typology: relation[0].pdc_typology,
+			},
+			geometry: (way.geojson as any)?.geometry || null,
+		}));
+
+		return c.json({
+			type: "FeatureCollection" as const,
+			features,
+		}, HttpStatusCodes.OK);
+	} catch (error) {
+		console.error(`Error fetching relation ${id}:`, error);
 		return c.json(
 			{ message: "Internal Server Error" },
 			HttpStatusCodes.INTERNAL_SERVER_ERROR,

@@ -1,8 +1,8 @@
 import { eq } from "drizzle-orm";
 import { createConnectedDatabase } from "@atlas/database";
 import { cities, cyclistInfraRelations, cyclistInfraRelationCities } from "@atlas/database/schemas/cycling-infra";
-import type { AppRouteHandler } from "../../lib/types";
-import type { RelationsByCityRoute } from "./relations-by-city.routes";
+import type { AppRouteHandler } from "../../lib/types.js";
+import type { RelationsByCityRoute } from "./relations-by-city.routes.js";
 
 export const relationsByCity: AppRouteHandler<RelationsByCityRoute> = async (c) => {
 	const db = await createConnectedDatabase();
