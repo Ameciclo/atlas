@@ -36,6 +36,13 @@
 			"when": 1761743346798,
 			"tag": "0004_clear_doorman",
 			"breakpoints": true
+		},
+		{
+			"idx": 5,
+			"version": "7",
+			"when": 1762455638236,
+			"tag": "0005_striped_agent_zero",
+			"breakpoints": true
 		}
 	]
 }

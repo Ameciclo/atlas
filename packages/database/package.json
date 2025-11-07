@@ -25,6 +25,10 @@
 		"./schemas/traffic-deaths": {
 			"types": "./dist/schemas/traffic-deaths/index.d.ts",
 			"import": "./dist/schemas/traffic-deaths/index.js"
+		},
+		"./schemas/traffic-calls": {
+			"types": "./dist/schemas/traffic-calls/index.d.ts",
+			"import": "./dist/schemas/traffic-calls/index.js"
 		}
 	},
 	"scripts": {

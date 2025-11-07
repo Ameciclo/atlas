@@ -1,6 +1,6 @@
 {
 	"version": "1.0",
-	"lastUpdated": "2025-11-04T17:45:00Z",
+	"lastUpdated": "2025-11-06T00:00:00Z",
 	"datasets": {
 		"traffic-deaths": {
 			"name": "Traffic Deaths (DATASUS)",
@@ -9,7 +9,7 @@
 			"s3": {
 				"bucket": "ameciclo-space",
 				"region": "nyc3",
-				"endpoint": "https://nyc3.digitaloceanspaces.com",
+				"endpoint": "https://ameciclo-space.nyc3.digitaloceanspaces.com",
 				"prefix": "seed/traffic-deaths/",
 				"files": [
 					{
@@ -91,7 +91,7 @@
 			"s3": {
 				"bucket": "ameciclo-space",
 				"region": "nyc3",
-				"endpoint": "https://nyc3.digitaloceanspaces.com",
+				"endpoint": "https://ameciclo-space.nyc3.digitaloceanspaces.com",
 				"prefix": "seed/cyclist-counts/",
 				"files": [
 					{
@@ -115,7 +115,7 @@
 			"s3": {
 				"bucket": "ameciclo-space",
 				"region": "nyc3",
-				"endpoint": "https://nyc3.digitaloceanspaces.com",
+				"endpoint": "https://ameciclo-space.nyc3.digitaloceanspaces.com",
 				"prefix": "seed/cyclist-profiles/",
 				"files": [
 					{
@@ -130,6 +130,32 @@
 			"metadata": {
 				"recordCount": 500,
 				"format": "json"
+			}
+		},
+		"traffic-calls": {
+			"name": "Traffic Calls (CTTU)",
+			"description": "Traffic incident data from CTTU Recife 2016-2024",
+			"storage": "s3",
+			"s3": {
+				"bucket": "ameciclo-space",
+				"region": "nyc3",
+				"endpoint": "https://ameciclo-space.nyc3.digitaloceanspaces.com",
+				"prefix": "seed/traffic-calls/",
+				"files": [
+					{
+						"name": "sinistros-cttu-2016-2024-vias-corrigidas.csv",
+						"key": "seed/traffic-calls/sinistros-cttu-2016-2024-vias-corrigidas.csv",
+						"size": 5354921,
+						"checksum": "sha256:09a9aeed66a7f0bf9da83c7aedee696ca71b1af8d115ebbf1c57a7a2ac99327a",
+						"uploadedAt": "2025-11-06T00:00:00Z"
+					}
+				]
+			},
+			"metadata": {
+				"recordCount": 20240,
+				"years": [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+				"format": "csv",
+				"encoding": "utf-8"
 			}
 		}
 	}
