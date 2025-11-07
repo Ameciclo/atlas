@@ -4,7 +4,13 @@ const services = [
   { name: 'cyclist-profile', port: 3000, endpoints: [
     '/health', 
     '/v1/cyclist-profiles',
-    '/v1/cyclist-profiles/1'
+    '/v1/cyclist-profiles/nearby?lat=-8.05&lon=-34.88',
+    '/v1/cyclist-profiles/nearby-summary?lat=-8.05&lon=-34.88',
+    '/v1/cyclist-profiles/summary',
+    '/v1/cyclist-profiles/trends',
+    '/v1/cyclist-profiles/gender-analysis',
+    '/v1/cyclist-profiles/safety-analysis',
+    '/v1/cyclist-profiles/survey-locations'
   ]},
   { name: 'cyclist-counts', port: 3002, endpoints: [
     '/health', 

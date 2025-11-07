@@ -200,8 +200,9 @@ export const trends: RouteHandler<TrendsRoute, AppBindings> = async (c) => {
 };
 
 export const genderAnalysis: RouteHandler<GenderAnalysisRoute, AppBindings> = async (c) => {
-	const year = c.req.query("year") ? Number(c.req.query("year")) : undefined;
-	const yearFilter = year ? sql`metadata->>'survey_year' = ${year.toString()}` : sql`1=1`;
+	try {
+		const year = c.req.query("year") ? Number(c.req.query("year")) : undefined;
+		const yearFilter = year ? sql`metadata->>'survey_year' = ${year.toString()}` : sql`1=1`;
 	
 	// Usage by gender
 	const usageByGender = await db
@@ -240,7 +241,7 @@ export const genderAnalysis: RouteHandler<GenderAnalysisRoute, AppBindings> = as
 		year: year || "all",
 		usage_by_gender: usageByGender.filter(u => u.gender).map(u => ({
 			gender: u.gender,
-			avg_days_per_week: Number(u.avg_days?.toFixed(1)) || 0,
+			avg_days_per_week: u.avg_days ? Number(Number(u.avg_days).toFixed(1)) : 0,
 			total_responses: u.count
 		})),
 		motivations_by_gender: motivationsByGender
@@ -258,6 +259,10 @@ export const genderAnalysis: RouteHandler<GenderAnalysisRoute, AppBindings> = as
 				return acc;
 			}, {} as any)
 	}, HttpStatusCodes.OK);
+	} catch (error) {
+		console.error('Gender analysis error:', error);
+		return c.json({ error: error.message }, 500);
+	}
 };
 
 export const safetyAnalysis: RouteHandler<SafetyAnalysisRoute, AppBindings> = async (c) => {

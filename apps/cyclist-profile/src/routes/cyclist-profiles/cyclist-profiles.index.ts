@@ -9,7 +9,8 @@ import * as routes from "./cyclist-profiles.routes.js";
 const router = createRouter()
 	.openapi(routes.list, handlers.list)
 	.openapi(routes.getOne, handlers.getOne)
-	// .openapi(routes.nearby, handlers.nearby) // Moved to app.ts
+	.openapi(routes.nearby, handlers.nearby)
+	.openapi(routes.nearbySummary, handlers.nearbySummary)
 	// Simple route without Zod validation
 	.get("/nearby-simple", async (c) => {
 		const lat = Number(c.req.query("lat") || -8.05);

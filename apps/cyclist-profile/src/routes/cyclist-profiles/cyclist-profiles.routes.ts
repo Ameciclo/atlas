@@ -94,6 +94,37 @@ export const nearby = createRoute({
 	},
 });
 
+export const nearbySummary = createRoute({
+	path: "/cyclist-profiles/nearby-summary",
+	method: "get",
+	request: {
+		query: NearbyQuerySchema,
+	},
+	tags,
+	responses: {
+		[HttpStatusCodes.OK]: jsonContent(
+			z.object({
+				total: z.number(),
+				profiles: z.array(z.object({
+					id: z.number(),
+					gender: z.string().nullable(),
+					age: z.number().nullable(),
+					days_per_week: z.number().nullable(),
+					bike_type: z.string().nullable(),
+					neighborhood: z.string().nullable(),
+					survey_year: z.string().nullable(),
+					distance_meters: z.number()
+				}))
+			}),
+			"Cyclist profiles summary within radius",
+		),
+		[HttpStatusCodes.UNPROCESSABLE_ENTITY]: jsonContent(
+			createErrorSchema(NearbyQuerySchema),
+			"Invalid parameters",
+		),
+	},
+});
+
 // export const patch = createRoute({
 // 	path: "/tasks/{id}",
 // 	method: "patch",
@@ -135,5 +166,6 @@ export type ListRoute = typeof list;
 // export type CreateRoute = typeof create;
 export type GetOneRoute = typeof getOne;
 export type NearbyRoute = typeof nearby;
+export type NearbySummaryRoute = typeof nearbySummary;
 // export type PatchRoute = typeof patch;
 // export type RemoveRoute = typeof remove;
