@@ -38,8 +38,21 @@ function calculateGeometryLength(geometry: any): number {
 }
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
+	const { city } = c.req.valid("query");
 	const db = await createConnectedDatabase();
-	const ways = await db.select().from(pdcRelationWays);
+	
+	let ways;
+	if (city) {
+		const result = await db.execute(`
+			SELECT prw.*
+			FROM pdc_relation_ways prw
+			LEFT JOIN cyclist_infra_relation_cities circ ON prw.relation_id = circ.relation_id
+			WHERE COALESCE(circ.city_id, (prw.osm_properties->>'city_id')::int) = ${parseInt(city, 10)}
+		`);
+		ways = result.rows;
+	} else {
+		ways = await db.select().from(pdcRelationWays);
+	}
 	
 	// Transform to original format
 	const transformedWays = ways.map(way => {
@@ -48,7 +61,7 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 		
 		// Extract numeric OSM ID from string format (e.g., "relation/15997469" -> 15997469)
 		const osmIdMatch = way.osm_id.match(/\/(\d+)$/);
-		const numericOsmId = osmIdMatch ? parseInt(osmIdMatch[1]) : 0;
+		const numericOsmId = osmIdMatch && osmIdMatch[1] ? parseInt(osmIdMatch[1], 10) : 0;
 		
 		// Calculate length from geometry
 		const length = calculateGeometryLength(geojsonData?.geometry);
@@ -68,10 +81,10 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 			cyclewayTypology: cyclewayTypology,
 			relationId: way.relation_id || 0,
 			geojson: {
-				type: "FeatureCollection",
+				type: "FeatureCollection" as const,
 				features: [{
 					id: way.osm_id,
-					type: "Feature",
+					type: "Feature" as const,
 					geometry: geojsonData?.geometry || { type: "LineString", coordinates: [] },
 					properties: {
 						id: way.osm_id,
@@ -171,7 +184,7 @@ export const getSummary: AppRouteHandler<GetSummaryRoute> = async (c) => {
 	for (const city in cities) {
 		if (cities.hasOwnProperty(city) && city !== '0') {
 			const cityData = cities[city];
-			const citySummary = generateCitySummary(cityData);
+			const citySummary = generateCitySummary(cityData || []);
 			summaryByCity[city] = citySummary;
 		}
 	}
@@ -192,7 +205,7 @@ export const getSummary: AppRouteHandler<GetSummaryRoute> = async (c) => {
 	});
 	
 	const allCityData = Object.values(cities).flat();
-	const allCitySummary = generateCitySummary(allCityData);
+	const allCitySummary = generateCitySummary(allCityData || []);
 	
 	return c.json({ all: allCitySummary, byCity: summaryByCity });
 };
@@ -228,8 +241,21 @@ function generateCitySummary(cityData: any[]) {
 }
 
 export const getAll: AppRouteHandler<GetAllRoute> = async (c) => {
+	const { city } = c.req.valid("query");
 	const db = await createConnectedDatabase();
-	const ways = await db.select().from(pdcRelationWays);
+	
+	let ways;
+	if (city) {
+		const result = await db.execute(`
+			SELECT prw.*
+			FROM pdc_relation_ways prw
+			LEFT JOIN cyclist_infra_relation_cities circ ON prw.relation_id = circ.relation_id
+			WHERE COALESCE(circ.city_id, (prw.osm_properties->>'city_id')::int) = ${parseInt(city, 10)}
+		`);
+		ways = result.rows;
+	} else {
+		ways = await db.select().from(pdcRelationWays);
+	}
 	
 	// Convert to GeoJSON format
 	const features = ways.map((way: any) => {

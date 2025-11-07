@@ -68,6 +68,11 @@ export const list = createRoute({
 	tags,
 	summary: "List all PDC ways",
 	description: "Get all PDC relation ways",
+	request: {
+		query: z.object({
+			city: z.string().optional().openapi({ description: "Filter by city ID", example: "2611606" }),
+		}),
+	},
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			z.array(OriginalWaySchema),
@@ -96,6 +101,11 @@ export const getAll = createRoute({
 	tags,
 	summary: "Get all ways as GeoJSON",
 	description: "Get all PDC ways formatted as GeoJSON FeatureCollection",
+	request: {
+		query: z.object({
+			city: z.string().optional().openapi({ description: "Filter by city ID", example: "2611606" }),
+		}),
+	},
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			AllWaysResponseSchema,
