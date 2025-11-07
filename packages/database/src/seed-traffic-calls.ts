@@ -123,9 +123,9 @@ function normalizeTimeFormat(timeStr: string): string {
 		return timeStr; // Return as-is if format is unexpected
 	}
 
-	const hour = parts[0].padStart(2, "0");
-	const minute = parts[1].padStart(2, "0");
-	const second = parts[2].padStart(2, "0");
+	const hour = (parts[0] ?? "00").padStart(2, "0");
+	const minute = (parts[1] ?? "00").padStart(2, "0");
+	const second = (parts[2] ?? "00").padStart(2, "0");
 
 	return `${hour}:${minute}:${second}`;
 }
@@ -141,7 +141,7 @@ function convertRecord(record: CSVRecord) {
 	// Handle case where dateStr already contains time (e.g., "2023-01-01T00:00:00")
 	// Extract just the date part if it contains a T
 	if (dateStr.includes("T")) {
-		dateStr = dateStr.split("T")[0];
+		dateStr = dateStr.split("T")[0] ?? "";
 	}
 
 	// Handle case where timeStr contains date (shouldn't happen, but be safe)
