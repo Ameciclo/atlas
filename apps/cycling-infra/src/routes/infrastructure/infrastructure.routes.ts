@@ -7,14 +7,14 @@ import { notFoundSchema } from "../../lib/constants.js";
 const tags = ["Infrastructure"];
 
 const InfrastructureSchema = z.object({
-	id: z.number(),
-	osm_id: z.string(),
-	name: z.string().nullable(),
-	infra_type: z.string(),
-	coordinates: z.any(), // PostGIS geometry
-	geojson: z.any(),
-	created_at: z.string(),
-	updated_at: z.string(),
+	id: z.number().openapi({ description: "Unique identifier", example: 1 }),
+	osm_id: z.string().openapi({ description: "OpenStreetMap ID", example: "way/123456" }),
+	name: z.string().nullable().openapi({ description: "Infrastructure name", example: "Ciclofaixa da Rua da Aurora" }),
+	infra_type: z.string().openapi({ description: "Type of cycling infrastructure", example: "Ciclofaixa" }),
+	coordinates: z.any().openapi({ description: "PostGIS geometry coordinates" }),
+	geojson: z.any().openapi({ description: "GeoJSON representation of the infrastructure" }),
+	created_at: z.string().openapi({ description: "Creation timestamp", example: "2024-01-01T00:00:00Z" }),
+	updated_at: z.string().openapi({ description: "Last update timestamp", example: "2024-01-01T00:00:00Z" }),
 });
 
 export const list = createRoute({
@@ -26,11 +26,11 @@ export const list = createRoute({
 	request: {
 		query: z.object({
 			type: z.string().optional().openapi({
-				description: "Filter by infrastructure type",
+				description: "Filter by infrastructure type (Ciclofaixa, Ciclovia, Faixa Compartilhada, etc.)",
 				example: "Ciclofaixa",
 			}),
 			limit: z.string().optional().openapi({
-				description: "Limit number of results",
+				description: "Limit number of results (max 1000)",
 				example: "100",
 			}),
 		}),
@@ -65,7 +65,7 @@ export const getById = createRoute({
 });
 
 export const getGeoJSON = createRoute({
-	path: "/v1/infrastructure/geojson",
+	path: "/v1/infrastructure-geojson",
 	method: "get",
 	tags,
 	summary: "Get cycling infrastructure as GeoJSON",
@@ -73,11 +73,11 @@ export const getGeoJSON = createRoute({
 	request: {
 		query: z.object({
 			type: z.string().optional().openapi({
-				description: "Filter by infrastructure type",
+				description: "Filter by infrastructure type (Ciclofaixa, Ciclovia, Faixa Compartilhada, etc.)",
 				example: "Ciclofaixa",
 			}),
 			limit: z.string().optional().openapi({
-				description: "Limit number of results",
+				description: "Limit number of results (max 1000)",
 				example: "100",
 			}),
 		}),
@@ -99,16 +99,16 @@ export const getGeoJSON = createRoute({
 });
 
 export const getNearby = createRoute({
-	path: "/v1/infrastructure/nearby",
+	path: "/v1/infrastructure-nearby",
 	method: "get",
 	tags,
 	summary: "Get existing cycling infrastructure near a location",
 	description: "Get existing cycling infrastructure within a radius from a lat/lon point",
 	request: {
 		query: z.object({
-			lat: z.string().openapi({ description: "Latitude", example: "-8.0476" }),
-			lon: z.string().openapi({ description: "Longitude", example: "-34.8770" }),
-			radius: z.string().optional().openapi({ description: "Radius in meters", example: "1000" }),
+			lat: z.string().openapi({ description: "Latitude coordinate", example: "-8.0476" }),
+			lon: z.string().openapi({ description: "Longitude coordinate", example: "-34.8770" }),
+			radius: z.string().optional().openapi({ description: "Search radius in meters (default: 1000, max: 10000)", example: "1000" }),
 			type: z.string().optional().openapi({ description: "Filter by infrastructure type", example: "Ciclofaixa" }),
 		}),
 	},

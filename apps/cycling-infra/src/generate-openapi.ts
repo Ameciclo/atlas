@@ -1,11 +1,13 @@
 import "dotenv/config";
-import { writeFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import fs from "node:fs";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
 import app from "./app.js";
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = path.dirname(__filename);
+
+const API_NAME = "cycling-infra";
 
 async function generateOpenAPISpec() {
 	try {
@@ -50,10 +52,25 @@ async function generateOpenAPISpec() {
 			],
 		});
 
-		const outputPath = join(__dirname, "..", "openapi.json");
-		await writeFile(outputPath, JSON.stringify(openAPIDoc, null, 2));
+		const specJson = JSON.stringify(openAPIDoc, null, 2);
 
+		// 1. Write to local directory
+		const outputPath = path.join(__dirname, "..", "openapi.json");
+		fs.writeFileSync(outputPath, specJson);
 		console.log(`✓ OpenAPI spec generated at ${outputPath}`);
+
+		// 2. Copy to docs directory
+		const docsDir = path.resolve(__dirname, "../../docs/public/openapi");
+		fs.mkdirSync(docsDir, { recursive: true });
+		const docsPath = path.join(docsDir, `${API_NAME}.json`);
+		fs.writeFileSync(docsPath, specJson);
+		console.log(`✓ OpenAPI spec copied to ${docsPath}`);
+
+		console.log("\nGenerated OpenAPI spec for routes:");
+		const paths = Object.keys(openAPIDoc.paths || {});
+		for (const path of paths) {
+			console.log(`  - ${path}`);
+		}
 	} catch (error) {
 		console.error("Failed to generate OpenAPI spec:", error);
 		process.exit(1);
