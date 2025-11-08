@@ -1,4 +1,4 @@
-name: Release
+name: Release Apps
 
 on:
   push:
@@ -13,13 +13,67 @@ permissions:
   pull-requests: write
 
 jobs:
-  release:
-    name: Create Release
+  detect-changes:
+    name: Detect Changed Apps
     runs-on: ubuntu-latest
     outputs:
-      released: ${{ steps.release.outputs.released }}
-      version: ${{ steps.release.outputs.version }}
-      tag: ${{ steps.release.outputs.tag }}
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      has_changes: ${{ steps.set-matrix.outputs.has_changes }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.15.0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install turbo
+        run: npm install -g turbo
+
+      - name: Detect changed apps
+        id: set-matrix
+        run: |
+          # Get list of all apps with package.json
+          ALL_APPS=$(find apps -name "package.json" -type f | cut -d'/' -f2 | sort -u)
+
+          # Use turbo to detect affected apps
+          AFFECTED_APPS=$(turbo run build --dry-run=json --filter=...[HEAD^1] | jq -r '.tasks[] | select(.task == "build") | .package' | sed 's/@atlas\///' | sort -u)
+
+          # Create matrix for affected apps only
+          MATRIX_APPS=()
+          for app in $AFFECTED_APPS; do
+            if [[ -f "apps/$app/Dockerfile" ]]; then
+              MATRIX_APPS+=("$app")
+            fi
+          done
+
+          if [ ${#MATRIX_APPS[@]} -eq 0 ]; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "matrix=[]" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            printf -v joined '%s,' "${MATRIX_APPS[@]}"
+            echo "matrix=[\"${joined%,}\"]" | sed 's/,/","/g' >> $GITHUB_OUTPUT
+          fi
+
+          echo "Affected apps: ${MATRIX_APPS[*]}"
+
+  release-apps:
+    name: Release Apps
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: ${{ fromJson(needs.detect-changes.outputs.matrix) }}
+    outputs:
+      releases: ${{ steps.collect-releases.outputs.releases }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -38,52 +92,28 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Create Release
+      - name: Create app release
         id: release
         uses: googleapis/release-please-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: node
-          package-name: atlas
-          changelog-types: |
-            [
-              {"type":"feat","section":"Features","hidden":false},
-              {"type":"fix","section":"Bug Fixes","hidden":false},
-              {"type":"docs","section":"Documentation","hidden":false},
-              {"type":"style","section":"Styles","hidden":false},
-              {"type":"refactor","section":"Code Refactoring","hidden":false},
-              {"type":"perf","section":"Performance Improvements","hidden":false},
-              {"type":"test","section":"Tests","hidden":false},
-              {"type":"build","section":"Build System","hidden":false},
-              {"type":"ci","section":"Continuous Integration","hidden":false},
-              {"type":"chore","section":"Chores","hidden":true}
-            ]
+          config-file: .release-please-config.json
+          manifest-file: .release-please-manifest.json
+          path: apps/${{ matrix.app }}
+          package-name: ${{ matrix.app }}
 
-  build-and-tag:
-    name: Build and Tag Docker Images
-    needs: release
-    if: needs.release.outputs.released == 'true'
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        app: [docs, cyclist-profile, cyclist-counts, traffic-deaths]
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Get current app version
+        id: version
+        run: |
+          VERSION=$(jq -r '.version' apps/${{ matrix.app }}/package.json)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "App ${{ matrix.app }} version: $VERSION"
 
       - name: Setup Node.js (for OpenAPI generation)
         if: matrix.app == 'docs'
         uses: actions/setup-node@v4
         with:
           node-version: 22.15.0
-
-      - name: Setup pnpm (for OpenAPI generation)
-        if: matrix.app == 'docs'
-        uses: pnpm/action-setup@v4
-
-      - name: Install dependencies (for OpenAPI generation)
-        if: matrix.app == 'docs'
-        run: pnpm install --no-frozen-lockfile
 
       - name: Generate OpenAPI specs
         if: matrix.app == 'docs'
@@ -105,8 +135,9 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }}/${{ matrix.app }}
           tags: |
-            type=raw,value=${{ needs.release.outputs.version }}
+            type=raw,value=${{ steps.version.outputs.version }}
             type=raw,value=latest
+            type=sha,format=short
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
@@ -120,13 +151,21 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+      - name: Collect release info
+        id: collect-releases
+        run: |
+          echo "app=${{ matrix.app }}" >> $GITHUB_OUTPUT
+          echo "version=${{ steps.version.outputs.version }}" >> $GITHUB_OUTPUT
+          echo "released=${{ steps.release.outputs.released }}" >> $GITHUB_OUTPUT
+
   update-gitops-manifests:
     name: Update GitOps Manifests
-    needs: [release, build-and-tag]
-    if: needs.release.outputs.released == 'true'
+    needs: [detect-changes, release-apps]
+    if: needs.detect-changes.outputs.has_changes == 'true'
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        app: ${{ fromJson(needs.detect-changes.outputs.matrix) }}
         environment: [staging, production]
     steps:
       - name: Checkout groundwork repository
@@ -136,7 +175,15 @@ jobs:
           token: ${{ secrets.GROUNDWORK_REPO_TOKEN }}
           path: groundwork
 
-      - name: Update image tag for ${{ matrix.environment }}
+      - name: Get app version
+        id: app-version
+        run: |
+          # Get the version from the app's package.json
+          VERSION=$(curl -s "https://raw.githubusercontent.com/ameciclo/atlas/main/apps/${{ matrix.app }}/package.json" | jq -r '.version')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "App ${{ matrix.app }} version: $VERSION"
+
+      - name: Update image tag for ${{ matrix.app }} in ${{ matrix.environment }}
         run: |
           cd groundwork
 
@@ -144,29 +191,40 @@ jobs:
           if [[ "${{ matrix.environment }}" == "staging" ]]; then
             IMAGE_TAG="latest"
           else
-            IMAGE_TAG="${{ needs.release.outputs.version }}"
+            IMAGE_TAG="${{ steps.app-version.outputs.version }}"
           fi
 
           # Update the image tag in the deployment manifest
-          sed -i "s|image: ghcr.io/ameciclo/atlas/docs:.*|image: ghcr.io/ameciclo/atlas/docs:${IMAGE_TAG}|" helm/charts/atlas/docs/deployment.yaml
+          # Note: This assumes each app has its own manifest path
+          MANIFEST_PATH="helm/charts/atlas/${{ matrix.app }}/deployment.yaml"
+
+          if [[ ! -f "$MANIFEST_PATH" ]]; then
+            echo "Manifest not found: $MANIFEST_PATH"
+            echo "Skipping ${{ matrix.app }} - no Kubernetes manifest"
+            exit 0
+          fi
+
+          sed -i "s|image: ghcr.io/ameciclo/atlas/${{ matrix.app }}:.*|image: ghcr.io/ameciclo/atlas/${{ matrix.app }}:${IMAGE_TAG}|" "$MANIFEST_PATH"
 
           # Check if there are any changes
           if git diff --quiet; then
-            echo "No changes to commit for ${{ matrix.environment }}"
+            echo "No changes to commit for ${{ matrix.app }} in ${{ matrix.environment }}"
             exit 0
           fi
 
           # Commit and push changes
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add helm/charts/atlas/docs/deployment.yaml
-          git commit -m "feat: update atlas-docs to ${{ needs.release.outputs.version }} for ${{ matrix.environment }}"
+          git add "$MANIFEST_PATH"
+          git commit -m "deploy: update ${{ matrix.app }} to ${IMAGE_TAG} for ${{ matrix.environment }}"
           git push
 
       - name: Create deployment annotation
         run: |
           cd groundwork
-          echo "Deployment triggered for atlas-docs:${{ needs.release.outputs.version }} in ${{ matrix.environment }}" >> .github/deployment-log.md
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          IMAGE_TAG="${{ matrix.environment == 'staging' && 'latest' || steps.app-version.outputs.version }}"
+          echo "- **${TIMESTAMP}**: Deployed ${{ matrix.app }}:${IMAGE_TAG} to ${{ matrix.environment }}" >> .github/deployment-log.md
           git add .github/deployment-log.md
-          git commit -m "docs: log deployment of atlas-docs ${{ needs.release.outputs.version }} to ${{ matrix.environment }}" || exit 0
+          git commit -m "docs: log deployment of ${{ matrix.app }}:${IMAGE_TAG} to ${{ matrix.environment }}" || exit 0
           git push || exit 0
