@@ -215,27 +215,4 @@ jobs:
           git commit -m "deploy: update ${{ matrix.app }} to ${IMAGE_TAG} for ${{ matrix.environment }}"
           git push
 
-      - name: Create deployment annotation
-        run: |
-          cd groundwork
-          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
-          IMAGE_TAG="${{ matrix.environment == 'staging' && 'latest' || steps.app-version.outputs.version }}"
 
-          # Create deployment log file if it doesn't exist
-          if [ ! -f .github/deployment-log.md ]; then
-            mkdir -p .github
-            echo "# Atlas Deployment Log" > .github/deployment-log.md
-            echo "" >> .github/deployment-log.md
-            echo "This file tracks all deployments made via GitOps automation." >> .github/deployment-log.md
-            echo "" >> .github/deployment-log.md
-            echo "## Deployment History" >> .github/deployment-log.md
-            echo "" >> .github/deployment-log.md
-          fi
-
-          # Add deployment entry
-          echo "- **${TIMESTAMP}**: Deployed ${{ matrix.app }}:${IMAGE_TAG} to production" >> .github/deployment-log.md
-
-          # Commit changes
-          git add .github/deployment-log.md
-          git commit -m "docs: log deployment of ${{ matrix.app }}:${IMAGE_TAG} to production" || exit 0
-          git push || exit 0
