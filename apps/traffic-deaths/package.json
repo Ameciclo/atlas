@@ -1,6 +1,6 @@
 {
 	"name": "@atlas/traffic-deaths",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "API service for managing traffic deaths data from DATASUS",
 	"type": "module",
 	"main": "./dist/index.js",
