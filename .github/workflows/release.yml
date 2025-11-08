@@ -166,7 +166,7 @@ jobs:
     strategy:
       matrix:
         app: ${{ fromJson(needs.detect-changes.outputs.matrix) }}
-        environment: [staging, production]
+        environment: [production]
     steps:
       - name: Checkout groundwork repository
         uses: actions/checkout@v4
@@ -187,12 +187,8 @@ jobs:
         run: |
           cd groundwork
 
-          # Determine which tag to use based on environment
-          if [[ "${{ matrix.environment }}" == "staging" ]]; then
-            IMAGE_TAG="latest"
-          else
-            IMAGE_TAG="${{ steps.app-version.outputs.version }}"
-          fi
+          # Use semantic version for production deployments
+          IMAGE_TAG="${{ steps.app-version.outputs.version }}"
 
           # Update the image tag in the deployment manifest
           # Note: This assumes each app has its own manifest path
@@ -237,9 +233,9 @@ jobs:
           fi
 
           # Add deployment entry
-          echo "- **${TIMESTAMP}**: Deployed ${{ matrix.app }}:${IMAGE_TAG} to ${{ matrix.environment }}" >> .github/deployment-log.md
+          echo "- **${TIMESTAMP}**: Deployed ${{ matrix.app }}:${IMAGE_TAG} to production" >> .github/deployment-log.md
 
           # Commit changes
           git add .github/deployment-log.md
-          git commit -m "docs: log deployment of ${{ matrix.app }}:${IMAGE_TAG} to ${{ matrix.environment }}" || exit 0
+          git commit -m "docs: log deployment of ${{ matrix.app }}:${IMAGE_TAG} to production" || exit 0
           git push || exit 0
