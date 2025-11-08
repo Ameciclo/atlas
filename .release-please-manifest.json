@@ -1,6 +1,6 @@
 {
-  "apps/docs": "0.0.1",
-  "apps/cyclist-profile": "1.0.0",
-  "apps/cyclist-counts": "1.0.0",
-  "apps/traffic-deaths": "0.1.0"
+	"apps/docs": "0.0.1",
+	"apps/cyclist-profile": "1.0.0",
+	"apps/cyclist-counts": "1.0.0",
+	"apps/traffic-deaths": "0.1.0"
 }
