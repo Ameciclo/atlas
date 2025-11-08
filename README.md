@@ -118,14 +118,19 @@ atlas/
 
 ## CI/CD Pipeline
 
-The CI/CD pipeline is configured to be intelligent and efficient using GitHub Actions:
+The CI/CD pipeline uses GitOps principles with GitHub Actions and ArgoCD:
 
-1. **Unified Workflow**: A single workflow handles linting, building, testing, and deployment.
+1. **Semantic Versioning**: Automated releases using conventional commits and Release Please
 
 2. **Smart Dependency Detection**:
    - Uses Turborepo's `--affected` flag to only process packages that have changed
    - Compares with the base branch for PRs or the previous commit for pushes to main
    - Automatically detects which apps need to be built and deployed
+
+3. **GitOps Deployment**:
+   - **Staging**: Auto-deploys on every main branch push
+   - **Production**: Auto-deploys on semantic releases + manual deployment option
+   - **ArgoCD**: Monitors groundwork repository and syncs changes automatically
 
 3. **Efficient Docker Builds**:
    - Only builds Docker images for applications that have changed
@@ -133,10 +138,20 @@ The CI/CD pipeline is configured to be intelligent and efficient using GitHub Ac
    - Pushes images to GitHub Container Registry (ghcr.io)
    - Tags images with commit SHA, branch name, and 'latest' for main branch
 
-4. **Deployment Strategy**:
-   - Docker images are deployed using Portainer
-   - Each application can be deployed independently
+4. **GitOps Deployment**:
+   - Staging environment auto-deploys on every main branch push
+   - Production deploys on semantic releases or manual triggers
+   - ArgoCD monitors groundwork repository for automatic synchronization
    - Database migrations and seeding are handled by reusing the same Docker image with different commands
+
+## Deployment
+
+Atlas uses a GitOps deployment strategy with ArgoCD:
+
+- **Documentation**: [GitOps Deployment Guide](docs/GITOPS_DEPLOYMENT.md)
+- **Staging**: `docs-staging.ameciclo.org` (auto-deployed on main branch)
+- **Production**: `docs.ameciclo.org` (deployed on releases or manually)
+- **Infrastructure**: Managed via [Groundwork Repository](https://github.com/ameciclo/groundwork)
 
 ### Database Architecture
 

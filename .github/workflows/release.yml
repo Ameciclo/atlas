@@ -1,0 +1,172 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**.md"
+      - ".github/workflows/release.yml"
+
+permissions:
+  contents: write
+  packages: write
+  pull-requests: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    outputs:
+      released: ${{ steps.release.outputs.released }}
+      version: ${{ steps.release.outputs.version }}
+      tag: ${{ steps.release.outputs.tag }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.15.0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Create Release
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: node
+          package-name: atlas
+          changelog-types: |
+            [
+              {"type":"feat","section":"Features","hidden":false},
+              {"type":"fix","section":"Bug Fixes","hidden":false},
+              {"type":"docs","section":"Documentation","hidden":false},
+              {"type":"style","section":"Styles","hidden":false},
+              {"type":"refactor","section":"Code Refactoring","hidden":false},
+              {"type":"perf","section":"Performance Improvements","hidden":false},
+              {"type":"test","section":"Tests","hidden":false},
+              {"type":"build","section":"Build System","hidden":false},
+              {"type":"ci","section":"Continuous Integration","hidden":false},
+              {"type":"chore","section":"Chores","hidden":true}
+            ]
+
+  build-and-tag:
+    name: Build and Tag Docker Images
+    needs: release
+    if: needs.release.outputs.released == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: [docs, cyclist-profile, cyclist-counts, traffic-deaths]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (for OpenAPI generation)
+        if: matrix.app == 'docs'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.15.0
+
+      - name: Setup pnpm (for OpenAPI generation)
+        if: matrix.app == 'docs'
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies (for OpenAPI generation)
+        if: matrix.app == 'docs'
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Generate OpenAPI specs
+        if: matrix.app == 'docs'
+        run: pnpm run generate-openapi
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}/${{ matrix.app }}
+          tags: |
+            type=raw,value=${{ needs.release.outputs.version }}
+            type=raw,value=latest
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./apps/${{ matrix.app }}/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  update-gitops-manifests:
+    name: Update GitOps Manifests
+    needs: [release, build-and-tag]
+    if: needs.release.outputs.released == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [staging, production]
+    steps:
+      - name: Checkout groundwork repository
+        uses: actions/checkout@v4
+        with:
+          repository: ameciclo/groundwork
+          token: ${{ secrets.GROUNDWORK_REPO_TOKEN }}
+          path: groundwork
+
+      - name: Update image tag for ${{ matrix.environment }}
+        run: |
+          cd groundwork
+
+          # Determine which tag to use based on environment
+          if [[ "${{ matrix.environment }}" == "staging" ]]; then
+            IMAGE_TAG="latest"
+          else
+            IMAGE_TAG="${{ needs.release.outputs.version }}"
+          fi
+
+          # Update the image tag in the deployment manifest
+          sed -i "s|image: ghcr.io/ameciclo/atlas/docs:.*|image: ghcr.io/ameciclo/atlas/docs:${IMAGE_TAG}|" helm/charts/atlas/docs/deployment.yaml
+
+          # Check if there are any changes
+          if git diff --quiet; then
+            echo "No changes to commit for ${{ matrix.environment }}"
+            exit 0
+          fi
+
+          # Commit and push changes
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add helm/charts/atlas/docs/deployment.yaml
+          git commit -m "feat: update atlas-docs to ${{ needs.release.outputs.version }} for ${{ matrix.environment }}"
+          git push
+
+      - name: Create deployment annotation
+        run: |
+          cd groundwork
+          echo "Deployment triggered for atlas-docs:${{ needs.release.outputs.version }} in ${{ matrix.environment }}" >> .github/deployment-log.md
+          git add .github/deployment-log.md
+          git commit -m "docs: log deployment of atlas-docs ${{ needs.release.outputs.version }} to ${{ matrix.environment }}" || exit 0
+          git push || exit 0

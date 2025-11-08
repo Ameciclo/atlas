@@ -1,0 +1,82 @@
+name: Deploy to Staging
+
+on:
+  workflow_run:
+    workflows: ["Docker Build & Push"]
+    types:
+      - completed
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: "Image tag to deploy (default: latest)"
+        required: false
+        default: "latest"
+
+permissions:
+  contents: read
+
+jobs:
+  update-staging:
+    name: Update Staging Environment
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Checkout groundwork repository
+        uses: actions/checkout@v4
+        with:
+          repository: ameciclo/groundwork
+          token: ${{ secrets.GROUNDWORK_REPO_TOKEN }}
+          path: groundwork
+
+      - name: Determine image tag
+        id: image-tag
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            IMAGE_TAG="${{ github.event.inputs.image_tag }}"
+          else
+            IMAGE_TAG="latest"
+          fi
+          echo "tag=${IMAGE_TAG}" >> $GITHUB_OUTPUT
+
+      - name: Update staging deployment
+        run: |
+          cd groundwork
+          
+          # Update the image tag in the deployment manifest
+          sed -i "s|image: ghcr.io/ameciclo/atlas/docs:.*|image: ghcr.io/ameciclo/atlas/docs:${{ steps.image-tag.outputs.tag }}|" helm/charts/atlas/docs/deployment.yaml
+          
+          # Check if there are any changes
+          if git diff --quiet; then
+            echo "No changes to commit - image tag is already ${{ steps.image-tag.outputs.tag }}"
+            exit 0
+          fi
+          
+          # Commit and push changes
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add helm/charts/atlas/docs/deployment.yaml
+          
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            git commit -m "deploy: manually update atlas-docs staging to ${{ steps.image-tag.outputs.tag }}"
+          else
+            git commit -m "deploy: auto-update atlas-docs staging to latest"
+          fi
+          
+          git push
+
+      - name: Log deployment
+        run: |
+          cd groundwork
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          echo "- **${TIMESTAMP}**: Deployed atlas-docs:${{ steps.image-tag.outputs.tag }} to staging" >> .github/deployment-log.md
+          git add .github/deployment-log.md
+          git commit -m "docs: log staging deployment of atlas-docs:${{ steps.image-tag.outputs.tag }}" || exit 0
+          git push || exit 0
+
+      - name: Summary
+        run: |
+          echo "✅ Successfully updated atlas-docs staging environment"
+          echo "📦 Image: ghcr.io/ameciclo/atlas/docs:${{ steps.image-tag.outputs.tag }}"
+          echo "🔄 ArgoCD will automatically sync the changes"
