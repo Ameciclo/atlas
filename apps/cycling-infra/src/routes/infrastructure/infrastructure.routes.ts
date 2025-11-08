@@ -18,7 +18,7 @@ const InfrastructureSchema = z.object({
 });
 
 export const list = createRoute({
-	path: "/infrastructure",
+	path: "/v1/infrastructure",
 	method: "get",
 	tags,
 	summary: "List cycling infrastructure",
@@ -44,7 +44,7 @@ export const list = createRoute({
 });
 
 export const getById = createRoute({
-	path: "/infrastructure/{id}",
+	path: "/v1/infrastructure/{id}",
 	method: "get",
 	tags,
 	summary: "Get infrastructure by ID",
@@ -64,8 +64,42 @@ export const getById = createRoute({
 	},
 });
 
+export const getGeoJSON = createRoute({
+	path: "/v1/infrastructure/geojson",
+	method: "get",
+	tags,
+	summary: "Get cycling infrastructure as GeoJSON",
+	description: "Get all cycling infrastructure in GeoJSON FeatureCollection format",
+	request: {
+		query: z.object({
+			type: z.string().optional().openapi({
+				description: "Filter by infrastructure type",
+				example: "Ciclofaixa",
+			}),
+			limit: z.string().optional().openapi({
+				description: "Limit number of results",
+				example: "100",
+			}),
+		}),
+	},
+	responses: {
+		[HttpStatusCodes.OK]: jsonContent(
+			z.object({
+				type: z.literal("FeatureCollection"),
+				features: z.array(z.object({
+					type: z.literal("Feature"),
+					id: z.string(),
+					properties: z.record(z.any()),
+					geometry: z.any(),
+				})),
+			}),
+			"Cycling infrastructure in GeoJSON format",
+		),
+	},
+});
+
 export const getNearby = createRoute({
-	path: "/infrastructure/nearby",
+	path: "/v1/infrastructure/nearby",
 	method: "get",
 	tags,
 	summary: "Get existing cycling infrastructure near a location",
@@ -104,4 +138,5 @@ export const getNearby = createRoute({
 
 export type ListRoute = typeof list;
 export type GetByIdRoute = typeof getById;
+export type GetGeoJSONRoute = typeof getGeoJSON;
 export type GetNearbyRoute = typeof getNearby;

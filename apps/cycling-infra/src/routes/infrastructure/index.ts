@@ -4,6 +4,7 @@ import * as routes from "./infrastructure.routes.js";
 
 const router = createRouter()
 	.openapi(routes.list, handlers.list)
+	.openapi(routes.getGeoJSON, handlers.getGeoJSON)
 	.openapi(routes.getNearby, handlers.getNearby)
 	.openapi(routes.getById, handlers.getById);
 

@@ -63,7 +63,7 @@ const AllWaysResponseSchema = z.object({
 });
 
 export const list = createRoute({
-	path: "/ways",
+	path: "/v1/ways",
 	method: "get",
 	tags,
 	summary: "List all PDC ways",
@@ -82,7 +82,7 @@ export const list = createRoute({
 });
 
 export const getSummary = createRoute({
-	path: "/ways/summary",
+	path: "/v1/ways/summary",
 	method: "get",
 	tags,
 	summary: "Get ways summary statistics",
@@ -96,7 +96,7 @@ export const getSummary = createRoute({
 });
 
 export const getAll = createRoute({
-	path: "/ways/all-ways",
+	path: "/v1/ways/all-ways",
 	method: "get",
 	tags,
 	summary: "Get all ways as GeoJSON",
@@ -115,7 +115,7 @@ export const getAll = createRoute({
 });
 
 export const getNearby = createRoute({
-	path: "/ways/nearby",
+	path: "/v1/ways/nearby",
 	method: "get",
 	tags,
 	summary: "Get PDC ways near a location",

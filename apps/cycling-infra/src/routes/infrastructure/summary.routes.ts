@@ -26,7 +26,7 @@ const geoJsonResponseSchema = z.object({
 });
 
 export const summary = createRoute({
-	path: "/infrastructure/summary",
+	path: "/v1/infrastructure/summary",
 	method: "get",
 	tags,
 	summary: "Get infrastructure summary",
@@ -52,7 +52,7 @@ export const summary = createRoute({
 });
 
 export const cycleways = createRoute({
-	path: "/infrastructure/cycleways",
+	path: "/v1/infrastructure/cycleways",
 	method: "get",
 	tags,
 	summary: "Get cycleways GeoJSON with metrics",
@@ -78,7 +78,7 @@ export const cycleways = createRoute({
 });
 
 export const cityCoverage = createRoute({
-	path: "/infrastructure/city-coverage",
+	path: "/v1/infrastructure/city-coverage",
 	method: "get",
 	tags,
 	summary: "Get coverage by city",
@@ -123,7 +123,7 @@ export const cityCoverage = createRoute({
 });
 
 export const citySpecificSummary = createRoute({
-	path: "/infrastructure/cities/{city_id}/summary",
+	path: "/v1/infrastructure/cities/{city_id}/summary",
 	method: "get",
 	tags,
 	summary: "Get city specific summary",

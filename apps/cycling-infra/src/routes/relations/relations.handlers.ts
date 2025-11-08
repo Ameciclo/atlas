@@ -6,7 +6,7 @@ import { pdcRelationWays, cyclistInfraRelations } from "@atlas/database/schemas/
 import type { AppRouteHandler } from "../../lib/types.js";
 import type { GetByIdRoute, GetWaysByRelationIdRoute, ListRoute } from "./relations.routes.js";
 
-export const list: AppRouteHandler<ListRoute> = async (c) => {
+export const list = async (c: any) => {
 	try {
 		const db = await createConnectedDatabase();
 		const relations = await db.select().from(cyclistInfraRelations);
@@ -20,7 +20,7 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 	}
 };
 
-export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
+export const getById = async (c: any) => {
 	const { id } = c.req.valid("param");
 
 	try {
@@ -30,7 +30,7 @@ export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
 		const relation = await db
 			.select()
 			.from(cyclistInfraRelations)
-			.where(eq(cyclistInfraRelations.osm_id, id))
+			.where(eq(cyclistInfraRelations.osm_id, String(id)))
 			.limit(1);
 
 		if (relation.length === 0) {
@@ -44,7 +44,7 @@ export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
 		const relationWays = await db
 			.select()
 			.from(pdcRelationWays)
-			.where(eq(pdcRelationWays.relation_id, relation[0].id));
+			.where(eq(pdcRelationWays.relation_id, relation[0]?.id || 0));
 
 		if (relationWays.length === 0) {
 			return c.json({
@@ -56,13 +56,13 @@ export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
 		// Convert to GeoJSON FeatureCollection
 		const features = relationWays.map(way => ({
 			type: "Feature" as const,
-			id: `relation/${relation[0].osm_id}`,
+			id: `relation/${relation[0]?.osm_id}`,
 			properties: {
 				...(way.osm_properties as Record<string, any>),
-				name: relation[0].name,
-				ref: relation[0].pdc_ref,
-				description: relation[0].pdc_stretch,
-				pdc_typology: relation[0].pdc_typology,
+				name: relation[0]?.name,
+				ref: relation[0]?.pdc_ref,
+				description: relation[0]?.pdc_stretch,
+				pdc_typology: relation[0]?.pdc_typology,
 			},
 			geometry: (way.geojson as any)?.geometry || null,
 		}));
@@ -80,7 +80,7 @@ export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
 	}
 };
 
-export const getWaysByRelationId: AppRouteHandler<GetWaysByRelationIdRoute> = async (c) => {
+export const getWaysByRelationId = async (c: any) => {
 	const { id } = c.req.valid("param");
 
 	try {

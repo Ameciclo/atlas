@@ -37,7 +37,7 @@ function calculateGeometryLength(geometry: any): number {
 	return totalLength;
 }
 
-export const list: AppRouteHandler<ListRoute> = async (c) => {
+export const list = async (c: any) => {
 	const { city } = c.req.valid("query");
 	const db = await createConnectedDatabase();
 	
@@ -60,7 +60,7 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 		const osmProps = way.osm_properties as Record<string, any>;
 		
 		// Extract numeric OSM ID from string format (e.g., "relation/15997469" -> 15997469)
-		const osmIdMatch = way.osm_id.match(/\/(\d+)$/);
+		const osmIdMatch = String(way.osm_id).match(/\/(\d+)$/);
 		const numericOsmId = osmIdMatch && osmIdMatch[1] ? parseInt(osmIdMatch[1], 10) : 0;
 		
 		// Calculate length from geometry
@@ -102,7 +102,7 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 	return c.json(transformedWays);
 };
 
-export const getSummary: AppRouteHandler<GetSummaryRoute> = async (c) => {
+export const getSummary = async (c: any) => {
 	const db = await createConnectedDatabase();
 	
 	// Debug: verificar dados disponíveis
@@ -240,7 +240,7 @@ function generateCitySummary(cityData: any[]) {
 	return { ...kms, percent, real_percent };
 }
 
-export const getAll: AppRouteHandler<GetAllRoute> = async (c) => {
+export const getAll = async (c: any) => {
 	const { city } = c.req.valid("query");
 	const db = await createConnectedDatabase();
 	
@@ -295,7 +295,7 @@ export const getAll: AppRouteHandler<GetAllRoute> = async (c) => {
 	return c.json(response);
 };
 
-export const getNearby: AppRouteHandler<GetNearbyRoute> = async (c) => {
+export const getNearby = async (c: any) => {
 	const { lat, lon, radius = "1000" } = c.req.valid("query");
 	const db = await createConnectedDatabase();
 	

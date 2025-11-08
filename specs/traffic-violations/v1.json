@@ -129,24 +129,26 @@
         "parameters": [
           {
             "schema": {
-              "type": "string",
-              "format": "date",
-              "description": "Filter violations from this date (YYYY-MM-DD)",
-              "example": "2023-01-01"
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12,
+              "description": "Filter by month (1-12). Required parameter",
+              "example": 12
             },
-            "required": false,
-            "name": "start_date",
+            "required": true,
+            "name": "month",
             "in": "query"
           },
           {
             "schema": {
-              "type": "string",
-              "format": "date",
-              "description": "Filter violations until this date (YYYY-MM-DD)",
-              "example": "2023-12-31"
+              "type": "integer",
+              "minimum": 2020,
+              "maximum": 2030,
+              "description": "Filter by year. Required parameter",
+              "example": 2023
             },
-            "required": false,
-            "name": "end_date",
+            "required": true,
+            "name": "year",
             "in": "query"
           },
           {
@@ -349,178 +351,6 @@
         }
       }
     },
-    "/v1/violations/{id}": {
-      "get": {
-        "tags": [
-          "Traffic Violations"
-        ],
-        "summary": "Get traffic violation by ID",
-        "description": "Retrieve a specific traffic violation by its ID",
-        "parameters": [
-          {
-            "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "exclusiveMinimum": true,
-              "description": "Traffic violation ID",
-              "example": 1
-            },
-            "required": true,
-            "name": "id",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Traffic violation data",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "minimum": -2147483648,
-                      "maximum": 2147483647
-                    },
-                    "violation_date": {
-                      "type": "string"
-                    },
-                    "agent_id": {
-                      "type": "integer",
-                      "minimum": -2147483648,
-                      "maximum": 2147483647
-                    },
-                    "violation_type_id": {
-                      "type": "integer",
-                      "minimum": -2147483648,
-                      "maximum": 2147483647
-                    },
-                    "location_id": {
-                      "type": "integer",
-                      "minimum": -2147483648,
-                      "maximum": 2147483647
-                    },
-                    "violation_code": {
-                      "type": "string"
-                    },
-                    "law_code": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "location_description": {
-                      "type": "string"
-                    },
-                    "coordinates": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "street_code": {
-                      "type": "integer",
-                      "nullable": true,
-                      "minimum": -2147483648,
-                      "maximum": 2147483647
-                    },
-                    "complementary_data": {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "number"
-                        },
-                        {
-                          "type": "boolean"
-                        },
-                        {
-                          "nullable": true
-                        },
-                        {
-                          "type": "object",
-                          "additionalProperties": {
-                            "nullable": true
-                          }
-                        },
-                        {
-                          "type": "array",
-                          "items": {
-                            "nullable": true
-                          }
-                        },
-                        {
-                          "nullable": true
-                        }
-                      ]
-                    },
-                    "created_at": {
-                      "type": "string"
-                    },
-                    "updated_at": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "violation_date",
-                    "agent_id",
-                    "violation_type_id",
-                    "location_id",
-                    "violation_code",
-                    "law_code",
-                    "description",
-                    "location_description",
-                    "coordinates",
-                    "street_code",
-                    "complementary_data",
-                    "created_at",
-                    "updated_at"
-                  ],
-                  "description": "Traffic violation data"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Traffic violation not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "error"
-                  ]
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v1/violations/by-location": {
       "get": {
         "tags": [
@@ -531,24 +361,26 @@
         "parameters": [
           {
             "schema": {
-              "type": "string",
-              "format": "date",
-              "description": "Start date (YYYY-MM-DD)",
-              "example": "2023-01-01"
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12,
+              "description": "Filter by month (1-12). Required parameter",
+              "example": 12
             },
-            "required": false,
-            "name": "start_date",
+            "required": true,
+            "name": "month",
             "in": "query"
           },
           {
             "schema": {
-              "type": "string",
-              "format": "date",
-              "description": "End date (YYYY-MM-DD)",
-              "example": "2023-12-31"
+              "type": "integer",
+              "minimum": 2020,
+              "maximum": 2030,
+              "description": "Filter by year. Required parameter",
+              "example": 2023
             },
-            "required": false,
-            "name": "end_date",
+            "required": true,
+            "name": "year",
             "in": "query"
           },
           {
@@ -759,24 +591,26 @@
         "parameters": [
           {
             "schema": {
-              "type": "string",
-              "format": "date",
-              "description": "Start date (YYYY-MM-DD)",
-              "example": "2023-01-01"
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12,
+              "description": "Filter by month (1-12). Required parameter",
+              "example": 12
             },
-            "required": false,
-            "name": "start_date",
+            "required": true,
+            "name": "month",
             "in": "query"
           },
           {
             "schema": {
-              "type": "string",
-              "format": "date",
-              "description": "End date (YYYY-MM-DD)",
-              "example": "2023-12-31"
+              "type": "integer",
+              "minimum": 2020,
+              "maximum": 2030,
+              "description": "Filter by year. Required parameter",
+              "example": 2023
             },
-            "required": false,
-            "name": "end_date",
+            "required": true,
+            "name": "year",
             "in": "query"
           },
           {
@@ -896,6 +730,178 @@
                   "required": [
                     "type",
                     "features"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/violations/{id}": {
+      "get": {
+        "tags": [
+          "Traffic Violations"
+        ],
+        "summary": "Get traffic violation by ID",
+        "description": "Retrieve a specific traffic violation by its ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "description": "Traffic violation ID",
+              "example": 1
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Traffic violation data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "violation_date": {
+                      "type": "string"
+                    },
+                    "agent_id": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "violation_type_id": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "location_id": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "violation_code": {
+                      "type": "string"
+                    },
+                    "law_code": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "location_description": {
+                      "type": "string"
+                    },
+                    "coordinates": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "street_code": {
+                      "type": "integer",
+                      "nullable": true,
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "complementary_data": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "nullable": true
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": {
+                            "nullable": true
+                          }
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "nullable": true
+                          }
+                        },
+                        {
+                          "nullable": true
+                        }
+                      ]
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "violation_date",
+                    "agent_id",
+                    "violation_type_id",
+                    "location_id",
+                    "violation_code",
+                    "law_code",
+                    "description",
+                    "location_description",
+                    "coordinates",
+                    "street_code",
+                    "complementary_data",
+                    "created_at",
+                    "updated_at"
+                  ],
+                  "description": "Traffic violation data"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Traffic violation not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
                   ]
                 }
               }

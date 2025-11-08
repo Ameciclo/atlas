@@ -8,7 +8,7 @@ import { notFoundSchema } from "../../lib/constants.js";
 const tags = ["Relations"];
 
 export const list = createRoute({
-	path: "/relations",
+	path: "/v1/relations",
 	method: "get",
 	tags,
 	summary: "List all cycling infrastructure relations",
@@ -26,7 +26,7 @@ export const list = createRoute({
 });
 
 export const getById = createRoute({
-	path: "/relations/{id}",
+	path: "/v1/relations/{id}",
 	method: "get",
 	tags,
 	summary: "Get relation by ID",
@@ -59,7 +59,7 @@ export const getById = createRoute({
 });
 
 export const getWaysByRelationId = createRoute({
-	path: "/relations/{id}/ways",
+	path: "/v1/relations/{id}/ways",
 	method: "get",
 	tags,
 	summary: "Get ways from relation",
