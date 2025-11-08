@@ -1,6 +1,5 @@
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { cors } from "hono/cors";
-import { compress } from "hono/compress";
 import { notFound, onError, serveEmojiFavicon } from "stoker/middlewares";
 import { defaultHook } from "stoker/openapi";
 import { createPinoLogger } from "../middlewares/pino-logger.js";
@@ -20,7 +19,6 @@ export default function createApp(): OpenAPIHono<AppBindings> {
 		defaultHook,
 	});
 
-	app.use(compress());
 	app.use(cors());
 	app.use(serveEmojiFavicon("🚀"));
 	app.use(createPinoLogger());
@@ -30,8 +28,6 @@ export default function createApp(): OpenAPIHono<AppBindings> {
 	return app;
 }
 
-export function createTestApp<S extends import("hono").Schema>(
-	router: AppOpenAPI<S>,
-) {
+export function createTestApp<S extends import("hono").Schema>(router: AppOpenAPI<S>) {
 	return createApp().route("/", router);
 }

@@ -100,10 +100,15 @@ export const getAll = createRoute({
 	method: "get",
 	tags,
 	summary: "Get all ways as GeoJSON",
-	description: "Get all PDC ways formatted as GeoJSON FeatureCollection",
+	description: "Get all PDC ways formatted as GeoJSON FeatureCollection with optional filtering and pagination",
 	request: {
 		query: z.object({
 			city: z.string().optional().openapi({ description: "Filter by city ID", example: "2611606" }),
+			limit: z.string().optional().openapi({ description: "Maximum number of results (default: 1000)", example: "500" }),
+			offset: z.string().optional().openapi({ description: "Number of results to skip for pagination", example: "0" }),
+			simplify: z.string().optional().openapi({ description: "Geometry simplification tolerance (default: 0.0001)", example: "0.001" }),
+			precision: z.string().optional().openapi({ description: "Decimal precision for coordinates (4=~10m, 5=~1m, 6=~0.1m)", example: "5" }),
+			minimal: z.string().optional().openapi({ description: "Return only essential status properties (true/false)", example: "true" }),
 		}),
 	},
 	responses: {

@@ -1,5 +1,6 @@
 import { createConnectedDatabase } from "@atlas/database";
 import { pdcRelationWays } from "@atlas/database/schemas/cycling-infra";
+import env from "../../env.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type { ListRoute, GetSummaryRoute, GetAllRoute, GetNearbyRoute } from "./ways.routes.js";
 
@@ -215,84 +216,182 @@ function generateCitySummary(cityData: any[]) {
 		const hasCycleway = d.hasCycleway === true;
 		const isNotOutPDC = d.relationId !== 0; // 0 = não PDC, >0 = PDC
 		
-		const pdc_feito = hasCycleway && isNotOutPDC ? d.length : 0;
-		const out_pdc = hasCycleway && !isNotOutPDC ? d.length : 0;
-		const pdc_total = isNotOutPDC ? d.length : 0;
-		const real_pdc = hasCycleway && isNotOutPDC && d.pdcTypology === d.cyclewayTypology ? d.length : 0;
+		const pdc_realizado_designado = hasCycleway && isNotOutPDC && d.pdcTypology === d.cyclewayTypology ? d.length : 0;
+		const pdc_realizado_nao_designado = hasCycleway && isNotOutPDC && d.pdcTypology !== d.cyclewayTypology ? d.length : 0;
+		const realizado_fora_pdc = hasCycleway && !isNotOutPDC ? d.length : 0;
+		const pdc_nao_realizado = !hasCycleway && isNotOutPDC ? d.length : 0;
 		
-		return { pdc_feito, out_pdc, pdc_total, real_pdc };
+		return { pdc_realizado_designado, pdc_realizado_nao_designado, realizado_fora_pdc, pdc_nao_realizado };
 	});
 	
 	const kms = newData.reduce(
 		(accumulator, currentData) => {
-			accumulator.pdc_feito += currentData.pdc_feito;
-			accumulator.out_pdc += currentData.out_pdc;
-			accumulator.pdc_total += currentData.pdc_total;
-			accumulator.real_pdc += currentData.real_pdc;
+			accumulator.pdc_realizado_designado += currentData.pdc_realizado_designado;
+			accumulator.pdc_realizado_nao_designado += currentData.pdc_realizado_nao_designado;
+			accumulator.realizado_fora_pdc += currentData.realizado_fora_pdc;
+			accumulator.pdc_nao_realizado += currentData.pdc_nao_realizado;
 			return accumulator;
 		},
-		{ pdc_feito: 0, out_pdc: 0, pdc_total: 0, real_pdc: 0 }
+		{ pdc_realizado_designado: 0, pdc_realizado_nao_designado: 0, realizado_fora_pdc: 0, pdc_nao_realizado: 0 }
 	);
 	
-	const percent = kms.pdc_total > 0 ? kms.pdc_feito / kms.pdc_total : 0;
-	const real_percent = kms.pdc_total > 0 ? kms.real_pdc / kms.pdc_total : 0;
+	const pdc_total = kms.pdc_realizado_designado + kms.pdc_realizado_nao_designado + kms.pdc_nao_realizado;
+	const pdc_realizado_total = kms.pdc_realizado_designado + kms.pdc_realizado_nao_designado;
+	const percent_realizado = pdc_total > 0 ? pdc_realizado_total / pdc_total : 0;
+	const percent_designado = pdc_realizado_total > 0 ? kms.pdc_realizado_designado / pdc_realizado_total : 0;
 	
-	return { ...kms, percent, real_percent };
+	return { ...kms, pdc_total, pdc_realizado_total, percent_realizado, percent_designado };
 }
 
 export const getAll = async (c: any) => {
-	const { city } = c.req.valid("query");
+	const { city, limit, offset, simplify, precision, minimal } = c.req.valid("query");
 	const db = await createConnectedDatabase();
 	
-	let ways;
+	// Parse parameters
+	const offsetNum = offset ? parseInt(offset, 10) : 0;
+	const precisionNum = precision ? parseInt(precision, 10) : env.GEOJSON_PRECISION;
+	const isMinimal = minimal === 'true';
+	
+	// Query com geometria original ou simplificada + precisão
+	const baseGeometry = simplify 
+		? `ST_Simplify(prw.coordinates, ${parseFloat(simplify)})`
+		: `prw.coordinates`;
+	const geometryField = `ST_AsGeoJSON(${baseGeometry}, ${precisionNum}) as geometry`;
+	
+	let query = `
+		SELECT 
+			prw.id,
+			prw.osm_id,
+			${isMinimal ? '' : 'prw.name,'}
+			${geometryField},
+			prw.osm_properties->>'has_cycleway' as has_cycleway,
+			prw.osm_properties->>'pdc_typology' as pdc_typology,
+			prw.osm_properties->>'cycleway_typology' as cycleway_typology,
+			prw.relation_id,
+			(prw.osm_properties->>'length')::float as length,
+			COALESCE(circ.city_id, (prw.osm_properties->>'city_id')::int) as city_id
+		FROM pdc_relation_ways prw
+		LEFT JOIN cyclist_infra_relation_cities circ ON prw.relation_id = circ.relation_id
+	`;
+	
 	if (city) {
-		const result = await db.execute(`
-			SELECT prw.*
-			FROM pdc_relation_ways prw
-			LEFT JOIN cyclist_infra_relation_cities circ ON prw.relation_id = circ.relation_id
-			WHERE COALESCE(circ.city_id, (prw.osm_properties->>'city_id')::int) = ${parseInt(city, 10)}
-		`);
-		ways = result.rows;
-	} else {
-		ways = await db.select().from(pdcRelationWays);
+		query += ` WHERE COALESCE(circ.city_id, (prw.osm_properties->>'city_id')::int) = ${parseInt(city, 10)}`;
 	}
+	
+	query += ` ORDER BY prw.id`;
+	
+	if (limit) {
+		const limitNum = Math.min(parseInt(limit, 10), env.MAX_WAYS_RESULTS);
+		query += ` LIMIT ${limitNum}`;
+	}
+	
+	if (offset) {
+		query += ` OFFSET ${offsetNum}`;
+	}
+	
+	const result = await db.execute(query);
+	const ways = result.rows as any[];
 	
 	// Convert to GeoJSON format
 	const features = ways.map((way: any) => {
-		const geojsonData = way.geojson as any;
-		const osmProps = way.osm_properties as Record<string, any>;
+		const hasCycleway = way.has_cycleway === 'true';
+		const isNotOutPDC = (way.relation_id || 0) !== 0;
+		const length = parseFloat(way.length) || 0;
 		
-		return {
-			type: "Feature" as const,
-			geometry: geojsonData?.geometry || { type: "LineString", coordinates: [] },
-			properties: {
-				...(osmProps || {}),
-				STATUS: "Projeto" as const,
-				id: way.id,
-				osm_id: way.osm_id,
-				name: way.name,
-			},
-		};
+		if (isMinimal) {
+			// Determinar status exclusivo da via
+			let status_type: string;
+			let status_value: number;
+			
+			// Verificar se a tipologia está correta (precisa dos dados do banco)
+			const pdcTypology = way.pdc_typology;
+			const cyclewayTypology = way.cycleway_typology;
+			
+			if (hasCycleway && isNotOutPDC && pdcTypology === cyclewayTypology) {
+				// Realizado dentro do PDC com infra designada
+				status_type = "pdc_realizado_designado";
+				status_value = length;
+			} else if (hasCycleway && isNotOutPDC && pdcTypology !== cyclewayTypology) {
+				// Realizado dentro do PDC com infra não designada
+				status_type = "pdc_realizado_nao_designado";
+				status_value = length;
+			} else if (hasCycleway && !isNotOutPDC) {
+				// Realizado fora do PDC
+				status_type = "realizado_fora_pdc";
+				status_value = length;
+			} else if (!hasCycleway && isNotOutPDC) {
+				// PDC não realizado
+				status_type = "pdc_nao_realizado";
+				status_value = length;
+			} else {
+				// Não é PDC e não tem ciclovia
+				status_type = "unknown";
+				status_value = 0;
+			}
+			
+			return {
+				type: "Feature" as const,
+				geometry: way.geometry ? JSON.parse(way.geometry) : null,
+				properties: {
+					id: way.id,
+					status_type,
+					status_value,
+					length
+				},
+			};
+		} else {
+			const status = hasCycleway ? "Realizada" : "Projeto";
+			
+			return {
+				type: "Feature" as const,
+				geometry: way.geometry ? JSON.parse(way.geometry) : null,
+				properties: {
+					STATUS: status,
+					id: way.id,
+					osm_id: way.osm_id,
+					name: way.name || null,
+					pdc_typology: way.pdc_typology || null
+				},
+			};
+		}
 	});
 
-	const response = {
+	if (city) {
+		// Se filtrou por cidade, retorna apenas essa cidade (sem duplicar em 'all')
+		return c.json({
+			all: {
+				type: "FeatureCollection" as const,
+				features: [],
+			},
+			byCity: {
+				[city]: {
+					type: "FeatureCollection" as const,
+					features,
+				}
+			}
+		});
+	}
+
+	// Agrupa por cidade quando não há filtro
+	const byCity: { [key: string]: any } = {};
+	features.forEach(feature => {
+		const cityId = feature.properties.city_id?.toString() || 'unknown';
+		if (!byCity[cityId]) {
+			byCity[cityId] = {
+				type: "FeatureCollection" as const,
+				features: []
+			};
+		}
+		byCity[cityId].features.push(feature);
+	});
+
+	return c.json({
 		all: {
 			type: "FeatureCollection" as const,
 			features,
 		},
-		byCity: {
-			"Recife": {
-				type: "FeatureCollection" as const,
-				features: features.slice(0, Math.floor(features.length / 2)),
-			},
-			"Olinda": {
-				type: "FeatureCollection" as const,
-				features: features.slice(Math.floor(features.length / 2)),
-			},
-		},
-	};
-
-	return c.json(response);
+		byCity
+	});
 };
 
 export const getNearby = async (c: any) => {
