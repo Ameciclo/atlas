@@ -2,6 +2,13 @@
 
 This app provides a user-friendly interface for viewing the OpenAPI documentation for all Atlas APIs. It automatically collects and displays OpenAPI specifications from all API services in the monorepo.
 
+## ✨ Features
+
+- 🚀 Unified API documentation for all Atlas microservices
+- 📱 Responsive design with modern Scalar UI
+- 🔍 Interactive API exploration and testing
+- 📊 Real-time version display in the interface
+
 ## Requirements
 
 - Node.js 22.15.0
