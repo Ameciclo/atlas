@@ -3,7 +3,7 @@
 	"ui": "tui",
 	"globalDependencies": ["**/.env*"],
 	"globalEnv": ["NODE_ENV"],
-	"concurrency": "15",
+	"concurrency": "16",
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],

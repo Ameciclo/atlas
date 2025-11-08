@@ -244,7 +244,7 @@ function generateCitySummary(cityData: any[]) {
 }
 
 export const getAll = async (c: any) => {
-	const { city, limit, offset, simplify, precision, minimal } = c.req.valid("query");
+	const { city, limit, offset, simplify, precision, minimal, only_all } = c.req.valid("query");
 	const db = await createConnectedDatabase();
 	
 	// Parse parameters
@@ -384,6 +384,14 @@ export const getAll = async (c: any) => {
 		}
 		byCity[cityId].features.push(feature);
 	});
+
+	// Se only_all=true, retorna apenas o 'all'
+	if (only_all === 'true') {
+		return c.json({
+			type: "FeatureCollection" as const,
+			features,
+		});
+	}
 
 	return c.json({
 		all: {

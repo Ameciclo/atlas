@@ -109,12 +109,13 @@ export const getAll = createRoute({
 			simplify: z.string().optional().openapi({ description: "Geometry simplification tolerance (default: 0.0001)", example: "0.001" }),
 			precision: z.string().optional().openapi({ description: "Decimal precision for coordinates (4=~10m, 5=~1m, 6=~0.1m)", example: "5" }),
 			minimal: z.string().optional().openapi({ description: "Return only essential status properties (true/false)", example: "true" }),
+			only_all: z.string().optional().openapi({ description: "Return only the FeatureCollection without all/byCity structure (true/false)", example: "true" }),
 		}),
 	},
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
-			AllWaysResponseSchema,
-			"GeoJSON FeatureCollection of all ways",
+			z.union([AllWaysResponseSchema, GeoJSONCollectionSchema]),
+			"GeoJSON FeatureCollection of all ways (with or without grouping)",
 		),
 	},
 });

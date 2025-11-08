@@ -1,0 +1,187 @@
+
+> @atlas/ciclodados@0.1.0 dev /home/dvalenca/code/atlas/apps/ciclodados
+> tsx watch src/index.ts
+
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3050
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at serve (file:///home/dvalenca/code/atlas/node_modules/.pnpm/@hono+node-server@1.19.6_hono@4.10.4/node_modules/@hono/node-server/dist/index.mjs:572:10)
+    at <anonymous> (/home/dvalenca/code/atlas/apps/ciclodados/src/index.ts:8:1)
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3050
+}
+
+Node.js v22.15.0
+[20:15:49.057] [32mINFO[39m (114854): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/health",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "host": "localhost:3050",
+        "user-agent": "curl/8.5.0"
+      }
+    }
+    [35mreqId[39m: 1
+    [35mresponseTime[39m: 16
+[20:15:57.626] [32mINFO[39m (114854): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/streets/search",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "host": "localhost:3050",
+        "user-agent": "curl/8.5.0"
+      }
+    }
+    [35mreqId[39m: 2
+    [35mresponseTime[39m: 27
+[20:16:03.275] [32mINFO[39m (114854): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/streets/search",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "host": "localhost:3050",
+        "user-agent": "curl/8.5.0"
+      }
+    }
+    [35mreqId[39m: 3
+    [35mresponseTime[39m: 19
+[20:16:09.093] [32mINFO[39m (114854): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/streets/8497",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "host": "localhost:3050",
+        "user-agent": "curl/8.5.0"
+      }
+    }
+    [35mreqId[39m: 4
+    [35mresponseTime[39m: 7
+[20:16:18.708] [31mERROR[39m (114854): [36mFailed to analyze point[39m
+    [35mres[39m: {
+      "status": 500,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/analyze/point",
+      "method": "POST",
+      "headers": {
+        "accept": "*/*",
+        "content-length": "48",
+        "content-type": "application/json",
+        "host": "localhost:3050",
+        "user-agent": "curl/8.5.0"
+      }
+    }
+    [35mreqId[39m: 5
+    [35mresponseTime[39m: 24
+20:16:44 [tsx] change in ./src/lib/street-service.ts Restarting...
+20:16:44 [tsx] change in ./src/lib/street-service.ts Rerunning...
+ccnode:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3050
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at serve (file:///home/dvalenca/code/atlas/node_modules/.pnpm/@hono+node-server@1.19.6_hono@4.10.4/node_modules/@hono/node-server/dist/index.mjs:572:10)
+    at <anonymous> (/home/dvalenca/code/atlas/apps/ciclodados/src/index.ts:8:1)
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3050
+}
+
+Node.js v22.15.0
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3050
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at serve (file:///home/dvalenca/code/atlas/node_modules/.pnpm/@hono+node-server@1.19.6_hono@4.10.4/node_modules/@hono/node-server/dist/index.mjs:572:10)
+    at <anonymous> (/home/dvalenca/code/atlas/apps/ciclodados/src/index.ts:8:1)
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3050
+}
+
+Node.js v22.15.0
+20:17:36 [tsx] change in ./../../packages/database/dist/schemas/pcr-streets/index.js Rerunning...
+c20:17:36 [tsx] change in ./../../packages/database/dist/schemas/pcr-streets/index.js Rerunning...
+cServer is running on http://localhost:3050
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3050
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at serve (file:///home/dvalenca/code/atlas/node_modules/.pnpm/@hono+node-server@1.19.6_hono@4.10.4/node_modules/@hono/node-server/dist/index.mjs:572:10)
+    at <anonymous> (/home/dvalenca/code/atlas/apps/ciclodados/src/index.ts:8:1)
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3050
+}
+
+Node.js v22.15.0
