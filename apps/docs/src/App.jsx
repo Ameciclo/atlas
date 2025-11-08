@@ -30,8 +30,8 @@ export default function App() {
 		return (
 			<div style={{ padding: 24 }}>
 				<div>Loading API documentation...</div>
-				<div style={{ fontSize: '12px', color: '#666', marginTop: '8px' }}>
-					Atlas Docs v{import.meta.env.PACKAGE_VERSION || '0.0.1'}
+				<div style={{ fontSize: "12px", color: "#666", marginTop: "8px" }}>
+					Atlas Docs v{import.meta.env.PACKAGE_VERSION || "0.0.1"}
 				</div>
 			</div>
 		);
@@ -74,18 +74,20 @@ export default function App() {
 					sources: apiSpecs,
 				}}
 			/>
-			<div style={{
-				position: 'fixed',
-				bottom: '10px',
-				right: '10px',
-				fontSize: '11px',
-				color: '#999',
-				background: 'rgba(255,255,255,0.9)',
-				padding: '4px 8px',
-				borderRadius: '4px',
-				border: '1px solid #eee'
-			}}>
-				Atlas Docs v{import.meta.env.PACKAGE_VERSION || '0.0.1'}
+			<div
+				style={{
+					position: "fixed",
+					bottom: "10px",
+					right: "10px",
+					fontSize: "11px",
+					color: "#999",
+					background: "rgba(255,255,255,0.9)",
+					padding: "4px 8px",
+					borderRadius: "4px",
+					border: "1px solid #eee",
+				}}
+			>
+				Atlas Docs v{import.meta.env.PACKAGE_VERSION || "0.0.1"}
 			</div>
 		</div>
 	);
