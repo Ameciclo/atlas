@@ -27,14 +27,7 @@ export default function App() {
 	}, []);
 
 	if (isLoading) {
-		return (
-			<div style={{ padding: 24 }}>
-				<div>Loading API documentation...</div>
-				<div style={{ fontSize: "12px", color: "#666", marginTop: "8px" }}>
-					Atlas Docs v{import.meta.env.PACKAGE_VERSION || "0.0.1"}
-				</div>
-			</div>
-		);
+		return <div style={{ padding: 24 }}>Loading API documentation...</div>;
 	}
 
 	if (error) {
@@ -57,38 +50,21 @@ export default function App() {
 	}
 
 	return (
-		<div>
-			<ApiReferenceReact
-				configuration={{
-					theme: {
-						colors: {
-							primary: {
-								main: "#3182ce",
-							},
+		<ApiReferenceReact
+			configuration={{
+				theme: {
+					colors: {
+						primary: {
+							main: "#3182ce",
 						},
 					},
-					layout: "modern",
-					metadata: {
-						title: "Atlas API Documentation",
-					},
-					sources: apiSpecs,
-				}}
-			/>
-			<div
-				style={{
-					position: "fixed",
-					bottom: "10px",
-					right: "10px",
-					fontSize: "11px",
-					color: "#999",
-					background: "rgba(255,255,255,0.9)",
-					padding: "4px 8px",
-					borderRadius: "4px",
-					border: "1px solid #eee",
-				}}
-			>
-				Atlas Docs v{import.meta.env.PACKAGE_VERSION || "0.0.1"}
-			</div>
-		</div>
+				},
+				layout: "modern",
+				metadata: {
+					title: "Atlas API Documentation",
+				},
+				sources: apiSpecs,
+			}}
+		/>
 	);
 }
