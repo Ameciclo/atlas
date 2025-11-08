@@ -1,0 +1,115 @@
+name: Turbo CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  turbo-ci:
+    name: Turbo CI Pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.15.0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Setup Turbo cache
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Build affected packages
+        run: turbo run build --filter='...[origin/main]'
+
+      - name: Lint affected packages
+        run: turbo run lint --filter='...[origin/main]'
+
+      - name: Type check affected packages
+        run: turbo run check-types --filter='...[origin/main]'
+
+      - name: Test affected packages
+        run: turbo run test --filter='...[origin/main]' || true
+
+      - name: Generate Turbo summary
+        run: turbo run build --summarize --filter='...[origin/main]'
+
+      - name: Upload Turbo summary
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: turbo-summary
+          path: .turbo/runs/*.json
+          retention-days: 7
+
+  turbo-graph:
+    name: Generate Dependency Graph
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.15.0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate dependency graph
+        run: |
+          turbo run build --graph=graph.html
+          echo "📊 Dependency graph generated at graph.html"
+
+      - name: Upload dependency graph
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-graph
+          path: graph.html
+          retention-days: 7
+
+      - name: Comment PR with graph link
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: artifacts } = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId,
+            });
+            
+            const graphArtifact = artifacts.artifacts.find(a => a.name === 'dependency-graph');
+            
+            if (graphArtifact) {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `📊 **Turbo Dependency Graph Generated**\n\nDownload the dependency graph artifact to visualize the build dependencies for this PR.`
+              });
+            }

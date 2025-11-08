@@ -1,6 +1,9 @@
 {
 	"$schema": "https://turbo.build/schema.json",
 	"ui": "tui",
+	"remoteCache": {
+		"signature": true
+	},
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build", "generate-openapi"],
@@ -45,6 +48,27 @@
 			"cache": false,
 			"inputs": ["src/**", "test/**", "$TURBO_DEFAULT$"],
 			"persistent": true
+		},
+		"docker:build": {
+			"dependsOn": ["build"],
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				"Dockerfile",
+				"dist/**",
+				".dockerignore"
+			],
+			"outputs": [],
+			"cache": false
+		},
+		"release": {
+			"dependsOn": ["build", "lint", "check-types"],
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				"package.json",
+				"CHANGELOG.md"
+			],
+			"outputs": [],
+			"cache": false
 		}
 	}
 }

@@ -20,7 +20,15 @@
 		"db:reset": "pnpm --filter @atlas/database db:reset",
 		"db:reset:seed": "pnpm --filter @atlas/database db:reset:seed",
 		"db:studio": "pnpm --filter @atlas/database db:studio",
-		"db:generate": "pnpm --filter @atlas/database db:generate"
+		"db:generate": "pnpm --filter @atlas/database db:generate",
+		"build:affected": "turbo run build --filter='...[HEAD^1]'",
+		"test:affected": "turbo run test --filter='...[HEAD^1]'",
+		"lint:affected": "turbo run lint --filter='...[HEAD^1]'",
+		"deploy:staging": "./scripts/deploy.sh",
+		"deploy:production": "./scripts/deploy.sh",
+		"turbo:clean": "turbo run clean",
+		"turbo:graph": "turbo run build --graph",
+		"turbo:summary": "turbo run build --summarize"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.7",
