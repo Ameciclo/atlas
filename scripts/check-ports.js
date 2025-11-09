@@ -2,7 +2,7 @@
 
 const net = require('net');
 
-const ports = [3000, 3002, 3003, 3005, 3010, 3013, 3015, 3016, 3019, 3020];
+const ports = [3000, 3002, 3003, 3005, 3010, 3013, 3015, 3016, 3019, 3020, 3050];
 const services = {
   3000: 'cyclist-profile',
   3002: 'cyclist-counts',
@@ -13,7 +13,8 @@ const services = {
   3015: 'shared-bike',
   3016: 'pcr-streets',
   3019: 'traffic-calls',
-  3020: 'cycling-infra'
+  3020: 'cycling-infra',
+  3050: 'ciclodados'
 };
 
 function checkPort(port) {

@@ -98,6 +98,12 @@ const services = [
     '/v1/streets/search?query=cedro',
     '/v1/streets/name/RUA CEDRO',
     '/v1/streets/code/15989'
+  ]},
+  { name: 'ciclodados', port: 3050, endpoints: [
+    '/health',
+    '/v1/examples',
+    '/v1/streets/search?q=cedro',
+    '/v1/streets/123'
   ]}
 ];
 
