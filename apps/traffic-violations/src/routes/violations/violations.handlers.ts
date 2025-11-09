@@ -34,10 +34,10 @@ export const listViolationsHandler: AppRouteHandler<
 		const startOfMonth = new Date(year, month - 1, 1);
 		// Último dia do mês
 		const endOfMonth = new Date(year, month, 0, 23, 59, 59, 999);
-		
+
 		conditions.push(
 			gte(trafficViolations.violation_date, startOfMonth),
-			lte(trafficViolations.violation_date, endOfMonth)
+			lte(trafficViolations.violation_date, endOfMonth),
 		);
 
 		if (agent_id) {
@@ -94,21 +94,23 @@ export const getViolationHandler: AppRouteHandler<
 	}
 };
 
-export const violationsByLocationHandler: AppRouteHandler<ViolationsByLocationRoute> = async (c) => {
+export const violationsByLocationHandler: AppRouteHandler<
+	ViolationsByLocationRoute
+> = async (c) => {
 	const { month, year, limit = 50 } = c.req.valid("query");
 
 	try {
 		// Build date conditions
 		const conditions: any[] = [];
-		
+
 		// Primeiro dia do mês
 		const startOfMonth = new Date(year, month - 1, 1);
 		// Último dia do mês
 		const endOfMonth = new Date(year, month, 0, 23, 59, 59, 999);
-		
+
 		conditions.push(
 			gte(trafficViolations.violation_date, startOfMonth),
-			lte(trafficViolations.violation_date, endOfMonth)
+			lte(trafficViolations.violation_date, endOfMonth),
 		);
 
 		const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
@@ -126,7 +128,7 @@ export const violationsByLocationHandler: AppRouteHandler<ViolationsByLocationRo
 			.groupBy(
 				trafficViolations.location_id,
 				trafficViolations.location_description,
-				trafficViolations.coordinates
+				trafficViolations.coordinates,
 			)
 			.orderBy(desc(count()))
 			.limit(limit);
@@ -146,14 +148,18 @@ export const violationsByLocationHandler: AppRouteHandler<ViolationsByLocationRo
 	}
 };
 
-export const violationsHotspotsHandler: AppRouteHandler<ViolationsHotspotsRoute> = async (c) => {
+export const violationsHotspotsHandler: AppRouteHandler<
+	ViolationsHotspotsRoute
+> = async (c) => {
 	const { violation_type_id, limit = 50, radius_km = 1 } = c.req.valid("query");
 
 	try {
 		// Build conditions
 		const conditions: any[] = [];
 		if (violation_type_id) {
-			conditions.push(eq(trafficViolations.violation_type_id, violation_type_id));
+			conditions.push(
+				eq(trafficViolations.violation_type_id, violation_type_id),
+			);
 		}
 
 		const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
@@ -171,17 +177,19 @@ export const violationsHotspotsHandler: AppRouteHandler<ViolationsHotspotsRoute>
 			.groupBy(
 				trafficViolations.location_description,
 				trafficViolations.coordinates,
-				trafficViolations.description
+				trafficViolations.description,
 			)
 			.orderBy(desc(count()))
 			.limit(limit);
 
 		// Create mock hotspots (in real implementation, would use spatial clustering)
 		const features = violationsData
-			.filter(v => v.coordinates)
-			.map(violation => {
+			.filter((v) => v.coordinates)
+			.map((violation) => {
 				// Parse coordinates (assuming format like "-8.0476,-34.8813")
-				const coords = violation.coordinates?.split(',').map(Number) || [-34.8813, -8.0476];
+				const coords = violation.coordinates?.split(",").map(Number) || [
+					-34.8813, -8.0476,
+				];
 				return {
 					type: "Feature" as const,
 					geometry: {
@@ -196,34 +204,47 @@ export const violationsHotspotsHandler: AppRouteHandler<ViolationsHotspotsRoute>
 				};
 			});
 
-		return c.json({
-			type: "FeatureCollection" as const,
-			features,
-		}, 200) as any;
+		return c.json(
+			{
+				type: "FeatureCollection" as const,
+				features,
+			},
+			200,
+		) as any;
 	} catch (error) {
 		console.error("Error fetching violation hotspots:", error);
 		return c.json({ error: "Internal server error" }, 500);
 	}
 };
 
-export const violationsGeoJSONHandler: AppRouteHandler<ViolationsGeoJSONRoute> = async (c) => {
-	const { month, year, violation_type_id, agent_id, limit = 100 } = c.req.valid("query");
+export const violationsGeoJSONHandler: AppRouteHandler<
+	ViolationsGeoJSONRoute
+> = async (c) => {
+	const {
+		month,
+		year,
+		violation_type_id,
+		agent_id,
+		limit = 100,
+	} = c.req.valid("query");
 
 	try {
 		// Build conditions
 		const conditions: any[] = [];
-		
+
 		// Primeiro dia do mês
 		const startOfMonth = new Date(year, month - 1, 1);
 		// Último dia do mês
 		const endOfMonth = new Date(year, month, 0, 23, 59, 59, 999);
-		
+
 		conditions.push(
 			gte(trafficViolations.violation_date, startOfMonth),
-			lte(trafficViolations.violation_date, endOfMonth)
+			lte(trafficViolations.violation_date, endOfMonth),
 		);
 		if (violation_type_id) {
-			conditions.push(eq(trafficViolations.violation_type_id, violation_type_id));
+			conditions.push(
+				eq(trafficViolations.violation_type_id, violation_type_id),
+			);
 		}
 		if (agent_id) {
 			conditions.push(eq(trafficViolations.agent_id, agent_id));
@@ -248,10 +269,12 @@ export const violationsGeoJSONHandler: AppRouteHandler<ViolationsGeoJSONRoute> =
 
 		// Create GeoJSON features
 		const features = violations
-			.filter(v => v.coordinates)
-			.map(violation => {
+			.filter((v) => v.coordinates)
+			.map((violation) => {
 				// Parse coordinates (assuming format like "-8.0476,-34.8813")
-				const coords = violation.coordinates?.split(',').map(Number) || [-34.8813, -8.0476];
+				const coords = violation.coordinates?.split(",").map(Number) || [
+					-34.8813, -8.0476,
+				];
 				return {
 					type: "Feature" as const,
 					geometry: {
@@ -261,16 +284,19 @@ export const violationsGeoJSONHandler: AppRouteHandler<ViolationsGeoJSONRoute> =
 					properties: {
 						violation_type: `Type ${violation.violation_type_id}`,
 						agent_id: violation.agent_id,
-						date: violation.violation_date?.toISOString().split('T')[0] || '',
+						date: violation.violation_date?.toISOString().split("T")[0] || "",
 						description: violation.description,
 					},
 				};
 			});
 
-		return c.json({
-			type: "FeatureCollection" as const,
-			features,
-		}, 200) as any;
+		return c.json(
+			{
+				type: "FeatureCollection" as const,
+				features,
+			},
+			200,
+		) as any;
 	} catch (error) {
 		console.error("Error fetching violations GeoJSON:", error);
 		return c.json({ error: "Internal server error" }, 500);

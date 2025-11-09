@@ -56,35 +56,47 @@ export const getNearby = createRoute({
 	method: "get",
 	tags,
 	summary: "Get counting locations near a point",
-	description: "Get cyclist counting locations within a radius from a lat/lon point",
+	description:
+		"Get cyclist counting locations within a radius from a lat/lon point",
 	request: {
 		query: z.object({
 			lat: z.string().openapi({ description: "Latitude", example: "-8.0476" }),
-			lon: z.string().openapi({ description: "Longitude", example: "-34.8770" }),
-			radius: z.string().optional().openapi({ description: "Radius in meters", example: "1000" }),
+			lon: z
+				.string()
+				.openapi({ description: "Longitude", example: "-34.8770" }),
+			radius: z
+				.string()
+				.optional()
+				.openapi({ description: "Radius in meters", example: "1000" }),
 		}),
 	},
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
 				type: z.literal("FeatureCollection"),
-				features: z.array(z.object({
-					type: z.literal("Feature"),
-					id: z.number(),
-					properties: z.object({
-						name: z.string(),
-						city: z.string(),
-						distance_meters: z.number(),
-						countings: z.array(z.object({
-							date: z.string(),
-							total_cyclists: z.number()
-						})),
-					}).and(z.record(z.any())),
-					geometry: z.object({
-						type: z.literal("Point"),
-						coordinates: z.array(z.number()),
+				features: z.array(
+					z.object({
+						type: z.literal("Feature"),
+						id: z.number(),
+						properties: z
+							.object({
+								name: z.string(),
+								city: z.string(),
+								distance_meters: z.number(),
+								countings: z.array(
+									z.object({
+										date: z.string(),
+										total_cyclists: z.number(),
+									}),
+								),
+							})
+							.and(z.record(z.any())),
+						geometry: z.object({
+							type: z.literal("Point"),
+							coordinates: z.array(z.number()),
+						}),
 					}),
-				})),
+				),
 				summary: z.object({
 					total_locations: z.number(),
 					by_city: z.record(z.number()),

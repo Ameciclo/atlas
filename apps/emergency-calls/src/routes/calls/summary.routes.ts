@@ -97,9 +97,7 @@ export const outcomes = createRoute({
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
 				city: z.string(),
-				outcomes_by_year: z.record(
-					z.record(z.number()),
-				),
+				outcomes_by_year: z.record(z.record(z.number())),
 			}),
 			"Emergency call outcomes by year",
 		),

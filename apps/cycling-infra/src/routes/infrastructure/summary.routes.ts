@@ -14,7 +14,7 @@ const summaryResponseSchema = z.object({
 			existing: z.number(),
 			planned: z.number(),
 			implemented: z.number(),
-		})
+		}),
 	),
 	last_updated: z.string(),
 });
@@ -111,10 +111,10 @@ export const cityCoverage = createRoute({
 								existing: z.number(),
 								planned: z.number(),
 								implemented: z.number(),
-							})
+							}),
 						),
 						last_updated: z.string(),
-					})
+					}),
 				),
 			}),
 			"City coverage data",
@@ -139,17 +139,19 @@ export const citySpecificSummary = createRoute({
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			summaryResponseSchema.extend({
-				pdc_recife: z.object({
-					routes: z.array(
-						z.object({
-							route_name: z.string(),
-							planned_typology: z.string(),
-							planned_extension_km: z.number(),
-							executed_typology: z.string(),
-							executed_extension_km: z.number(),
-						})
-					),
-				}).optional(),
+				pdc_recife: z
+					.object({
+						routes: z.array(
+							z.object({
+								route_name: z.string(),
+								planned_typology: z.string(),
+								planned_extension_km: z.number(),
+								executed_typology: z.string(),
+								executed_extension_km: z.number(),
+							}),
+						),
+					})
+					.optional(),
 			}),
 			"City specific summary with PDC data",
 		),

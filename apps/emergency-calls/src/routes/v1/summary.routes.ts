@@ -21,31 +21,41 @@ export const summary = createRoute({
 					totalValidas: z.number(),
 					totalInvalidas: z.number(),
 					total: z.number(),
-					evolucaoAnual: z.array(z.object({
-						ano: z.number(),
-						totalValidas: z.number(),
-						totalInvalidas: z.number(),
-						total: z.number(),
-					})),
+					evolucaoAnual: z.array(
+						z.object({
+							ano: z.number(),
+							totalValidas: z.number(),
+							totalInvalidas: z.number(),
+							total: z.number(),
+						}),
+					),
 				}),
-				porCategoria: z.array(z.object({
-					categoria: z.string(),
-					count: z.number(),
-				})),
-				porMotivoFinalizacao: z.array(z.object({
-					motivo: z.string(),
-					count: z.number(),
-				})),
-				porMotivoDesfecho: z.array(z.object({
-					motivo: z.string(),
-					count: z.number(),
-				})),
-				evolucaoAnual: z.array(z.object({
-					ano: z.number(),
-					count: z.number(),
-					projecao: z.number(),
-					ultimaData: z.string(),
-				})),
+				porCategoria: z.array(
+					z.object({
+						categoria: z.string(),
+						count: z.number(),
+					}),
+				),
+				porMotivoFinalizacao: z.array(
+					z.object({
+						motivo: z.string(),
+						count: z.number(),
+					}),
+				),
+				porMotivoDesfecho: z.array(
+					z.object({
+						motivo: z.string(),
+						count: z.number(),
+					}),
+				),
+				evolucaoAnual: z.array(
+					z.object({
+						ano: z.number(),
+						count: z.number(),
+						projecao: z.number(),
+						ultimaData: z.string(),
+					}),
+				),
 				periodo: z.object({
 					inicio: z.number(),
 					fim: z.number(),

@@ -12,11 +12,11 @@ export const health = createRoute({
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
 				status: z.string(),
-				service: z.string()
+				service: z.string(),
 			}),
-			"Health check response"
-		)
-	}
+			"Health check response",
+		),
+	},
 });
 
 export type HealthRoute = typeof health;

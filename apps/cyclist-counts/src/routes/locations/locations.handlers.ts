@@ -2,9 +2,17 @@ import { eq, sql, desc, max } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
 import { db } from "../../db/index.js";
-import { countingEvents, countingSessions, sessionMovements } from "../../db/schema.js";
+import {
+	countingEvents,
+	countingSessions,
+	sessionMovements,
+} from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
-import type { GetByIdRoute, ListRoute, GetNearbyRoute } from "./locations.routes.js";
+import type {
+	GetByIdRoute,
+	ListRoute,
+	GetNearbyRoute,
+} from "./locations.routes.js";
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
 	const { city } = c.req.valid("query");
@@ -30,7 +38,7 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 				...location,
 				counts,
 			};
-		})
+		}),
 	);
 
 	return c.json(locationsWithCounts);
@@ -121,7 +129,8 @@ async function getLocationSummary(locationId: number) {
 					characteristics.service += sessionChars.service || 0;
 					characteristics.shared_bike += sessionChars.shared_bike || 0;
 					characteristics.other_behaviors += sessionChars.other_behaviors || 0;
-					characteristics.other_active_modes += sessionChars.other_active_modes || 0;
+					characteristics.other_active_modes +=
+						sessionChars.other_active_modes || 0;
 					characteristics.others += sessionChars.others || 0;
 				}
 			}
@@ -137,80 +146,100 @@ async function getLocationSummary(locationId: number) {
 				characteristics,
 				notes: event.notes,
 			};
-		})
+		}),
 	);
 
 	return eventsWithCharacteristics;
 }
 
 // Helper function to calculate distance between two points
-function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+function calculateDistance(
+	lat1: number,
+	lon1: number,
+	lat2: number,
+	lon2: number,
+): number {
 	const R = 6371000; // Earth's radius in meters
-	const dLat = (lat2 - lat1) * Math.PI / 180;
-	const dLon = (lon2 - lon1) * Math.PI / 180;
-	const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-			Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-			Math.sin(dLon/2) * Math.sin(dLon/2);
-	const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+	const dLat = ((lat2 - lat1) * Math.PI) / 180;
+	const dLon = ((lon2 - lon1) * Math.PI) / 180;
+	const a =
+		Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+		Math.cos((lat1 * Math.PI) / 180) *
+			Math.cos((lat2 * Math.PI) / 180) *
+			Math.sin(dLon / 2) *
+			Math.sin(dLon / 2);
+	const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 	return R * c;
 }
 
 export const getNearby: AppRouteHandler<GetNearbyRoute> = async (c) => {
 	const { lat, lon, radius = "1000" } = c.req.valid("query");
-	
+
 	const latitude = parseFloat(lat);
 	const longitude = parseFloat(lon);
 	const radiusMeters = parseInt(radius, 10);
-	
+
 	// Get all locations
 	const allLocations = await db.query.countingLocations.findMany();
-	
+
 	// Filter by distance and calculate distances
 	const nearbyLocations = allLocations
-		.map(location => {
+		.map((location) => {
 			const distance = calculateDistance(
-				latitude, 
-				longitude, 
-				parseFloat(location.latitude), 
-				parseFloat(location.longitude)
+				latitude,
+				longitude,
+				parseFloat(location.latitude),
+				parseFloat(location.longitude),
 			);
-			
+
 			return {
 				...location,
-				distance_meters: Math.round(distance)
+				distance_meters: Math.round(distance),
 			};
 		})
-		.filter(location => location.distance_meters <= radiusMeters)
+		.filter((location) => location.distance_meters <= radiusMeters)
 		.sort((a, b) => a.distance_meters - b.distance_meters);
-	
+
 	// Get counting data for nearby locations
-	const locationIds = nearbyLocations.map(l => l.id);
-	let countingData: Array<{location_id: number, counting_date: string, total_cyclists: number}> = [];
-	
+	const locationIds = nearbyLocations.map((l) => l.id);
+	let countingData: Array<{
+		location_id: number;
+		counting_date: string;
+		total_cyclists: number;
+	}> = [];
+
 	if (locationIds.length > 0) {
 		countingData = await db
 			.select({
 				location_id: countingEvents.location_id,
 				counting_date: countingEvents.counting_date,
-				total_cyclists: countingEvents.total_cyclists
+				total_cyclists: countingEvents.total_cyclists,
 			})
 			.from(countingEvents)
-			.where(sql`${countingEvents.location_id} IN (${sql.join(locationIds.map(id => sql`${id}`), sql`, `)})`)
+			.where(
+				sql`${countingEvents.location_id} IN (${sql.join(
+					locationIds.map((id) => sql`${id}`),
+					sql`, `,
+				)})`,
+			)
 			.orderBy(countingEvents.counting_date);
 	}
-	
+
 	// Group counting data by location
-	const countingMap = new Map<number, Array<{date: string, total_cyclists: number}>>();
-	countingData.forEach(d => {
+	const countingMap = new Map<
+		number,
+		Array<{ date: string; total_cyclists: number }>
+	>();
+	countingData.forEach((d) => {
 		if (!countingMap.has(d.location_id)) {
 			countingMap.set(d.location_id, []);
 		}
 		countingMap.get(d.location_id)?.push({
 			date: d.counting_date,
-			total_cyclists: d.total_cyclists
+			total_cyclists: d.total_cyclists,
 		});
 	});
-	
+
 	// Convert to GeoJSON features with summary data
 	const features = await Promise.all(
 		nearbyLocations.map(async (location) => {
@@ -233,19 +262,22 @@ export const getNearby: AppRouteHandler<GetNearbyRoute> = async (c) => {
 				},
 				geometry: {
 					type: "Point" as const,
-					coordinates: [parseFloat(location.longitude), parseFloat(location.latitude)],
+					coordinates: [
+						parseFloat(location.longitude),
+						parseFloat(location.latitude),
+					],
 				},
 			};
-		})
+		}),
 	);
-	
+
 	// Calculate summary by city
 	const byCity: Record<string, number> = {};
-	features.forEach(f => {
+	features.forEach((f) => {
 		const city = f.properties.city;
 		byCity[city] = (byCity[city] || 0) + 1;
 	});
-	
+
 	return c.json({
 		type: "FeatureCollection" as const,
 		features,

@@ -93,22 +93,26 @@ const EventDetailsSchema = z.object({
 		full_state: z.string(),
 		rmr: z.boolean(),
 	}),
-	coordinates: z.array(z.object({
-		point: z.object({
-			x: z.number(),
-			y: z.number(),
+	coordinates: z.array(
+		z.object({
+			point: z.object({
+				x: z.number(),
+				y: z.number(),
+			}),
+			type: z.string(),
+			name: z.string(),
 		}),
-		type: z.string(),
-		name: z.string(),
-	})),
+	),
 	directions: z.record(z.string()),
-	sessions: z.record(z.object({
-		start_time: z.string(),
-		end_time: z.string(),
-		total_cyclists: z.number(),
-		quantitative: z.record(z.number()),
-		characteristics: z.record(z.number()),
-	})),
+	sessions: z.record(
+		z.object({
+			start_time: z.string(),
+			end_time: z.string(),
+			total_cyclists: z.number(),
+			quantitative: z.record(z.number()),
+			characteristics: z.record(z.number()),
+		}),
+	),
 	summary: z.object({
 		max_hour: z.number(),
 		total_cyclists: z.number(),
@@ -130,7 +134,8 @@ export const getDetailsById = createRoute({
 	method: "get",
 	tags,
 	summary: "Get detailed event data by ID",
-	description: "Get comprehensive event details including sessions, characteristics, directions and summary",
+	description:
+		"Get comprehensive event details including sessions, characteristics, directions and summary",
 	request: {
 		params: IdParamsSchema,
 	},

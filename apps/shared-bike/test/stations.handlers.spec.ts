@@ -1,5 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { listStations, getStation } from "../src/routes/stations/stations.handlers.js";
+import {
+	listStations,
+	getStation,
+} from "../src/routes/stations/stations.handlers.js";
 import { db } from "../src/db/index.js";
 
 // Mock do banco de dados
@@ -35,7 +38,9 @@ describe("Stations Handlers", () => {
 			];
 
 			// Mock da query do banco
-			vi.mocked(db.select().from().where().orderBy).mockResolvedValue(mockStations);
+			vi.mocked(db.select().from().where().orderBy).mockResolvedValue(
+				mockStations,
+			);
 
 			const mockContext = createMockContext();
 			await listStations(mockContext as any);
@@ -44,11 +49,11 @@ describe("Stations Handlers", () => {
 		});
 
 		it("should filter by network", async () => {
-			const mockStations = [
-				{ id: 1, name: "Station 1", network: "BikePE" },
-			];
+			const mockStations = [{ id: 1, name: "Station 1", network: "BikePE" }];
 
-			vi.mocked(db.select().from().where().orderBy).mockResolvedValue(mockStations);
+			vi.mocked(db.select().from().where().orderBy).mockResolvedValue(
+				mockStations,
+			);
 
 			const mockContext = createMockContext({ network: "BikePE" });
 			await listStations(mockContext as any);
@@ -57,11 +62,11 @@ describe("Stations Handlers", () => {
 		});
 
 		it("should filter by operator", async () => {
-			const mockStations = [
-				{ id: 1, name: "Station 1", operator: "Tembici" },
-			];
+			const mockStations = [{ id: 1, name: "Station 1", operator: "Tembici" }];
 
-			vi.mocked(db.select().from().where().orderBy).mockResolvedValue(mockStations);
+			vi.mocked(db.select().from().where().orderBy).mockResolvedValue(
+				mockStations,
+			);
 
 			const mockContext = createMockContext({ operator: "Tembici" });
 			await listStations(mockContext as any);
@@ -70,15 +75,15 @@ describe("Stations Handlers", () => {
 		});
 
 		it("should filter by capacity range", async () => {
-			const mockStations = [
-				{ id: 1, name: "Station 1", capacity: 20 },
-			];
+			const mockStations = [{ id: 1, name: "Station 1", capacity: 20 }];
 
-			vi.mocked(db.select().from().where().orderBy).mockResolvedValue(mockStations);
+			vi.mocked(db.select().from().where().orderBy).mockResolvedValue(
+				mockStations,
+			);
 
-			const mockContext = createMockContext({ 
-				min_capacity: "15", 
-				max_capacity: "25" 
+			const mockContext = createMockContext({
+				min_capacity: "15",
+				max_capacity: "25",
 			});
 			await listStations(mockContext as any);
 
@@ -90,7 +95,9 @@ describe("Stations Handlers", () => {
 		it("should return station by valid ID", async () => {
 			const mockStation = { id: 1, name: "Station 1", network: "BikePE" };
 
-			vi.mocked(db.select().from().where().limit).mockResolvedValue([mockStation]);
+			vi.mocked(db.select().from().where().limit).mockResolvedValue([
+				mockStation,
+			]);
 
 			const mockContext = createMockContext({}, { id: "1" });
 			await getStation(mockContext as any);
@@ -104,7 +111,7 @@ describe("Stations Handlers", () => {
 
 			expect(mockContext.json).toHaveBeenCalledWith(
 				{ error: "Invalid station ID" },
-				400
+				400,
 			);
 		});
 
@@ -116,7 +123,7 @@ describe("Stations Handlers", () => {
 
 			expect(mockContext.json).toHaveBeenCalledWith(
 				{ error: "Station not found" },
-				404
+				404,
 			);
 		});
 	});

@@ -63,9 +63,9 @@ export async function seedPcrStreets(config: DatabaseConfig = {}) {
 				const props = feature.properties;
 				const geoJsonGeometry = {
 					type: "MultiLineString",
-					coordinates: feature.geometry.coordinates
+					coordinates: feature.geometry.coordinates,
 				};
-				
+
 				// Use Drizzle sql template for PostGIS function
 				await db.execute(sql`
 					INSERT INTO pcr_streets (

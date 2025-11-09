@@ -8,13 +8,38 @@ const tags = ["Infrastructure"];
 
 const InfrastructureSchema = z.object({
 	id: z.number().openapi({ description: "Unique identifier", example: 1 }),
-	osm_id: z.string().openapi({ description: "OpenStreetMap ID", example: "way/123456" }),
-	name: z.string().nullable().openapi({ description: "Infrastructure name", example: "Ciclofaixa da Rua da Aurora" }),
-	infra_type: z.string().openapi({ description: "Type of cycling infrastructure", example: "Ciclofaixa" }),
+	osm_id: z
+		.string()
+		.openapi({ description: "OpenStreetMap ID", example: "way/123456" }),
+	name: z
+		.string()
+		.nullable()
+		.openapi({
+			description: "Infrastructure name",
+			example: "Ciclofaixa da Rua da Aurora",
+		}),
+	infra_type: z
+		.string()
+		.openapi({
+			description: "Type of cycling infrastructure",
+			example: "Ciclofaixa",
+		}),
 	coordinates: z.any().openapi({ description: "PostGIS geometry coordinates" }),
-	geojson: z.any().openapi({ description: "GeoJSON representation of the infrastructure" }),
-	created_at: z.string().openapi({ description: "Creation timestamp", example: "2024-01-01T00:00:00Z" }),
-	updated_at: z.string().openapi({ description: "Last update timestamp", example: "2024-01-01T00:00:00Z" }),
+	geojson: z
+		.any()
+		.openapi({ description: "GeoJSON representation of the infrastructure" }),
+	created_at: z
+		.string()
+		.openapi({
+			description: "Creation timestamp",
+			example: "2024-01-01T00:00:00Z",
+		}),
+	updated_at: z
+		.string()
+		.openapi({
+			description: "Last update timestamp",
+			example: "2024-01-01T00:00:00Z",
+		}),
 });
 
 export const list = createRoute({
@@ -22,11 +47,13 @@ export const list = createRoute({
 	method: "get",
 	tags,
 	summary: "List cycling infrastructure",
-	description: "Get all cycling infrastructure from ciclomapa (existing infrastructure)",
+	description:
+		"Get all cycling infrastructure from ciclomapa (existing infrastructure)",
 	request: {
 		query: z.object({
 			type: z.string().optional().openapi({
-				description: "Filter by infrastructure type (Ciclofaixa, Ciclovia, Faixa Compartilhada, etc.)",
+				description:
+					"Filter by infrastructure type (Ciclofaixa, Ciclovia, Faixa Compartilhada, etc.)",
 				example: "Ciclofaixa",
 			}),
 			limit: z.string().optional().openapi({
@@ -69,11 +96,13 @@ export const getGeoJSON = createRoute({
 	method: "get",
 	tags,
 	summary: "Get cycling infrastructure as GeoJSON",
-	description: "Get all cycling infrastructure in GeoJSON FeatureCollection format",
+	description:
+		"Get all cycling infrastructure in GeoJSON FeatureCollection format",
 	request: {
 		query: z.object({
 			type: z.string().optional().openapi({
-				description: "Filter by infrastructure type (Ciclofaixa, Ciclovia, Faixa Compartilhada, etc.)",
+				description:
+					"Filter by infrastructure type (Ciclofaixa, Ciclovia, Faixa Compartilhada, etc.)",
 				example: "Ciclofaixa",
 			}),
 			limit: z.string().optional().openapi({
@@ -86,12 +115,14 @@ export const getGeoJSON = createRoute({
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
 				type: z.literal("FeatureCollection"),
-				features: z.array(z.object({
-					type: z.literal("Feature"),
-					id: z.string(),
-					properties: z.record(z.any()),
-					geometry: z.any(),
-				})),
+				features: z.array(
+					z.object({
+						type: z.literal("Feature"),
+						id: z.string(),
+						properties: z.record(z.any()),
+						geometry: z.any(),
+					}),
+				),
 			}),
 			"Cycling infrastructure in GeoJSON format",
 		),
@@ -103,29 +134,50 @@ export const getNearby = createRoute({
 	method: "get",
 	tags,
 	summary: "Get existing cycling infrastructure near a location",
-	description: "Get existing cycling infrastructure within a radius from a lat/lon point",
+	description:
+		"Get existing cycling infrastructure within a radius from a lat/lon point",
 	request: {
 		query: z.object({
-			lat: z.string().openapi({ description: "Latitude coordinate", example: "-8.0476" }),
-			lon: z.string().openapi({ description: "Longitude coordinate", example: "-34.8770" }),
-			radius: z.string().optional().openapi({ description: "Search radius in meters (default: 1000, max: 10000)", example: "1000" }),
-			type: z.string().optional().openapi({ description: "Filter by infrastructure type", example: "Ciclofaixa" }),
+			lat: z
+				.string()
+				.openapi({ description: "Latitude coordinate", example: "-8.0476" }),
+			lon: z
+				.string()
+				.openapi({ description: "Longitude coordinate", example: "-34.8770" }),
+			radius: z
+				.string()
+				.optional()
+				.openapi({
+					description: "Search radius in meters (default: 1000, max: 10000)",
+					example: "1000",
+				}),
+			type: z
+				.string()
+				.optional()
+				.openapi({
+					description: "Filter by infrastructure type",
+					example: "Ciclofaixa",
+				}),
 		}),
 	},
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
 				type: z.literal("FeatureCollection"),
-				features: z.array(z.object({
-					type: z.literal("Feature"),
-					id: z.string(),
-					properties: z.object({
-						name: z.string().nullable(),
-						infra_type: z.string(),
-						distance_meters: z.number(),
-					}).and(z.record(z.any())),
-					geometry: z.any(),
-				})),
+				features: z.array(
+					z.object({
+						type: z.literal("Feature"),
+						id: z.string(),
+						properties: z
+							.object({
+								name: z.string().nullable(),
+								infra_type: z.string(),
+								distance_meters: z.number(),
+							})
+							.and(z.record(z.any())),
+						geometry: z.any(),
+					}),
+				),
 				summary: z.object({
 					total_infrastructure: z.number(),
 					by_type: z.record(z.number()),

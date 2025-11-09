@@ -1,19 +1,19 @@
 import { createRouter } from "../../lib/create-app.js";
-import { 
-	listStreetsRoute, 
+import {
+	listStreetsRoute,
 	getStreetRoute,
 	streetsRankingRoute,
 	streetSummaryRoute,
 	streetViolationsRoute,
-	neighborhoodsRoute
+	neighborhoodsRoute,
 } from "./streets.routes.js";
-import { 
-	listStreets, 
+import {
+	listStreets,
 	getStreet,
 	streetsRanking,
 	streetSummary,
 	streetViolations,
-	neighborhoods
+	neighborhoods,
 } from "./streets.handlers.js";
 
 const streetsRouter = createRouter()

@@ -33,14 +33,17 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 	const streetName = streetInfo?.nlogra_conc;
 
 	// Calcular extensão total da via pelo nome
-	const streetLength = streetName ? await db.execute(sql`
+	const streetLength = streetName
+		? await db.execute(sql`
 		SELECT SUM(ST_Length(coordinates::geography)) as total_length
 		FROM pcr_streets 
 		WHERE nlogra_conc = ${streetName}
-	`) : { rows: [{ total_length: 0 }] };
+	`)
+		: { rows: [{ total_length: 0 }] };
 
 	// 2. Emergency calls - histórico anual
-	const emergencyHistory = streetName ? await db.execute(sql`
+	const emergencyHistory = streetName
+		? await db.execute(sql`
 		SELECT 
 			EXTRACT(YEAR FROM date) as year,
 			COUNT(*) as total_calls
@@ -48,10 +51,12 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 		WHERE pcr_address ILIKE ${`%${streetName}%`}
 		GROUP BY EXTRACT(YEAR FROM date)
 		ORDER BY year DESC
-	`) : { rows: [] };
+	`)
+		: { rows: [] };
 
 	// 2.1. Último mês com dados
-	const lastMonthData = streetName ? await db.execute(sql`
+	const lastMonthData = streetName
+		? await db.execute(sql`
 		SELECT 
 			TO_CHAR(date, 'YYYY-MM') as month,
 			COUNT(*) as total_calls
@@ -60,10 +65,12 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 		GROUP BY TO_CHAR(date, 'YYYY-MM')
 		ORDER BY month DESC
 		LIMIT 1
-	`) : { rows: [] };
+	`)
+		: { rows: [] };
 
 	// 2.2. Por categoria
-	const emergencyByCategory = streetName ? await db.execute(sql`
+	const emergencyByCategory = streetName
+		? await db.execute(sql`
 		SELECT 
 			COALESCE(category, 'Não informado') as category,
 			COUNT(*) as count
@@ -72,10 +79,12 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 		GROUP BY category
 		ORDER BY count DESC
 		LIMIT 10
-	`) : { rows: [] };
+	`)
+		: { rows: [] };
 
 	// 2.3. Por gênero
-	const emergencyByGender = streetName ? await db.execute(sql`
+	const emergencyByGender = streetName
+		? await db.execute(sql`
 		SELECT 
 			gender,
 			COUNT(*) as count
@@ -83,10 +92,12 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 		WHERE pcr_address ILIKE ${`%${streetName}%`}
 		GROUP BY gender
 		ORDER BY count DESC
-	`) : { rows: [] };
+	`)
+		: { rows: [] };
 
 	// 2.4. Por faixa etária
-	const emergencyByAge = streetName ? await db.execute(sql`
+	const emergencyByAge = streetName
+		? await db.execute(sql`
 		SELECT 
 			CASE 
 				WHEN age < 18 THEN 'Menor de 18'
@@ -101,7 +112,8 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 		WHERE pcr_address ILIKE ${`%${streetName}%`}
 		GROUP BY age_group
 		ORDER BY count DESC
-	`) : { rows: [] };
+	`)
+		: { rows: [] };
 
 	// 3. Bike racks próximos
 	const bikeRacks = await db.execute(sql`
@@ -243,105 +255,135 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 	`);
 
 	// Processar dados
-	const totalCapacity = bikeRacks.rows.reduce((sum, row) => sum + (Number(row.capacity) || 0), 0);
+	const totalCapacity = bikeRacks.rows.reduce(
+		(sum, row) => sum + (Number(row.capacity) || 0),
+		0,
+	);
 
 	// Processar perfis por edição (ano da pesquisa)
 	const editionsMap = new Map<string, any[]>();
 	for (const row of cyclistProfiles.rows) {
 		const metadata = row.metadata as any;
-		const edition = metadata?.survey_year ? metadata.survey_year.toString() : 'Sem ano';
+		const edition = metadata?.survey_year
+			? metadata.survey_year.toString()
+			: "Sem ano";
 		if (!editionsMap.has(edition)) {
 			editionsMap.set(edition, []);
 		}
-		editionsMap.get(edition)!.push(row.data);
+		editionsMap.get(edition)?.push(row.data);
 	}
 
-	const editionsData = Array.from(editionsMap.entries()).map(([edition, profiles]) => {
-		const raceDistribution: Record<string, number> = {};
-		const genderDistribution: Record<string, number> = {};
-		const ageDistribution: Record<string, number> = {};
-		const educationDistribution: Record<string, number> = {};
-		const incomeDistribution: Record<string, number> = {};
-		const otherAttributes: Record<string, number> = {};
+	const editionsData = Array.from(editionsMap.entries()).map(
+		([edition, profiles]) => {
+			const raceDistribution: Record<string, number> = {};
+			const genderDistribution: Record<string, number> = {};
+			const ageDistribution: Record<string, number> = {};
+			const educationDistribution: Record<string, number> = {};
+			const incomeDistribution: Record<string, number> = {};
+			const otherAttributes: Record<string, number> = {};
 
-		for (const profile of profiles) {
-			const data = profile as any;
-			
-			// Raça
-			if (data.color_race) {
-				raceDistribution[data.color_race] = (raceDistribution[data.color_race] || 0) + 1;
-			}
-			
-			// Gênero
-			if (data.gender) {
-				genderDistribution[data.gender] = (genderDistribution[data.gender] || 0) + 1;
-			}
-			
-			// Idade por categoria
-			if (data.age_category) {
-				ageDistribution[data.age_category] = (ageDistribution[data.age_category] || 0) + 1;
-			}
-			
-			// Educação
-			if (data.schooling) {
-				educationDistribution[data.schooling] = (educationDistribution[data.schooling] || 0) + 1;
-			}
-			
-			// Renda
-			if (data.income_original) {
-				incomeDistribution[data.income_original] = (incomeDistribution[data.income_original] || 0) + 1;
-			}
-			
-			// Outros atributos
-			for (const [key, value] of Object.entries(data)) {
-				if (!['color_race', 'gender', 'age_category', 'schooling', 'income_original'].includes(key) && value && typeof value === 'string') {
-					const attrKey = `${key}: ${value}`;
-					otherAttributes[attrKey] = (otherAttributes[attrKey] || 0) + 1;
+			for (const profile of profiles) {
+				const data = profile as any;
+
+				// Raça
+				if (data.color_race) {
+					raceDistribution[data.color_race] =
+						(raceDistribution[data.color_race] || 0) + 1;
+				}
+
+				// Gênero
+				if (data.gender) {
+					genderDistribution[data.gender] =
+						(genderDistribution[data.gender] || 0) + 1;
+				}
+
+				// Idade por categoria
+				if (data.age_category) {
+					ageDistribution[data.age_category] =
+						(ageDistribution[data.age_category] || 0) + 1;
+				}
+
+				// Educação
+				if (data.schooling) {
+					educationDistribution[data.schooling] =
+						(educationDistribution[data.schooling] || 0) + 1;
+				}
+
+				// Renda
+				if (data.income_original) {
+					incomeDistribution[data.income_original] =
+						(incomeDistribution[data.income_original] || 0) + 1;
+				}
+
+				// Outros atributos
+				for (const [key, value] of Object.entries(data)) {
+					if (
+						![
+							"color_race",
+							"gender",
+							"age_category",
+							"schooling",
+							"income_original",
+						].includes(key) &&
+						value &&
+						typeof value === "string"
+					) {
+						const attrKey = `${key}: ${value}`;
+						otherAttributes[attrKey] = (otherAttributes[attrKey] || 0) + 1;
+					}
 				}
 			}
-		}
 
-		return {
-			edition,
-			total_profiles: profiles.length,
-			race_distribution: raceDistribution,
-			gender_distribution: genderDistribution,
-			age_distribution: ageDistribution,
-			education_distribution: educationDistribution,
-			income_distribution: incomeDistribution,
-			other_attributes: otherAttributes,
-		};
-	});
+			return {
+				edition,
+				total_profiles: profiles.length,
+				race_distribution: raceDistribution,
+				gender_distribution: genderDistribution,
+				age_distribution: ageDistribution,
+				education_distribution: educationDistribution,
+				income_distribution: incomeDistribution,
+				other_attributes: otherAttributes,
+			};
+		},
+	);
 
 	return c.json({
 		location: {
 			lat,
 			lng,
-			nearest_street: streetInfo ? {
-				name: streetInfo.nlogra_conc as string,
-				official_name: streetInfo.nlgpav_ofic as string,
-				total_length_meters: Math.round(Number(streetLength.rows[0]?.total_length) || 0),
-				distance_to_point_meters: Math.round(Number(streetInfo.distance_meters)),
-			} : null,
+			nearest_street: streetInfo
+				? {
+						name: streetInfo.nlogra_conc as string,
+						official_name: streetInfo.nlgpav_ofic as string,
+						total_length_meters: Math.round(
+							Number(streetLength.rows[0]?.total_length) || 0,
+						),
+						distance_to_point_meters: Math.round(
+							Number(streetInfo.distance_meters),
+						),
+					}
+				: null,
 		},
 		emergency_calls: {
-			annual_history: emergencyHistory.rows.map(row => ({
+			annual_history: emergencyHistory.rows.map((row) => ({
 				year: Number(row.year),
 				total_calls: Number(row.total_calls),
 			})),
-			last_month_data: lastMonthData.rows[0] ? {
-				month: lastMonthData.rows[0].month as string,
-				total_calls: Number(lastMonthData.rows[0].total_calls),
-			} : null,
-			by_category: emergencyByCategory.rows.map(row => ({
+			last_month_data: lastMonthData.rows[0]
+				? {
+						month: lastMonthData.rows[0].month as string,
+						total_calls: Number(lastMonthData.rows[0].total_calls),
+					}
+				: null,
+			by_category: emergencyByCategory.rows.map((row) => ({
 				category: row.category as string,
 				count: Number(row.count),
 			})),
-			by_gender: emergencyByGender.rows.map(row => ({
+			by_gender: emergencyByGender.rows.map((row) => ({
 				gender: row.gender as string | null,
 				count: Number(row.count),
 			})),
-			by_age_group: emergencyByAge.rows.map(row => ({
+			by_age_group: emergencyByAge.rows.map((row) => ({
 				age_group: row.age_group as string,
 				count: Number(row.count),
 			})),
@@ -349,7 +391,7 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 		bike_racks: {
 			total: bikeRacks.rows.length,
 			total_capacity: totalCapacity,
-			items: bikeRacks.rows.map(row => ({
+			items: bikeRacks.rows.map((row) => ({
 				id: Number(row.id),
 				name: row.name as string | null,
 				capacity: row.capacity as string | null,
@@ -360,7 +402,7 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 			})),
 		},
 		cyclist_counts: {
-			counts: cyclistCounts.rows.map(row => ({
+			counts: cyclistCounts.rows.map((row) => ({
 				id: Number(row.id),
 				name: row.name as string,
 				date: row.date as string,
@@ -383,7 +425,7 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 		},
 		shared_bike: {
 			has_stations: sharedBikeStations.rows.length > 0,
-			stations: sharedBikeStations.rows.map(row => ({
+			stations: sharedBikeStations.rows.map((row) => ({
 				id: Number(row.id),
 				name: row.name as string,
 				capacity: Number(row.capacity),
@@ -391,12 +433,12 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 			})),
 		},
 		cycling_infra: {
-			existing: existingInfra.rows.map(row => ({
+			existing: existingInfra.rows.map((row) => ({
 				type: row.type as string,
 				name: row.name as string | null,
 				distance_meters: Math.round(Number(row.distance_meters)),
 			})),
-			planned_pdc: plannedInfra.rows.map(row => ({
+			planned_pdc: plannedInfra.rows.map((row) => ({
 				id: Number(row.id),
 				pdc_ref: row.pdc_ref as string,
 				typology: row.typology as string,

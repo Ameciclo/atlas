@@ -61,58 +61,62 @@ function parseCSV(content: string): Record<string, string>[] {
 	const lines: string[] = [];
 	let currentLine = "";
 	let inQuotes = false;
-	
+
 	// Parse CSV properly handling quoted fields with line breaks
 	for (let i = 0; i < content.length; i++) {
 		const char = content[i];
-		
+
 		if (char === '"') {
 			inQuotes = !inQuotes;
 		}
-		
-		if (char === '\n' && !inQuotes) {
+
+		if (char === "\n" && !inQuotes) {
 			lines.push(currentLine.trim());
 			currentLine = "";
 		} else {
 			currentLine += char;
 		}
 	}
-	
+
 	// Add last line if exists
 	if (currentLine.trim()) {
 		lines.push(currentLine.trim());
 	}
-	
-	const headers = lines[0]?.split(",").map(h => h.replace(/"/g, '').trim()) || [];
-	
-	return lines.slice(1).filter(line => line.trim()).map((line) => {
-		const values: string[] = [];
-		let currentValue = "";
-		let inQuotes = false;
-		
-		// Parse values properly handling quoted fields
-		for (let i = 0; i < line.length; i++) {
-			const char = line[i];
-			
-			if (char === '"') {
-				inQuotes = !inQuotes;
-			} else if (char === ',' && !inQuotes) {
-				values.push(currentValue.replace(/"/g, '').trim());
-				currentValue = "";
-			} else {
-				currentValue += char;
+
+	const headers =
+		lines[0]?.split(",").map((h) => h.replace(/"/g, "").trim()) || [];
+
+	return lines
+		.slice(1)
+		.filter((line) => line.trim())
+		.map((line) => {
+			const values: string[] = [];
+			let currentValue = "";
+			let inQuotes = false;
+
+			// Parse values properly handling quoted fields
+			for (let i = 0; i < line.length; i++) {
+				const char = line[i];
+
+				if (char === '"') {
+					inQuotes = !inQuotes;
+				} else if (char === "," && !inQuotes) {
+					values.push(currentValue.replace(/"/g, "").trim());
+					currentValue = "";
+				} else {
+					currentValue += char;
+				}
 			}
-		}
-		
-		// Add last value
-		values.push(currentValue.replace(/"/g, '').trim());
-		
-		const row: Record<string, string> = {};
-		headers.forEach((header, i) => {
-			row[header] = values[i] || "";
+
+			// Add last value
+			values.push(currentValue.replace(/"/g, "").trim());
+
+			const row: Record<string, string> = {};
+			headers.forEach((header, i) => {
+				row[header] = values[i] || "";
+			});
+			return row;
 		});
-		return row;
-	});
 }
 
 export async function seedCyclingInfra(config: DatabaseConfig = {}) {
@@ -187,33 +191,39 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 		console.log("🔗 Loading relation-cities...");
 		const relationCitiesContent = await readFile(
 			join(dataPath, "relations_cities.csv"),
-			"utf-8"
+			"utf-8",
 		);
 		const relationCitiesData = parseCSV(relationCitiesContent);
 
 		console.log(`Found ${relationCitiesData.length} relation-city rows`);
-		console.log('First few rows:', relationCitiesData.slice(0, 3));
+		console.log("First few rows:", relationCitiesData.slice(0, 3));
 
 		const relationCitiesToInsert = relationCitiesData
-			.map(row => {
+			.map((row) => {
 				// Clean up keys and values from \r characters
 				const cleanRow: Record<string, string> = {};
 				for (const [key, value] of Object.entries(row)) {
-					const cleanKey = key.replace(/\r/g, '');
-					const cleanValue = value.replace(/\r/g, '');
+					const cleanKey = key.replace(/\r/g, "");
+					const cleanValue = value.replace(/\r/g, "");
 					cleanRow[cleanKey] = cleanValue;
 				}
 				return cleanRow;
 			})
-			.filter(row => row.relation_id && row.city_id && row.relation_id.trim() !== "" && row.city_id.trim() !== "")
-			.map(row => ({
+			.filter(
+				(row) =>
+					row.relation_id &&
+					row.city_id &&
+					row.relation_id.trim() !== "" &&
+					row.city_id.trim() !== "",
+			)
+			.map((row) => ({
 				relation_id: parseInt(row.relation_id!),
-				city_id: parseInt(row.city_id!)
+				city_id: parseInt(row.city_id!),
 			}))
-			.filter(row => !isNaN(row.relation_id) && !isNaN(row.city_id));
+			.filter((row) => !isNaN(row.relation_id) && !isNaN(row.city_id));
 
 		if (relationCitiesToInsert.length === 0) {
-			console.log('⚠️ No valid relation-city relationships to insert');
+			console.log("⚠️ No valid relation-city relationships to insert");
 			return;
 		}
 
@@ -222,61 +232,84 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 			.values(relationCitiesToInsert)
 			.onConflictDoNothing();
 
-		console.log(`✅ Inserted ${relationCitiesToInsert.length} relation-city relationships\n`);
+		console.log(
+			`✅ Inserted ${relationCitiesToInsert.length} relation-city relationships\n`,
+		);
 
 		// 3. Seed Ways (Processed OSM Data)
 		console.log("🛣️ Loading processed ways...");
-		const waysContent = await readFile(join(dataPath, "pdc_ways.json"), "utf-8");
+		const waysContent = await readFile(
+			join(dataPath, "pdc_ways.json"),
+			"utf-8",
+		);
 		const waysData = JSON.parse(waysContent);
 
 		console.log(`Found ${waysData.length} processed ways`);
 
 		// Get all relations to match relation_id
-		const allRelations = await db.select().from(cyclingInfraSchema.cyclistInfraRelations);
+		const allRelations = await db
+			.select()
+			.from(cyclingInfraSchema.cyclistInfraRelations);
 		console.log(`Found ${allRelations.length} relations in DB`);
-		console.log('Sample relations:', allRelations.slice(0, 3).map(r => ({ id: r.id, osm_id: r.osm_id })));
+		console.log(
+			"Sample relations:",
+			allRelations.slice(0, 3).map((r) => ({ id: r.id, osm_id: r.osm_id })),
+		);
 
-		const relationMap = new Map(allRelations.map(r => [r.osm_id, r.id]));
-		console.log('RelationMap keys:', Array.from(relationMap.keys()).slice(0, 5));
-		console.log('Sample way relation_ids:', waysData.slice(0, 5).map((w: any) => w.relation_id));
+		const relationMap = new Map(allRelations.map((r) => [r.osm_id, r.id]));
+		console.log(
+			"RelationMap keys:",
+			Array.from(relationMap.keys()).slice(0, 5),
+		);
+		console.log(
+			"Sample way relation_ids:",
+			waysData.slice(0, 5).map((w: any) => w.relation_id),
+		);
 
-		const waysToInsert = waysData.map((way: any) => {
-			// Parse GeoJSON from string (it's double-encoded)
-			const geojsonData = JSON.parse(way.geojson);
-			const geometry = geojsonData.features[0].geometry;
-			
-			// Find relation by relation_id from JSON
-			let relationId = null;
-			if (way.relation_id && way.relation_id !== 0 && way.relation_id !== "0") {
-				// Find relation by matching the relation_id from our processed data
-				relationId = relationMap.get(way.relation_id) || null;
-				
-				// Debug first few
-				if (waysData.indexOf(way) < 3) {
-					console.log(`Way ${way.osm_id}: relation_id=${way.relation_id} found=${relationId}`);
+		const waysToInsert = waysData
+			.map((way: any) => {
+				// Parse GeoJSON from string (it's double-encoded)
+				const geojsonData = JSON.parse(way.geojson);
+				const geometry = geojsonData.features[0].geometry;
+
+				// Find relation by relation_id from JSON
+				let relationId = null;
+				if (
+					way.relation_id &&
+					way.relation_id !== 0 &&
+					way.relation_id !== "0"
+				) {
+					// Find relation by matching the relation_id from our processed data
+					relationId = relationMap.get(way.relation_id) || null;
+
+					// Debug first few
+					if (waysData.indexOf(way) < 3) {
+						console.log(
+							`Way ${way.osm_id}: relation_id=${way.relation_id} found=${relationId}`,
+						);
+					}
 				}
-			}
 
-
-			return {
-				osm_id: `way/${way.osm_id}`,
-				relation_id: relationId,
-				name: way.name || null,
-				geometry_type: geometry?.type || "LineString",
-				coordinates: geometry ? JSON.stringify(geometry) : null,
-				osm_properties: {
-					length: way.length,
-					highway: way.highway,
-					has_cycleway: way.has_cycleway,
-					cycleway_typology: way.cycleway_typology,
-					city_id: way.city_id,
-					dual_carriageway: way.dual_carriageway,
-					pdc_typology: way.pdc_typology,
-					lastupdated: way.lastupdated
-				},
-				geojson: geojsonData,
-			};
-		}).filter((way: any) => way.coordinates !== null);
+				return {
+					osm_id: `way/${way.osm_id}`,
+					relation_id: relationId,
+					name: way.name || null,
+					geometry_type: geometry?.type || "LineString",
+					coordinates: geometry ? JSON.stringify(geometry) : null,
+					osm_properties: {
+						length: way.length,
+						highway: way.highway,
+						has_cycleway: way.has_cycleway,
+						cycleway_typology: way.cycleway_typology,
+						city_id: way.city_id,
+						dual_carriageway: way.dual_carriageway,
+						pdc_typology: way.pdc_typology,
+						lastupdated: way.lastupdated,
+					},
+					geojson: geojsonData,
+				};
+			})
+			.filter((way: any) => way.coordinates !== null);
 
 		// Insert in batches
 		const batchSize = 1000;
@@ -294,7 +327,10 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 
 		// 4. Seed Non-PDC Ways (existing cycling infrastructure)
 		console.log("🚴 Loading non-PDC ways...");
-		const nonPdcContent = await readFile(join(dataPath, "non_pdc_ways.json"), "utf-8");
+		const nonPdcContent = await readFile(
+			join(dataPath, "non_pdc_ways.json"),
+			"utf-8",
+		);
 		const nonPdcData = JSON.parse(nonPdcContent);
 
 		console.log(`Found ${nonPdcData.length} non-PDC ways`);
@@ -318,7 +354,7 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 					city_id: way.city_id,
 					dual_carriageway: way.dual_carriageway,
 					pdc_typology: way.pdc_typology,
-					lastupdated: way.lastupdated
+					lastupdated: way.lastupdated,
 				},
 				geojson: geojsonData,
 			};
@@ -348,10 +384,15 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 			"ciclomapa-Abreu e Lima, Pernambuco, Brasil.geojson",
 			"ciclomapa-Igarassu, Pernambuco, Brasil.geojson",
 			"ciclomapa-Cabo de Santo Agostinho, Pernambuco, Brasil.geojson",
-			"ciclomapa-Ipojuca, Pernambuco, Brasil.geojson"
+			"ciclomapa-Ipojuca, Pernambuco, Brasil.geojson",
 		];
 
-		const cyclingTypes = ["Ciclovia", "Ciclofaixa", "Ciclorrota", "Calçada compartilhada"];
+		const cyclingTypes = [
+			"Ciclovia",
+			"Ciclofaixa",
+			"Ciclorrota",
+			"Calçada compartilhada",
+		];
 		const ciclomapaFeatures = [];
 		const osmIdsSeen = new Set();
 
@@ -362,9 +403,10 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 				const geojsonData = JSON.parse(content);
 
 				for (const feature of geojsonData.features) {
-					if (feature.geometry?.type === "LineString" && 
-						cyclingTypes.includes(feature.properties?.type)) {
-						
+					if (
+						feature.geometry?.type === "LineString" &&
+						cyclingTypes.includes(feature.properties?.type)
+					) {
 						const osmId = feature.id;
 						if (!osmId?.startsWith("way/") || osmIdsSeen.has(osmId)) {
 							continue;
@@ -376,11 +418,13 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 							name: feature.properties?.name || null,
 							infra_type: feature.properties.type,
 							coordinates: JSON.stringify(feature.geometry),
-							geojson: feature
+							geojson: feature,
 						});
 					}
 				}
-				console.log(`  ✓ Processed ${filename}: ${geojsonData.features.length} features`);
+				console.log(
+					`  ✓ Processed ${filename}: ${geojsonData.features.length} features`,
+				);
 			} catch (error) {
 				console.log(`  ⚠️ Skipped ${filename}: ${(error as Error).message}`);
 			}

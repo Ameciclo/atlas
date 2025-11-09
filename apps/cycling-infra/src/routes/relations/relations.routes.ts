@@ -2,7 +2,10 @@ import { createRoute, z } from "@hono/zod-openapi";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { jsonContent } from "stoker/openapi/helpers";
 import { IdParamsSchema } from "stoker/openapi/schemas";
-import { selectPdcRelationWaysSchema, selectCyclistInfraRelationsSchema } from "../../db/schema.js";
+import {
+	selectPdcRelationWaysSchema,
+	selectCyclistInfraRelationsSchema,
+} from "../../db/schema.js";
 import { notFoundSchema } from "../../lib/constants.js";
 
 const tags = ["Relations"];
@@ -30,7 +33,8 @@ export const getById = createRoute({
 	method: "get",
 	tags,
 	summary: "Get relation by ID",
-	description: "Get specific cycling infrastructure relation by ID as GeoJSON FeatureCollection",
+	description:
+		"Get specific cycling infrastructure relation by ID as GeoJSON FeatureCollection",
 	request: {
 		params: IdParamsSchema,
 	},
@@ -38,12 +42,14 @@ export const getById = createRoute({
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
 				type: z.literal("FeatureCollection"),
-				features: z.array(z.object({
-					type: z.literal("Feature"),
-					id: z.string(),
-					properties: z.record(z.any()),
-					geometry: z.any(),
-				})),
+				features: z.array(
+					z.object({
+						type: z.literal("Feature"),
+						id: z.string(),
+						properties: z.record(z.any()),
+						geometry: z.any(),
+					}),
+				),
 			}),
 			"Relation as GeoJSON FeatureCollection",
 		),

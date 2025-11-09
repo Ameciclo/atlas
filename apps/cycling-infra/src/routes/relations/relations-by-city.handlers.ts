@@ -1,12 +1,18 @@
 import { eq } from "drizzle-orm";
 import { createConnectedDatabase } from "@atlas/database";
-import { cities, cyclistInfraRelations, cyclistInfraRelationCities } from "@atlas/database/schemas/cycling-infra";
+import {
+	cities,
+	cyclistInfraRelations,
+	cyclistInfraRelationCities,
+} from "@atlas/database/schemas/cycling-infra";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type { RelationsByCityRoute } from "./relations-by-city.routes.js";
 
-export const relationsByCity: AppRouteHandler<RelationsByCityRoute> = async (c) => {
+export const relationsByCity: AppRouteHandler<RelationsByCityRoute> = async (
+	c,
+) => {
 	const db = await createConnectedDatabase();
-	
+
 	const result = await db
 		.select({
 			city_id: cities.id,
@@ -18,20 +24,26 @@ export const relationsByCity: AppRouteHandler<RelationsByCityRoute> = async (c) 
 			pdc_typology: cyclistInfraRelations.pdc_typology,
 		})
 		.from(cities)
-		.innerJoin(cyclistInfraRelationCities, eq(cities.id, cyclistInfraRelationCities.city_id))
-		.innerJoin(cyclistInfraRelations, eq(cyclistInfraRelationCities.relation_id, cyclistInfraRelations.id));
+		.innerJoin(
+			cyclistInfraRelationCities,
+			eq(cities.id, cyclistInfraRelationCities.city_id),
+		)
+		.innerJoin(
+			cyclistInfraRelations,
+			eq(cyclistInfraRelationCities.relation_id, cyclistInfraRelations.id),
+		);
 
 	const groupedData: Record<string, any> = {};
 
 	for (const row of result) {
 		const cityKey = row.city_id.toString();
-		
+
 		if (!groupedData[cityKey]) {
 			groupedData[cityKey] = {
 				city_id: row.city_id,
 				name: row.name,
 				state: row.state,
-				relations: []
+				relations: [],
 			};
 		}
 
@@ -44,7 +56,7 @@ export const relationsByCity: AppRouteHandler<RelationsByCityRoute> = async (c) 
 			has_cycleway_length: 0,
 			pdc_typology: row.pdc_typology,
 			typologies_str: "none",
-			typologies: { "none": 0 }
+			typologies: { none: 0 },
 		});
 	}
 

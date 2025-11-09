@@ -50,7 +50,7 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 		.groupBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`)
 		.orderBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`);
 
-	const evolucaoAnual = yearlyData.map(item => ({
+	const evolucaoAnual = yearlyData.map((item) => ({
 		ano: item.ano,
 		count: item.count,
 		projecao: Math.floor(item.count * 1.05), // Mock projection
@@ -62,14 +62,14 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 		totalDesfechosValidos,
 		totalDesfechosInvalidos,
 		cidadeMaisViolenta: {
-			municipio: topCityResult?.municipio || '',
+			municipio: topCityResult?.municipio || "",
 			totalValidas: Math.floor((topCityResult?.count || 0) * 0.85),
 			totalInvalidas: Math.floor((topCityResult?.count || 0) * 0.15),
 			total: topCityResult?.count || 0,
 			evolucaoAnual: [], // Would need more complex query
 		},
-		porCategoria: categoriesData.map(item => ({
-			categoria: item.categoria || 'UNKNOWN',
+		porCategoria: categoriesData.map((item) => ({
+			categoria: item.categoria || "UNKNOWN",
 			count: item.count,
 		})),
 		porMotivoFinalizacao: [], // Mock data

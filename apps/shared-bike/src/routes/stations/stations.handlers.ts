@@ -73,7 +73,12 @@ export async function nearbyStations(c: Context) {
 	const searchRadius = Number(radius);
 	const maxLimit = Number(limit);
 
-	if (isNaN(latitude) || isNaN(longitude) || isNaN(searchRadius) || isNaN(maxLimit)) {
+	if (
+		isNaN(latitude) ||
+		isNaN(longitude) ||
+		isNaN(searchRadius) ||
+		isNaN(maxLimit)
+	) {
 		return c.json({ error: "Invalid numeric parameters" }, 400);
 	}
 
@@ -81,10 +86,10 @@ export async function nearbyStations(c: Context) {
 		.select()
 		.from(sharedBikeStations)
 		.where(
-			sql`coordinates IS NOT NULL AND ST_DWithin(ST_SetSRID(ST_GeomFromWKB(decode(coordinates, 'hex')), 4326)::geography, ST_SetSRID(ST_MakePoint(${longitude}, ${latitude}), 4326)::geography, ${searchRadius})`
+			sql`coordinates IS NOT NULL AND ST_DWithin(ST_SetSRID(ST_GeomFromWKB(decode(coordinates, 'hex')), 4326)::geography, ST_SetSRID(ST_MakePoint(${longitude}, ${latitude}), 4326)::geography, ${searchRadius})`,
 		)
 		.orderBy(
-			sql`ST_Distance(ST_SetSRID(ST_GeomFromWKB(decode(coordinates, 'hex')), 4326)::geography, ST_SetSRID(ST_MakePoint(${longitude}, ${latitude}), 4326)::geography)`
+			sql`ST_Distance(ST_SetSRID(ST_GeomFromWKB(decode(coordinates, 'hex')), 4326)::geography, ST_SetSRID(ST_MakePoint(${longitude}, ${latitude}), 4326)::geography)`,
 		)
 		.limit(maxLimit);
 

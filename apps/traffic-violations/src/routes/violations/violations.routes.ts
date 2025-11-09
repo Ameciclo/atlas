@@ -169,13 +169,15 @@ export const violationsByLocationRoute = createRoute({
 			content: {
 				"application/json": {
 					schema: z.object({
-						locations: z.array(z.object({
-							location_id: z.number(),
-							location_description: z.string(),
-							total_violations: z.number(),
-							ranking: z.number(),
-							coordinates: z.string().nullable(),
-						})),
+						locations: z.array(
+							z.object({
+								location_id: z.number(),
+								location_description: z.string(),
+								total_violations: z.number(),
+								ranking: z.number(),
+								coordinates: z.string().nullable(),
+							}),
+						),
 					}),
 				},
 			},
@@ -200,10 +202,16 @@ export const violationsHotspotsRoute = createRoute({
 				description: "Number of hotspots",
 				example: 50,
 			}),
-			radius_km: z.coerce.number().min(0.1).max(10).default(1).optional().openapi({
-				description: "Clustering radius in kilometers",
-				example: 1,
-			}),
+			radius_km: z.coerce
+				.number()
+				.min(0.1)
+				.max(10)
+				.default(1)
+				.optional()
+				.openapi({
+					description: "Clustering radius in kilometers",
+					example: 1,
+				}),
 		}),
 	},
 	responses: {
@@ -212,18 +220,20 @@ export const violationsHotspotsRoute = createRoute({
 				"application/json": {
 					schema: z.object({
 						type: z.literal("FeatureCollection"),
-						features: z.array(z.object({
-							type: z.literal("Feature"),
-							geometry: z.object({
-								type: z.literal("Point"),
-								coordinates: z.array(z.number()),
+						features: z.array(
+							z.object({
+								type: z.literal("Feature"),
+								geometry: z.object({
+									type: z.literal("Point"),
+									coordinates: z.array(z.number()),
+								}),
+								properties: z.object({
+									violations_count: z.number(),
+									radius_km: z.number(),
+									violation_types: z.array(z.string()),
+								}),
 							}),
-							properties: z.object({
-								violations_count: z.number(),
-								radius_km: z.number(),
-								violation_types: z.array(z.string()),
-							}),
-						})),
+						),
 					}),
 				},
 			},
@@ -256,10 +266,16 @@ export const violationsGeoJSONRoute = createRoute({
 				description: "Filter by agent ID",
 				example: 142,
 			}),
-			limit: z.coerce.number().min(1).max(1000).default(100).optional().openapi({
-				description: "Number of violations",
-				example: 100,
-			}),
+			limit: z.coerce
+				.number()
+				.min(1)
+				.max(1000)
+				.default(100)
+				.optional()
+				.openapi({
+					description: "Number of violations",
+					example: 100,
+				}),
 		}),
 	},
 	responses: {
@@ -268,19 +284,21 @@ export const violationsGeoJSONRoute = createRoute({
 				"application/json": {
 					schema: z.object({
 						type: z.literal("FeatureCollection"),
-						features: z.array(z.object({
-							type: z.literal("Feature"),
-							geometry: z.object({
-								type: z.literal("Point"),
-								coordinates: z.array(z.number()),
+						features: z.array(
+							z.object({
+								type: z.literal("Feature"),
+								geometry: z.object({
+									type: z.literal("Point"),
+									coordinates: z.array(z.number()),
+								}),
+								properties: z.object({
+									violation_type: z.string(),
+									agent_id: z.number(),
+									date: z.string(),
+									description: z.string(),
+								}),
 							}),
-							properties: z.object({
-								violation_type: z.string(),
-								agent_id: z.number(),
-								date: z.string(),
-								description: z.string(),
-							}),
-						})),
+						),
 					}),
 				},
 			},

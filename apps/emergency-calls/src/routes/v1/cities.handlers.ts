@@ -18,11 +18,13 @@ export const cities: AppRouteHandler<CitiesRoute> = async (c) => {
 		.orderBy(sql`COUNT(*) DESC`);
 
 	const cidades = citiesData.map((city, index) => ({
-		municipio_samu: city.municipality || 'UNKNOWN',
+		municipio_samu: city.municipality || "UNKNOWN",
 		count: city.count,
 		id: 2611606 + index, // Mock ID
-		name: city.municipality || 'UNKNOWN',
-		rmr: ['RECIFE', 'OLINDA', 'JABOATAO', 'PAULISTA'].includes(city.municipality || ''),
+		name: city.municipality || "UNKNOWN",
+		rmr: ["RECIFE", "OLINDA", "JABOATAO", "PAULISTA"].includes(
+			city.municipality || "",
+		),
 		ranking: index + 1,
 		historico_anual: [
 			{

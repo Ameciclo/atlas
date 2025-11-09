@@ -46,34 +46,36 @@ export const getFiltrosV1 = createRoute({
 					porModoTransporte: z.record(z.number()),
 					porLocalOcorrenciaObito: z.record(z.number()),
 				}),
-				dados: z.array(z.object({
-					ano: z.number(),
-					municipio: z.object({
-						id: z.number(),
-						nome: z.string(),
+				dados: z.array(
+					z.object({
+						ano: z.number(),
+						municipio: z.object({
+							id: z.number(),
+							nome: z.string(),
+						}),
+						sexo: z.object({
+							codigo: z.string(),
+							descricao: z.string(),
+						}),
+						racacor: z.object({
+							codigo: z.string(),
+							descricao: z.string(),
+						}),
+						idade: z.number(),
+						idadeOriginal: z.number(),
+						faixaEtaria: z.string(),
+						modoTransporte: z.object({
+							codigo: z.string(),
+							descricao: z.string(),
+						}),
+						localOcorrenciaObito: z.object({
+							codigo: z.string(),
+							descricao: z.string(),
+						}),
+						causabas: z.string(),
+						total: z.number(),
 					}),
-					sexo: z.object({
-						codigo: z.string(),
-						descricao: z.string(),
-					}),
-					racacor: z.object({
-						codigo: z.string(),
-						descricao: z.string(),
-					}),
-					idade: z.number(),
-					idadeOriginal: z.number(),
-					faixaEtaria: z.string(),
-					modoTransporte: z.object({
-						codigo: z.string(),
-						descricao: z.string(),
-					}),
-					localOcorrenciaObito: z.object({
-						codigo: z.string(),
-						descricao: z.string(),
-					}),
-					causabas: z.string(),
-					total: z.number(),
-				})),
+				),
 			}),
 			"Endpoint principal com filtros avançados para análise de mortes no trânsito",
 		),

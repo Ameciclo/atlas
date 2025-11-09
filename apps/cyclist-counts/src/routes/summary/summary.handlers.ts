@@ -4,9 +4,11 @@ import * as schema from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type { getSummary } from "./summary.routes.js";
 
-export const getSummaryHandler: AppRouteHandler<typeof getSummary> = async (c) => {
+export const getSummaryHandler: AppRouteHandler<typeof getSummary> = async (
+	c,
+) => {
 	try {
-		let editionsRes: any[] = [];
+		const editionsRes: any[] = [];
 		let total_cyclists_summary = 0;
 
 		let where_max_count = {
@@ -18,28 +20,42 @@ export const getSummaryHandler: AppRouteHandler<typeof getSummary> = async (c) =
 		const events = await db
 			.select()
 			.from(schema.countingEvents)
-			.leftJoin(schema.countingLocations, eq(schema.countingEvents.location_id, schema.countingLocations.id))
+			.leftJoin(
+				schema.countingLocations,
+				eq(schema.countingEvents.location_id, schema.countingLocations.id),
+			)
 			.execute();
 
 		// Buscar cidades únicas
-		const uniqueCities = new Set(events.map(e => `${e.counting_locations?.city}-${e.counting_locations?.state}`));
+		const uniqueCities = new Set(
+			events.map(
+				(e) => `${e.counting_locations?.city}-${e.counting_locations?.state}`,
+			),
+		);
 		const cityConditions = Array.from(uniqueCities)
-			.filter(cityState => cityState !== "undefined-undefined")
-			.map(cityState => {
+			.filter((cityState) => cityState !== "undefined-undefined")
+			.map((cityState) => {
 				const [city, state] = cityState.split("-");
 				return sql`${schema.cities.name} = ${city} AND ${schema.cities.state} = ${state}`;
 			});
 
-		const cities = cityConditions.length > 0 
-			? await db.select().from(schema.cities).where(or(...cityConditions)).execute()
-			: [];
+		const cities =
+			cityConditions.length > 0
+				? await db
+						.select()
+						.from(schema.cities)
+						.where(or(...cityConditions))
+						.execute()
+				: [];
 
-		const cityMapping = new Map(cities.map(city => [`${city.name}-${city.state}`, city]));
+		const cityMapping = new Map(
+			cities.map((city) => [`${city.name}-${city.state}`, city]),
+		);
 
 		for (const event of events) {
 			const eventData = event.counting_events;
 			if (!eventData) continue;
-			
+
 			const { id, counting_date, location_id } = eventData;
 			const location = event.counting_locations;
 
@@ -50,7 +66,7 @@ export const getSummaryHandler: AppRouteHandler<typeof getSummary> = async (c) =
 				.from(schema.sessionMovements)
 				.leftJoin(
 					schema.countingSessions,
-					eq(schema.countingSessions.id, schema.sessionMovements.session_id)
+					eq(schema.countingSessions.id, schema.sessionMovements.session_id),
 				)
 				.where(eq(schema.countingSessions.event_id, id))
 				.execute();
@@ -58,12 +74,13 @@ export const getSummaryHandler: AppRouteHandler<typeof getSummary> = async (c) =
 			const total_cyclists = totalCyclistsResult[0]?.total_cyclists ?? 0;
 			total_cyclists_summary += total_cyclists;
 
-			const slugName = location?.name
-				?.normalize("NFD")
-				.replace(/[\u0300-\u036f]/g, "")
-				.replace(/[^\w\s]/gi, "")
-				.replace(/\s+/g, "-")
-				.toLowerCase() || "unknown";
+			const slugName =
+				location?.name
+					?.normalize("NFD")
+					.replace(/[\u0300-\u036f]/g, "")
+					.replace(/[^\w\s]/gi, "")
+					.replace(/\s+/g, "-")
+					.toLowerCase() || "unknown";
 
 			const slugDate = new Date(counting_date).toISOString().slice(0, 10);
 			const slug = `${id}-${slugDate}-${slugName}`;
@@ -95,11 +112,13 @@ export const getSummaryHandler: AppRouteHandler<typeof getSummary> = async (c) =
 
 		// Calcular características dos dados das sessões
 		const sessions = await db.select().from(schema.countingSessions).execute();
-		
-		let summary = {
+
+		const summary = {
 			total_cyclists: total_cyclists_summary,
 			number_counts: events.length,
-			different_counts_points: new Set(events.map(e => e.counting_events?.location_id).filter(Boolean)).size,
+			different_counts_points: new Set(
+				events.map((e) => e.counting_events?.location_id).filter(Boolean),
+			).size,
 			where_max_count,
 			total_cargo: 0,
 			total_helmet: 0,

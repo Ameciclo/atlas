@@ -1,18 +1,18 @@
 [
-  {
-    "osm_id": 317078459,
-    "reason": "download_failed"
-  },
-  {
-    "osm_id": 317078469,
-    "reason": "download_failed"
-  },
-  {
-    "osm_id": 367630237,
-    "reason": "download_failed"
-  },
-  {
-    "osm_id": 1341354760,
-    "reason": "download_failed"
-  }
+	{
+		"osm_id": 317078459,
+		"reason": "download_failed"
+	},
+	{
+		"osm_id": 317078469,
+		"reason": "download_failed"
+	},
+	{
+		"osm_id": 367630237,
+		"reason": "download_failed"
+	},
+	{
+		"osm_id": 1341354760,
+		"reason": "download_failed"
+	}
 ]

@@ -10,7 +10,10 @@ export const getCitiesByYearV1 = createRoute({
 	tags,
 	request: {
 		query: z.object({
-			tipoLocal: z.enum(["ocorrencia", "residencia"]).default("ocorrencia").optional(),
+			tipoLocal: z
+				.enum(["ocorrencia", "residencia"])
+				.default("ocorrencia")
+				.optional(),
 		}),
 	},
 	responses: {
@@ -18,11 +21,15 @@ export const getCitiesByYearV1 = createRoute({
 			z.object({
 				tipo: z.string(),
 				anos: z.array(z.number()),
-				cidades: z.array(z.object({
-					id: z.number(),
-					nome: z.string(),
-					total: z.number(),
-				}).catchall(z.union([z.number(), z.string()]))),
+				cidades: z.array(
+					z
+						.object({
+							id: z.number(),
+							nome: z.string(),
+							total: z.number(),
+						})
+						.catchall(z.union([z.number(), z.string()])),
+				),
 			}),
 			"Dados de mortes por cidade da RMR divididos por ano",
 		),

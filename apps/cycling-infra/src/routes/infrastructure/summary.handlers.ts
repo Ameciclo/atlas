@@ -1,5 +1,5 @@
 export const summary = async (c: any) => {
-	const { city, type } = c.req.valid("query");
+	const { city: _city, type: _type } = c.req.valid("query");
 
 	// Mock data - would integrate with actual database
 	const mockSummary = {
@@ -18,7 +18,7 @@ export const summary = async (c: any) => {
 };
 
 export const cycleways = async (c: any) => {
-	const { city, type } = c.req.valid("query");
+	const { city: _city, type: _type } = c.req.valid("query");
 
 	// Mock GeoJSON data
 	const mockGeoJson = {
@@ -58,7 +58,7 @@ export const cycleways = async (c: any) => {
 };
 
 export const cityCoverage = async (c: any) => {
-	const { state, region } = c.req.valid("query");
+	const { state: _state, region: _region } = c.req.valid("query");
 
 	// Mock city coverage data
 	const mockCities = {

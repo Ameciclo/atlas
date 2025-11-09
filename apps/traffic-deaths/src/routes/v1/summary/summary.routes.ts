@@ -13,10 +13,12 @@ const summaryDataSchema = z.object({
 		ano: z.number(),
 		total: z.number(),
 	}),
-	dadosPorAno: z.array(z.object({
-		ano: z.number(),
-		total: z.number(),
-	})),
+	dadosPorAno: z.array(
+		z.object({
+			ano: z.number(),
+			total: z.number(),
+		}),
+	),
 });
 
 export const getSummaryV1 = createRoute({

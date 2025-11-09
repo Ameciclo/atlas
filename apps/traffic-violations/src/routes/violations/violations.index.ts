@@ -1,10 +1,10 @@
 import { createRouter } from "../../lib/create-app.js";
-import { 
-	listViolationsRoute, 
+import {
+	listViolationsRoute,
 	getViolationRoute,
 	violationsByLocationRoute,
 	violationsHotspotsRoute,
-	violationsGeoJSONRoute
+	violationsGeoJSONRoute,
 } from "./violations.routes.js";
 import {
 	listViolationsHandler,

@@ -2,46 +2,57 @@ import { createConnectedDatabase } from "@atlas/database";
 import { pdcRelationWays } from "@atlas/database/schemas/cycling-infra";
 import env from "../../env.js";
 import type { AppRouteHandler } from "../../lib/types.js";
-import type { ListRoute, GetSummaryRoute, GetAllRoute, GetNearbyRoute } from "./ways.routes.js";
+import type {
+	ListRoute,
+	GetSummaryRoute,
+	GetAllRoute,
+	GetNearbyRoute,
+} from "./ways.routes.js";
 
 // Helper function to calculate distance between two coordinates
-function calculateDistance(coord1: [number, number], coord2: [number, number]): number {
+function calculateDistance(
+	coord1: [number, number],
+	coord2: [number, number],
+): number {
 	const R = 6371; // Earth's radius in km
-	const dLat = (coord2[1] - coord1[1]) * Math.PI / 180;
-	const dLon = (coord2[0] - coord1[0]) * Math.PI / 180;
-	const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-			Math.cos(coord1[1] * Math.PI / 180) * Math.cos(coord2[1] * Math.PI / 180) *
-			Math.sin(dLon/2) * Math.sin(dLon/2);
-	const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+	const dLat = ((coord2[1] - coord1[1]) * Math.PI) / 180;
+	const dLon = ((coord2[0] - coord1[0]) * Math.PI) / 180;
+	const a =
+		Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+		Math.cos((coord1[1] * Math.PI) / 180) *
+			Math.cos((coord2[1] * Math.PI) / 180) *
+			Math.sin(dLon / 2) *
+			Math.sin(dLon / 2);
+	const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 	return R * c;
 }
 
 // Calculate total length of a LineString or MultiLineString
 function calculateGeometryLength(geometry: any): number {
 	if (!geometry || !geometry.coordinates) return 0;
-	
+
 	let totalLength = 0;
-	
-	if (geometry.type === 'LineString') {
+
+	if (geometry.type === "LineString") {
 		const coords = geometry.coordinates;
 		for (let i = 0; i < coords.length - 1; i++) {
 			totalLength += calculateDistance(coords[i], coords[i + 1]);
 		}
-	} else if (geometry.type === 'MultiLineString') {
+	} else if (geometry.type === "MultiLineString") {
 		for (const lineString of geometry.coordinates) {
 			for (let i = 0; i < lineString.length - 1; i++) {
 				totalLength += calculateDistance(lineString[i], lineString[i + 1]);
 			}
 		}
 	}
-	
+
 	return totalLength;
 }
 
 export const list = async (c: any) => {
 	const { city } = c.req.valid("query");
 	const db = await createConnectedDatabase();
-	
+
 	let ways;
 	if (city) {
 		const result = await db.execute(`
@@ -54,25 +65,29 @@ export const list = async (c: any) => {
 	} else {
 		ways = await db.select().from(pdcRelationWays);
 	}
-	
+
 	// Transform to original format
-	const transformedWays = ways.map(way => {
+	const transformedWays = ways.map((way) => {
 		const geojsonData = way.geojson as any;
 		const osmProps = way.osm_properties as Record<string, any>;
-		
+
 		// Extract numeric OSM ID from string format (e.g., "relation/15997469" -> 15997469)
 		const osmIdMatch = String(way.osm_id).match(/\/(\d+)$/);
-		const numericOsmId = osmIdMatch && osmIdMatch[1] ? parseInt(osmIdMatch[1], 10) : 0;
-		
+		const numericOsmId =
+			osmIdMatch && osmIdMatch[1] ? parseInt(osmIdMatch[1], 10) : 0;
+
 		// Calculate length from geometry
 		const length = calculateGeometryLength(geojsonData?.geometry);
-		
+
 		// Determine cycleway info from OSM properties
-		const highway = osmProps?.highway || osmProps?.route || 'cycleway';
-		const hasCycleway = highway === 'cycleway' || osmProps?.route === 'bicycle';
-		const cyclewayTypology = osmProps?.description?.includes('Ciclovia') ? 'Ciclovia' : 
-								 osmProps?.description?.includes('Ciclofaixa') ? 'Ciclofaixa' : 'Ciclovia';
-		
+		const highway = osmProps?.highway || osmProps?.route || "cycleway";
+		const hasCycleway = highway === "cycleway" || osmProps?.route === "bicycle";
+		const cyclewayTypology = osmProps?.description?.includes("Ciclovia")
+			? "Ciclovia"
+			: osmProps?.description?.includes("Ciclofaixa")
+				? "Ciclofaixa"
+				: "Ciclovia";
+
 		return {
 			osmId: numericOsmId,
 			name: way.name,
@@ -83,29 +98,34 @@ export const list = async (c: any) => {
 			relationId: way.relation_id || 0,
 			geojson: {
 				type: "FeatureCollection" as const,
-				features: [{
-					id: way.osm_id,
-					type: "Feature" as const,
-					geometry: geojsonData?.geometry || { type: "LineString", coordinates: [] },
-					properties: {
+				features: [
+					{
 						id: way.osm_id,
-						...osmProps
-					}
-				}]
+						type: "Feature" as const,
+						geometry: geojsonData?.geometry || {
+							type: "LineString",
+							coordinates: [],
+						},
+						properties: {
+							id: way.osm_id,
+							...osmProps,
+						},
+					},
+				],
 			},
 			lastUpdated: null,
 			cityId: 2613701, // Default to Recife
 			dualCarriageway: false,
-			pdcTypology: cyclewayTypology
+			pdcTypology: cyclewayTypology,
 		};
 	});
-	
+
 	return c.json(transformedWays);
 };
 
 export const getSummary = async (c: any) => {
 	const db = await createConnectedDatabase();
-	
+
 	// Debug: verificar dados disponíveis
 	const debugData = await db.execute(`
 		SELECT 
@@ -126,9 +146,9 @@ export const getSummary = async (c: any) => {
 			COUNT(osm_id)
 		FROM ciclomapa_infra
 	`);
-	
-	console.log('Debug data:', debugData.rows);
-	
+
+	console.log("Debug data:", debugData.rows);
+
 	// Query ways com city_id correto via JOIN
 	const waysData = await db.execute(`
 		SELECT 
@@ -144,17 +164,26 @@ export const getSummary = async (c: any) => {
 		LEFT JOIN cyclist_infra_relation_cities circ ON prw.relation_id = circ.relation_id
 		WHERE prw.osm_properties IS NOT NULL
 	`);
-	
-	console.log('Total ways found:', waysData.rows.length);
-	console.log('Ways with relation_id:', waysData.rows.filter(r => r.relation_id).length);
-	console.log('Ways with city_id:', waysData.rows.filter(r => r.city_id).length);
-	console.log('Ways with cycleway:', waysData.rows.filter(r => r.has_cycleway).length);
-	console.log('Sample:', waysData.rows.slice(0, 3));
-	
+
+	console.log("Total ways found:", waysData.rows.length);
+	console.log(
+		"Ways with relation_id:",
+		waysData.rows.filter((r) => r.relation_id).length,
+	);
+	console.log(
+		"Ways with city_id:",
+		waysData.rows.filter((r) => r.city_id).length,
+	);
+	console.log(
+		"Ways with cycleway:",
+		waysData.rows.filter((r) => r.has_cycleway).length,
+	);
+	console.log("Sample:", waysData.rows.slice(0, 3));
+
 	const cities: { [key: string]: any[] } = {};
-	
+
 	waysData.rows.forEach((row: any) => {
-		const cityId = row.city_id?.toString() || '2611606';
+		const cityId = row.city_id?.toString() || "2611606";
 		if (!cities[cityId]) {
 			cities[cityId] = [];
 		}
@@ -163,10 +192,10 @@ export const getSummary = async (c: any) => {
 			hasCycleway: row.has_cycleway === true,
 			relationId: row.relation_id || 0,
 			pdcTypology: row.pdc_typology,
-			cyclewayTypology: row.cycleway_typology
+			cyclewayTypology: row.cycleway_typology,
 		});
 	});
-	
+
 	// Buscar todas as cidades que têm relações PDC
 	const allPdcCities = await db.execute(`
 		SELECT DISTINCT 
@@ -177,13 +206,13 @@ export const getSummary = async (c: any) => {
 		ORDER BY c.name
 	`);
 
-	console.log('PDC Cities found:', allPdcCities.rows.length);
+	console.log("PDC Cities found:", allPdcCities.rows.length);
 
 	const summaryByCity: { [key: string]: any } = {};
-	
+
 	// Processar cidades com dados
 	for (const city in cities) {
-		if (cities.hasOwnProperty(city) && city !== '0') {
+		if (Object.hasOwn(cities, city) && city !== "0") {
 			const cityData = cities[city];
 			const citySummary = generateCitySummary(cityData || []);
 			summaryByCity[city] = citySummary;
@@ -200,14 +229,14 @@ export const getSummary = async (c: any) => {
 				pdc_total: 0,
 				real_pdc: 0,
 				percent: 0,
-				real_percent: 0
+				real_percent: 0,
 			};
 		}
 	});
-	
+
 	const allCityData = Object.values(cities).flat();
 	const allCitySummary = generateCitySummary(allCityData || []);
-	
+
 	return c.json({ all: allCitySummary, byCity: summaryByCity });
 };
 
@@ -215,54 +244,88 @@ function generateCitySummary(cityData: any[]) {
 	const newData = cityData.map((d) => {
 		const hasCycleway = d.hasCycleway === true;
 		const isNotOutPDC = d.relationId !== 0; // 0 = não PDC, >0 = PDC
-		
-		const pdc_realizado_designado = hasCycleway && isNotOutPDC && d.pdcTypology === d.cyclewayTypology ? d.length : 0;
-		const pdc_realizado_nao_designado = hasCycleway && isNotOutPDC && d.pdcTypology !== d.cyclewayTypology ? d.length : 0;
+
+		const pdc_realizado_designado =
+			hasCycleway && isNotOutPDC && d.pdcTypology === d.cyclewayTypology
+				? d.length
+				: 0;
+		const pdc_realizado_nao_designado =
+			hasCycleway && isNotOutPDC && d.pdcTypology !== d.cyclewayTypology
+				? d.length
+				: 0;
 		const realizado_fora_pdc = hasCycleway && !isNotOutPDC ? d.length : 0;
 		const pdc_nao_realizado = !hasCycleway && isNotOutPDC ? d.length : 0;
-		
-		return { pdc_realizado_designado, pdc_realizado_nao_designado, realizado_fora_pdc, pdc_nao_realizado };
+
+		return {
+			pdc_realizado_designado,
+			pdc_realizado_nao_designado,
+			realizado_fora_pdc,
+			pdc_nao_realizado,
+		};
 	});
-	
+
 	const kms = newData.reduce(
 		(accumulator, currentData) => {
-			accumulator.pdc_realizado_designado += currentData.pdc_realizado_designado;
-			accumulator.pdc_realizado_nao_designado += currentData.pdc_realizado_nao_designado;
+			accumulator.pdc_realizado_designado +=
+				currentData.pdc_realizado_designado;
+			accumulator.pdc_realizado_nao_designado +=
+				currentData.pdc_realizado_nao_designado;
 			accumulator.realizado_fora_pdc += currentData.realizado_fora_pdc;
 			accumulator.pdc_nao_realizado += currentData.pdc_nao_realizado;
 			return accumulator;
 		},
-		{ pdc_realizado_designado: 0, pdc_realizado_nao_designado: 0, realizado_fora_pdc: 0, pdc_nao_realizado: 0 }
+		{
+			pdc_realizado_designado: 0,
+			pdc_realizado_nao_designado: 0,
+			realizado_fora_pdc: 0,
+			pdc_nao_realizado: 0,
+		},
 	);
-	
-	const pdc_total = kms.pdc_realizado_designado + kms.pdc_realizado_nao_designado + kms.pdc_nao_realizado;
-	const pdc_realizado_total = kms.pdc_realizado_designado + kms.pdc_realizado_nao_designado;
+
+	const pdc_total =
+		kms.pdc_realizado_designado +
+		kms.pdc_realizado_nao_designado +
+		kms.pdc_nao_realizado;
+	const pdc_realizado_total =
+		kms.pdc_realizado_designado + kms.pdc_realizado_nao_designado;
 	const percent_realizado = pdc_total > 0 ? pdc_realizado_total / pdc_total : 0;
-	const percent_designado = pdc_realizado_total > 0 ? kms.pdc_realizado_designado / pdc_realizado_total : 0;
-	
-	return { ...kms, pdc_total, pdc_realizado_total, percent_realizado, percent_designado };
+	const percent_designado =
+		pdc_realizado_total > 0
+			? kms.pdc_realizado_designado / pdc_realizado_total
+			: 0;
+
+	return {
+		...kms,
+		pdc_total,
+		pdc_realizado_total,
+		percent_realizado,
+		percent_designado,
+	};
 }
 
 export const getAll = async (c: any) => {
-	const { city, limit, offset, simplify, precision, minimal, only_all } = c.req.valid("query");
+	const { city, limit, offset, simplify, precision, minimal, only_all } =
+		c.req.valid("query");
 	const db = await createConnectedDatabase();
-	
+
 	// Parse parameters
 	const offsetNum = offset ? parseInt(offset, 10) : 0;
-	const precisionNum = precision ? parseInt(precision, 10) : env.GEOJSON_PRECISION;
-	const isMinimal = minimal === 'true';
-	
+	const precisionNum = precision
+		? parseInt(precision, 10)
+		: env.GEOJSON_PRECISION;
+	const isMinimal = minimal === "true";
+
 	// Query com geometria original ou simplificada + precisão
-	const baseGeometry = simplify 
+	const baseGeometry = simplify
 		? `ST_Simplify(prw.coordinates, ${parseFloat(simplify)})`
 		: `prw.coordinates`;
 	const geometryField = `ST_AsGeoJSON(${baseGeometry}, ${precisionNum}) as geometry`;
-	
+
 	let query = `
 		SELECT 
 			prw.id,
 			prw.osm_id,
-			${isMinimal ? '' : 'prw.name,'}
+			${isMinimal ? "" : "prw.name,"}
 			${geometryField},
 			prw.osm_properties->>'has_cycleway' as has_cycleway,
 			prw.osm_properties->>'pdc_typology' as pdc_typology,
@@ -273,45 +336,49 @@ export const getAll = async (c: any) => {
 		FROM pdc_relation_ways prw
 		LEFT JOIN cyclist_infra_relation_cities circ ON prw.relation_id = circ.relation_id
 	`;
-	
+
 	if (city) {
 		query += ` WHERE COALESCE(circ.city_id, (prw.osm_properties->>'city_id')::int) = ${parseInt(city, 10)}`;
 	}
-	
+
 	query += ` ORDER BY prw.id`;
-	
+
 	if (limit) {
 		const limitNum = Math.min(parseInt(limit, 10), env.MAX_WAYS_RESULTS);
 		query += ` LIMIT ${limitNum}`;
 	}
-	
+
 	if (offset) {
 		query += ` OFFSET ${offsetNum}`;
 	}
-	
+
 	const result = await db.execute(query);
 	const ways = result.rows as any[];
-	
+
 	// Convert to GeoJSON format
 	const features = ways.map((way: any) => {
-		const hasCycleway = way.has_cycleway === 'true';
+		const hasCycleway = way.has_cycleway === "true";
 		const isNotOutPDC = (way.relation_id || 0) !== 0;
 		const length = parseFloat(way.length) || 0;
-		
+
 		if (isMinimal) {
 			// Determinar status exclusivo da via
 			let status_type: string;
 			let status_value: number;
-			
+
 			// Verificar se a tipologia está correta (precisa dos dados do banco)
 			const pdcTypology = way.pdc_typology;
 			const cyclewayTypology = way.cycleway_typology;
-			
+
 			if (hasCycleway && isNotOutPDC && pdcTypology === cyclewayTypology) {
 				// Realizado dentro do PDC com infra designada
 				status_type = "pdc_realizado_designado";
 				status_value = length;
-			} else if (hasCycleway && isNotOutPDC && pdcTypology !== cyclewayTypology) {
+			} else if (
+				hasCycleway &&
+				isNotOutPDC &&
+				pdcTypology !== cyclewayTypology
+			) {
 				// Realizado dentro do PDC com infra não designada
 				status_type = "pdc_realizado_nao_designado";
 				status_value = length;
@@ -328,7 +395,7 @@ export const getAll = async (c: any) => {
 				status_type = "unknown";
 				status_value = 0;
 			}
-			
+
 			return {
 				type: "Feature" as const,
 				geometry: way.geometry ? JSON.parse(way.geometry) : null,
@@ -336,12 +403,12 @@ export const getAll = async (c: any) => {
 					id: way.id,
 					status_type,
 					status_value,
-					length
+					length,
 				},
 			};
 		} else {
 			const status = hasCycleway ? "Realizada" : "Projeto";
-			
+
 			return {
 				type: "Feature" as const,
 				geometry: way.geometry ? JSON.parse(way.geometry) : null,
@@ -350,7 +417,7 @@ export const getAll = async (c: any) => {
 					id: way.id,
 					osm_id: way.osm_id,
 					name: way.name || null,
-					pdc_typology: way.pdc_typology || null
+					pdc_typology: way.pdc_typology || null,
 				},
 			};
 		}
@@ -367,26 +434,26 @@ export const getAll = async (c: any) => {
 				[city]: {
 					type: "FeatureCollection" as const,
 					features,
-				}
-			}
+				},
+			},
 		});
 	}
 
 	// Agrupa por cidade quando não há filtro
 	const byCity: { [key: string]: any } = {};
-	features.forEach(feature => {
-		const cityId = feature.properties.city_id?.toString() || 'unknown';
+	features.forEach((feature) => {
+		const cityId = feature.properties.city_id?.toString() || "unknown";
 		if (!byCity[cityId]) {
 			byCity[cityId] = {
 				type: "FeatureCollection" as const,
-				features: []
+				features: [],
 			};
 		}
 		byCity[cityId].features.push(feature);
 	});
 
 	// Se only_all=true, retorna apenas o 'all'
-	if (only_all === 'true') {
+	if (only_all === "true") {
 		return c.json({
 			type: "FeatureCollection" as const,
 			features,
@@ -398,18 +465,18 @@ export const getAll = async (c: any) => {
 			type: "FeatureCollection" as const,
 			features,
 		},
-		byCity
+		byCity,
 	});
 };
 
 export const getNearby = async (c: any) => {
 	const { lat, lon, radius = "1000" } = c.req.valid("query");
 	const db = await createConnectedDatabase();
-	
+
 	const latitude = parseFloat(lat);
 	const longitude = parseFloat(lon);
 	const radiusMeters = parseInt(radius, 10);
-	
+
 	// Query PDC ways within radius with relation info and total length
 	const result = await db.execute(`
 		SELECT 
@@ -441,11 +508,11 @@ export const getNearby = async (c: any) => {
 		AND prw.coordinates IS NOT NULL
 		ORDER BY distance_meters
 	`);
-	
+
 	const ways = result.rows as any[];
-	
+
 	// Convert to GeoJSON features
-	const features = ways.map(way => ({
+	const features = ways.map((way) => ({
 		type: "Feature" as const,
 		id: way.osm_id,
 		properties: {
@@ -457,27 +524,34 @@ export const getNearby = async (c: any) => {
 			executed: way.executed || false,
 			length_km: parseFloat((way.length_km || 0).toFixed(3)),
 			distance_meters: Math.round(way.distance_meters || 0),
-			relation: way.relation_id ? {
-				id: way.relation_id,
-				osm_id: way.relation_osm_id,
-				pdc_ref: way.pdc_ref,
-				name: way.relation_name,
-				total_length_km: parseFloat((way.relation_total_km || 0).toFixed(3)),
-				description: way.pdc_stretch,
-				typology: way.pdc_typology
-			} : null,
+			relation: way.relation_id
+				? {
+						id: way.relation_id,
+						osm_id: way.relation_osm_id,
+						pdc_ref: way.pdc_ref,
+						name: way.relation_name,
+						total_length_km: parseFloat(
+							(way.relation_total_km || 0).toFixed(3),
+						),
+						description: way.pdc_stretch,
+						typology: way.pdc_typology,
+					}
+				: null,
 		},
 		geometry: way.geojson?.geometry || null,
 	}));
-	
+
 	// Calculate summary
 	const totalWays = features.length;
-	const executedWays = features.filter(f => f.properties.executed).length;
-	const totalLength = features.reduce((sum, f) => sum + f.properties.length_km, 0);
+	const executedWays = features.filter((f) => f.properties.executed).length;
+	const totalLength = features.reduce(
+		(sum, f) => sum + f.properties.length_km,
+		0,
+	);
 	const executedLength = features
-		.filter(f => f.properties.executed)
+		.filter((f) => f.properties.executed)
 		.reduce((sum, f) => sum + f.properties.length_km, 0);
-	
+
 	return c.json({
 		type: "FeatureCollection" as const,
 		features,
@@ -486,7 +560,10 @@ export const getNearby = async (c: any) => {
 			executed_ways: executedWays,
 			total_length_km: parseFloat(totalLength.toFixed(3)),
 			executed_length_km: parseFloat(executedLength.toFixed(3)),
-			execution_percentage: totalLength > 0 ? parseFloat(((executedLength / totalLength) * 100).toFixed(1)) : 0,
+			execution_percentage:
+				totalLength > 0
+					? parseFloat(((executedLength / totalLength) * 100).toFixed(1))
+					: 0,
 		},
 	});
 };

@@ -93,11 +93,13 @@ export const cityConcentration = createRoute({
 			z.object({
 				city: z.string(),
 				interval: z.number(),
-				concentration_data: z.array(z.object({
-					ranking: z.number(),
-					total_accidents: z.number(),
-					street_extension_km: z.number(),
-				})),
+				concentration_data: z.array(
+					z.object({
+						ranking: z.number(),
+						total_accidents: z.number(),
+						street_extension_km: z.number(),
+					}),
+				),
 			}),
 			"Accident concentration data",
 		),
@@ -132,19 +134,21 @@ export const cityGeoJSON = createRoute({
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
 				type: z.literal("FeatureCollection"),
-				features: z.array(z.object({
-					type: z.literal("Feature"),
-					geometry: z.object({
-						type: z.string(),
-						coordinates: z.array(z.array(z.number())),
+				features: z.array(
+					z.object({
+						type: z.literal("Feature"),
+						geometry: z.object({
+							type: z.string(),
+							coordinates: z.array(z.array(z.number())),
+						}),
+						properties: z.object({
+							accidents_count: z.number(),
+							ranking: z.number(),
+							extension_km: z.number(),
+							street_name: z.string(),
+						}),
 					}),
-					properties: z.object({
-						accidents_count: z.number(),
-						ranking: z.number(),
-						extension_km: z.number(),
-						street_name: z.string(),
-					}),
-				})),
+				),
 			}),
 			"Streets GeoJSON data",
 		),
@@ -156,7 +160,8 @@ export const streetProfiles = createRoute({
 	method: "get",
 	tags,
 	summary: "Get victim profiles for street",
-	description: "Get victim profiles by gender, age, and accident type for a specific street",
+	description:
+		"Get victim profiles by gender, age, and accident type for a specific street",
 	request: {
 		params: z.object({
 			street_name: z.string().openapi({
@@ -210,17 +215,19 @@ export const streetGeoJSON = createRoute({
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
 				type: z.literal("FeatureCollection"),
-				features: z.array(z.object({
-					type: z.literal("Feature"),
-					geometry: z.object({
-						type: z.string(),
-						coordinates: z.array(z.array(z.number())),
+				features: z.array(
+					z.object({
+						type: z.literal("Feature"),
+						geometry: z.object({
+							type: z.string(),
+							coordinates: z.array(z.array(z.number())),
+						}),
+						properties: z.object({
+							street_name: z.string(),
+							accidents_count: z.number(),
+						}),
 					}),
-					properties: z.object({
-						street_name: z.string(),
-						accidents_count: z.number(),
-					}),
-				})),
+				),
 			}),
 			"Street GeoJSON data",
 		),
@@ -301,13 +308,15 @@ export const streetRecords = createRoute({
 			z.object({
 				street_name: z.string(),
 				year: z.number().optional(),
-				records: z.array(z.object({
-					datetime: z.string(),
-					category: z.string(),
-					gender: z.string(),
-					age: z.number().nullable(),
-					outcome: z.string(),
-				})),
+				records: z.array(
+					z.object({
+						datetime: z.string(),
+						category: z.string(),
+						gender: z.string(),
+						age: z.number().nullable(),
+						outcome: z.string(),
+					}),
+				),
 			}),
 			"Street accident records",
 		),

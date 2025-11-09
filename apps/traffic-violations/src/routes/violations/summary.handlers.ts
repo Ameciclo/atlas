@@ -49,21 +49,24 @@ export const summary = async (c: any) => {
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(1);
 
-	const violationsPerYear = yearlyData.reduce((acc, item) => {
-		acc[item.year] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const violationsPerYear = yearlyData.reduce(
+		(acc, item) => {
+			acc[item.year] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
 	return c.json({
 		total_violations: totalResult?.count || 0,
 		data_period: {
-			start: periodResult?.start?.split('T')[0] || '',
-			end: periodResult?.end?.split('T')[0] || '',
+			start: periodResult?.start?.split("T")[0] || "",
+			end: periodResult?.end?.split("T")[0] || "",
 		},
 		violations_per_year: violationsPerYear,
 		top_violation_type: {
 			id: topTypeResult?.violation_type_id || 0,
-			description: topTypeResult?.description || '',
+			description: topTypeResult?.description || "",
 			total: topTypeResult?.count || 0,
 		},
 		most_active_agent: {
@@ -79,7 +82,9 @@ export const byType = async (c: any) => {
 	// Build conditions
 	const conditions: any[] = [];
 	if (start_date) {
-		conditions.push(gte(trafficViolations.violation_date, new Date(start_date)));
+		conditions.push(
+			gte(trafficViolations.violation_date, new Date(start_date)),
+		);
 	}
 	if (end_date) {
 		conditions.push(lte(trafficViolations.violation_date, new Date(end_date)));
@@ -118,26 +123,30 @@ export const byType = async (c: any) => {
 				.where(
 					and(
 						eq(trafficViolations.violation_type_id, type.violation_type_id),
-						...(conditions.length > 0 ? conditions : [] as any[])
-					)
+						...(conditions.length > 0 ? conditions : ([] as any[])),
+					),
 				)
 				.groupBy(sql`EXTRACT(YEAR FROM ${trafficViolations.violation_date})`)
 				.orderBy(sql`EXTRACT(YEAR FROM ${trafficViolations.violation_date})`);
 
-			const violationsPerYear = yearlyData.reduce((acc, item) => {
-				acc[item.year] = item.count;
-				return acc;
-			}, {} as Record<string, number>);
+			const violationsPerYear = yearlyData.reduce(
+				(acc, item) => {
+					acc[item.year] = item.count;
+					return acc;
+				},
+				{} as Record<string, number>,
+			);
 
 			return {
 				violation_type_id: type.violation_type_id,
 				description: type.description,
 				total_violations: type.count,
-				percentage: totalResult?.count ? 
-					Number(((type.count / totalResult.count) * 100).toFixed(1)) : 0,
+				percentage: totalResult?.count
+					? Number(((type.count / totalResult.count) * 100).toFixed(1))
+					: 0,
 				violations_per_year: violationsPerYear,
 			};
-		})
+		}),
 	);
 
 	return c.json({ violation_types: violationTypes });
@@ -149,7 +158,9 @@ export const byAgent = async (c: any) => {
 	// Build conditions
 	const conditions: any[] = [];
 	if (start_date) {
-		conditions.push(gte(trafficViolations.violation_date, new Date(start_date)));
+		conditions.push(
+			gte(trafficViolations.violation_date, new Date(start_date)),
+		);
 	}
 	if (end_date) {
 		conditions.push(lte(trafficViolations.violation_date, new Date(end_date)));
@@ -181,16 +192,19 @@ export const byAgent = async (c: any) => {
 				.where(
 					and(
 						eq(trafficViolations.agent_id, agent.agent_id),
-						...(conditions.length > 0 ? conditions : [] as any[])
-					)
+						...(conditions.length > 0 ? conditions : ([] as any[])),
+					),
 				)
 				.groupBy(sql`TO_CHAR(${trafficViolations.violation_date}, 'YYYY-MM')`)
 				.orderBy(sql`TO_CHAR(${trafficViolations.violation_date}, 'YYYY-MM')`);
 
-			const violationsPerMonth = monthlyData.reduce((acc, item) => {
-				acc[item.month] = item.count;
-				return acc;
-			}, {} as Record<string, number>);
+			const violationsPerMonth = monthlyData.reduce(
+				(acc, item) => {
+					acc[item.month] = item.count;
+					return acc;
+				},
+				{} as Record<string, number>,
+			);
 
 			return {
 				agent_id: agent.agent_id,
@@ -198,7 +212,7 @@ export const byAgent = async (c: any) => {
 				ranking: index + 1,
 				violations_per_month: violationsPerMonth,
 			};
-		})
+		}),
 	);
 
 	return c.json({ agents });
@@ -210,7 +224,9 @@ export const temporalAnalysis = async (c: any) => {
 	// Build conditions
 	const conditions: any[] = [];
 	if (start_date) {
-		conditions.push(gte(trafficViolations.violation_date, new Date(start_date)));
+		conditions.push(
+			gte(trafficViolations.violation_date, new Date(start_date)),
+		);
 	}
 	if (end_date) {
 		conditions.push(lte(trafficViolations.violation_date, new Date(end_date)));
@@ -251,25 +267,34 @@ export const temporalAnalysis = async (c: any) => {
 		{ hour: "19", count: 980 },
 	];
 
-	const byMonth = monthlyData.reduce((acc, item) => {
-		acc[item.month.padStart(2, '0')] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const byMonth = monthlyData.reduce(
+		(acc, item) => {
+			acc[item.month.padStart(2, "0")] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
-	const byWeekday = weekdayData.reduce((acc, item) => {
-		acc[item.weekday.trim().toLowerCase()] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const byWeekday = weekdayData.reduce(
+		(acc, item) => {
+			acc[item.weekday.trim().toLowerCase()] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
-	const byHour = hourlyData.reduce((acc, item) => {
-		acc[item.hour] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const byHour = hourlyData.reduce(
+		(acc, item) => {
+			acc[item.hour] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
 	return c.json({
 		period: {
-			start: start_date || '2020-01-01',
-			end: end_date || '2023-12-31',
+			start: start_date || "2020-01-01",
+			end: end_date || "2023-12-31",
 		},
 		by_month: byMonth,
 		by_weekday: byWeekday,

@@ -5,33 +5,42 @@ import type * as routes from "./streets.routes.js";
 
 const streetService = new StreetService();
 
-export const searchStreets: AppRouteHandler<routes.SearchStreetsRoute> = async (c) => {
+export const searchStreets: AppRouteHandler<routes.SearchStreetsRoute> = async (
+	c,
+) => {
 	try {
 		const { q, limit, by_length, by_elements } = c.req.valid("query");
-		
-		const matches = await streetService.searchStreets(q, limit, by_length, by_elements);
-		
+
+		const matches = await streetService.searchStreets(
+			q,
+			limit,
+			by_length,
+			by_elements,
+		);
+
 		return c.json({ matches }, 200);
 	} catch (error) {
-		console.error('Street search error:', error);
+		console.error("Street search error:", error);
 		throw new HTTPException(500, {
 			message: "Failed to search streets",
 		});
 	}
 };
 
-export const getStreetDetails: AppRouteHandler<routes.GetStreetDetailsRoute> = async (c) => {
+export const getStreetDetails: AppRouteHandler<
+	routes.GetStreetDetailsRoute
+> = async (c) => {
 	try {
 		const { streetId } = c.req.valid("param");
-		
+
 		const street = await streetService.getStreetById(streetId);
-		
+
 		if (!street) {
 			throw new HTTPException(404, {
 				message: "Street not found",
 			});
 		}
-		
+
 		return c.json(street, 200);
 	} catch (error) {
 		if (error instanceof HTTPException) {

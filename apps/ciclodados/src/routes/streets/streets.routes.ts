@@ -1,10 +1,10 @@
 import { createRoute } from "@hono/zod-openapi";
-import { 
-	streetSearchQuerySchema, 
+import {
+	streetSearchQuerySchema,
 	streetSearchResponseSchema,
 	streetDetailsParamsSchema,
 	streetDetailsResponseSchema,
-	errorResponseSchema 
+	errorResponseSchema,
 } from "../../lib/schemas.js";
 
 export const searchStreetsRoute = createRoute({

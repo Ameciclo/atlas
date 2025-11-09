@@ -119,7 +119,10 @@ describe("Violations Handlers", () => {
 				year: 2023,
 				limit: 100,
 			});
-			mockContext.json.mockReturnValue({ type: "FeatureCollection", features: [] });
+			mockContext.json.mockReturnValue({
+				type: "FeatureCollection",
+				features: [],
+			});
 
 			const result = await violationsGeoJSONHandler(mockContext as Context);
 			expect(mockContext.req.valid).toHaveBeenCalledWith("query");

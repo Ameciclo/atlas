@@ -17,7 +17,7 @@ const router = createRouter()
 		const lon = Number(c.req.query("lon") || -34.88);
 		const radius = Number(c.req.query("radius") || 1000);
 		const limit = Number(c.req.query("limit") || 50);
-		
+
 		// Select only safe columns, exclude coordinates
 		const profiles = await db
 			.select({
@@ -25,17 +25,17 @@ const router = createRouter()
 				data: cyclistProfiles.data,
 				metadata: cyclistProfiles.metadata,
 				created_at: cyclistProfiles.created_at,
-				updated_at: cyclistProfiles.updated_at
+				updated_at: cyclistProfiles.updated_at,
 			})
 			.from(cyclistProfiles)
 			.where(
-				sql`coordinates IS NOT NULL AND ST_DWithin(coordinates, ST_SetSRID(ST_MakePoint(${lon}, ${lat}), 4326), ${radius})`
+				sql`coordinates IS NOT NULL AND ST_DWithin(coordinates, ST_SetSRID(ST_MakePoint(${lon}, ${lat}), 4326), ${radius})`,
 			)
 			.orderBy(
-				sql`ST_Distance(coordinates, ST_SetSRID(ST_MakePoint(${lon}, ${lat}), 4326))`
+				sql`ST_Distance(coordinates, ST_SetSRID(ST_MakePoint(${lon}, ${lat}), 4326))`,
 			)
 			.limit(limit);
-		
+
 		return c.json(profiles);
 	});
 

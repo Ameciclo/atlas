@@ -54,37 +54,39 @@ export const filters = createRoute({
 					porSubtipo: z.record(z.number()),
 					porHora: z.record(z.number()),
 				}),
-				dados: z.array(z.object({
-					ano: z.number(),
-					mes: z.number(),
-					hora: z.number(),
-					municipio: z.object({
-						nome: z.string(),
+				dados: z.array(
+					z.object({
+						ano: z.number(),
+						mes: z.number(),
+						hora: z.number(),
+						municipio: z.object({
+							nome: z.string(),
+						}),
+						sexo: z.object({
+							codigo: z.string(),
+							descricao: z.string(),
+						}),
+						idade: z.number(),
+						faixaEtaria: z.string(),
+						categoria: z.object({
+							codigo: z.string(),
+							descricao: z.string(),
+						}),
+						subtipo: z.object({
+							codigo: z.string(),
+							descricao: z.string(),
+						}),
+						motivoFinalizacao: z.object({
+							codigo: z.string(),
+							descricao: z.string(),
+						}),
+						motivoDesfecho: z.object({
+							codigo: z.string(),
+							descricao: z.string(),
+						}),
+						total: z.number(),
 					}),
-					sexo: z.object({
-						codigo: z.string(),
-						descricao: z.string(),
-					}),
-					idade: z.number(),
-					faixaEtaria: z.string(),
-					categoria: z.object({
-						codigo: z.string(),
-						descricao: z.string(),
-					}),
-					subtipo: z.object({
-						codigo: z.string(),
-						descricao: z.string(),
-					}),
-					motivoFinalizacao: z.object({
-						codigo: z.string(),
-						descricao: z.string(),
-					}),
-					motivoDesfecho: z.object({
-						codigo: z.string(),
-						descricao: z.string(),
-					}),
-					total: z.number(),
-				})),
+				),
 			}),
 			"Filtered emergency calls",
 		),

@@ -1,12 +1,17 @@
 import type { AppRouteHandler } from "../../../lib/types.js";
 import type { getCitiesByYearV1 } from "./cities-by-year.routes.js";
 
-export const getCitiesByYearV1Handler: AppRouteHandler<typeof getCitiesByYearV1> = async (c) => {
+export const getCitiesByYearV1Handler: AppRouteHandler<
+	typeof getCitiesByYearV1
+> = async (c) => {
 	const { tipoLocal } = c.req.valid("query");
-	
+
 	// TODO: Implement actual data fetching from database
 	return c.json({
-		tipo: tipoLocal === "residencia" ? "Local de Residência" : "Local de Ocorrência",
+		tipo:
+			tipoLocal === "residencia"
+				? "Local de Residência"
+				: "Local de Ocorrência",
 		anos: [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
 		cidades: [
 			{

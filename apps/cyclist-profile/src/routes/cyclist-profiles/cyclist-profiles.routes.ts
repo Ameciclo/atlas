@@ -105,16 +105,18 @@ export const nearbySummary = createRoute({
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
 				total: z.number(),
-				profiles: z.array(z.object({
-					id: z.number(),
-					gender: z.string().nullable(),
-					age: z.number().nullable(),
-					days_per_week: z.number().nullable(),
-					bike_type: z.string().nullable(),
-					neighborhood: z.string().nullable(),
-					survey_year: z.string().nullable(),
-					distance_meters: z.number()
-				}))
+				profiles: z.array(
+					z.object({
+						id: z.number(),
+						gender: z.string().nullable(),
+						age: z.number().nullable(),
+						days_per_week: z.number().nullable(),
+						bike_type: z.string().nullable(),
+						neighborhood: z.string().nullable(),
+						survey_year: z.string().nullable(),
+						distance_meters: z.number(),
+					}),
+				),
 			}),
 			"Cyclist profiles summary within radius",
 		),

@@ -2,7 +2,13 @@ import { and, eq, gte, lte, sql } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
 import { db } from "../../db/index.js";
-import { countingEvents, countingLocations, countingSessions, sessionMovements, cities } from "../../db/schema.js";
+import {
+	countingEvents,
+	countingLocations,
+	countingSessions,
+	sessionMovements,
+	cities,
+} from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
 	GetByIdRoute,
@@ -117,42 +123,59 @@ export const getByLocationId: AppRouteHandler<GetByLocationIdRoute> = async (
 	return c.json(events, HttpStatusCodes.OK);
 };
 
-export const getDetailsById: AppRouteHandler<GetDetailsByIdRoute> = async (c) => {
+export const getDetailsById: AppRouteHandler<GetDetailsByIdRoute> = async (
+	c,
+) => {
 	const { id } = c.req.valid("param");
 
 	// Get event with location
 	const eventWithLocation = await db
 		.select()
 		.from(countingEvents)
-		.leftJoin(countingLocations, eq(countingEvents.location_id, countingLocations.id))
+		.leftJoin(
+			countingLocations,
+			eq(countingEvents.location_id, countingLocations.id),
+		)
 		.where(eq(countingEvents.id, id))
 		.limit(1);
 
 	if (eventWithLocation.length === 0) {
-		return c.json({ message: HttpStatusPhrases.NOT_FOUND }, HttpStatusCodes.NOT_FOUND);
+		return c.json(
+			{ message: HttpStatusPhrases.NOT_FOUND },
+			HttpStatusCodes.NOT_FOUND,
+		);
 	}
 
 	const event = eventWithLocation[0]?.counting_events;
 	const location = eventWithLocation[0]?.counting_locations;
 
 	if (!event) {
-		return c.json({ message: HttpStatusPhrases.NOT_FOUND }, HttpStatusCodes.NOT_FOUND);
+		return c.json(
+			{ message: HttpStatusPhrases.NOT_FOUND },
+			HttpStatusCodes.NOT_FOUND,
+		);
 	}
 
 	// Get city data
 	const cityData = await db
 		.select()
 		.from(cities)
-		.where(and(eq(cities.name, location?.city || ""), eq(cities.state, location?.state || "")))
+		.where(
+			and(
+				eq(cities.name, location?.city || ""),
+				eq(cities.state, location?.state || ""),
+			),
+		)
 		.limit(1);
 
 	// Create slug
-	const slugName = location?.name
-		?.normalize("NFD")
-		.replace(/[\u0300-\u036f]/g, "")
-		.replace(/[^\w\s]/gi, "")
-		.replace(/\s+/g, "-")
-		.toLowerCase() || "unknown";
+	const slugName =
+		location?.name
+			?.normalize("NFD")
+			.replace(/[\u0300-\u036f]/g, "")
+			.replace(/[^\w\s]/gi, "")
+			.replace(/\s+/g, "-")
+			.toLowerCase() || "unknown";
 
 	const slugDate = new Date(event.counting_date).toISOString().slice(0, 10);
 	const slug = `${id}-${slugDate}-${slugName}`;
@@ -163,7 +186,7 @@ export const getDetailsById: AppRouteHandler<GetDetailsByIdRoute> = async (c) =>
 		.from(countingSessions)
 		.where(eq(countingSessions.event_id, id));
 
-	let summary = {
+	const summary = {
 		max_hour: 0,
 		total_cyclists: 0,
 		total_cargo: 0,
@@ -194,7 +217,7 @@ export const getDetailsById: AppRouteHandler<GetDetailsByIdRoute> = async (c) =>
 
 		// Build quantitative data from movements
 		const quantitative: Record<string, number> = {};
-		movements.forEach(m => {
+		movements.forEach((m) => {
 			const key = `${m.from_direction}_${m.to_direction}`;
 			quantitative[key] = (quantitative[key] || 0) + m.count;
 			directions[m.from_direction] = m.from_direction;
@@ -202,7 +225,7 @@ export const getDetailsById: AppRouteHandler<GetDetailsByIdRoute> = async (c) =>
 		});
 
 		// Get characteristics from session JSONB
-		const characteristics = session.characteristics as any || {};
+		const characteristics = (session.characteristics as any) || {};
 		summary.total_cargo += characteristics.cargo || 0;
 		summary.total_helmet += characteristics.helmet || 0;
 		summary.total_juveniles += characteristics.juveniles || 0;
@@ -235,14 +258,16 @@ export const getDetailsById: AppRouteHandler<GetDetailsByIdRoute> = async (c) =>
 			full_state: "Unknown",
 			rmr: false,
 		},
-		coordinates: [{
-			point: {
-				x: parseFloat(location?.longitude || "0"),
-				y: parseFloat(location?.latitude || "0"),
+		coordinates: [
+			{
+				point: {
+					x: parseFloat(location?.longitude || "0"),
+					y: parseFloat(location?.latitude || "0"),
+				},
+				type: "Point",
+				name: location?.name || "Unknown",
 			},
-			type: "Point",
-			name: location?.name || "Unknown",
-		}],
+		],
 		directions,
 		sessions: sessionsData,
 		summary,

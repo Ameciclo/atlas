@@ -1,15 +1,16 @@
 import { createRoute } from "@hono/zod-openapi";
-import { 
+import {
 	pointAnalysisBodySchema,
 	pointAnalysisResponseSchema,
-	errorResponseSchema 
+	errorResponseSchema,
 } from "../../lib/schemas.js";
 
 export const analyzePointRoute = createRoute({
 	method: "post",
 	path: "/analyze/point",
 	summary: "Analyze area around a geographic point",
-	description: "Get comprehensive cycling data for streets and amenities near a point",
+	description:
+		"Get comprehensive cycling data for streets and amenities near a point",
 	request: {
 		body: {
 			content: {

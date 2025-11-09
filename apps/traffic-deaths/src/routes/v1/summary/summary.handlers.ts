@@ -1,7 +1,9 @@
 import type { AppRouteHandler } from "../../../lib/types.js";
 import type { getSummaryV1 } from "./summary.routes.js";
 
-export const getSummaryV1Handler: AppRouteHandler<typeof getSummaryV1> = async (c) => {
+export const getSummaryV1Handler: AppRouteHandler<typeof getSummaryV1> = async (
+	c,
+) => {
 	// TODO: Implement actual data fetching from database
 	// This is a placeholder implementation
 	const mockData = {

@@ -2,7 +2,10 @@ import { createRoute, z } from "@hono/zod-openapi";
 import { createRouter } from "../lib/create-app.js";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { jsonContent } from "stoker/openapi/helpers";
-import { checkDatabaseConnection, checkPcrStreetsTable } from "../lib/health-check.js";
+import {
+	checkDatabaseConnection,
+	checkPcrStreetsTable,
+} from "../lib/health-check.js";
 
 const healthSchema = z.object({
 	status: z.enum(["ok", "error"]),
@@ -31,14 +34,17 @@ router.openapi(healthRoute, async (c) => {
 	const dbConnected = await checkDatabaseConnection();
 	const pcrStreetsOk = await checkPcrStreetsTable();
 	const isHealthy = dbConnected && pcrStreetsOk;
-	
-	return c.json({
-		status: isHealthy ? "ok" as const : "error" as const,
-		timestamp: new Date().toISOString(),
-		service: "ciclodados",
-		database: dbConnected,
-		pcr_streets: pcrStreetsOk,
-	}, isHealthy ? HttpStatusCodes.OK : HttpStatusCodes.SERVICE_UNAVAILABLE);
+
+	return c.json(
+		{
+			status: isHealthy ? ("ok" as const) : ("error" as const),
+			timestamp: new Date().toISOString(),
+			service: "ciclodados",
+			database: dbConnected,
+			pcr_streets: pcrStreetsOk,
+		},
+		isHealthy ? HttpStatusCodes.OK : HttpStatusCodes.SERVICE_UNAVAILABLE,
+	);
 });
 
 export default router;

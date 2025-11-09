@@ -3,7 +3,12 @@ import * as HttpStatusCodes from "stoker/http-status-codes";
 import { createConnectedDatabase } from "@atlas/database";
 import { ciclomapaInfra } from "@atlas/database/schemas/cycling-infra";
 import type { AppRouteHandler } from "../../lib/types.js";
-import type { ListRoute, GetByIdRoute, GetGeoJSONRoute, GetNearbyRoute } from "./infrastructure.routes.js";
+import type {
+	ListRoute,
+	GetByIdRoute,
+	GetGeoJSONRoute,
+	GetNearbyRoute,
+} from "./infrastructure.routes.js";
 
 export const list = async (c: any) => {
 	try {
@@ -27,7 +32,10 @@ export const list = async (c: any) => {
 
 		return c.json(infrastructure as any, HttpStatusCodes.OK);
 	} catch (error) {
-		return c.json({ error: "Internal server error" } as any, HttpStatusCodes.INTERNAL_SERVER_ERROR);
+		return c.json(
+			{ error: "Internal server error" } as any,
+			HttpStatusCodes.INTERNAL_SERVER_ERROR,
+		);
 	}
 };
 
@@ -42,12 +50,18 @@ export const getById = async (c: any) => {
 			.where(eq(ciclomapaInfra.id, id));
 
 		if (infrastructure.length === 0) {
-			return c.json({ message: "Infrastructure not found" } as any, HttpStatusCodes.NOT_FOUND);
+			return c.json(
+				{ message: "Infrastructure not found" } as any,
+				HttpStatusCodes.NOT_FOUND,
+			);
 		}
 
 		return c.json(infrastructure[0] as any, HttpStatusCodes.OK);
 	} catch (error) {
-		return c.json({ message: "Internal Server Error" } as any, HttpStatusCodes.INTERNAL_SERVER_ERROR);
+		return c.json(
+			{ message: "Internal Server Error" } as any,
+			HttpStatusCodes.INTERNAL_SERVER_ERROR,
+		);
 	}
 };
 
@@ -71,7 +85,7 @@ export const getGeoJSON = async (c: any) => {
 			infrastructure = await db.select().from(ciclomapaInfra).limit(validLimit);
 		}
 
-		const features = infrastructure.map(infra => ({
+		const features = infrastructure.map((infra) => ({
 			type: "Feature" as const,
 			id: String(infra.osm_id),
 			geometry: infra.geojson?.geometry || null,
@@ -85,12 +99,18 @@ export const getGeoJSON = async (c: any) => {
 			} as Record<string, any>,
 		}));
 
-		return c.json({
-			type: "FeatureCollection" as const,
-			features,
-		} as any, HttpStatusCodes.OK);
+		return c.json(
+			{
+				type: "FeatureCollection" as const,
+				features,
+			} as any,
+			HttpStatusCodes.OK,
+		);
 	} catch (error) {
-		return c.json({ error: "Internal server error" } as any, HttpStatusCodes.INTERNAL_SERVER_ERROR);
+		return c.json(
+			{ error: "Internal server error" } as any,
+			HttpStatusCodes.INTERNAL_SERVER_ERROR,
+		);
 	}
 };
 
@@ -98,11 +118,11 @@ export const getNearby = async (c: any) => {
 	try {
 		const { lat, lon, radius = "1000", type } = c.req.valid("query");
 		const db = await createConnectedDatabase();
-		
+
 		const latitude = parseFloat(lat);
 		const longitude = parseFloat(lon);
 		const radiusMeters = parseInt(radius, 10);
-		
+
 		// Query existing cycling infrastructure within radius using PostGIS
 		let query = `
 			SELECT 
@@ -123,18 +143,18 @@ export const getNearby = async (c: any) => {
 			)
 			AND ci.coordinates IS NOT NULL
 		`;
-		
+
 		if (type) {
 			query += ` AND ci.infra_type = '${type}'`;
 		}
-		
+
 		query += ` ORDER BY distance_meters`;
-		
+
 		const result = await db.execute(query);
 		const infrastructure = result.rows as any[];
-		
+
 		// Convert to GeoJSON features
-		const features = infrastructure.map(infra => ({
+		const features = infrastructure.map((infra) => ({
 			type: "Feature" as const,
 			id: String(infra.osm_id),
 			properties: {
@@ -143,17 +163,21 @@ export const getNearby = async (c: any) => {
 				name: infra.name,
 				infra_type: infra.infra_type,
 				distance_meters: Math.round(infra.distance_meters || 0),
-			} as Record<string, any> & { name: string | null; infra_type: string; distance_meters: number },
+			} as Record<string, any> & {
+				name: string | null;
+				infra_type: string;
+				distance_meters: number;
+			},
 			geometry: infra.geojson?.geometry || null,
 		}));
-		
+
 		// Calculate summary by type
 		const byType: Record<string, number> = {};
-		features.forEach(f => {
+		features.forEach((f) => {
 			const infraType = f.properties.infra_type;
 			byType[infraType] = (byType[infraType] || 0) + 1;
 		});
-		
+
 		return c.json({
 			type: "FeatureCollection" as const,
 			features,
@@ -163,7 +187,7 @@ export const getNearby = async (c: any) => {
 			},
 		} as any);
 	} catch (error) {
-		console.error('Error in getNearby:', error);
+		console.error("Error in getNearby:", error);
 		return c.json({ error: "Internal server error" } as any, 500);
 	}
 };

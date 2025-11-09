@@ -52,7 +52,9 @@ describe("SharedBike API", () => {
 			});
 
 			it("should filter by capacity range", async () => {
-				const res = await app.request("/v1/stations?min_capacity=15&max_capacity=30");
+				const res = await app.request(
+					"/v1/stations?min_capacity=15&max_capacity=30",
+				);
 				expect(res.status).toBe(200);
 
 				const data = await res.json();
@@ -63,7 +65,7 @@ describe("SharedBike API", () => {
 		describe("GET /v1/stations/:id", () => {
 			it("should return station by ID", async () => {
 				const res = await app.request("/v1/stations/1");
-				
+
 				if (res.status === 200) {
 					const data = await res.json();
 					expect(data).toHaveProperty("id");

@@ -84,8 +84,8 @@ describe("Date Logic Tests", () => {
 	describe("Date Parameter Validation", () => {
 		it("should handle valid month values", () => {
 			const validMonths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-			
-			validMonths.forEach(month => {
+
+			validMonths.forEach((month) => {
 				const startOfMonth = new Date(2023, month - 1, 1);
 				expect(startOfMonth.getMonth()).toBe(month - 1);
 			});
@@ -93,8 +93,8 @@ describe("Date Logic Tests", () => {
 
 		it("should handle valid year values", () => {
 			const validYears = [2020, 2021, 2022, 2023, 2024, 2025, 2030];
-			
-			validYears.forEach(year => {
+
+			validYears.forEach((year) => {
 				const startOfMonth = new Date(year, 0, 1); // January 1st
 				expect(startOfMonth.getFullYear()).toBe(year);
 			});
@@ -110,11 +110,11 @@ describe("Date Logic Tests", () => {
 
 			// Simulate the logic from the handler
 			const hasExplicitDates = startDate && endDate;
-			
+
 			if (hasExplicitDates) {
 				const start = new Date(startDate);
 				const end = new Date(endDate);
-				
+
 				expect(start.getFullYear()).toBe(2023);
 				expect(start.getMonth()).toBe(11); // December
 				expect(end.getFullYear()).toBe(2023);
@@ -129,15 +129,15 @@ describe("Date Logic Tests", () => {
 			const year = 2023;
 
 			const hasExplicitDates = startDate && endDate;
-			
+
 			if (!hasExplicitDates) {
 				const now = new Date();
 				const targetYear = year || now.getFullYear();
 				const targetMonth = month || now.getMonth() + 1;
-				
+
 				expect(targetYear).toBe(2023);
 				expect(targetMonth).toBe(6);
-				
+
 				const startOfMonth = new Date(targetYear, targetMonth - 1, 1);
 				expect(startOfMonth.getMonth()).toBe(5); // June is month 5 (0-indexed)
 			}
@@ -149,7 +149,7 @@ describe("Date Logic Tests", () => {
 			// Test January (month 1)
 			const jan = new Date(2023, 0, 1);
 			expect(jan.getMonth()).toBe(0);
-			
+
 			// Test December (month 12)
 			const dec = new Date(2023, 11, 1);
 			expect(dec.getMonth()).toBe(11);

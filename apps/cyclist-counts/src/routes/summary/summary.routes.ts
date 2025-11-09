@@ -59,7 +59,8 @@ export const getSummary = createRoute({
 	path: "/summary",
 	tags,
 	summary: "Get cyclist counts summary",
-	description: "Get a comprehensive summary of all cyclist counting data including totals and characteristics",
+	description:
+		"Get a comprehensive summary of all cyclist counting data including totals and characteristics",
 	responses: {
 		200: {
 			content: {

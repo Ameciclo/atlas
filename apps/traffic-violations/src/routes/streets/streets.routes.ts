@@ -167,16 +167,18 @@ export const streetsRankingRoute = createRoute({
 			content: {
 				"application/json": {
 					schema: z.object({
-						streets: z.array(z.object({
-							street_code: z.number(),
-							official_name: z.string(),
-							short_name: z.string(),
-							neighborhood_name: z.string().nullable(),
-							total_violations: z.number(),
-							ranking: z.number(),
-							violations_per_km: z.number(),
-							transport_corridor: z.boolean().nullable(),
-						})),
+						streets: z.array(
+							z.object({
+								street_code: z.number(),
+								official_name: z.string(),
+								short_name: z.string(),
+								neighborhood_name: z.string().nullable(),
+								total_violations: z.number(),
+								ranking: z.number(),
+								violations_per_km: z.number(),
+								transport_corridor: z.boolean().nullable(),
+							}),
+						),
 					}),
 				},
 			},
@@ -214,11 +216,13 @@ export const streetSummaryRoute = createRoute({
 						violations_summary: z.object({
 							total_violations: z.number(),
 							violations_per_year: z.record(z.number()),
-							top_violation_types: z.array(z.object({
-								type_id: z.number(),
-								description: z.string(),
-								count: z.number(),
-							})),
+							top_violation_types: z.array(
+								z.object({
+									type_id: z.number(),
+									description: z.string(),
+									count: z.number(),
+								}),
+							),
 						}),
 					}),
 				},
@@ -269,16 +273,18 @@ export const streetViolationsRoute = createRoute({
 			content: {
 				"application/json": {
 					schema: z.object({
-						data: z.array(z.object({
-							id: z.number(),
-							date: z.string(),
-							time: z.string().nullable(),
-							violation_type_id: z.number(),
-							violation_description: z.string(),
-							agent_id: z.number(),
-							location_id: z.number().nullable(),
-							location_description: z.string().nullable(),
-						})),
+						data: z.array(
+							z.object({
+								id: z.number(),
+								date: z.string(),
+								time: z.string().nullable(),
+								violation_type_id: z.number(),
+								violation_description: z.string(),
+								agent_id: z.number(),
+								location_id: z.number().nullable(),
+								location_description: z.string().nullable(),
+							}),
+						),
 						pagination: z.object({
 							limit: z.number(),
 							offset: z.number(),
@@ -319,14 +325,16 @@ export const neighborhoodsRoute = createRoute({
 			content: {
 				"application/json": {
 					schema: z.object({
-						neighborhoods: z.array(z.object({
-							neighborhood_code: z.number().nullable(),
-							neighborhood_name: z.string(),
-							total_violations: z.number(),
-							total_streets: z.number(),
-							violations_per_street: z.number(),
-							ranking: z.number(),
-						})),
+						neighborhoods: z.array(
+							z.object({
+								neighborhood_code: z.number().nullable(),
+								neighborhood_name: z.string(),
+								total_violations: z.number(),
+								total_streets: z.number(),
+								violations_per_street: z.number(),
+								ranking: z.number(),
+							}),
+						),
 					}),
 				},
 			},

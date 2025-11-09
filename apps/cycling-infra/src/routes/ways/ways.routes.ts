@@ -14,17 +14,19 @@ const OriginalWaySchema = z.object({
 	relationId: z.number(),
 	geojson: z.object({
 		type: z.literal("FeatureCollection"),
-		features: z.array(z.object({
-			id: z.string(),
-			type: z.literal("Feature"),
-			geometry: z.any(),
-			properties: z.record(z.any())
-		}))
+		features: z.array(
+			z.object({
+				id: z.string(),
+				type: z.literal("Feature"),
+				geometry: z.any(),
+				properties: z.record(z.any()),
+			}),
+		),
 	}),
 	lastUpdated: z.null(),
 	cityId: z.number(),
 	dualCarriageway: z.boolean(),
-	pdcTypology: z.string()
+	pdcTypology: z.string(),
 });
 
 const tags = ["Ways"];
@@ -36,20 +38,24 @@ const WaysSummarySchema = z.object({
 		pdc_total: z.number(),
 		percent: z.number(),
 	}),
-	byCity: z.record(z.object({
-		pdc_feito: z.number(),
-		out_pdc: z.number(),
-		pdc_total: z.number(),
-		percent: z.number(),
-	})),
+	byCity: z.record(
+		z.object({
+			pdc_feito: z.number(),
+			out_pdc: z.number(),
+			pdc_total: z.number(),
+			percent: z.number(),
+		}),
+	),
 });
 
 const GeoJSONFeatureSchema = z.object({
 	type: z.literal("Feature"),
 	geometry: z.any(),
-	properties: z.object({
-		STATUS: z.enum(["Realizada", "Projeto", "NotPDC"]),
-	}).and(z.record(z.any())),
+	properties: z
+		.object({
+			STATUS: z.enum(["Realizada", "Projeto", "NotPDC"]),
+		})
+		.and(z.record(z.any())),
 });
 
 const GeoJSONCollectionSchema = z.object({
@@ -70,7 +76,10 @@ export const list = createRoute({
 	description: "Get all PDC relation ways",
 	request: {
 		query: z.object({
-			city: z.string().optional().openapi({ description: "Filter by city ID", example: "2611606" }),
+			city: z
+				.string()
+				.optional()
+				.openapi({ description: "Filter by city ID", example: "2611606" }),
 		}),
 	},
 	responses: {
@@ -100,16 +109,58 @@ export const getAll = createRoute({
 	method: "get",
 	tags,
 	summary: "Get all ways as GeoJSON",
-	description: "Get all PDC ways formatted as GeoJSON FeatureCollection with optional filtering and pagination",
+	description:
+		"Get all PDC ways formatted as GeoJSON FeatureCollection with optional filtering and pagination",
 	request: {
 		query: z.object({
-			city: z.string().optional().openapi({ description: "Filter by city ID", example: "2611606" }),
-			limit: z.string().optional().openapi({ description: "Maximum number of results (default: 1000)", example: "500" }),
-			offset: z.string().optional().openapi({ description: "Number of results to skip for pagination", example: "0" }),
-			simplify: z.string().optional().openapi({ description: "Geometry simplification tolerance (default: 0.0001)", example: "0.001" }),
-			precision: z.string().optional().openapi({ description: "Decimal precision for coordinates (4=~10m, 5=~1m, 6=~0.1m)", example: "5" }),
-			minimal: z.string().optional().openapi({ description: "Return only essential status properties (true/false)", example: "true" }),
-			only_all: z.string().optional().openapi({ description: "Return only the FeatureCollection without all/byCity structure (true/false)", example: "true" }),
+			city: z
+				.string()
+				.optional()
+				.openapi({ description: "Filter by city ID", example: "2611606" }),
+			limit: z
+				.string()
+				.optional()
+				.openapi({
+					description: "Maximum number of results (default: 1000)",
+					example: "500",
+				}),
+			offset: z
+				.string()
+				.optional()
+				.openapi({
+					description: "Number of results to skip for pagination",
+					example: "0",
+				}),
+			simplify: z
+				.string()
+				.optional()
+				.openapi({
+					description: "Geometry simplification tolerance (default: 0.0001)",
+					example: "0.001",
+				}),
+			precision: z
+				.string()
+				.optional()
+				.openapi({
+					description:
+						"Decimal precision for coordinates (4=~10m, 5=~1m, 6=~0.1m)",
+					example: "5",
+				}),
+			minimal: z
+				.string()
+				.optional()
+				.openapi({
+					description: "Return only essential status properties (true/false)",
+					example: "true",
+				}),
+			only_all: z
+				.string()
+				.optional()
+				.openapi({
+					description:
+						"Return only the FeatureCollection without all/byCity structure (true/false)",
+					example: "true",
+				}),
 		}),
 	},
 	responses: {
@@ -125,31 +176,41 @@ export const getNearby = createRoute({
 	method: "get",
 	tags,
 	summary: "Get PDC ways near a location",
-	description: "Get PDC ways within a radius from a lat/lon point with execution status",
+	description:
+		"Get PDC ways within a radius from a lat/lon point with execution status",
 	request: {
 		query: z.object({
 			lat: z.string().openapi({ description: "Latitude", example: "-8.0476" }),
-			lon: z.string().openapi({ description: "Longitude", example: "-34.8770" }),
-			radius: z.string().optional().openapi({ description: "Radius in meters", example: "1000" }),
+			lon: z
+				.string()
+				.openapi({ description: "Longitude", example: "-34.8770" }),
+			radius: z
+				.string()
+				.optional()
+				.openapi({ description: "Radius in meters", example: "1000" }),
 		}),
 	},
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
 				type: z.literal("FeatureCollection"),
-				features: z.array(z.object({
-					type: z.literal("Feature"),
-					id: z.string(),
-					properties: z.object({
-						pdc_ref: z.string().nullable(),
-						name: z.string().nullable(),
-						pdc_typology: z.string().nullable(),
-						executed: z.boolean(),
-						length_km: z.number(),
-						distance_meters: z.number(),
-					}).and(z.record(z.any())),
-					geometry: z.any(),
-				})),
+				features: z.array(
+					z.object({
+						type: z.literal("Feature"),
+						id: z.string(),
+						properties: z
+							.object({
+								pdc_ref: z.string().nullable(),
+								name: z.string().nullable(),
+								pdc_typology: z.string().nullable(),
+								executed: z.boolean(),
+								length_km: z.number(),
+								distance_meters: z.number(),
+							})
+							.and(z.record(z.any())),
+						geometry: z.any(),
+					}),
+				),
 				summary: z.object({
 					total_ways: z.number(),
 					executed_ways: z.number(),

@@ -13,29 +13,33 @@ export const cities = createRoute({
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
-				cidades: z.array(z.object({
-					municipio_samu: z.string(),
-					count: z.number(),
-					id: z.number(),
-					name: z.string(),
-					rmr: z.boolean(),
-					ranking: z.number(),
-					historico_anual: z.array(z.object({
-						ano: z.number(),
-						total_chamados: z.number(),
-						projecao_total_chamados: z.number(),
-						validos: z.object({
-							total: z.number(),
-							atendimento_concluido: z.number(),
-							removido_particulares: z.number(),
-							obito_local: z.number(),
-						}),
-						invalidos: z.number(),
-						por_sexo: z.record(z.number()),
-						por_faixa_etaria: z.record(z.number()),
-						por_categoria: z.record(z.number()),
-					})),
-				})),
+				cidades: z.array(
+					z.object({
+						municipio_samu: z.string(),
+						count: z.number(),
+						id: z.number(),
+						name: z.string(),
+						rmr: z.boolean(),
+						ranking: z.number(),
+						historico_anual: z.array(
+							z.object({
+								ano: z.number(),
+								total_chamados: z.number(),
+								projecao_total_chamados: z.number(),
+								validos: z.object({
+									total: z.number(),
+									atendimento_concluido: z.number(),
+									removido_particulares: z.number(),
+									obito_local: z.number(),
+								}),
+								invalidos: z.number(),
+								por_sexo: z.record(z.number()),
+								por_faixa_etaria: z.record(z.number()),
+								por_categoria: z.record(z.number()),
+							}),
+						),
+					}),
+				),
 			}),
 			"Cities with emergency calls data",
 		),

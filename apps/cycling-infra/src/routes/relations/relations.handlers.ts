@@ -1,10 +1,10 @@
 import { eq } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
-import * as HttpStatusPhrases from "stoker/http-status-phrases";
 import { createConnectedDatabase } from "@atlas/database";
-import { pdcRelationWays, cyclistInfraRelations } from "@atlas/database/schemas/cycling-infra";
-import type { AppRouteHandler } from "../../lib/types.js";
-import type { GetByIdRoute, GetWaysByRelationIdRoute, ListRoute } from "./relations.routes.js";
+import {
+	pdcRelationWays,
+	cyclistInfraRelations,
+} from "@atlas/database/schemas/cycling-infra";
 
 export const list = async (c: any) => {
 	try {
@@ -25,7 +25,7 @@ export const getById = async (c: any) => {
 
 	try {
 		const db = await createConnectedDatabase();
-		
+
 		// Find relation by OSM ID only
 		const relation = await db
 			.select()
@@ -47,14 +47,17 @@ export const getById = async (c: any) => {
 			.where(eq(pdcRelationWays.relation_id, relation[0]?.id || 0));
 
 		if (relationWays.length === 0) {
-			return c.json({
-				type: "FeatureCollection" as const,
-				features: [],
-			}, HttpStatusCodes.OK);
+			return c.json(
+				{
+					type: "FeatureCollection" as const,
+					features: [],
+				},
+				HttpStatusCodes.OK,
+			);
 		}
 
 		// Convert to GeoJSON FeatureCollection
-		const features = relationWays.map(way => ({
+		const features = relationWays.map((way) => ({
 			type: "Feature" as const,
 			id: `relation/${relation[0]?.osm_id}`,
 			properties: {
@@ -67,10 +70,13 @@ export const getById = async (c: any) => {
 			geometry: (way.geojson as any)?.geometry || null,
 		}));
 
-		return c.json({
-			type: "FeatureCollection" as const,
-			features,
-		}, HttpStatusCodes.OK);
+		return c.json(
+			{
+				type: "FeatureCollection" as const,
+				features,
+			},
+			HttpStatusCodes.OK,
+		);
 	} catch (error) {
 		console.error(`Error fetching relation ${id}:`, error);
 		return c.json(
@@ -85,7 +91,7 @@ export const getWaysByRelationId = async (c: any) => {
 
 	try {
 		const db = await createConnectedDatabase();
-		
+
 		// Find the relation by OSM ID
 		const relation = await db
 			.select()

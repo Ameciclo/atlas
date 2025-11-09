@@ -3,12 +3,12 @@ import * as HttpStatusCodes from "stoker/http-status-codes";
 import { db, ensureConnection } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
-import type { 
-	SummaryRoute, 
-	CitiesRoute, 
-	CityStatsRoute, 
-	OutcomesRoute, 
-	ProfilesRoute 
+import type {
+	SummaryRoute,
+	CitiesRoute,
+	CityStatsRoute,
+	OutcomesRoute,
+	ProfilesRoute,
 } from "./summary.routes.js";
 
 export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
@@ -55,21 +55,24 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(1);
 
-	const callsPerYear = yearlyData.reduce((acc, item) => {
-		acc[item.year] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const callsPerYear = yearlyData.reduce(
+		(acc, item) => {
+			acc[item.year] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
 	return c.json({
 		total_calls: totalResult?.count || 0,
 		data_period: {
-			start: periodResult?.start?.split('T')[0] || '',
-			end: periodResult?.end?.split('T')[0] || '',
+			start: periodResult?.start?.split("T")[0] || "",
+			end: periodResult?.end?.split("T")[0] || "",
 		},
 		calls_per_year: callsPerYear,
 		municipalities_count: municipalitiesResult?.count || 0,
 		top_city: {
-			name: topCityResult?.municipality || '',
+			name: topCityResult?.municipality || "",
 			total_calls: topCityResult?.count || 0,
 		},
 	});
@@ -97,8 +100,9 @@ export const cities: AppRouteHandler<CitiesRoute> = async (c) => {
 		ranking: index + 1,
 		municipality: city.municipality,
 		total_calls: city.count,
-		percentage: totalResult?.count ? 
-			Number(((city.count / totalResult.count) * 100).toFixed(1)) : 0,
+		percentage: totalResult?.count
+			? Number(((city.count / totalResult.count) * 100).toFixed(1))
+			: 0,
 	}));
 
 	return c.json({ cities });
@@ -118,7 +122,8 @@ export const cityStats: AppRouteHandler<CityStatsRoute> = async (c) => {
 		.groupBy(emergencyCalls.municipality)
 		.orderBy(sql`COUNT(*) DESC`);
 
-	const cityRanking = citiesRanking.findIndex(c => c.municipality === city) + 1;
+	const cityRanking =
+		citiesRanking.findIndex((c) => c.municipality === city) + 1;
 
 	// Get yearly history for the city
 	const yearlyData = await db
@@ -131,10 +136,13 @@ export const cityStats: AppRouteHandler<CityStatsRoute> = async (c) => {
 		.groupBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`)
 		.orderBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`);
 
-	const yearlyHistory = yearlyData.reduce((acc, item) => {
-		acc[item.year] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const yearlyHistory = yearlyData.reduce(
+		(acc, item) => {
+			acc[item.year] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
 	return c.json({
 		city,
@@ -158,17 +166,20 @@ export const outcomes: AppRouteHandler<OutcomesRoute> = async (c) => {
 		.where(eq(emergencyCalls.municipality, city))
 		.groupBy(
 			sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`,
-			emergencyCalls.outcome_category
+			emergencyCalls.outcome_category,
 		)
 		.orderBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`);
 
-	const outcomesByYear = outcomesData.reduce((acc, item) => {
-		if (!acc[item.year]) {
-			acc[item.year] = {};
-		}
-		acc[item.year][item.outcome || 'Unknown'] = item.count;
-		return acc;
-	}, {} as Record<string, Record<string, number>>);
+	const outcomesByYear = outcomesData.reduce(
+		(acc, item) => {
+			if (!acc[item.year]) {
+				acc[item.year] = {};
+			}
+			acc[item.year][item.outcome || "Unknown"] = item.count;
+			return acc;
+		},
+		{} as Record<string, Record<string, number>>,
+	);
 
 	return c.json({
 		city,
@@ -182,7 +193,7 @@ export const profiles: AppRouteHandler<ProfilesRoute> = async (c) => {
 
 	// Build date conditions
 	const conditions = [eq(emergencyCalls.municipality, city)];
-	
+
 	if (start_year) {
 		conditions.push(gte(emergencyCalls.date, new Date(`${start_year}-01-01`)));
 	}
@@ -238,20 +249,29 @@ export const profiles: AppRouteHandler<ProfilesRoute> = async (c) => {
 		.where(whereClause)
 		.groupBy(emergencyCalls.type);
 
-	const byGender = genderData.reduce((acc, item) => {
-		acc[item.gender || 'unknown'] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const byGender = genderData.reduce(
+		(acc, item) => {
+			acc[item.gender || "unknown"] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
-	const byAgeGroup = ageData.reduce((acc, item) => {
-		acc[item.age_group] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const byAgeGroup = ageData.reduce(
+		(acc, item) => {
+			acc[item.age_group] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
-	const byType = transportData.reduce((acc, item) => {
-		acc[item.type || 'unknown'] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const byType = transportData.reduce(
+		(acc, item) => {
+			acc[item.type || "unknown"] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
 	return c.json({
 		city,

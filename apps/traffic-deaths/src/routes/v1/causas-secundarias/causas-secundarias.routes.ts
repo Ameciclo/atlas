@@ -11,12 +11,14 @@ export const getCausasSecundariasV1 = createRoute({
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
-				causas: z.array(z.object({
-					codigo: z.string(),
-					descricao: z.string(),
-					total: z.number(),
-					percentual: z.number(),
-				})),
+				causas: z.array(
+					z.object({
+						codigo: z.string(),
+						descricao: z.string(),
+						total: z.number(),
+						percentual: z.number(),
+					}),
+				),
 				total: z.number(),
 			}),
 			"Análise de causas secundárias de mortes no trânsito",

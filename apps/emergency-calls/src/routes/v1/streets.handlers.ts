@@ -3,14 +3,16 @@ import * as HttpStatusCodes from "stoker/http-status-codes";
 import { db, ensureConnection } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
-import type { 
-	StreetsSummaryRoute, 
-	StreetsTopRoute, 
-	StreetsSearchRoute, 
-	StreetsHistoryRoute 
+import type {
+	StreetsSummaryRoute,
+	StreetsTopRoute,
+	StreetsSearchRoute,
+	StreetsHistoryRoute,
 } from "./streets.routes.js";
 
-export const streetsSummary: AppRouteHandler<StreetsSummaryRoute> = async (c) => {
+export const streetsSummary: AppRouteHandler<StreetsSummaryRoute> = async (
+	c,
+) => {
 	await ensureConnection();
 
 	const [totalResult] = await db
@@ -40,9 +42,10 @@ export const streetsSummary: AppRouteHandler<StreetsSummaryRoute> = async (c) =>
 		extensaoTotalKm: 2500.75,
 		extensaoMediaKm: 2.15,
 		viaMaisPerigosa: {
-			nome: topStreetResult?.address || '',
+			nome: topStreetResult?.address || "",
 			total: topStreetResult?.count || 0,
-			percentual: ((topStreetResult?.count || 0) / (totalResult?.count || 1)) * 100,
+			percentual:
+				((topStreetResult?.count || 0) / (totalResult?.count || 1)) * 100,
 			extensao: 8.5,
 		},
 	});
@@ -105,14 +108,14 @@ export const streetsSearch: AppRouteHandler<StreetsSearchRoute> = async (c) => {
 		.where(sql`${emergencyCalls.address} ILIKE ${`%${nome}%`}`)
 		.limit(limit);
 
-	const sinistros = results.map(item => ({
+	const sinistros = results.map((item) => ({
 		id: item.id,
 		data: item.date,
-		hora_minuto: item.time || '00:00:00',
-		endereco: item.address || '',
-		nome_oficial_logradouro: item.address || '',
-		categoria: item.subtype || 'UNKNOWN',
-		sexo: item.gender || 'U',
+		hora_minuto: item.time || "00:00:00",
+		endereco: item.address || "",
+		nome_oficial_logradouro: item.address || "",
+		categoria: item.subtype || "UNKNOWN",
+		sexo: item.gender || "U",
 		idade: item.age,
 	}));
 
@@ -123,7 +126,9 @@ export const streetsSearch: AppRouteHandler<StreetsSearchRoute> = async (c) => {
 	});
 };
 
-export const streetsHistory: AppRouteHandler<StreetsHistoryRoute> = async (c) => {
+export const streetsHistory: AppRouteHandler<StreetsHistoryRoute> = async (
+	c,
+) => {
 	await ensureConnection();
 	const { nome, startYear = 2020, endYear = 2024 } = c.req.valid("query");
 
@@ -145,28 +150,34 @@ export const streetsHistory: AppRouteHandler<StreetsHistoryRoute> = async (c) =>
 		.where(whereClause)
 		.groupBy(
 			sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`,
-			sql`EXTRACT(MONTH FROM ${emergencyCalls.date})`
+			sql`EXTRACT(MONTH FROM ${emergencyCalls.date})`,
 		)
 		.orderBy(
 			sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`,
-			sql`EXTRACT(MONTH FROM ${emergencyCalls.date})`
+			sql`EXTRACT(MONTH FROM ${emergencyCalls.date})`,
 		);
 
 	// Group by year
-	const yearlyGroups = yearlyData.reduce((acc, item) => {
-		if (!acc[item.year]) {
-			acc[item.year] = [];
-		}
-		acc[item.year].push(item);
-		return acc;
-	}, {} as Record<number, typeof yearlyData>);
+	const yearlyGroups = yearlyData.reduce(
+		(acc, item) => {
+			if (!acc[item.year]) {
+				acc[item.year] = [];
+			}
+			acc[item.year].push(item);
+			return acc;
+		},
+		{} as Record<number, typeof yearlyData>,
+	);
 
 	const evolucao = Object.entries(yearlyGroups).map(([year, data]) => {
 		const totalSinistros = data.reduce((sum, item) => sum + item.count, 0);
-		const meses = data.reduce((acc, item) => {
-			acc[item.month.toString()] = item.count;
-			return acc;
-		}, {} as Record<string, number>);
+		const meses = data.reduce(
+			(acc, item) => {
+				acc[item.month.toString()] = item.count;
+				return acc;
+			},
+			{} as Record<string, number>,
+		);
 
 		return {
 			ano: parseInt(year),
@@ -176,9 +187,18 @@ export const streetsHistory: AppRouteHandler<StreetsHistoryRoute> = async (c) =>
 			dias_com_sinistros: Math.floor(totalSinistros * 0.3),
 			dias_semana: { "0": 5, "1": 8, "2": 7, "3": 6, "4": 9, "5": 6, "6": 4 },
 			horarios: { "6": 1, "7": 3, "8": 5, "17": 4, "18": 8, "19": 6 },
-			por_sexo: { "masculino": Math.floor(totalSinistros * 0.7), "feminino": Math.floor(totalSinistros * 0.3) },
-			por_faixa_etaria: { "18_29_anos": Math.floor(totalSinistros * 0.4), "30_49_anos": Math.floor(totalSinistros * 0.35) },
-			por_categoria: { "sinistro_moto": Math.floor(totalSinistros * 0.6), "atropelamento_carro": Math.floor(totalSinistros * 0.4) },
+			por_sexo: {
+				masculino: Math.floor(totalSinistros * 0.7),
+				feminino: Math.floor(totalSinistros * 0.3),
+			},
+			por_faixa_etaria: {
+				"18_29_anos": Math.floor(totalSinistros * 0.4),
+				"30_49_anos": Math.floor(totalSinistros * 0.35),
+			},
+			por_categoria: {
+				sinistro_moto: Math.floor(totalSinistros * 0.6),
+				atropelamento_carro: Math.floor(totalSinistros * 0.4),
+			},
 		};
 	});
 

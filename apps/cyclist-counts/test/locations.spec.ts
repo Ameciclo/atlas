@@ -109,7 +109,7 @@ describe("GET /v1/locations/nearby", () => {
 	it("200 → returns nearby locations with counting data", async () => {
 		// Mock locations query
 		findMany.mockResolvedValueOnce([mockLocation]);
-		
+
 		// Mock counting events query
 		const mockSelect = vi.fn().mockReturnValue({
 			from: vi.fn().mockReturnValue({
@@ -118,20 +118,20 @@ describe("GET /v1/locations/nearby", () => {
 						{
 							location_id: 1,
 							total_cyclists: 150,
-							years: [2023, 2024]
-						}
-					])
-				})
-			})
+							years: [2023, 2024],
+						},
+					]),
+				}),
+			}),
 		});
-		vi.spyOn(db, 'select').mockImplementation(mockSelect);
+		vi.spyOn(db, "select").mockImplementation(mockSelect);
 
 		const res = await client.v1.locations.nearby.$get({
-			query: { lat: "-8.0476", lon: "-34.8770", radius: "5000" }
+			query: { lat: "-8.0476", lon: "-34.8770", radius: "5000" },
 		});
-		
+
 		expect(res.status).toBe(200);
-		
+
 		const data = await res.json();
 		expect(data.type).toBe("FeatureCollection");
 		expect(data.features).toHaveLength(1);
@@ -139,33 +139,33 @@ describe("GET /v1/locations/nearby", () => {
 			name: "Av. Rui Barbosa x R. Amélia",
 			city: "Recife",
 			total_cyclists: 150,
-			years: [2023, 2024]
+			years: [2023, 2024],
 		});
 		expect(data.summary).toMatchObject({
 			total_locations: 1,
 			total_cyclists: 150,
-			by_city: { Recife: 1 }
+			by_city: { Recife: 1 },
 		});
 	});
 
 	it("200 → returns empty collection when no locations nearby", async () => {
 		findMany.mockResolvedValueOnce([]);
-		
+
 		const mockSelect = vi.fn().mockReturnValue({
 			from: vi.fn().mockReturnValue({
 				where: vi.fn().mockReturnValue({
-					groupBy: vi.fn().mockResolvedValue([])
-				})
-			})
+					groupBy: vi.fn().mockResolvedValue([]),
+				}),
+			}),
 		});
-		vi.spyOn(db, 'select').mockImplementation(mockSelect);
+		vi.spyOn(db, "select").mockImplementation(mockSelect);
 
 		const res = await client.v1.locations.nearby.$get({
-			query: { lat: "-8.0476", lon: "-34.8770" }
+			query: { lat: "-8.0476", lon: "-34.8770" },
 		});
-		
+
 		expect(res.status).toBe(200);
-		
+
 		const data = await res.json();
 		expect(data.type).toBe("FeatureCollection");
 		expect(data.features).toHaveLength(0);

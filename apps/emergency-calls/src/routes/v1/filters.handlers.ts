@@ -11,16 +11,16 @@ export const filters: AppRouteHandler<FiltersRoute> = async (c) => {
 
 	// Build conditions
 	const conditions = [];
-	
+
 	if (query.cityId || query.municipio) {
 		// Would need city mapping
 	}
-	
+
 	if (query.startYear || query.anoInicio) {
 		const year = query.startYear || query.anoInicio;
 		conditions.push(sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) >= ${year}`);
 	}
-	
+
 	if (query.endYear || query.anoFim) {
 		const year = query.endYear || query.anoFim;
 		conditions.push(sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) <= ${year}`);
@@ -90,45 +90,64 @@ export const filters: AppRouteHandler<FiltersRoute> = async (c) => {
 		.where(whereClause)
 		.limit(100);
 
-	const porAno = yearlyData.reduce((acc, item) => {
-		acc[item.year] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const porAno = yearlyData.reduce(
+		(acc, item) => {
+			acc[item.year] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
-	const porSexo = genderData.reduce((acc, item) => {
-		if (item.gender) {
-			const desc = item.gender === 'M' ? 'Masculino' : 'Feminino';
-			acc[desc] = item.count;
-		}
-		return acc;
-	}, {} as Record<string, number>);
+	const porSexo = genderData.reduce(
+		(acc, item) => {
+			if (item.gender) {
+				const desc = item.gender === "M" ? "Masculino" : "Feminino";
+				acc[desc] = item.count;
+			}
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
-	const formattedDados = dados.map(item => ({
+	const formattedDados = dados.map((item) => ({
 		ano: new Date(item.date).getFullYear(),
 		mes: new Date(item.date).getMonth() + 1,
-		hora: item.time ? parseInt(item.time.split(':')[0]) : 0,
-		municipio: { nome: item.municipality || 'UNKNOWN' },
+		hora: item.time ? parseInt(item.time.split(":")[0]) : 0,
+		municipio: { nome: item.municipality || "UNKNOWN" },
 		sexo: {
-			codigo: item.gender || 'U',
-			descricao: item.gender === 'M' ? 'Masculino' : item.gender === 'F' ? 'Feminino' : 'Não informado',
+			codigo: item.gender || "U",
+			descricao:
+				item.gender === "M"
+					? "Masculino"
+					: item.gender === "F"
+						? "Feminino"
+						: "Não informado",
 		},
 		idade: item.age || 0,
-		faixaEtaria: item.age ? (item.age < 18 ? '0-17' : item.age < 30 ? '18-29' : item.age < 50 ? '30-49' : '50+') : 'unknown',
+		faixaEtaria: item.age
+			? item.age < 18
+				? "0-17"
+				: item.age < 30
+					? "18-29"
+					: item.age < 50
+						? "30-49"
+						: "50+"
+			: "unknown",
 		categoria: {
-			codigo: item.subtype || 'UNKNOWN',
-			descricao: item.subtype || 'Não informado',
+			codigo: item.subtype || "UNKNOWN",
+			descricao: item.subtype || "Não informado",
 		},
 		subtipo: {
-			codigo: item.subtype || 'UNKNOWN',
-			descricao: item.subtype || 'Não informado',
+			codigo: item.subtype || "UNKNOWN",
+			descricao: item.subtype || "Não informado",
 		},
 		motivoFinalizacao: {
-			codigo: item.outcome || 'UNKNOWN',
-			descricao: item.outcome || 'Não informado',
+			codigo: item.outcome || "UNKNOWN",
+			descricao: item.outcome || "Não informado",
 		},
 		motivoDesfecho: {
-			codigo: item.outcome || 'UNKNOWN',
-			descricao: item.outcome || 'Não informado',
+			codigo: item.outcome || "UNKNOWN",
+			descricao: item.outcome || "Não informado",
 		},
 		total: 1,
 	}));

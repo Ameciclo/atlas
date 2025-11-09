@@ -44,17 +44,19 @@ export const streetsTop = createRoute({
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
-				dados: z.array(z.object({
-					top: z.number(),
-					sinistros: z.number(),
-					sinistros_acum: z.number(),
-					km: z.number(),
-					km_acum: z.number(),
-					sinistros_por_km: z.number(),
-					sinistros_por_km_acum: z.number(),
-					percentual: z.number(),
-					percentual_acum: z.number(),
-				})),
+				dados: z.array(
+					z.object({
+						top: z.number(),
+						sinistros: z.number(),
+						sinistros_acum: z.number(),
+						km: z.number(),
+						km_acum: z.number(),
+						sinistros_por_km: z.number(),
+						sinistros_por_km_acum: z.number(),
+						percentual: z.number(),
+						percentual_acum: z.number(),
+					}),
+				),
 			}),
 			"Top dangerous streets",
 		),
@@ -79,16 +81,18 @@ export const streetsSearch = createRoute({
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
-				sinistros: z.array(z.object({
-					id: z.number(),
-					data: z.string(),
-					hora_minuto: z.string(),
-					endereco: z.string(),
-					nome_oficial_logradouro: z.string(),
-					categoria: z.string(),
-					sexo: z.string(),
-					idade: z.number().nullable(),
-				})),
+				sinistros: z.array(
+					z.object({
+						id: z.number(),
+						data: z.string(),
+						hora_minuto: z.string(),
+						endereco: z.string(),
+						nome_oficial_logradouro: z.string(),
+						categoria: z.string(),
+						sexo: z.string(),
+						idade: z.number().nullable(),
+					}),
+				),
 				total: z.number(),
 				busca: z.string(),
 			}),
@@ -116,18 +120,20 @@ export const streetsHistory = createRoute({
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
-				evolucao: z.array(z.object({
-					ano: z.number(),
-					sinistros: z.number(),
-					meses: z.record(z.number()),
-					dias_com_dados: z.number(),
-					dias_com_sinistros: z.number(),
-					dias_semana: z.record(z.number()),
-					horarios: z.record(z.number()),
-					por_sexo: z.record(z.number()),
-					por_faixa_etaria: z.record(z.number()),
-					por_categoria: z.record(z.number()),
-				})),
+				evolucao: z.array(
+					z.object({
+						ano: z.number(),
+						sinistros: z.number(),
+						meses: z.record(z.number()),
+						dias_com_dados: z.number(),
+						dias_com_sinistros: z.number(),
+						dias_semana: z.record(z.number()),
+						horarios: z.record(z.number()),
+						por_sexo: z.record(z.number()),
+						por_faixa_etaria: z.record(z.number()),
+						por_categoria: z.record(z.number()),
+					}),
+				),
 			}),
 			"Street accident history",
 		),

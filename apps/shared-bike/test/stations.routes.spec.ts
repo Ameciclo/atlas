@@ -1,5 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { listStationsRoute, getStationRoute } from "../src/routes/stations/stations.routes.js";
+import {
+	listStationsRoute,
+	getStationRoute,
+} from "../src/routes/stations/stations.routes.js";
 
 describe("Stations Routes", () => {
 	describe("listStationsRoute", () => {
@@ -15,7 +18,7 @@ describe("Stations Routes", () => {
 		it("should have query parameters schema", () => {
 			const querySchema = listStationsRoute.request?.query;
 			expect(querySchema).toBeDefined();
-			
+
 			// Testa se os parâmetros opcionais estão definidos
 			const shape = querySchema?._def?.shape();
 			expect(shape).toHaveProperty("network");
@@ -45,7 +48,7 @@ describe("Stations Routes", () => {
 		it("should have params schema", () => {
 			const paramsSchema = getStationRoute.request?.params;
 			expect(paramsSchema).toBeDefined();
-			
+
 			const shape = paramsSchema?._def?.shape();
 			expect(shape).toHaveProperty("id");
 		});
@@ -54,7 +57,7 @@ describe("Stations Routes", () => {
 			const responses = getStationRoute.responses;
 			expect(responses).toHaveProperty("200");
 			expect(responses).toHaveProperty("404");
-			
+
 			expect(responses[200]).toHaveProperty("content");
 			expect(responses[404]).toHaveProperty("content");
 		});

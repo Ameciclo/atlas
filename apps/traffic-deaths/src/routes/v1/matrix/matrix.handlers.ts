@@ -1,7 +1,9 @@
 import type { AppRouteHandler } from "../../../lib/types.js";
 import type { getMatrixV1 } from "./matrix.routes.js";
 
-export const getMatrixV1Handler: AppRouteHandler<typeof getMatrixV1> = async (c) => {
+export const getMatrixV1Handler: AppRouteHandler<typeof getMatrixV1> = async (
+	c,
+) => {
 	// TODO: Implement actual matrix analysis
 	return c.json({
 		matrix: [

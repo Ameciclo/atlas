@@ -15,52 +15,6 @@ const client = new Client({
 
 let connected = false;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export const db = drizzle(client, { schema });
 
 export async function ensureConnection() {

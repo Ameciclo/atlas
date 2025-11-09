@@ -3,15 +3,15 @@ import * as HttpStatusCodes from "stoker/http-status-codes";
 import { db, ensureConnection } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
-import type { 
-	CitySummaryRoute, 
+import type {
+	CitySummaryRoute,
 	StreetSummaryRoute,
 	CityConcentrationRoute,
 	CityGeoJSONRoute,
 	StreetProfilesRoute,
 	StreetGeoJSONRoute,
 	StreetEvolutionRoute,
-	StreetRecordsRoute
+	StreetRecordsRoute,
 } from "./unsafe-streets.routes.js";
 
 export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
@@ -55,10 +55,13 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(1);
 
-	const accidentsPerYear = yearlyData.reduce((acc, item) => {
-		acc[item.year] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const accidentsPerYear = yearlyData.reduce(
+		(acc, item) => {
+			acc[item.year] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
 	return c.json({
 		city,
@@ -66,7 +69,7 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 		accidents_per_year: accidentsPerYear,
 		total_streets: streetsResult?.count || 0,
 		most_dangerous_street: {
-			name: topStreetResult?.location || '',
+			name: topStreetResult?.location || "",
 			total_accidents: topStreetResult?.count || 0,
 		},
 	});
@@ -105,10 +108,13 @@ export const streetSummary: AppRouteHandler<StreetSummaryRoute> = async (c) => {
 		.groupBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`)
 		.orderBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`);
 
-	const victimsPerYear = yearlyData.reduce((acc, item) => {
-		acc[item.year] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const victimsPerYear = yearlyData.reduce(
+		(acc, item) => {
+			acc[item.year] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
 	return c.json({
 		street_name,
@@ -118,7 +124,9 @@ export const streetSummary: AppRouteHandler<StreetSummaryRoute> = async (c) => {
 	});
 };
 
-export const cityConcentration: AppRouteHandler<CityConcentrationRoute> = async (c) => {
+export const cityConcentration: AppRouteHandler<
+	CityConcentrationRoute
+> = async (c) => {
 	await ensureConnection();
 	const { city } = c.req.valid("param");
 	const { interval = 10 } = c.req.valid("query");
@@ -170,13 +178,16 @@ export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
 		type: "Feature" as const,
 		geometry: {
 			type: "LineString",
-			coordinates: [[-34.8813, -8.0476], [-34.8820, -8.0480]], // Mock coordinates
+			coordinates: [
+				[-34.8813, -8.0476],
+				[-34.882, -8.048],
+			], // Mock coordinates
 		},
 		properties: {
 			accidents_count: street.count,
 			ranking: ranking_from + index,
 			extension_km: Math.random() * 10 + 1,
-			street_name: street.location || 'Unknown',
+			street_name: street.location || "Unknown",
 		},
 	}));
 
@@ -186,7 +197,9 @@ export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
 	});
 };
 
-export const streetProfiles: AppRouteHandler<StreetProfilesRoute> = async (c) => {
+export const streetProfiles: AppRouteHandler<StreetProfilesRoute> = async (
+	c,
+) => {
 	await ensureConnection();
 	const { street_name } = c.req.valid("param");
 	const { city } = c.req.valid("query");
@@ -247,20 +260,29 @@ export const streetProfiles: AppRouteHandler<StreetProfilesRoute> = async (c) =>
 		.where(whereClause)
 		.groupBy(emergencyCalls.subtype);
 
-	const byGender = genderData.reduce((acc, item) => {
-		if (item.gender) acc[item.gender] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const byGender = genderData.reduce(
+		(acc, item) => {
+			if (item.gender) acc[item.gender] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
-	const byAgeGroup = ageData.reduce((acc, item) => {
-		acc[item.age_group] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const byAgeGroup = ageData.reduce(
+		(acc, item) => {
+			acc[item.age_group] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
-	const byAccidentType = typeData.reduce((acc, item) => {
-		if (item.type) acc[item.type] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const byAccidentType = typeData.reduce(
+		(acc, item) => {
+			if (item.type) acc[item.type] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
 	return c.json({
 		street_name,
@@ -292,17 +314,22 @@ export const streetGeoJSON: AppRouteHandler<StreetGeoJSONRoute> = async (c) => {
 		.from(emergencyCalls)
 		.where(whereClause);
 
-	const features = [{
-		type: "Feature" as const,
-		geometry: {
-			type: "LineString",
-			coordinates: [[-34.8813, -8.0476], [-34.8820, -8.0480]], // Mock coordinates
+	const features = [
+		{
+			type: "Feature" as const,
+			geometry: {
+				type: "LineString",
+				coordinates: [
+					[-34.8813, -8.0476],
+					[-34.882, -8.048],
+				], // Mock coordinates
+			},
+			properties: {
+				street_name,
+				accidents_count: result?.count || 0,
+			},
 		},
-		properties: {
-			street_name,
-			accidents_count: result?.count || 0,
-		},
-	}];
+	];
 
 	return c.json({
 		type: "FeatureCollection" as const,
@@ -310,7 +337,9 @@ export const streetGeoJSON: AppRouteHandler<StreetGeoJSONRoute> = async (c) => {
 	});
 };
 
-export const streetEvolution: AppRouteHandler<StreetEvolutionRoute> = async (c) => {
+export const streetEvolution: AppRouteHandler<StreetEvolutionRoute> = async (
+	c,
+) => {
 	await ensureConnection();
 	const { street_name } = c.req.valid("param");
 	const { city, start_year = 2020, end_year = 2022 } = c.req.valid("query");
@@ -382,20 +411,29 @@ export const streetEvolution: AppRouteHandler<StreetEvolutionRoute> = async (c) 
 			END
 		`);
 
-	const byMonth = monthlyData.reduce((acc, item) => {
-		acc[item.month] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const byMonth = monthlyData.reduce(
+		(acc, item) => {
+			acc[item.month] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
-	const byWeekday = weekdayData.reduce((acc, item) => {
-		acc[item.weekday] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const byWeekday = weekdayData.reduce(
+		(acc, item) => {
+			acc[item.weekday] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
-	const byHour = hourlyData.reduce((acc, item) => {
-		acc[item.hour_group] = item.count;
-		return acc;
-	}, {} as Record<string, number>);
+	const byHour = hourlyData.reduce(
+		(acc, item) => {
+			acc[item.hour_group] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
 
 	return c.json({
 		street_name,
@@ -439,12 +477,12 @@ export const streetRecords: AppRouteHandler<StreetRecordsRoute> = async (c) => {
 		.orderBy(emergencyCalls.date, emergencyCalls.time_minute)
 		.limit(100);
 
-	const formattedRecords = records.map(record => ({
-		datetime: `${record.date}T${record.time || '00:00:00'}Z`,
-		category: record.subtype || 'UNKNOWN',
-		gender: record.gender || 'NÃO INFORMADO',
+	const formattedRecords = records.map((record) => ({
+		datetime: `${record.date}T${record.time || "00:00:00"}Z`,
+		category: record.subtype || "UNKNOWN",
+		gender: record.gender || "NÃO INFORMADO",
 		age: record.age,
-		outcome: record.outcome || 'NÃO INFORMADO',
+		outcome: record.outcome || "NÃO INFORMADO",
 	}));
 
 	return c.json({

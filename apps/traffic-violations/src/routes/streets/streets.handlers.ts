@@ -2,13 +2,13 @@ import { and, count, eq, ilike, gte, lte, sql, desc } from "drizzle-orm";
 import { db } from "../../db/index.js";
 import { officialStreets, trafficViolations } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
-import type { 
-	listStreetsRoute, 
+import type {
+	listStreetsRoute,
 	getStreetRoute,
 	streetsRankingRoute,
 	streetSummaryRoute,
 	streetViolationsRoute,
-	neighborhoodsRoute
+	neighborhoodsRoute,
 } from "./streets.routes.js";
 
 export const listStreets: AppRouteHandler<typeof listStreetsRoute> = async (
@@ -100,20 +100,29 @@ export const getStreet: AppRouteHandler<typeof getStreetRoute> = async (c) => {
 	}
 };
 
-export const streetsRanking: AppRouteHandler<typeof streetsRankingRoute> = async (c) => {
-	const { start_date, end_date, violation_type_id, limit } = c.req.valid("query");
+export const streetsRanking: AppRouteHandler<
+	typeof streetsRankingRoute
+> = async (c) => {
+	const { start_date, end_date, violation_type_id, limit } =
+		c.req.valid("query");
 
 	try {
 		// Build date conditions
 		const conditions = [];
 		if (start_date) {
-			conditions.push(gte(trafficViolations.violation_date, new Date(start_date)));
+			conditions.push(
+				gte(trafficViolations.violation_date, new Date(start_date)),
+			);
 		}
 		if (end_date) {
-			conditions.push(lte(trafficViolations.violation_date, new Date(end_date)));
+			conditions.push(
+				lte(trafficViolations.violation_date, new Date(end_date)),
+			);
 		}
 		if (violation_type_id) {
-			conditions.push(eq(trafficViolations.violation_type_id, violation_type_id));
+			conditions.push(
+				eq(trafficViolations.violation_type_id, violation_type_id),
+			);
 		}
 
 		const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
@@ -129,14 +138,17 @@ export const streetsRanking: AppRouteHandler<typeof streetsRankingRoute> = async
 				total_violations: count(),
 			})
 			.from(trafficViolations)
-			.innerJoin(officialStreets, eq(trafficViolations.street_code, officialStreets.code))
+			.innerJoin(
+				officialStreets,
+				eq(trafficViolations.street_code, officialStreets.code),
+			)
 			.where(whereClause)
 			.groupBy(
 				trafficViolations.street_code,
 				officialStreets.official_name,
 				officialStreets.short_name,
 				officialStreets.neighborhood_name,
-				officialStreets.transport_corridor
+				officialStreets.transport_corridor,
 			)
 			.orderBy(desc(count()))
 			.limit(limit);
@@ -148,7 +160,9 @@ export const streetsRanking: AppRouteHandler<typeof streetsRankingRoute> = async
 			neighborhood_name: street.neighborhood_name,
 			total_violations: street.total_violations,
 			ranking: index + 1,
-			violations_per_km: Math.round((street.total_violations / (Math.random() * 5 + 1)) * 100) / 100, // Mock calculation
+			violations_per_km:
+				Math.round((street.total_violations / (Math.random() * 5 + 1)) * 100) /
+				100, // Mock calculation
 			transport_corridor: street.transport_corridor,
 		}));
 
@@ -159,7 +173,9 @@ export const streetsRanking: AppRouteHandler<typeof streetsRankingRoute> = async
 	}
 };
 
-export const streetSummary: AppRouteHandler<typeof streetSummaryRoute> = async (c) => {
+export const streetSummary: AppRouteHandler<typeof streetSummaryRoute> = async (
+	c,
+) => {
 	const { street_code } = c.req.valid("param");
 
 	try {
@@ -206,50 +222,68 @@ export const streetSummary: AppRouteHandler<typeof streetSummaryRoute> = async (
 			})
 			.from(trafficViolations)
 			.where(eq(trafficViolations.street_code, street_code))
-			.groupBy(trafficViolations.violation_type_id, trafficViolations.description)
+			.groupBy(
+				trafficViolations.violation_type_id,
+				trafficViolations.description,
+			)
 			.orderBy(desc(count()))
 			.limit(5);
 
-		const violationsPerYear = yearlyData.reduce((acc, item) => {
-			acc[item.year] = item.count;
-			return acc;
-		}, {} as Record<string, number>);
+		const violationsPerYear = yearlyData.reduce(
+			(acc, item) => {
+				acc[item.year] = item.count;
+				return acc;
+			},
+			{} as Record<string, number>,
+		);
 
-		const topViolationTypes = topTypes.map(type => ({
+		const topViolationTypes = topTypes.map((type) => ({
 			type_id: type.type_id,
 			description: type.description,
 			count: type.count,
 		}));
 
-		return c.json({
-			street,
-			violations_summary: {
-				total_violations: totalResult?.count || 0,
-				violations_per_year: violationsPerYear,
-				top_violation_types: topViolationTypes,
+		return c.json(
+			{
+				street,
+				violations_summary: {
+					total_violations: totalResult?.count || 0,
+					violations_per_year: violationsPerYear,
+					top_violation_types: topViolationTypes,
+				},
 			},
-		}, 200) as any;
+			200,
+		) as any;
 	} catch (error) {
 		console.error("Error fetching street summary:", error);
 		return c.json({ error: "Internal server error" }, 500);
 	}
 };
 
-export const streetViolations: AppRouteHandler<typeof streetViolationsRoute> = async (c) => {
+export const streetViolations: AppRouteHandler<
+	typeof streetViolationsRoute
+> = async (c) => {
 	const { street_code } = c.req.valid("param");
-	const { start_date, end_date, violation_type_id, limit, offset } = c.req.valid("query");
+	const { start_date, end_date, violation_type_id, limit, offset } =
+		c.req.valid("query");
 
 	try {
 		// Build conditions
 		const conditions = [eq(trafficViolations.street_code, street_code)];
 		if (start_date) {
-			conditions.push(gte(trafficViolations.violation_date, new Date(start_date)));
+			conditions.push(
+				gte(trafficViolations.violation_date, new Date(start_date)),
+			);
 		}
 		if (end_date) {
-			conditions.push(lte(trafficViolations.violation_date, new Date(end_date)));
+			conditions.push(
+				lte(trafficViolations.violation_date, new Date(end_date)),
+			);
 		}
 		if (violation_type_id) {
-			conditions.push(eq(trafficViolations.violation_type_id, violation_type_id));
+			conditions.push(
+				eq(trafficViolations.violation_type_id, violation_type_id),
+			);
 		}
 
 		const whereClause = and(...conditions);
@@ -278,31 +312,40 @@ export const streetViolations: AppRouteHandler<typeof streetViolationsRoute> = a
 			.limit(limit)
 			.offset(offset);
 
-		return c.json({
-			data: violations,
-			pagination: {
-				limit,
-				offset,
-				total: totalResult?.count || 0,
+		return c.json(
+			{
+				data: violations,
+				pagination: {
+					limit,
+					offset,
+					total: totalResult?.count || 0,
+				},
 			},
-		}, 200) as any;
+			200,
+		) as any;
 	} catch (error) {
 		console.error("Error fetching street violations:", error);
 		return c.json({ error: "Internal server error" }, 500);
 	}
 };
 
-export const neighborhoods: AppRouteHandler<typeof neighborhoodsRoute> = async (c) => {
+export const neighborhoods: AppRouteHandler<typeof neighborhoodsRoute> = async (
+	c,
+) => {
 	const { start_date, end_date, limit } = c.req.valid("query");
 
 	try {
 		// Build date conditions
 		const conditions = [];
 		if (start_date) {
-			conditions.push(gte(trafficViolations.violation_date, new Date(start_date)));
+			conditions.push(
+				gte(trafficViolations.violation_date, new Date(start_date)),
+			);
 		}
 		if (end_date) {
-			conditions.push(lte(trafficViolations.violation_date, new Date(end_date)));
+			conditions.push(
+				lte(trafficViolations.violation_date, new Date(end_date)),
+			);
 		}
 
 		const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
@@ -316,20 +359,29 @@ export const neighborhoods: AppRouteHandler<typeof neighborhoodsRoute> = async (
 				total_streets: sql<number>`COUNT(DISTINCT ${officialStreets.code})`,
 			})
 			.from(trafficViolations)
-			.innerJoin(officialStreets, eq(trafficViolations.street_code, officialStreets.code))
+			.innerJoin(
+				officialStreets,
+				eq(trafficViolations.street_code, officialStreets.code),
+			)
 			.where(whereClause)
-			.groupBy(officialStreets.neighborhood_code, officialStreets.neighborhood_name)
+			.groupBy(
+				officialStreets.neighborhood_code,
+				officialStreets.neighborhood_name,
+			)
 			.orderBy(desc(count(trafficViolations.id)))
 			.limit(limit);
 
 		const neighborhoods = neighborhoodsData
-			.filter(n => n.neighborhood_name) // Filter out null neighborhoods
+			.filter((n) => n.neighborhood_name) // Filter out null neighborhoods
 			.map((neighborhood, index) => ({
 				neighborhood_code: neighborhood.neighborhood_code,
-				neighborhood_name: neighborhood.neighborhood_name || 'Unknown',
+				neighborhood_name: neighborhood.neighborhood_name || "Unknown",
 				total_violations: neighborhood.total_violations,
 				total_streets: neighborhood.total_streets,
-				violations_per_street: Math.round((neighborhood.total_violations / neighborhood.total_streets) * 100) / 100,
+				violations_per_street:
+					Math.round(
+						(neighborhood.total_violations / neighborhood.total_streets) * 100,
+					) / 100,
 				ranking: index + 1,
 			}));
 

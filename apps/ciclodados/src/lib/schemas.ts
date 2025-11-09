@@ -9,14 +9,16 @@ export const streetSearchQuerySchema = z.object({
 });
 
 export const streetSearchResponseSchema = z.object({
-	matches: z.array(z.object({
-		id: z.string(),
-		name: z.string(),
-		confidence: z.number().min(0).max(1),
-		municipality: z.string().optional(),
-		length: z.number().optional(),
-		elements: z.number().optional(),
-	})),
+	matches: z.array(
+		z.object({
+			id: z.string(),
+			name: z.string(),
+			confidence: z.number().min(0).max(1),
+			municipality: z.string().optional(),
+			length: z.number().optional(),
+			elements: z.number().optional(),
+		}),
+	),
 });
 
 // Street details schemas
@@ -29,11 +31,13 @@ export const streetDetailsResponseSchema = z.object({
 	name: z.string(),
 	geometry: z.object({
 		type: z.literal("FeatureCollection"),
-		features: z.array(z.object({
-			type: z.literal("Feature"),
-			geometry: z.unknown(),
-			properties: z.record(z.unknown()),
-		})),
+		features: z.array(
+			z.object({
+				type: z.literal("Feature"),
+				geometry: z.unknown(),
+				properties: z.record(z.unknown()),
+			}),
+		),
 	}),
 	properties: z.record(z.unknown()),
 });

@@ -12,7 +12,7 @@ describe("Violations API Integration Tests", () => {
 		it("should return violations for current month by default", async () => {
 			const res = await client.v1.violations.$get();
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(Array.isArray(data)).toBe(true);
 		});
@@ -25,7 +25,7 @@ describe("Violations API Integration Tests", () => {
 				},
 			});
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(Array.isArray(data)).toBe(true);
 		});
@@ -38,7 +38,7 @@ describe("Violations API Integration Tests", () => {
 				},
 			});
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(Array.isArray(data)).toBe(true);
 		});
@@ -68,7 +68,7 @@ describe("Violations API Integration Tests", () => {
 				},
 			});
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(Array.isArray(data)).toBe(true);
 			expect(data.length).toBeLessThanOrEqual(5);
@@ -81,7 +81,7 @@ describe("Violations API Integration Tests", () => {
 				},
 			});
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(Array.isArray(data)).toBe(true);
 		});
@@ -93,7 +93,7 @@ describe("Violations API Integration Tests", () => {
 				},
 			});
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(Array.isArray(data)).toBe(true);
 		});
@@ -103,7 +103,7 @@ describe("Violations API Integration Tests", () => {
 		it("should return violations grouped by location for current month", async () => {
 			const res = await client.v1.violations["by-location"].$get();
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(data).toHaveProperty("locations");
 			expect(Array.isArray(data.locations)).toBe(true);
@@ -117,7 +117,7 @@ describe("Violations API Integration Tests", () => {
 				},
 			});
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(data).toHaveProperty("locations");
 			expect(Array.isArray(data.locations)).toBe(true);
@@ -130,7 +130,7 @@ describe("Violations API Integration Tests", () => {
 				},
 			});
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			if (data.locations.length > 0) {
 				expect(data.locations[0]).toHaveProperty("ranking");
@@ -144,7 +144,7 @@ describe("Violations API Integration Tests", () => {
 		it("should return GeoJSON for current month", async () => {
 			const res = await client.v1.violations.geojson.$get();
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(data).toHaveProperty("type", "FeatureCollection");
 			expect(data).toHaveProperty("features");
@@ -159,7 +159,7 @@ describe("Violations API Integration Tests", () => {
 				},
 			});
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(data).toHaveProperty("type", "FeatureCollection");
 			expect(data).toHaveProperty("features");
@@ -172,7 +172,7 @@ describe("Violations API Integration Tests", () => {
 				},
 			});
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(data).toHaveProperty("type", "FeatureCollection");
 		});
@@ -184,7 +184,7 @@ describe("Violations API Integration Tests", () => {
 				},
 			});
 			expect(res.status).toBe(200);
-			
+
 			const data = await res.json();
 			expect(data.features.length).toBeLessThanOrEqual(10);
 		});
@@ -201,7 +201,7 @@ describe("Violations API Integration Tests", () => {
 				},
 			});
 			expect(res.status).toBe(200);
-			
+
 			// The API should use start_date/end_date and ignore month/year
 			const data = await res.json();
 			expect(Array.isArray(data)).toBe(true);

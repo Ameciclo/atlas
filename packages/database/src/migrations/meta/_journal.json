@@ -1,48 +1,48 @@
 {
-  "version": "7",
-  "dialect": "postgresql",
-  "entries": [
-    {
-      "idx": 0,
-      "version": "7",
-      "when": 1762368052626,
-      "tag": "0000_new_silhouette",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1762461943847,
-      "tag": "0001_magenta_owl",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1762478416174,
-      "tag": "0002_shiny_pestilence",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1762481937268,
-      "tag": "0003_stormy_sway",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1762538952206,
-      "tag": "0004_outstanding_kid_colt",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1762539263151,
-      "tag": "0005_remarkable_inhumans",
-      "breakpoints": true
-    }
-  ]
+	"version": "7",
+	"dialect": "postgresql",
+	"entries": [
+		{
+			"idx": 0,
+			"version": "7",
+			"when": 1762368052626,
+			"tag": "0000_new_silhouette",
+			"breakpoints": true
+		},
+		{
+			"idx": 1,
+			"version": "7",
+			"when": 1762461943847,
+			"tag": "0001_magenta_owl",
+			"breakpoints": true
+		},
+		{
+			"idx": 2,
+			"version": "7",
+			"when": 1762478416174,
+			"tag": "0002_shiny_pestilence",
+			"breakpoints": true
+		},
+		{
+			"idx": 3,
+			"version": "7",
+			"when": 1762481937268,
+			"tag": "0003_stormy_sway",
+			"breakpoints": true
+		},
+		{
+			"idx": 4,
+			"version": "7",
+			"when": 1762538952206,
+			"tag": "0004_outstanding_kid_colt",
+			"breakpoints": true
+		},
+		{
+			"idx": 5,
+			"version": "7",
+			"when": 1762539263151,
+			"tag": "0005_remarkable_inhumans",
+			"breakpoints": true
+		}
+	]
 }
