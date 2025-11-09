@@ -312,12 +312,23 @@
                                   },
                                   "distance_meters": {
                                     "type": "number"
+                                  },
+                                  "total_cyclists": {
+                                    "type": "number"
+                                  },
+                                  "years": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "number"
+                                    }
                                   }
                                 },
                                 "required": [
                                   "name",
                                   "city",
-                                  "distance_meters"
+                                  "distance_meters",
+                                  "total_cyclists",
+                                  "years"
                                 ]
                               },
                               {
@@ -364,6 +375,9 @@
                         "total_locations": {
                           "type": "number"
                         },
+                        "total_cyclists": {
+                          "type": "number"
+                        },
                         "by_city": {
                           "type": "object",
                           "additionalProperties": {
@@ -373,6 +387,7 @@
                       },
                       "required": [
                         "total_locations",
+                        "total_cyclists",
                         "by_city"
                       ]
                     }

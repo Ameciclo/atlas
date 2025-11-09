@@ -1,6 +1,7 @@
 import { sql } from "drizzle-orm";
 import { pcrStreets } from "@atlas/database/schemas/pcr-streets";
 import { countingLocations } from "@atlas/database/schemas/cyclist-counts";
+import { cyclistProfiles } from "@atlas/database/schemas/cyclist-profile";
 import { db } from "./database.js";
 
 export interface StreetMatch {
@@ -26,6 +27,27 @@ export interface StreetDetails {
 	properties: Record<string, unknown>;
 }
 
+// Static research locations with correct coordinates
+const RESEARCH_LOCATIONS = [
+	{ street: "Rua do Futuro x Avenida Dr. Malaquias", coordinates: [-34.90176, -8.03876] },
+	{ street: "Avenida Professor José dos Anjos x Avenida Beberibe", coordinates: [-34.89293, -8.02793] },
+	{ street: "Estrada do Arraial x Rua Padre Lemos", coordinates: [-34.91773, -8.02676] },
+	{ street: "Avenida Arquiteto Luiz Nunes x Rua Engenheiro Alves de Souza", coordinates: [-34.91224, -8.09803] },
+	{ street: "Avenida General San Martin x Avenida Abdias de Carvalho", coordinates: [-34.92576, -8.06046] },
+	{ street: "Avenida Recife x Rua Pintor Antonio de Albuquerque", coordinates: [-34.92706, -8.10793] },
+	{ street: "Avenida Recife x Rua Pintor Antônio de Albuquerque", coordinates: [-34.92706, -8.10793] },
+	{ street: "Avenida Caxangá x Avenida General San Martin", coordinates: [-34.92105, -8.05045] },
+	{ street: "Avenida Caxangá x Avenida Afonso Olindense", coordinates: [-34.95573, -8.0313] },
+	{ street: "Avenida Engenheiro Domingos Ferreira x Rua Antônio Falcão", coordinates: [-34.89552, -8.11574] },
+	{ street: "Avenida do Forte do Bom Jesus x Rua Gomes Taborda", coordinates: [-34.92892, -8.05351] },
+	{ street: "Estrada de Belém x Rua Odorico Mendes", coordinates: [-34.88138, -8.03216] },
+	{ street: "Rua Cosme Viana x Rua Vinte e Um de Abril", coordinates: [-34.90919, -8.07701] },
+	{ street: "Avenida Governador Agamenon Magalhães x Praça do Derby", coordinates: [-34.89772, -8.05661] },
+	{ street: "Avenida Cruz Cabugá x Rua Dr. Jayme da Fonte", coordinates: [-34.87489, -8.04448] },
+	{ street: "Av. Guararapes x Av. Dantas Barreto", coordinates: [-34.87848, -8.06392] },
+	{ street: "R. Souza Bandeira x R. Cantora Clara Nunes", coordinates: [-34.91665, -8.04425] }
+];
+
 export class StreetService {
 	async getStreetDataSummary(streetId: string): Promise<{ street_id: string; street_name: string; data_summary: any } | null> {
 		// Get street info first
@@ -39,9 +61,45 @@ export class StreetService {
 			return null;
 		}
 
-		// TODO: Implement real cycling counts query
-		const cycling_counts = 0;
+		// Get cycling counts within 30m of street geometry
+		let cycling_counts = 0;
+		try {
+			const countResult = await db
+				.select({ count: sql<number>`COUNT(*)` })
+				.from(countingLocations)
+				.where(
+					sql`EXISTS (
+						SELECT 1
+						FROM pcr_streets ps
+						WHERE ps.nlogra_conc = ${street[0].name}
+						AND ST_DWithin(
+							ST_SetSRID(ST_MakePoint(${countingLocations.longitude}::float, ${countingLocations.latitude}::float), 4326)::geography,
+							ps.coordinates::geography,
+							30
+						)
+					)`
+				);
+			cycling_counts = countResult[0]?.count || 0;
+		} catch (error) {
+			console.log('Error counting cycling locations:', error);
+			cycling_counts = 0;
+		}
 		
+		// Check if cycling profile research exists for this street (using static data)
+		let cycling_profile = 0;
+		try {
+			// Check if street name matches any research location
+			const streetName = street[0].name.toLowerCase();
+			const hasResearch = RESEARCH_LOCATIONS.some(location => {
+				const locationStreet = location.street.toLowerCase();
+				return locationStreet.includes(streetName) || streetName.includes(locationStreet.split(' x ')[0].replace(/^(rua|avenida|av\.|r\.)\s+/i, '').trim());
+			});
+			cycling_profile = hasResearch ? 1 : 0;
+		} catch (error) {
+			console.log('Error checking cycling profile locations:', error);
+			cycling_profile = 0;
+		}
+
 		// Simulate other data counts
 		const nameHash = street[0].name.length + street[0].name.charCodeAt(0);
 		return {
@@ -49,7 +107,7 @@ export class StreetService {
 			street_name: street[0].name,
 			data_summary: {
 				cycling_counts,
-				cycling_profile: nameHash % 3,
+				cycling_profile,
 				cycle_infra_planned: nameHash % 4,
 				cycle_infra_executed: nameHash % 2,
 				dangerous_streets: nameHash % 2,
@@ -61,86 +119,53 @@ export class StreetService {
 	async searchStreets(query: string, limit: number, byLength?: boolean, byElements?: boolean): Promise<StreetMatch[]> {
 		try {
 			// Try fuzzy search with conditional ordering
-			if (byLength) {
-				const fuzzyResults = await db
-					.select({
-						id: pcrStreets.id,
-						name: pcrStreets.nlogra_conc,
-						length: pcrStreets.db2gse_sde,
-						similarity: sql<number>`similarity(${pcrStreets.nlogra_conc}, ${query})`,
-					})
-					.from(pcrStreets)
-					.where(sql`similarity(${pcrStreets.nlogra_conc}, ${query}) > 0.1`)
-					.orderBy(sql`${pcrStreets.db2gse_sde} DESC, similarity(${pcrStreets.nlogra_conc}, ${query}) DESC`)
-					.limit(limit);
+			const fuzzyResults = await db
+				.select({
+					id: pcrStreets.id,
+					name: pcrStreets.nlogra_conc,
+					length: pcrStreets.db2gse_sde,
+					similarity: sql<number>`similarity(${pcrStreets.nlogra_conc}, ${query})`,
+				})
+				.from(pcrStreets)
+				.where(sql`similarity(${pcrStreets.nlogra_conc}, ${query}) > 0.1`)
+				.orderBy(byLength ? 
+					sql`${pcrStreets.db2gse_sde} DESC, similarity(${pcrStreets.nlogra_conc}, ${query}) DESC` :
+					sql`similarity(${pcrStreets.nlogra_conc}, ${query}) DESC`
+				)
+				.limit(limit);
 
-				return fuzzyResults.map(row => ({
-					id: row.id.toString(),
-					name: row.name,
-					confidence: row.similarity,
-					municipality: "Recife",
-					length: row.length || undefined,
-				}));
-			} else {
-				const fuzzyResults = await db
-					.select({
-						id: pcrStreets.id,
-						name: pcrStreets.nlogra_conc,
-						similarity: sql<number>`similarity(${pcrStreets.nlogra_conc}, ${query})`,
-					})
-					.from(pcrStreets)
-					.where(sql`similarity(${pcrStreets.nlogra_conc}, ${query}) > 0.1`)
-					.orderBy(sql`similarity(${pcrStreets.nlogra_conc}, ${query}) DESC`)
-					.limit(limit);
-
-				return fuzzyResults.map(row => ({
-					id: row.id.toString(),
-					name: row.name,
-					confidence: row.similarity,
-					municipality: "Recife",
-				}));
-			}
+			return fuzzyResults.map(row => ({
+				id: row.id.toString(),
+				name: row.name,
+				confidence: row.similarity,
+				municipality: "Recife",
+				length: row.length || undefined,
+			}));
 		} catch {
 			// Fallback to ILIKE if pg_trgm not available
 			const searchTerm = `%${query.toUpperCase()}%`;
 			
-			if (byLength) {
-				const likeResults = await db
-					.select({
-						id: pcrStreets.id,
-						name: pcrStreets.nlogra_conc,
-						length: pcrStreets.db2gse_sde,
-					})
-					.from(pcrStreets)
-					.where(sql`UPPER(${pcrStreets.nlogra_conc}) LIKE ${searchTerm}`)
-					.orderBy(sql`${pcrStreets.db2gse_sde} DESC, ${pcrStreets.nlogra_conc}`)
-					.limit(limit);
+			const likeResults = await db
+				.select({
+					id: pcrStreets.id,
+					name: pcrStreets.nlogra_conc,
+					length: pcrStreets.db2gse_sde,
+				})
+				.from(pcrStreets)
+				.where(sql`UPPER(${pcrStreets.nlogra_conc}) LIKE ${searchTerm}`)
+				.orderBy(byLength ? 
+					sql`${pcrStreets.db2gse_sde} DESC, ${pcrStreets.nlogra_conc}` :
+					pcrStreets.nlogra_conc
+				)
+				.limit(limit);
 
-				return likeResults.map(row => ({
-					id: row.id.toString(),
-					name: row.name,
-					confidence: 1.0,
-					municipality: "Recife",
-					length: row.length || undefined,
-				}));
-			} else {
-				const likeResults = await db
-					.select({
-						id: pcrStreets.id,
-						name: pcrStreets.nlogra_conc,
-					})
-					.from(pcrStreets)
-					.where(sql`UPPER(${pcrStreets.nlogra_conc}) LIKE ${searchTerm}`)
-					.orderBy(pcrStreets.nlogra_conc)
-					.limit(limit);
-
-				return likeResults.map(row => ({
-					id: row.id.toString(),
-					name: row.name,
-					confidence: 1.0,
-					municipality: "Recife",
-				}));
-			}
+			return likeResults.map(row => ({
+				id: row.id.toString(),
+				name: row.name,
+				confidence: 1.0,
+				municipality: "Recife",
+				length: row.length || undefined,
+			}));
 		}
 	}
 
