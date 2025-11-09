@@ -115,50 +115,8 @@ export class StreetService {
 			emergency_calls = 0;
 		}
 
-		// Get cycling infrastructure data (PDC analysis)
-		let cycling_infra = {
-			pdc_realizado_designado: 0,
-			pdc_realizado_nao_designado: 0,
-			realizado_fora_pdc: 0,
-			pdc_nao_realizado: 0
-		};
-		try {
-			const streetName = street[0]!.name;
-			
-			// PDC Realizado Designado: exists in both ciclomapa_infra and pdc_relation_ways
-			const pdcRealizadoDesignado = await db
-				.select({ count: sql<number>`COUNT(DISTINCT ci.osm_id)` })
-				.from(sql`ciclomapa_infra ci`)
-				.innerJoin(sql`pdc_relation_ways prw`, sql`ci.osm_id = prw.osm_id`)
-				.where(sql`ci.name ILIKE ${`%${streetName}%`} OR prw.name ILIKE ${`%${streetName}%`}`);
-
-			// Realizado Fora PDC: exists in ciclomapa_infra but not in pdc_relation_ways
-			const realizadoForaPdc = await db
-				.select({ count: sql<number>`COUNT(*)` })
-				.from(ciclomapaInfra)
-				.where(sql`${ciclomapaInfra.name} ILIKE ${`%${streetName}%`} 
-					AND ${ciclomapaInfra.osm_id} NOT IN (
-						SELECT osm_id FROM pdc_relation_ways WHERE name ILIKE ${`%${streetName}%`}
-					)`);
-
-			// PDC Não Realizado: exists in pdc_relation_ways but not in ciclomapa_infra
-			const pdcNaoRealizado = await db
-				.select({ count: sql<number>`COUNT(*)` })
-				.from(pdcRelationWays)
-				.where(sql`${pdcRelationWays.name} ILIKE ${`%${streetName}%`} 
-					AND ${pdcRelationWays.osm_id} NOT IN (
-						SELECT osm_id FROM ciclomapa_infra WHERE name ILIKE ${`%${streetName}%`}
-					)`);
-
-			cycling_infra = {
-				pdc_realizado_designado: pdcRealizadoDesignado[0]?.count || 0,
-				pdc_realizado_nao_designado: 0, // Not applicable with current data structure
-				realizado_fora_pdc: realizadoForaPdc[0]?.count || 0,
-				pdc_nao_realizado: pdcNaoRealizado[0]?.count || 0
-			};
-		} catch (error) {
-			console.log('Error counting cycling infrastructure:', error);
-		}
+		// Note: PDC analysis removed from data-summary due to performance
+		// Use /v1/streets/{id}/pdc-analysis for detailed PDC data
 
 		return {
 			street_id: streetId,
@@ -167,7 +125,6 @@ export class StreetService {
 				cycling_counts,
 				cycling_profile,
 				emergency_calls,
-				cycling_infra,
 			},
 		};
 	}
