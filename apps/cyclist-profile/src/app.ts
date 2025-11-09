@@ -140,7 +140,10 @@ const cleanApp = new Hono()
 					})),
 			});
 		} catch (error) {
-			return c.json({ error: error instanceof Error ? error.message : String(error) }, 500);
+			return c.json(
+				{ error: error instanceof Error ? error.message : String(error) },
+				500,
+			);
 		}
 	})
 	.get("/v1/cyclist-profiles", async (c) => {
@@ -226,7 +229,10 @@ const cleanApp = new Hono()
 				},
 			});
 		} catch (error) {
-			return c.json({ error: error instanceof Error ? error.message : String(error) }, 500);
+			return c.json(
+				{ error: error instanceof Error ? error.message : String(error) },
+				500,
+			);
 		}
 	});
 

@@ -116,50 +116,32 @@ export const getAll = createRoute({
 				.string()
 				.optional()
 				.openapi({ description: "Filter by city ID", example: "2611606" }),
-			limit: z
-				.string()
-				.optional()
-				.openapi({
-					description: "Maximum number of results (default: 1000)",
-					example: "500",
-				}),
-			offset: z
-				.string()
-				.optional()
-				.openapi({
-					description: "Number of results to skip for pagination",
-					example: "0",
-				}),
-			simplify: z
-				.string()
-				.optional()
-				.openapi({
-					description: "Geometry simplification tolerance (default: 0.0001)",
-					example: "0.001",
-				}),
-			precision: z
-				.string()
-				.optional()
-				.openapi({
-					description:
-						"Decimal precision for coordinates (4=~10m, 5=~1m, 6=~0.1m)",
-					example: "5",
-				}),
-			minimal: z
-				.string()
-				.optional()
-				.openapi({
-					description: "Return only essential status properties (true/false)",
-					example: "true",
-				}),
-			only_all: z
-				.string()
-				.optional()
-				.openapi({
-					description:
-						"Return only the FeatureCollection without all/byCity structure (true/false)",
-					example: "true",
-				}),
+			limit: z.string().optional().openapi({
+				description: "Maximum number of results (default: 1000)",
+				example: "500",
+			}),
+			offset: z.string().optional().openapi({
+				description: "Number of results to skip for pagination",
+				example: "0",
+			}),
+			simplify: z.string().optional().openapi({
+				description: "Geometry simplification tolerance (default: 0.0001)",
+				example: "0.001",
+			}),
+			precision: z.string().optional().openapi({
+				description:
+					"Decimal precision for coordinates (4=~10m, 5=~1m, 6=~0.1m)",
+				example: "5",
+			}),
+			minimal: z.string().optional().openapi({
+				description: "Return only essential status properties (true/false)",
+				example: "true",
+			}),
+			only_all: z.string().optional().openapi({
+				description:
+					"Return only the FeatureCollection without all/byCity structure (true/false)",
+				example: "true",
+			}),
 		}),
 	},
 	responses: {

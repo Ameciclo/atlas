@@ -21,4 +21,4 @@ export const handleStreetDataSummary = async (c: Context) => {
 		street_name: dataSummary.street_name,
 		data_summary: dataSummary.data_summary,
 	});
-}
+};

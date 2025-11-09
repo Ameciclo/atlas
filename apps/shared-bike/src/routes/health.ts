@@ -26,7 +26,7 @@ const healthRoute = createRoute({
 
 const router = createRouter();
 
-router.openapi(healthRoute, async (c) => {
+const healthHandler = async (c: any) => {
 	let dbStatus: "connected" | "disconnected" = "connected";
 
 	try {
@@ -51,6 +51,8 @@ router.openapi(healthRoute, async (c) => {
 		service: "shared-bike",
 		database: dbStatus,
 	});
-});
+};
+
+router.openapi(healthRoute, healthHandler as any);
 
 export default router;

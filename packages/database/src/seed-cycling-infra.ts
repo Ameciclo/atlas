@@ -220,7 +220,9 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 				relation_id: parseInt(row.relation_id!, 10),
 				city_id: parseInt(row.city_id!, 10),
 			}))
-			.filter((row) => !Number.isNaN(row.relation_id) && !Number.isNaN(row.city_id));
+			.filter(
+				(row) => !Number.isNaN(row.relation_id) && !Number.isNaN(row.city_id),
+			);
 
 		if (relationCitiesToInsert.length === 0) {
 			console.log("⚠️ No valid relation-city relationships to insert");

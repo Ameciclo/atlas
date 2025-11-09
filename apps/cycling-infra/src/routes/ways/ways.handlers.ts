@@ -2,7 +2,12 @@ import { createConnectedDatabase } from "@atlas/database";
 import { pdcRelationWays } from "@atlas/database/schemas/cycling-infra";
 import env from "../../env.js";
 import type { AppRouteHandler } from "../../lib/types.js";
-import type { ListRoute, GetSummaryRoute, GetAllRoute, GetNearbyRoute } from "./ways.routes.js";
+import type {
+	ListRoute,
+	GetSummaryRoute,
+	GetAllRoute,
+	GetNearbyRoute,
+} from "./ways.routes.js";
 
 // Helper function to calculate distance between two coordinates
 function calculateDistance(
@@ -23,7 +28,10 @@ function calculateDistance(
 }
 
 // Calculate total length of a LineString or MultiLineString
-function calculateGeometryLength(geometry: { type: string; coordinates: number[][] | number[][][] }): number {
+function calculateGeometryLength(geometry: {
+	type: string;
+	coordinates: number[][] | number[][][];
+}): number {
 	if (!geometry || !geometry.coordinates) return 0;
 
 	let totalLength = 0;
@@ -31,13 +39,19 @@ function calculateGeometryLength(geometry: { type: string; coordinates: number[]
 	if (geometry.type === "LineString") {
 		const coords = geometry.coordinates as number[][];
 		for (let i = 0; i < coords.length - 1; i++) {
-			totalLength += calculateDistance(coords[i] as [number, number], coords[i + 1] as [number, number]);
+			totalLength += calculateDistance(
+				coords[i] as [number, number],
+				coords[i + 1] as [number, number],
+			);
 		}
 	} else if (geometry.type === "MultiLineString") {
 		const multiCoords = geometry.coordinates as number[][][];
 		for (const lineString of multiCoords) {
 			for (let i = 0; i < lineString.length - 1; i++) {
-				totalLength += calculateDistance(lineString[i] as [number, number], lineString[i + 1] as [number, number]);
+				totalLength += calculateDistance(
+					lineString[i] as [number, number],
+					lineString[i + 1] as [number, number],
+				);
 			}
 		}
 	}
@@ -64,21 +78,29 @@ export const list = async (c: any) => {
 
 	// Transform to original format
 	const transformedWays = ways.map((way) => {
-		const geojsonData = way.geojson as { geometry?: { type: string; coordinates: number[][] | number[][][] } };
+		const geojsonData = way.geojson as {
+			geometry?: { type: string; coordinates: number[][] | number[][][] };
+		};
 		const osmProps = way.osm_properties as Record<string, unknown>;
 
 		// Extract numeric OSM ID from string format (e.g., "relation/15997469" -> 15997469)
 		const osmIdMatch = String(way.osm_id).match(/\/(\d+)$/);
-		const numericOsmId =
-			osmIdMatch?.[1] ? parseInt(osmIdMatch[1], 10) : 0;
+		const numericOsmId = osmIdMatch?.[1] ? parseInt(osmIdMatch[1], 10) : 0;
 
 		// Calculate length from geometry
-		const length = geojsonData?.geometry ? calculateGeometryLength(geojsonData.geometry) : 0;
+		const length = geojsonData?.geometry
+			? calculateGeometryLength(geojsonData.geometry)
+			: 0;
 
 		// Determine cycleway info from OSM properties
-		const highway = (osmProps?.highway as string) || (osmProps?.route as string) || "cycleway";
+		const highway =
+			(osmProps?.highway as string) ||
+			(osmProps?.route as string) ||
+			"cycleway";
 		const hasCycleway = highway === "cycleway" || osmProps?.route === "bicycle";
-		const cyclewayTypology = (osmProps?.description as string)?.includes("Ciclovia")
+		const cyclewayTypology = (osmProps?.description as string)?.includes(
+			"Ciclovia",
+		)
 			? "Ciclovia"
 			: (osmProps?.description as string)?.includes("Ciclofaixa")
 				? "Ciclofaixa"
@@ -176,13 +198,15 @@ export const getSummary = async (c: any) => {
 	);
 	console.log("Sample:", waysData.rows.slice(0, 3));
 
-	const cities: { [key: string]: Array<{
-		length: number;
-		hasCycleway: boolean;
-		relationId: number;
-		pdcTypology: string;
-		cyclewayTypology: string;
-	}> } = {};
+	const cities: {
+		[key: string]: Array<{
+			length: number;
+			hasCycleway: boolean;
+			relationId: number;
+			pdcTypology: string;
+			cyclewayTypology: string;
+		}>;
+	} = {};
 
 	waysData.rows.forEach((row: Record<string, unknown>) => {
 		const cityId = row.city_id?.toString() || "2611606";
@@ -210,14 +234,16 @@ export const getSummary = async (c: any) => {
 
 	console.log("PDC Cities found:", allPdcCities.rows.length);
 
-	const summaryByCity: { [key: string]: {
-		pdc_feito: number;
-		out_pdc: number;
-		pdc_total: number;
-		real_pdc: number;
-		percent: number;
-		real_percent: number;
-	} } = {};
+	const summaryByCity: {
+		[key: string]: {
+			pdc_feito: number;
+			out_pdc: number;
+			pdc_total: number;
+			real_pdc: number;
+			percent: number;
+			real_percent: number;
+		};
+	} = {};
 
 	// Processar cidades com dados
 	for (const city in cities) {
@@ -249,13 +275,15 @@ export const getSummary = async (c: any) => {
 	return c.json({ all: allCitySummary, byCity: summaryByCity });
 };
 
-function generateCitySummary(cityData: Array<{
-	length: number;
-	hasCycleway: boolean;
-	relationId: number;
-	pdcTypology: string;
-	cyclewayTypology: string;
-}>) {
+function generateCitySummary(
+	cityData: Array<{
+		length: number;
+		hasCycleway: boolean;
+		relationId: number;
+		pdcTypology: string;
+		cyclewayTypology: string;
+	}>,
+) {
 	const newData = cityData.map((d) => {
 		const hasCycleway = d.hasCycleway === true;
 		const isNotOutPDC = d.relationId !== 0; // 0 = não PDC, >0 = PDC
@@ -456,9 +484,13 @@ export const getAll = async (c: any) => {
 	}
 
 	// Agrupa por cidade quando não há filtro
-	const byCity: { [key: string]: { type: "FeatureCollection"; features: typeof features } } = {};
+	const byCity: {
+		[key: string]: { type: "FeatureCollection"; features: typeof features };
+	} = {};
 	features.forEach((feature) => {
-		const cityId = (feature.properties as { city_id?: unknown }).city_id?.toString() || "unknown";
+		const cityId =
+			(feature.properties as { city_id?: unknown }).city_id?.toString() ||
+			"unknown";
 		if (!byCity[cityId]) {
 			byCity[cityId] = {
 				type: "FeatureCollection" as const,
@@ -532,7 +564,7 @@ export const getNearby = async (c: any) => {
 		type: "Feature" as const,
 		id: way.osm_id,
 		properties: {
-			...(way.osm_properties as Record<string, unknown> || {}),
+			...((way.osm_properties as Record<string, unknown>) || {}),
 			pdc_ref: way.pdc_ref,
 			name: way.relation_name || way.name,
 			pdc_typology: way.pdc_typology,

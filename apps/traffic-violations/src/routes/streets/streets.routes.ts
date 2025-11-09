@@ -1,6 +1,5 @@
 import { createRoute, z } from "@hono/zod-openapi";
 
-
 const tags = ["Streets"];
 
 export const listStreetsRoute = createRoute({

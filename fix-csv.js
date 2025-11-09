@@ -7,11 +7,14 @@ const content = fs.readFileSync(
 );
 
 // Usar regex para encontrar e corrigir os JSONs
-const fixedContent = content.replace(/"(\{[^}]+\})"/g, (_match, jsonContent) => {
-	// Corrigir aspas duplas escapadas
-	const fixed = jsonContent.replace(/""/g, '"');
-	return `"${fixed}"`;
-});
+const fixedContent = content.replace(
+	/"(\{[^}]+\})"/g,
+	(_match, jsonContent) => {
+		// Corrigir aspas duplas escapadas
+		const fixed = jsonContent.replace(/""/g, '"');
+		return `"${fixed}"`;
+	},
+);
 
 // Salvar arquivo corrigido
 fs.writeFileSync("./apps/cycling-infra/src/db/ways-fixed.csv", fixedContent);

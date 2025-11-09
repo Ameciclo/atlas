@@ -1,5 +1,5 @@
 import { pinoLogger } from "hono-pino";
-import pino from "pino";
+import * as pino from "pino";
 import type { LoggerOptions } from "pino";
 
 export function createPinoLogger() {

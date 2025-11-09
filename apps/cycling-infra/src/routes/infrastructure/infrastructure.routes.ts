@@ -11,35 +11,26 @@ const InfrastructureSchema = z.object({
 	osm_id: z
 		.string()
 		.openapi({ description: "OpenStreetMap ID", example: "way/123456" }),
-	name: z
-		.string()
-		.nullable()
-		.openapi({
-			description: "Infrastructure name",
-			example: "Ciclofaixa da Rua da Aurora",
-		}),
-	infra_type: z
-		.string()
-		.openapi({
-			description: "Type of cycling infrastructure",
-			example: "Ciclofaixa",
-		}),
+	name: z.string().nullable().openapi({
+		description: "Infrastructure name",
+		example: "Ciclofaixa da Rua da Aurora",
+	}),
+	infra_type: z.string().openapi({
+		description: "Type of cycling infrastructure",
+		example: "Ciclofaixa",
+	}),
 	coordinates: z.any().openapi({ description: "PostGIS geometry coordinates" }),
 	geojson: z
 		.any()
 		.openapi({ description: "GeoJSON representation of the infrastructure" }),
-	created_at: z
-		.string()
-		.openapi({
-			description: "Creation timestamp",
-			example: "2024-01-01T00:00:00Z",
-		}),
-	updated_at: z
-		.string()
-		.openapi({
-			description: "Last update timestamp",
-			example: "2024-01-01T00:00:00Z",
-		}),
+	created_at: z.string().openapi({
+		description: "Creation timestamp",
+		example: "2024-01-01T00:00:00Z",
+	}),
+	updated_at: z.string().openapi({
+		description: "Last update timestamp",
+		example: "2024-01-01T00:00:00Z",
+	}),
 });
 
 export const list = createRoute({
@@ -144,20 +135,14 @@ export const getNearby = createRoute({
 			lon: z
 				.string()
 				.openapi({ description: "Longitude coordinate", example: "-34.8770" }),
-			radius: z
-				.string()
-				.optional()
-				.openapi({
-					description: "Search radius in meters (default: 1000, max: 10000)",
-					example: "1000",
-				}),
-			type: z
-				.string()
-				.optional()
-				.openapi({
-					description: "Filter by infrastructure type",
-					example: "Ciclofaixa",
-				}),
+			radius: z.string().optional().openapi({
+				description: "Search radius in meters (default: 1000, max: 10000)",
+				example: "1000",
+			}),
+			type: z.string().optional().openapi({
+				description: "Filter by infrastructure type",
+				example: "Ciclofaixa",
+			}),
 		}),
 	},
 	responses: {

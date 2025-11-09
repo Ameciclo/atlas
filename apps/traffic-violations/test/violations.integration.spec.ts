@@ -1,4 +1,4 @@
-import { describe, it, expect, } from "vitest";
+import { describe, it, expect } from "vitest";
 import { testClient } from "hono/testing";
 import { createApp } from "../src/lib/create-app.js";
 import { violationsRoutes } from "../src/routes/violations/violations.index.js";

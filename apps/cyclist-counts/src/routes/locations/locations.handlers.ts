@@ -1,11 +1,8 @@
-import { eq, sql, } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
 import { db } from "../../db/index.js";
-import {
-	countingEvents,
-	countingSessions,
-} from "../../db/schema.js";
+import { countingEvents, countingSessions } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
 	GetByIdRoute,
@@ -16,7 +13,9 @@ import type {
 export const list: AppRouteHandler<ListRoute> = async (c) => {
 	const { city } = c.req.valid("query");
 
-	let locations: Awaited<ReturnType<typeof db.query.countingLocations.findMany>>;
+	let locations: Awaited<
+		ReturnType<typeof db.query.countingLocations.findMany>
+	>;
 	if (city) {
 		// Filter by city if provided
 		locations = await db.query.countingLocations.findMany({
@@ -127,7 +126,8 @@ async function getLocationSummary(locationId: number) {
 					characteristics.juveniles += Number(sessionChars.juveniles) || 0;
 					characteristics.service += Number(sessionChars.service) || 0;
 					characteristics.shared_bike += Number(sessionChars.shared_bike) || 0;
-					characteristics.other_behaviors += Number(sessionChars.other_behaviors) || 0;
+					characteristics.other_behaviors +=
+						Number(sessionChars.other_behaviors) || 0;
 					characteristics.other_active_modes +=
 						Number(sessionChars.other_active_modes) || 0;
 					characteristics.others += Number(sessionChars.others) || 0;

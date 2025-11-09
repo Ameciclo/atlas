@@ -33,22 +33,25 @@ export const relationsByCity: AppRouteHandler<RelationsByCityRoute> = async (
 			eq(cyclistInfraRelationCities.relation_id, cyclistInfraRelations.id),
 		);
 
-	const groupedData: Record<string, {
-		city_id: number;
-		name: string;
-		state: string;
-		relations: Array<{
-			relation_id: number;
-			pdc_ref: string | null;
-			name: string | null;
-			cod_name: string;
-			length: number;
-			has_cycleway_length: number;
-			pdc_typology: string | null;
-			typologies_str: string;
-			typologies: Record<string, number>;
-		}>;
-	}> = {};
+	const groupedData: Record<
+		string,
+		{
+			city_id: number;
+			name: string;
+			state: string;
+			relations: Array<{
+				relation_id: number;
+				pdc_ref: string | null;
+				name: string | null;
+				cod_name: string;
+				length: number;
+				has_cycleway_length: number;
+				pdc_typology: string | null;
+				typologies_str: string;
+				typologies: Record<string, number>;
+			}>;
+		}
+	> = {};
 
 	for (const row of result) {
 		const cityKey = row.city_id.toString();

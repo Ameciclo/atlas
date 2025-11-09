@@ -286,31 +286,31 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 				const data = profile as Record<string, unknown>;
 
 				// Raça
-				if (data.color_race && typeof data.color_race === 'string') {
+				if (data.color_race && typeof data.color_race === "string") {
 					raceDistribution[data.color_race] =
 						(raceDistribution[data.color_race] || 0) + 1;
 				}
 
 				// Gênero
-				if (data.gender && typeof data.gender === 'string') {
+				if (data.gender && typeof data.gender === "string") {
 					genderDistribution[data.gender] =
 						(genderDistribution[data.gender] || 0) + 1;
 				}
 
 				// Idade por categoria
-				if (data.age_category && typeof data.age_category === 'string') {
+				if (data.age_category && typeof data.age_category === "string") {
 					ageDistribution[data.age_category] =
 						(ageDistribution[data.age_category] || 0) + 1;
 				}
 
 				// Educação
-				if (data.schooling && typeof data.schooling === 'string') {
+				if (data.schooling && typeof data.schooling === "string") {
 					educationDistribution[data.schooling] =
 						(educationDistribution[data.schooling] || 0) + 1;
 				}
 
 				// Renda
-				if (data.income_original && typeof data.income_original === 'string') {
+				if (data.income_original && typeof data.income_original === "string") {
 					incomeDistribution[data.income_original] =
 						(incomeDistribution[data.income_original] || 0) + 1;
 				}

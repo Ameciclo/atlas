@@ -1,4 +1,4 @@
-import { or, eq, sql, } from "drizzle-orm";
+import { or, eq, sql } from "drizzle-orm";
 import { db } from "../../db/index.js";
 import * as schema from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";

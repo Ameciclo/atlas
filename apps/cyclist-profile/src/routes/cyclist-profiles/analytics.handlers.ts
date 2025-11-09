@@ -124,7 +124,9 @@ export const summary = async (c: any) => {
 
 		const total = totalResult?.count || 0;
 
-		const toPercentage = (stats: Array<{ count: number; [key: string]: unknown }>) =>
+		const toPercentage = (
+			stats: Array<{ count: number; [key: string]: unknown }>,
+		) =>
 			Object.fromEntries(
 				stats
 					.filter((s) => {
@@ -134,7 +136,7 @@ export const summary = async (c: any) => {
 					.map((s) => {
 						const firstKey = Object.keys(s)[0];
 						return [
-							firstKey ? s[firstKey] : 'unknown',
+							firstKey ? s[firstKey] : "unknown",
 							Number(((s.count / total) * 100).toFixed(1)),
 						];
 					}),
@@ -266,24 +268,30 @@ export const genderAnalysis = async (c: any) => {
 					})),
 				motivations_by_gender: motivationsByGender
 					.filter((m) => m.gender && m.motivation)
-					.reduce((acc, curr) => {
-						if (curr.gender && curr.motivation) {
-							if (!acc[curr.gender]) acc[curr.gender] = {};
-							const genderObj = acc[curr.gender];
-							if (genderObj) genderObj[curr.motivation] = curr.count;
-						}
-						return acc;
-					}, {} as Record<string, Record<string, number>>),
+					.reduce(
+						(acc, curr) => {
+							if (curr.gender && curr.motivation) {
+								if (!acc[curr.gender]) acc[curr.gender] = {};
+								const genderObj = acc[curr.gender];
+								if (genderObj) genderObj[curr.motivation] = curr.count;
+							}
+							return acc;
+						},
+						{} as Record<string, Record<string, number>>,
+					),
 				issues_by_gender: issuesByGender
 					.filter((i) => i.gender && i.issue)
-					.reduce((acc, curr) => {
-						if (curr.gender && curr.issue) {
-							if (!acc[curr.gender]) acc[curr.gender] = {};
-							const genderObj = acc[curr.gender];
-							if (genderObj) genderObj[curr.issue] = curr.count;
-						}
-						return acc;
-					}, {} as Record<string, Record<string, number>>),
+					.reduce(
+						(acc, curr) => {
+							if (curr.gender && curr.issue) {
+								if (!acc[curr.gender]) acc[curr.gender] = {};
+								const genderObj = acc[curr.gender];
+								if (genderObj) genderObj[curr.issue] = curr.count;
+							}
+							return acc;
+						},
+						{} as Record<string, Record<string, number>>,
+					),
 			},
 			HttpStatusCodes.OK,
 		);
@@ -355,24 +363,30 @@ export const genderAnalysisByLocation = async (c: any) => {
 					})),
 				motivations_by_gender: motivationsByGender
 					.filter((m) => m.gender && m.motivation)
-					.reduce((acc, curr) => {
-						if (curr.gender && curr.motivation) {
-							if (!acc[curr.gender]) acc[curr.gender] = {};
-							const genderObj = acc[curr.gender];
-							if (genderObj) genderObj[curr.motivation] = curr.count;
-						}
-						return acc;
-					}, {} as Record<string, Record<string, number>>),
+					.reduce(
+						(acc, curr) => {
+							if (curr.gender && curr.motivation) {
+								if (!acc[curr.gender]) acc[curr.gender] = {};
+								const genderObj = acc[curr.gender];
+								if (genderObj) genderObj[curr.motivation] = curr.count;
+							}
+							return acc;
+						},
+						{} as Record<string, Record<string, number>>,
+					),
 				issues_by_gender: issuesByGender
 					.filter((i) => i.gender && i.issue)
-					.reduce((acc, curr) => {
-						if (curr.gender && curr.issue) {
-							if (!acc[curr.gender]) acc[curr.gender] = {};
-							const genderObj = acc[curr.gender];
-							if (genderObj) genderObj[curr.issue] = curr.count;
-						}
-						return acc;
-					}, {} as Record<string, Record<string, number>>),
+					.reduce(
+						(acc, curr) => {
+							if (curr.gender && curr.issue) {
+								if (!acc[curr.gender]) acc[curr.gender] = {};
+								const genderObj = acc[curr.gender];
+								if (genderObj) genderObj[curr.issue] = curr.count;
+							}
+							return acc;
+						},
+						{} as Record<string, Record<string, number>>,
+					),
 			},
 			HttpStatusCodes.OK,
 		);

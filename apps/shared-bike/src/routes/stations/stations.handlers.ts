@@ -1,9 +1,8 @@
-import type { Context } from "hono";
 import { and, eq, gte, lte, ilike, sql } from "@atlas/database";
 import { db } from "../../db/index.js";
 import { sharedBikeStations } from "@atlas/database";
 
-export async function listStations(c: Context) {
+export const listStations = async (c: any) => {
 	const { network, operator, min_capacity, max_capacity } = c.req.query();
 
 	const conditions = [];
@@ -39,9 +38,9 @@ export async function listStations(c: Context) {
 		.orderBy(sharedBikeStations.name);
 
 	return c.json(stations);
-}
+};
 
-export async function getStation(c: Context) {
+export const getStation = async (c: any) => {
 	const id = c.req.param("id");
 	const stationId = Number.parseInt(id, 10);
 
@@ -60,8 +59,9 @@ export async function getStation(c: Context) {
 	}
 
 	return c.json(station[0]);
-}
-export async function nearbyStations(c: Context) {
+};
+
+export const nearbyStations = async (c: any) => {
 	const { lat, lon, radius = "1000", limit = "50" } = c.req.query();
 
 	if (!lat || !lon) {
@@ -74,14 +74,10 @@ export async function nearbyStations(c: Context) {
 	const maxLimit = Number(limit);
 
 	if (
-		Number.
-		isNaN(latitude) ||
-		Number.
-		isNaN(longitude) ||
-		Number.
-		isNaN(searchRadius) ||
-		Number.
-		isNaN(maxLimit)
+		Number.isNaN(latitude) ||
+		Number.isNaN(longitude) ||
+		Number.isNaN(searchRadius) ||
+		Number.isNaN(maxLimit)
 	) {
 		return c.json({ error: "Invalid numeric parameters" }, 400);
 	}
@@ -98,4 +94,4 @@ export async function nearbyStations(c: Context) {
 		.limit(maxLimit);
 
 	return c.json(stations);
-}
+};

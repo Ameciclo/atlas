@@ -3,7 +3,12 @@ import * as HttpStatusCodes from "stoker/http-status-codes";
 import { createConnectedDatabase } from "@atlas/database";
 import { ciclomapaInfra } from "@atlas/database/schemas/cycling-infra";
 import type { AppRouteHandler } from "../../lib/types.js";
-import type { ListRoute, GetByIdRoute, GetGeoJSONRoute, GetNearbyRoute } from "./infrastructure.routes.js";
+import type {
+	ListRoute,
+	GetByIdRoute,
+	GetGeoJSONRoute,
+	GetNearbyRoute,
+} from "./infrastructure.routes.js";
 
 export const list = async (c: any) => {
 	try {
@@ -13,7 +18,7 @@ export const list = async (c: any) => {
 		const limitNum = limit ? parseInt(limit, 10) : 100;
 		const validLimit = !Number.isNaN(limitNum) && limitNum > 0 ? limitNum : 100;
 
-		let infrastructure: typeof ciclomapaInfra.$inferSelect[];
+		let infrastructure: (typeof ciclomapaInfra.$inferSelect)[];
 
 		if (type) {
 			infrastructure = await db
@@ -68,7 +73,7 @@ export const getGeoJSON = async (c: any) => {
 		const limitNum = limit ? parseInt(limit, 10) : 100;
 		const validLimit = !Number.isNaN(limitNum) && limitNum > 0 ? limitNum : 100;
 
-		let infrastructure: typeof ciclomapaInfra.$inferSelect[];
+		let infrastructure: (typeof ciclomapaInfra.$inferSelect)[];
 
 		if (type) {
 			infrastructure = await db

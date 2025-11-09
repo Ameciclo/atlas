@@ -38,9 +38,7 @@ export async function searchStreets(c: Context) {
 			db2gse_sde: pcrStreets.db2gse_sde,
 		})
 		.from(pcrStreets)
-		.where(
-			sql`UPPER(${pcrStreets.nlogra_conc}) LIKE UPPER(${`%${query}%`})`,
-		)
+		.where(sql`UPPER(${pcrStreets.nlogra_conc}) LIKE UPPER(${`%${query}%`})`)
 		.limit(50);
 
 	return c.json(streets);

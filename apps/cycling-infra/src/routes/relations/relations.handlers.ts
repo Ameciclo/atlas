@@ -6,7 +6,11 @@ import {
 	cyclistInfraRelations,
 } from "@atlas/database/schemas/cycling-infra";
 import type { AppRouteHandler } from "../../lib/types.js";
-import type { ListRoute, GetByIdRoute, GetWaysByRelationIdRoute } from "./relations.routes.js";
+import type {
+	ListRoute,
+	GetByIdRoute,
+	GetWaysByRelationIdRoute,
+} from "./relations.routes.js";
 
 export const list = async (c: any) => {
 	try {

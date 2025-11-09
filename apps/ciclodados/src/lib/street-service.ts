@@ -102,9 +102,7 @@ const RESEARCH_LOCATIONS = [
 ];
 
 export class StreetService {
-	async getStreetDataSummary(
-		streetId: string,
-	): Promise<{
+	async getStreetDataSummary(streetId: string): Promise<{
 		street_id: string;
 		street_name: string;
 		data_summary: unknown;

@@ -1,4 +1,4 @@
-import { eq, and, gte, lte, count, desc, } from "drizzle-orm";
+import { eq, and, gte, lte, count, desc } from "drizzle-orm";
 import { db } from "../../db/index.js";
 import { trafficViolations } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";

@@ -11,8 +11,8 @@ import {
 } from "./stations.handlers.js";
 
 const router = createRouter()
-	.openapi(listStationsRoute, listStations)
-	.openapi(nearbyStationsRoute, nearbyStations)
-	.openapi(getStationRoute, getStation);
+	.openapi(listStationsRoute, listStations as any)
+	.openapi(nearbyStationsRoute, nearbyStations as any)
+	.openapi(getStationRoute, getStation as any);
 
 export default router;

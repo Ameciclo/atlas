@@ -1,5 +1,10 @@
 import type { AppRouteHandler } from "../../lib/types.js";
-import type { SummaryRoute, CyclewaysRoute, CityCoverageRoute, CitySpecificSummaryRoute } from "./summary.routes.js";
+import type {
+	SummaryRoute,
+	CyclewaysRoute,
+	CityCoverageRoute,
+	CitySpecificSummaryRoute,
+} from "./summary.routes.js";
 
 export const summary = async (c: any) => {
 	const { city: _city, type: _type } = c.req.valid("query");

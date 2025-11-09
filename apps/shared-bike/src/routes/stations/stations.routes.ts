@@ -62,6 +62,16 @@ export const getStationRoute = createRoute({
 			},
 			description: "Bike sharing station details",
 		},
+		400: {
+			content: {
+				"application/json": {
+					schema: z.object({
+						error: z.string(),
+					}),
+				},
+			},
+			description: "Invalid station ID",
+		},
 		404: {
 			content: {
 				"application/json": {
@@ -109,6 +119,16 @@ export const nearbyStationsRoute = createRoute({
 				},
 			},
 			description: "List of nearby bike sharing stations",
+		},
+		400: {
+			content: {
+				"application/json": {
+					schema: z.object({
+						error: z.string(),
+					}),
+				},
+			},
+			description: "Invalid parameters",
 		},
 	},
 });
