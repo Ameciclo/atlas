@@ -13,6 +13,7 @@ export const searchStreets: AppRouteHandler<routes.SearchStreetsRoute> = async (
 		
 		return c.json({ matches }, 200);
 	} catch (error) {
+		console.error('Street search error:', error);
 		throw new HTTPException(500, {
 			message: "Failed to search streets",
 		});

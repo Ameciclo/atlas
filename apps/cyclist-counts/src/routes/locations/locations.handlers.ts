@@ -87,22 +87,35 @@ export const getNearby: AppRouteHandler<GetNearbyRoute> = async (c) => {
 	
 	// Get counting data for nearby locations
 	const locationIds = nearbyLocations.map(l => l.id);
-	const countingData = await db
-		.select({
-			location_id: countingEvents.location_id,
-			total_cyclists: sql<number>`sum(${countingEvents.total_cyclists})`.as('total_cyclists'),
-			years: sql<number[]>`array_agg(distinct extract(year from ${countingEvents.counting_date}))`.as('years')
-		})
-		.from(countingEvents)
-		.where(sql`${countingEvents.location_id} = any(${locationIds})`)
-		.groupBy(countingEvents.location_id);
+	let countingData: Array<{location_id: number, counting_date: string, total_cyclists: number}> = [];
 	
-	// Create a map for quick lookup
-	const countingMap = new Map(countingData.map(d => [d.location_id, d]));
+	if (locationIds.length > 0) {
+		countingData = await db
+			.select({
+				location_id: countingEvents.location_id,
+				counting_date: countingEvents.counting_date,
+				total_cyclists: countingEvents.total_cyclists
+			})
+			.from(countingEvents)
+			.where(sql`${countingEvents.location_id} IN (${sql.join(locationIds.map(id => sql`${id}`), sql`, `)})`)
+			.orderBy(countingEvents.counting_date);
+	}
+	
+	// Group counting data by location
+	const countingMap = new Map<number, Array<{date: string, total_cyclists: number}>>();
+	countingData.forEach(d => {
+		if (!countingMap.has(d.location_id)) {
+			countingMap.set(d.location_id, []);
+		}
+		countingMap.get(d.location_id)?.push({
+			date: d.counting_date,
+			total_cyclists: d.total_cyclists
+		});
+	});
 	
 	// Convert to GeoJSON features
 	const features = nearbyLocations.map(location => {
-		const counting = countingMap.get(location.id);
+		const countings = countingMap.get(location.id) || [];
 		return {
 			type: "Feature" as const,
 			id: location.id,
@@ -112,8 +125,7 @@ export const getNearby: AppRouteHandler<GetNearbyRoute> = async (c) => {
 				city: location.city,
 				state: location.state,
 				distance_meters: location.distance_meters,
-				total_cyclists: counting?.total_cyclists || 0,
-				years: counting?.years || [],
+				countings: countings,
 				metadata: location.metadata,
 				created_at: location.created_at,
 				updated_at: location.updated_at,
@@ -127,11 +139,9 @@ export const getNearby: AppRouteHandler<GetNearbyRoute> = async (c) => {
 	
 	// Calculate summary by city
 	const byCity: Record<string, number> = {};
-	let totalCyclists = 0;
 	features.forEach(f => {
 		const city = f.properties.city;
 		byCity[city] = (byCity[city] || 0) + 1;
-		totalCyclists += f.properties.total_cyclists;
 	});
 	
 	return c.json({
@@ -139,7 +149,6 @@ export const getNearby: AppRouteHandler<GetNearbyRoute> = async (c) => {
 		features,
 		summary: {
 			total_locations: features.length,
-			total_cyclists: totalCyclists,
 			by_city: byCity,
 		},
 	});

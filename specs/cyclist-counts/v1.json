@@ -313,13 +313,22 @@
                                   "distance_meters": {
                                     "type": "number"
                                   },
-                                  "total_cyclists": {
-                                    "type": "number"
-                                  },
-                                  "years": {
+                                  "countings": {
                                     "type": "array",
                                     "items": {
-                                      "type": "number"
+                                      "type": "object",
+                                      "properties": {
+                                        "date": {
+                                          "type": "string"
+                                        },
+                                        "total_cyclists": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "date",
+                                        "total_cyclists"
+                                      ]
                                     }
                                   }
                                 },
@@ -327,8 +336,7 @@
                                   "name",
                                   "city",
                                   "distance_meters",
-                                  "total_cyclists",
-                                  "years"
+                                  "countings"
                                 ]
                               },
                               {
@@ -375,9 +383,6 @@
                         "total_locations": {
                           "type": "number"
                         },
-                        "total_cyclists": {
-                          "type": "number"
-                        },
                         "by_city": {
                           "type": "object",
                           "additionalProperties": {
@@ -387,7 +392,6 @@
                       },
                       "required": [
                         "total_locations",
-                        "total_cyclists",
                         "by_city"
                       ]
                     }

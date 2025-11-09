@@ -2,6 +2,8 @@ import { sql } from "drizzle-orm";
 import { pcrStreets } from "@atlas/database/schemas/pcr-streets";
 import { countingLocations } from "@atlas/database/schemas/cyclist-counts";
 import { cyclistProfiles } from "@atlas/database/schemas/cyclist-profile";
+import { emergencyCalls } from "@atlas/database/schemas/emergency-calls";
+import { ciclomapaInfra, pdcRelationWays } from "@atlas/database/schemas/cycling-infra";
 import { db } from "./database.js";
 
 export interface StreetMatch {
@@ -71,7 +73,7 @@ export class StreetService {
 					sql`EXISTS (
 						SELECT 1
 						FROM pcr_streets ps
-						WHERE ps.nlogra_conc = ${street[0].name}
+						WHERE ps.nlogra_conc = ${street[0]!.name}
 						AND ST_DWithin(
 							ST_SetSRID(ST_MakePoint(${countingLocations.longitude}::float, ${countingLocations.latitude}::float), 4326)::geography,
 							ps.coordinates::geography,
@@ -89,10 +91,10 @@ export class StreetService {
 		let cycling_profile = 0;
 		try {
 			// Check if street name matches any research location
-			const streetName = street[0].name.toLowerCase();
+			const streetName = street[0]!.name.toLowerCase();
 			const hasResearch = RESEARCH_LOCATIONS.some(location => {
 				const locationStreet = location.street.toLowerCase();
-				return locationStreet.includes(streetName) || streetName.includes(locationStreet.split(' x ')[0].replace(/^(rua|avenida|av\.|r\.)\s+/i, '').trim());
+				return locationStreet.includes(streetName) || streetName.includes(locationStreet.split(' x ')[0]?.replace(/^(rua|avenida|av\.|r\.)\s+/i, '').trim() || '');
 			});
 			cycling_profile = hasResearch ? 1 : 0;
 		} catch (error) {
@@ -100,18 +102,72 @@ export class StreetService {
 			cycling_profile = 0;
 		}
 
-		// Simulate other data counts
-		const nameHash = street[0].name.length + street[0].name.charCodeAt(0);
+		// Get emergency calls (accidents) for this street
+		let emergency_calls = 0;
+		try {
+			const emergencyResult = await db
+				.select({ count: sql<number>`COUNT(*)` })
+				.from(emergencyCalls)
+				.where(sql`${emergencyCalls.pcr_address} = ${street[0]!.name}`);
+			emergency_calls = emergencyResult[0]?.count || 0;
+		} catch (error) {
+			console.log('Error counting emergency calls:', error);
+			emergency_calls = 0;
+		}
+
+		// Get cycling infrastructure data (PDC analysis)
+		let cycling_infra = {
+			pdc_realizado_designado: 0,
+			pdc_realizado_nao_designado: 0,
+			realizado_fora_pdc: 0,
+			pdc_nao_realizado: 0
+		};
+		try {
+			const streetName = street[0]!.name;
+			
+			// PDC Realizado Designado: exists in both ciclomapa_infra and pdc_relation_ways
+			const pdcRealizadoDesignado = await db
+				.select({ count: sql<number>`COUNT(DISTINCT ci.osm_id)` })
+				.from(sql`ciclomapa_infra ci`)
+				.innerJoin(sql`pdc_relation_ways prw`, sql`ci.osm_id = prw.osm_id`)
+				.where(sql`ci.name ILIKE ${`%${streetName}%`} OR prw.name ILIKE ${`%${streetName}%`}`);
+
+			// Realizado Fora PDC: exists in ciclomapa_infra but not in pdc_relation_ways
+			const realizadoForaPdc = await db
+				.select({ count: sql<number>`COUNT(*)` })
+				.from(ciclomapaInfra)
+				.where(sql`${ciclomapaInfra.name} ILIKE ${`%${streetName}%`} 
+					AND ${ciclomapaInfra.osm_id} NOT IN (
+						SELECT osm_id FROM pdc_relation_ways WHERE name ILIKE ${`%${streetName}%`}
+					)`);
+
+			// PDC Não Realizado: exists in pdc_relation_ways but not in ciclomapa_infra
+			const pdcNaoRealizado = await db
+				.select({ count: sql<number>`COUNT(*)` })
+				.from(pdcRelationWays)
+				.where(sql`${pdcRelationWays.name} ILIKE ${`%${streetName}%`} 
+					AND ${pdcRelationWays.osm_id} NOT IN (
+						SELECT osm_id FROM ciclomapa_infra WHERE name ILIKE ${`%${streetName}%`}
+					)`);
+
+			cycling_infra = {
+				pdc_realizado_designado: pdcRealizadoDesignado[0]?.count || 0,
+				pdc_realizado_nao_designado: 0, // Not applicable with current data structure
+				realizado_fora_pdc: realizadoForaPdc[0]?.count || 0,
+				pdc_nao_realizado: pdcNaoRealizado[0]?.count || 0
+			};
+		} catch (error) {
+			console.log('Error counting cycling infrastructure:', error);
+		}
+
 		return {
 			street_id: streetId,
-			street_name: street[0].name,
+			street_name: street[0]!.name,
 			data_summary: {
 				cycling_counts,
 				cycling_profile,
-				cycle_infra_planned: nameHash % 4,
-				cycle_infra_executed: nameHash % 2,
-				dangerous_streets: nameHash % 2,
-				traffic_violations: nameHash % 8,
+				emergency_calls,
+				cycling_infra,
 			},
 		};
 	}

@@ -75,8 +75,10 @@ export const getNearby = createRoute({
 						name: z.string(),
 						city: z.string(),
 						distance_meters: z.number(),
-						total_cyclists: z.number(),
-						years: z.array(z.number()),
+						countings: z.array(z.object({
+							date: z.string(),
+							total_cyclists: z.number()
+						})),
 					}).and(z.record(z.any())),
 					geometry: z.object({
 						type: z.literal("Point"),
@@ -85,7 +87,6 @@ export const getNearby = createRoute({
 				})),
 				summary: z.object({
 					total_locations: z.number(),
-					total_cyclists: z.number(),
 					by_city: z.record(z.number()),
 				}),
 			}),
