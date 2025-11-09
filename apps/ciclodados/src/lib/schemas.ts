@@ -28,8 +28,12 @@ export const streetDetailsResponseSchema = z.object({
 	id: z.string(),
 	name: z.string(),
 	geometry: z.object({
-		type: z.literal("LineString"),
-		coordinates: z.array(z.array(z.number())),
+		type: z.literal("FeatureCollection"),
+		features: z.array(z.object({
+			type: z.literal("Feature"),
+			geometry: z.unknown(),
+			properties: z.record(z.unknown()),
+		})),
 	}),
 	properties: z.record(z.unknown()),
 });

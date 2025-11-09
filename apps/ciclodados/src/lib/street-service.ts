@@ -15,8 +15,12 @@ export interface StreetDetails {
 	id: string;
 	name: string;
 	geometry: {
-		type: "LineString";
-		coordinates: number[][];
+		type: "FeatureCollection";
+		features: Array<{
+			type: "Feature";
+			geometry: any;
+			properties: Record<string, unknown>;
+		}>;
 	};
 	properties: Record<string, unknown>;
 }
@@ -109,51 +113,77 @@ export class StreetService {
 	}
 
 	async getStreetById(streetId: string): Promise<StreetDetails | null> {
-		const result = await db
+		// First get the street name by ID
+		const streetName = await db
+			.select({ name: pcrStreets.nlogra_conc })
+			.from(pcrStreets)
+			.where(sql`${pcrStreets.id} = ${parseInt(streetId)}`)
+			.limit(1);
+
+		if (streetName.length === 0 || !streetName[0]) {
+			return null;
+		}
+
+		// Now get ALL streets with that exact name
+		const results = await db
 			.select({
 				id: pcrStreets.id,
 				name: pcrStreets.nlogra_conc,
 				officialName: pcrStreets.nlgpav_ofic,
 				resumedName: pcrStreets.nlgpav_resu,
-				coordinates: pcrStreets.coordinates,
+				geojson: sql<string>`ST_AsGeoJSON(${pcrStreets.coordinates})`,
 				pavementFlag: pcrStreets.flgpav_indp,
 				pavementIndicator: pcrStreets.indpav,
 				segmentLength: pcrStreets.db2gse_sde,
 			})
 			.from(pcrStreets)
-			.where(sql`${pcrStreets.id} = ${parseInt(streetId)}`)
-			.limit(1);
+			.where(sql`${pcrStreets.nlogra_conc} = ${streetName[0].name}`);
 
-		if (result.length === 0) {
+		if (results.length === 0) {
 			return null;
 		}
 
-		const street = result[0];
-		if (!street) {
+		// Build FeatureCollection with all segments
+		const features = results.map(street => {
+			let geometry: any;
+			try {
+				geometry = JSON.parse(street.geojson);
+			} catch {
+				geometry = { type: "MultiLineString", coordinates: [] };
+			}
+
+			return {
+				type: "Feature" as const,
+				geometry,
+				properties: {
+					id: street.id.toString(),
+					name: street.name,
+					officialName: street.officialName,
+					resumedName: street.resumedName,
+					pavementFlag: street.pavementFlag,
+					pavementIndicator: street.pavementIndicator,
+					segmentLength: street.segmentLength,
+				}
+			};
+		});
+
+		const firstStreet = results[0];
+		if (!firstStreet) {
 			return null;
-		}
-		
-		// Parse coordinates (assuming they're stored as JSON string)
-		let coordinates: number[][];
-		try {
-			coordinates = JSON.parse(street.coordinates);
-		} catch {
-			coordinates = [];
 		}
 
 		return {
-			id: street.id.toString(),
-			name: street.name,
+			id: streetId,
+			name: firstStreet.name,
 			geometry: {
-				type: "LineString",
-				coordinates,
+				type: "FeatureCollection",
+				features
 			},
 			properties: {
-				officialName: street.officialName,
-				resumedName: street.resumedName,
-				pavementFlag: street.pavementFlag,
-				pavementIndicator: street.pavementIndicator,
-				segmentLength: street.segmentLength,
+				totalSegments: results.length,
+				totalLength: results.reduce((sum, s) => sum + (s.segmentLength || 0), 0),
+				officialName: firstStreet.officialName,
+				resumedName: firstStreet.resumedName,
 			},
 		};
 	}
