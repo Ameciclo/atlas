@@ -8,14 +8,7 @@ const dataSummaryParamsSchema = z.object({
 const dataSummaryResponseSchema = z.object({
 	street_id: z.string(),
 	street_name: z.string(),
-	data_summary: z.object({
-		cycling_counts: z.number(),
-		cycling_profile: z.number(),
-		cycle_infra_planned: z.number(),
-		cycle_infra_executed: z.number(),
-		dangerous_streets: z.number(),
-		traffic_violations: z.number(),
-	}),
+	data_summary: z.unknown(),
 });
 
 export const streetDataSummaryRoute = createRoute({

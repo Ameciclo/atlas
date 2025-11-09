@@ -1,8 +1,8 @@
-import type { RouteHandler } from "@hono/zod-openapi";
 import { createConnectedDatabase } from "@atlas/database";
 import { pdcRelationWays } from "@atlas/database/schemas/cycling-infra";
 import env from "../../env.js";
-import type { listRoute, getSummaryRoute, getAllRoute, getNearbyRoute } from "./ways.routes.js";
+import type { AppRouteHandler } from "../../lib/types.js";
+import type { ListRoute, GetSummaryRoute, GetAllRoute, GetNearbyRoute } from "./ways.routes.js";
 
 // Helper function to calculate distance between two coordinates
 function calculateDistance(
@@ -45,7 +45,7 @@ function calculateGeometryLength(geometry: { type: string; coordinates: number[]
 	return totalLength;
 }
 
-export const list: RouteHandler<typeof listRoute> = async (c) => {
+export const list = async (c: any) => {
 	const { city } = c.req.valid("query");
 	const db = await createConnectedDatabase();
 
@@ -119,7 +119,7 @@ export const list: RouteHandler<typeof listRoute> = async (c) => {
 	return c.json(transformedWays);
 };
 
-export const getSummary: RouteHandler<typeof getSummaryRoute> = async (c) => {
+export const getSummary = async (c: any) => {
 	const db = await createConnectedDatabase();
 
 	// Debug: verificar dados disponíveis
@@ -310,15 +310,16 @@ function generateCitySummary(cityData: Array<{
 			: 0;
 
 	return {
-		...kms,
+		pdc_feito: pdc_realizado_total,
+		out_pdc: kms.realizado_fora_pdc,
 		pdc_total,
-		pdc_realizado_total,
-		percent_realizado,
-		percent_designado,
+		real_pdc: pdc_realizado_total,
+		percent: percent_realizado,
+		real_percent: percent_designado,
 	};
 }
 
-export const getAll: RouteHandler<typeof getAllRoute> = async (c) => {
+export const getAll = async (c: any) => {
 	const { city, limit, offset, simplify, precision, minimal, only_all } =
 		c.req.valid("query");
 	const db = await createConnectedDatabase();
@@ -457,7 +458,7 @@ export const getAll: RouteHandler<typeof getAllRoute> = async (c) => {
 	// Agrupa por cidade quando não há filtro
 	const byCity: { [key: string]: { type: "FeatureCollection"; features: typeof features } } = {};
 	features.forEach((feature) => {
-		const cityId = feature.properties.city_id?.toString() || "unknown";
+		const cityId = (feature.properties as { city_id?: unknown }).city_id?.toString() || "unknown";
 		if (!byCity[cityId]) {
 			byCity[cityId] = {
 				type: "FeatureCollection" as const,
@@ -484,7 +485,7 @@ export const getAll: RouteHandler<typeof getAllRoute> = async (c) => {
 	});
 };
 
-export const getNearby: RouteHandler<typeof getNearbyRoute> = async (c) => {
+export const getNearby = async (c: any) => {
 	const { lat, lon, radius = "1000" } = c.req.valid("query");
 	const db = await createConnectedDatabase();
 

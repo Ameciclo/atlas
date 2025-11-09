@@ -1,4 +1,3 @@
-import type { RouteHandler } from "@hono/zod-openapi";
 import { eq } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { createConnectedDatabase } from "@atlas/database";
@@ -6,9 +5,10 @@ import {
 	pdcRelationWays,
 	cyclistInfraRelations,
 } from "@atlas/database/schemas/cycling-infra";
-import type { listRoute, getByIdRoute, getWaysByRelationIdRoute } from "./relations.routes.js";
+import type { AppRouteHandler } from "../../lib/types.js";
+import type { ListRoute, GetByIdRoute, GetWaysByRelationIdRoute } from "./relations.routes.js";
 
-export const list: RouteHandler<typeof listRoute> = async (c) => {
+export const list = async (c: any) => {
 	try {
 		const db = await createConnectedDatabase();
 		const relations = await db.select().from(cyclistInfraRelations);
@@ -22,7 +22,7 @@ export const list: RouteHandler<typeof listRoute> = async (c) => {
 	}
 };
 
-export const getById: RouteHandler<typeof getByIdRoute> = async (c) => {
+export const getById = async (c: any) => {
 	const { id } = c.req.valid("param");
 
 	try {
@@ -88,7 +88,7 @@ export const getById: RouteHandler<typeof getByIdRoute> = async (c) => {
 	}
 };
 
-export const getWaysByRelationId: RouteHandler<typeof getWaysByRelationIdRoute> = async (c) => {
+export const getWaysByRelationId = async (c: any) => {
 	const { id } = c.req.valid("param");
 
 	try {

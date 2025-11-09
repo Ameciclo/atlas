@@ -1,11 +1,11 @@
-import type { RouteHandler } from "@hono/zod-openapi";
 import { eq } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { createConnectedDatabase } from "@atlas/database";
 import { ciclomapaInfra } from "@atlas/database/schemas/cycling-infra";
-import type { listRoute, getByIdRoute, getGeoJSONRoute, getNearbyRoute } from "./infrastructure.routes.js";
+import type { AppRouteHandler } from "../../lib/types.js";
+import type { ListRoute, GetByIdRoute, GetGeoJSONRoute, GetNearbyRoute } from "./infrastructure.routes.js";
 
-export const list: RouteHandler<typeof listRoute> = async (c) => {
+export const list = async (c: any) => {
 	try {
 		const { type, limit } = c.req.valid("query");
 		const db = await createConnectedDatabase();
@@ -34,7 +34,7 @@ export const list: RouteHandler<typeof listRoute> = async (c) => {
 	}
 };
 
-export const getById: RouteHandler<typeof getByIdRoute> = async (c) => {
+export const getById = async (c: any) => {
 	try {
 		const { id } = c.req.valid("param");
 		const db = await createConnectedDatabase();
@@ -60,7 +60,7 @@ export const getById: RouteHandler<typeof getByIdRoute> = async (c) => {
 	}
 };
 
-export const getGeoJSON: RouteHandler<typeof getGeoJSONRoute> = async (c) => {
+export const getGeoJSON = async (c: any) => {
 	try {
 		const { type, limit } = c.req.valid("query");
 		const db = await createConnectedDatabase();
@@ -83,7 +83,7 @@ export const getGeoJSON: RouteHandler<typeof getGeoJSONRoute> = async (c) => {
 		const features = infrastructure.map((infra) => ({
 			type: "Feature" as const,
 			id: String(infra.osm_id),
-			geometry: infra.geojson?.geometry || null,
+			geometry: (infra.geojson as { geometry?: unknown })?.geometry || null,
 			properties: {
 				id: infra.id,
 				osm_id: infra.osm_id,
@@ -109,7 +109,7 @@ export const getGeoJSON: RouteHandler<typeof getGeoJSONRoute> = async (c) => {
 	}
 };
 
-export const getNearby: RouteHandler<typeof getNearbyRoute> = async (c) => {
+export const getNearby = async (c: any) => {
 	try {
 		const { lat, lon, radius = "1000", type } = c.req.valid("query");
 		const db = await createConnectedDatabase();

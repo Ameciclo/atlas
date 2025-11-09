@@ -1,7 +1,7 @@
-import type { RouteHandler } from "@hono/zod-openapi";
-import type { summaryRoute, cyclewaysRoute, cityCoverageRoute, citySpecificSummaryRoute } from "./summary.routes.js";
+import type { AppRouteHandler } from "../../lib/types.js";
+import type { SummaryRoute, CyclewaysRoute, CityCoverageRoute, CitySpecificSummaryRoute } from "./summary.routes.js";
 
-export const summary: RouteHandler<typeof summaryRoute> = async (c) => {
+export const summary = async (c: any) => {
 	const { city: _city, type: _type } = c.req.valid("query");
 
 	// Mock data - would integrate with actual database
@@ -20,7 +20,7 @@ export const summary: RouteHandler<typeof summaryRoute> = async (c) => {
 	return c.json(mockSummary);
 };
 
-export const cycleways: RouteHandler<typeof cyclewaysRoute> = async (c) => {
+export const cycleways = async (c: any) => {
 	const { city: _city, type: _type } = c.req.valid("query");
 
 	// Mock GeoJSON data
@@ -60,7 +60,7 @@ export const cycleways: RouteHandler<typeof cyclewaysRoute> = async (c) => {
 	return c.json(mockGeoJson);
 };
 
-export const cityCoverage: RouteHandler<typeof cityCoverageRoute> = async (c) => {
+export const cityCoverage = async (c: any) => {
 	const { state: _state, region: _region } = c.req.valid("query");
 
 	// Mock city coverage data
@@ -98,7 +98,7 @@ export const cityCoverage: RouteHandler<typeof cityCoverageRoute> = async (c) =>
 	return c.json(mockCities);
 };
 
-export const citySpecificSummary: RouteHandler<typeof citySpecificSummaryRoute> = async (c) => {
+export const citySpecificSummary = async (c: any) => {
 	const { city_id } = c.req.valid("param");
 
 	// Mock city specific data with PDC Recife
@@ -112,7 +112,7 @@ export const citySpecificSummary: RouteHandler<typeof citySpecificSummaryRoute> 
 			ciclofaixa: { existing: 25.1, planned: 60.0, implemented: 9.6 },
 		},
 		last_updated: new Date().toISOString(),
-		...(city_id === "1" && {
+		...(Number(city_id) === 1 && {
 			pdc_recife: {
 				routes: [
 					{

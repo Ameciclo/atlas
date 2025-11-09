@@ -141,18 +141,18 @@ export const getSummaryHandler: AppRouteHandler<typeof getSummary> = async (
 
 		// Somar características de todas as sessões
 		for (const session of sessions) {
-			const characteristics = session.characteristics as Record<string, unknown>;
+			const characteristics = session.characteristics as Record<string, number>;
 			if (characteristics) {
-				summary.total_cargo += characteristics.cargo || 0;
-				summary.total_helmet += characteristics.helmet || 0;
-				summary.total_juveniles += characteristics.juveniles || 0;
-				summary.total_motor += characteristics.motor || 0;
-				summary.total_ride += characteristics.ride || 0;
-				summary.total_service += characteristics.service || 0;
-				summary.total_shared_bike += characteristics.shared_bike || 0;
-				summary.total_sidewalk += characteristics.sidewalk || 0;
-				summary.total_women += characteristics.women || 0;
-				summary.total_wrong_way += characteristics.wrong_way || 0;
+				summary.total_cargo += Number(characteristics.cargo) || 0;
+				summary.total_helmet += Number(characteristics.helmet) || 0;
+				summary.total_juveniles += Number(characteristics.juveniles) || 0;
+				summary.total_motor += Number(characteristics.motor) || 0;
+				summary.total_ride += Number(characteristics.ride) || 0;
+				summary.total_service += Number(characteristics.service) || 0;
+				summary.total_shared_bike += Number(characteristics.shared_bike) || 0;
+				summary.total_sidewalk += Number(characteristics.sidewalk) || 0;
+				summary.total_women += Number(characteristics.women) || 0;
+				summary.total_wrong_way += Number(characteristics.wrong_way) || 0;
 			}
 		}
 

@@ -157,3 +157,8 @@ export const citySpecificSummary = createRoute({
 		),
 	},
 });
+
+export type SummaryRoute = typeof summary;
+export type CyclewaysRoute = typeof cycleways;
+export type CityCoverageRoute = typeof cityCoverage;
+export type CitySpecificSummaryRoute = typeof citySpecificSummary;

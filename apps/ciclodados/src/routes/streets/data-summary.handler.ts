@@ -1,10 +1,9 @@
-import type { Context } from "hono";
 import { StreetService } from "../../lib/street-service.js";
 
 const streetService = new StreetService();
 
-export async function handleStreetDataSummary(c: Context) {
-	const streetId = c.req.param("streetId");
+export const handleStreetDataSummary = async (c: any) => {
+	const { streetId } = c.req.valid("param");
 
 	const dataSummary = await streetService.getStreetDataSummary(streetId);
 
@@ -18,5 +17,9 @@ export async function handleStreetDataSummary(c: Context) {
 		);
 	}
 
-	return c.json(dataSummary);
+	return c.json({
+		street_id: dataSummary.street_id,
+		street_name: dataSummary.street_name,
+		data_summary: dataSummary.data_summary,
+	});
 }

@@ -1,20 +1,9 @@
-import type { RouteHandler } from "@hono/zod-openapi";
 import { sql } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { db } from "../../db/index.js";
 import { cyclistProfiles } from "@atlas/database/schemas/cyclist-profile";
-import type { AppBindings } from "../../lib/types.ts";
-import type {
-	SummaryRoute,
-	TrendsRoute,
-	GenderAnalysisRoute,
-	SafetyAnalysisRoute,
-	SurveyLocationsRoute,
-	GenderAnalysisByLocationRoute,
-	GeneralAnalysisRoute,
-} from "./analytics.routes.ts";
 
-export const summary: RouteHandler<SummaryRoute, AppBindings> = async (c) => {
+export const summary = async (c: any) => {
 	try {
 		const year = c.req.query("year") ? Number(c.req.query("year")) : undefined;
 
@@ -133,9 +122,9 @@ export const summary: RouteHandler<SummaryRoute, AppBindings> = async (c) => {
 			.where(yearFilter)
 			.groupBy(sql`data->>'frequency_what'`);
 
-		const total = totalResult.count;
+		const total = totalResult?.count || 0;
 
-		const toPercentage = (stats: any[]) =>
+		const toPercentage = (stats: Array<{ count: number; [key: string]: unknown }>) =>
 			Object.fromEntries(
 				stats
 					.filter((s) => s.count > 0 && s[Object.keys(s)[0]])
@@ -157,7 +146,7 @@ export const summary: RouteHandler<SummaryRoute, AppBindings> = async (c) => {
 					income: toPercentage(incomeStats),
 				},
 				usage_patterns: {
-					avg_days_per_week: avgDaysResult.avg_days
+					avg_days_per_week: avgDaysResult?.avg_days
 						? Number(Number(avgDaysResult.avg_days).toFixed(1))
 						: 0,
 					bike_type: toPercentage(bikeTypeStats),
@@ -175,16 +164,16 @@ export const summary: RouteHandler<SummaryRoute, AppBindings> = async (c) => {
 		);
 	} catch (error) {
 		console.error("Summary error:", error);
-		return c.json({ error: error.message }, 500);
+		return c.json({ error: String(error) }, 500);
 	}
 };
 
-export const trends: RouteHandler<TrendsRoute, AppBindings> = async (c) => {
+export const trends = async (c: any) => {
 	const years = c.req.query("years") || "2015,2018,2021,2024";
-	const yearsList = years.split(",").map((y) => parseInt(y.trim(), 10));
+	const yearsList = years.split(",").map((y: string) => parseInt(y.trim(), 10));
 
 	const trendsData = await Promise.all(
-		yearsList.map(async (year) => {
+		yearsList.map(async (year: number) => {
 			const [totalResult] = await db
 				.select({ count: sql<number>`count(*)` })
 				.from(cyclistProfiles)
@@ -199,7 +188,7 @@ export const trends: RouteHandler<TrendsRoute, AppBindings> = async (c) => {
 				.where(sql`metadata->>'survey_year' = ${year.toString()}`)
 				.groupBy(sql`data->>'gender'`);
 
-			const total = totalResult.count;
+			const total = totalResult?.count || 0;
 			const genderPercentages = Object.fromEntries(
 				genderStats
 					.filter((s) => s.gender)
@@ -207,7 +196,7 @@ export const trends: RouteHandler<TrendsRoute, AppBindings> = async (c) => {
 			);
 
 			return {
-				year,
+				year: year as number,
 				total_responses: total,
 				gender_distribution: genderPercentages,
 			};
@@ -217,10 +206,7 @@ export const trends: RouteHandler<TrendsRoute, AppBindings> = async (c) => {
 	return c.json({ trends: trendsData }, HttpStatusCodes.OK);
 };
 
-export const genderAnalysis: RouteHandler<
-	GenderAnalysisRoute,
-	AppBindings
-> = async (c) => {
+export const genderAnalysis = async (c: any) => {
 	try {
 		const year = c.req.query("year") ? Number(c.req.query("year")) : undefined;
 		const yearFilter = year
@@ -278,27 +264,24 @@ export const genderAnalysis: RouteHandler<
 						if (!acc[curr.gender]) acc[curr.gender] = {};
 						acc[curr.gender][curr.motivation] = curr.count;
 						return acc;
-					}, {} as any),
+					}, {} as Record<string, Record<string, number>>),
 				issues_by_gender: issuesByGender
 					.filter((i) => i.gender && i.issue)
 					.reduce((acc, curr) => {
 						if (!acc[curr.gender]) acc[curr.gender] = {};
 						acc[curr.gender][curr.issue] = curr.count;
 						return acc;
-					}, {} as any),
+					}, {} as Record<string, Record<string, number>>),
 			},
 			HttpStatusCodes.OK,
 		);
 	} catch (error) {
 		console.error("Gender analysis error:", error);
-		return c.json({ error: error.message }, 500);
+		return c.json({ error: String(error) }, 500);
 	}
 };
 
-export const genderAnalysisByLocation: RouteHandler<
-	GenderAnalysisByLocationRoute,
-	AppBindings
-> = async (c) => {
+export const genderAnalysisByLocation = async (c: any) => {
 	try {
 		const { lat, lon, radius, year } = c.req.valid("query");
 
@@ -364,27 +347,24 @@ export const genderAnalysisByLocation: RouteHandler<
 						if (!acc[curr.gender]) acc[curr.gender] = {};
 						acc[curr.gender][curr.motivation] = curr.count;
 						return acc;
-					}, {} as any),
+					}, {} as Record<string, Record<string, number>>),
 				issues_by_gender: issuesByGender
 					.filter((i) => i.gender && i.issue)
 					.reduce((acc, curr) => {
 						if (!acc[curr.gender]) acc[curr.gender] = {};
 						acc[curr.gender][curr.issue] = curr.count;
 						return acc;
-					}, {} as any),
+					}, {} as Record<string, Record<string, number>>),
 			},
 			HttpStatusCodes.OK,
 		);
 	} catch (error) {
 		console.error("Gender analysis by location error:", error);
-		return c.json({ error: error.message }, 500);
+		return c.json({ error: String(error) }, 500);
 	}
 };
 
-export const safetyAnalysis: RouteHandler<
-	SafetyAnalysisRoute,
-	AppBindings
-> = async (c) => {
+export const safetyAnalysis = async (c: any) => {
 	const year = c.req.query("year") ? Number(c.req.query("year")) : undefined;
 	const yearFilter = year
 		? sql`metadata->>'survey_year' = ${year.toString()}`
@@ -435,7 +415,7 @@ export const safetyAnalysis: RouteHandler<
 		.where(yearFilter)
 		.groupBy(sql`data->>'gender'`);
 
-	const total = totalResult.count;
+	const total = totalResult?.count || 0;
 
 	return c.json(
 		{
@@ -443,7 +423,7 @@ export const safetyAnalysis: RouteHandler<
 			total_responses: total,
 			accidents: {
 				percentage_with_accidents: Number(
-					((accidentsResult.count / total) * 100).toFixed(1),
+					(((accidentsResult?.count || 0) / total) * 100).toFixed(1),
 				),
 				by_gender: Object.fromEntries(
 					accidentsByGender
@@ -456,12 +436,12 @@ export const safetyAnalysis: RouteHandler<
 			},
 			theft: {
 				percentage_theft: Number(
-					((theftResult.count / total) * 100).toFixed(1),
+					(((theftResult?.count || 0) / total) * 100).toFixed(1),
 				),
 			},
 			harassment: {
 				percentage_harassment: Number(
-					((harassmentResult.count / total) * 100).toFixed(1),
+					(((harassmentResult?.count || 0) / total) * 100).toFixed(1),
 				),
 				by_gender: Object.fromEntries(
 					harassmentByGender
@@ -477,10 +457,7 @@ export const safetyAnalysis: RouteHandler<
 	);
 };
 
-export const surveyLocations: RouteHandler<
-	SurveyLocationsRoute,
-	AppBindings
-> = async (c) => {
+export const surveyLocations = async (c: any) => {
 	try {
 		const year = c.req.query("year") ? Number(c.req.query("year")) : undefined;
 		const gender = c.req.query("gender");
@@ -586,14 +563,11 @@ export const surveyLocations: RouteHandler<
 		);
 	} catch (error) {
 		console.error("Survey locations error:", error);
-		return c.json({ error: error.message }, 500);
+		return c.json({ error: String(error) }, 500);
 	}
 };
 
-export const generalAnalysis: RouteHandler<
-	GeneralAnalysisRoute,
-	AppBindings
-> = async (c) => {
+export const generalAnalysis = async (c: any) => {
 	try {
 		const {
 			lat,
@@ -665,7 +639,7 @@ export const generalAnalysis: RouteHandler<
 			.orderBy(sql`count(*) desc`)
 			.limit(5);
 
-		const total = totalResult.count;
+		const total = totalResult?.count || 0;
 
 		return c.json(
 			{
@@ -691,7 +665,7 @@ export const generalAnalysis: RouteHandler<
 						})),
 				},
 				usage_patterns: {
-					avg_days_per_week: avgDaysResult.avg_days
+					avg_days_per_week: avgDaysResult?.avg_days
 						? Number(Number(avgDaysResult.avg_days).toFixed(1))
 						: 0,
 				},
@@ -707,6 +681,6 @@ export const generalAnalysis: RouteHandler<
 		);
 	} catch (error) {
 		console.error("General analysis error:", error);
-		return c.json({ error: error.message }, 500);
+		return c.json({ error: String(error) }, 500);
 	}
 };

@@ -114,23 +114,23 @@ async function getLocationSummary(locationId: number) {
 			};
 
 			for (const session of sessions) {
-				const sessionChars = session.characteristics as Record<string, unknown>;
+				const sessionChars = session.characteristics as Record<string, number>;
 				if (sessionChars) {
-					characteristics.women += sessionChars.women || 0;
-					characteristics.helmet += sessionChars.helmet || 0;
-					characteristics.cargo += sessionChars.cargo || 0;
-					characteristics.motor += sessionChars.motor || 0;
-					characteristics.ride += sessionChars.ride || 0;
-					characteristics.rain += sessionChars.rain || 0;
-					characteristics.sidewalk += sessionChars.sidewalk || 0;
-					characteristics.wrong_way += sessionChars.wrong_way || 0;
-					characteristics.juveniles += sessionChars.juveniles || 0;
-					characteristics.service += sessionChars.service || 0;
-					characteristics.shared_bike += sessionChars.shared_bike || 0;
-					characteristics.other_behaviors += sessionChars.other_behaviors || 0;
+					characteristics.women += Number(sessionChars.women) || 0;
+					characteristics.helmet += Number(sessionChars.helmet) || 0;
+					characteristics.cargo += Number(sessionChars.cargo) || 0;
+					characteristics.motor += Number(sessionChars.motor) || 0;
+					characteristics.ride += Number(sessionChars.ride) || 0;
+					characteristics.rain += Number(sessionChars.rain) || 0;
+					characteristics.sidewalk += Number(sessionChars.sidewalk) || 0;
+					characteristics.wrong_way += Number(sessionChars.wrong_way) || 0;
+					characteristics.juveniles += Number(sessionChars.juveniles) || 0;
+					characteristics.service += Number(sessionChars.service) || 0;
+					characteristics.shared_bike += Number(sessionChars.shared_bike) || 0;
+					characteristics.other_behaviors += Number(sessionChars.other_behaviors) || 0;
 					characteristics.other_active_modes +=
-						sessionChars.other_active_modes || 0;
-					characteristics.others += sessionChars.others || 0;
+						Number(sessionChars.other_active_modes) || 0;
+					characteristics.others += Number(sessionChars.others) || 0;
 				}
 			}
 
