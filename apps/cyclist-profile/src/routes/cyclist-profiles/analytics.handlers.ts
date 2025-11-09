@@ -127,11 +127,17 @@ export const summary = async (c: any) => {
 		const toPercentage = (stats: Array<{ count: number; [key: string]: unknown }>) =>
 			Object.fromEntries(
 				stats
-					.filter((s) => s.count > 0 && s[Object.keys(s)[0]])
-					.map((s) => [
-						s[Object.keys(s)[0]],
-						Number(((s.count / total) * 100).toFixed(1)),
-					]),
+					.filter((s) => {
+						const firstKey = Object.keys(s)[0];
+						return s.count > 0 && firstKey && s[firstKey];
+					})
+					.map((s) => {
+						const firstKey = Object.keys(s)[0];
+						return [
+							firstKey ? s[firstKey] : 'unknown',
+							Number(((s.count / total) * 100).toFixed(1)),
+						];
+					}),
 			);
 
 		return c.json(
@@ -261,15 +267,21 @@ export const genderAnalysis = async (c: any) => {
 				motivations_by_gender: motivationsByGender
 					.filter((m) => m.gender && m.motivation)
 					.reduce((acc, curr) => {
-						if (!acc[curr.gender]) acc[curr.gender] = {};
-						acc[curr.gender][curr.motivation] = curr.count;
+						if (curr.gender && curr.motivation) {
+							if (!acc[curr.gender]) acc[curr.gender] = {};
+							const genderObj = acc[curr.gender];
+							if (genderObj) genderObj[curr.motivation] = curr.count;
+						}
 						return acc;
 					}, {} as Record<string, Record<string, number>>),
 				issues_by_gender: issuesByGender
 					.filter((i) => i.gender && i.issue)
 					.reduce((acc, curr) => {
-						if (!acc[curr.gender]) acc[curr.gender] = {};
-						acc[curr.gender][curr.issue] = curr.count;
+						if (curr.gender && curr.issue) {
+							if (!acc[curr.gender]) acc[curr.gender] = {};
+							const genderObj = acc[curr.gender];
+							if (genderObj) genderObj[curr.issue] = curr.count;
+						}
 						return acc;
 					}, {} as Record<string, Record<string, number>>),
 			},
@@ -344,15 +356,21 @@ export const genderAnalysisByLocation = async (c: any) => {
 				motivations_by_gender: motivationsByGender
 					.filter((m) => m.gender && m.motivation)
 					.reduce((acc, curr) => {
-						if (!acc[curr.gender]) acc[curr.gender] = {};
-						acc[curr.gender][curr.motivation] = curr.count;
+						if (curr.gender && curr.motivation) {
+							if (!acc[curr.gender]) acc[curr.gender] = {};
+							const genderObj = acc[curr.gender];
+							if (genderObj) genderObj[curr.motivation] = curr.count;
+						}
 						return acc;
 					}, {} as Record<string, Record<string, number>>),
 				issues_by_gender: issuesByGender
 					.filter((i) => i.gender && i.issue)
 					.reduce((acc, curr) => {
-						if (!acc[curr.gender]) acc[curr.gender] = {};
-						acc[curr.gender][curr.issue] = curr.count;
+						if (curr.gender && curr.issue) {
+							if (!acc[curr.gender]) acc[curr.gender] = {};
+							const genderObj = acc[curr.gender];
+							if (genderObj) genderObj[curr.issue] = curr.count;
+						}
 						return acc;
 					}, {} as Record<string, Record<string, number>>),
 			},

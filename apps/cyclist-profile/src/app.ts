@@ -140,7 +140,7 @@ const cleanApp = new Hono()
 					})),
 			});
 		} catch (error) {
-			return c.json({ error: error.message }, 500);
+			return c.json({ error: error instanceof Error ? error.message : String(error) }, 500);
 		}
 	})
 	.get("/v1/cyclist-profiles", async (c) => {
@@ -200,7 +200,7 @@ const cleanApp = new Hono()
 				.where(whereClause)
 				.groupBy(sql`data->>'gender'`);
 
-			const total = totalResult.count;
+			const total = totalResult?.count || 0;
 
 			return c.json({
 				filters: {
@@ -226,7 +226,7 @@ const cleanApp = new Hono()
 				},
 			});
 		} catch (error) {
-			return c.json({ error: error.message }, 500);
+			return c.json({ error: error instanceof Error ? error.message : String(error) }, 500);
 		}
 	});
 

@@ -54,6 +54,7 @@ describe("GET /", () => {
 				id: 42,
 				data: { name: "Rider" },
 				metadata: {},
+				coordinates: null,
 				created_at: fakeDate,
 				updated_at: fakeDate,
 			},
@@ -92,6 +93,7 @@ describe("GET /:id", () => {
 			id: 42,
 			data: { name: "Rider" },
 			metadata: {},
+			coordinates: null,
 			created_at: fakeDate,
 			updated_at: fakeDate,
 		};
@@ -101,7 +103,7 @@ describe("GET /:id", () => {
 			}),
 		});
 
-		const res = await client.v1["cyclist-profiles"][":id"].$get({
+		const res = await (client.v1 as any)["cyclist-profiles"][":id"].$get({
 			param: { id: 42 },
 		});
 		expect(res.status).toBe(200);
@@ -119,7 +121,7 @@ describe("GET /:id", () => {
 			}),
 		});
 
-		const res = await client.v1["cyclist-profiles"][":id"].$get({
+		const res = await (client.v1 as any)["cyclist-profiles"][":id"].$get({
 			param: { id: 42 },
 		});
 
