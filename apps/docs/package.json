@@ -10,7 +10,7 @@
 		"format": "biome format .",
 		"preview": "vite preview",
 		"pre-dev": "pnpm prepare-openapi",
-		"prepare-openapi": "mkdir -p ./public/openapi && node ./scripts/generate-openapi-index.js",
+		"prepare-openapi": "mkdir -p ./public/openapi && node ./scripts/copy-openapi-specs.js && node ./scripts/generate-openapi-index.js",
 		"generate-openapi-index": "node ./scripts/generate-openapi-index.js"
 	},
 	"dependencies": {

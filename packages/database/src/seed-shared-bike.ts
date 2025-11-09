@@ -143,7 +143,7 @@ export async function seedSharedBike(config?: DatabaseConfig) {
 				continue;
 			}
 
-			await db.insert(sharedBikeStations).values(stationsData);
+			await db.insert(sharedBikeStations).values(stationsData).onConflictDoNothing();
 			processed += batch.length;
 			console.log(
 				`✅ Processed ${processed}/${geoData.features.length} stations`,
