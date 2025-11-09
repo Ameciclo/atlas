@@ -7,9 +7,9 @@ const streetService = new StreetService();
 
 export const searchStreets: AppRouteHandler<routes.SearchStreetsRoute> = async (c) => {
 	try {
-		const { q, limit } = c.req.valid("query");
+		const { q, limit, by_length, by_elements } = c.req.valid("query");
 		
-		const matches = await streetService.searchStreets(q, limit);
+		const matches = await streetService.searchStreets(q, limit, by_length, by_elements);
 		
 		return c.json({ matches }, 200);
 	} catch (error) {

@@ -4,6 +4,8 @@ import { z } from "zod";
 export const streetSearchQuerySchema = z.object({
 	q: z.string().min(1, "Search query is required"),
 	limit: z.coerce.number().min(1).max(100).default(10),
+	by_length: z.coerce.boolean().optional(),
+	by_elements: z.coerce.boolean().optional(),
 });
 
 export const streetSearchResponseSchema = z.object({
@@ -12,6 +14,8 @@ export const streetSearchResponseSchema = z.object({
 		name: z.string(),
 		confidence: z.number().min(0).max(1),
 		municipality: z.string().optional(),
+		length: z.number().optional(),
+		elements: z.number().optional(),
 	})),
 });
 

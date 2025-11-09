@@ -185,3 +185,490 @@ Emitted 'error' event on Server instance at:
 }
 
 Node.js v22.15.0
+[20:58:03.667] [32mINFO[39m (119238): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/streets/search",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "host": "localhost:3050",
+        "user-agent": "curl/8.5.0"
+      }
+    }
+    [35mreqId[39m: 1
+    [35mresponseTime[39m: 29
+[20:58:10.336] [32mINFO[39m (119238): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/streets/search",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "host": "localhost:3050",
+        "user-agent": "curl/8.5.0"
+      }
+    }
+    [35mreqId[39m: 2
+    [35mresponseTime[39m: 10
+[21:12:00.583] [32mINFO[39m (119238): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/streets/search",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "host": "localhost:3050",
+        "user-agent": "curl/8.5.0"
+      }
+    }
+    [35mreqId[39m: 3
+    [35mresponseTime[39m: 43
+[21:17:16.798] [32mINFO[39m (119238): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 503,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/health",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "*",
+        "connection": "keep-alive",
+        "host": "localhost:3050",
+        "sec-fetch-mode": "cors",
+        "user-agent": "node"
+      }
+    }
+    [35mreqId[39m: 4
+    [35mresponseTime[39m: 4
+[21:17:16.801] [32mINFO[39m (119238): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/examples",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "*",
+        "connection": "keep-alive",
+        "host": "localhost:3050",
+        "sec-fetch-mode": "cors",
+        "user-agent": "node"
+      }
+    }
+    [35mreqId[39m: 5
+    [35mresponseTime[39m: 0
+[21:17:16.807] [31mERROR[39m (119238): [36mFailed to search streets[39m
+    [35mres[39m: {
+      "status": 500,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/streets/search",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "*",
+        "connection": "keep-alive",
+        "host": "localhost:3050",
+        "sec-fetch-mode": "cors",
+        "user-agent": "node"
+      }
+    }
+    [35mreqId[39m: 6
+    [35mresponseTime[39m: 5
+[21:17:16.810] [31mERROR[39m (119238): [36mFailed to get street details[39m
+    [35mres[39m: {
+      "status": 500,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/streets/123",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "*",
+        "connection": "keep-alive",
+        "host": "localhost:3050",
+        "sec-fetch-mode": "cors",
+        "user-agent": "node"
+      }
+    }
+    [35mreqId[39m: 7
+    [35mresponseTime[39m: 2
+[21:21:08.977] [32mINFO[39m (119238): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/streets/search",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "host": "localhost:3050",
+        "user-agent": "curl/8.5.0"
+      }
+    }
+    [35mreqId[39m: 8
+    [35mresponseTime[39m: 41
+[21:21:12.426] [32mINFO[39m (119238): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/health",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "*",
+        "connection": "keep-alive",
+        "host": "localhost:3050",
+        "sec-fetch-mode": "cors",
+        "user-agent": "node"
+      }
+    }
+    [35mreqId[39m: 9
+    [35mresponseTime[39m: 2
+[21:21:12.428] [32mINFO[39m (119238): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/examples",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "*",
+        "connection": "keep-alive",
+        "host": "localhost:3050",
+        "sec-fetch-mode": "cors",
+        "user-agent": "node"
+      }
+    }
+    [35mreqId[39m: 10
+    [35mresponseTime[39m: 0
+[21:21:12.449] [32mINFO[39m (119238): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/streets/search",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "*",
+        "connection": "keep-alive",
+        "host": "localhost:3050",
+        "sec-fetch-mode": "cors",
+        "user-agent": "node"
+      }
+    }
+    [35mreqId[39m: 11
+    [35mresponseTime[39m: 19
+[21:21:12.458] [32mINFO[39m (119238): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/streets/123",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "*",
+        "connection": "keep-alive",
+        "host": "localhost:3050",
+        "sec-fetch-mode": "cors",
+        "user-agent": "node"
+      }
+    }
+    [35mreqId[39m: 12
+    [35mresponseTime[39m: 8
+21:22:17 [tsx] change in ./../../packages/database/dist/schemas/pcr-streets/index.js Restarting...
+21:22:17 [tsx] change in ./../../packages/database/dist/schemas/pcr-streets/index.js Rerunning...
+ccnode:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3050
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at serve (file:///home/dvalenca/code/atlas/node_modules/.pnpm/@hono+node-server@1.19.6_hono@4.10.4/node_modules/@hono/node-server/dist/index.mjs:572:10)
+    at <anonymous> (/home/dvalenca/code/atlas/apps/ciclodados/src/index.ts:8:1)
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3050
+}
+
+Node.js v22.15.0
+Server is running on http://localhost:3050
+[21:22:52.706] [32mINFO[39m (155237): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/health",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "*",
+        "connection": "keep-alive",
+        "host": "localhost:3050",
+        "sec-fetch-mode": "cors",
+        "user-agent": "node"
+      }
+    }
+    [35mreqId[39m: 1
+    [35mresponseTime[39m: 19
+[21:22:52.710] [32mINFO[39m (155237): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/examples",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "*",
+        "connection": "keep-alive",
+        "host": "localhost:3050",
+        "sec-fetch-mode": "cors",
+        "user-agent": "node"
+      }
+    }
+    [35mreqId[39m: 2
+    [35mresponseTime[39m: 0
+[21:22:52.733] [32mINFO[39m (155237): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/streets/search",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "*",
+        "connection": "keep-alive",
+        "host": "localhost:3050",
+        "sec-fetch-mode": "cors",
+        "user-agent": "node"
+      }
+    }
+    [35mreqId[39m: 3
+    [35mresponseTime[39m: 22
+[21:22:52.740] [32mINFO[39m (155237): [36mRequest completed[39m
+    [35mres[39m: {
+      "status": 200,
+      "headers": {}
+    }
+    [35mreq[39m: {
+      "url": "/v1/streets/123",
+      "method": "GET",
+      "headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "*",
+        "connection": "keep-alive",
+        "host": "localhost:3050",
+        "sec-fetch-mode": "cors",
+        "user-agent": "node"
+      }
+    }
+    [35mreqId[39m: 4
+    [35mresponseTime[39m: 6
+21:45:26 [tsx] change in ./src/lib/schemas.ts Rerunning...
+c21:45:26 [tsx] change in ./src/lib/schemas.ts Restarting...
+cServer is running on http://localhost:3050
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3050
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at serve (file:///home/dvalenca/code/atlas/node_modules/.pnpm/@hono+node-server@1.19.6_hono@4.10.4/node_modules/@hono/node-server/dist/index.mjs:572:10)
+    at <anonymous> (/home/dvalenca/code/atlas/apps/ciclodados/src/index.ts:8:1)
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3050
+}
+
+Node.js v22.15.0
+21:45:35 [tsx] change in ./src/lib/schemas.ts Rerunning...
+c21:45:35 [tsx] change in ./src/lib/schemas.ts Restarting...
+cServer is running on http://localhost:3050
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3050
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at serve (file:///home/dvalenca/code/atlas/node_modules/.pnpm/@hono+node-server@1.19.6_hono@4.10.4/node_modules/@hono/node-server/dist/index.mjs:572:10)
+    at <anonymous> (/home/dvalenca/code/atlas/apps/ciclodados/src/index.ts:8:1)
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3050
+}
+
+Node.js v22.15.0
+21:46:21 [tsx] change in ./src/lib/schemas.ts Rerunning...
+21:46:21 [tsx] change in ./src/lib/schemas.ts Restarting...
+cc21:46:22 [tsx] change in ./src/lib/schemas.ts Restarting...
+21:46:22 [tsx] change in ./src/lib/schemas.ts Restarting...
+ccnode:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3050
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at serve (file:///home/dvalenca/code/atlas/node_modules/.pnpm/@hono+node-server@1.19.6_hono@4.10.4/node_modules/@hono/node-server/dist/index.mjs:572:10)
+    at <anonymous> (/home/dvalenca/code/atlas/apps/ciclodados/src/index.ts:8:1)
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3050
+}
+
+Node.js v22.15.0
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3050
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at serve (file:///home/dvalenca/code/atlas/node_modules/.pnpm/@hono+node-server@1.19.6_hono@4.10.4/node_modules/@hono/node-server/dist/index.mjs:572:10)
+    at <anonymous> (/home/dvalenca/code/atlas/apps/ciclodados/src/index.ts:8:1)
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3050
+}
+
+Node.js v22.15.0
+21:47:00 [tsx] change in ./src/lib/schemas.ts Rerunning...
+21:47:00 [tsx] change in ./src/lib/schemas.ts Rerunning...
+ccnode:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3050
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at serve (file:///home/dvalenca/code/atlas/node_modules/.pnpm/@hono+node-server@1.19.6_hono@4.10.4/node_modules/@hono/node-server/dist/index.mjs:572:10)
+    at <anonymous> (/home/dvalenca/code/atlas/apps/ciclodados/src/index.ts:8:1)
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3050
+}
+
+Node.js v22.15.0
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3050
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at serve (file:///home/dvalenca/code/atlas/node_modules/.pnpm/@hono+node-server@1.19.6_hono@4.10.4/node_modules/@hono/node-server/dist/index.mjs:572:10)
+    at <anonymous> (/home/dvalenca/code/atlas/apps/ciclodados/src/index.ts:8:1)
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3050
+}
+
+Node.js v22.15.0

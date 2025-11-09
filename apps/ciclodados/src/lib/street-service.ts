@@ -7,6 +7,8 @@ export interface StreetMatch {
 	name: string;
 	confidence: number;
 	municipality?: string;
+	length?: number;
+	elements?: number;
 }
 
 export interface StreetDetails {
@@ -20,45 +22,89 @@ export interface StreetDetails {
 }
 
 export class StreetService {
-	async searchStreets(query: string, limit: number): Promise<StreetMatch[]> {
+	async searchStreets(query: string, limit: number, byLength?: boolean, byElements?: boolean): Promise<StreetMatch[]> {
 		try {
-			// Try fuzzy search first
-			const fuzzyResults = await db
-				.select({
-					id: pcrStreets.id,
-					name: pcrStreets.nlogra_conc,
-					similarity: sql<number>`similarity(${pcrStreets.nlogra_conc}, ${query})`,
-				})
-				.from(pcrStreets)
-				.where(sql`similarity(${pcrStreets.nlogra_conc}, ${query}) > 0.1`)
-				.orderBy(sql`similarity(${pcrStreets.nlogra_conc}, ${query}) DESC`)
-				.limit(limit);
+			// Try fuzzy search with conditional ordering
+			if (byLength) {
+				const fuzzyResults = await db
+					.select({
+						id: pcrStreets.id,
+						name: pcrStreets.nlogra_conc,
+						length: pcrStreets.db2gse_sde,
+						similarity: sql<number>`similarity(${pcrStreets.nlogra_conc}, ${query})`,
+					})
+					.from(pcrStreets)
+					.where(sql`similarity(${pcrStreets.nlogra_conc}, ${query}) > 0.1`)
+					.orderBy(sql`${pcrStreets.db2gse_sde} DESC, similarity(${pcrStreets.nlogra_conc}, ${query}) DESC`)
+					.limit(limit);
 
-			return fuzzyResults.map(row => ({
-				id: row.id.toString(),
-				name: row.name,
-				confidence: row.similarity,
-				municipality: "Recife",
-			}));
+				return fuzzyResults.map(row => ({
+					id: row.id.toString(),
+					name: row.name,
+					confidence: row.similarity,
+					municipality: "Recife",
+					length: row.length || undefined,
+				}));
+			} else {
+				const fuzzyResults = await db
+					.select({
+						id: pcrStreets.id,
+						name: pcrStreets.nlogra_conc,
+						similarity: sql<number>`similarity(${pcrStreets.nlogra_conc}, ${query})`,
+					})
+					.from(pcrStreets)
+					.where(sql`similarity(${pcrStreets.nlogra_conc}, ${query}) > 0.1`)
+					.orderBy(sql`similarity(${pcrStreets.nlogra_conc}, ${query}) DESC`)
+					.limit(limit);
+
+				return fuzzyResults.map(row => ({
+					id: row.id.toString(),
+					name: row.name,
+					confidence: row.similarity,
+					municipality: "Recife",
+				}));
+			}
 		} catch {
 			// Fallback to ILIKE if pg_trgm not available
 			const searchTerm = `%${query.toUpperCase()}%`;
-			const likeResults = await db
-				.select({
-					id: pcrStreets.id,
-					name: pcrStreets.nlogra_conc,
-				})
-				.from(pcrStreets)
-				.where(sql`UPPER(${pcrStreets.nlogra_conc}) LIKE ${searchTerm}`)
-				.orderBy(pcrStreets.nlogra_conc)
-				.limit(limit);
+			
+			if (byLength) {
+				const likeResults = await db
+					.select({
+						id: pcrStreets.id,
+						name: pcrStreets.nlogra_conc,
+						length: pcrStreets.db2gse_sde,
+					})
+					.from(pcrStreets)
+					.where(sql`UPPER(${pcrStreets.nlogra_conc}) LIKE ${searchTerm}`)
+					.orderBy(sql`${pcrStreets.db2gse_sde} DESC, ${pcrStreets.nlogra_conc}`)
+					.limit(limit);
 
-			return likeResults.map(row => ({
-				id: row.id.toString(),
-				name: row.name,
-				confidence: 1.0,
-				municipality: "Recife",
-			}));
+				return likeResults.map(row => ({
+					id: row.id.toString(),
+					name: row.name,
+					confidence: 1.0,
+					municipality: "Recife",
+					length: row.length || undefined,
+				}));
+			} else {
+				const likeResults = await db
+					.select({
+						id: pcrStreets.id,
+						name: pcrStreets.nlogra_conc,
+					})
+					.from(pcrStreets)
+					.where(sql`UPPER(${pcrStreets.nlogra_conc}) LIKE ${searchTerm}`)
+					.orderBy(pcrStreets.nlogra_conc)
+					.limit(limit);
+
+				return likeResults.map(row => ({
+					id: row.id.toString(),
+					name: row.name,
+					confidence: 1.0,
+					municipality: "Recife",
+				}));
+			}
 		}
 	}
 
