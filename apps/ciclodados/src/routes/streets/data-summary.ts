@@ -36,14 +36,7 @@ export const streetDataSummaryRoute = createRoute({
 			},
 			description: "Bad request",
 		},
-		404: {
-			content: {
-				"application/json": {
-					schema: errorResponseSchema,
-				},
-			},
-			description: "Street not found",
-		},
+
 		500: {
 			content: {
 				"application/json": {
