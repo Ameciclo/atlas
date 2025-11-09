@@ -1,7 +1,5 @@
 import { createRoute, z } from "@hono/zod-openapi";
 
-import * as HttpStatusCodes from "stoker/http-status-codes";
-import { jsonContent } from "stoker/openapi/helpers";
 
 const tags = ["Streets"];
 

@@ -11,7 +11,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3019",
+      "url": "http://localhost:3008",
       "description": "Local development server"
     },
     {

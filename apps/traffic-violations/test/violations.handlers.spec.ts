@@ -65,7 +65,7 @@ describe("Violations Handlers", () => {
 			});
 			mockContext.json.mockReturnValue({ data: [] });
 
-			const result = await listViolationsHandler(mockContext as Context);
+			const _result = await listViolationsHandler(mockContext as Context);
 			expect(mockContext.req.valid).toHaveBeenCalledWith("query");
 			expect(mockContext.json).toHaveBeenCalled();
 		});
@@ -79,7 +79,7 @@ describe("Violations Handlers", () => {
 			});
 			mockContext.json.mockReturnValue({ data: [] });
 
-			const result = await listViolationsHandler(mockContext as Context);
+			const _result = await listViolationsHandler(mockContext as Context);
 			expect(mockContext.req.valid).toHaveBeenCalledWith("query");
 			expect(mockContext.json).toHaveBeenCalled();
 		});
@@ -91,7 +91,7 @@ describe("Violations Handlers", () => {
 			});
 			mockContext.json.mockReturnValue({ data: [] });
 
-			const result = await listViolationsHandler(mockContext as Context);
+			const _result = await listViolationsHandler(mockContext as Context);
 			expect(mockContext.req.valid).toHaveBeenCalledWith("query");
 			expect(mockContext.json).toHaveBeenCalled();
 		});
@@ -106,7 +106,7 @@ describe("Violations Handlers", () => {
 			});
 			mockContext.json.mockReturnValue({ locations: [] });
 
-			const result = await violationsByLocationHandler(mockContext as Context);
+			const _result = await violationsByLocationHandler(mockContext as Context);
 			expect(mockContext.req.valid).toHaveBeenCalledWith("query");
 			expect(mockContext.json).toHaveBeenCalled();
 		});
@@ -124,7 +124,7 @@ describe("Violations Handlers", () => {
 				features: [],
 			});
 
-			const result = await violationsGeoJSONHandler(mockContext as Context);
+			const _result = await violationsGeoJSONHandler(mockContext as Context);
 			expect(mockContext.req.valid).toHaveBeenCalledWith("query");
 			expect(mockContext.json).toHaveBeenCalled();
 		});

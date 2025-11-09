@@ -1,4 +1,4 @@
-import { or, eq, sql, and } from "drizzle-orm";
+import { or, eq, sql, } from "drizzle-orm";
 import { db } from "../../db/index.js";
 import * as schema from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
@@ -8,7 +8,14 @@ export const getSummaryHandler: AppRouteHandler<typeof getSummary> = async (
 	c,
 ) => {
 	try {
-		const editionsRes: any[] = [];
+		const editionsRes: Array<{
+			id: number;
+			slug: string;
+			name: string;
+			date: string;
+			city: { id: number; name: string; state: string };
+			total_cyclists: number;
+		}> = [];
 		let total_cyclists_summary = 0;
 
 		let where_max_count = {
@@ -56,7 +63,7 @@ export const getSummaryHandler: AppRouteHandler<typeof getSummary> = async (
 			const eventData = event.counting_events;
 			if (!eventData) continue;
 
-			const { id, counting_date, location_id } = eventData;
+			const { id, counting_date } = eventData;
 			const location = event.counting_locations;
 
 			const totalCyclistsResult = await db
@@ -134,7 +141,7 @@ export const getSummaryHandler: AppRouteHandler<typeof getSummary> = async (
 
 		// Somar características de todas as sessões
 		for (const session of sessions) {
-			const characteristics = session.characteristics as any;
+			const characteristics = session.characteristics as Record<string, unknown>;
 			if (characteristics) {
 				summary.total_cargo += characteristics.cargo || 0;
 				summary.total_helmet += characteristics.helmet || 0;

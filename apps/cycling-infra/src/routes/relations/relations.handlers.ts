@@ -1,3 +1,4 @@
+import type { RouteHandler } from "@hono/zod-openapi";
 import { eq } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { createConnectedDatabase } from "@atlas/database";
@@ -5,8 +6,9 @@ import {
 	pdcRelationWays,
 	cyclistInfraRelations,
 } from "@atlas/database/schemas/cycling-infra";
+import type { listRoute, getByIdRoute, getWaysByRelationIdRoute } from "./relations.routes.js";
 
-export const list = async (c: any) => {
+export const list: RouteHandler<typeof listRoute> = async (c) => {
 	try {
 		const db = await createConnectedDatabase();
 		const relations = await db.select().from(cyclistInfraRelations);
@@ -20,7 +22,7 @@ export const list = async (c: any) => {
 	}
 };
 
-export const getById = async (c: any) => {
+export const getById: RouteHandler<typeof getByIdRoute> = async (c) => {
 	const { id } = c.req.valid("param");
 
 	try {
@@ -61,13 +63,13 @@ export const getById = async (c: any) => {
 			type: "Feature" as const,
 			id: `relation/${relation[0]?.osm_id}`,
 			properties: {
-				...(way.osm_properties as Record<string, any>),
+				...(way.osm_properties as Record<string, unknown>),
 				name: relation[0]?.name,
 				ref: relation[0]?.pdc_ref,
 				description: relation[0]?.pdc_stretch,
 				pdc_typology: relation[0]?.pdc_typology,
 			},
-			geometry: (way.geojson as any)?.geometry || null,
+			geometry: (way.geojson as { geometry?: unknown })?.geometry || null,
 		}));
 
 		return c.json(
@@ -86,7 +88,7 @@ export const getById = async (c: any) => {
 	}
 };
 
-export const getWaysByRelationId = async (c: any) => {
+export const getWaysByRelationId: RouteHandler<typeof getWaysByRelationIdRoute> = async (c) => {
 	const { id } = c.req.valid("param");
 
 	try {

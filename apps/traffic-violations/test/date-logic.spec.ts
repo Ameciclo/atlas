@@ -105,8 +105,8 @@ describe("Date Logic Tests", () => {
 		it("should prioritize start_date/end_date over month/year", () => {
 			const startDate = "2023-12-01";
 			const endDate = "2023-12-31";
-			const month = 1; // January (should be ignored)
-			const year = 2022; // Should be ignored
+			const _month = 1; // January (should be ignored)
+			const _year = 2022; // Should be ignored
 
 			// Simulate the logic from the handler
 			const hasExplicitDates = startDate && endDate;

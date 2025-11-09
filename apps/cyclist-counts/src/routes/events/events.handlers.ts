@@ -1,4 +1,4 @@
-import { and, eq, gte, lte, sql } from "drizzle-orm";
+import { and, eq, gte, lte, } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
 import { db } from "../../db/index.js";
@@ -201,7 +201,13 @@ export const getDetailsById: AppRouteHandler<GetDetailsByIdRoute> = async (
 		total_wrong_way: 0,
 	};
 
-	const sessionsData: Record<string, any> = {};
+	const sessionsData: Record<string, {
+		start_time: string;
+		end_time: string;
+		total_cyclists: number;
+		quantitative: Record<string, number>;
+		characteristics: Record<string, unknown>;
+	}> = {};
 	const directions: Record<string, string> = {};
 
 	for (const session of sessions) {
@@ -225,7 +231,7 @@ export const getDetailsById: AppRouteHandler<GetDetailsByIdRoute> = async (
 		});
 
 		// Get characteristics from session JSONB
-		const characteristics = (session.characteristics as any) || {};
+		const characteristics = (session.characteristics as Record<string, unknown>) || {};
 		summary.total_cargo += characteristics.cargo || 0;
 		summary.total_helmet += characteristics.helmet || 0;
 		summary.total_juveniles += characteristics.juveniles || 0;

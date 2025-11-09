@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+const path = require("node:path");
 
 // Função para encontrar todos os arquivos de rotas
 function findRouteFiles(dir) {
@@ -31,8 +31,8 @@ function extractOpenApiRoutes(filePath) {
 	const exportPattern =
 		/export\s+const\s+(\w+)\s*=\s*createRoute\s*\(\s*\{[^}]*path:\s*['"`]([^'"`]*?)['"`][^}]*method:\s*['"`](\w+)['"`]/g;
 
-	let match;
-	while ((match = exportPattern.exec(content)) !== null) {
+	let match = exportPattern.exec(content);
+	while (match !== null) {
 		const [, exportName, path, method] = match;
 		routes.push({
 			exportName,
@@ -40,6 +40,7 @@ function extractOpenApiRoutes(filePath) {
 			method: method.toUpperCase(),
 			file: filePath,
 		});
+		match = exportPattern.exec(content);
 	}
 
 	return routes;
@@ -57,9 +58,10 @@ function extractGeneratorRoutes(generatorPath) {
 	// Buscar por .openapi(routes.exportName, ...)
 	const openapiPattern = /\.openapi\s*\(\s*(?:routes|analyticsRoutes)\.(\w+)/g;
 
-	let match;
-	while ((match = openapiPattern.exec(content)) !== null) {
+	let match = openapiPattern.exec(content);
+	while (match !== null) {
 		routes.push(match[1]);
+		match = openapiPattern.exec(content);
 	}
 
 	return routes;
@@ -197,7 +199,7 @@ function checkOpenApiCoverage() {
 			console.log("\n✅ Todas as rotas OpenAPI estão registradas no gerador!");
 		}
 
-		console.log("\n" + "=".repeat(70) + "\n");
+		console.log(`\n${"=".repeat(70)}\n`);
 	}
 }
 

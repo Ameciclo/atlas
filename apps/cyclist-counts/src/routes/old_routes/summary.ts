@@ -1,7 +1,4 @@
 import { Hono } from "hono";
-import { db } from "../../db/index.js";
-import { or, eq, sql } from "drizzle-orm";
-import * as schema from "../../db/schema.js";
 
 export type city = {
 	id: number;

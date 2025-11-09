@@ -39,7 +39,7 @@ export async function searchStreets(c: Context) {
 		})
 		.from(pcrStreets)
 		.where(
-			sql`UPPER(${pcrStreets.nlogra_conc}) LIKE UPPER(${"%" + query + "%"})`,
+			sql`UPPER(${pcrStreets.nlogra_conc}) LIKE UPPER(${`%${query}%`})`,
 		)
 		.limit(50);
 
@@ -64,7 +64,7 @@ export async function getStreetByCode(c: Context) {
 			geometry: sql`ST_AsGeoJSON(${pcrStreets.coordinates})`.as("geometry"),
 		})
 		.from(pcrStreets)
-		.where(eq(pcrStreets.clogra_codi, parseInt(code)));
+		.where(eq(pcrStreets.clogra_codi, parseInt(code, 10)));
 
 	if (street.length === 0) {
 		return c.json({ error: "Street not found" }, 404);

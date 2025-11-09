@@ -74,9 +74,13 @@ export async function nearbyStations(c: Context) {
 	const maxLimit = Number(limit);
 
 	if (
+		Number.
 		isNaN(latitude) ||
+		Number.
 		isNaN(longitude) ||
+		Number.
 		isNaN(searchRadius) ||
+		Number.
 		isNaN(maxLimit)
 	) {
 		return c.json({ error: "Invalid numeric parameters" }, 400);

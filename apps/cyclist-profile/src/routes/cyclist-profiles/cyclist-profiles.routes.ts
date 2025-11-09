@@ -66,7 +66,7 @@ const NearbyQuerySchema = z.object({
 	limit: z.coerce.number().optional().default(50),
 });
 
-const NearbyResponseSchema = z.object({
+const _NearbyResponseSchema = z.object({
 	id: z.number(),
 	data: z.any(),
 	metadata: z.any(),

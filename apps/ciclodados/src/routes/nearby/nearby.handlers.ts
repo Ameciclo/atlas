@@ -261,9 +261,9 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 	);
 
 	// Processar perfis por edição (ano da pesquisa)
-	const editionsMap = new Map<string, any[]>();
+	const editionsMap = new Map<string, unknown[]>();
 	for (const row of cyclistProfiles.rows) {
-		const metadata = row.metadata as any;
+		const metadata = row.metadata as Record<string, unknown>;
 		const edition = metadata?.survey_year
 			? metadata.survey_year.toString()
 			: "Sem ano";
@@ -283,7 +283,7 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 			const otherAttributes: Record<string, number> = {};
 
 			for (const profile of profiles) {
-				const data = profile as any;
+				const data = profile as Record<string, unknown>;
 
 				// Raça
 				if (data.color_race) {

@@ -1,11 +1,10 @@
-import { eq, sql, desc, max } from "drizzle-orm";
+import { eq, sql, } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
 import { db } from "../../db/index.js";
 import {
 	countingEvents,
 	countingSessions,
-	sessionMovements,
 } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
@@ -17,7 +16,7 @@ import type {
 export const list: AppRouteHandler<ListRoute> = async (c) => {
 	const { city } = c.req.valid("query");
 
-	let locations;
+	let locations: Awaited<ReturnType<typeof db.query.countingLocations.findMany>>;
 	if (city) {
 		// Filter by city if provided
 		locations = await db.query.countingLocations.findMany({
@@ -115,7 +114,7 @@ async function getLocationSummary(locationId: number) {
 			};
 
 			for (const session of sessions) {
-				const sessionChars = session.characteristics as any;
+				const sessionChars = session.characteristics as Record<string, unknown>;
 				if (sessionChars) {
 					characteristics.women += sessionChars.women || 0;
 					characteristics.helmet += sessionChars.helmet || 0;

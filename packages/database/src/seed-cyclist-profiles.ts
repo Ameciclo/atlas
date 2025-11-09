@@ -118,8 +118,7 @@ export async function seedCyclistProfiles(config: DatabaseConfig = {}) {
 			let coordinatesWKT = null;
 
 			if (
-				location &&
-				location.coordinates &&
+				location?.coordinates &&
 				Array.isArray(location.coordinates) &&
 				location.coordinates.length === 2
 			) {

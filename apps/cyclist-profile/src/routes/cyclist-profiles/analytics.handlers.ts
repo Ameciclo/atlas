@@ -181,7 +181,7 @@ export const summary: RouteHandler<SummaryRoute, AppBindings> = async (c) => {
 
 export const trends: RouteHandler<TrendsRoute, AppBindings> = async (c) => {
 	const years = c.req.query("years") || "2015,2018,2021,2024";
-	const yearsList = years.split(",").map((y) => parseInt(y.trim()));
+	const yearsList = years.split(",").map((y) => parseInt(y.trim(), 10));
 
 	const trendsData = await Promise.all(
 		yearsList.map(async (year) => {

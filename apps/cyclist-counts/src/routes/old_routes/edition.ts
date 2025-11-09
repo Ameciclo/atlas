@@ -1,17 +1,6 @@
 import { Hono } from "hono";
-import { db } from "../../db/index.js";
-import { eq } from "drizzle-orm";
-import * as schema from "../../db/schema.js";
 
 const router = new Hono();
-
-// Em seguida, para cada directionId, obtenha as informações correspondentes da tabela directions
-interface DirectionDetail {
-	origin: string;
-	originCardinal: string;
-	destin: string;
-	destinCardinal: string;
-}
 
 export interface CountEditionCoordinates {
 	point: {
@@ -20,14 +9,6 @@ export interface CountEditionCoordinates {
 	};
 	type: string;
 	name: string;
-}
-
-interface SessionData {
-	start_time: Date;
-	end_time: Date;
-	total_cyclists: number;
-	quantitative: { [key: string]: number };
-	characteristics: { [key: string]: number };
 }
 
 export interface CountEditionSummary {
@@ -52,8 +33,8 @@ export interface CountEditionSummary {
 
 router.get("/:id", async (c) => {
 	try {
-		const editionId = parseInt(c.req.param("id"));
-		if (isNaN(editionId)) {
+		const editionId = parseInt(c.req.param("id"), 10);
+		if (Number.isNaN(editionId)) {
 			return c.json({ error: "Invalid edition ID" }, 400);
 		}
 

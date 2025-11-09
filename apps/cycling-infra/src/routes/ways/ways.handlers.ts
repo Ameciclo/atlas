@@ -1,13 +1,8 @@
+import type { RouteHandler } from "@hono/zod-openapi";
 import { createConnectedDatabase } from "@atlas/database";
 import { pdcRelationWays } from "@atlas/database/schemas/cycling-infra";
 import env from "../../env.js";
-import type { AppRouteHandler } from "../../lib/types.js";
-import type {
-	ListRoute,
-	GetSummaryRoute,
-	GetAllRoute,
-	GetNearbyRoute,
-} from "./ways.routes.js";
+import type { listRoute, getSummaryRoute, getAllRoute, getNearbyRoute } from "./ways.routes.js";
 
 // Helper function to calculate distance between two coordinates
 function calculateDistance(
@@ -28,20 +23,21 @@ function calculateDistance(
 }
 
 // Calculate total length of a LineString or MultiLineString
-function calculateGeometryLength(geometry: any): number {
+function calculateGeometryLength(geometry: { type: string; coordinates: number[][] | number[][][] }): number {
 	if (!geometry || !geometry.coordinates) return 0;
 
 	let totalLength = 0;
 
 	if (geometry.type === "LineString") {
-		const coords = geometry.coordinates;
+		const coords = geometry.coordinates as number[][];
 		for (let i = 0; i < coords.length - 1; i++) {
-			totalLength += calculateDistance(coords[i], coords[i + 1]);
+			totalLength += calculateDistance(coords[i] as [number, number], coords[i + 1] as [number, number]);
 		}
 	} else if (geometry.type === "MultiLineString") {
-		for (const lineString of geometry.coordinates) {
+		const multiCoords = geometry.coordinates as number[][][];
+		for (const lineString of multiCoords) {
 			for (let i = 0; i < lineString.length - 1; i++) {
-				totalLength += calculateDistance(lineString[i], lineString[i + 1]);
+				totalLength += calculateDistance(lineString[i] as [number, number], lineString[i + 1] as [number, number]);
 			}
 		}
 	}
@@ -49,11 +45,11 @@ function calculateGeometryLength(geometry: any): number {
 	return totalLength;
 }
 
-export const list = async (c: any) => {
+export const list: RouteHandler<typeof listRoute> = async (c) => {
 	const { city } = c.req.valid("query");
 	const db = await createConnectedDatabase();
 
-	let ways;
+	let ways: Record<string, unknown>[];
 	if (city) {
 		const result = await db.execute(`
 			SELECT prw.*
@@ -61,30 +57,30 @@ export const list = async (c: any) => {
 			LEFT JOIN cyclist_infra_relation_cities circ ON prw.relation_id = circ.relation_id
 			WHERE COALESCE(circ.city_id, (prw.osm_properties->>'city_id')::int) = ${parseInt(city, 10)}
 		`);
-		ways = result.rows;
+		ways = result.rows as Record<string, unknown>[];
 	} else {
 		ways = await db.select().from(pdcRelationWays);
 	}
 
 	// Transform to original format
 	const transformedWays = ways.map((way) => {
-		const geojsonData = way.geojson as any;
-		const osmProps = way.osm_properties as Record<string, any>;
+		const geojsonData = way.geojson as { geometry?: { type: string; coordinates: number[][] | number[][][] } };
+		const osmProps = way.osm_properties as Record<string, unknown>;
 
 		// Extract numeric OSM ID from string format (e.g., "relation/15997469" -> 15997469)
 		const osmIdMatch = String(way.osm_id).match(/\/(\d+)$/);
 		const numericOsmId =
-			osmIdMatch && osmIdMatch[1] ? parseInt(osmIdMatch[1], 10) : 0;
+			osmIdMatch?.[1] ? parseInt(osmIdMatch[1], 10) : 0;
 
 		// Calculate length from geometry
-		const length = calculateGeometryLength(geojsonData?.geometry);
+		const length = geojsonData?.geometry ? calculateGeometryLength(geojsonData.geometry) : 0;
 
 		// Determine cycleway info from OSM properties
-		const highway = osmProps?.highway || osmProps?.route || "cycleway";
+		const highway = (osmProps?.highway as string) || (osmProps?.route as string) || "cycleway";
 		const hasCycleway = highway === "cycleway" || osmProps?.route === "bicycle";
-		const cyclewayTypology = osmProps?.description?.includes("Ciclovia")
+		const cyclewayTypology = (osmProps?.description as string)?.includes("Ciclovia")
 			? "Ciclovia"
-			: osmProps?.description?.includes("Ciclofaixa")
+			: (osmProps?.description as string)?.includes("Ciclofaixa")
 				? "Ciclofaixa"
 				: "Ciclovia";
 
@@ -95,7 +91,7 @@ export const list = async (c: any) => {
 			highway: highway,
 			hasCycleway: hasCycleway,
 			cyclewayTypology: cyclewayTypology,
-			relationId: way.relation_id || 0,
+			relationId: (way.relation_id as number) || 0,
 			geojson: {
 				type: "FeatureCollection" as const,
 				features: [
@@ -123,7 +119,7 @@ export const list = async (c: any) => {
 	return c.json(transformedWays);
 };
 
-export const getSummary = async (c: any) => {
+export const getSummary: RouteHandler<typeof getSummaryRoute> = async (c) => {
 	const db = await createConnectedDatabase();
 
 	// Debug: verificar dados disponíveis
@@ -180,19 +176,25 @@ export const getSummary = async (c: any) => {
 	);
 	console.log("Sample:", waysData.rows.slice(0, 3));
 
-	const cities: { [key: string]: any[] } = {};
+	const cities: { [key: string]: Array<{
+		length: number;
+		hasCycleway: boolean;
+		relationId: number;
+		pdcTypology: string;
+		cyclewayTypology: string;
+	}> } = {};
 
-	waysData.rows.forEach((row: any) => {
+	waysData.rows.forEach((row: Record<string, unknown>) => {
 		const cityId = row.city_id?.toString() || "2611606";
 		if (!cities[cityId]) {
 			cities[cityId] = [];
 		}
 		cities[cityId].push({
-			length: parseFloat(row.length) || 0,
+			length: parseFloat(String(row.length)) || 0,
 			hasCycleway: row.has_cycleway === true,
-			relationId: row.relation_id || 0,
-			pdcTypology: row.pdc_typology,
-			cyclewayTypology: row.cycleway_typology,
+			relationId: (row.relation_id as number) || 0,
+			pdcTypology: row.pdc_typology as string,
+			cyclewayTypology: row.cycleway_typology as string,
 		});
 	});
 
@@ -208,7 +210,14 @@ export const getSummary = async (c: any) => {
 
 	console.log("PDC Cities found:", allPdcCities.rows.length);
 
-	const summaryByCity: { [key: string]: any } = {};
+	const summaryByCity: { [key: string]: {
+		pdc_feito: number;
+		out_pdc: number;
+		pdc_total: number;
+		real_pdc: number;
+		percent: number;
+		real_percent: number;
+	} } = {};
 
 	// Processar cidades com dados
 	for (const city in cities) {
@@ -220,8 +229,8 @@ export const getSummary = async (c: any) => {
 	}
 
 	// Adicionar cidades PDC sem dados (zeros)
-	allPdcCities.rows.forEach((cityRow: any) => {
-		const cityId = cityRow.city_id.toString();
+	allPdcCities.rows.forEach((cityRow: Record<string, unknown>) => {
+		const cityId = (cityRow.city_id as number).toString();
 		if (!summaryByCity[cityId]) {
 			summaryByCity[cityId] = {
 				pdc_feito: 0,
@@ -240,7 +249,13 @@ export const getSummary = async (c: any) => {
 	return c.json({ all: allCitySummary, byCity: summaryByCity });
 };
 
-function generateCitySummary(cityData: any[]) {
+function generateCitySummary(cityData: Array<{
+	length: number;
+	hasCycleway: boolean;
+	relationId: number;
+	pdcTypology: string;
+	cyclewayTypology: string;
+}>) {
 	const newData = cityData.map((d) => {
 		const hasCycleway = d.hasCycleway === true;
 		const isNotOutPDC = d.relationId !== 0; // 0 = não PDC, >0 = PDC
@@ -303,7 +318,7 @@ function generateCitySummary(cityData: any[]) {
 	};
 }
 
-export const getAll = async (c: any) => {
+export const getAll: RouteHandler<typeof getAllRoute> = async (c) => {
 	const { city, limit, offset, simplify, precision, minimal, only_all } =
 		c.req.valid("query");
 	const db = await createConnectedDatabase();
@@ -353,13 +368,13 @@ export const getAll = async (c: any) => {
 	}
 
 	const result = await db.execute(query);
-	const ways = result.rows as any[];
+	const ways = result.rows as Record<string, unknown>[];
 
 	// Convert to GeoJSON format
-	const features = ways.map((way: any) => {
+	const features = ways.map((way: Record<string, unknown>) => {
 		const hasCycleway = way.has_cycleway === "true";
-		const isNotOutPDC = (way.relation_id || 0) !== 0;
-		const length = parseFloat(way.length) || 0;
+		const isNotOutPDC = ((way.relation_id as number) || 0) !== 0;
+		const length = parseFloat(String(way.length)) || 0;
 
 		if (isMinimal) {
 			// Determinar status exclusivo da via
@@ -367,8 +382,8 @@ export const getAll = async (c: any) => {
 			let status_value: number;
 
 			// Verificar se a tipologia está correta (precisa dos dados do banco)
-			const pdcTypology = way.pdc_typology;
-			const cyclewayTypology = way.cycleway_typology;
+			const pdcTypology = way.pdc_typology as string;
+			const cyclewayTypology = way.cycleway_typology as string;
 
 			if (hasCycleway && isNotOutPDC && pdcTypology === cyclewayTypology) {
 				// Realizado dentro do PDC com infra designada
@@ -398,7 +413,7 @@ export const getAll = async (c: any) => {
 
 			return {
 				type: "Feature" as const,
-				geometry: way.geometry ? JSON.parse(way.geometry) : null,
+				geometry: way.geometry ? JSON.parse(way.geometry as string) : null,
 				properties: {
 					id: way.id,
 					status_type,
@@ -411,7 +426,7 @@ export const getAll = async (c: any) => {
 
 			return {
 				type: "Feature" as const,
-				geometry: way.geometry ? JSON.parse(way.geometry) : null,
+				geometry: way.geometry ? JSON.parse(way.geometry as string) : null,
 				properties: {
 					STATUS: status,
 					id: way.id,
@@ -440,7 +455,7 @@ export const getAll = async (c: any) => {
 	}
 
 	// Agrupa por cidade quando não há filtro
-	const byCity: { [key: string]: any } = {};
+	const byCity: { [key: string]: { type: "FeatureCollection"; features: typeof features } } = {};
 	features.forEach((feature) => {
 		const cityId = feature.properties.city_id?.toString() || "unknown";
 		if (!byCity[cityId]) {
@@ -469,7 +484,7 @@ export const getAll = async (c: any) => {
 	});
 };
 
-export const getNearby = async (c: any) => {
+export const getNearby: RouteHandler<typeof getNearbyRoute> = async (c) => {
 	const { lat, lon, radius = "1000" } = c.req.valid("query");
 	const db = await createConnectedDatabase();
 
@@ -509,21 +524,21 @@ export const getNearby = async (c: any) => {
 		ORDER BY distance_meters
 	`);
 
-	const ways = result.rows as any[];
+	const ways = result.rows as Record<string, unknown>[];
 
 	// Convert to GeoJSON features
 	const features = ways.map((way) => ({
 		type: "Feature" as const,
 		id: way.osm_id,
 		properties: {
-			...(way.osm_properties || {}),
+			...(way.osm_properties as Record<string, unknown> || {}),
 			pdc_ref: way.pdc_ref,
 			name: way.relation_name || way.name,
 			pdc_typology: way.pdc_typology,
 			description: way.pdc_stretch,
 			executed: way.executed || false,
-			length_km: parseFloat((way.length_km || 0).toFixed(3)),
-			distance_meters: Math.round(way.distance_meters || 0),
+			length_km: parseFloat((Number(way.length_km) || 0).toFixed(3)),
+			distance_meters: Math.round(Number(way.distance_meters) || 0),
 			relation: way.relation_id
 				? {
 						id: way.relation_id,
@@ -531,14 +546,14 @@ export const getNearby = async (c: any) => {
 						pdc_ref: way.pdc_ref,
 						name: way.relation_name,
 						total_length_km: parseFloat(
-							(way.relation_total_km || 0).toFixed(3),
+							(Number(way.relation_total_km) || 0).toFixed(3),
 						),
 						description: way.pdc_stretch,
 						typology: way.pdc_typology,
 					}
 				: null,
 		},
-		geometry: way.geojson?.geometry || null,
+		geometry: (way.geojson as { geometry?: unknown })?.geometry || null,
 	}));
 
 	// Calculate summary

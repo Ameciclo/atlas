@@ -1,5 +1,4 @@
-import { and, eq, gte, lte, count, sql } from "drizzle-orm";
-import * as HttpStatusCodes from "stoker/http-status-codes";
+import { and, gte, lte, count, sql } from "drizzle-orm";
 import { db, ensureConnection } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
@@ -112,7 +111,7 @@ export const filters: AppRouteHandler<FiltersRoute> = async (c) => {
 	const formattedDados = dados.map((item) => ({
 		ano: new Date(item.date).getFullYear(),
 		mes: new Date(item.date).getMonth() + 1,
-		hora: item.time ? parseInt(item.time.split(":")[0]) : 0,
+		hora: item.time ? parseInt(item.time.split(":")[0], 10) : 0,
 		municipio: { nome: item.municipality || "UNKNOWN" },
 		sexo: {
 			codigo: item.gender || "U",

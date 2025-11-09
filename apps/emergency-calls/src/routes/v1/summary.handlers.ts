@@ -1,5 +1,4 @@
 import { count, sql } from "drizzle-orm";
-import * as HttpStatusCodes from "stoker/http-status-codes";
 import { db, ensureConnection } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";

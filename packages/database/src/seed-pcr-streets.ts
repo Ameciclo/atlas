@@ -4,7 +4,6 @@ import { join } from "node:path";
 import { sql } from "drizzle-orm";
 import type { DatabaseConfig } from "./connection.js";
 import { closeDatabase, createConnectedDatabase } from "./connection.js";
-import * as pcrStreetsSchema from "./schemas/pcr-streets/index.js";
 
 interface GeoJSONFeature {
 	type: "Feature";
@@ -57,7 +56,7 @@ export async function seedPcrStreets(config: DatabaseConfig = {}) {
 
 		for (let i = 0; i < data.features.length; i += batchSize) {
 			const batch = data.features.slice(i, i + batchSize);
-			const streetsToInsert = [];
+			const _streetsToInsert = [];
 
 			for (const feature of batch) {
 				const props = feature.properties;

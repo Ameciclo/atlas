@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require("node:fs");
 
 // Ler o CSV e corrigir o JSON
 const content = fs.readFileSync(
@@ -7,7 +7,7 @@ const content = fs.readFileSync(
 );
 
 // Usar regex para encontrar e corrigir os JSONs
-const fixedContent = content.replace(/"(\{[^}]+\})"/g, (match, jsonContent) => {
+const fixedContent = content.replace(/"(\{[^}]+\})"/g, (_match, jsonContent) => {
 	// Corrigir aspas duplas escapadas
 	const fixed = jsonContent.replace(/""/g, '"');
 	return `"${fixed}"`;
