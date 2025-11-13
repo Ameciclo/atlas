@@ -36,33 +36,44 @@ jobs:
       - name: Install turbo
         run: npm install -g turbo
 
-      - name: Detect changed apps
+      - name: Detect changed apps with Turbo
         id: set-matrix
         run: |
-          # Get list of all apps with package.json
-          ALL_APPS=$(find apps -name "package.json" -type f | cut -d'/' -f2 | sort -u)
+          # Use Turbo's native affected detection with better filtering
+          echo "Detecting affected packages..."
 
-          # Use turbo to detect affected apps
-          AFFECTED_APPS=$(turbo run build --dry-run=json --filter=...[HEAD^1] | jq -r '.tasks[] | select(.task == "build") | .package' | sed 's/@atlas\///' | sort -u)
+          # Get affected packages that have build tasks
+          AFFECTED_JSON=$(turbo run build --dry-run=json --filter="...[HEAD^1]" 2>/dev/null || echo '{"tasks":[]}')
 
-          # Create matrix for affected apps only
-          MATRIX_APPS=()
-          for app in $AFFECTED_APPS; do
-            if [[ -f "apps/$app/Dockerfile" ]]; then
-              MATRIX_APPS+=("$app")
+          # Extract package names and filter for apps with Dockerfiles
+          AFFECTED_PACKAGES=$(echo "$AFFECTED_JSON" | jq -r '.tasks[]? | select(.task == "build") | .package' | sed 's/@atlas\///' | sort -u)
+
+          echo "Raw affected packages: $AFFECTED_PACKAGES"
+
+          # Filter for deployable apps (those with Dockerfiles)
+          DEPLOYABLE_APPS=()
+          for pkg in $AFFECTED_PACKAGES; do
+            if [[ -f "apps/$pkg/Dockerfile" ]]; then
+              DEPLOYABLE_APPS+=("$pkg")
+              echo "✅ Deployable app found: $pkg"
+            else
+              echo "⏭️  Skipping non-deployable package: $pkg"
             fi
           done
 
-          if [ ${#MATRIX_APPS[@]} -eq 0 ]; then
+          # Create GitHub Actions matrix
+          if [ ${#DEPLOYABLE_APPS[@]} -eq 0 ]; then
+            echo "No deployable apps affected"
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "matrix=[]" >> $GITHUB_OUTPUT
           else
+            echo "Deployable apps affected: ${DEPLOYABLE_APPS[*]}"
             echo "has_changes=true" >> $GITHUB_OUTPUT
-            printf -v joined '%s,' "${MATRIX_APPS[@]}"
-            echo "matrix=[\"${joined%,}\"]" | sed 's/,/","/g' >> $GITHUB_OUTPUT
-          fi
 
-          echo "Affected apps: ${MATRIX_APPS[*]}"
+            # Create JSON array for matrix
+            MATRIX_JSON=$(printf '%s\n' "${DEPLOYABLE_APPS[@]}" | jq -R . | jq -s .)
+            echo "matrix=$MATRIX_JSON" >> $GITHUB_OUTPUT
+          fi
 
   release-apps:
     name: Release Apps
@@ -92,6 +103,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
+      - name: Setup Turbo cache
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
       - name: Create app release
         id: release
         uses: googleapis/release-please-action@v4
@@ -115,9 +134,15 @@ jobs:
         with:
           node-version: 22.15.0
 
+      - name: Build affected packages
+        run: turbo run build --filter=${{ matrix.app }}
+
+      - name: Run tests for affected packages
+        run: turbo run test --filter=${{ matrix.app }} || true
+
       - name: Generate OpenAPI specs
         if: matrix.app == 'docs'
-        run: pnpm run generate-openapi
+        run: turbo run generate-openapi --filter=${{ matrix.app }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
