@@ -5,6 +5,7 @@ import { generateDatabaseFiles } from "./database-files.js";
 import { generateDockerfile } from "./dockerfile.js";
 import { updateDocsIntegration } from "./docs-integration.js";
 import { generateEnvExample } from "./env-example.js";
+import { generateGitignore } from "./gitignore.js";
 import { generatePackageJson } from "./package-json.js";
 import { generateReadme } from "./readme.js";
 import { generateSrcFiles } from "./src-files.js";
@@ -17,6 +18,12 @@ export async function generateFiles(appPath: string, config: AppConfig) {
 		path.join(appPath, "package.json"),
 		generatePackageJson(config),
 		{ spaces: "\t" },
+	);
+
+	// Generate .gitignore
+	await fs.writeFile(
+		path.join(appPath, ".gitignore"),
+		generateGitignore(config),
 	);
 
 	// Generate Dockerfile
@@ -41,9 +48,12 @@ export async function generateFiles(appPath: string, config: AppConfig) {
 		{
 			extends: "./tsconfig.json",
 			compilerOptions: {
-				types: ["vitest/globals"],
+				rootDir: ".",
+				noEmit: true,
+				types: ["node", "vitest/globals"],
 			},
 			include: ["src/**/*", "test/**/*"],
+			exclude: ["node_modules", "dist"],
 		},
 		{ spaces: "\t" },
 	);
