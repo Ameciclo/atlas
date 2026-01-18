@@ -144,9 +144,9 @@ export const citySpecificSummary = createRoute({
 						routes: z.array(
 							z.object({
 								route_name: z.string(),
-								planned_typology: z.string(),
+								planned_typology: z.string().nullable(),
 								planned_extension_km: z.number(),
-								executed_typology: z.string(),
+								executed_typology: z.string().nullable(),
 								executed_extension_km: z.number(),
 							}),
 						),
