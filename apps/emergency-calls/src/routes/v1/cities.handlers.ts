@@ -1,11 +1,10 @@
 import { count, sql } from "drizzle-orm";
-import { db, ensureConnection } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type { CitiesRoute } from "./cities.routes.js";
 
 export const cities: AppRouteHandler<CitiesRoute> = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 
 	const citiesData = await db
 		.select({

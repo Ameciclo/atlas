@@ -1,5 +1,4 @@
 import { and, count, eq, ilike, gte, lte, sql, desc } from "drizzle-orm";
-import { db } from "../../db/index.js";
 import { officialStreets, trafficViolations } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
@@ -14,6 +13,7 @@ import type {
 export const listStreets: AppRouteHandler<typeof listStreetsRoute> = async (
 	c,
 ) => {
+	const db = c.get("db");
 	const { page, limit, search, neighborhood } = c.req.valid("query");
 	const offset = (page - 1) * limit;
 
@@ -80,6 +80,7 @@ export const listStreets: AppRouteHandler<typeof listStreetsRoute> = async (
 };
 
 export const getStreet: AppRouteHandler<typeof getStreetRoute> = async (c) => {
+	const db = c.get("db");
 	const { code } = c.req.valid("param");
 
 	try {
@@ -103,6 +104,7 @@ export const getStreet: AppRouteHandler<typeof getStreetRoute> = async (c) => {
 export const streetsRanking: AppRouteHandler<
 	typeof streetsRankingRoute
 > = async (c) => {
+	const db = c.get("db");
 	const { start_date, end_date, violation_type_id, limit } =
 		c.req.valid("query");
 
@@ -176,6 +178,7 @@ export const streetsRanking: AppRouteHandler<
 export const streetSummary: AppRouteHandler<typeof streetSummaryRoute> = async (
 	c,
 ) => {
+	const db = c.get("db");
 	const { street_code } = c.req.valid("param");
 
 	try {
@@ -263,6 +266,7 @@ export const streetSummary: AppRouteHandler<typeof streetSummaryRoute> = async (
 export const streetViolations: AppRouteHandler<
 	typeof streetViolationsRoute
 > = async (c) => {
+	const db = c.get("db");
 	const { street_code } = c.req.valid("param");
 	const { start_date, end_date, violation_type_id, limit, offset } =
 		c.req.valid("query");
@@ -332,6 +336,7 @@ export const streetViolations: AppRouteHandler<
 export const neighborhoods: AppRouteHandler<typeof neighborhoodsRoute> = async (
 	c,
 ) => {
+	const db = c.get("db");
 	const { start_date, end_date, limit } = c.req.valid("query");
 
 	try {

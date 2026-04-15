@@ -1,18 +1,42 @@
 import type { InferSelectModel } from "drizzle-orm";
-import { testClient } from "hono/testing";
+import { OpenAPIHono } from "@hono/zod-openapi";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import app from "../src/app.js";
-import { db } from "../src/db/index.js";
+import createApp from "../src/lib/create-app.js";
+import eventsRoutes from "../src/routes/events/events.index.js";
+import locationsRoutes from "../src/routes/locations/locations.index.js";
 import type { countingEvents, countingLocations } from "../src/db/schema.js";
 
 type CountingEvent = InferSelectModel<typeof countingEvents>;
 type CountingLocation = InferSelectModel<typeof countingLocations>;
 
-const client = testClient(app);
+// Mock db shape: only the `query.*` accessors the handlers use.
+const findManyEvents = vi.fn();
+const findFirstEvent = vi.fn();
+const findFirstLocation = vi.fn();
 
-const findManyEvents = vi.spyOn(db.query.countingEvents, "findMany");
-const findFirstEvent = vi.spyOn(db.query.countingEvents, "findFirst");
-const findFirstLocation = vi.spyOn(db.query.countingLocations, "findFirst");
+const mockDb: any = {
+	query: {
+		countingEvents: {
+			findMany: findManyEvents,
+			findFirst: findFirstEvent,
+		},
+		countingLocations: {
+			findFirst: findFirstLocation,
+		},
+	},
+};
+
+// Compose a test app that pre-sets the mock db on the context and mounts
+// the real routers under the same base paths as the production app.
+const outer = new OpenAPIHono<any>({ strict: false });
+outer.use(async (c, next) => {
+	c.set("db", mockDb as never);
+	await next();
+});
+const app: any = outer.route(
+	"/",
+	createApp().route("/v1", locationsRoutes).route("/v1", eventsRoutes),
+);
 
 const mockLocation: CountingLocation = {
 	id: 1,
@@ -75,7 +99,7 @@ describe("GET /v1/events", () => {
 	it("200 → returns all events when no filter", async () => {
 		findManyEvents.mockResolvedValueOnce([mockEvent, mockEvent2]);
 
-		const res = await client.v1.events.$get({ query: {} });
+		const res = await app.request("/v1/events");
 		expect(res.status).toBe(200);
 
 		const data = await res.json();
@@ -91,7 +115,7 @@ describe("GET /v1/events", () => {
 	it("200 → returns empty array when no events", async () => {
 		findManyEvents.mockResolvedValueOnce([]);
 
-		const res = await client.v1.events.$get({ query: {} });
+		const res = await app.request("/v1/events");
 		expect(res.status).toBe(200);
 		expect(await res.json()).toEqual([]);
 	});
@@ -99,7 +123,7 @@ describe("GET /v1/events", () => {
 	it("200 → filters by location_id when provided", async () => {
 		findManyEvents.mockResolvedValueOnce([mockEvent]);
 
-		const res = await client.v1.events.$get({ query: { location_id: 1 } });
+		const res = await app.request("/v1/events?location_id=1");
 		expect(res.status).toBe(200);
 
 		const data = await res.json();
@@ -110,12 +134,9 @@ describe("GET /v1/events", () => {
 	it("200 → filters by date range when provided", async () => {
 		findManyEvents.mockResolvedValueOnce([mockEvent]);
 
-		const res = await client.v1.events.$get({
-			query: {
-				start_date: "2023-01-01",
-				end_date: "2023-12-31",
-			},
-		});
+		const res = await app.request(
+			"/v1/events?start_date=2023-01-01&end_date=2023-12-31",
+		);
 		expect(res.status).toBe(200);
 
 		const data = await res.json();
@@ -132,7 +153,7 @@ describe("GET /v1/events/:id", () => {
 	it("200 → returns event when found", async () => {
 		findFirstEvent.mockResolvedValueOnce(mockEvent);
 
-		const res = await client.v1.events[":id"].$get({ param: { id: 1 } });
+		const res = await app.request("/v1/events/1");
 		expect(res.status).toBe(200);
 
 		const data = await res.json();
@@ -148,7 +169,7 @@ describe("GET /v1/events/:id", () => {
 	it("404 → when event not found", async () => {
 		findFirstEvent.mockResolvedValueOnce(undefined);
 
-		const res = await client.v1.events[":id"].$get({ param: { id: 999 } });
+		const res = await app.request("/v1/events/999");
 		expect(res.status).toBe(404);
 		expect(await res.json()).toEqual({ message: "Not Found" });
 	});
@@ -163,9 +184,7 @@ describe("GET /v1/locations/:id/events", () => {
 		findFirstLocation.mockResolvedValueOnce(mockLocation);
 		findManyEvents.mockResolvedValueOnce([mockEvent, mockEvent2]);
 
-		const res = await client.v1.locations[":id"].events.$get({
-			param: { id: 1 },
-		});
+		const res = await app.request("/v1/locations/1/events");
 		expect(res.status).toBe(200);
 
 		const data = await res.json();
@@ -181,9 +200,7 @@ describe("GET /v1/locations/:id/events", () => {
 		findFirstLocation.mockResolvedValueOnce(mockLocation);
 		findManyEvents.mockResolvedValueOnce([]);
 
-		const res = await client.v1.locations[":id"].events.$get({
-			param: { id: 1 },
-		});
+		const res = await app.request("/v1/locations/1/events");
 		expect(res.status).toBe(200);
 		expect(await res.json()).toEqual([]);
 	});
@@ -191,9 +208,7 @@ describe("GET /v1/locations/:id/events", () => {
 	it("404 → when location not found", async () => {
 		findFirstLocation.mockResolvedValueOnce(undefined);
 
-		const res = await client.v1.locations[":id"].events.$get({
-			param: { id: 999 },
-		});
+		const res = await app.request("/v1/locations/999/events");
 		expect(res.status).toBe(404);
 		expect(await res.json()).toEqual({ message: "Not Found" });
 	});

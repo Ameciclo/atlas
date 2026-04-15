@@ -1,9 +1,9 @@
 import type { RouteHandler } from "@hono/zod-openapi";
 import { sql } from "drizzle-orm";
-import { db } from "../../lib/database.js";
 import type { nearbyRoute } from "./nearby.routes.js";
 
 export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
+	const db = c.get("db");
 	const { lat, lng, radius } = c.req.valid("query");
 
 	// Raios específicos para cada elemento

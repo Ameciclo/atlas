@@ -3,12 +3,12 @@ import { HTTPException } from "hono/http-exception";
 import { StreetService } from "../../lib/street-service.js";
 import type * as routes from "./streets.routes.js";
 
-const streetService = new StreetService();
-
 export const searchStreets: AppRouteHandler<routes.SearchStreetsRoute> = async (
 	c,
 ) => {
 	try {
+		const db = c.get("db");
+		const streetService = new StreetService(db);
 		const { q, limit, by_length, by_elements } = c.req.valid("query");
 
 		const matches = await streetService.searchStreets(
@@ -31,6 +31,8 @@ export const getStreetDetails: AppRouteHandler<
 	routes.GetStreetDetailsRoute
 > = async (c) => {
 	try {
+		const db = c.get("db");
+		const streetService = new StreetService(db);
 		const { streetId } = c.req.valid("param");
 
 		const street = await streetService.getStreetById(streetId);

@@ -1,5 +1,4 @@
 import { eq } from "drizzle-orm";
-import { createConnectedDatabase } from "@atlas/database";
 import {
 	cities,
 	cyclistInfraRelations,
@@ -11,7 +10,7 @@ import type { RelationsByCityRoute } from "./relations-by-city.routes.js";
 export const relationsByCity: AppRouteHandler<RelationsByCityRoute> = async (
 	c,
 ) => {
-	const db = await createConnectedDatabase();
+	const db = c.get("db");
 
 	const result = await db
 		.select({

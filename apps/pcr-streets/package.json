@@ -14,7 +14,10 @@
 		"test": "NODE_ENV=test vitest --run",
 		"test:watch": "NODE_ENV=test vitest --watch",
 		"generate-openapi": "tsx src/generate-openapi.ts",
-		"pre-dev": "pnpm generate-openapi"
+		"pre-dev": "pnpm generate-openapi",
+		"dev:workers": "wrangler dev",
+		"deploy": "wrangler deploy",
+		"check-types:worker": "tsc --noEmit --project tsconfig.worker.json"
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.14.1",
@@ -31,6 +34,7 @@
 		"pg": "^8.14.1"
 	},
 	"devDependencies": {
+		"@atlas/typescript-config": "workspace:*",
 		"@types/node": "^22.15.17",
 		"tsx": "^4.19.3",
 		"typescript": "^5.8.3",

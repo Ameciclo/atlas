@@ -1,8 +1,9 @@
 import { eq, sql } from "drizzle-orm";
+import type { NodePgDatabase } from "drizzle-orm/node-postgres";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
-import { db } from "../../db/index.js";
 import { countingEvents, countingSessions } from "../../db/schema.js";
+import type * as schema from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
 	GetByIdRoute,
@@ -11,6 +12,7 @@ import type {
 } from "./locations.routes.js";
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
+	const db = c.get("db");
 	const { city } = c.req.valid("query");
 
 	let locations: Awaited<
@@ -31,7 +33,7 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 	// Add counting events data for each location
 	const locationsWithCounts = await Promise.all(
 		locations.map(async (location) => {
-			const counts = await getLocationSummary(location.id);
+			const counts = await getLocationSummary(db, location.id);
 			return {
 				...location,
 				counts,
@@ -43,6 +45,7 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 };
 
 export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
+	const db = c.get("db");
 	const { id } = c.req.valid("param");
 
 	const location = await db.query.countingLocations.findFirst({
@@ -61,7 +64,7 @@ export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
 	}
 
 	// Add counting events data for the location
-	const counts = await getLocationSummary(location.id);
+	const counts = await getLocationSummary(db, location.id);
 	const locationWithCounts = {
 		...location,
 		counts,
@@ -71,7 +74,7 @@ export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
 };
 
 // Helper function to get location summary data
-async function getLocationSummary(locationId: number) {
+async function getLocationSummary(db: NodePgDatabase<typeof schema>, locationId: number) {
 	// Get all events for this location
 	const events = await db.query.countingEvents.findMany({
 		where(fields, operators) {
@@ -172,6 +175,7 @@ function calculateDistance(
 }
 
 export const getNearby: AppRouteHandler<GetNearbyRoute> = async (c) => {
+	const db = c.get("db");
 	const { lat, lon, radius = "1000" } = c.req.valid("query");
 
 	const latitude = parseFloat(lat);
@@ -243,7 +247,7 @@ export const getNearby: AppRouteHandler<GetNearbyRoute> = async (c) => {
 	const features = await Promise.all(
 		nearbyLocations.map(async (location) => {
 			const countings = countingMap.get(location.id) || [];
-			const counts = await getLocationSummary(location.id);
+			const counts = await getLocationSummary(db, location.id);
 			return {
 				type: "Feature" as const,
 				id: location.id,

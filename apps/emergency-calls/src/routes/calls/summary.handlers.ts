@@ -1,5 +1,4 @@
 import { and, eq, gte, lte, count, sql } from "drizzle-orm";
-import { db, ensureConnection } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
@@ -11,7 +10,7 @@ import type {
 } from "./summary.routes.js";
 
 export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 
 	// Get total calls
 	const [totalResult] = await db
@@ -78,7 +77,7 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 };
 
 export const cities: AppRouteHandler<CitiesRoute> = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 
 	// Get total calls for percentage calculation
 	const [totalResult] = await db
@@ -108,7 +107,7 @@ export const cities: AppRouteHandler<CitiesRoute> = async (c) => {
 };
 
 export const cityStats: AppRouteHandler<CityStatsRoute> = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 	const { city } = c.req.valid("param");
 
 	// Get city ranking
@@ -151,7 +150,7 @@ export const cityStats: AppRouteHandler<CityStatsRoute> = async (c) => {
 };
 
 export const outcomes: AppRouteHandler<OutcomesRoute> = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 	const { city } = c.req.valid("query");
 
 	// Get outcomes by year for the city
@@ -187,7 +186,7 @@ export const outcomes: AppRouteHandler<OutcomesRoute> = async (c) => {
 };
 
 export const profiles: AppRouteHandler<ProfilesRoute> = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 	const { city, start_year, end_year } = c.req.valid("query");
 
 	// Build date conditions

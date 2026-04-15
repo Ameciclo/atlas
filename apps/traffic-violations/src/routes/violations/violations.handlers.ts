@@ -1,5 +1,4 @@
 import { eq, and, gte, lte, count, desc } from "drizzle-orm";
-import { db } from "../../db/index.js";
 import { trafficViolations } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
@@ -17,6 +16,7 @@ import type {
 export const listViolationsHandler: AppRouteHandler<
 	typeof listViolationsRoute
 > = async (c) => {
+	const db = c.get("db");
 	const {
 		month,
 		year,
@@ -74,6 +74,7 @@ export const listViolationsHandler: AppRouteHandler<
 export const getViolationHandler: AppRouteHandler<
 	typeof getViolationRoute
 > = async (c) => {
+	const db = c.get("db");
 	const { id } = c.req.valid("param");
 
 	try {
@@ -97,6 +98,7 @@ export const getViolationHandler: AppRouteHandler<
 export const violationsByLocationHandler: AppRouteHandler<
 	ViolationsByLocationRoute
 > = async (c) => {
+	const db = c.get("db");
 	const { month, year, limit = 50 } = c.req.valid("query");
 
 	try {
@@ -151,6 +153,7 @@ export const violationsByLocationHandler: AppRouteHandler<
 export const violationsHotspotsHandler: AppRouteHandler<
 	ViolationsHotspotsRoute
 > = async (c) => {
+	const db = c.get("db");
 	const { violation_type_id, limit = 50, radius_km = 1 } = c.req.valid("query");
 
 	try {
@@ -220,6 +223,7 @@ export const violationsHotspotsHandler: AppRouteHandler<
 export const violationsGeoJSONHandler: AppRouteHandler<
 	ViolationsGeoJSONRoute
 > = async (c) => {
+	const db = c.get("db");
 	const {
 		month,
 		year,

@@ -4,6 +4,9 @@
 	"type": "module",
 	"scripts": {
 		"dev": "tsx watch src/index.ts",
+		"dev:workers": "wrangler dev",
+		"deploy": "wrangler deploy",
+		"check-types:worker": "tsc --noEmit --project tsconfig.worker.json",
 		"build": "tsc && pnpm generate-openapi",
 		"start": "node dist/index.js",
 		"lint": "biome lint .",

@@ -1,5 +1,4 @@
 import { or, eq, sql } from "drizzle-orm";
-import { db } from "../../db/index.js";
 import * as schema from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type { getSummary } from "./summary.routes.js";
@@ -8,6 +7,7 @@ export const getSummaryHandler: AppRouteHandler<typeof getSummary> = async (
 	c,
 ) => {
 	try {
+		const db = c.get("db");
 		const editionsRes: Array<{
 			id: number;
 			slug: string;

@@ -1,5 +1,4 @@
 import { and, count, sql } from "drizzle-orm";
-import { db, ensureConnection } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
@@ -12,7 +11,7 @@ import type {
 export const streetsSummary: AppRouteHandler<StreetsSummaryRoute> = async (
 	c,
 ) => {
-	await ensureConnection();
+	const db = c.get("db");
 
 	const [totalResult] = await db
 		.select({ count: count() })
@@ -51,7 +50,7 @@ export const streetsSummary: AppRouteHandler<StreetsSummaryRoute> = async (
 };
 
 export const streetsTop: AppRouteHandler<StreetsTopRoute> = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 	const { limit } = c.req.valid("query");
 
 	const topStreets = await db
@@ -90,7 +89,7 @@ export const streetsTop: AppRouteHandler<StreetsTopRoute> = async (c) => {
 };
 
 export const streetsSearch: AppRouteHandler<StreetsSearchRoute> = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 	const { nome, limit } = c.req.valid("query");
 
 	const results = await db
@@ -128,7 +127,7 @@ export const streetsSearch: AppRouteHandler<StreetsSearchRoute> = async (c) => {
 export const streetsHistory: AppRouteHandler<StreetsHistoryRoute> = async (
 	c,
 ) => {
-	await ensureConnection();
+	const db = c.get("db");
 	const { nome, startYear = 2020, endYear = 2024 } = c.req.valid("query");
 
 	const conditions = [

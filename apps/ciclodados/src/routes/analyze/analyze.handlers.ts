@@ -3,12 +3,12 @@ import { HTTPException } from "hono/http-exception";
 import { StreetService } from "../../lib/street-service.js";
 import type * as routes from "./analyze.routes.js";
 
-const streetService = new StreetService();
-
 export const analyzePoint: AppRouteHandler<routes.AnalyzePointRoute> = async (
 	c,
 ) => {
 	try {
+		const db = c.get("db");
+		const streetService = new StreetService(db);
 		const { lat, lng, buffer } = c.req.valid("json");
 
 		// Find nearby streets

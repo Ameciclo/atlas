@@ -1,6 +1,5 @@
 import { eq } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
-import { createConnectedDatabase } from "@atlas/database";
 import { ciclomapaInfra } from "@atlas/database/schemas/cycling-infra";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
@@ -13,7 +12,7 @@ import type {
 export const list = async (c: any) => {
 	try {
 		const { type, limit } = c.req.valid("query");
-		const db = await createConnectedDatabase();
+		const db = c.get("db");
 
 		const limitNum = limit ? parseInt(limit, 10) : 100;
 		const validLimit = !Number.isNaN(limitNum) && limitNum > 0 ? limitNum : 100;
@@ -42,7 +41,7 @@ export const list = async (c: any) => {
 export const getById = async (c: any) => {
 	try {
 		const { id } = c.req.valid("param");
-		const db = await createConnectedDatabase();
+		const db = c.get("db");
 
 		const infrastructure = await db
 			.select()
@@ -68,7 +67,7 @@ export const getById = async (c: any) => {
 export const getGeoJSON = async (c: any) => {
 	try {
 		const { type, limit } = c.req.valid("query");
-		const db = await createConnectedDatabase();
+		const db = c.get("db");
 
 		const limitNum = limit ? parseInt(limit, 10) : 100;
 		const validLimit = !Number.isNaN(limitNum) && limitNum > 0 ? limitNum : 100;
@@ -117,7 +116,7 @@ export const getGeoJSON = async (c: any) => {
 export const getNearby = async (c: any) => {
 	try {
 		const { lat, lon, radius = "1000", type } = c.req.valid("query");
-		const db = await createConnectedDatabase();
+		const db = c.get("db");
 
 		const latitude = parseFloat(lat);
 		const longitude = parseFloat(lon);

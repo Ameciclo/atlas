@@ -5,22 +5,14 @@ import {
 	getCallHandler,
 } from "../src/routes/calls/calls.handlers.js";
 
-// Mock database with proper chaining
-vi.mock("../src/db/index.js", () => {
-	const mockQuery = {
-		select: vi.fn().mockReturnThis(),
-		from: vi.fn().mockReturnThis(),
-		where: vi.fn().mockReturnThis(),
-		orderBy: vi.fn().mockReturnThis(),
-		limit: vi.fn().mockResolvedValue([]),
-	};
-	return {
-		db: mockQuery,
-	};
-});
-
-// Import mocked db
-import { db } from "../src/db/index.js";
+// Shared mock database (handlers now read db from context via c.get("db")).
+const db = {
+	select: vi.fn().mockReturnThis(),
+	from: vi.fn().mockReturnThis(),
+	where: vi.fn().mockReturnThis(),
+	orderBy: vi.fn().mockReturnThis(),
+	limit: vi.fn().mockResolvedValue([]),
+};
 
 // Mock data
 const mockTrafficCall = {
@@ -40,9 +32,21 @@ const mockTrafficCall = {
 	updated_at: new Date(),
 };
 
+const makeContext = (overrides: Partial<Context>): Context =>
+	({
+		get: (key: string) => (key === "db" ? db : undefined),
+		...overrides,
+	}) as unknown as Context;
+
 describe("Calls Handlers", () => {
 	beforeEach(() => {
 		vi.clearAllMocks();
+		// Restore chaining stubs after clearAllMocks (which strips mockReturnThis behavior).
+		db.select.mockReturnThis();
+		db.from.mockReturnThis();
+		db.where.mockReturnThis();
+		db.orderBy.mockReturnThis();
+		db.limit.mockResolvedValue([]);
 	});
 
 	describe("listCallsHandler", () => {
@@ -52,12 +56,12 @@ describe("Calls Handlers", () => {
 				db.limit as unknown as { mockResolvedValue: (value: unknown) => void }
 			).mockResolvedValue(mockCalls);
 
-			const mockContext = {
+			const mockContext = makeContext({
 				req: {
 					query: () => ({}),
-				},
-				json: vi.fn(),
-			} as unknown as Context;
+				} as Context["req"],
+				json: vi.fn() as unknown as Context["json"],
+			});
 
 			await listCallsHandler(mockContext);
 
@@ -75,15 +79,15 @@ describe("Calls Handlers", () => {
 				db.limit as unknown as { mockResolvedValue: (value: unknown) => void }
 			).mockResolvedValue(mockCalls);
 
-			const mockContext = {
+			const mockContext = makeContext({
 				req: {
 					query: () => ({
 						start_date: "2023-01-01",
 						end_date: "2023-12-31",
 					}),
-				},
-				json: vi.fn(),
-			} as unknown as Context;
+				} as Context["req"],
+				json: vi.fn() as unknown as Context["json"],
+			});
 
 			await listCallsHandler(mockContext);
 
@@ -100,12 +104,12 @@ describe("Calls Handlers", () => {
 				db.limit as unknown as { mockRejectedValue: (error: Error) => void }
 			).mockRejectedValue(new Error("Database error"));
 
-			const mockContext = {
+			const mockContext = makeContext({
 				req: {
 					query: () => ({}),
-				},
-				json: vi.fn(),
-			} as unknown as Context;
+				} as Context["req"],
+				json: vi.fn() as unknown as Context["json"],
+			});
 
 			await listCallsHandler(mockContext);
 
@@ -120,12 +124,12 @@ describe("Calls Handlers", () => {
 				db.limit as unknown as { mockResolvedValue: (value: unknown) => void }
 			).mockResolvedValue([mockTrafficCall]);
 
-			const mockContext = {
+			const mockContext = makeContext({
 				req: {
 					param: () => ({ id: "1" }),
-				},
-				json: vi.fn(),
-			} as unknown as Context;
+				} as unknown as Context["req"],
+				json: vi.fn() as unknown as Context["json"],
+			});
 
 			await getCallHandler(mockContext);
 
@@ -139,12 +143,12 @@ describe("Calls Handlers", () => {
 				db.limit as unknown as { mockResolvedValue: (value: unknown) => void }
 			).mockResolvedValue([]);
 
-			const mockContext = {
+			const mockContext = makeContext({
 				req: {
 					param: () => ({ id: "999" }),
-				},
-				json: vi.fn(),
-			} as unknown as Context;
+				} as unknown as Context["req"],
+				json: vi.fn() as unknown as Context["json"],
+			});
 
 			await getCallHandler(mockContext);
 
@@ -158,12 +162,12 @@ describe("Calls Handlers", () => {
 		});
 
 		it("should return 400 for invalid ID format", async () => {
-			const mockContext = {
+			const mockContext = makeContext({
 				req: {
 					param: () => ({ id: "invalid" }),
-				},
-				json: vi.fn(),
-			} as unknown as Context;
+				} as unknown as Context["req"],
+				json: vi.fn() as unknown as Context["json"],
+			});
 
 			await getCallHandler(mockContext);
 

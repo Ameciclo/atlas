@@ -24,14 +24,18 @@
 		"db:drop": "pnpm --filter @atlas/database db:drop",
 		"test-connections": "node scripts/test-connections.js",
 		"check-ports": "node scripts/check-ports.js",
-		"test-health": "node scripts/test-health.js"
+		"test-health": "node scripts/test-health.js",
+		"deploy": "turbo run deploy",
+		"deploy:docs": "pnpm --filter @atlas/docs deploy"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.7",
+		"@cloudflare/workers-types": "^4.20260402.1",
 		"husky": "^9.1.7",
 		"lint-staged": "^15.5.2",
 		"turbo": "^2.6.0",
-		"typescript": "5.9.3"
+		"typescript": "5.9.3",
+		"wrangler": "^4.80.0"
 	},
 	"packageManager": "pnpm@10.10.0",
 	"engines": {

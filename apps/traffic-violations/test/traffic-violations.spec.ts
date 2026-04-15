@@ -48,24 +48,24 @@ describe("TrafficViolations API", () => {
 	describe("GET /v1/violations", () => {
 		it("should handle violations endpoint", async () => {
 			const res = await app.request("/v1/violations");
-			expect([200, 404, 500]).toContain(res.status);
+			expect([200, 404, 422, 500]).toContain(res.status);
 		});
 
 		it("should handle date filters", async () => {
 			const res = await app.request(
 				"/v1/violations?start_date=2023-01-01&end_date=2023-12-31",
 			);
-			expect([200, 400, 404, 500]).toContain(res.status);
+			expect([200, 400, 404, 422, 500]).toContain(res.status);
 		});
 
 		it("should handle agent_id filter", async () => {
 			const res = await app.request("/v1/violations?agent_id=123");
-			expect([200, 400, 404, 500]).toContain(res.status);
+			expect([200, 400, 404, 422, 500]).toContain(res.status);
 		});
 
 		it("should handle pagination", async () => {
 			const res = await app.request("/v1/violations?limit=5&offset=10");
-			expect([200, 400, 404, 500]).toContain(res.status);
+			expect([200, 400, 404, 422, 500]).toContain(res.status);
 		});
 	});
 

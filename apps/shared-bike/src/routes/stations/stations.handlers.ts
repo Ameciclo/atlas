@@ -1,8 +1,8 @@
 import { and, eq, gte, lte, ilike, sql } from "@atlas/database";
-import { db } from "../../db/index.js";
 import { sharedBikeStations } from "@atlas/database";
 
 export const listStations = async (c: any) => {
+	const db = c.get("db");
 	const { network, operator, min_capacity, max_capacity } = c.req.query();
 
 	const conditions = [];
@@ -41,6 +41,7 @@ export const listStations = async (c: any) => {
 };
 
 export const getStation = async (c: any) => {
+	const db = c.get("db");
 	const id = c.req.param("id");
 	const stationId = Number.parseInt(id, 10);
 
@@ -62,6 +63,7 @@ export const getStation = async (c: any) => {
 };
 
 export const nearbyStations = async (c: any) => {
+	const db = c.get("db");
 	const { lat, lon, radius = "1000", limit = "50" } = c.req.query();
 
 	if (!lat || !lon) {

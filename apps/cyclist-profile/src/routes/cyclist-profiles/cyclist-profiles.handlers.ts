@@ -2,7 +2,6 @@ import type { RouteHandler } from "@hono/zod-openapi";
 import { eq, sql } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
-import { db } from "../../db/index.js";
 import { cyclistProfiles } from "@atlas/database/schemas/cyclist-profile";
 import type { AppBindings } from "../../lib/types.ts";
 import type {
@@ -13,11 +12,13 @@ import type {
 } from "./cyclist-profiles.routes.ts";
 
 export const list: RouteHandler<ListRoute, AppBindings> = async (c) => {
+	const db = c.get("db");
 	const profiles = await db.select().from(cyclistProfiles);
 	return c.json(profiles);
 };
 
 export const getOne: RouteHandler<GetOneRoute, AppBindings> = async (c) => {
+	const db = c.get("db");
 	const { id } = c.req.valid("param");
 	const profile = await db
 		.select()
@@ -38,6 +39,7 @@ export const getOne: RouteHandler<GetOneRoute, AppBindings> = async (c) => {
 };
 
 export const nearby: RouteHandler<NearbyRoute, AppBindings> = async (c) => {
+	const db = c.get("db");
 	const { lat, lon, radius, limit } = c.req.valid("query");
 
 	const profiles = await db
@@ -58,6 +60,7 @@ export const nearbySummary: RouteHandler<
 	NearbySummaryRoute,
 	AppBindings
 > = async (c) => {
+	const db = c.get("db");
 	const { lat, lon, radius, limit } = c.req.valid("query");
 
 	const profiles = await db

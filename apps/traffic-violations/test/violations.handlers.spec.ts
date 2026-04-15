@@ -7,19 +7,17 @@ import {
 	violationsGeoJSONHandler,
 } from "../src/routes/violations/violations.handlers.js";
 
-// Mock do banco de dados
-vi.mock("../../db/index.js", () => ({
-	db: {
-		select: vi.fn().mockReturnThis(),
-		from: vi.fn().mockReturnThis(),
-		where: vi.fn().mockReturnThis(),
-		orderBy: vi.fn().mockReturnThis(),
-		limit: vi.fn().mockReturnThis(),
-		offset: vi.fn().mockReturnThis(),
-		groupBy: vi.fn().mockReturnThis(),
-		then: vi.fn().mockResolvedValue([]),
-	},
-}));
+// Chainable mock db — handlers now read it from c.get("db").
+const mockDb: any = {
+	select: vi.fn().mockReturnThis(),
+	from: vi.fn().mockReturnThis(),
+	where: vi.fn().mockReturnThis(),
+	orderBy: vi.fn().mockReturnThis(),
+	limit: vi.fn().mockReturnThis(),
+	offset: vi.fn().mockReturnThis(),
+	groupBy: vi.fn().mockReturnThis(),
+	then: (resolve: (v: unknown[]) => unknown) => resolve([]),
+};
 
 describe("Violations Handlers", () => {
 	let mockContext: any;
@@ -30,6 +28,7 @@ describe("Violations Handlers", () => {
 				valid: vi.fn(),
 			},
 			json: vi.fn(),
+			get: (key: string) => (key === "db" ? mockDb : undefined),
 		};
 	});
 

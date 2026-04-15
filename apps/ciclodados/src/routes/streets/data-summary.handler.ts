@@ -1,9 +1,9 @@
 import type { Context } from "hono";
 import { StreetService } from "../../lib/street-service.js";
 
-const streetService = new StreetService();
-
 export const handleStreetDataSummary = async (c: Context) => {
+	const db = c.get("db");
+	const streetService = new StreetService(db);
 	const streetId = c.req.param("streetId");
 
 	const dataSummary = await streetService.getStreetDataSummary(streetId);

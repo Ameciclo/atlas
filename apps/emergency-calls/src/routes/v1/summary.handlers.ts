@@ -1,11 +1,10 @@
 import { count, sql } from "drizzle-orm";
-import { db, ensureConnection } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type { SummaryRoute } from "./summary.routes.js";
 
 export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 
 	// Get total calls
 	const [totalResult] = await db

@@ -1,5 +1,4 @@
 import { eq, and, gte, lte, ilike } from "drizzle-orm";
-import { db } from "../../db/index.js";
 import { trafficCalls } from "../../db/schema.js";
 import type { AppContext } from "../../lib/types.js";
 
@@ -8,6 +7,7 @@ import type { AppContext } from "../../lib/types.js";
 // ============================================================================
 
 export const listCallsHandler = async (c: AppContext) => {
+	const db = c.get("db");
 	try {
 		console.log("=== DEBUG: Starting listCallsHandler ===");
 		const { start_date, end_date, nature, neighborhood } = c.req.query();
@@ -64,6 +64,7 @@ export const listCallsHandler = async (c: AppContext) => {
 };
 
 export const getCallHandler = async (c: AppContext) => {
+	const db = c.get("db");
 	try {
 		const { id } = c.req.param();
 		const callId = Number(id);

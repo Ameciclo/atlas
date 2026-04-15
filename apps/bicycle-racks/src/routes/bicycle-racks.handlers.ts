@@ -1,7 +1,6 @@
 import { eq, and, sql } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import type { AppRouteHandler } from "../lib/types.js";
-import { db } from "../db/index.js";
 import {
 	bicycleRacks,
 	bicycleRackCities,
@@ -15,6 +14,7 @@ import type {
 } from "./bicycle-racks.routes.js";
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
+	const db = c.get("db");
 	const { covered, access, capacity_min, capacity_max, operator, city } =
 		c.req.valid("query");
 
@@ -55,6 +55,7 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 };
 
 export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
+	const db = c.get("db");
 	const { id } = c.req.valid("param");
 
 	const rack = await db
@@ -74,6 +75,7 @@ export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
 };
 
 export const nearby: AppRouteHandler<NearbyRoute> = async (c) => {
+	const db = c.get("db");
 	const { lat, lng, radius, city } = c.req.valid("query");
 
 	if (city) {
@@ -124,6 +126,7 @@ export const nearby: AppRouteHandler<NearbyRoute> = async (c) => {
 };
 
 export const stats: AppRouteHandler<StatsRoute> = async (c) => {
+	const db = c.get("db");
 	const { city } = c.req.valid("query");
 
 	if (city) {
@@ -194,6 +197,7 @@ export const stats: AppRouteHandler<StatsRoute> = async (c) => {
 };
 
 export const geojson: AppRouteHandler<GeoJsonRoute> = async (c) => {
+	const db = c.get("db");
 	const { city } = c.req.valid("query");
 
 	if (city) {

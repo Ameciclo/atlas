@@ -1,6 +1,5 @@
 import { createRouter } from "../../lib/create-app.js";
 import { sql } from "drizzle-orm";
-import { db } from "../../db/index.js";
 import { cyclistProfiles } from "@atlas/database/schemas/cyclist-profile";
 
 import * as handlers from "./cyclist-profiles.handlers.js";
@@ -13,6 +12,7 @@ const router = createRouter()
 	.openapi(routes.nearbySummary, handlers.nearbySummary)
 	// Simple route without Zod validation
 	.get("/nearby-simple", async (c) => {
+		const db = c.get("db");
 		const lat = Number(c.req.query("lat") || -8.05);
 		const lon = Number(c.req.query("lon") || -34.88);
 		const radius = Number(c.req.query("radius") || 1000);

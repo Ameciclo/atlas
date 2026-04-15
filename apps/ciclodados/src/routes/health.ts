@@ -31,8 +31,9 @@ const healthRoute = createRoute({
 const router = createRouter();
 
 router.openapi(healthRoute, async (c) => {
-	const dbConnected = await checkDatabaseConnection();
-	const pcrStreetsOk = await checkPcrStreetsTable();
+	const db = c.get("db");
+	const dbConnected = await checkDatabaseConnection(db);
+	const pcrStreetsOk = await checkPcrStreetsTable(db);
 	const isHealthy = dbConnected && pcrStreetsOk;
 
 	return c.json(

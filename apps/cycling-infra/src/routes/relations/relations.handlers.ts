@@ -1,6 +1,5 @@
 import { eq } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
-import { createConnectedDatabase } from "@atlas/database";
 import {
 	pdcRelationWays,
 	cyclistInfraRelations,
@@ -14,7 +13,7 @@ import type {
 
 export const list = async (c: any) => {
 	try {
-		const db = await createConnectedDatabase();
+		const db = c.get("db");
 		const relations = await db.select().from(cyclistInfraRelations);
 		return c.json(relations, HttpStatusCodes.OK);
 	} catch (error) {
@@ -30,7 +29,7 @@ export const getById = async (c: any) => {
 	const { id } = c.req.valid("param");
 
 	try {
-		const db = await createConnectedDatabase();
+		const db = c.get("db");
 
 		// Find relation by OSM ID only
 		const relation = await db
@@ -96,7 +95,7 @@ export const getWaysByRelationId = async (c: any) => {
 	const { id } = c.req.valid("param");
 
 	try {
-		const db = await createConnectedDatabase();
+		const db = c.get("db");
 
 		// Find the relation by OSM ID
 		const relation = await db

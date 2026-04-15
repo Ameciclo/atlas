@@ -1,9 +1,9 @@
 import { eq, sql } from "drizzle-orm";
 import type { Context } from "hono";
-import { db } from "../../db/index.js";
 import { pcrStreets } from "@atlas/database/schemas/pcr-streets";
 
 export async function getStreetsByName(c: Context) {
+	const db = c.get("db");
 	const { name } = c.req.param();
 
 	const streets = await db
@@ -22,6 +22,7 @@ export async function getStreetsByName(c: Context) {
 }
 
 export async function searchStreets(c: Context) {
+	const db = c.get("db");
 	const { query } = c.req.query();
 
 	if (!query) {
@@ -45,6 +46,7 @@ export async function searchStreets(c: Context) {
 }
 
 export async function getStreetByCode(c: Context) {
+	const db = c.get("db");
 	const { code } = c.req.param();
 
 	if (!code) {
@@ -72,6 +74,7 @@ export async function getStreetByCode(c: Context) {
 }
 
 export async function getUniqueStreetNames(c: Context) {
+	const db = c.get("db");
 	const uniqueNames = await db
 		.selectDistinct({
 			nlogra_conc: pcrStreets.nlogra_conc,

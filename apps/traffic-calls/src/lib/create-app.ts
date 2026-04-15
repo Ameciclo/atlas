@@ -2,6 +2,8 @@ import { OpenAPIHono } from "@hono/zod-openapi";
 import { cors } from "hono/cors";
 import { notFound, onError, serveEmojiFavicon } from "stoker/middlewares";
 import { defaultHook } from "stoker/openapi";
+import { dbMiddleware } from "@atlas/database/workers-middleware";
+import * as schema from "../db/schema.js";
 import { createPinoLogger } from "../middlewares/pino-logger.js";
 
 import type { AppBindings } from "./types.js";
@@ -20,6 +22,7 @@ export default function createApp(): OpenAPIHono<AppBindings> {
 	});
 
 	app.use(cors());
+	app.use(dbMiddleware(schema));
 	app.use(serveEmojiFavicon("🚀"));
 	app.use(createPinoLogger());
 	app.notFound(notFound);
@@ -31,6 +34,14 @@ export default function createApp(): OpenAPIHono<AppBindings> {
 export function createTestApp(
 	// biome-ignore lint/suspicious/noExplicitAny: Required for Hono compatibility
 	router: any,
+	db?: unknown,
 ) {
-	return createApp().route("/", router);
+	const outer = new OpenAPIHono<AppBindings>({ strict: false, defaultHook });
+	if (db !== undefined) {
+		outer.use(async (c, next) => {
+			c.set("db", db as never);
+			await next();
+		});
+	}
+	return outer.route("/", createApp().route("/", router));
 }

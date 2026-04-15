@@ -57,6 +57,10 @@
 		"./schemas/pcr-streets": {
 			"types": "./dist/schemas/pcr-streets/index.d.ts",
 			"import": "./dist/schemas/pcr-streets/index.js"
+		},
+		"./workers-middleware": {
+			"types": "./dist/workers-middleware.d.ts",
+			"import": "./dist/workers-middleware.js"
 		}
 	},
 	"scripts": {
@@ -94,10 +98,12 @@
 		"@types/pg": "^8.11.13",
 		"csv-parse": "^6.1.0",
 		"drizzle-kit": "^0.31.0",
+		"hono": "^4.12.10",
 		"tsx": "^4.19.3",
 		"typescript": "^5.8.3"
 	},
 	"peerDependencies": {
+		"hono": "^4.10.0",
 		"typescript": "^5.8.3"
 	}
 }

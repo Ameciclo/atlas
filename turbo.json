@@ -48,6 +48,10 @@
 			"cache": false,
 			"inputs": ["src/**", "test/**", "$TURBO_DEFAULT$"],
 			"persistent": true
+		},
+		"deploy": {
+			"dependsOn": ["build"],
+			"cache": false
 		}
 	}
 }

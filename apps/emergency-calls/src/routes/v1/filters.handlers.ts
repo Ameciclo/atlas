@@ -1,11 +1,10 @@
 import { and, gte, lte, count, sql } from "drizzle-orm";
-import { db, ensureConnection } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type { FiltersRoute } from "./filters.routes.js";
 
 export const filters: AppRouteHandler<FiltersRoute> = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 	const query = c.req.valid("query");
 
 	// Build conditions

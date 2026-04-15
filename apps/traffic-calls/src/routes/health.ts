@@ -2,7 +2,6 @@ import { createRoute, z } from "@hono/zod-openapi";
 import { createRouter } from "../lib/create-app.js";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { jsonContent } from "stoker/openapi/helpers";
-import { db } from "../db/index.js";
 
 const healthSchema = z.object({
 	status: z.enum(["ok", "error"]),
@@ -28,6 +27,7 @@ const router = createRouter();
 
 // biome-ignore lint/suspicious/noExplicitAny: Required for Hono OpenAPI compatibility
 router.openapi(healthRoute, async (c: any) => {
+	const db = c.get("db");
 	let dbStatus: "connected" | "disconnected" = "connected";
 
 	try {

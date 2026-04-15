@@ -1,8 +1,8 @@
 import { and, eq, gte, lte, count, sql } from "drizzle-orm";
-import { db } from "../../db/index.js";
 import { trafficViolations } from "../../db/schema.js";
 
 export const summary = async (c: any) => {
+	const db = c.get("db");
 	// Get total violations
 	const [totalResult] = await db
 		.select({ count: count() })
@@ -77,6 +77,7 @@ export const summary = async (c: any) => {
 };
 
 export const byType = async (c: any) => {
+	const db = c.get("db");
 	const { start_date, end_date, limit } = c.req.valid("query");
 
 	// Build conditions
@@ -153,6 +154,7 @@ export const byType = async (c: any) => {
 };
 
 export const byAgent = async (c: any) => {
+	const db = c.get("db");
 	const { start_date, end_date, limit } = c.req.valid("query");
 
 	// Build conditions
@@ -219,6 +221,7 @@ export const byAgent = async (c: any) => {
 };
 
 export const temporalAnalysis = async (c: any) => {
+	const db = c.get("db");
 	const { start_date, end_date, violation_type_id } = c.req.valid("query");
 
 	// Build conditions

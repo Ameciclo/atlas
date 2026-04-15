@@ -1,10 +1,10 @@
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
-import { db } from "../../db/index.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type { GetByEventIdRoute, GetByIdRoute } from "./sessions.routes.js";
 
 export const getByEventId: AppRouteHandler<GetByEventIdRoute> = async (c) => {
+	const db = c.get("db");
 	const { id } = c.req.valid("param");
 
 	// First check if event exists
@@ -35,6 +35,7 @@ export const getByEventId: AppRouteHandler<GetByEventIdRoute> = async (c) => {
 };
 
 export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
+	const db = c.get("db");
 	const { id } = c.req.valid("param");
 
 	const session = await db.query.countingSessions.findFirst({

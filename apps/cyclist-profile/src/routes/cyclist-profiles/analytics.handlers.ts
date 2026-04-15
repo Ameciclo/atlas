@@ -1,9 +1,9 @@
 import { sql } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
-import { db } from "../../db/index.js";
 import { cyclistProfiles } from "@atlas/database/schemas/cyclist-profile";
 
 export const summary = async (c: any) => {
+	const db = c.get("db");
 	try {
 		const year = c.req.query("year") ? Number(c.req.query("year")) : undefined;
 
@@ -177,6 +177,7 @@ export const summary = async (c: any) => {
 };
 
 export const trends = async (c: any) => {
+	const db = c.get("db");
 	const years = c.req.query("years") || "2015,2018,2021,2024";
 	const yearsList = years.split(",").map((y: string) => parseInt(y.trim(), 10));
 
@@ -215,6 +216,7 @@ export const trends = async (c: any) => {
 };
 
 export const genderAnalysis = async (c: any) => {
+	const db = c.get("db");
 	try {
 		const year = c.req.query("year") ? Number(c.req.query("year")) : undefined;
 		const yearFilter = year
@@ -302,6 +304,7 @@ export const genderAnalysis = async (c: any) => {
 };
 
 export const genderAnalysisByLocation = async (c: any) => {
+	const db = c.get("db");
 	try {
 		const { lat, lon, radius, year } = c.req.valid("query");
 
@@ -397,6 +400,7 @@ export const genderAnalysisByLocation = async (c: any) => {
 };
 
 export const safetyAnalysis = async (c: any) => {
+	const db = c.get("db");
 	const year = c.req.query("year") ? Number(c.req.query("year")) : undefined;
 	const yearFilter = year
 		? sql`metadata->>'survey_year' = ${year.toString()}`
@@ -490,6 +494,7 @@ export const safetyAnalysis = async (c: any) => {
 };
 
 export const surveyLocations = async (c: any) => {
+	const db = c.get("db");
 	try {
 		const year = c.req.query("year") ? Number(c.req.query("year")) : undefined;
 		const gender = c.req.query("gender");
@@ -600,6 +605,7 @@ export const surveyLocations = async (c: any) => {
 };
 
 export const generalAnalysis = async (c: any) => {
+	const db = c.get("db");
 	try {
 		const {
 			lat,

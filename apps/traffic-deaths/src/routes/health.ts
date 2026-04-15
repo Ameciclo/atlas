@@ -1,7 +1,6 @@
 import { createRoute, z } from "@hono/zod-openapi";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { jsonContent } from "stoker/openapi/helpers";
-import { db } from "../db/index.js";
 import { createRouter } from "../lib/create-app.js";
 
 const healthSchema = z.object({
@@ -27,6 +26,7 @@ const healthRoute = createRoute({
 const router = createRouter();
 
 router.openapi(healthRoute, async (c) => {
+	const db = c.get("db");
 	let dbStatus: "connected" | "disconnected" = "connected";
 
 	try {

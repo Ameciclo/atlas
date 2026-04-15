@@ -1,4 +1,4 @@
-import { testClient } from "hono/testing";
+import { OpenAPIHono } from "@hono/zod-openapi";
 import {
 	afterAll,
 	beforeAll,
@@ -8,22 +8,27 @@ import {
 	it,
 	vi,
 } from "vitest";
-import app from "../src/app.js";
-import { db } from "../src/db/index.js";
+import createApp from "../src/lib/create-app.js";
+import cyclistProfilesRoutes from "../src/routes/cyclist-profiles/cyclist-profiles.index.js";
 import type { CyclistProfile } from "../src/db/schema.js";
 
-const client = testClient(app);
+// Chainable mock db injected via an outer middleware — handlers read it
+// from c.get("db"). Tests reshape `from`/`where`/`limit` per-case.
+const mockDb: any = {
+	select: vi.fn(),
+};
 
-// Mock the entire db module
-vi.mock("../src/db/index.js", () => ({
-	db: {
-		select: vi.fn().mockReturnValue({
-			from: vi.fn().mockResolvedValue([]),
-		}),
-	},
-}));
-
-const mockDb = vi.mocked(db);
+// Build a test app that matches the production routing (router mounted at
+// /v1/) and pre-sets the mocked db on the context before dbMiddleware runs.
+const outer = new OpenAPIHono<any>({ strict: false });
+outer.use(async (c, next) => {
+	c.set("db", mockDb as never);
+	await next();
+});
+const app: any = outer.route(
+	"/",
+	createApp().route("/v1/", cyclistProfilesRoutes as any),
+);
 
 beforeAll(() => {
 	vi.useFakeTimers();
@@ -40,9 +45,11 @@ describe("GET /", () => {
 	});
 
 	it("200 → empty array if no profiles", async () => {
-		(mockDb.select().from as any).mockResolvedValueOnce([]);
+		mockDb.select.mockReturnValue({
+			from: vi.fn().mockResolvedValueOnce([]),
+		});
 
-		const res = await client.v1["cyclist-profiles"].$get("/");
+		const res = await app.request("/v1/cyclist-profiles");
 		expect(res.status).toBe(200);
 		expect(await res.json()).toEqual([]);
 	});
@@ -59,9 +66,11 @@ describe("GET /", () => {
 				updated_at: fakeDate,
 			},
 		];
-		(mockDb.select().from as any).mockResolvedValueOnce(fake);
+		mockDb.select.mockReturnValue({
+			from: vi.fn().mockResolvedValueOnce(fake),
+		});
 
-		const res = await client.v1["cyclist-profiles"].$get("/");
+		const res = await app.request("/v1/cyclist-profiles");
 		expect(res.status).toBe(200);
 		expect(await res.json()).toEqual(
 			fake.map((r) => ({
@@ -73,9 +82,11 @@ describe("GET /", () => {
 	});
 
 	it("500 → when the DB throws", async () => {
-		(mockDb.select().from as any).mockRejectedValueOnce(new Error("💥"));
+		mockDb.select.mockReturnValue({
+			from: vi.fn().mockRejectedValueOnce(new Error("💥")),
+		});
 
-		const res = await client.v1["cyclist-profiles"].$get("/");
+		const res = await app.request("/v1/cyclist-profiles");
 		expect(res.status).toBe(500);
 
 		expect(await res.json()).toMatchObject({ message: "💥" });
@@ -97,15 +108,15 @@ describe("GET /:id", () => {
 			created_at: fakeDate,
 			updated_at: fakeDate,
 		};
-		(mockDb.select().from as any).mockReturnValue({
-			where: vi.fn().mockReturnValue({
-				limit: vi.fn().mockResolvedValueOnce([fake]),
+		mockDb.select.mockReturnValue({
+			from: vi.fn().mockReturnValue({
+				where: vi.fn().mockReturnValue({
+					limit: vi.fn().mockResolvedValueOnce([fake]),
+				}),
 			}),
 		});
 
-		const res = await (client.v1 as any)["cyclist-profiles"][":id"].$get({
-			param: { id: 42 },
-		});
+		const res = await app.request("/v1/cyclist-profiles/42");
 		expect(res.status).toBe(200);
 		expect(await res.json()).toEqual({
 			...fake,
@@ -115,17 +126,18 @@ describe("GET /:id", () => {
 	});
 
 	it("404 → when the profile does not exist", async () => {
-		(mockDb.select().from as any).mockReturnValue({
-			where: vi.fn().mockReturnValue({
-				limit: vi.fn().mockResolvedValueOnce([]),
+		mockDb.select.mockReturnValue({
+			from: vi.fn().mockReturnValue({
+				where: vi.fn().mockReturnValue({
+					limit: vi.fn().mockResolvedValueOnce([]),
+				}),
 			}),
 		});
 
-		const res = await (client.v1 as any)["cyclist-profiles"][":id"].$get({
-			param: { id: 42 },
-		});
+		const res = await app.request("/v1/cyclist-profiles/42");
 
 		expect(res.status).toBe(404);
 		expect(await res.json()).toEqual({ message: "Not Found" });
 	});
 });
+

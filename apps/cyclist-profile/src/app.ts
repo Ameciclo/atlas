@@ -2,7 +2,8 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { sql } from "drizzle-orm";
-import { db } from "./db/index.js";
+import { dbMiddleware } from "@atlas/database/workers-middleware";
+import * as schema from "./db/schema.js";
 import { cyclistProfiles } from "@atlas/database/schemas/cyclist-profile";
 import cyclistProfilesRoutes from "./routes/cyclist-profiles/cyclist-profiles.index.js";
 import analyticsRoutes from "./routes/cyclist-profiles/analytics.index.js";
@@ -12,9 +13,11 @@ import * as analyticsHandlers from "./routes/cyclist-profiles/analytics.handlers
 
 // Completely clean Hono app without any hooks
 const cleanApp = new Hono()
+	.use(dbMiddleware(schema))
 	.get("/health", (c) => c.json({ status: "ok", service: "cyclist-profile" }))
 	.get("/test", (c) => c.text("Clean app works!"))
 	.get("/v1/cyclist-profiles/debug", async (c) => {
+		const db = c.get("db");
 		try {
 			const result = await db
 				.select({ id: cyclistProfiles.id })
@@ -28,6 +31,7 @@ const cleanApp = new Hono()
 		}
 	})
 	.get("/v1/cyclist-profiles/nearby", async (c) => {
+		const db = c.get("db");
 		const lat = Number(c.req.query("lat") || -8.05);
 		const lon = Number(c.req.query("lon") || -34.88);
 		const radius = Number(c.req.query("radius") || 1000);
@@ -53,6 +57,7 @@ const cleanApp = new Hono()
 		return c.json(profiles);
 	})
 	.get("/v1/cyclist-profiles/nearby-summary", async (c) => {
+		const db = c.get("db");
 		const lat = Number(c.req.query("lat") || -8.05);
 		const lon = Number(c.req.query("lon") || -34.88);
 		const radius = Number(c.req.query("radius") || 1000);
@@ -97,6 +102,7 @@ const cleanApp = new Hono()
 	.get("/v1/cyclist-profiles/trends", analyticsHandlers.trends)
 	.get("/v1/cyclist-profiles/gender-analysis", analyticsHandlers.genderAnalysis)
 	.get("/v1/cyclist-profiles/gender-analysis-by-location", async (c) => {
+		const db = c.get("db");
 		try {
 			const lat = Number(c.req.query("lat") || -8.05);
 			const lon = Number(c.req.query("lon") || -34.88);
@@ -147,6 +153,7 @@ const cleanApp = new Hono()
 		}
 	})
 	.get("/v1/cyclist-profiles", async (c) => {
+		const db = c.get("db");
 		const profiles = await db.select().from(cyclistProfiles);
 		return c.json(profiles);
 	})
@@ -156,6 +163,7 @@ const cleanApp = new Hono()
 		analyticsHandlers.surveyLocations,
 	)
 	.get("/v1/cyclist-profiles/analysis", async (c) => {
+		const db = c.get("db");
 		try {
 			const lat = c.req.query("lat") ? Number(c.req.query("lat")) : undefined;
 			const lon = c.req.query("lon") ? Number(c.req.query("lon")) : undefined;

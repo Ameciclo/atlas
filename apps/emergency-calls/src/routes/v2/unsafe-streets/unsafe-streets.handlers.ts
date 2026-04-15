@@ -1,5 +1,4 @@
 import { and, eq, count, sql } from "drizzle-orm";
-import { db, ensureConnection } from "../../../db/index.js";
 import { emergencyCalls } from "../../../db/schema.js";
 import type { AppRouteHandler } from "../../../lib/types.js";
 import type {
@@ -14,7 +13,7 @@ import type {
 } from "./unsafe-streets.routes.js";
 
 export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 	const { city } = c.req.valid("param");
 
 	// Get total accidents in the city
@@ -75,7 +74,7 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 };
 
 export const streetSummary: AppRouteHandler<StreetSummaryRoute> = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 	const { street_name } = c.req.valid("param");
 	const { city } = c.req.valid("query");
 
@@ -126,7 +125,7 @@ export const streetSummary: AppRouteHandler<StreetSummaryRoute> = async (c) => {
 export const cityConcentration: AppRouteHandler<
 	CityConcentrationRoute
 > = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 	const { city } = c.req.valid("param");
 	const { interval = 10 } = c.req.valid("query");
 
@@ -156,7 +155,7 @@ export const cityConcentration: AppRouteHandler<
 };
 
 export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 	const { city } = c.req.valid("param");
 	const { ranking_from = 1, ranking_to = 10 } = c.req.valid("query");
 
@@ -199,7 +198,7 @@ export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
 export const streetProfiles: AppRouteHandler<StreetProfilesRoute> = async (
 	c,
 ) => {
-	await ensureConnection();
+	const db = c.get("db");
 	const { street_name } = c.req.valid("param");
 	const { city } = c.req.valid("query");
 
@@ -294,7 +293,7 @@ export const streetProfiles: AppRouteHandler<StreetProfilesRoute> = async (
 };
 
 export const streetGeoJSON: AppRouteHandler<StreetGeoJSONRoute> = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 	const { street_name } = c.req.valid("param");
 	const { city } = c.req.valid("query");
 
@@ -339,7 +338,7 @@ export const streetGeoJSON: AppRouteHandler<StreetGeoJSONRoute> = async (c) => {
 export const streetEvolution: AppRouteHandler<StreetEvolutionRoute> = async (
 	c,
 ) => {
-	await ensureConnection();
+	const db = c.get("db");
 	const { street_name } = c.req.valid("param");
 	const { city, start_year = 2020, end_year = 2022 } = c.req.valid("query");
 
@@ -444,7 +443,7 @@ export const streetEvolution: AppRouteHandler<StreetEvolutionRoute> = async (
 };
 
 export const streetRecords: AppRouteHandler<StreetRecordsRoute> = async (c) => {
-	await ensureConnection();
+	const db = c.get("db");
 	const { street_name } = c.req.valid("param");
 	const { city, year } = c.req.valid("query");
 

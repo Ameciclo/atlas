@@ -1,7 +1,6 @@
 import { and, eq, gte, lte } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
-import { db } from "../../db/index.js";
 import {
 	countingEvents,
 	countingLocations,
@@ -18,6 +17,7 @@ import type {
 } from "./events.routes.js";
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
+	const db = c.get("db");
 	const { location_id, city, start_date, end_date } = c.req.valid("query");
 
 	// Build where conditions
@@ -71,6 +71,7 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 };
 
 export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
+	const db = c.get("db");
 	const { id } = c.req.valid("param");
 
 	const event = await db.query.countingEvents.findFirst({
@@ -94,6 +95,7 @@ export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
 export const getByLocationId: AppRouteHandler<GetByLocationIdRoute> = async (
 	c,
 ) => {
+	const db = c.get("db");
 	const { id } = c.req.valid("param");
 
 	// First check if location exists
@@ -124,6 +126,7 @@ export const getByLocationId: AppRouteHandler<GetByLocationIdRoute> = async (
 };
 
 export const getDetailsById = async (c: any) => {
+	const db = c.get("db");
 	const { id } = c.req.valid("param");
 
 	// Get event with location

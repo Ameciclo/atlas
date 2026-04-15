@@ -1,4 +1,3 @@
-import { createConnectedDatabase } from "@atlas/database";
 import { pdcRelationWays } from "@atlas/database/schemas/cycling-infra";
 import env from "../../env.js";
 import type { AppRouteHandler } from "../../lib/types.js";
@@ -61,7 +60,7 @@ function calculateGeometryLength(geometry: {
 
 export const list = async (c: any) => {
 	const { city } = c.req.valid("query");
-	const db = await createConnectedDatabase();
+	const db = c.get("db");
 
 	let ways: Record<string, unknown>[];
 	if (city) {
@@ -142,7 +141,7 @@ export const list = async (c: any) => {
 };
 
 export const getSummary = async (c: any) => {
-	const db = await createConnectedDatabase();
+	const db = c.get("db");
 
 	// Debug: verificar dados disponíveis
 	const debugData = await db.execute(`
@@ -350,7 +349,7 @@ function generateCitySummary(
 export const getAll = async (c: any) => {
 	const { city, limit, offset, simplify, precision, minimal, only_all } =
 		c.req.valid("query");
-	const db = await createConnectedDatabase();
+	const db = c.get("db");
 
 	// Parse parameters
 	const offsetNum = offset ? parseInt(offset, 10) : 0;
@@ -519,7 +518,7 @@ export const getAll = async (c: any) => {
 
 export const getNearby = async (c: any) => {
 	const { lat, lon, radius = "1000" } = c.req.valid("query");
-	const db = await createConnectedDatabase();
+	const db = c.get("db");
 
 	const latitude = parseFloat(lat);
 	const longitude = parseFloat(lon);

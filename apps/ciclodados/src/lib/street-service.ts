@@ -4,7 +4,7 @@ import { countingLocations } from "@atlas/database/schemas/cyclist-counts";
 
 import { emergencyCalls } from "@atlas/database/schemas/emergency-calls";
 
-import { db } from "./database.js";
+import type { NodePgDatabase } from "drizzle-orm/node-postgres";
 
 export interface StreetMatch {
 	id: string;
@@ -102,11 +102,14 @@ const RESEARCH_LOCATIONS = [
 ];
 
 export class StreetService {
+	constructor(private db: NodePgDatabase<any>) {}
+
 	async getStreetDataSummary(streetId: string): Promise<{
 		street_id: string;
 		street_name: string;
 		data_summary: unknown;
 	} | null> {
+		const { db } = this;
 		// Get street info first
 		const street = await db
 			.select({ name: pcrStreets.nlogra_conc })
@@ -198,6 +201,7 @@ export class StreetService {
 		byLength?: boolean,
 		_byElements?: boolean,
 	): Promise<StreetMatch[]> {
+		const { db } = this;
 		try {
 			// Try fuzzy search with conditional ordering
 			const fuzzyResults = await db
@@ -253,6 +257,7 @@ export class StreetService {
 	}
 
 	async getStreetById(streetId: string): Promise<StreetDetails | null> {
+		const { db } = this;
 		// First get the street name by ID
 		const streetName = await db
 			.select({ name: pcrStreets.nlogra_conc })
@@ -336,6 +341,7 @@ export class StreetService {
 		lng: number,
 		buffer: number,
 	): Promise<StreetMatch[]> {
+		const { db } = this;
 		// Find streets within buffer distance using PostGIS
 		const results = await db
 			.select({
