@@ -1,0 +1,111 @@
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to deploy (semantic version, e.g., 1.0.0)"
+        required: true
+        type: string
+      confirm:
+        description: "Type 'DEPLOY' to confirm production deployment"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  validate-deployment:
+    name: Validate Deployment Request
+    runs-on: ubuntu-latest
+    outputs:
+      validated: ${{ steps.validate.outputs.validated }}
+    steps:
+      - name: Validate inputs
+        id: validate
+        run: |
+          # Check confirmation
+          if [[ "${{ github.event.inputs.confirm }}" != "DEPLOY" ]]; then
+            echo "❌ Deployment not confirmed. Please type 'DEPLOY' to confirm."
+            exit 1
+          fi
+          
+          # Validate version format (basic semantic versioning)
+          if [[ ! "${{ github.event.inputs.version }}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "❌ Invalid version format. Please use semantic versioning (e.g., 1.0.0)"
+            exit 1
+          fi
+          
+          echo "✅ Deployment validated"
+          echo "validated=true" >> $GITHUB_OUTPUT
+
+      - name: Check if image exists
+        run: |
+          # Check if the Docker image exists in GHCR
+          IMAGE="ghcr.io/ameciclo/atlas/docs:${{ github.event.inputs.version }}"
+          
+          # Use docker manifest to check if image exists
+          if docker manifest inspect $IMAGE > /dev/null 2>&1; then
+            echo "✅ Image $IMAGE exists"
+          else
+            echo "❌ Image $IMAGE does not exist in registry"
+            echo "Please ensure the version has been released and built"
+            exit 1
+          fi
+
+  deploy-production:
+    name: Deploy to Production
+    needs: validate-deployment
+    runs-on: ubuntu-latest
+    if: needs.validate-deployment.outputs.validated == 'true'
+    environment:
+      name: production
+      url: https://docs.ameciclo.org
+    steps:
+      - name: Checkout groundwork repository
+        uses: actions/checkout@v4
+        with:
+          repository: ameciclo/groundwork
+          token: ${{ secrets.GROUNDWORK_REPO_TOKEN }}
+          path: groundwork
+
+      - name: Update production deployment
+        run: |
+          cd groundwork
+          
+          # Update the image tag in the deployment manifest
+          sed -i "s|image: ghcr.io/ameciclo/atlas/docs:.*|image: ghcr.io/ameciclo/atlas/docs:${{ github.event.inputs.version }}|" helm/charts/atlas/docs/deployment.yaml
+          
+          # Check if there are any changes
+          if git diff --quiet; then
+            echo "No changes to commit - image tag is already ${{ github.event.inputs.version }}"
+            exit 0
+          fi
+          
+          # Commit and push changes
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add helm/charts/atlas/docs/deployment.yaml
+          git commit -m "deploy: update atlas-docs production to v${{ github.event.inputs.version }}"
+          git push
+
+      - name: Log production deployment
+        run: |
+          cd groundwork
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          echo "- **${TIMESTAMP}**: 🚀 **PRODUCTION DEPLOYMENT** - atlas-docs:${{ github.event.inputs.version }}" >> .github/deployment-log.md
+          git add .github/deployment-log.md
+          git commit -m "docs: log production deployment of atlas-docs:${{ github.event.inputs.version }}" || exit 0
+          git push || exit 0
+
+      - name: Deployment summary
+        run: |
+          echo "🚀 Successfully deployed atlas-docs to production!"
+          echo "📦 Version: ${{ github.event.inputs.version }}"
+          echo "🌐 URL: https://docs.ameciclo.org"
+          echo "🔄 ArgoCD will automatically sync the changes"
+          echo ""
+          echo "Monitor the deployment:"
+          echo "- ArgoCD UI: [Your ArgoCD URL]"
+          echo "- Application logs: kubectl logs -n atlas-production -l app.kubernetes.io/name=atlas-docs"
