@@ -1,9 +1,12 @@
 {
 	"$schema": "https://turbo.build/schema.json",
 	"ui": "tui",
+	"globalDependencies": ["**/.env*"],
+	"globalEnv": ["NODE_ENV"],
+	"concurrency": "16",
 	"tasks": {
 		"build": {
-			"dependsOn": ["^build", "generate-openapi"],
+			"dependsOn": ["^build"],
 			"inputs": [
 				"$TURBO_DEFAULT$",
 				".env*",
@@ -13,7 +16,7 @@
 			"outputs": ["dist/**"]
 		},
 		"generate-openapi": {
-			"dependsOn": ["^build"],
+			"dependsOn": ["^build", "build"],
 			"cache": false,
 			"outputs": []
 		},
@@ -45,6 +48,10 @@
 			"cache": false,
 			"inputs": ["src/**", "test/**", "$TURBO_DEFAULT$"],
 			"persistent": true
+		},
+		"deploy": {
+			"dependsOn": ["build"],
+			"cache": false
 		}
 	}
 }

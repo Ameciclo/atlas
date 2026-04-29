@@ -1,6 +1,5 @@
 import { and, count, eq, like } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
-import { db } from "../../db/index.js";
 import { trafficDeaths } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type * as routes from "./cyclists.routes.js";
@@ -8,6 +7,7 @@ import type * as routes from "./cyclists.routes.js";
 export const getCyclistDeaths: AppRouteHandler<
 	typeof routes.getCyclistDeaths
 > = async (c) => {
+	const db = c.get("db");
 	const { year, city_code } = c.req.valid("query");
 
 	// Build conditions for cyclist deaths (CID-10 codes V10-V19) with explicit type

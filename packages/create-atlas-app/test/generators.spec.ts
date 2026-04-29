@@ -137,7 +137,7 @@ describe("Docker Compose Generator", () => {
 		const compose = generateDockerCompose(configWithDb);
 
 		expect(compose).toContain("postgres:");
-		expect(compose).toContain("postgres:16-alpine");
+		expect(compose).toContain("postgis/postgis:16-3.4-alpine");
 		expect(compose).toContain("DATABASE_URL");
 		expect(compose).toContain("test_service_db");
 		expect(compose).toContain("depends_on:");

@@ -126,6 +126,724 @@
     "/v1/summary": {
       "get": {
         "tags": [
+          "V1 Summary"
+        ],
+        "responses": {
+          "200": {
+            "description": "Resumo estatístico das mortes no trânsito na RMR",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "porLocalOcorrencia": {
+                      "type": "object",
+                      "properties": {
+                        "totalSinistrosUltimos10Anos": {
+                          "type": "number"
+                        },
+                        "totalUltimoAno": {
+                          "type": "number"
+                        },
+                        "ultimoAno": {
+                          "type": "number"
+                        },
+                        "crescimentoRelacaoAnoAnterior": {
+                          "type": "number"
+                        },
+                        "anoMaisViolento": {
+                          "type": "object",
+                          "properties": {
+                            "ano": {
+                              "type": "number"
+                            },
+                            "total": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "ano",
+                            "total"
+                          ]
+                        },
+                        "dadosPorAno": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "ano": {
+                                "type": "number"
+                              },
+                              "total": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "ano",
+                              "total"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "totalSinistrosUltimos10Anos",
+                        "totalUltimoAno",
+                        "ultimoAno",
+                        "crescimentoRelacaoAnoAnterior",
+                        "anoMaisViolento",
+                        "dadosPorAno"
+                      ]
+                    },
+                    "porLocalResidencia": {
+                      "type": "object",
+                      "properties": {
+                        "totalSinistrosUltimos10Anos": {
+                          "type": "number"
+                        },
+                        "totalUltimoAno": {
+                          "type": "number"
+                        },
+                        "ultimoAno": {
+                          "type": "number"
+                        },
+                        "crescimentoRelacaoAnoAnterior": {
+                          "type": "number"
+                        },
+                        "anoMaisViolento": {
+                          "type": "object",
+                          "properties": {
+                            "ano": {
+                              "type": "number"
+                            },
+                            "total": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "ano",
+                            "total"
+                          ]
+                        },
+                        "dadosPorAno": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "ano": {
+                                "type": "number"
+                              },
+                              "total": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "ano",
+                              "total"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "totalSinistrosUltimos10Anos",
+                        "totalUltimoAno",
+                        "ultimoAno",
+                        "crescimentoRelacaoAnoAnterior",
+                        "anoMaisViolento",
+                        "dadosPorAno"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "porLocalOcorrencia",
+                    "porLocalResidencia"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/cities-by-year": {
+      "get": {
+        "tags": [
+          "V1 Cities"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ocorrencia",
+                "residencia"
+              ],
+              "default": "ocorrencia"
+            },
+            "required": false,
+            "name": "tipoLocal",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dados de mortes por cidade da RMR divididos por ano",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tipo": {
+                      "type": "string"
+                    },
+                    "anos": {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    },
+                    "cidades": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "nome": {
+                            "type": "string"
+                          },
+                          "total": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "nome",
+                          "total"
+                        ],
+                        "additionalProperties": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "tipo",
+                    "anos",
+                    "cidades"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/filtros": {
+      "get": {
+        "tags": [
+          "V1 Filtros"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false,
+            "name": "cityId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false,
+            "name": "municipio",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "residence",
+                "occurrence"
+              ]
+            },
+            "required": false,
+            "name": "locationType",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "residencia",
+                "ocorrencia"
+              ]
+            },
+            "required": false,
+            "name": "tipoLocal",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false,
+            "name": "startYear",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false,
+            "name": "anoInicio",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false,
+            "name": "endYear",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false,
+            "name": "anoFim",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "gender",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "sexo",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "race",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "racacor",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false,
+            "name": "ageMin",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false,
+            "name": "faixaEtariaMin",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false,
+            "name": "ageMax",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false,
+            "name": "faixaEtariaMax",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "transportMode",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "modoTransporte",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "deathLocation",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "localOcorrenciaObito",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Endpoint principal com filtros avançados para análise de mortes no trânsito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "filtrosAplicados": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "nullable": true
+                      }
+                    },
+                    "totalGeral": {
+                      "type": "number"
+                    },
+                    "resumo": {
+                      "type": "object",
+                      "properties": {
+                        "porAno": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        },
+                        "porSexo": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        },
+                        "porRacaCor": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        },
+                        "porFaixaEtaria": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        },
+                        "porMunicipio": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        },
+                        "porModoTransporte": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        },
+                        "porLocalOcorrenciaObito": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "required": [
+                        "porAno",
+                        "porSexo",
+                        "porRacaCor",
+                        "porFaixaEtaria",
+                        "porMunicipio",
+                        "porModoTransporte",
+                        "porLocalOcorrenciaObito"
+                      ]
+                    },
+                    "dados": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ano": {
+                            "type": "number"
+                          },
+                          "municipio": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "nome": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "nome"
+                            ]
+                          },
+                          "sexo": {
+                            "type": "object",
+                            "properties": {
+                              "codigo": {
+                                "type": "string"
+                              },
+                              "descricao": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "codigo",
+                              "descricao"
+                            ]
+                          },
+                          "racacor": {
+                            "type": "object",
+                            "properties": {
+                              "codigo": {
+                                "type": "string"
+                              },
+                              "descricao": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "codigo",
+                              "descricao"
+                            ]
+                          },
+                          "idade": {
+                            "type": "number"
+                          },
+                          "idadeOriginal": {
+                            "type": "number"
+                          },
+                          "faixaEtaria": {
+                            "type": "string"
+                          },
+                          "modoTransporte": {
+                            "type": "object",
+                            "properties": {
+                              "codigo": {
+                                "type": "string"
+                              },
+                              "descricao": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "codigo",
+                              "descricao"
+                            ]
+                          },
+                          "localOcorrenciaObito": {
+                            "type": "object",
+                            "properties": {
+                              "codigo": {
+                                "type": "string"
+                              },
+                              "descricao": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "codigo",
+                              "descricao"
+                            ]
+                          },
+                          "causabas": {
+                            "type": "string"
+                          },
+                          "total": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "ano",
+                          "municipio",
+                          "sexo",
+                          "racacor",
+                          "idade",
+                          "idadeOriginal",
+                          "faixaEtaria",
+                          "modoTransporte",
+                          "localOcorrenciaObito",
+                          "causabas",
+                          "total"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "filtrosAplicados",
+                    "totalGeral",
+                    "resumo",
+                    "dados"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/matrix": {
+      "get": {
+        "tags": [
+          "V1 Matrix"
+        ],
+        "responses": {
+          "200": {
+            "description": "Análise de matriz de dados de mortes no trânsito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "matrix": {
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "labels": {
+                      "type": "object",
+                      "properties": {
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "columns": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "required": [
+                        "rows",
+                        "columns"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "matrix",
+                    "labels"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/causas-secundarias": {
+      "get": {
+        "tags": [
+          "V1 Causas Secundárias"
+        ],
+        "responses": {
+          "200": {
+            "description": "Análise de causas secundárias de mortes no trânsito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "causas": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "codigo": {
+                            "type": "string"
+                          },
+                          "descricao": {
+                            "type": "string"
+                          },
+                          "total": {
+                            "type": "number"
+                          },
+                          "percentual": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "codigo",
+                          "descricao",
+                          "total",
+                          "percentual"
+                        ]
+                      }
+                    },
+                    "total": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "causas",
+                    "total"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/summary": {
+      "get": {
+        "tags": [
           "Summary"
         ],
         "parameters": [
@@ -171,7 +889,7 @@
         }
       }
     },
-    "/v1/deaths/cyclists": {
+    "/v2/deaths/cyclists": {
       "get": {
         "tags": [
           "Cyclists"
@@ -237,7 +955,7 @@
         }
       }
     },
-    "/v1/deaths/by-city": {
+    "/v2/deaths/by-city": {
       "get": {
         "tags": [
           "Geographic Analysis"
@@ -326,7 +1044,7 @@
         }
       }
     },
-    "/v1/deaths/by-transport-mode": {
+    "/v2/deaths/by-transport-mode": {
       "get": {
         "tags": [
           "Transport Mode Analysis"
@@ -432,7 +1150,7 @@
         }
       }
     },
-    "/v1/deaths/time-series": {
+    "/v2/deaths/time-series": {
       "get": {
         "tags": [
           "Time Series Analysis"
@@ -572,7 +1290,7 @@
         }
       }
     },
-    "/v1/stats": {
+    "/v2/stats": {
       "get": {
         "tags": [
           "Statistics"

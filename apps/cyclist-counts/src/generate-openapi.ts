@@ -59,6 +59,10 @@ async function generateOpenAPISpec() {
 					description: "Operations related to counting locations",
 				},
 				{
+					name: "Summary",
+					description: "Summary operations for cyclist counting data",
+				},
+				{
 					name: "System",
 					description: "System operations",
 				},

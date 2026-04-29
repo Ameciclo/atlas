@@ -59,6 +59,74 @@ export const getOne = createRoute({
 	},
 });
 
+const NearbyQuerySchema = z.object({
+	lat: z.coerce.number(),
+	lon: z.coerce.number(),
+	radius: z.coerce.number().optional().default(1000),
+	limit: z.coerce.number().optional().default(50),
+});
+
+const _NearbyResponseSchema = z.object({
+	id: z.number(),
+	data: z.any(),
+	metadata: z.any(),
+	coordinates: z.any().optional(),
+	created_at: z.string(),
+	updated_at: z.string(),
+});
+
+export const nearby = createRoute({
+	path: "/cyclist-profiles/nearby",
+	method: "get",
+	request: {
+		query: NearbyQuerySchema,
+	},
+	tags,
+	responses: {
+		[HttpStatusCodes.OK]: jsonContent(
+			z.unknown(),
+			"Cyclist profiles within radius",
+		),
+		[HttpStatusCodes.UNPROCESSABLE_ENTITY]: jsonContent(
+			createErrorSchema(NearbyQuerySchema),
+			"Invalid parameters",
+		),
+	},
+});
+
+export const nearbySummary = createRoute({
+	path: "/cyclist-profiles/nearby-summary",
+	method: "get",
+	request: {
+		query: NearbyQuerySchema,
+	},
+	tags,
+	responses: {
+		[HttpStatusCodes.OK]: jsonContent(
+			z.object({
+				total: z.number(),
+				profiles: z.array(
+					z.object({
+						id: z.number(),
+						gender: z.string().nullable(),
+						age: z.number().nullable(),
+						days_per_week: z.number().nullable(),
+						bike_type: z.string().nullable(),
+						neighborhood: z.string().nullable(),
+						survey_year: z.string().nullable(),
+						distance_meters: z.number(),
+					}),
+				),
+			}),
+			"Cyclist profiles summary within radius",
+		),
+		[HttpStatusCodes.UNPROCESSABLE_ENTITY]: jsonContent(
+			createErrorSchema(NearbyQuerySchema),
+			"Invalid parameters",
+		),
+	},
+});
+
 // export const patch = createRoute({
 // 	path: "/tasks/{id}",
 // 	method: "patch",
@@ -99,5 +167,7 @@ export const getOne = createRoute({
 export type ListRoute = typeof list;
 // export type CreateRoute = typeof create;
 export type GetOneRoute = typeof getOne;
+export type NearbyRoute = typeof nearby;
+export type NearbySummaryRoute = typeof nearbySummary;
 // export type PatchRoute = typeof patch;
 // export type RemoveRoute = typeof remove;

@@ -1,6 +1,5 @@
 import { count, eq } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
-import { db } from "../../db/index.js";
 import { trafficDeaths } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type * as routes from "./summary.routes.js";
@@ -8,6 +7,7 @@ import type * as routes from "./summary.routes.js";
 export const getSummary: AppRouteHandler<typeof routes.getSummary> = async (
 	c,
 ) => {
+	const db = c.get("db");
 	const { year } = c.req.valid("query");
 
 	const result = year

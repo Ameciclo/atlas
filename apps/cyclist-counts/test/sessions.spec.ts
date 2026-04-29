@@ -1,18 +1,39 @@
 import type { InferSelectModel } from "drizzle-orm";
-import { testClient } from "hono/testing";
+import { OpenAPIHono } from "@hono/zod-openapi";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import app from "../src/app.js";
-import { db } from "../src/db/index.js";
+import createApp from "../src/lib/create-app.js";
+import eventsRoutes from "../src/routes/events/events.index.js";
+import sessionsRoutes from "../src/routes/sessions/sessions.index.js";
 import type { countingEvents, countingSessions } from "../src/db/schema.js";
 
 type CountingEvent = InferSelectModel<typeof countingEvents>;
 type CountingSession = InferSelectModel<typeof countingSessions>;
 
-const client = testClient(app);
+const findFirstEvent = vi.fn();
+const findManySessions = vi.fn();
+const findFirstSession = vi.fn();
 
-const findFirstEvent = vi.spyOn(db.query.countingEvents, "findFirst");
-const findManySessions = vi.spyOn(db.query.countingSessions, "findMany");
-const findFirstSession = vi.spyOn(db.query.countingSessions, "findFirst");
+const mockDb: any = {
+	query: {
+		countingEvents: {
+			findFirst: findFirstEvent,
+		},
+		countingSessions: {
+			findMany: findManySessions,
+			findFirst: findFirstSession,
+		},
+	},
+};
+
+const outer = new OpenAPIHono<any>({ strict: false });
+outer.use(async (c, next) => {
+	c.set("db", mockDb as never);
+	await next();
+});
+const app: any = outer.route(
+	"/",
+	createApp().route("/v1", eventsRoutes).route("/v1", sessionsRoutes),
+);
 
 const mockEvent: CountingEvent = {
 	id: 1,
@@ -91,9 +112,7 @@ describe("GET /v1/events/:id/sessions", () => {
 		findFirstEvent.mockResolvedValueOnce(mockEvent);
 		findManySessions.mockResolvedValueOnce([mockSession1, mockSession2]);
 
-		const res = await client.v1.events[":id"].sessions.$get({
-			param: { id: 1 },
-		});
+		const res = await app.request("/v1/events/1/sessions");
 		expect(res.status).toBe(200);
 
 		const data = await res.json();
@@ -117,9 +136,7 @@ describe("GET /v1/events/:id/sessions", () => {
 		findFirstEvent.mockResolvedValueOnce(mockEvent);
 		findManySessions.mockResolvedValueOnce([]);
 
-		const res = await client.v1.events[":id"].sessions.$get({
-			param: { id: 1 },
-		});
+		const res = await app.request("/v1/events/1/sessions");
 		expect(res.status).toBe(200);
 		expect(await res.json()).toEqual([]);
 	});
@@ -127,9 +144,7 @@ describe("GET /v1/events/:id/sessions", () => {
 	it("404 → when event not found", async () => {
 		findFirstEvent.mockResolvedValueOnce(undefined);
 
-		const res = await client.v1.events[":id"].sessions.$get({
-			param: { id: 999 },
-		});
+		const res = await app.request("/v1/events/999/sessions");
 		expect(res.status).toBe(404);
 		expect(await res.json()).toEqual({ message: "Not Found" });
 	});
@@ -143,7 +158,7 @@ describe("GET /v1/sessions/:id", () => {
 	it("200 → returns session when found", async () => {
 		findFirstSession.mockResolvedValueOnce(mockSession1);
 
-		const res = await client.v1.sessions[":id"].$get({ param: { id: 1 } });
+		const res = await app.request("/v1/sessions/1");
 		expect(res.status).toBe(200);
 
 		const data = await res.json();
@@ -161,7 +176,7 @@ describe("GET /v1/sessions/:id", () => {
 	it("404 → when session not found", async () => {
 		findFirstSession.mockResolvedValueOnce(undefined);
 
-		const res = await client.v1.sessions[":id"].$get({ param: { id: 999 } });
+		const res = await app.request("/v1/sessions/999");
 		expect(res.status).toBe(404);
 		expect(await res.json()).toEqual({ message: "Not Found" });
 	});

@@ -65,3 +65,5 @@ export {
 	getSSLConfig,
 } from "./connection.js";
 export { runMigrations } from "./migrate.js";
+export { dbMiddleware } from "./workers-middleware.js";
+export * from "./schemas/index.js";

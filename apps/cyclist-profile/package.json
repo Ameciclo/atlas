@@ -12,7 +12,10 @@
 		"test": "NODE_ENV=test vitest --run",
 		"test:watch": "NODE_ENV=test vitest --watch",
 		"generate-openapi": "tsx src/generate-openapi.ts",
-		"pre-dev": "pnpm generate-openapi"
+		"pre-dev": "pnpm generate-openapi",
+		"dev:workers": "wrangler dev",
+		"deploy": "wrangler deploy",
+		"check-types:worker": "tsc --noEmit --project tsconfig.worker.json"
 	},
 	"dependencies": {
 		"@atlas/database": "workspace:*",

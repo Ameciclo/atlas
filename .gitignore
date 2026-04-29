@@ -46,3 +46,6 @@ apps/docs/public/openapi/*.json
 # Test artifacts from create-atlas-app integration tests
 packages/database/src/schemas/test-*
 apps/test-*
+
+# ASDF version manager
+asdf-vm/

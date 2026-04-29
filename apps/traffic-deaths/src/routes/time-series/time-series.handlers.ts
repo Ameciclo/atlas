@@ -1,6 +1,5 @@
 import { and, between, count, eq, like, or } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
-import { db } from "../../db/index.js";
 import { trafficDeaths } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type * as routes from "./time-series.routes.js";
@@ -22,6 +21,7 @@ const TRANSPORT_MODE_PATTERNS: Record<string, string[]> = {
 export const getTimeSeries: AppRouteHandler<
 	typeof routes.getTimeSeries
 > = async (c) => {
+	const db = c.get("db");
 	const {
 		start_year,
 		end_year,

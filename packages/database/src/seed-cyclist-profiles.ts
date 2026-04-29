@@ -113,13 +113,51 @@ export async function seedCyclistProfiles(config: DatabaseConfig = {}) {
 			// Remove timestamps if they exist (database will set them)
 			const { created_at, updated_at, id, ...dataToInsert } = profileData;
 
+			// Extract coordinates from metadata.location
+			const location = dataToInsert.metadata?.location as any;
+			let coordinatesWKT = null;
+
+			if (
+				location?.coordinates &&
+				Array.isArray(location.coordinates) &&
+				location.coordinates.length === 2
+			) {
+				const [lat, lon] = location.coordinates;
+				if (
+					typeof lat === "number" &&
+					typeof lon === "number" &&
+					lat !== 0 &&
+					lon !== 0
+				) {
+					coordinatesWKT = `POINT(${lon} ${lat})`;
+					console.log(
+						`  📍 Coordinates for ID ${profileId}: ${coordinatesWKT}`,
+					);
+				} else {
+					console.log(
+						`  ⚠️  Invalid coordinates for ID ${profileId}: lat=${lat}, lon=${lon}`,
+					);
+				}
+			} else {
+				console.log(
+					`  ❌ No location data for ID ${profileId}:`,
+					JSON.stringify(location),
+				);
+			}
+
 			// Insert new profile with id stored in metadata for idempotency
+			const insertData: any = {
+				data: dataToInsert.data,
+				metadata: { ...dataToInsert.metadata, id: profileId },
+			};
+
+			if (coordinatesWKT) {
+				insertData.coordinates = sql`ST_GeomFromText(${coordinatesWKT}, 4326)`;
+			}
+
 			const [newProfile] = await db
 				.insert(cyclistProfileSchema.cyclistProfiles)
-				.values({
-					data: dataToInsert.data,
-					metadata: { ...dataToInsert.metadata, id: profileId },
-				})
+				.values(insertData)
 				.returning();
 
 			if (!newProfile) {

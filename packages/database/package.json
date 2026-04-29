@@ -22,9 +22,45 @@
 			"types": "./dist/migrations/*.d.ts",
 			"import": "./dist/migrations/*.js"
 		},
+		"./schemas/bicycle-racks": {
+			"types": "./dist/schemas/bicycle-racks/index.d.ts",
+			"import": "./dist/schemas/bicycle-racks/index.js"
+		},
 		"./schemas/traffic-deaths": {
 			"types": "./dist/schemas/traffic-deaths/index.d.ts",
 			"import": "./dist/schemas/traffic-deaths/index.js"
+		},
+		"./schemas/traffic-calls": {
+			"types": "./dist/schemas/traffic-calls/index.d.ts",
+			"import": "./dist/schemas/traffic-calls/index.js"
+		},
+		"./schemas/emergency-calls": {
+			"types": "./dist/schemas/emergency-calls/index.d.ts",
+			"import": "./dist/schemas/emergency-calls/index.js"
+		},
+		"./schemas/traffic-violations": {
+			"types": "./dist/schemas/traffic-violations/index.d.ts",
+			"import": "./dist/schemas/traffic-violations/index.js"
+		},
+		"./schemas/test-db-service": {
+			"types": "./dist/schemas/test-db-service/index.d.ts",
+			"import": "./dist/schemas/test-db-service/index.js"
+		},
+		"./schemas/cycling-infra": {
+			"types": "./dist/schemas/cycling-infra/index.d.ts",
+			"import": "./dist/schemas/cycling-infra/index.js"
+		},
+		"./schemas/shared-bike": {
+			"types": "./dist/schemas/shared-bike/index.d.ts",
+			"import": "./dist/schemas/shared-bike/index.js"
+		},
+		"./schemas/pcr-streets": {
+			"types": "./dist/schemas/pcr-streets/index.d.ts",
+			"import": "./dist/schemas/pcr-streets/index.js"
+		},
+		"./workers-middleware": {
+			"types": "./dist/workers-middleware.d.ts",
+			"import": "./dist/workers-middleware.js"
 		}
 	},
 	"scripts": {
@@ -35,8 +71,17 @@
 		"format": "biome format .",
 		"db:studio": "drizzle-kit studio",
 		"db:generate": "drizzle-kit generate",
+		"db:generate:custom": "drizzle-kit generate --custom",
+		"db:drop": "drizzle-kit drop",
+		"db:custom": "drizzle-kit generate --custom",
 		"db:migrate": "tsx src/migrate.ts",
 		"db:seed": "tsx src/seed.ts",
+		"db:seed:cyclist-counts": "tsx src/seed-cyclist-counts.ts",
+		"db:seed:cyclist-profiles": "tsx src/seed-cyclist-profiles.ts",
+		"db:seed:bicycle-racks": "tsx src/seed-bicycle-racks.ts",
+		"db:seed-traffic-calls": "tsx src/seed-traffic-calls.ts",
+		"db:seed-cycling-infra": "tsx src/seed-cycling-infra.ts",
+		"db:seed-shared-bike": "tsx src/seed-shared-bike.ts",
 		"db:reset": "tsx src/reset.ts"
 	},
 	"dependencies": {
@@ -53,10 +98,12 @@
 		"@types/pg": "^8.11.13",
 		"csv-parse": "^6.1.0",
 		"drizzle-kit": "^0.31.0",
+		"hono": "^4.12.10",
 		"tsx": "^4.19.3",
 		"typescript": "^5.8.3"
 	},
 	"peerDependencies": {
+		"hono": "^4.10.0",
 		"typescript": "^5.8.3"
 	}
 }

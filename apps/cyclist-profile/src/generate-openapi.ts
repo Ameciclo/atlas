@@ -3,6 +3,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import createApp, { createRouter } from "./lib/create-app.js";
 import * as routes from "./routes/cyclist-profiles/cyclist-profiles.routes.js";
+import * as analyticsRoutes from "./routes/cyclist-profiles/analytics.routes.js";
+import * as healthRoutes from "./routes/health.routes.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -12,13 +14,40 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
  * The handlers are never called during spec generation, so we use dummy functions
  */
 function createSpecApp() {
-	const router = createRouter()
+	const cyclistRouter = createRouter()
 		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
 		.openapi(routes.list, null as any)
 		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
-		.openapi(routes.getOne, null as any);
+		.openapi(routes.getOne, null as any)
+		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
+		.openapi(routes.nearby, null as any)
+		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
+		.openapi(routes.nearbySummary, null as any);
 
-	return createApp().route("/v1/", router);
+	const analyticsRouter = createRouter()
+		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
+		.openapi(analyticsRoutes.summary, null as any)
+		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
+		.openapi(analyticsRoutes.trends, null as any)
+		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
+		.openapi(analyticsRoutes.genderAnalysis, null as any)
+		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
+		.openapi(analyticsRoutes.genderAnalysisByLocation, null as any)
+		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
+		.openapi(analyticsRoutes.generalAnalysis, null as any)
+		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
+		.openapi(analyticsRoutes.safetyAnalysis, null as any)
+		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
+		.openapi(analyticsRoutes.surveyLocations, null as any);
+
+	const healthRouter = createRouter()
+		// biome-ignore lint/suspicious/noExplicitAny: Dummy handlers for spec generation only
+		.openapi(healthRoutes.health, null as any);
+
+	return createApp()
+		.route("/", healthRouter)
+		.route("/v1/", cyclistRouter)
+		.route("/v1/", analyticsRouter);
 }
 
 const app = createSpecApp();
@@ -72,6 +101,10 @@ async function generateOpenAPISpec() {
 				{
 					name: "Cyclist Profiles",
 					description: "Operations related to cyclist profiles",
+				},
+				{
+					name: "Cyclist Analytics",
+					description: "Analytics and insights for cyclist data",
 				},
 				{
 					name: "System",

@@ -25,6 +25,10 @@
       "description": "Operations related to counting locations"
     },
     {
+      "name": "Summary",
+      "description": "Summary operations for cyclist counting data"
+    },
+    {
       "name": "System",
       "description": "System operations"
     }
@@ -221,6 +225,182 @@
                       "updated_at"
                     ]
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/locations/nearby": {
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "summary": "Get counting locations near a point",
+        "description": "Get cyclist counting locations within a radius from a lat/lon point",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Latitude",
+              "example": "-8.0476"
+            },
+            "required": true,
+            "name": "lat",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Longitude",
+              "example": "-34.8770"
+            },
+            "required": true,
+            "name": "lon",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Radius in meters",
+              "example": "1000"
+            },
+            "required": false,
+            "name": "radius",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Counting locations near the specified point",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "FeatureCollection"
+                      ]
+                    },
+                    "features": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "Feature"
+                            ]
+                          },
+                          "id": {
+                            "type": "number"
+                          },
+                          "properties": {
+                            "allOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "city": {
+                                    "type": "string"
+                                  },
+                                  "distance_meters": {
+                                    "type": "number"
+                                  },
+                                  "countings": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "date": {
+                                          "type": "string"
+                                        },
+                                        "total_cyclists": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "date",
+                                        "total_cyclists"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "city",
+                                  "distance_meters",
+                                  "countings"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "nullable": true
+                                }
+                              }
+                            ]
+                          },
+                          "geometry": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "Point"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id",
+                          "properties",
+                          "geometry"
+                        ]
+                      }
+                    },
+                    "summary": {
+                      "type": "object",
+                      "properties": {
+                        "total_locations": {
+                          "type": "number"
+                        },
+                        "by_city": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "required": [
+                        "total_locations",
+                        "by_city"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "features",
+                    "summary"
+                  ]
                 }
               }
             }
@@ -800,6 +980,246 @@
         }
       }
     },
+    "/v1/events/{id}/details": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Get detailed event data by ID",
+        "description": "Get comprehensive event details including sessions, characteristics, directions and summary",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "required": [
+                "id"
+              ],
+              "example": 42
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detailed event data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "slug": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "date": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "state": {
+                          "type": "string"
+                        },
+                        "full_state": {
+                          "type": "string"
+                        },
+                        "rmr": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "state",
+                        "full_state",
+                        "rmr"
+                      ]
+                    },
+                    "coordinates": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "point": {
+                            "type": "object",
+                            "properties": {
+                              "x": {
+                                "type": "number"
+                              },
+                              "y": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "x",
+                              "y"
+                            ]
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "point",
+                          "type",
+                          "name"
+                        ]
+                      }
+                    },
+                    "directions": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    },
+                    "sessions": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                          "start_time": {
+                            "type": "string"
+                          },
+                          "end_time": {
+                            "type": "string"
+                          },
+                          "total_cyclists": {
+                            "type": "number"
+                          },
+                          "quantitative": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "number"
+                            }
+                          },
+                          "characteristics": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "number"
+                            }
+                          }
+                        },
+                        "required": [
+                          "start_time",
+                          "end_time",
+                          "total_cyclists",
+                          "quantitative",
+                          "characteristics"
+                        ]
+                      }
+                    },
+                    "summary": {
+                      "type": "object",
+                      "properties": {
+                        "max_hour": {
+                          "type": "number"
+                        },
+                        "total_cyclists": {
+                          "type": "number"
+                        },
+                        "total_cargo": {
+                          "type": "number"
+                        },
+                        "total_helmet": {
+                          "type": "number"
+                        },
+                        "total_juveniles": {
+                          "type": "number"
+                        },
+                        "total_motor": {
+                          "type": "number"
+                        },
+                        "total_ride": {
+                          "type": "number"
+                        },
+                        "total_service": {
+                          "type": "number"
+                        },
+                        "total_shared_bike": {
+                          "type": "number"
+                        },
+                        "total_sidewalk": {
+                          "type": "number"
+                        },
+                        "total_women": {
+                          "type": "number"
+                        },
+                        "total_wrong_way": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "max_hour",
+                        "total_cyclists",
+                        "total_cargo",
+                        "total_helmet",
+                        "total_juveniles",
+                        "total_motor",
+                        "total_ride",
+                        "total_service",
+                        "total_shared_bike",
+                        "total_sidewalk",
+                        "total_women",
+                        "total_wrong_way"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "slug",
+                    "name",
+                    "date",
+                    "city",
+                    "coordinates",
+                    "directions",
+                    "sessions",
+                    "summary"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Event not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "example": {
+                    "message": "Not Found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/events/{id}/sessions": {
       "get": {
         "tags": [
@@ -1060,6 +1480,226 @@
                   "example": {
                     "message": "Not Found"
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/summary": {
+      "get": {
+        "tags": [
+          "Summary"
+        ],
+        "summary": "Get cyclist counts summary",
+        "description": "Get a comprehensive summary of all cyclist counting data including totals and characteristics",
+        "responses": {
+          "200": {
+            "description": "Summary of cyclist counting data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "counts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "slug": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "date": {
+                            "type": "string"
+                          },
+                          "coordinates": {
+                            "type": "object",
+                            "properties": {
+                              "x": {
+                                "type": "number"
+                              },
+                              "y": {
+                                "type": "number"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "x",
+                              "y",
+                              "type",
+                              "name"
+                            ]
+                          },
+                          "city": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "state": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "state"
+                            ]
+                          },
+                          "total_cyclists": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "slug",
+                          "name",
+                          "date",
+                          "city",
+                          "total_cyclists"
+                        ]
+                      }
+                    },
+                    "summary": {
+                      "type": "object",
+                      "properties": {
+                        "total_cyclists": {
+                          "type": "number"
+                        },
+                        "number_counts": {
+                          "type": "number"
+                        },
+                        "different_counts_points": {
+                          "type": "number"
+                        },
+                        "where_max_count": {
+                          "type": "object",
+                          "properties": {
+                            "slug": {
+                              "type": "string"
+                            },
+                            "coordinates": {
+                              "type": "object",
+                              "properties": {
+                                "x": {
+                                  "type": "number"
+                                },
+                                "y": {
+                                  "type": "number"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "x",
+                                "y",
+                                "type",
+                                "name"
+                              ]
+                            },
+                            "total_cyclists": {
+                              "type": "number"
+                            },
+                            "date": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "slug",
+                            "total_cyclists",
+                            "date"
+                          ]
+                        },
+                        "total_cargo": {
+                          "type": "number"
+                        },
+                        "total_helmet": {
+                          "type": "number"
+                        },
+                        "total_juveniles": {
+                          "type": "number"
+                        },
+                        "total_motor": {
+                          "type": "number"
+                        },
+                        "total_ride": {
+                          "type": "number"
+                        },
+                        "total_service": {
+                          "type": "number"
+                        },
+                        "total_shared_bike": {
+                          "type": "number"
+                        },
+                        "total_sidewalk": {
+                          "type": "number"
+                        },
+                        "total_women": {
+                          "type": "number"
+                        },
+                        "total_wrong_way": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "total_cyclists",
+                        "number_counts",
+                        "different_counts_points",
+                        "where_max_count",
+                        "total_cargo",
+                        "total_helmet",
+                        "total_juveniles",
+                        "total_motor",
+                        "total_ride",
+                        "total_service",
+                        "total_shared_bike",
+                        "total_sidewalk",
+                        "total_women",
+                        "total_wrong_way"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "counts",
+                    "summary"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
                 }
               }
             }

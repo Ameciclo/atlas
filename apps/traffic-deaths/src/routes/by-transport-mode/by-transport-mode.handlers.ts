@@ -1,6 +1,5 @@
 import { and, eq, sql, sum } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
-import { db } from "../../db/index.js";
 import { trafficDeaths } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type * as routes from "./by-transport-mode.routes.js";
@@ -62,6 +61,7 @@ const TRANSPORT_MODES = [
 export const getDeathsByTransportMode: AppRouteHandler<
 	typeof routes.getDeathsByTransportMode
 > = async (c) => {
+	const db = c.get("db");
 	const {
 		year,
 		city_code,

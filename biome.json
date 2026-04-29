@@ -7,7 +7,7 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"maxSize": 5000000,
+		"maxSize": 50000000,
 		"includes": [
 			"**",
 			"!**/templates/generate-openapi.ts",

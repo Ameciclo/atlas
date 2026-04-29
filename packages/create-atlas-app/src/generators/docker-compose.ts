@@ -96,7 +96,7 @@ export function generateDockerCompose(config: AppConfig): string {
       - with-seed
 
   postgres:
-    image: postgres:16-alpine
+    image: postgis/postgis:16-3.4-alpine
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

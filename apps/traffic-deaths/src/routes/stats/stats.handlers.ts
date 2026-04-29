@@ -1,11 +1,11 @@
 import { and, count, eq, max, min } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
-import { db } from "../../db/index.js";
 import { trafficDeaths } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type * as routes from "./stats.routes.js";
 
 export const getStats: AppRouteHandler<typeof routes.getStats> = async (c) => {
+	const db = c.get("db");
 	const { city_code, location_type = "occurrence" } = c.req.valid("query");
 
 	// Determine which field to use based on location_type

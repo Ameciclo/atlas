@@ -1,0 +1,966 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Bicycle Racks API",
+    "version": "0.1.0",
+    "description": "API for managing bicycle parking facilities",
+    "contact": {
+      "name": "Atlas Team",
+      "url": "https://github.com/Ameciclo/atlas"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3005",
+      "description": "Local development server"
+    },
+    {
+      "url": "https://api.ameciclo.org/bicycle-racks",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Bicycle Racks",
+      "description": "Operations related to bicycle parking facilities"
+    },
+    {
+      "name": "System",
+      "description": "System operations"
+    }
+  ],
+  "components": {
+    "schemas": {},
+    "parameters": {}
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "service",
+                    "database"
+                  ]
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service is unhealthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "service",
+                    "database"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/bicycle-racks": {
+      "get": {
+        "tags": [
+          "Bicycle Racks"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "yes",
+                "no"
+              ]
+            },
+            "required": false,
+            "name": "covered",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "yes",
+                "private",
+                "permissive",
+                "customers"
+              ]
+            },
+            "required": false,
+            "name": "access",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d+$"
+            },
+            "required": false,
+            "name": "capacity_min",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d+$"
+            },
+            "required": false,
+            "name": "capacity_max",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "operator",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "city",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of bicycle racks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      "osm_id": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "osm_type": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "coordinates": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "name": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "description": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "amenity": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "bicycle_parking": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "capacity": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "access": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "covered": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "fee": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "supervised": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "lit": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "operator": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "operator_type": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "building": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "level": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "surface": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "addr_city": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "addr_street": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "addr_housenumber": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "addr_suburb": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "addr_postcode": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "opening_hours": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "payment_none": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "ref": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "source": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "source_date": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "wikidata": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "wikipedia": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "osm_id",
+                      "osm_type",
+                      "coordinates",
+                      "name",
+                      "description",
+                      "amenity",
+                      "bicycle_parking",
+                      "capacity",
+                      "access",
+                      "covered",
+                      "fee",
+                      "supervised",
+                      "lit",
+                      "operator",
+                      "operator_type",
+                      "building",
+                      "level",
+                      "surface",
+                      "addr_city",
+                      "addr_street",
+                      "addr_housenumber",
+                      "addr_suburb",
+                      "addr_postcode",
+                      "opening_hours",
+                      "payment_none",
+                      "ref",
+                      "source",
+                      "source_date",
+                      "wikidata",
+                      "wikipedia",
+                      "created_at",
+                      "updated_at"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/bicycle-racks/stats": {
+      "get": {
+        "tags": [
+          "Bicycle Racks"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "city",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bicycle racks statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "number"
+                    },
+                    "covered": {
+                      "type": "number"
+                    },
+                    "public_access": {
+                      "type": "number"
+                    },
+                    "avg_capacity": {
+                      "type": "number"
+                    },
+                    "by_operator": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "required": [
+                    "total",
+                    "covered",
+                    "public_access",
+                    "avg_capacity",
+                    "by_operator"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/bicycle-racks/nearby": {
+      "get": {
+        "tags": [
+          "Bicycle Racks"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "^-?\\d+(\\.\\d+)?$"
+            },
+            "required": true,
+            "name": "lat",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "^-?\\d+(\\.\\d+)?$"
+            },
+            "required": true,
+            "name": "lng",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d+(\\.\\d+)?$",
+              "default": "1000"
+            },
+            "required": false,
+            "name": "radius",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "city",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Nearby bicycle racks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
+                      },
+                      "osm_id": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "osm_type": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "coordinates": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "name": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "description": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "amenity": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "bicycle_parking": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "capacity": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "access": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "covered": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "fee": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "supervised": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "lit": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "operator": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "operator_type": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "building": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "level": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "surface": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "addr_city": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "addr_street": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "addr_housenumber": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "addr_suburb": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "addr_postcode": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "opening_hours": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "payment_none": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "ref": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "source": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "source_date": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "wikidata": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "wikipedia": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      },
+                      "distance": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "osm_id",
+                      "osm_type",
+                      "coordinates",
+                      "name",
+                      "description",
+                      "amenity",
+                      "bicycle_parking",
+                      "capacity",
+                      "access",
+                      "covered",
+                      "fee",
+                      "supervised",
+                      "lit",
+                      "operator",
+                      "operator_type",
+                      "building",
+                      "level",
+                      "surface",
+                      "addr_city",
+                      "addr_street",
+                      "addr_housenumber",
+                      "addr_suburb",
+                      "addr_postcode",
+                      "opening_hours",
+                      "payment_none",
+                      "ref",
+                      "source",
+                      "source_date",
+                      "wikidata",
+                      "wikipedia",
+                      "created_at",
+                      "updated_at",
+                      "distance"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/bicycle-racks/geojson": {
+      "get": {
+        "tags": [
+          "Bicycle Racks"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "city",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bicycle racks as GeoJSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "FeatureCollection"
+                      ]
+                    },
+                    "features": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "Feature"
+                            ]
+                          },
+                          "properties": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "nullable": true
+                            }
+                          },
+                          "geometry": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "Point"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "properties",
+                          "geometry"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "features"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/bicycle-racks/{id}": {
+      "get": {
+        "tags": [
+          "Bicycle Racks"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d+$"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bicycle rack details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "osm_id": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "osm_type": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "coordinates": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "name": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "amenity": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "bicycle_parking": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "capacity": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "access": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "covered": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "fee": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "supervised": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "lit": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "operator": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "operator_type": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "building": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "level": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "surface": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "addr_city": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "addr_street": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "addr_housenumber": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "addr_suburb": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "addr_postcode": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "opening_hours": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "payment_none": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "ref": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "source": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "source_date": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "wikidata": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "wikipedia": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "osm_id",
+                    "osm_type",
+                    "coordinates",
+                    "name",
+                    "description",
+                    "amenity",
+                    "bicycle_parking",
+                    "capacity",
+                    "access",
+                    "covered",
+                    "fee",
+                    "supervised",
+                    "lit",
+                    "operator",
+                    "operator_type",
+                    "building",
+                    "level",
+                    "surface",
+                    "addr_city",
+                    "addr_street",
+                    "addr_housenumber",
+                    "addr_suburb",
+                    "addr_postcode",
+                    "opening_hours",
+                    "payment_none",
+                    "ref",
+                    "source",
+                    "source_date",
+                    "wikidata",
+                    "wikipedia",
+                    "created_at",
+                    "updated_at"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bicycle rack not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,16 +1,23 @@
 import { and, eq, gte, lte } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
-import { db } from "../../db/index.js";
-import { countingEvents, countingLocations } from "../../db/schema.js";
+import {
+	countingEvents,
+	countingLocations,
+	countingSessions,
+	sessionMovements,
+	cities,
+} from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
 	GetByIdRoute,
 	GetByLocationIdRoute,
+	GetDetailsByIdRoute,
 	ListRoute,
 } from "./events.routes.js";
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
+	const db = c.get("db");
 	const { location_id, city, start_date, end_date } = c.req.valid("query");
 
 	// Build where conditions
@@ -64,6 +71,7 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 };
 
 export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
+	const db = c.get("db");
 	const { id } = c.req.valid("param");
 
 	const event = await db.query.countingEvents.findFirst({
@@ -87,6 +95,7 @@ export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
 export const getByLocationId: AppRouteHandler<GetByLocationIdRoute> = async (
 	c,
 ) => {
+	const db = c.get("db");
 	const { id } = c.req.valid("param");
 
 	// First check if location exists
@@ -114,4 +123,166 @@ export const getByLocationId: AppRouteHandler<GetByLocationIdRoute> = async (
 	});
 
 	return c.json(events, HttpStatusCodes.OK);
+};
+
+export const getDetailsById = async (c: any) => {
+	const db = c.get("db");
+	const { id } = c.req.valid("param");
+
+	// Get event with location
+	const eventWithLocation = await db
+		.select()
+		.from(countingEvents)
+		.leftJoin(
+			countingLocations,
+			eq(countingEvents.location_id, countingLocations.id),
+		)
+		.where(eq(countingEvents.id, id))
+		.limit(1);
+
+	if (eventWithLocation.length === 0) {
+		return c.json(
+			{ message: HttpStatusPhrases.NOT_FOUND },
+			HttpStatusCodes.NOT_FOUND,
+		);
+	}
+
+	const event = eventWithLocation[0]?.counting_events;
+	const location = eventWithLocation[0]?.counting_locations;
+
+	if (!event) {
+		return c.json(
+			{ message: HttpStatusPhrases.NOT_FOUND },
+			HttpStatusCodes.NOT_FOUND,
+		);
+	}
+
+	// Get city data
+	const cityData = await db
+		.select()
+		.from(cities)
+		.where(
+			and(
+				eq(cities.name, location?.city || ""),
+				eq(cities.state, location?.state || ""),
+			),
+		)
+		.limit(1);
+
+	// Create slug
+	const slugName =
+		location?.name
+			?.normalize("NFD")
+			.replace(/[\u0300-\u036f]/g, "")
+			.replace(/[^\w\s]/gi, "")
+			.replace(/\s+/g, "-")
+			.toLowerCase() || "unknown";
+
+	const slugDate = new Date(event.counting_date).toISOString().slice(0, 10);
+	const slug = `${id}-${slugDate}-${slugName}`;
+
+	// Get sessions
+	const sessions = await db
+		.select()
+		.from(countingSessions)
+		.where(eq(countingSessions.event_id, id));
+
+	const summary = {
+		max_hour: 0,
+		total_cyclists: 0,
+		total_cargo: 0,
+		total_helmet: 0,
+		total_juveniles: 0,
+		total_motor: 0,
+		total_ride: 0,
+		total_service: 0,
+		total_shared_bike: 0,
+		total_sidewalk: 0,
+		total_women: 0,
+		total_wrong_way: 0,
+	};
+
+	const sessionsData: Record<
+		string,
+		{
+			start_time: string;
+			end_time: string;
+			total_cyclists: number;
+			quantitative: Record<string, number>;
+			characteristics: Record<string, unknown>;
+		}
+	> = {};
+	const directions: Record<string, string> = {};
+
+	for (const session of sessions) {
+		// Get movements for this session
+		const movements = await db
+			.select()
+			.from(sessionMovements)
+			.where(eq(sessionMovements.session_id, session.id));
+
+		const sessionTotal = movements.reduce((sum, m) => sum + m.count, 0);
+		summary.total_cyclists += sessionTotal;
+		if (sessionTotal > summary.max_hour) summary.max_hour = sessionTotal;
+
+		// Build quantitative data from movements
+		const quantitative: Record<string, number> = {};
+		movements.forEach((m) => {
+			const key = `${m.from_direction}_${m.to_direction}`;
+			quantitative[key] = (quantitative[key] || 0) + m.count;
+			directions[m.from_direction] = m.from_direction;
+			directions[m.to_direction] = m.to_direction;
+		});
+
+		// Get characteristics from session JSONB
+		const characteristics =
+			(session.characteristics as Record<string, number>) || {};
+		summary.total_cargo += Number(characteristics.cargo) || 0;
+		summary.total_helmet += Number(characteristics.helmet) || 0;
+		summary.total_juveniles += Number(characteristics.juveniles) || 0;
+		summary.total_motor += Number(characteristics.motor) || 0;
+		summary.total_ride += Number(characteristics.ride) || 0;
+		summary.total_service += Number(characteristics.service) || 0;
+		summary.total_shared_bike += Number(characteristics.shared_bike) || 0;
+		summary.total_sidewalk += Number(characteristics.sidewalk) || 0;
+		summary.total_women += Number(characteristics.women) || 0;
+		summary.total_wrong_way += Number(characteristics.wrong_way) || 0;
+
+		sessionsData[session.id] = {
+			start_time: session.start_time.toISOString(),
+			end_time: session.end_time.toISOString(),
+			total_cyclists: sessionTotal,
+			quantitative,
+			characteristics: characteristics as Record<string, number>,
+		};
+	}
+
+	const response = {
+		id: event.id,
+		slug,
+		name: location?.name || "Unknown",
+		date: event.counting_date,
+		city: cityData[0] || {
+			id: 0,
+			name: location?.city || "Unknown",
+			state: location?.state || "Unknown",
+			full_state: "Unknown",
+			rmr: false,
+		},
+		coordinates: [
+			{
+				point: {
+					x: parseFloat(location?.longitude || "0"),
+					y: parseFloat(location?.latitude || "0"),
+				},
+				type: "Point",
+				name: location?.name || "Unknown",
+			},
+		],
+		directions,
+		sessions: sessionsData,
+		summary,
+	};
+
+	return c.json(response, HttpStatusCodes.OK);
 };
