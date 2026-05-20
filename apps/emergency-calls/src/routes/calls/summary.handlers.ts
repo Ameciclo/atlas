@@ -186,11 +186,89 @@ export const outcomes: AppRouteHandler<OutcomesRoute> = async (c) => {
 	});
 };
 
-export const profiles: AppRouteHandler<ProfilesRoute> = async (c) => {
+const CATEGORY_MAP: Record<string, string> = {
+	ACIDENTMOTO: "sinistro_moto",
+	"ACIDENTE DE TRANSITO ENVOLVENDO MOTO": "sinistro_moto",
+	ACIDENTCARRO: "sinistro_carro",
+	"ACIDENTE DE TRANSITO COM CARROS": "sinistro_carro",
+	ACIDENTBIKE: "sinistro_bicicleta",
+	"ACIDENTE DE TRANSITO ENVOLVENDO BICICLETA": "sinistro_bicicleta",
+	ACIDENTONIBUS: "sinistro_onibus_caminhao",
+	"ACIDENTE DE TRANSITO ENVOLVENDO ONIBUS OU CAMINHAO": "sinistro_onibus_caminhao",
+	ATROPELCARRO: "atropelamento_carro",
+	"ATROPELAMENTO POR CARRO": "atropelamento_carro",
+	ATROPELMOTO: "atropelamento_moto",
+	"ATROPELAMENTO POR MOTO": "atropelamento_moto",
+	ATROPELONIBUS: "atropelamento_onibus_caminhao",
+	"ATROPELAMENTO POR ONIBUS OU CAMINHAO": "atropelamento_onibus_caminhao",
+	ATROPELBIKE: "atropelamento_bicicleta",
+	"ATROPELAMENTO POR BICICLETA": "atropelamento_bicicleta",
+	ACIDENTANIMT: "outro",
+	ACIDENTANIMM: "outro",
+	"ACIDENTE COM ANIMAIS TERRESTRES": "outro",
+	"ACIDENTE COM ANIMAIS MARINHOS": "outro",
+};
 
+const CATEGORY_BUCKETS = [
+	"sinistro_moto",
+	"sinistro_carro",
+	"sinistro_bicicleta",
+	"sinistro_onibus_caminhao",
+	"atropelamento_carro",
+	"atropelamento_moto",
+	"atropelamento_onibus_caminhao",
+	"atropelamento_bicicleta",
+	"outro",
+] as const;
+
+function normalizeCategories(
+	raw: Record<string, number>,
+): Record<string, number> {
+	const result: Record<string, number> = {};
+	for (const bucket of CATEGORY_BUCKETS) {
+		result[bucket] = 0;
+	}
+	for (const [key, value] of Object.entries(raw)) {
+		const bucket = CATEGORY_MAP[key] || "outro";
+		result[bucket] = (result[bucket] || 0) + (value || 0);
+	}
+	return result;
+}
+
+function normalizeGender(
+	raw: Record<string, number>,
+): Record<string, number> {
+	const result: Record<string, number> = {
+		masculino: 0,
+		feminino: 0,
+		nao_informado: 0,
+	};
+	for (const [key, value] of Object.entries(raw)) {
+		const lower = key.toLowerCase();
+		if (lower === "masculino" || lower === "m") result.masculino += value || 0;
+		else if (lower === "feminino" || lower === "f") result.feminino += value || 0;
+		else result.nao_informado += value || 0;
+	}
+	return result;
+}
+
+function normalizeAgeGroups(
+	raw: Record<string, number>,
+): Record<string, number> {
+	const unknown = Number(raw.unknown) || 0;
+	return {
+		"0_17_anos": Number(raw["0-17"]) || 0,
+		"18_29_anos": Number(raw["18-29"]) || 0,
+		"30_49_anos": Number(raw["30-49"]) || 0,
+		"50_64_anos": Number(raw["50-64"]) || 0,
+		"65_mais_anos": Number(raw["65+"]) || 0,
+		nao_informado: unknown,
+	};
+}
+
+export const profiles: AppRouteHandler<ProfilesRoute> = async (c) => {
 	const { city, start_year, end_year } = c.req.valid("query");
 
-	// Build date conditions
 	const conditions = [eq(emergencyCalls.municipality, city)];
 
 	if (start_year) {
@@ -202,7 +280,6 @@ export const profiles: AppRouteHandler<ProfilesRoute> = async (c) => {
 
 	const whereClause = and(...conditions);
 
-	// Get gender distribution
 	const genderData = await db
 		.select({
 			gender: emergencyCalls.gender,
@@ -212,16 +289,16 @@ export const profiles: AppRouteHandler<ProfilesRoute> = async (c) => {
 		.where(whereClause)
 		.groupBy(emergencyCalls.gender);
 
-	// Get age group distribution
 	const ageData = await db
 		.select({
 			age_group: sql<string>`
-				CASE 
+				CASE
 					WHEN ${emergencyCalls.age} < 18 THEN '0-17'
 					WHEN ${emergencyCalls.age} BETWEEN 18 AND 29 THEN '18-29'
 					WHEN ${emergencyCalls.age} BETWEEN 30 AND 49 THEN '30-49'
 					WHEN ${emergencyCalls.age} BETWEEN 50 AND 64 THEN '50-64'
-					ELSE '65+'
+					WHEN ${emergencyCalls.age} >= 65 THEN '65+'
+					ELSE 'unknown'
 				END
 			`,
 			count: count(),
@@ -229,57 +306,52 @@ export const profiles: AppRouteHandler<ProfilesRoute> = async (c) => {
 		.from(emergencyCalls)
 		.where(whereClause)
 		.groupBy(sql`
-			CASE 
+			CASE
 				WHEN ${emergencyCalls.age} < 18 THEN '0-17'
 				WHEN ${emergencyCalls.age} BETWEEN 18 AND 29 THEN '18-29'
 				WHEN ${emergencyCalls.age} BETWEEN 30 AND 49 THEN '30-49'
 				WHEN ${emergencyCalls.age} BETWEEN 50 AND 64 THEN '50-64'
-				ELSE '65+'
+				WHEN ${emergencyCalls.age} >= 65 THEN '65+'
+				ELSE 'unknown'
 			END
 		`);
 
-	// Get type distribution
-	const transportData = await db
+	const categoryData = await db
 		.select({
-			type: emergencyCalls.type,
+			category: emergencyCalls.subtype,
 			count: count(),
 		})
 		.from(emergencyCalls)
 		.where(whereClause)
-		.groupBy(emergencyCalls.type);
+		.groupBy(emergencyCalls.subtype);
 
-	const byGender = genderData.reduce(
-		(acc, item) => {
-			acc[item.gender || "unknown"] = item.count;
+	const genderRaw = genderData.reduce(
+		(acc, r) => {
+			acc[r.gender || "null"] = r.count;
 			return acc;
 		},
 		{} as Record<string, number>,
 	);
 
-	const byAgeGroup = ageData.reduce(
-		(acc, item) => {
-			acc[item.age_group] = item.count;
+	const ageRaw = ageData.reduce(
+		(acc, r) => {
+			acc[r.age_group] = r.count;
 			return acc;
 		},
 		{} as Record<string, number>,
 	);
 
-	const byType = transportData.reduce(
-		(acc, item) => {
-			acc[item.type || "unknown"] = item.count;
+	const categoryRaw = categoryData.reduce(
+		(acc, r) => {
+			if (r.category) acc[r.category] = r.count;
 			return acc;
 		},
 		{} as Record<string, number>,
 	);
 
 	return c.json({
-		city,
-		period: {
-			start_year: start_year || new Date().getFullYear() - 5,
-			end_year: end_year || new Date().getFullYear(),
-		},
-		by_gender: byGender,
-		by_age_group: byAgeGroup,
-		by_type: byType,
+		por_sexo: normalizeGender(genderRaw),
+		por_faixa_etaria: normalizeAgeGroups(ageRaw),
+		por_categoria: normalizeCategories(categoryRaw),
 	});
 };

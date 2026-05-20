@@ -15,8 +15,8 @@ import v2UnsafeStreetsRoutes from "./routes/v2/unsafe-streets/unsafe-streets.ind
 
 const app = createApp()
 	.route("/", healthRoutes)
-	.route("/v1", callsRoutes)
 	.route("/v1", callsSummaryRoutes)
+	.route("/v1", callsRoutes)
 	.route("/v1", v1SummaryRoutes)
 	.route("/v1", v1FiltersRoutes)
 	.route("/v1", v1StreetsRoutes)

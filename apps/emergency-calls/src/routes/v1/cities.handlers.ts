@@ -325,7 +325,7 @@ export const cities: AppRouteHandler<CitiesRoute> = async (c) => {
 
 					const genderRaw = genderRows.reduce(
 						(acc, r) => {
-							if (r.gender) acc[r.gender] = r.count;
+							acc[r.gender || "null"] = r.count;
 							return acc;
 						},
 						{} as Record<string, number>,
