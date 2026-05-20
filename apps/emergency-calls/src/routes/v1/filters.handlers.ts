@@ -1,11 +1,11 @@
 import { and, gte, lte, count, sql } from "drizzle-orm";
-import { db, ensureConnection } from "../../db/index.js";
+import { db } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type { FiltersRoute } from "./filters.routes.js";
 
 export const filters: AppRouteHandler<FiltersRoute> = async (c) => {
-	await ensureConnection();
+
 	const query = c.req.valid("query");
 
 	// Build conditions
@@ -74,6 +74,67 @@ export const filters: AppRouteHandler<FiltersRoute> = async (c) => {
 		.where(whereClause)
 		.groupBy(emergencyCalls.gender);
 
+	const ageData = await db
+		.select({
+			age_group: sql<string>`
+				CASE
+					WHEN ${emergencyCalls.age} < 18 THEN '0-17'
+					WHEN ${emergencyCalls.age} BETWEEN 18 AND 29 THEN '18-29'
+					WHEN ${emergencyCalls.age} BETWEEN 30 AND 49 THEN '30-49'
+					ELSE '50+'
+				END
+			`,
+			count: count(),
+		})
+		.from(emergencyCalls)
+		.where(whereClause)
+		.groupBy(sql`
+			CASE
+				WHEN ${emergencyCalls.age} < 18 THEN '0-17'
+				WHEN ${emergencyCalls.age} BETWEEN 18 AND 29 THEN '18-29'
+				WHEN ${emergencyCalls.age} BETWEEN 30 AND 49 THEN '30-49'
+				ELSE '50+'
+			END
+		`);
+
+	const municipalityData = await db
+		.select({
+			municipality: emergencyCalls.municipality,
+			count: count(),
+		})
+		.from(emergencyCalls)
+		.where(whereClause)
+		.groupBy(emergencyCalls.municipality)
+		.orderBy(sql`COUNT(*) DESC`);
+
+	const categoryData = await db
+		.select({
+			category: emergencyCalls.type,
+			count: count(),
+		})
+		.from(emergencyCalls)
+		.where(whereClause)
+		.groupBy(emergencyCalls.type);
+
+	const subtypeData = await db
+		.select({
+			subtype: emergencyCalls.subtype,
+			count: count(),
+		})
+		.from(emergencyCalls)
+		.where(whereClause)
+		.groupBy(emergencyCalls.subtype);
+
+	const hourData = await db
+		.select({
+			hour: sql<number>`EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time)::int`,
+			count: count(),
+		})
+		.from(emergencyCalls)
+		.where(whereClause)
+		.groupBy(sql`EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time)`)
+		.orderBy(sql`EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time)`);
+
 	// Get sample data
 	const dados = await db
 		.select({
@@ -103,6 +164,46 @@ export const filters: AppRouteHandler<FiltersRoute> = async (c) => {
 				const desc = item.gender === "M" ? "Masculino" : "Feminino";
 				acc[desc] = item.count;
 			}
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
+
+	const porFaixaEtaria = ageData.reduce(
+		(acc, item) => {
+			acc[item.age_group] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
+
+	const porMunicipio = municipalityData.reduce(
+		(acc, item) => {
+			if (item.municipality) acc[item.municipality] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
+
+	const porCategoria = categoryData.reduce(
+		(acc, item) => {
+			if (item.category) acc[item.category] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
+
+	const porSubtipo = subtypeData.reduce(
+		(acc, item) => {
+			if (item.subtype) acc[item.subtype] = item.count;
+			return acc;
+		},
+		{} as Record<string, number>,
+	);
+
+	const porHora = hourData.reduce(
+		(acc, item) => {
+			acc[item.hour.toString()] = item.count;
 			return acc;
 		},
 		{} as Record<string, number>,
@@ -157,11 +258,11 @@ export const filters: AppRouteHandler<FiltersRoute> = async (c) => {
 		resumo: {
 			porAno,
 			porSexo,
-			porFaixaEtaria: {},
-			porMunicipio: {},
-			porCategoria: {},
-			porSubtipo: {},
-			porHora: {},
+			porFaixaEtaria,
+			porMunicipio,
+			porCategoria,
+			porSubtipo,
+			porHora,
 		},
 		dados: formattedDados,
 	});

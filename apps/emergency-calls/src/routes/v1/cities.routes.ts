@@ -17,19 +17,20 @@ export const cities = createRoute({
 					z.object({
 						municipio_samu: z.string(),
 						count: z.number(),
-						id: z.number(),
 						name: z.string(),
 						rmr: z.boolean(),
 						ranking: z.number(),
+						display_name: z.string(),
 						historico_anual: z.array(
 							z.object({
 								ano: z.number(),
 								total_chamados: z.number(),
-								projecao_total_chamados: z.number(),
+								total: z.number(),
 								validos: z.object({
 									total: z.number(),
 									atendimento_concluido: z.number(),
 									removido_particulares: z.number(),
+									removido_bombeiros: z.number(),
 									obito_local: z.number(),
 								}),
 								invalidos: z.number(),

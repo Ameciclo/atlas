@@ -61,7 +61,6 @@ export const streetSummary = createRoute({
 				street_name: z.string(),
 				total_victims: z.number(),
 				victims_per_year: z.record(z.number()),
-				street_extension_km: z.number(),
 			}),
 			"Street accidents summary",
 		),
@@ -97,7 +96,6 @@ export const cityConcentration = createRoute({
 					z.object({
 						ranking: z.number(),
 						total_accidents: z.number(),
-						street_extension_km: z.number(),
 					}),
 				),
 			}),
@@ -144,7 +142,6 @@ export const cityGeoJSON = createRoute({
 						properties: z.object({
 							accidents_count: z.number(),
 							ranking: z.number(),
-							extension_km: z.number(),
 							street_name: z.string(),
 						}),
 					}),

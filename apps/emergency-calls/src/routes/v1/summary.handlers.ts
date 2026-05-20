@@ -1,23 +1,23 @@
-import { count, sql } from "drizzle-orm";
-import { db, ensureConnection } from "../../db/index.js";
+import { count, eq, sql } from "drizzle-orm";
+import { db } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
-import type { AppRouteHandler } from "../../lib/types.js";
-import type { SummaryRoute } from "./summary.routes.js";
 
 export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
-	await ensureConnection();
 
-	// Get total calls
 	const [totalResult] = await db
 		.select({ count: count() })
 		.from(emergencyCalls);
 
-	// Get valid/invalid outcomes (mock data for now)
 	const totalChamadas = totalResult?.count || 0;
-	const totalDesfechosValidos = Math.floor(totalChamadas * 0.85);
+
+	const [validResult] = await db
+		.select({ count: count() })
+		.from(emergencyCalls)
+		.where(sql`${emergencyCalls.outcome_category} IS NOT NULL`);
+
+	const totalDesfechosValidos = validResult?.count || 0;
 	const totalDesfechosInvalidos = totalChamadas - totalDesfechosValidos;
 
-	// Get most violent city
 	const [topCityResult] = await db
 		.select({
 			municipio: emergencyCalls.municipality,
@@ -28,7 +28,6 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(1);
 
-	// Get categories
 	const categoriesData = await db
 		.select({
 			categoria: emergencyCalls.subtype,
@@ -39,7 +38,6 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(10);
 
-	// Get yearly evolution
 	const yearlyData = await db
 		.select({
 			ano: sql<number>`EXTRACT(YEAR FROM ${emergencyCalls.date})::int`,
@@ -52,9 +50,60 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 	const evolucaoAnual = yearlyData.map((item) => ({
 		ano: item.ano,
 		count: item.count,
-		projecao: Math.floor(item.count * 1.05), // Mock projection
+		projecao: Math.floor(item.count * 1.05),
 		ultimaData: `${item.ano}-12-31`,
 	}));
+
+	const topCityYearlyData = topCityResult?.municipio
+		? await db
+				.select({
+					ano: sql<number>`EXTRACT(YEAR FROM ${emergencyCalls.date})::int`,
+					totalValidas: sql<number>`COUNT(*) FILTER (WHERE ${emergencyCalls.outcome_category} IS NOT NULL)`,
+					totalInvalidas: sql<number>`COUNT(*) FILTER (WHERE ${emergencyCalls.outcome_category} IS NULL)`,
+					count: count(),
+				})
+				.from(emergencyCalls)
+				.where(eq(emergencyCalls.municipality, topCityResult.municipio!))
+				.groupBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`)
+				.orderBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`)
+		: [];
+
+	const finalizationData = await db
+		.select({
+			motivo: emergencyCalls.finalization_category,
+			count: count(),
+		})
+		.from(emergencyCalls)
+		.where(sql`${emergencyCalls.finalization_category} IS NOT NULL`)
+		.groupBy(emergencyCalls.finalization_category)
+		.orderBy(sql`COUNT(*) DESC`)
+		.limit(10);
+
+	const outcomeData = await db
+		.select({
+			motivo: emergencyCalls.outcome_category,
+			count: count(),
+		})
+		.from(emergencyCalls)
+		.where(sql`${emergencyCalls.outcome_category} IS NOT NULL`)
+		.groupBy(emergencyCalls.outcome_category)
+		.orderBy(sql`COUNT(*) DESC`)
+		.limit(10);
+
+	const [periodResult] = await db
+		.select({
+			inicio: sql<number>`EXTRACT(YEAR FROM MIN(${emergencyCalls.date}))::int`,
+			fim: sql<number>`EXTRACT(YEAR FROM MAX(${emergencyCalls.date}))::int`,
+			ultimoMes: sql<string>`TO_CHAR(MAX(${emergencyCalls.date}), 'YYYY.MM')`,
+			ultimoDia: sql<string>`MAX(${emergencyCalls.date})::date::text`,
+		})
+		.from(emergencyCalls);
+
+	const [diasResult] = await db
+		.select({
+			count: sql<number>`COUNT(DISTINCT ${emergencyCalls.date}::date)`,
+		})
+		.from(emergencyCalls);
 
 	return c.json({
 		totalChamadas,
@@ -62,24 +111,39 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 		totalDesfechosInvalidos,
 		cidadeMaisViolenta: {
 			municipio: topCityResult?.municipio || "",
-			totalValidas: Math.floor((topCityResult?.count || 0) * 0.85),
-			totalInvalidas: Math.floor((topCityResult?.count || 0) * 0.15),
+			totalValidas: topCityResult
+				? topCityYearlyData.reduce((sum, d) => sum + Number(d.totalValidas), 0)
+				: 0,
+			totalInvalidas: topCityResult
+				? topCityYearlyData.reduce((sum, d) => sum + Number(d.totalInvalidas), 0)
+				: 0,
 			total: topCityResult?.count || 0,
-			evolucaoAnual: [], // Would need more complex query
+			evolucaoAnual: topCityYearlyData.map((d) => ({
+				ano: d.ano,
+				totalValidas: Number(d.totalValidas),
+				totalInvalidas: Number(d.totalInvalidas),
+				total: d.count,
+			})),
 		},
 		porCategoria: categoriesData.map((item) => ({
 			categoria: item.categoria || "UNKNOWN",
 			count: item.count,
 		})),
-		porMotivoFinalizacao: [], // Mock data
-		porMotivoDesfecho: [], // Mock data
+		porMotivoFinalizacao: finalizationData.map((item) => ({
+			motivo: item.motivo || "UNKNOWN",
+			count: item.count,
+		})),
+		porMotivoDesfecho: outcomeData.map((item) => ({
+			motivo: item.motivo || "UNKNOWN",
+			count: item.count,
+		})),
 		evolucaoAnual,
 		periodo: {
-			inicio: 2015,
-			fim: 2024,
-			ultimoMes: "2024.03",
-			ultimoDia: "2024-03-15",
-			totalDiasComDados: 2850,
+			inicio: periodResult?.inicio || 0,
+			fim: periodResult?.fim || 0,
+			ultimoMes: periodResult?.ultimoMes || "",
+			ultimoDia: periodResult?.ultimoDia?.split("T")[0] || "",
+			totalDiasComDados: Number(diasResult?.count) || 0,
 		},
 	});
 };

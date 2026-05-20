@@ -1,5 +1,5 @@
 import { and, eq, count, sql } from "drizzle-orm";
-import { db, ensureConnection } from "../../../db/index.js";
+import { db } from "../../../db/index.js";
 import { emergencyCalls } from "../../../db/schema.js";
 import type { AppRouteHandler } from "../../../lib/types.js";
 import type {
@@ -14,7 +14,7 @@ import type {
 } from "./unsafe-streets.routes.js";
 
 export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
-	await ensureConnection();
+
 	const { city } = c.req.valid("param");
 
 	// Get total accidents in the city
@@ -75,7 +75,7 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 };
 
 export const streetSummary: AppRouteHandler<StreetSummaryRoute> = async (c) => {
-	await ensureConnection();
+
 	const { street_name } = c.req.valid("param");
 	const { city } = c.req.valid("query");
 
@@ -119,14 +119,13 @@ export const streetSummary: AppRouteHandler<StreetSummaryRoute> = async (c) => {
 		street_name,
 		total_victims: totalResult?.count || 0,
 		victims_per_year: victimsPerYear,
-		street_extension_km: 8.5, // Mock data - would need actual street data
 	});
 };
 
 export const cityConcentration: AppRouteHandler<
 	CityConcentrationRoute
 > = async (c) => {
-	await ensureConnection();
+
 	const { city } = c.req.valid("param");
 	const { interval = 10 } = c.req.valid("query");
 
@@ -145,7 +144,6 @@ export const cityConcentration: AppRouteHandler<
 	const concentrationData = topStreets.map((street, index) => ({
 		ranking: index + 1,
 		total_accidents: street.count,
-		street_extension_km: Math.random() * 10 + 1, // Mock data
 	}));
 
 	return c.json({
@@ -156,7 +154,7 @@ export const cityConcentration: AppRouteHandler<
 };
 
 export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
-	await ensureConnection();
+
 	const { city } = c.req.valid("param");
 	const { ranking_from = 1, ranking_to = 10 } = c.req.valid("query");
 
@@ -177,15 +175,11 @@ export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
 		type: "Feature" as const,
 		geometry: {
 			type: "LineString",
-			coordinates: [
-				[-34.8813, -8.0476],
-				[-34.882, -8.048],
-			], // Mock coordinates
+			coordinates: [],
 		},
 		properties: {
 			accidents_count: street.count,
 			ranking: ranking_from + index,
-			extension_km: Math.random() * 10 + 1,
 			street_name: street.location || "Unknown",
 		},
 	}));
@@ -199,7 +193,7 @@ export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
 export const streetProfiles: AppRouteHandler<StreetProfilesRoute> = async (
 	c,
 ) => {
-	await ensureConnection();
+
 	const { street_name } = c.req.valid("param");
 	const { city } = c.req.valid("query");
 
@@ -294,7 +288,7 @@ export const streetProfiles: AppRouteHandler<StreetProfilesRoute> = async (
 };
 
 export const streetGeoJSON: AppRouteHandler<StreetGeoJSONRoute> = async (c) => {
-	await ensureConnection();
+
 	const { street_name } = c.req.valid("param");
 	const { city } = c.req.valid("query");
 
@@ -318,10 +312,7 @@ export const streetGeoJSON: AppRouteHandler<StreetGeoJSONRoute> = async (c) => {
 			type: "Feature" as const,
 			geometry: {
 				type: "LineString",
-				coordinates: [
-					[-34.8813, -8.0476],
-					[-34.882, -8.048],
-				], // Mock coordinates
+				coordinates: [],
 			},
 			properties: {
 				street_name,
@@ -339,7 +330,7 @@ export const streetGeoJSON: AppRouteHandler<StreetGeoJSONRoute> = async (c) => {
 export const streetEvolution: AppRouteHandler<StreetEvolutionRoute> = async (
 	c,
 ) => {
-	await ensureConnection();
+
 	const { street_name } = c.req.valid("param");
 	const { city, start_year = 2020, end_year = 2022 } = c.req.valid("query");
 
@@ -444,7 +435,7 @@ export const streetEvolution: AppRouteHandler<StreetEvolutionRoute> = async (
 };
 
 export const streetRecords: AppRouteHandler<StreetRecordsRoute> = async (c) => {
-	await ensureConnection();
+
 	const { street_name } = c.req.valid("param");
 	const { city, year } = c.req.valid("query");
 

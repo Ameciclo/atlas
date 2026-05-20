@@ -1556,12 +1556,6 @@
                     "totalVias": {
                       "type": "number"
                     },
-                    "extensaoTotalKm": {
-                      "type": "number"
-                    },
-                    "extensaoMediaKm": {
-                      "type": "number"
-                    },
                     "viaMaisPerigosa": {
                       "type": "object",
                       "properties": {
@@ -1573,16 +1567,12 @@
                         },
                         "percentual": {
                           "type": "number"
-                        },
-                        "extensao": {
-                          "type": "number"
                         }
                       },
                       "required": [
                         "nome",
                         "total",
-                        "percentual",
-                        "extensao"
+                        "percentual"
                       ]
                     }
                   },
@@ -1590,8 +1580,6 @@
                     "totalSinistros",
                     "totalViasIdentificadas",
                     "totalVias",
-                    "extensaoTotalKm",
-                    "extensaoMediaKm",
                     "viaMaisPerigosa"
                   ]
                 }
@@ -1642,18 +1630,6 @@
                           "sinistros_acum": {
                             "type": "number"
                           },
-                          "km": {
-                            "type": "number"
-                          },
-                          "km_acum": {
-                            "type": "number"
-                          },
-                          "sinistros_por_km": {
-                            "type": "number"
-                          },
-                          "sinistros_por_km_acum": {
-                            "type": "number"
-                          },
                           "percentual": {
                             "type": "number"
                           },
@@ -1665,10 +1641,6 @@
                           "top",
                           "sinistros",
                           "sinistros_acum",
-                          "km",
-                          "km_acum",
-                          "sinistros_por_km",
-                          "sinistros_por_km_acum",
                           "percentual",
                           "percentual_acum"
                         ]
@@ -1934,9 +1906,6 @@
                           "count": {
                             "type": "number"
                           },
-                          "id": {
-                            "type": "number"
-                          },
                           "name": {
                             "type": "string"
                           },
@@ -1957,31 +1926,8 @@
                                 "total_chamados": {
                                   "type": "number"
                                 },
-                                "projecao_total_chamados": {
-                                  "type": "number"
-                                },
                                 "validos": {
-                                  "type": "object",
-                                  "properties": {
-                                    "total": {
-                                      "type": "number"
-                                    },
-                                    "atendimento_concluido": {
-                                      "type": "number"
-                                    },
-                                    "removido_particulares": {
-                                      "type": "number"
-                                    },
-                                    "obito_local": {
-                                      "type": "number"
-                                    }
-                                  },
-                                  "required": [
-                                    "total",
-                                    "atendimento_concluido",
-                                    "removido_particulares",
-                                    "obito_local"
-                                  ]
+                                  "type": "number"
                                 },
                                 "invalidos": {
                                   "type": "number"
@@ -2008,7 +1954,6 @@
                               "required": [
                                 "ano",
                                 "total_chamados",
-                                "projecao_total_chamados",
                                 "validos",
                                 "invalidos",
                                 "por_sexo",
@@ -2021,7 +1966,6 @@
                         "required": [
                           "municipio_samu",
                           "count",
-                          "id",
                           "name",
                           "rmr",
                           "ranking",
@@ -2354,15 +2298,11 @@
                           },
                           "total_accidents": {
                             "type": "number"
-                          },
-                          "street_extension_km": {
-                            "type": "number"
                           }
                         },
                         "required": [
                           "ranking",
-                          "total_accidents",
-                          "street_extension_km"
+                          "total_accidents"
                         ]
                       }
                     }
@@ -2475,9 +2415,6 @@
                               "ranking": {
                                 "type": "number"
                               },
-                              "extension_km": {
-                                "type": "number"
-                              },
                               "street_name": {
                                 "type": "string"
                               }
@@ -2485,7 +2422,6 @@
                             "required": [
                               "accidents_count",
                               "ranking",
-                              "extension_km",
                               "street_name"
                             ]
                           }
@@ -2557,16 +2493,12 @@
                       "additionalProperties": {
                         "type": "number"
                       }
-                    },
-                    "street_extension_km": {
-                      "type": "number"
                     }
                   },
                   "required": [
                     "street_name",
                     "total_victims",
-                    "victims_per_year",
-                    "street_extension_km"
+                    "victims_per_year"
                   ]
                 }
               }
