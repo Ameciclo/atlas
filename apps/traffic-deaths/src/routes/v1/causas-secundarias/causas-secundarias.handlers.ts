@@ -1,4 +1,4 @@
-import { and, count, desc, eq, sql } from "drizzle-orm";
+import { and, count, desc, eq, like, sql } from "drizzle-orm";
 import { db } from "../../../db/index.js";
 import { trafficDeaths } from "../../../db/schema.js";
 import type { AppRouteHandler } from "../../../lib/types.js";
@@ -17,7 +17,20 @@ const CID10_DESCRIPTIONS: Record<string, string> = {
 	V9: "Acidente de transporte não especificado",
 };
 
-type Condition = ReturnType<typeof eq> | ReturnType<typeof sql>;
+const TRANSPORT_MODE_PATTERNS: Record<string, string> = {
+	pedestre: "V0%",
+	ciclista: "V1%",
+	motociclista: "V2%",
+	"ocupante de triciclo": "V3%",
+	"ocupante de automóvel": "V4%",
+	"ocupante de caminhonete": "V5%",
+	"ocupante de veículo pesado": "V6%",
+	"ocupante de ônibus": "V7%",
+	"outros modos": "V8%",
+	"não especificado": "V99%",
+};
+
+type Condition = ReturnType<typeof eq> | ReturnType<typeof like> | ReturnType<typeof sql>;
 
 export const getCausasSecundariasV1Handler: AppRouteHandler<
 	typeof getCausasSecundariasV1
@@ -35,6 +48,7 @@ export const getCausasSecundariasV1Handler: AppRouteHandler<
 			: ("occurrence" as const);
 	const anoInicio = query.anoInicio || query.startYear;
 	const anoFim = query.anoFim || query.endYear;
+	const modoTransporte = query.modoTransporte || query.transportMode;
 
 	const conditions: Condition[] = [];
 
@@ -50,6 +64,12 @@ export const getCausasSecundariasV1Handler: AppRouteHandler<
 	}
 	if (anoFim) {
 		conditions.push(sql`${trafficDeaths.data_year} <= ${anoFim}`);
+	}
+	if (modoTransporte) {
+		const pattern = TRANSPORT_MODE_PATTERNS[modoTransporte.toLowerCase()];
+		if (pattern) {
+			conditions.push(like(trafficDeaths.causabas, pattern));
+		}
 	}
 
 	const where = conditions.length > 0 ? and(...conditions) : undefined;

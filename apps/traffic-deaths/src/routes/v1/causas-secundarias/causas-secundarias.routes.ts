@@ -18,6 +18,8 @@ export const getCausasSecundariasV1 = createRoute({
 			anoFim: z.coerce.number().optional(),
 			locationType: z.enum(["residence", "occurrence"]).optional(),
 			tipoLocal: z.enum(["residencia", "ocorrencia"]).optional(),
+			transportMode: z.string().optional(),
+			modoTransporte: z.string().optional(),
 		}),
 	},
 	responses: {
