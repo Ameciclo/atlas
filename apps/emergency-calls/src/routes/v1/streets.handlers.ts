@@ -95,6 +95,7 @@ export const streetsSearch: AppRouteHandler<StreetsSearchRoute> = async (c) => {
 			subtype: emergencyCalls.subtype,
 			gender: emergencyCalls.gender,
 			age: emergencyCalls.age,
+			outcome: emergencyCalls.outcome_category,
 		})
 		.from(emergencyCalls)
 		.where(sql`${emergencyCalls.address} ILIKE ${`%${searchTerm}%`}`)
@@ -109,6 +110,7 @@ export const streetsSearch: AppRouteHandler<StreetsSearchRoute> = async (c) => {
 		categoria: item.subtype || "UNKNOWN",
 		sexo: item.gender || "U",
 		idade: item.age,
+		motivo_desf_cat: item.outcome || null,
 	}));
 
 	return c.json({

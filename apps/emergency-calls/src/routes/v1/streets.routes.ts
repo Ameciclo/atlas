@@ -89,6 +89,7 @@ export const streetsSearch = createRoute({
 						categoria: z.string(),
 						sexo: z.string(),
 						idade: z.number().nullable(),
+						motivo_desf_cat: z.string().nullable(),
 					}),
 				),
 				total: z.number(),
