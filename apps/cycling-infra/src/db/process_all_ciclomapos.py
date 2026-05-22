@@ -1,11 +1,67 @@
 #!/usr/bin/env python3
 import json
+import math
 import requests
 import time
 import re
 import os
 import glob
 from typing import Set, List, Dict
+
+# Cycling infrastructure types matching ciclomapa's layers.json
+CYCLING_TYPES = {"Ciclovia", "Ciclofaixa", "Ciclorrota", "Calçada compartilhada"}
+
+def haversine_distance(lat1, lon1, lat2, lon2):
+    R = 6371000
+    lat1_rad = math.radians(lat1)
+    lat2_rad = math.radians(lat2)
+    delta_lat = math.radians(lat2 - lat1)
+    delta_lon = math.radians(lon2 - lon1)
+    a = (math.sin(delta_lat / 2) ** 2 +
+         math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(delta_lon / 2) ** 2)
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    return R * c
+
+
+def calculate_length(coords):
+    if not coords or len(coords) < 2:
+        return 0
+    total = 0
+    for i in range(len(coords) - 1):
+        lat1, lon1 = coords[i]['lat'], coords[i]['lon']
+        lat2, lon2 = coords[i+1]['lat'], coords[i+1]['lon']
+        total += haversine_distance(lat1, lon1, lat2, lon2)
+    return total / 1000
+
+
+def classify_typology(tags):
+    """Classify cycling typology matching ciclomapa's layers.json."""
+    if not tags:
+        return "Ciclorrota"
+
+    if tags.get('highway') == 'cycleway':
+        return "Ciclovia"
+
+    cycleway_keys = ['cycleway', 'cycleway:left', 'cycleway:right', 'cycleway:both']
+    for key in cycleway_keys:
+        val = tags.get(key)
+        if val in ('track', 'opposite_track'):
+            return "Ciclovia"
+        if val in ('sidepath',):
+            return "Calçada compartilhada"
+        if val in ('lane', 'opposite_lane'):
+            return "Ciclofaixa"
+        if val in ('shared_lane', 'buffered_lane', 'share_busway', 'opposite_share_busway'):
+            return "Ciclorrota"
+
+    highway = tags.get('highway')
+    bicycle = tags.get('bicycle')
+    if highway in ('footway', 'pedestrian') and bicycle in ('designated', 'yes'):
+        return "Calçada compartilhada"
+    if bicycle == 'designated':
+        return "Ciclovia"
+
+    return "Ciclorrota"
 
 def load_existing_osm_ids() -> Set[int]:
     """Carrega OSM IDs já processados (PDC + non-PDC)"""
@@ -84,30 +140,17 @@ def process_osm_data(osm_data: Dict, way_id: int, city_id: int = 2611606) -> Dic
     way = osm_data['elements'][0]
     coords = way.get('geometry', [])
     
-    # Calcula comprimento
-    length = 0
-    if len(coords) > 1:
-        for i in range(len(coords) - 1):
-            lat1, lon1 = coords[i]['lat'], coords[i]['lon']
-            lat2, lon2 = coords[i+1]['lat'], coords[i+1]['lon']
-            length += ((lat2-lat1)**2 + (lon2-lon1)**2)**0.5 * 111
+    # Calcula comprimento usando Haversine
+    length = calculate_length(coords)
     
     tags = way.get('tags', {})
     
-    # Determina se tem ciclovia
-    has_cycleway = (
-        tags.get('highway') == 'cycleway' or
-        'cycleway' in tags or
-        tags.get('bicycle') == 'designated'
-    )
-    
-    # Tipologia
-    if tags.get('highway') == 'cycleway':
-        typology = 'Ciclovia'
-    elif 'cycleway' in tags:
-        typology = 'Ciclofaixa'
-    else:
-        typology = 'Ciclorrota'
+    # Tipologia expandida
+    typology = classify_typology(tags)
+    has_cycleway = typology in CYCLING_TYPES
+    dual_carriageway = tags.get('dual_carriageway') == 'yes'
+    if dual_carriageway:
+        length = length / 2
     
     # GeoJSON
     geojson = {
@@ -137,21 +180,27 @@ def process_osm_data(osm_data: Dict, way_id: int, city_id: int = 2611606) -> Dic
         "geojson": json.dumps(geojson),
         "lastupdated": None,
         "city_id": city_id,
-        "dual_carriageway": False,
+        "dual_carriageway": dual_carriageway,
         "pdc_typology": typology
     }
 
 def get_city_id_from_filename(filename: str) -> int:
-    """Mapeia nome do arquivo para city_id"""
+    """Mapeia nome do arquivo para city_id (IBGE codes corretos)"""
     city_mapping = {
         'Recife': 2611606,
-        'Olinda': 2611101,
+        'Olinda': 2609600,
         'Jaboatão': 2607901,
-        'Paulista': 2607208,
-        'Camaragibe': 2611200,
-        'São Lourenço': 2607604,
-        'Abreu e Lima': 2612208,
-        'Igarassu': 2607901
+        'Paulista': 2610707,
+        'Camaragibe': 2603454,
+        'São Lourenço': 2613701,
+        'Abreu e Lima': 2600054,
+        'Igarassu': 2606804,
+        'Cabo': 2602902,
+        'Ipojuca': 2607208,
+        'Araçoiaba': 2601052,
+        'Itamaracá': 2607604,
+        'Itapissuma': 2607752,
+        'Moreno': 2609402,
     }
     
     for city_name, city_id in city_mapping.items():

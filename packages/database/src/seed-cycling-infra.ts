@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { sql } from "drizzle-orm";
 import type { DatabaseConfig } from "./connection.js";
 import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import * as cyclingInfraSchema from "./schemas/cycling-infra/index.js";
@@ -184,7 +185,9 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 		await db
 			.insert(cyclingInfraSchema.cyclistInfraRelations)
 			.values(relationsToInsert)
-			.onConflictDoNothing();
+			.onConflictDoNothing({
+				target: [cyclingInfraSchema.cyclistInfraRelations.osm_id],
+			});
 		console.log(`✅ Inserted ${relationsToInsert.length} relations\n`);
 
 		// 2.5. Seed Relation-Cities relationships
@@ -232,7 +235,12 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 		await db
 			.insert(cyclingInfraSchema.cyclistInfraRelationCities)
 			.values(relationCitiesToInsert)
-			.onConflictDoNothing();
+			.onConflictDoNothing({
+				target: [
+					cyclingInfraSchema.cyclistInfraRelationCities.relation_id,
+					cyclingInfraSchema.cyclistInfraRelationCities.city_id,
+				],
+			});
 
 		console.log(
 			`✅ Inserted ${relationCitiesToInsert.length} relation-city relationships\n`,
@@ -320,7 +328,9 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 			await db
 				.insert(cyclingInfraSchema.pdcRelationWays)
 				.values(batch)
-				.onConflictDoNothing();
+				.onConflictDoNothing({
+					target: [cyclingInfraSchema.pdcRelationWays.osm_id],
+				});
 			console.log(
 				`  ✓ Inserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(waysToInsert.length / batchSize)}`,
 			);
@@ -368,84 +378,47 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 			await db
 				.insert(cyclingInfraSchema.pdcRelationWays)
 				.values(batch)
-				.onConflictDoNothing();
+				.onConflictDoNothing({
+					target: [cyclingInfraSchema.pdcRelationWays.osm_id],
+				});
 			console.log(
 				`  ✓ Inserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(nonPdcToInsert.length / batchSize)}`,
 			);
 		}
 		console.log(`✅ Inserted ${nonPdcToInsert.length} non-PDC ways\n`);
 
-		// 5. Seed Ciclomapa Infrastructure
-		console.log("🚴 Loading ciclomapa data...");
-		const ciclomapaFiles = [
-			"ciclomapa-Recife, Pernambuco, Brasil.geojson",
-			"ciclomapa-Olinda, Pernambuco, Brasil.geojson",
-			"ciclomapa-Paulista, Pernambuco, Brasil.geojson",
-			"ciclomapa-Camaragibe, Pernambuco, Brasil.geojson",
-			"ciclomapa-São Lourenço da Mata, Pernambuco, Brasil.geojson",
-			"ciclomapa-Abreu e Lima, Pernambuco, Brasil.geojson",
-			"ciclomapa-Igarassu, Pernambuco, Brasil.geojson",
-			"ciclomapa-Cabo de Santo Agostinho, Pernambuco, Brasil.geojson",
-			"ciclomapa-Ipojuca, Pernambuco, Brasil.geojson",
-		];
+		// 5. Seed City Boundaries (IBGE Municipal Limits)
+		console.log("🗺️ Loading city boundaries...");
+		const boundariesContent = await readFile(
+			join(dataPath, "pe_limites_municipais.geojson"),
+			"utf-8",
+		);
+		const boundariesData = JSON.parse(boundariesContent) as GeoJSONCollection;
 
-		const cyclingTypes = [
-			"Ciclovia",
-			"Ciclofaixa",
-			"Ciclorrota",
-			"Calçada compartilhada",
-		];
-		const ciclomapaFeatures = [];
-		const osmIdsSeen = new Set();
+		console.log(`Found ${boundariesData.features.length} municipal boundaries`);
 
-		for (const filename of ciclomapaFiles) {
-			try {
-				const filePath = join(dataPath, filename);
-				const content = await readFile(filePath, "utf-8");
-				const geojsonData = JSON.parse(content);
+		let insertedBoundaries = 0;
+		for (const feature of boundariesData.features) {
+			const cityId = parseInt(feature.properties.CD_MUN, 10);
+			const name = feature.properties.NM_MUN;
 
-				for (const feature of geojsonData.features) {
-					if (
-						feature.geometry?.type === "LineString" &&
-						cyclingTypes.includes(feature.properties?.type)
-					) {
-						const osmId = feature.id;
-						if (!osmId?.startsWith("way/") || osmIdsSeen.has(osmId)) {
-							continue;
-						}
-
-						osmIdsSeen.add(osmId);
-						ciclomapaFeatures.push({
-							osm_id: osmId,
-							name: feature.properties?.name || null,
-							infra_type: feature.properties.type,
-							coordinates: JSON.stringify(feature.geometry),
-							geojson: feature,
-						});
-					}
-				}
-				console.log(
-					`  ✓ Processed ${filename}: ${geojsonData.features.length} features`,
-				);
-			} catch (error) {
-				console.log(`  ⚠️ Skipped ${filename}: ${(error as Error).message}`);
+			if (Number.isNaN(cityId) || !name) {
+				console.log(`  ⚠️ Skipping feature with invalid CD_MUN or NM_MUN`);
+				continue;
 			}
-		}
 
-		console.log(`Found ${ciclomapaFeatures.length} unique ciclomapa features`);
+			const geomJson = JSON.stringify(feature.geometry);
 
-		// Insert ciclomapa data in batches
-		for (let i = 0; i < ciclomapaFeatures.length; i += batchSize) {
-			const batch = ciclomapaFeatures.slice(i, i + batchSize);
-			await db
-				.insert(cyclingInfraSchema.ciclomapaInfra)
-				.values(batch)
-				.onConflictDoNothing();
-			console.log(
-				`  ✓ Inserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(ciclomapaFeatures.length / batchSize)}`,
+			await db.execute(
+				sql`
+					INSERT INTO city_boundaries (city_id, name, boundary)
+					VALUES (${cityId}, ${name}, ST_GeomFromGeoJSON(${geomJson}))
+					ON CONFLICT (city_id) DO NOTHING
+				`,
 			);
+			insertedBoundaries++;
 		}
-		console.log(`✅ Inserted ${ciclomapaFeatures.length} ciclomapa features\n`);
+		console.log(`✅ Inserted ${insertedBoundaries} municipal boundaries\n`);
 
 		console.log("✅ Cycling infrastructure seed completed successfully!");
 
@@ -455,7 +428,7 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 			relationCities: relationCitiesToInsert.length,
 			ways: waysToInsert.length,
 			nonPdcWays: nonPdcToInsert.length,
-			ciclomapa: ciclomapaFeatures.length,
+			boundaries: insertedBoundaries,
 		};
 	} catch (error) {
 		console.error("❌ Error seeding cycling infrastructure:", error);

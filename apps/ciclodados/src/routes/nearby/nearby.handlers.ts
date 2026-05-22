@@ -191,20 +191,21 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 	// 6. Infraestrutura cicloviária existente (agrupada)
 	const existingInfra = await db.execute(sql`
 		SELECT 
-			infra_type as type, 
-			COALESCE(name, 'Sem nome') as name,
+			prw.osm_properties->>'cycleway_typology' as type, 
+			COALESCE(prw.name, 'Sem nome') as name,
 			MIN(ST_Distance(
 				ST_Point(${lng}, ${lat})::geography,
-				coordinates::geography
+				prw.coordinates::geography
 			)) as distance_meters,
 			COUNT(*) as segments
-		FROM ciclomapa_infra 
-		WHERE ST_DWithin(
+		FROM pdc_relation_ways prw
+		WHERE (prw.osm_properties->>'has_cycleway')::boolean = true
+		  AND ST_DWithin(
 			ST_Point(${lng}, ${lat})::geography,
-			coordinates::geography,
+			prw.coordinates::geography,
 			${radiusConfig.cycling_infra}
 		)
-		GROUP BY infra_type, COALESCE(name, 'Sem nome')
+		GROUP BY prw.osm_properties->>'cycleway_typology', COALESCE(prw.name, 'Sem nome')
 		ORDER BY distance_meters
 		LIMIT 5
 	`);

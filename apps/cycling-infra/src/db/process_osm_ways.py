@@ -32,42 +32,49 @@ def haversine_distance(lat1, lon1, lat2, lon2):
     
     return R * c
 
+# Cyclist infrastructure types matching ciclomapa's layers.json
+CYCLING_TYPES = {"Ciclovia", "Ciclofaixa", "Ciclorrota", "Calçada compartilhada"}
+
 def get_typology_from_tags(tags):
-    """Extract cycleway typology from OSM tags"""
+    """Extract cycleway typology from OSM tags, matching ciclomapa's classification."""
     if not tags:
         return "none"
-    
-    # Check for dedicated cycleway
+
+    # highway=cycleway is always Ciclovia
     if tags.get('highway') == 'cycleway':
         return "Ciclovia"
-    
-    # Check for cycle lanes
-    cycleway_tags = ['cycleway', 'cycleway:left', 'cycleway:right', 'cycleway:both']
-    for tag in cycleway_tags:
-        if tag in tags:
-            value = tags[tag]
-            if value in ['lane', 'track']:
-                return "Ciclofaixa"
-            elif value in ['shared_lane', 'shared']:
-                return "Ciclofaixa Compartilhada"
-    
-    # Check for bicycle designation
-    if tags.get('bicycle') == 'designated':
+
+    cycleway_keys = ['cycleway', 'cycleway:left', 'cycleway:right', 'cycleway:both']
+    for key in cycleway_keys:
+        val = tags.get(key)
+        if val in ('track', 'opposite_track'):
+            return "Ciclovia"
+        if val in ('sidepath',):
+            return "Calçada compartilhada"
+        if val in ('lane', 'opposite_lane'):
+            return "Ciclofaixa"
+        if val in ('shared_lane', 'buffered_lane', 'share_busway', 'opposite_share_busway'):
+            return "Ciclorrota"
+
+    # footway/pedestrian + bicycle=designated/yes = Calçada compartilhada
+    highway = tags.get('highway')
+    bicycle = tags.get('bicycle')
+    if highway in ('footway', 'pedestrian') and bicycle in ('designated', 'yes'):
+        return "Calçada compartilhada"
+
+    # bicycle=designated on any highway
+    if bicycle == 'designated':
         return "Ciclovia"
-    
+
     return "none"
 
 def has_cycleway_infrastructure(typology):
     """Check if way has cycling infrastructure"""
-    return typology != "none"
+    return typology in CYCLING_TYPES
 
-def get_city_by_point(lat, lon):
-    """Determine city based on coordinates (simplified)"""
-    # Default to Recife for RMR area
-    # This should be replaced with proper point-in-polygon check
-    if -8.2 <= lat <= -7.9 and -35.1 <= lon <= -34.8:
-        return 2611606  # Recife
-    return 2607208  # Default fallback
+def get_city_by_point(lat, lon, city_id=2611606):
+    """Return city_id (now accepts it from data, no longer does bbox guess)"""
+    return city_id
 
 def process_way(way_data):
     """Process a single way and extract required fields"""
@@ -85,12 +92,11 @@ def process_way(way_data):
     # Get typology
     typology = get_typology_from_tags(tags)
     
-    # Get city (using middle point of geometry)
-    city_id = 2611606  # Default to Recife
-    if geometry:
-        middle_idx = len(geometry) // 2
-        middle_point = geometry[middle_idx]
-        city_id = get_city_by_point(middle_point['lat'], middle_point['lon'])
+    # Get city from data (already assigned by fetch script)
+    city_id = get_city_by_point(
+        None, None,
+        way_data.get('city_id', 2611606)
+    )
     
     # Create GeoJSON
     coordinates = [[point['lon'], point['lat']] for point in geometry]
