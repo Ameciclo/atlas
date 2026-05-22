@@ -341,7 +341,7 @@
     "length": 0.0854185,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1183566163\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9091368, -7.921773], [-34.9091314, -7.921842], [-34.9091041, -7.9218932], [-34.9090372, -7.9219447], [-34.9089785, -7.9219855], [-34.9088979, -7.9220239], [-34.9087816, -7.922042], [-34.908717, -7.9220347], [-34.9086499, -7.9220014], [-34.9085203, -7.9220626]]}, \"properties\": {\"id\": \"way/1183566163\", \"name\": \"Avenida D\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"highway\": \"pedestrian\", \"surface\": \"asphalt\"}}]}",
     "lastupdated": "2026-05-21T17:56:52.701634",
@@ -365,7 +365,7 @@
   },
   {
     "osm_id": 94749558,
-    "name": "Rua das Acácias",
+    "name": "Rua das Ac\u00e1cias",
     "length": 0.62156,
     "highway": "residential",
     "has_cycleway": true,
@@ -379,7 +379,7 @@
   },
   {
     "osm_id": 94749583,
-    "name": "Avenida Vereador Lúcio Fernando Monteiro Pereira",
+    "name": "Avenida Vereador L\u00facio Fernando Monteiro Pereira",
     "length": 0.2790871,
     "highway": "secondary",
     "has_cycleway": true,
@@ -505,7 +505,7 @@
   },
   {
     "osm_id": 222807348,
-    "name": "Avenida Vereador Lúcio Fernando Monteiro Pereira",
+    "name": "Avenida Vereador L\u00facio Fernando Monteiro Pereira",
     "length": 0.6946926,
     "highway": "secondary",
     "has_cycleway": true,
@@ -617,7 +617,7 @@
   },
   {
     "osm_id": 440484169,
-    "name": "Avenida Vereador Lúcio Fernando Monteiro Pereira",
+    "name": "Avenida Vereador L\u00facio Fernando Monteiro Pereira",
     "length": 0.0814931,
     "highway": "secondary",
     "has_cycleway": true,
@@ -673,11 +673,11 @@
   },
   {
     "osm_id": 627918647,
-    "name": "Calçadão da Vila Social",
+    "name": "Cal\u00e7ad\u00e3o da Vila Social",
     "length": 0.7613285,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/627918647\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-35.0229642, -8.2791045], [-35.0234147, -8.2793131], [-35.0234286, -8.2793194], [-35.0234458, -8.2793278], [-35.023592, -8.2794079], [-35.023651, -8.279469], [-35.0241043, -8.2797145], [-35.0247849, -8.2800841], [-35.0261399, -8.2808009], [-35.0273647, -8.2814635], [-35.028458, -8.2820594], [-35.0289225, -8.2823139], [-35.0289297, -8.2823162], [-35.0289371, -8.2823171], [-35.0289437, -8.2823169], [-35.0289538, -8.2823143], [-35.0289657, -8.2823071], [-35.0289746, -8.2822964], [-35.0289797, -8.2822864], [-35.0289872, -8.2822288]]}, \"properties\": {\"id\": \"way/627918647\", \"name\": \"Cal\\u00e7ad\\u00e3o da Vila Social\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"highway\": \"pedestrian\", \"horse\": \"no\", \"surface\": \"paved\"}}]}",
     "lastupdated": "2026-05-21T17:57:10.113256",
@@ -687,11 +687,11 @@
   },
   {
     "osm_id": 627918648,
-    "name": "Calçadão da Vila Roca",
+    "name": "Cal\u00e7ad\u00e3o da Vila Roca",
     "length": 0.3717471,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/627918648\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-35.0289572, -8.2826506], [-35.0284047, -8.2823347], [-35.0273291, -8.2817561], [-35.0272402, -8.281707], [-35.0270046, -8.2815862], [-35.0264923, -8.2813208], [-35.0260229, -8.2810792], [-35.0260209, -8.2811203]]}, \"properties\": {\"id\": \"way/627918648\", \"name\": \"Cal\\u00e7ad\\u00e3o da Vila Roca\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"highway\": \"pedestrian\"}}]}",
     "lastupdated": "2026-05-21T17:57:10.113301",
@@ -705,7 +705,7 @@
     "length": 0.0025443,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/654819531\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-35.0260254, -8.2810715], [-35.0260321, -8.2810496]]}, \"properties\": {\"id\": \"way/654819531\", \"name\": \"\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"bridge\": \"yes\", \"highway\": \"footway\", \"layer\": \"1\"}}]}",
     "lastupdated": "2026-05-21T17:57:10.113328",
@@ -719,7 +719,7 @@
     "length": 0.0008993,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/654819532\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-35.0260229, -8.2810792], [-35.0260254, -8.2810715]]}, \"properties\": {\"id\": \"way/654819532\", \"name\": \"\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:57:10.113353",
@@ -733,7 +733,7 @@
     "length": 0.0051078,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/654819533\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-35.0260852, -8.2808805], [-35.0261051, -8.280839]]}, \"properties\": {\"id\": \"way/654819533\", \"name\": \"\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"bridge\": \"yes\", \"highway\": \"footway\", \"layer\": \"1\"}}]}",
     "lastupdated": "2026-05-21T17:57:10.113377",
@@ -747,7 +747,7 @@
     "length": 0.0169118,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/654819535\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-35.0260321, -8.2810496], [-35.0260367, -8.2810369], [-35.0260516, -8.2809965], [-35.0260759, -8.2809274], [-35.0260833, -8.2809062]]}, \"properties\": {\"id\": \"way/654819535\", \"name\": \"\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:57:10.113413",
@@ -771,7 +771,7 @@
   },
   {
     "osm_id": 683175221,
-    "name": "Avenida Vereador Lúcio Fernando Monteiro Pereira",
+    "name": "Avenida Vereador L\u00facio Fernando Monteiro Pereira",
     "length": 0.6915338,
     "highway": "secondary",
     "has_cycleway": true,
@@ -869,7 +869,7 @@
   },
   {
     "osm_id": 778535338,
-    "name": "Avenida Vereador Lúcio Fernando Monteiro Pereira",
+    "name": "Avenida Vereador L\u00facio Fernando Monteiro Pereira",
     "length": 0.0061764,
     "highway": "secondary",
     "has_cycleway": true,
@@ -883,7 +883,7 @@
   },
   {
     "osm_id": 778535340,
-    "name": "Avenida Vereador Lúcio Fernando Monteiro Pereira",
+    "name": "Avenida Vereador L\u00facio Fernando Monteiro Pereira",
     "length": 0.0788144,
     "highway": "secondary",
     "has_cycleway": true,
@@ -897,7 +897,7 @@
   },
   {
     "osm_id": 778535341,
-    "name": "Avenida Vereador Lúcio Fernando Monteiro Pereira",
+    "name": "Avenida Vereador L\u00facio Fernando Monteiro Pereira",
     "length": 0.3034011,
     "highway": "secondary",
     "has_cycleway": true,
@@ -925,7 +925,7 @@
   },
   {
     "osm_id": 788567371,
-    "name": "Ciclovia Praça de Gaibu",
+    "name": "Ciclovia Pra\u00e7a de Gaibu",
     "length": 0.2200679,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -939,7 +939,7 @@
   },
   {
     "osm_id": 788567372,
-    "name": "Ciclovia Praça de Gaibu",
+    "name": "Ciclovia Pra\u00e7a de Gaibu",
     "length": 0.0070434,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -967,7 +967,7 @@
   },
   {
     "osm_id": 788567375,
-    "name": "Ciclovia Praça de Gaibu",
+    "name": "Ciclovia Pra\u00e7a de Gaibu",
     "length": 0.0046897,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -995,7 +995,7 @@
   },
   {
     "osm_id": 788567378,
-    "name": "Ciclovia Praça de Gaibu",
+    "name": "Ciclovia Pra\u00e7a de Gaibu",
     "length": 0.0033163,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -1111,7 +1111,7 @@
     "length": 0.0028653,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/867487196\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-35.0260833, -8.2809062], [-35.0260852, -8.2808805]]}, \"properties\": {\"id\": \"way/867487196\", \"name\": \"\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"highway\": \"footway\", \"layer\": \"1\"}}]}",
     "lastupdated": "2026-05-21T17:57:10.114663",
@@ -1121,7 +1121,7 @@
   },
   {
     "osm_id": 902148281,
-    "name": "Avenida Vereador Lúcio Fernando Monteiro Pereira",
+    "name": "Avenida Vereador L\u00facio Fernando Monteiro Pereira",
     "length": 0.4177636,
     "highway": "secondary",
     "has_cycleway": true,
@@ -1135,7 +1135,7 @@
   },
   {
     "osm_id": 902148282,
-    "name": "Avenida Vereador Lúcio Fernando Monteiro Pereira",
+    "name": "Avenida Vereador L\u00facio Fernando Monteiro Pereira",
     "length": 0.0089922,
     "highway": "secondary",
     "has_cycleway": true,
@@ -1149,7 +1149,7 @@
   },
   {
     "osm_id": 902148283,
-    "name": "Avenida Vereador Lúcio Fernando Monteiro Pereira",
+    "name": "Avenida Vereador L\u00facio Fernando Monteiro Pereira",
     "length": 0.4185522,
     "highway": "secondary",
     "has_cycleway": true,
@@ -1163,7 +1163,7 @@
   },
   {
     "osm_id": 902148284,
-    "name": "Avenida Vereador Lúcio Fernando Monteiro Pereira",
+    "name": "Avenida Vereador L\u00facio Fernando Monteiro Pereira",
     "length": 0.0089889,
     "highway": "secondary",
     "has_cycleway": true,
@@ -1331,11 +1331,11 @@
   },
   {
     "osm_id": 1298188776,
-    "name": "Calçadão do Estudante",
+    "name": "Cal\u00e7ad\u00e3o do Estudante",
     "length": 0.2401523,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1298188776\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-35.0314605, -8.2811985], [-35.0312858, -8.2811252], [-35.0301861, -8.280029], [-35.0299416, -8.2798001], [-35.0299163, -8.2797917], [-35.0298506, -8.2798111]]}, \"properties\": {\"id\": \"way/1298188776\", \"name\": \"Cal\\u00e7ad\\u00e3o do Estudante\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"embankment\": \"yes\", \"highway\": \"pedestrian\", \"horse\": \"no\", \"lit\": \"yes\", \"motor_vehicle\": \"designated\", \"oneway\": \"no\", \"surface\": \"paving_stones\", \"width\": \"3\"}}]}",
     "lastupdated": "2026-05-21T17:57:10.115535",
@@ -1345,11 +1345,11 @@
   },
   {
     "osm_id": 1298192373,
-    "name": "Calçadão da Praça de Gaibu",
+    "name": "Cal\u00e7ad\u00e3o da Pra\u00e7a de Gaibu",
     "length": 0.244081,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1298192373\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9533281, -8.3396935], [-34.9533154, -8.3398088], [-34.9533208, -8.3398672], [-34.953479, -8.3398897], [-34.9535729, -8.3399017], [-34.9536721, -8.3399282], [-34.953803, -8.3399782], [-34.9539129, -8.3400549], [-34.9541147, -8.3401724], [-34.9542066, -8.3401657], [-34.9543118, -8.3401146], [-34.954511, -8.3399514], [-34.9547987, -8.3397637], [-34.9551496, -8.3396708]]}, \"properties\": {\"id\": \"way/1298192373\", \"name\": \"Cal\\u00e7ad\\u00e3o da Pra\\u00e7a de Gaibu\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"highway\": \"pedestrian\"}}]}",
     "lastupdated": "2026-05-21T17:57:10.115596",
@@ -1419,7 +1419,7 @@
     "length": 0.3415758,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/605949576\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9713173, -8.0173719], [-34.9712983, -8.0173809], [-34.9711925, -8.0174056], [-34.9711693, -8.0174078], [-34.9712, -8.0173084], [-34.9713261, -8.017164], [-34.9713392, -8.0171491], [-34.9714418, -8.0170316], [-34.9715909, -8.0169875], [-34.9718682, -8.0166274], [-34.9718961, -8.0164299], [-34.9719164, -8.0164204], [-34.9720467, -8.0165947], [-34.9719281, -8.0167539], [-34.9717778, -8.0169558], [-34.9717056, -8.0169058], [-34.9716497, -8.0169761], [-34.9716623, -8.0170648], [-34.9716325, -8.0171146], [-34.9716233, -8.0173017], [-34.9716221, -8.0173257], [-34.9715896, -8.0172768], [-34.9715346, -8.0172419], [-34.9714767, -8.0172293], [-34.9714189, -8.0172363], [-34.9713667, -8.0172615], [-34.9713328, -8.0173048], [-34.9713173, -8.0173719]]}, \"properties\": {\"id\": \"way/605949576\", \"name\": \"\", \"type\": \"Cal\\u00e7ada compartilhada\", \"area\": \"yes\", \"bicycle\": \"yes\", \"highway\": \"pedestrian\", \"horse\": \"no\", \"leisure\": \"park\", \"lit\": \"yes\", \"surface\": \"paved\"}}]}",
     "lastupdated": "2026-05-21T17:57:21.578527",
@@ -1569,7 +1569,7 @@
   },
   {
     "osm_id": 189139488,
-    "name": "Rua Cristovão de Souza Leão",
+    "name": "Rua Cristov\u00e3o de Souza Le\u00e3o",
     "length": 0.4529801,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -1625,7 +1625,7 @@
   },
   {
     "osm_id": 364084408,
-    "name": "Travessa Cristóvão de Souza Leão",
+    "name": "Travessa Crist\u00f3v\u00e3o de Souza Le\u00e3o",
     "length": 0.1143955,
     "highway": "residential",
     "has_cycleway": true,
@@ -1639,7 +1639,7 @@
   },
   {
     "osm_id": 488151048,
-    "name": "Avenida Califórnia",
+    "name": "Avenida Calif\u00f3rnia",
     "length": 0.4426282,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -1653,7 +1653,7 @@
   },
   {
     "osm_id": 547542955,
-    "name": "Rua Cristóvão Souza Leão",
+    "name": "Rua Crist\u00f3v\u00e3o Souza Le\u00e3o",
     "length": 0.0633428,
     "highway": "residential",
     "has_cycleway": true,
@@ -1667,7 +1667,7 @@
   },
   {
     "osm_id": 548908039,
-    "name": "Avenida Califórnia",
+    "name": "Avenida Calif\u00f3rnia",
     "length": 0.5460575,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -1681,7 +1681,7 @@
   },
   {
     "osm_id": 548908047,
-    "name": "Avenida Califórnia",
+    "name": "Avenida Calif\u00f3rnia",
     "length": 0.1797605,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -1695,7 +1695,7 @@
   },
   {
     "osm_id": 578918239,
-    "name": "Ciclovia de Maracaípe",
+    "name": "Ciclovia de Maraca\u00edpe",
     "length": 1.6752938,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -1709,7 +1709,7 @@
   },
   {
     "osm_id": 578918242,
-    "name": "Ciclovia de Maracaípe",
+    "name": "Ciclovia de Maraca\u00edpe",
     "length": 0.4019154,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -1723,7 +1723,7 @@
   },
   {
     "osm_id": 578927420,
-    "name": "Ciclovia de Maracaípe",
+    "name": "Ciclovia de Maraca\u00edpe",
     "length": 0.3067827,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -1737,7 +1737,7 @@
   },
   {
     "osm_id": 578927422,
-    "name": "Ciclovia de Maracaípe",
+    "name": "Ciclovia de Maraca\u00edpe",
     "length": 0.2616689,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -1807,7 +1807,7 @@
   },
   {
     "osm_id": 1302726895,
-    "name": "Rua do Colégio",
+    "name": "Rua do Col\u00e9gio",
     "length": 0.1240984,
     "highway": "residential",
     "has_cycleway": true,
@@ -2003,7 +2003,7 @@
   },
   {
     "osm_id": 223087263,
-    "name": "Rua Nossa Senhora de Fátima",
+    "name": "Rua Nossa Senhora de F\u00e1tima",
     "length": 0.1710465,
     "highway": "primary",
     "has_cycleway": true,
@@ -2297,7 +2297,7 @@
   },
   {
     "osm_id": 901242726,
-    "name": "Avenida Júlio César",
+    "name": "Avenida J\u00falio C\u00e9sar",
     "length": 1.0638643,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -3039,7 +3039,7 @@
   },
   {
     "osm_id": 690508636,
-    "name": "Ciclovia Camilo Simões",
+    "name": "Ciclovia Camilo Sim\u00f5es",
     "length": 0.4386395,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -3053,7 +3053,7 @@
   },
   {
     "osm_id": 690508640,
-    "name": "Ciclovia Camilo Simões",
+    "name": "Ciclovia Camilo Sim\u00f5es",
     "length": 0.037983,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -3067,7 +3067,7 @@
   },
   {
     "osm_id": 690508643,
-    "name": "Ciclovia Camilo Simões",
+    "name": "Ciclovia Camilo Sim\u00f5es",
     "length": 0.8064343,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -3081,7 +3081,7 @@
   },
   {
     "osm_id": 700750679,
-    "name": "Ciclovia Camilo Simões",
+    "name": "Ciclovia Camilo Sim\u00f5es",
     "length": 0.0117836,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -3095,7 +3095,7 @@
   },
   {
     "osm_id": 700750680,
-    "name": "Ciclovia Camilo Simões",
+    "name": "Ciclovia Camilo Sim\u00f5es",
     "length": 0.8030099,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -3109,7 +3109,7 @@
   },
   {
     "osm_id": 762906977,
-    "name": "Ciclovia Camilo Simões",
+    "name": "Ciclovia Camilo Sim\u00f5es",
     "length": 0.2239468,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -3123,7 +3123,7 @@
   },
   {
     "osm_id": 762906978,
-    "name": "Ciclovia Camilo Simões",
+    "name": "Ciclovia Camilo Sim\u00f5es",
     "length": 0.23527,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -3137,7 +3137,7 @@
   },
   {
     "osm_id": 762906979,
-    "name": "Ciclovia Camilo Simões",
+    "name": "Ciclovia Camilo Sim\u00f5es",
     "length": 0.0088144,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -3179,7 +3179,7 @@
   },
   {
     "osm_id": 1183969262,
-    "name": "Ciclovia Camilo Simões",
+    "name": "Ciclovia Camilo Sim\u00f5es",
     "length": 0.4410832,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -3403,7 +3403,7 @@
   },
   {
     "osm_id": 42509291,
-    "name": "Rua Ministro João Alberto",
+    "name": "Rua Ministro Jo\u00e3o Alberto",
     "length": 0.0719684,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -3431,7 +3431,7 @@
   },
   {
     "osm_id": 44118743,
-    "name": "Avenida Inácio Monteiro",
+    "name": "Avenida In\u00e1cio Monteiro",
     "length": 0.1184667,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -3445,7 +3445,7 @@
   },
   {
     "osm_id": 44814745,
-    "name": "Rua Marquês de Maricá",
+    "name": "Rua Marqu\u00eas de Maric\u00e1",
     "length": 0.0615553,
     "highway": "secondary",
     "has_cycleway": true,
@@ -3459,7 +3459,7 @@
   },
   {
     "osm_id": 51816213,
-    "name": "Ponte Conde Maurício de Nassau",
+    "name": "Ponte Conde Maur\u00edcio de Nassau",
     "length": 0.0207572,
     "highway": "secondary",
     "has_cycleway": true,
@@ -3491,7 +3491,7 @@
     "length": 0.2622269,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/51816230\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8737916, -8.0623949], [-34.873756, -8.0624055], [-34.8736337, -8.0624406], [-34.8735113, -8.0624756], [-34.8731726, -8.0625725], [-34.872516, -8.0627604], [-34.8719385, -8.0629298], [-34.8715036, -8.0630501]]}, \"properties\": {\"id\": \"way/51816230\", \"name\": \"Avenida Rio Branco\", \"type\": \"Cal\\u00e7ada compartilhada\", \"alt_name\": \"Boulevard Rio Branco\", \"bicycle\": \"designated\", \"foot\": \"permissive\", \"highway\": \"pedestrian\", \"lanes\": \"4\", \"lit\": \"yes\", \"motor_vehicle\": \"no\", \"oneway\": \"no\", \"oneway:bicycle\": \"no\", \"postal_code\": \"50030-310\", \"source:postal_code\": \"CNEFE\", \"surface\": \"paving_stones\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.837480",
@@ -3505,7 +3505,7 @@
     "length": 0.056782,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/51829355\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8735157, -8.0646787], [-34.8734519, -8.0646694], [-34.8734175, -8.0646644], [-34.873336, -8.0646777], [-34.8731242, -8.0646485], [-34.8730135, -8.0646025]]}, \"properties\": {\"id\": \"way/51829355\", \"name\": \"Rua da Moeda\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"highway\": \"pedestrian\", \"lit\": \"yes\", \"postal_code\": \"50030-040\", \"source:postal_code\": \"CNEFE\", \"surface\": \"paving_stones\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.837495",
@@ -3543,7 +3543,7 @@
   },
   {
     "osm_id": 54239701,
-    "name": "Rua do Aragão",
+    "name": "Rua do Arag\u00e3o",
     "length": 0.0833471,
     "highway": "residential",
     "has_cycleway": true,
@@ -3571,7 +3571,7 @@
   },
   {
     "osm_id": 85378262,
-    "name": "Rua João Cardoso Aires",
+    "name": "Rua Jo\u00e3o Cardoso Aires",
     "length": 0.2794714,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -3585,7 +3585,7 @@
   },
   {
     "osm_id": 85529937,
-    "name": "Rua Paissandú",
+    "name": "Rua Paissand\u00fa",
     "length": 0.3930177,
     "highway": "secondary",
     "has_cycleway": true,
@@ -3599,7 +3599,7 @@
   },
   {
     "osm_id": 85683720,
-    "name": "Rua Marcos André",
+    "name": "Rua Marcos Andr\u00e9",
     "length": 0.0757475,
     "highway": "secondary",
     "has_cycleway": true,
@@ -3613,7 +3613,7 @@
   },
   {
     "osm_id": 85683725,
-    "name": "Rua Marcos André",
+    "name": "Rua Marcos Andr\u00e9",
     "length": 0.2021257,
     "highway": "secondary",
     "has_cycleway": true,
@@ -3627,7 +3627,7 @@
   },
   {
     "osm_id": 85697360,
-    "name": "Avenida João de Barros",
+    "name": "Avenida Jo\u00e3o de Barros",
     "length": 0.2752605,
     "highway": "secondary",
     "has_cycleway": true,
@@ -3641,7 +3641,7 @@
   },
   {
     "osm_id": 85697891,
-    "name": "Rua Marquês do Paraná",
+    "name": "Rua Marqu\u00eas do Paran\u00e1",
     "length": 0.0533415,
     "highway": "residential",
     "has_cycleway": true,
@@ -3669,7 +3669,7 @@
   },
   {
     "osm_id": 85711373,
-    "name": "Rua Antônio Rangel",
+    "name": "Rua Ant\u00f4nio Rangel",
     "length": 0.1811895,
     "highway": "residential",
     "has_cycleway": true,
@@ -3725,7 +3725,7 @@
   },
   {
     "osm_id": 87788711,
-    "name": "Praça da República",
+    "name": "Pra\u00e7a da Rep\u00fablica",
     "length": 0.0166612,
     "highway": "secondary",
     "has_cycleway": true,
@@ -3739,7 +3739,7 @@
   },
   {
     "osm_id": 89381805,
-    "name": "Rua Antônio Falcão",
+    "name": "Rua Ant\u00f4nio Falc\u00e3o",
     "length": 0.1254391,
     "highway": "secondary",
     "has_cycleway": true,
@@ -3753,7 +3753,7 @@
   },
   {
     "osm_id": 96771433,
-    "name": "Rua José Veloso",
+    "name": "Rua Jos\u00e9 Veloso",
     "length": 0.2603099,
     "highway": "residential",
     "has_cycleway": true,
@@ -3767,7 +3767,7 @@
   },
   {
     "osm_id": 102738749,
-    "name": "Rua Antônio Falcão",
+    "name": "Rua Ant\u00f4nio Falc\u00e3o",
     "length": 0.109852,
     "highway": "secondary",
     "has_cycleway": true,
@@ -3795,7 +3795,7 @@
   },
   {
     "osm_id": 103725546,
-    "name": "Avenida Mário Álvares Pereira de Lyra",
+    "name": "Avenida M\u00e1rio \u00c1lvares Pereira de Lyra",
     "length": 0.5650289,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -3809,7 +3809,7 @@
   },
   {
     "osm_id": 105053856,
-    "name": "Rua Itanagé",
+    "name": "Rua Itanag\u00e9",
     "length": 0.1232112,
     "highway": "secondary",
     "has_cycleway": true,
@@ -3823,7 +3823,7 @@
   },
   {
     "osm_id": 114690719,
-    "name": "Rua Quitério Inácio de Melo",
+    "name": "Rua Quit\u00e9rio In\u00e1cio de Melo",
     "length": 0.1350224,
     "highway": "primary",
     "has_cycleway": true,
@@ -3893,7 +3893,7 @@
   },
   {
     "osm_id": 128149273,
-    "name": "Rua da Fundição",
+    "name": "Rua da Fundi\u00e7\u00e3o",
     "length": 0.4601068,
     "highway": "residential",
     "has_cycleway": true,
@@ -3977,7 +3977,7 @@
   },
   {
     "osm_id": 128158633,
-    "name": "Avenida Montevidéu",
+    "name": "Avenida Montevid\u00e9u",
     "length": 0.2209275,
     "highway": "secondary",
     "has_cycleway": true,
@@ -3991,7 +3991,7 @@
   },
   {
     "osm_id": 128158805,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.0461281,
     "highway": "residential",
     "has_cycleway": true,
@@ -4005,7 +4005,7 @@
   },
   {
     "osm_id": 128159199,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.0285544,
     "highway": "residential",
     "has_cycleway": true,
@@ -4019,7 +4019,7 @@
   },
   {
     "osm_id": 128159481,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.0824906,
     "highway": "residential",
     "has_cycleway": true,
@@ -4033,7 +4033,7 @@
   },
   {
     "osm_id": 128159586,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.0347183,
     "highway": "residential",
     "has_cycleway": true,
@@ -4061,7 +4061,7 @@
   },
   {
     "osm_id": 128159824,
-    "name": "Avenida Montevidéu",
+    "name": "Avenida Montevid\u00e9u",
     "length": 0.0330153,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -4079,7 +4079,7 @@
     "length": 0.0575521,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/128162518\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8800479, -8.063128], [-34.8802218, -8.0636161]]}, \"properties\": {\"id\": \"way/128162518\", \"name\": \"Rua da Palma\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"highway\": \"pedestrian\", \"lit\": \"yes\", \"surface\": \"paving_stones\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.838014",
@@ -4089,7 +4089,7 @@
   },
   {
     "osm_id": 128163519,
-    "name": "Rua Primeiro de Março",
+    "name": "Rua Primeiro de Mar\u00e7o",
     "length": 0.0535601,
     "highway": "secondary",
     "has_cycleway": true,
@@ -4103,7 +4103,7 @@
   },
   {
     "osm_id": 128164046,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.5376001,
     "highway": "residential",
     "has_cycleway": true,
@@ -4117,7 +4117,7 @@
   },
   {
     "osm_id": 128164381,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.2754726,
     "highway": "residential",
     "has_cycleway": true,
@@ -4131,7 +4131,7 @@
   },
   {
     "osm_id": 128164383,
-    "name": "Rua Othon Paraíso",
+    "name": "Rua Othon Para\u00edso",
     "length": 0.530934,
     "highway": "residential",
     "has_cycleway": true,
@@ -4159,7 +4159,7 @@
   },
   {
     "osm_id": 128217716,
-    "name": "Avenida Agamenon Magalhães - Pista Local",
+    "name": "Avenida Agamenon Magalh\u00e3es - Pista Local",
     "length": 0.0511242,
     "highway": "residential",
     "has_cycleway": true,
@@ -4173,7 +4173,7 @@
   },
   {
     "osm_id": 128219448,
-    "name": "Rua Othon Paraíso",
+    "name": "Rua Othon Para\u00edso",
     "length": 0.5215523,
     "highway": "residential",
     "has_cycleway": true,
@@ -4187,7 +4187,7 @@
   },
   {
     "osm_id": 128379804,
-    "name": "Travessa do Cais da Detenção",
+    "name": "Travessa do Cais da Deten\u00e7\u00e3o",
     "length": 0.1501339,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -4201,7 +4201,7 @@
   },
   {
     "osm_id": 128382359,
-    "name": "Rua do Hospício",
+    "name": "Rua do Hosp\u00edcio",
     "length": 0.0103135,
     "highway": "secondary",
     "has_cycleway": true,
@@ -4215,7 +4215,7 @@
   },
   {
     "osm_id": 128683793,
-    "name": "Avenida João de Barros",
+    "name": "Avenida Jo\u00e3o de Barros",
     "length": 0.0708668,
     "highway": "secondary",
     "has_cycleway": true,
@@ -4229,7 +4229,7 @@
   },
   {
     "osm_id": 128844077,
-    "name": "Ponte Gregório Bezerra",
+    "name": "Ponte Greg\u00f3rio Bezerra",
     "length": 0.1210911,
     "highway": "secondary",
     "has_cycleway": true,
@@ -4331,7 +4331,7 @@
     "length": 0.251427,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/128930069\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8807684, -8.0634017], [-34.8802218, -8.0636161], [-34.8801433, -8.0636409], [-34.8796379, -8.0637719], [-34.8790802, -8.0639281], [-34.8785872, -8.0640626]]}, \"properties\": {\"id\": \"way/128930069\", \"name\": \"Rua Matias de Albuquerque\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"highway\": \"pedestrian\", \"lit\": \"yes\", \"surface\": \"concrete\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.838264",
@@ -4355,7 +4355,7 @@
   },
   {
     "osm_id": 128931109,
-    "name": "Rua Doutor José Mariano",
+    "name": "Rua Doutor Jos\u00e9 Mariano",
     "length": 0.309515,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -4373,7 +4373,7 @@
     "length": 0.3271191,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/128932739\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8853521, -8.0625567], [-34.8851819, -8.0626692], [-34.8851446, -8.0626781], [-34.8838739, -8.0630526], [-34.8825186, -8.0634095]]}, \"properties\": {\"id\": \"way/128932739\", \"name\": \"Rua Imperatriz Teresa Cristina\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"foot\": \"designated\", \"highway\": \"pedestrian\", \"oneway\": \"no\", \"wikipedia\": \"pt:Rua da Imperatriz\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.838308",
@@ -4383,7 +4383,7 @@
   },
   {
     "osm_id": 129087732,
-    "name": "Avenida Cruz Cabugá",
+    "name": "Avenida Cruz Cabug\u00e1",
     "length": 0.2829711,
     "highway": "secondary",
     "has_cycleway": true,
@@ -4397,7 +4397,7 @@
   },
   {
     "osm_id": 129089855,
-    "name": "Praça da República",
+    "name": "Pra\u00e7a da Rep\u00fablica",
     "length": 0.0664473,
     "highway": "secondary",
     "has_cycleway": true,
@@ -4425,7 +4425,7 @@
   },
   {
     "osm_id": 129178081,
-    "name": "Praça Miguel de Cervantes",
+    "name": "Pra\u00e7a Miguel de Cervantes",
     "length": 0.1458021,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -4439,7 +4439,7 @@
   },
   {
     "osm_id": 129180251,
-    "name": "Rua Antônio Gomes de Freitas",
+    "name": "Rua Ant\u00f4nio Gomes de Freitas",
     "length": 0.1747934,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -4481,7 +4481,7 @@
   },
   {
     "osm_id": 129483340,
-    "name": "Rua Antônio Falcão",
+    "name": "Rua Ant\u00f4nio Falc\u00e3o",
     "length": 0.0038234,
     "highway": "secondary",
     "has_cycleway": true,
@@ -4537,7 +4537,7 @@
   },
   {
     "osm_id": 129727073,
-    "name": "Rua José de Alencar",
+    "name": "Rua Jos\u00e9 de Alencar",
     "length": 0.0596383,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -4565,7 +4565,7 @@
   },
   {
     "osm_id": 129727280,
-    "name": "Rua José de Alencar",
+    "name": "Rua Jos\u00e9 de Alencar",
     "length": 0.1149047,
     "highway": "residential",
     "has_cycleway": true,
@@ -4579,7 +4579,7 @@
   },
   {
     "osm_id": 129727281,
-    "name": "Rua José de Alencar",
+    "name": "Rua Jos\u00e9 de Alencar",
     "length": 0.2528018,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -4593,7 +4593,7 @@
   },
   {
     "osm_id": 129727282,
-    "name": "Rua José de Alencar",
+    "name": "Rua Jos\u00e9 de Alencar",
     "length": 0.0773443,
     "highway": "residential",
     "has_cycleway": true,
@@ -4607,7 +4607,7 @@
   },
   {
     "osm_id": 129727410,
-    "name": "Rua Senador José Henrique",
+    "name": "Rua Senador Jos\u00e9 Henrique",
     "length": 0.2009481,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -4621,7 +4621,7 @@
   },
   {
     "osm_id": 129736369,
-    "name": "Rua Rosário da Boa Vista",
+    "name": "Rua Ros\u00e1rio da Boa Vista",
     "length": 0.0490988,
     "highway": "residential",
     "has_cycleway": true,
@@ -4635,7 +4635,7 @@
   },
   {
     "osm_id": 130491810,
-    "name": "Rua Padre Inglês",
+    "name": "Rua Padre Ingl\u00eas",
     "length": 0.4698717,
     "highway": "residential",
     "has_cycleway": true,
@@ -4663,7 +4663,7 @@
   },
   {
     "osm_id": 130892107,
-    "name": "Avenida Maurício de Nassau",
+    "name": "Avenida Maur\u00edcio de Nassau",
     "length": 0.5530765,
     "highway": "secondary",
     "has_cycleway": true,
@@ -4803,7 +4803,7 @@
   },
   {
     "osm_id": 130921295,
-    "name": "Avenida Manoel Gonçalves da Luz",
+    "name": "Avenida Manoel Gon\u00e7alves da Luz",
     "length": 0.0123236,
     "highway": "secondary",
     "has_cycleway": true,
@@ -4817,7 +4817,7 @@
   },
   {
     "osm_id": 130921296,
-    "name": "Avenida Manoel Gonçalves da Luz",
+    "name": "Avenida Manoel Gon\u00e7alves da Luz",
     "length": 1.0439329,
     "highway": "secondary",
     "has_cycleway": true,
@@ -4831,7 +4831,7 @@
   },
   {
     "osm_id": 130921298,
-    "name": "Avenida Manoel Gonçalves da Luz",
+    "name": "Avenida Manoel Gon\u00e7alves da Luz",
     "length": 0.097215,
     "highway": "secondary",
     "has_cycleway": true,
@@ -4859,7 +4859,7 @@
   },
   {
     "osm_id": 130921781,
-    "name": "Avenida João Cabral de Melo Neto",
+    "name": "Avenida Jo\u00e3o Cabral de Melo Neto",
     "length": 0.1329813,
     "highway": "primary",
     "has_cycleway": true,
@@ -4901,7 +4901,7 @@
   },
   {
     "osm_id": 130922739,
-    "name": "Praça Professor Campelo Barreto",
+    "name": "Pra\u00e7a Professor Campelo Barreto",
     "length": 0.1345315,
     "highway": "secondary",
     "has_cycleway": true,
@@ -4929,7 +4929,7 @@
   },
   {
     "osm_id": 130923581,
-    "name": "Rua Félix de Brito Melo",
+    "name": "Rua F\u00e9lix de Brito Melo",
     "length": 0.0084399,
     "highway": "secondary",
     "has_cycleway": true,
@@ -4943,7 +4943,7 @@
   },
   {
     "osm_id": 130923582,
-    "name": "Rua Félix de Brito Melo",
+    "name": "Rua F\u00e9lix de Brito Melo",
     "length": 0.0036552,
     "highway": "secondary",
     "has_cycleway": true,
@@ -4957,7 +4957,7 @@
   },
   {
     "osm_id": 131144626,
-    "name": "Rua Professor Estevão Francisco da Costa",
+    "name": "Rua Professor Estev\u00e3o Francisco da Costa",
     "length": 0.1486197,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -4985,7 +4985,7 @@
   },
   {
     "osm_id": 131144673,
-    "name": "Rua Dianópolis",
+    "name": "Rua Dian\u00f3polis",
     "length": 0.0744326,
     "highway": "secondary",
     "has_cycleway": true,
@@ -4999,7 +4999,7 @@
   },
   {
     "osm_id": 131144677,
-    "name": "Rua Marquês de Maricá",
+    "name": "Rua Marqu\u00eas de Maric\u00e1",
     "length": 0.2957361,
     "highway": "secondary",
     "has_cycleway": true,
@@ -5055,7 +5055,7 @@
   },
   {
     "osm_id": 131145453,
-    "name": "Rua Doutor João Lacerda",
+    "name": "Rua Doutor Jo\u00e3o Lacerda",
     "length": 0.2881745,
     "highway": "secondary",
     "has_cycleway": true,
@@ -5069,7 +5069,7 @@
   },
   {
     "osm_id": 131146131,
-    "name": "Praça Professor Campelo Barreto",
+    "name": "Pra\u00e7a Professor Campelo Barreto",
     "length": 0.1032385,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -5083,7 +5083,7 @@
   },
   {
     "osm_id": 131147884,
-    "name": "Rua Carandaí",
+    "name": "Rua Caranda\u00ed",
     "length": 0.1099523,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -5111,7 +5111,7 @@
   },
   {
     "osm_id": 131147889,
-    "name": "Avenida Professor Estevão Francisco da Costa",
+    "name": "Avenida Professor Estev\u00e3o Francisco da Costa",
     "length": 0.0244792,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -5139,7 +5139,7 @@
   },
   {
     "osm_id": 131280442,
-    "name": "Rua Marcos André",
+    "name": "Rua Marcos Andr\u00e9",
     "length": 0.0378677,
     "highway": "secondary",
     "has_cycleway": true,
@@ -5153,7 +5153,7 @@
   },
   {
     "osm_id": 131336790,
-    "name": "Rua Marcos André",
+    "name": "Rua Marcos Andr\u00e9",
     "length": 0.2694497,
     "highway": "residential",
     "has_cycleway": true,
@@ -5377,7 +5377,7 @@
   },
   {
     "osm_id": 132399063,
-    "name": "Rua São Bento",
+    "name": "Rua S\u00e3o Bento",
     "length": 0.0279341,
     "highway": "secondary",
     "has_cycleway": true,
@@ -5391,7 +5391,7 @@
   },
   {
     "osm_id": 132904329,
-    "name": "Rua Parque das Graças",
+    "name": "Rua Parque das Gra\u00e7as",
     "length": 0.8785079,
     "highway": "living_street",
     "has_cycleway": true,
@@ -5405,7 +5405,7 @@
   },
   {
     "osm_id": 133334358,
-    "name": "Rua José Alexandre Caçador",
+    "name": "Rua Jos\u00e9 Alexandre Ca\u00e7ador",
     "length": 0.0214774,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -5419,7 +5419,7 @@
   },
   {
     "osm_id": 133334512,
-    "name": "Rua Doutor José Maria",
+    "name": "Rua Doutor Jos\u00e9 Maria",
     "length": 0.2592233,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -5433,7 +5433,7 @@
   },
   {
     "osm_id": 133334910,
-    "name": "Rua Amélia",
+    "name": "Rua Am\u00e9lia",
     "length": 0.1170351,
     "highway": "secondary",
     "has_cycleway": true,
@@ -5503,7 +5503,7 @@
   },
   {
     "osm_id": 133439040,
-    "name": "Rua Tupinambás",
+    "name": "Rua Tupinamb\u00e1s",
     "length": 0.6557793,
     "highway": "residential",
     "has_cycleway": true,
@@ -5559,7 +5559,7 @@
   },
   {
     "osm_id": 134171262,
-    "name": "Rua Neto de Mendonça",
+    "name": "Rua Neto de Mendon\u00e7a",
     "length": 0.1610334,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -5601,7 +5601,7 @@
   },
   {
     "osm_id": 134174589,
-    "name": "Rua Simão Mendes",
+    "name": "Rua Sim\u00e3o Mendes",
     "length": 0.2192424,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -5615,7 +5615,7 @@
   },
   {
     "osm_id": 134175371,
-    "name": "Rua Sebastião Alves",
+    "name": "Rua Sebasti\u00e3o Alves",
     "length": 0.0408129,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -5657,7 +5657,7 @@
   },
   {
     "osm_id": 134495018,
-    "name": "Rua Feliciano José de Farias",
+    "name": "Rua Feliciano Jos\u00e9 de Farias",
     "length": 0.2579002,
     "highway": "residential",
     "has_cycleway": true,
@@ -5671,7 +5671,7 @@
   },
   {
     "osm_id": 135138772,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.0038092,
     "highway": "secondary",
     "has_cycleway": true,
@@ -5685,7 +5685,7 @@
   },
   {
     "osm_id": 135138776,
-    "name": "Estrada Velha de Água Fria",
+    "name": "Estrada Velha de \u00c1gua Fria",
     "length": 0.1491188,
     "highway": "secondary",
     "has_cycleway": true,
@@ -5699,7 +5699,7 @@
   },
   {
     "osm_id": 135143520,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.1403133,
     "highway": "secondary",
     "has_cycleway": true,
@@ -5713,7 +5713,7 @@
   },
   {
     "osm_id": 135143523,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.1164692,
     "highway": "primary",
     "has_cycleway": true,
@@ -5727,7 +5727,7 @@
   },
   {
     "osm_id": 135143529,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.0494859,
     "highway": "primary",
     "has_cycleway": true,
@@ -5769,7 +5769,7 @@
   },
   {
     "osm_id": 135932504,
-    "name": "Rua Antônio Rangel",
+    "name": "Rua Ant\u00f4nio Rangel",
     "length": 0.2355536,
     "highway": "residential",
     "has_cycleway": true,
@@ -5783,7 +5783,7 @@
   },
   {
     "osm_id": 136116572,
-    "name": "Rua José Domingues da Silva",
+    "name": "Rua Jos\u00e9 Domingues da Silva",
     "length": 0.0810382,
     "highway": "residential",
     "has_cycleway": true,
@@ -5797,7 +5797,7 @@
   },
   {
     "osm_id": 136121284,
-    "name": "Rua São Nicolau",
+    "name": "Rua S\u00e3o Nicolau",
     "length": 0.1319577,
     "highway": "secondary",
     "has_cycleway": true,
@@ -5811,7 +5811,7 @@
   },
   {
     "osm_id": 136121285,
-    "name": "Avenida Dom Hélder Câmara",
+    "name": "Avenida Dom H\u00e9lder C\u00e2mara",
     "length": 0.1351645,
     "highway": "secondary",
     "has_cycleway": true,
@@ -5825,7 +5825,7 @@
   },
   {
     "osm_id": 136121287,
-    "name": "Rua Pintor Antônio Albuquerque",
+    "name": "Rua Pintor Ant\u00f4nio Albuquerque",
     "length": 0.0055539,
     "highway": "secondary",
     "has_cycleway": true,
@@ -5839,7 +5839,7 @@
   },
   {
     "osm_id": 136121288,
-    "name": "Rua Itanagé",
+    "name": "Rua Itanag\u00e9",
     "length": 0.1502421,
     "highway": "secondary",
     "has_cycleway": true,
@@ -5853,7 +5853,7 @@
   },
   {
     "osm_id": 136121484,
-    "name": "Rua Virgínia Heráclio",
+    "name": "Rua Virg\u00ednia Her\u00e1clio",
     "length": 0.1033503,
     "highway": "secondary",
     "has_cycleway": true,
@@ -5895,7 +5895,7 @@
   },
   {
     "osm_id": 136122179,
-    "name": "Rua São Nicolau",
+    "name": "Rua S\u00e3o Nicolau",
     "length": 0.1303857,
     "highway": "secondary",
     "has_cycleway": true,
@@ -6063,7 +6063,7 @@
   },
   {
     "osm_id": 137364482,
-    "name": "Avenida Mário Álvares Pereira de Lyra",
+    "name": "Avenida M\u00e1rio \u00c1lvares Pereira de Lyra",
     "length": 0.5769837,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -6133,7 +6133,7 @@
   },
   {
     "osm_id": 137747160,
-    "name": "Praça da Rua João Crescêncio",
+    "name": "Pra\u00e7a da Rua Jo\u00e3o Cresc\u00eancio",
     "length": 0.1062249,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -6189,7 +6189,7 @@
   },
   {
     "osm_id": 140092783,
-    "name": "Avenida João Cabral de Melo Neto",
+    "name": "Avenida Jo\u00e3o Cabral de Melo Neto",
     "length": 0.0273642,
     "highway": "primary",
     "has_cycleway": true,
@@ -6203,7 +6203,7 @@
   },
   {
     "osm_id": 140092785,
-    "name": "Avenida João Cabral de Melo Neto",
+    "name": "Avenida Jo\u00e3o Cabral de Melo Neto",
     "length": 0.1817739,
     "highway": "primary",
     "has_cycleway": true,
@@ -6217,7 +6217,7 @@
   },
   {
     "osm_id": 140093042,
-    "name": "Praça Salazar",
+    "name": "Pra\u00e7a Salazar",
     "length": 0.3217691,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -6315,7 +6315,7 @@
   },
   {
     "osm_id": 140478540,
-    "name": "Praça do Baobá da Encruzilhada",
+    "name": "Pra\u00e7a do Baob\u00e1 da Encruzilhada",
     "length": 0.0413688,
     "highway": "residential",
     "has_cycleway": true,
@@ -6357,7 +6357,7 @@
   },
   {
     "osm_id": 140479112,
-    "name": "Rua Couto Magalhães",
+    "name": "Rua Couto Magalh\u00e3es",
     "length": 0.2200879,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -6371,7 +6371,7 @@
   },
   {
     "osm_id": 140616408,
-    "name": "Rua João Crescêncio",
+    "name": "Rua Jo\u00e3o Cresc\u00eancio",
     "length": 0.1203257,
     "highway": "residential",
     "has_cycleway": true,
@@ -6385,7 +6385,7 @@
   },
   {
     "osm_id": 140616410,
-    "name": "Rua João Crescêncio",
+    "name": "Rua Jo\u00e3o Cresc\u00eancio",
     "length": 0.1140149,
     "highway": "residential",
     "has_cycleway": true,
@@ -6441,7 +6441,7 @@
   },
   {
     "osm_id": 141712575,
-    "name": "Avenida Lino Jordão",
+    "name": "Avenida Lino Jord\u00e3o",
     "length": 0.0112018,
     "highway": "secondary",
     "has_cycleway": true,
@@ -6455,7 +6455,7 @@
   },
   {
     "osm_id": 141724611,
-    "name": "Rua Soldado Sinésio de Aragão",
+    "name": "Rua Soldado Sin\u00e9sio de Arag\u00e3o",
     "length": 0.3536551,
     "highway": "residential",
     "has_cycleway": true,
@@ -6581,7 +6581,7 @@
   },
   {
     "osm_id": 142229290,
-    "name": "Rua da Regeneração",
+    "name": "Rua da Regenera\u00e7\u00e3o",
     "length": 0.0418344,
     "highway": "primary",
     "has_cycleway": true,
@@ -6637,7 +6637,7 @@
   },
   {
     "osm_id": 142612998,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.3414082,
     "highway": "primary",
     "has_cycleway": true,
@@ -6651,7 +6651,7 @@
   },
   {
     "osm_id": 144180416,
-    "name": "Avenida Sebastião Salazar",
+    "name": "Avenida Sebasti\u00e3o Salazar",
     "length": 0.2182567,
     "highway": "residential",
     "has_cycleway": true,
@@ -6665,7 +6665,7 @@
   },
   {
     "osm_id": 144180418,
-    "name": "Rua Arão Butler",
+    "name": "Rua Ar\u00e3o Butler",
     "length": 0.0558238,
     "highway": "residential",
     "has_cycleway": true,
@@ -6679,7 +6679,7 @@
   },
   {
     "osm_id": 144474968,
-    "name": "Rua Marquês do Paraná",
+    "name": "Rua Marqu\u00eas do Paran\u00e1",
     "length": 0.2376735,
     "highway": "residential",
     "has_cycleway": true,
@@ -6693,7 +6693,7 @@
   },
   {
     "osm_id": 144474970,
-    "name": "Rua Marquês do Paraná",
+    "name": "Rua Marqu\u00eas do Paran\u00e1",
     "length": 0.1252694,
     "highway": "residential",
     "has_cycleway": true,
@@ -6721,7 +6721,7 @@
   },
   {
     "osm_id": 144479322,
-    "name": "Rua José Paraíso",
+    "name": "Rua Jos\u00e9 Para\u00edso",
     "length": 0.261689,
     "highway": "residential",
     "has_cycleway": true,
@@ -6833,7 +6833,7 @@
   },
   {
     "osm_id": 146631254,
-    "name": "Rua Cônsul Vilares Fragoso",
+    "name": "Rua C\u00f4nsul Vilares Fragoso",
     "length": 0.0460728,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -6861,7 +6861,7 @@
   },
   {
     "osm_id": 151153197,
-    "name": "Avenida República Árabe Unida",
+    "name": "Avenida Rep\u00fablica \u00c1rabe Unida",
     "length": 0.0266232,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -6889,7 +6889,7 @@
   },
   {
     "osm_id": 151161335,
-    "name": "Rua Mem de Sá",
+    "name": "Rua Mem de S\u00e1",
     "length": 0.0069206,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -6903,7 +6903,7 @@
   },
   {
     "osm_id": 151161786,
-    "name": "Rua Couto Magalhães",
+    "name": "Rua Couto Magalh\u00e3es",
     "length": 0.2468324,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -6987,7 +6987,7 @@
   },
   {
     "osm_id": 151316749,
-    "name": "Rua Itaimbé",
+    "name": "Rua Itaimb\u00e9",
     "length": 0.2240827,
     "highway": "residential",
     "has_cycleway": true,
@@ -7001,7 +7001,7 @@
   },
   {
     "osm_id": 151437922,
-    "name": "Rua João Cardoso Aires",
+    "name": "Rua Jo\u00e3o Cardoso Aires",
     "length": 0.1962523,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -7015,7 +7015,7 @@
   },
   {
     "osm_id": 151437923,
-    "name": "Rua João Cardoso Aires",
+    "name": "Rua Jo\u00e3o Cardoso Aires",
     "length": 0.1207019,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -7043,7 +7043,7 @@
   },
   {
     "osm_id": 151676545,
-    "name": "Rua Engenheiro José Brandão Cavalcante",
+    "name": "Rua Engenheiro Jos\u00e9 Brand\u00e3o Cavalcante",
     "length": 0.1900234,
     "highway": "residential",
     "has_cycleway": true,
@@ -7057,7 +7057,7 @@
   },
   {
     "osm_id": 151676546,
-    "name": "Rua Engenheiro José Brandão Cavalcante",
+    "name": "Rua Engenheiro Jos\u00e9 Brand\u00e3o Cavalcante",
     "length": 0.2445695,
     "highway": "residential",
     "has_cycleway": true,
@@ -7085,7 +7085,7 @@
   },
   {
     "osm_id": 152290834,
-    "name": "Rua Amélia Xavier Sampaio",
+    "name": "Rua Am\u00e9lia Xavier Sampaio",
     "length": 0.1813048,
     "highway": "residential",
     "has_cycleway": true,
@@ -7099,7 +7099,7 @@
   },
   {
     "osm_id": 152291289,
-    "name": "Avenida José Ferreira Lins",
+    "name": "Avenida Jos\u00e9 Ferreira Lins",
     "length": 0.1490707,
     "highway": "residential",
     "has_cycleway": true,
@@ -7113,7 +7113,7 @@
   },
   {
     "osm_id": 152291292,
-    "name": "Rua José Nogueira",
+    "name": "Rua Jos\u00e9 Nogueira",
     "length": 0.0393407,
     "highway": "residential",
     "has_cycleway": true,
@@ -7141,7 +7141,7 @@
   },
   {
     "osm_id": 152291346,
-    "name": "Avenida José Ferreira Lins",
+    "name": "Avenida Jos\u00e9 Ferreira Lins",
     "length": 0.148501,
     "highway": "residential",
     "has_cycleway": true,
@@ -7155,7 +7155,7 @@
   },
   {
     "osm_id": 152291349,
-    "name": "Avenida José Ferreira Lins",
+    "name": "Avenida Jos\u00e9 Ferreira Lins",
     "length": 0.328125,
     "highway": "residential",
     "has_cycleway": true,
@@ -7267,7 +7267,7 @@
   },
   {
     "osm_id": 161177696,
-    "name": "Rua João Cardoso Aires",
+    "name": "Rua Jo\u00e3o Cardoso Aires",
     "length": 0.0873819,
     "highway": "residential",
     "has_cycleway": true,
@@ -7295,7 +7295,7 @@
   },
   {
     "osm_id": 161613602,
-    "name": "Avenida Maurício de Nassau",
+    "name": "Avenida Maur\u00edcio de Nassau",
     "length": 0.0193268,
     "highway": "secondary",
     "has_cycleway": true,
@@ -7309,7 +7309,7 @@
   },
   {
     "osm_id": 161764468,
-    "name": "Rua Jornalista Cleófas de Oliveira",
+    "name": "Rua Jornalista Cle\u00f3fas de Oliveira",
     "length": 0.1680622,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -7379,7 +7379,7 @@
   },
   {
     "osm_id": 161795934,
-    "name": "Avenida Brasília Formosa",
+    "name": "Avenida Bras\u00edlia Formosa",
     "length": 0.3541615,
     "highway": "residential",
     "has_cycleway": true,
@@ -7393,7 +7393,7 @@
   },
   {
     "osm_id": 161795937,
-    "name": "Rua do Jaú",
+    "name": "Rua do Ja\u00fa",
     "length": 0.1342907,
     "highway": "residential",
     "has_cycleway": true,
@@ -7449,7 +7449,7 @@
   },
   {
     "osm_id": 162651294,
-    "name": "Rua Jornalista Cleófas de Oliveira",
+    "name": "Rua Jornalista Cle\u00f3fas de Oliveira",
     "length": 0.0208366,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -7491,7 +7491,7 @@
   },
   {
     "osm_id": 172246559,
-    "name": "Rua Compositor Vinícius de Morais",
+    "name": "Rua Compositor Vin\u00edcius de Morais",
     "length": 0.340811,
     "highway": "residential",
     "has_cycleway": true,
@@ -7505,7 +7505,7 @@
   },
   {
     "osm_id": 174870096,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.4884371,
     "highway": "residential",
     "has_cycleway": true,
@@ -7547,7 +7547,7 @@
   },
   {
     "osm_id": 174871099,
-    "name": "Rua Hermílio Gomes",
+    "name": "Rua Herm\u00edlio Gomes",
     "length": 0.2351126,
     "highway": "residential",
     "has_cycleway": true,
@@ -7561,7 +7561,7 @@
   },
   {
     "osm_id": 174871800,
-    "name": "Rua Marquês de Abrantes",
+    "name": "Rua Marqu\u00eas de Abrantes",
     "length": 0.6032253,
     "highway": "residential",
     "has_cycleway": true,
@@ -7575,7 +7575,7 @@
   },
   {
     "osm_id": 186977356,
-    "name": "Rua José dos Santos",
+    "name": "Rua Jos\u00e9 dos Santos",
     "length": 0.3697459,
     "highway": "residential",
     "has_cycleway": true,
@@ -7589,7 +7589,7 @@
   },
   {
     "osm_id": 186977578,
-    "name": "Rua Antônio Curado",
+    "name": "Rua Ant\u00f4nio Curado",
     "length": 0.8505652,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -7603,7 +7603,7 @@
   },
   {
     "osm_id": 186977811,
-    "name": "Rua Manoel Estevão da Costa",
+    "name": "Rua Manoel Estev\u00e3o da Costa",
     "length": 0.3633788,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -7701,7 +7701,7 @@
   },
   {
     "osm_id": 197960452,
-    "name": "Rua Jerônimo de Albuquerque",
+    "name": "Rua Jer\u00f4nimo de Albuquerque",
     "length": 0.3167451,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -7785,7 +7785,7 @@
   },
   {
     "osm_id": 198246703,
-    "name": "Rua Ambrósio Machado",
+    "name": "Rua Ambr\u00f3sio Machado",
     "length": 0.0211299,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -7799,7 +7799,7 @@
   },
   {
     "osm_id": 198246704,
-    "name": "Rua Ambrósio Machado",
+    "name": "Rua Ambr\u00f3sio Machado",
     "length": 0.0197452,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -7841,7 +7841,7 @@
   },
   {
     "osm_id": 198968988,
-    "name": "Rua Mauricéia",
+    "name": "Rua Mauric\u00e9ia",
     "length": 0.1906113,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -7883,7 +7883,7 @@
   },
   {
     "osm_id": 198989547,
-    "name": "Rua São Mateus",
+    "name": "Rua S\u00e3o Mateus",
     "length": 0.3765372,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -7981,7 +7981,7 @@
   },
   {
     "osm_id": 199699061,
-    "name": "Rua Rev Antônio Queiroz",
+    "name": "Rua Rev Ant\u00f4nio Queiroz",
     "length": 0.113389,
     "highway": "residential",
     "has_cycleway": true,
@@ -8009,7 +8009,7 @@
   },
   {
     "osm_id": 199703493,
-    "name": "Praça do Trabalho",
+    "name": "Pra\u00e7a do Trabalho",
     "length": 0.1141429,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -8023,7 +8023,7 @@
   },
   {
     "osm_id": 199706753,
-    "name": "Rua Coronel João Batista do Rego Barros",
+    "name": "Rua Coronel Jo\u00e3o Batista do Rego Barros",
     "length": 0.0788262,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -8037,7 +8037,7 @@
   },
   {
     "osm_id": 199869537,
-    "name": "Rua Antônio Valdevino da Costa",
+    "name": "Rua Ant\u00f4nio Valdevino da Costa",
     "length": 0.0441443,
     "highway": "residential",
     "has_cycleway": true,
@@ -8051,7 +8051,7 @@
   },
   {
     "osm_id": 199875826,
-    "name": "Rua Doutora Antônia Dias",
+    "name": "Rua Doutora Ant\u00f4nia Dias",
     "length": 0.0472349,
     "highway": "residential",
     "has_cycleway": true,
@@ -8079,7 +8079,7 @@
   },
   {
     "osm_id": 199881222,
-    "name": "Avenida Inácio Monteiro",
+    "name": "Avenida In\u00e1cio Monteiro",
     "length": 0.288823,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -8093,7 +8093,7 @@
   },
   {
     "osm_id": 199881559,
-    "name": "Avenida Inácio Monteiro",
+    "name": "Avenida In\u00e1cio Monteiro",
     "length": 0.5619813,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -8247,11 +8247,11 @@
   },
   {
     "osm_id": 201514523,
-    "name": "Praça do Monteiro",
+    "name": "Pra\u00e7a do Monteiro",
     "length": 0.0845625,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/201514523\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9289622, -8.0278227], [-34.9289044, -8.0278374], [-34.9282682, -8.0279791], [-34.9282133, -8.0279912]]}, \"properties\": {\"id\": \"way/201514523\", \"name\": \"Pra\\u00e7a do Monteiro\", \"type\": \"Cal\\u00e7ada compartilhada\", \"alt_name\": \"Rua 17 de Agosto;Avenida Dezessete de Agosto\", \"bicycle\": \"yes\", \"foot\": \"yes\", \"highway\": \"pedestrian\", \"lit\": \"yes\", \"motor_vehicle\": \"no\", \"oneway\": \"no\", \"postal_code\": \"52070-645\", \"source:postal_code\": \"CNEFE\", \"surface\": \"paving_stones\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.843409",
@@ -8289,7 +8289,7 @@
   },
   {
     "osm_id": 202051912,
-    "name": "Rua Professor Estevão Francisco da Costa",
+    "name": "Rua Professor Estev\u00e3o Francisco da Costa",
     "length": 0.1022712,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -8303,7 +8303,7 @@
   },
   {
     "osm_id": 202233890,
-    "name": "Avenida Nossa Senhora da Saúde",
+    "name": "Avenida Nossa Senhora da Sa\u00fade",
     "length": 0.1918288,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -8317,7 +8317,7 @@
   },
   {
     "osm_id": 202233953,
-    "name": "Avenida Nossa Senhora da Saúde",
+    "name": "Avenida Nossa Senhora da Sa\u00fade",
     "length": 0.1030245,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -8359,7 +8359,7 @@
   },
   {
     "osm_id": 202234487,
-    "name": "Rua Doutor José Anastacio da Silva Guimarães",
+    "name": "Rua Doutor Jos\u00e9 Anastacio da Silva Guimar\u00e3es",
     "length": 0.3615227,
     "highway": "residential",
     "has_cycleway": true,
@@ -8373,7 +8373,7 @@
   },
   {
     "osm_id": 202234499,
-    "name": "Rua Doutor José Anastacio da Silva Guimarães",
+    "name": "Rua Doutor Jos\u00e9 Anastacio da Silva Guimar\u00e3es",
     "length": 0.1893851,
     "highway": "residential",
     "has_cycleway": true,
@@ -8471,7 +8471,7 @@
   },
   {
     "osm_id": 204067669,
-    "name": "Rua Maria de Fátima Soares",
+    "name": "Rua Maria de F\u00e1tima Soares",
     "length": 0.2289335,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -8485,7 +8485,7 @@
   },
   {
     "osm_id": 204619792,
-    "name": "Rua Acadêmico Hélio Ramos",
+    "name": "Rua Acad\u00eamico H\u00e9lio Ramos",
     "length": 0.7040339,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -8527,7 +8527,7 @@
   },
   {
     "osm_id": 222816816,
-    "name": "Avenida José Américo de Almeida",
+    "name": "Avenida Jos\u00e9 Am\u00e9rico de Almeida",
     "length": 0.6777547,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -8555,7 +8555,7 @@
   },
   {
     "osm_id": 223088213,
-    "name": "Rua Setúbal",
+    "name": "Rua Set\u00fabal",
     "length": 0.1029735,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -8583,7 +8583,7 @@
   },
   {
     "osm_id": 223419656,
-    "name": "Rua Marcos André",
+    "name": "Rua Marcos Andr\u00e9",
     "length": 0.0096115,
     "highway": "secondary",
     "has_cycleway": true,
@@ -8667,7 +8667,7 @@
   },
   {
     "osm_id": 242552660,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.1780279,
     "highway": "residential",
     "has_cycleway": true,
@@ -8681,7 +8681,7 @@
   },
   {
     "osm_id": 242552953,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.0549392,
     "highway": "residential",
     "has_cycleway": true,
@@ -8695,7 +8695,7 @@
   },
   {
     "osm_id": 242552958,
-    "name": "Rua Jerônimo Vilela",
+    "name": "Rua Jer\u00f4nimo Vilela",
     "length": 0.0080926,
     "highway": "residential",
     "has_cycleway": true,
@@ -8709,7 +8709,7 @@
   },
   {
     "osm_id": 242552959,
-    "name": "Rua Jerônimo Vilela",
+    "name": "Rua Jer\u00f4nimo Vilela",
     "length": 0.00694,
     "highway": "residential",
     "has_cycleway": true,
@@ -8723,7 +8723,7 @@
   },
   {
     "osm_id": 242552960,
-    "name": "Rua Jerônimo Vilela",
+    "name": "Rua Jer\u00f4nimo Vilela",
     "length": 0.0274513,
     "highway": "residential",
     "has_cycleway": true,
@@ -8779,7 +8779,7 @@
   },
   {
     "osm_id": 247443467,
-    "name": "Túnel Chico Science",
+    "name": "T\u00fanel Chico Science",
     "length": 0.0899408,
     "highway": "primary",
     "has_cycleway": true,
@@ -8821,7 +8821,7 @@
   },
   {
     "osm_id": 250696581,
-    "name": "Rua Doutora Antônia Dias",
+    "name": "Rua Doutora Ant\u00f4nia Dias",
     "length": 0.0252555,
     "highway": "residential",
     "has_cycleway": true,
@@ -8835,7 +8835,7 @@
   },
   {
     "osm_id": 250696582,
-    "name": "Rua Doutora Antônia Dias",
+    "name": "Rua Doutora Ant\u00f4nia Dias",
     "length": 0.1095788,
     "highway": "residential",
     "has_cycleway": true,
@@ -8877,7 +8877,7 @@
   },
   {
     "osm_id": 257938682,
-    "name": "Rua Marcos André",
+    "name": "Rua Marcos Andr\u00e9",
     "length": 0.0326231,
     "highway": "secondary",
     "has_cycleway": true,
@@ -8933,7 +8933,7 @@
   },
   {
     "osm_id": 305934826,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.3012144,
     "highway": "primary",
     "has_cycleway": true,
@@ -9003,7 +9003,7 @@
   },
   {
     "osm_id": 313482028,
-    "name": "Praça do Trabalho",
+    "name": "Pra\u00e7a do Trabalho",
     "length": 0.1074627,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9017,7 +9017,7 @@
   },
   {
     "osm_id": 314754232,
-    "name": "Rua Ministro João Alberto",
+    "name": "Rua Ministro Jo\u00e3o Alberto",
     "length": 0.298031,
     "highway": "residential",
     "has_cycleway": true,
@@ -9031,7 +9031,7 @@
   },
   {
     "osm_id": 314754239,
-    "name": "Avenida Nossa Senhora da Saúde",
+    "name": "Avenida Nossa Senhora da Sa\u00fade",
     "length": 0.1339202,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9073,7 +9073,7 @@
   },
   {
     "osm_id": 315073865,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.4775481,
     "highway": "secondary",
     "has_cycleway": true,
@@ -9101,7 +9101,7 @@
   },
   {
     "osm_id": 315073914,
-    "name": "Praça Miguel de Cervantes",
+    "name": "Pra\u00e7a Miguel de Cervantes",
     "length": 0.1292776,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9115,7 +9115,7 @@
   },
   {
     "osm_id": 315669175,
-    "name": "Rua Salvador de Sá",
+    "name": "Rua Salvador de S\u00e1",
     "length": 0.3022284,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9129,7 +9129,7 @@
   },
   {
     "osm_id": 316156841,
-    "name": "Rua Doutor José Mariano",
+    "name": "Rua Doutor Jos\u00e9 Mariano",
     "length": 0.010941,
     "highway": "secondary",
     "has_cycleway": true,
@@ -9143,7 +9143,7 @@
   },
   {
     "osm_id": 316156842,
-    "name": "Rua do Hospício",
+    "name": "Rua do Hosp\u00edcio",
     "length": 0.2475938,
     "highway": "secondary",
     "has_cycleway": true,
@@ -9227,7 +9227,7 @@
   },
   {
     "osm_id": 316609908,
-    "name": "Rua Mem de Sá",
+    "name": "Rua Mem de S\u00e1",
     "length": 0.0033125,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9241,7 +9241,7 @@
   },
   {
     "osm_id": 316609909,
-    "name": "Rua Mem de Sá",
+    "name": "Rua Mem de S\u00e1",
     "length": 0.1406334,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9297,7 +9297,7 @@
   },
   {
     "osm_id": 316614641,
-    "name": "Avenida Agamenon Magalhães - Pista Local",
+    "name": "Avenida Agamenon Magalh\u00e3es - Pista Local",
     "length": 0.1639416,
     "highway": "residential",
     "has_cycleway": true,
@@ -9311,7 +9311,7 @@
   },
   {
     "osm_id": 316676558,
-    "name": "Avenida João de Barros",
+    "name": "Avenida Jo\u00e3o de Barros",
     "length": 0.2253671,
     "highway": "secondary",
     "has_cycleway": true,
@@ -9339,7 +9339,7 @@
   },
   {
     "osm_id": 316707902,
-    "name": "Avenida João de Barros",
+    "name": "Avenida Jo\u00e3o de Barros",
     "length": 0.1804138,
     "highway": "secondary",
     "has_cycleway": true,
@@ -9353,7 +9353,7 @@
   },
   {
     "osm_id": 316707910,
-    "name": "Rua Barão de São Borja",
+    "name": "Rua Bar\u00e3o de S\u00e3o Borja",
     "length": 0.1677286,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9367,7 +9367,7 @@
   },
   {
     "osm_id": 316707911,
-    "name": "Rua Barão de São Borja",
+    "name": "Rua Bar\u00e3o de S\u00e3o Borja",
     "length": 0.0891472,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9395,7 +9395,7 @@
   },
   {
     "osm_id": 316707918,
-    "name": "Rua José de Alencar",
+    "name": "Rua Jos\u00e9 de Alencar",
     "length": 0.1073454,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9409,7 +9409,7 @@
   },
   {
     "osm_id": 316707919,
-    "name": "Rua João Fernandes Vieira",
+    "name": "Rua Jo\u00e3o Fernandes Vieira",
     "length": 0.2663949,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9423,7 +9423,7 @@
   },
   {
     "osm_id": 316707920,
-    "name": "Rua João Fernandes Vieira",
+    "name": "Rua Jo\u00e3o Fernandes Vieira",
     "length": 0.2327939,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9675,7 +9675,7 @@
   },
   {
     "osm_id": 317078471,
-    "name": "Rua Mauricéia",
+    "name": "Rua Mauric\u00e9ia",
     "length": 0.090447,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9689,7 +9689,7 @@
   },
   {
     "osm_id": 317181017,
-    "name": "Rua Ministro João Alberto",
+    "name": "Rua Ministro Jo\u00e3o Alberto",
     "length": 0.0062818,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9717,7 +9717,7 @@
   },
   {
     "osm_id": 317189755,
-    "name": "Rua São Bento",
+    "name": "Rua S\u00e3o Bento",
     "length": 0.3430077,
     "highway": "secondary",
     "has_cycleway": true,
@@ -9843,7 +9843,7 @@
   },
   {
     "osm_id": 317313979,
-    "name": "Avenida Sebastião Salazar",
+    "name": "Avenida Sebasti\u00e3o Salazar",
     "length": 0.4075199,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9885,7 +9885,7 @@
   },
   {
     "osm_id": 317402246,
-    "name": "Rotatória do Açude de Apipucos",
+    "name": "Rotat\u00f3ria do A\u00e7ude de Apipucos",
     "length": 0.0598558,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9899,7 +9899,7 @@
   },
   {
     "osm_id": 317402247,
-    "name": "Rua Coronel João Batista do Rego Barros",
+    "name": "Rua Coronel Jo\u00e3o Batista do Rego Barros",
     "length": 0.0572541,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -9927,7 +9927,7 @@
   },
   {
     "osm_id": 318121911,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.3164365,
     "highway": "secondary",
     "has_cycleway": true,
@@ -9997,7 +9997,7 @@
   },
   {
     "osm_id": 318895501,
-    "name": "Rua Couto Magalhães",
+    "name": "Rua Couto Magalh\u00e3es",
     "length": 0.0326679,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -10011,7 +10011,7 @@
   },
   {
     "osm_id": 318895503,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.0065052,
     "highway": "primary",
     "has_cycleway": true,
@@ -10025,7 +10025,7 @@
   },
   {
     "osm_id": 318895504,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.1042524,
     "highway": "primary",
     "has_cycleway": true,
@@ -10039,7 +10039,7 @@
   },
   {
     "osm_id": 319293361,
-    "name": "Rua General Edson Amâncio Ramalho",
+    "name": "Rua General Edson Am\u00e2ncio Ramalho",
     "length": 0.3197686,
     "highway": "primary",
     "has_cycleway": true,
@@ -10081,7 +10081,7 @@
   },
   {
     "osm_id": 319318741,
-    "name": "Ponte Conde Maurício de Nassau",
+    "name": "Ponte Conde Maur\u00edcio de Nassau",
     "length": 0.1822116,
     "highway": "secondary",
     "has_cycleway": true,
@@ -10127,7 +10127,7 @@
     "length": 0.1976733,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/319318752\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8803481, -8.0640381], [-34.8793667, -8.064307], [-34.8791896, -8.0643545], [-34.8787819, -8.0644703], [-34.8786958, -8.0644763], [-34.8786482, -8.064471], [-34.8786132, -8.0644661]]}, \"properties\": {\"id\": \"way/319318752\", \"name\": \"Rua Nova\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"foot\": \"permissive\", \"highway\": \"pedestrian\", \"lit\": \"yes\", \"wikidata\": \"Q10364897\", \"wikipedia\": \"pt:Rua Nova\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.845044",
@@ -10165,7 +10165,7 @@
   },
   {
     "osm_id": 320212004,
-    "name": "Rua Barão de São Borja",
+    "name": "Rua Bar\u00e3o de S\u00e3o Borja",
     "length": 0.28255,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -10193,7 +10193,7 @@
   },
   {
     "osm_id": 339199758,
-    "name": "Avenida República Árabe Unida",
+    "name": "Avenida Rep\u00fablica \u00c1rabe Unida",
     "length": 0.0430634,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -10225,7 +10225,7 @@
     "length": 0.2542151,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/366223356\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8711011, -8.0614839], [-34.8714938, -8.0623488], [-34.8715843, -8.0625431], [-34.8716038, -8.0625851], [-34.8716148, -8.0626007], [-34.8716376, -8.062633], [-34.871657, -8.0626554], [-34.871679, -8.0626768], [-34.8719385, -8.0629298], [-34.872259, -8.0632968], [-34.8723372, -8.0633798]]}, \"properties\": {\"id\": \"way/366223356\", \"name\": \"Rua do Bom Jesus\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"highway\": \"pedestrian\", \"lanes\": \"1\", \"lit\": \"yes\", \"maxspeed\": \"30\", \"postal_code\": \"50030-170\", \"source\": \"https://g1.globo.com/pe/pernambuco/noticia/2021/05/24/rua-do-bom-jesus-e-fechada-para-veiculos-e-vira-exclusiva-para-pedestres-no-bairro-do-recife.ghtml\", \"source:postal_code\": \"CNEFE\", \"surface\": \"paving_stones\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.845134",
@@ -10249,7 +10249,7 @@
   },
   {
     "osm_id": 367517838,
-    "name": "Rua Doutor José Mariano",
+    "name": "Rua Doutor Jos\u00e9 Mariano",
     "length": 0.1760834,
     "highway": "secondary",
     "has_cycleway": true,
@@ -10267,7 +10267,7 @@
     "length": 0.1561642,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/367630237\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8876826, -8.057153], [-34.888387, -8.058372]]}, \"properties\": {\"id\": \"way/367630237\", \"name\": \"Beco do Estudante\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"highway\": \"footway\", \"lit\": \"yes\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.845170",
@@ -10291,7 +10291,7 @@
   },
   {
     "osm_id": 367994067,
-    "name": "Rua Engenheiro José Brandão Cavalcante",
+    "name": "Rua Engenheiro Jos\u00e9 Brand\u00e3o Cavalcante",
     "length": 0.1453968,
     "highway": "residential",
     "has_cycleway": true,
@@ -10305,7 +10305,7 @@
   },
   {
     "osm_id": 367994070,
-    "name": "Rua Padre Carlos Leôncio",
+    "name": "Rua Padre Carlos Le\u00f4ncio",
     "length": 0.0250681,
     "highway": "residential",
     "has_cycleway": true,
@@ -10319,7 +10319,7 @@
   },
   {
     "osm_id": 368075236,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.3686405,
     "highway": "residential",
     "has_cycleway": true,
@@ -10333,7 +10333,7 @@
   },
   {
     "osm_id": 369013591,
-    "name": "Avenida João de Barros",
+    "name": "Avenida Jo\u00e3o de Barros",
     "length": 0.2322847,
     "highway": "secondary",
     "has_cycleway": true,
@@ -10347,7 +10347,7 @@
   },
   {
     "osm_id": 369014580,
-    "name": "Rua Engenheiro José Brandão Cavalcante",
+    "name": "Rua Engenheiro Jos\u00e9 Brand\u00e3o Cavalcante",
     "length": 0.2374192,
     "highway": "residential",
     "has_cycleway": true,
@@ -10361,7 +10361,7 @@
   },
   {
     "osm_id": 369612034,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.0364516,
     "highway": "residential",
     "has_cycleway": true,
@@ -10403,7 +10403,7 @@
   },
   {
     "osm_id": 372986496,
-    "name": "Rua Édson Alvares",
+    "name": "Rua \u00c9dson Alvares",
     "length": 0.1387757,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -10431,7 +10431,7 @@
   },
   {
     "osm_id": 374896669,
-    "name": "Rua Sebastião Alves",
+    "name": "Rua Sebasti\u00e3o Alves",
     "length": 0.2339931,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -10529,7 +10529,7 @@
   },
   {
     "osm_id": 378796334,
-    "name": "Rua Marquês de Abrantes",
+    "name": "Rua Marqu\u00eas de Abrantes",
     "length": 0.1613112,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -10543,7 +10543,7 @@
   },
   {
     "osm_id": 378796337,
-    "name": "Avenida República Árabe Unida",
+    "name": "Avenida Rep\u00fablica \u00c1rabe Unida",
     "length": 0.1678136,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -10557,7 +10557,7 @@
   },
   {
     "osm_id": 378796340,
-    "name": "Rua José Veloso",
+    "name": "Rua Jos\u00e9 Veloso",
     "length": 0.046278,
     "highway": "residential",
     "has_cycleway": true,
@@ -10599,7 +10599,7 @@
   },
   {
     "osm_id": 378796346,
-    "name": "Rua Marquês de Abrantes",
+    "name": "Rua Marqu\u00eas de Abrantes",
     "length": 0.2652705,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -10627,7 +10627,7 @@
   },
   {
     "osm_id": 379236486,
-    "name": "Rua Eugênio Samico",
+    "name": "Rua Eug\u00eanio Samico",
     "length": 0.1188092,
     "highway": "residential",
     "has_cycleway": true,
@@ -10655,7 +10655,7 @@
   },
   {
     "osm_id": 379623676,
-    "name": "Rua Mauricéia",
+    "name": "Rua Mauric\u00e9ia",
     "length": 0.2030794,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -10669,7 +10669,7 @@
   },
   {
     "osm_id": 382147744,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.1771299,
     "highway": "primary",
     "has_cycleway": true,
@@ -10683,7 +10683,7 @@
   },
   {
     "osm_id": 382147746,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.1665072,
     "highway": "primary",
     "has_cycleway": true,
@@ -10697,7 +10697,7 @@
   },
   {
     "osm_id": 382147747,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.3938871,
     "highway": "secondary",
     "has_cycleway": true,
@@ -10711,7 +10711,7 @@
   },
   {
     "osm_id": 383928633,
-    "name": "Rua Doutor João Vieira de Menezes",
+    "name": "Rua Doutor Jo\u00e3o Vieira de Menezes",
     "length": 0.1179333,
     "highway": "residential",
     "has_cycleway": true,
@@ -10725,7 +10725,7 @@
   },
   {
     "osm_id": 385480476,
-    "name": "Rua Barão de Igarassu",
+    "name": "Rua Bar\u00e3o de Igarassu",
     "length": 0.1554051,
     "highway": "residential",
     "has_cycleway": true,
@@ -10753,7 +10753,7 @@
   },
   {
     "osm_id": 385480539,
-    "name": "Rua Leão Falcão",
+    "name": "Rua Le\u00e3o Falc\u00e3o",
     "length": 0.0969684,
     "highway": "residential",
     "has_cycleway": true,
@@ -10781,7 +10781,7 @@
   },
   {
     "osm_id": 430125553,
-    "name": "Rua Conceição de Macabu",
+    "name": "Rua Concei\u00e7\u00e3o de Macabu",
     "length": 0.0111194,
     "highway": "residential",
     "has_cycleway": true,
@@ -10809,7 +10809,7 @@
   },
   {
     "osm_id": 443276363,
-    "name": "Rua Primeiro de Março",
+    "name": "Rua Primeiro de Mar\u00e7o",
     "length": 0.0679041,
     "highway": "secondary",
     "has_cycleway": true,
@@ -10823,7 +10823,7 @@
   },
   {
     "osm_id": 443630585,
-    "name": "Rua Quitério Inácio de Melo",
+    "name": "Rua Quit\u00e9rio In\u00e1cio de Melo",
     "length": 0.0379573,
     "highway": "primary",
     "has_cycleway": true,
@@ -10837,7 +10837,7 @@
   },
   {
     "osm_id": 460423889,
-    "name": "Rua Ministro João Alberto",
+    "name": "Rua Ministro Jo\u00e3o Alberto",
     "length": 0.0878949,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -10851,7 +10851,7 @@
   },
   {
     "osm_id": 460423890,
-    "name": "Avenida Historiador Jordão Emerenciano",
+    "name": "Avenida Historiador Jord\u00e3o Emerenciano",
     "length": 0.0791899,
     "highway": "residential",
     "has_cycleway": true,
@@ -10879,7 +10879,7 @@
   },
   {
     "osm_id": 466704803,
-    "name": "Rua General Edson Amâncio Ramalho",
+    "name": "Rua General Edson Am\u00e2ncio Ramalho",
     "length": 0.1102458,
     "highway": "secondary",
     "has_cycleway": true,
@@ -10907,7 +10907,7 @@
   },
   {
     "osm_id": 466704807,
-    "name": "Rua Antônio Falcão",
+    "name": "Rua Ant\u00f4nio Falc\u00e3o",
     "length": 0.1444145,
     "highway": "secondary",
     "has_cycleway": true,
@@ -10921,7 +10921,7 @@
   },
   {
     "osm_id": 475326170,
-    "name": "Rotatória de Água Fria",
+    "name": "Rotat\u00f3ria de \u00c1gua Fria",
     "length": 0.0156587,
     "highway": "secondary",
     "has_cycleway": true,
@@ -10935,7 +10935,7 @@
   },
   {
     "osm_id": 475653479,
-    "name": "Rua Coronel João Batista do Rego Barros",
+    "name": "Rua Coronel Jo\u00e3o Batista do Rego Barros",
     "length": 0.1751292,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -10963,7 +10963,7 @@
   },
   {
     "osm_id": 475660023,
-    "name": "Rua Neto de Mendonça",
+    "name": "Rua Neto de Mendon\u00e7a",
     "length": 0.1873329,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -11005,7 +11005,7 @@
   },
   {
     "osm_id": 525727298,
-    "name": "Travessa Doutor José Anastacio da Silva Guimarães",
+    "name": "Travessa Doutor Jos\u00e9 Anastacio da Silva Guimar\u00e3es",
     "length": 0.1771365,
     "highway": "residential",
     "has_cycleway": true,
@@ -11019,7 +11019,7 @@
   },
   {
     "osm_id": 538392025,
-    "name": "Rua Professor Estevão Francisco da Costa",
+    "name": "Rua Professor Estev\u00e3o Francisco da Costa",
     "length": 0.1078499,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -11033,7 +11033,7 @@
   },
   {
     "osm_id": 538805604,
-    "name": "Rua Marquês de Maricá",
+    "name": "Rua Marqu\u00eas de Maric\u00e1",
     "length": 0.0683683,
     "highway": "secondary",
     "has_cycleway": true,
@@ -11075,11 +11075,11 @@
   },
   {
     "osm_id": 559810681,
-    "name": "Passarela da Estação Shopping",
+    "name": "Passarela da Esta\u00e7\u00e3o Shopping",
     "length": 0.0426781,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/559810681\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9105826, -8.1157442], [-34.9105176, -8.1154866], [-34.9105176, -8.1154767], [-34.9105208, -8.1154699], [-34.9105285, -8.1154649], [-34.9105389, -8.1154616], [-34.9106185, -8.115443]]}, \"properties\": {\"id\": \"way/559810681\", \"name\": \"Passarela da Esta\\u00e7\\u00e3o Shopping\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.845834",
@@ -11089,11 +11089,11 @@
   },
   {
     "osm_id": 559810682,
-    "name": "Passarela da Estação Shopping",
+    "name": "Passarela da Esta\u00e7\u00e3o Shopping",
     "length": 0.0349118,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/559810682\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9101513, -8.1157606], [-34.9101335, -8.1155565], [-34.9101355, -8.1155393], [-34.910157, -8.1155227], [-34.9101771, -8.1155207], [-34.9101986, -8.1155266], [-34.9102126, -8.1155446]]}, \"properties\": {\"id\": \"way/559810682\", \"name\": \"Passarela da Esta\\u00e7\\u00e3o Shopping\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.845847",
@@ -11103,11 +11103,11 @@
   },
   {
     "osm_id": 559810683,
-    "name": "Passarela da Estação Shopping",
+    "name": "Passarela da Esta\u00e7\u00e3o Shopping",
     "length": 0.2199895,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/559810683\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9102126, -8.1155446], [-34.9102777, -8.1158327], [-34.9102777, -8.1158453], [-34.9102663, -8.1158552], [-34.910258, -8.1158563], [-34.9102509, -8.1158572], [-34.9102401, -8.1158513], [-34.9102341, -8.1158386], [-34.9101751, -8.1155625], [-34.9101744, -8.1155499], [-34.9101771, -8.1155373], [-34.9101831, -8.1155306], [-34.9101902, -8.1155263], [-34.9101996, -8.115525], [-34.9102082, -8.1155264], [-34.9102161, -8.115531], [-34.9102216, -8.1155398], [-34.9102248, -8.1155492], [-34.9102762, -8.1157774], [-34.9102812, -8.1157847], [-34.9102879, -8.115787], [-34.9102986, -8.1157864], [-34.9104565, -8.1157509], [-34.9105745, -8.1157236], [-34.9105819, -8.11572], [-34.9105846, -8.1157133], [-34.9105853, -8.1157064], [-34.910584, -8.1156984], [-34.9105216, -8.1154508], [-34.9105249, -8.1154402], [-34.9105357, -8.1154369], [-34.9105477, -8.1154389], [-34.9105545, -8.1154475], [-34.9106255, -8.1157429], [-34.9106228, -8.1157548], [-34.9106197, -8.1157579], [-34.9106155, -8.1157621], [-34.9106047, -8.1157648], [-34.9105955, -8.1157628], [-34.9105883, -8.1157587], [-34.910586, -8.1157548], [-34.9105826, -8.1157442]]}, \"properties\": {\"id\": \"way/559810683\", \"name\": \"Passarela da Esta\\u00e7\\u00e3o Shopping\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"bridge\": \"yes\", \"highway\": \"footway\", \"layer\": \"1\", \"level\": \"0;0.5;1\", \"stroller\": \"yes\", \"wheelchair\": \"yes\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.845905",
@@ -11117,7 +11117,7 @@
   },
   {
     "osm_id": 566179177,
-    "name": "Rua Marquês do Paraná",
+    "name": "Rua Marqu\u00eas do Paran\u00e1",
     "length": 0.0576497,
     "highway": "residential",
     "has_cycleway": true,
@@ -11159,7 +11159,7 @@
   },
   {
     "osm_id": 573648860,
-    "name": "Rua do Hospício",
+    "name": "Rua do Hosp\u00edcio",
     "length": 0.0523975,
     "highway": "secondary",
     "has_cycleway": true,
@@ -11215,7 +11215,7 @@
   },
   {
     "osm_id": 579464186,
-    "name": "Rua do Hospício",
+    "name": "Rua do Hosp\u00edcio",
     "length": 0.1843594,
     "highway": "secondary",
     "has_cycleway": true,
@@ -11257,7 +11257,7 @@
   },
   {
     "osm_id": 585473147,
-    "name": "Rua General Edson Amâncio Ramalho",
+    "name": "Rua General Edson Am\u00e2ncio Ramalho",
     "length": 0.1194957,
     "highway": "primary",
     "has_cycleway": true,
@@ -11271,7 +11271,7 @@
   },
   {
     "osm_id": 585473219,
-    "name": "Rua Félix de Brito Melo",
+    "name": "Rua F\u00e9lix de Brito Melo",
     "length": 0.0119902,
     "highway": "secondary",
     "has_cycleway": true,
@@ -11285,7 +11285,7 @@
   },
   {
     "osm_id": 585473222,
-    "name": "Rua Félix de Brito Melo",
+    "name": "Rua F\u00e9lix de Brito Melo",
     "length": 0.1095482,
     "highway": "secondary",
     "has_cycleway": true,
@@ -11299,7 +11299,7 @@
   },
   {
     "osm_id": 585473305,
-    "name": "Rua Antônio Falcão",
+    "name": "Rua Ant\u00f4nio Falc\u00e3o",
     "length": 0.0128822,
     "highway": "secondary",
     "has_cycleway": true,
@@ -11313,7 +11313,7 @@
   },
   {
     "osm_id": 589445951,
-    "name": "Rua Professor Antônio Coelho",
+    "name": "Rua Professor Ant\u00f4nio Coelho",
     "length": 0.4245554,
     "highway": "residential",
     "has_cycleway": true,
@@ -11327,7 +11327,7 @@
   },
   {
     "osm_id": 596236969,
-    "name": "Avenida José Américo de Almeida",
+    "name": "Avenida Jos\u00e9 Am\u00e9rico de Almeida",
     "length": 0.2121551,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -11341,7 +11341,7 @@
   },
   {
     "osm_id": 596236970,
-    "name": "Avenida José Américo de Almeida",
+    "name": "Avenida Jos\u00e9 Am\u00e9rico de Almeida",
     "length": 0.7003531,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -11355,7 +11355,7 @@
   },
   {
     "osm_id": 596236971,
-    "name": "Praça Zumbi dos Palmares",
+    "name": "Pra\u00e7a Zumbi dos Palmares",
     "length": 0.0249475,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -11369,7 +11369,7 @@
   },
   {
     "osm_id": 596236973,
-    "name": "Avenida José Américo de Almeida",
+    "name": "Avenida Jos\u00e9 Am\u00e9rico de Almeida",
     "length": 0.0084065,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -11411,7 +11411,7 @@
   },
   {
     "osm_id": 607122243,
-    "name": "Avenida Historiador Jordão Emerenciano",
+    "name": "Avenida Historiador Jord\u00e3o Emerenciano",
     "length": 0.4879153,
     "highway": "residential",
     "has_cycleway": true,
@@ -11425,7 +11425,7 @@
   },
   {
     "osm_id": 607122248,
-    "name": "Avenida Historiador Jordão Emerenciano",
+    "name": "Avenida Historiador Jord\u00e3o Emerenciano",
     "length": 0.4899268,
     "highway": "residential",
     "has_cycleway": true,
@@ -11551,7 +11551,7 @@
   },
   {
     "osm_id": 617216867,
-    "name": "Rua Compositor Vinícius de Morais",
+    "name": "Rua Compositor Vin\u00edcius de Morais",
     "length": 0.1746737,
     "highway": "residential",
     "has_cycleway": true,
@@ -11565,7 +11565,7 @@
   },
   {
     "osm_id": 617216870,
-    "name": "Rua Compositor Vinícius de Morais",
+    "name": "Rua Compositor Vin\u00edcius de Morais",
     "length": 0.1049586,
     "highway": "residential",
     "has_cycleway": true,
@@ -11597,7 +11597,7 @@
     "length": 0.113851,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/619555638\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8734175, -8.0646644], [-34.8733366, -8.0646223], [-34.8731285, -8.0645911], [-34.8730135, -8.0646025], [-34.8729658, -8.0645965], [-34.8728508, -8.0645795], [-34.8727539, -8.0645669], [-34.8727157, -8.0645888], [-34.8725259, -8.0645609], [-34.8724823, -8.0645218], [-34.8724599, -8.0645185], [-34.8724232, -8.0645132]]}, \"properties\": {\"id\": \"way/619555638\", \"name\": \"Rua da Moeda\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"highway\": \"pedestrian\", \"lit\": \"yes\", \"postal_code\": \"50030-040\", \"source:postal_code\": \"CNEFE\", \"surface\": \"paving_stones\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.846388",
@@ -11621,7 +11621,7 @@
   },
   {
     "osm_id": 624847913,
-    "name": "Ciclovia Camilo Simões",
+    "name": "Ciclovia Camilo Sim\u00f5es",
     "length": 0.4051604,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -11649,7 +11649,7 @@
   },
   {
     "osm_id": 624878409,
-    "name": "Rua Professor Antônio Coelho",
+    "name": "Rua Professor Ant\u00f4nio Coelho",
     "length": 0.1136928,
     "highway": "residential",
     "has_cycleway": true,
@@ -11691,7 +11691,7 @@
   },
   {
     "osm_id": 624914196,
-    "name": "Rua Antônio Falcão",
+    "name": "Rua Ant\u00f4nio Falc\u00e3o",
     "length": 0.0066073,
     "highway": "secondary",
     "has_cycleway": true,
@@ -11705,7 +11705,7 @@
   },
   {
     "osm_id": 624914197,
-    "name": "Rua Antônio Falcão",
+    "name": "Rua Ant\u00f4nio Falc\u00e3o",
     "length": 0.026084,
     "highway": "secondary",
     "has_cycleway": true,
@@ -11719,7 +11719,7 @@
   },
   {
     "osm_id": 624914219,
-    "name": "Acesso ao bicicletário",
+    "name": "Acesso ao biciclet\u00e1rio",
     "length": 0.0049158,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -11733,7 +11733,7 @@
   },
   {
     "osm_id": 624914220,
-    "name": "Acesso ao bicicletário",
+    "name": "Acesso ao biciclet\u00e1rio",
     "length": 0.019944,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -11873,7 +11873,7 @@
   },
   {
     "osm_id": 628649584,
-    "name": "Rua Ministro João Alberto",
+    "name": "Rua Ministro Jo\u00e3o Alberto",
     "length": 0.0037836,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -11887,7 +11887,7 @@
   },
   {
     "osm_id": 628649586,
-    "name": "Rua Ministro João Alberto",
+    "name": "Rua Ministro Jo\u00e3o Alberto",
     "length": 0.0091124,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -11971,7 +11971,7 @@
   },
   {
     "osm_id": 637589775,
-    "name": "Praça da República",
+    "name": "Pra\u00e7a da Rep\u00fablica",
     "length": 0.0249659,
     "highway": "secondary",
     "has_cycleway": true,
@@ -11985,7 +11985,7 @@
   },
   {
     "osm_id": 637589776,
-    "name": "Praça da República",
+    "name": "Pra\u00e7a da Rep\u00fablica",
     "length": 0.0533507,
     "highway": "secondary",
     "has_cycleway": true,
@@ -12027,7 +12027,7 @@
   },
   {
     "osm_id": 645425614,
-    "name": "Rua Marquês de Maricá",
+    "name": "Rua Marqu\u00eas de Maric\u00e1",
     "length": 0.2240465,
     "highway": "secondary",
     "has_cycleway": true,
@@ -12111,7 +12111,7 @@
   },
   {
     "osm_id": 647111564,
-    "name": "Rua General Edson Amâncio Ramalho",
+    "name": "Rua General Edson Am\u00e2ncio Ramalho",
     "length": 0.215385,
     "highway": "primary",
     "has_cycleway": true,
@@ -12153,7 +12153,7 @@
   },
   {
     "osm_id": 647116510,
-    "name": "Rua Salvador de Sá",
+    "name": "Rua Salvador de S\u00e1",
     "length": 0.0240054,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -12167,7 +12167,7 @@
   },
   {
     "osm_id": 649368025,
-    "name": "Rua do Aragão",
+    "name": "Rua do Arag\u00e3o",
     "length": 0.1612869,
     "highway": "residential",
     "has_cycleway": true,
@@ -12237,7 +12237,7 @@
   },
   {
     "osm_id": 649776874,
-    "name": "Travessa do Cais da Detenção",
+    "name": "Travessa do Cais da Deten\u00e7\u00e3o",
     "length": 0.0409846,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -12251,7 +12251,7 @@
   },
   {
     "osm_id": 649802742,
-    "name": "Avenida Dom Hélder Câmara",
+    "name": "Avenida Dom H\u00e9lder C\u00e2mara",
     "length": 0.0318233,
     "highway": "secondary",
     "has_cycleway": true,
@@ -12265,7 +12265,7 @@
   },
   {
     "osm_id": 649802743,
-    "name": "Avenida Dom Hélder Câmara",
+    "name": "Avenida Dom H\u00e9lder C\u00e2mara",
     "length": 0.190383,
     "highway": "secondary",
     "has_cycleway": true,
@@ -12307,7 +12307,7 @@
   },
   {
     "osm_id": 650859657,
-    "name": "Rua Monsenhor Fabrício",
+    "name": "Rua Monsenhor Fabr\u00edcio",
     "length": 0.0837307,
     "highway": "secondary",
     "has_cycleway": true,
@@ -12321,7 +12321,7 @@
   },
   {
     "osm_id": 650859658,
-    "name": "Rua Doutor José Anastacio da Silva Guimarães",
+    "name": "Rua Doutor Jos\u00e9 Anastacio da Silva Guimar\u00e3es",
     "length": 0.0831551,
     "highway": "residential",
     "has_cycleway": true,
@@ -12335,7 +12335,7 @@
   },
   {
     "osm_id": 656029033,
-    "name": "Rua Antônio Falcão",
+    "name": "Rua Ant\u00f4nio Falc\u00e3o",
     "length": 0.1483227,
     "highway": "secondary",
     "has_cycleway": true,
@@ -12349,7 +12349,7 @@
   },
   {
     "osm_id": 656029034,
-    "name": "Rua Antônio Falcão",
+    "name": "Rua Ant\u00f4nio Falc\u00e3o",
     "length": 0.1506596,
     "highway": "secondary",
     "has_cycleway": true,
@@ -12419,7 +12419,7 @@
   },
   {
     "osm_id": 656124041,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.0080766,
     "highway": "residential",
     "has_cycleway": true,
@@ -12475,7 +12475,7 @@
   },
   {
     "osm_id": 663265621,
-    "name": "Rua Historiador Jordão Emerenciano",
+    "name": "Rua Historiador Jord\u00e3o Emerenciano",
     "length": 0.0746053,
     "highway": "residential",
     "has_cycleway": true,
@@ -12489,7 +12489,7 @@
   },
   {
     "osm_id": 666158441,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.056665,
     "highway": "secondary",
     "has_cycleway": true,
@@ -12503,7 +12503,7 @@
   },
   {
     "osm_id": 666158444,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.0806013,
     "highway": "secondary",
     "has_cycleway": true,
@@ -12545,7 +12545,7 @@
   },
   {
     "osm_id": 683012039,
-    "name": "Rua Pintor Antônio Albuquerque",
+    "name": "Rua Pintor Ant\u00f4nio Albuquerque",
     "length": 0.0343005,
     "highway": "secondary",
     "has_cycleway": true,
@@ -12559,7 +12559,7 @@
   },
   {
     "osm_id": 683033001,
-    "name": "Rua Mem de Sá",
+    "name": "Rua Mem de S\u00e1",
     "length": 0.0661193,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -12573,7 +12573,7 @@
   },
   {
     "osm_id": 683265615,
-    "name": "Rua Tenente Aurélio Sampaio",
+    "name": "Rua Tenente Aur\u00e9lio Sampaio",
     "length": 0.109696,
     "highway": "residential",
     "has_cycleway": true,
@@ -12587,7 +12587,7 @@
   },
   {
     "osm_id": 683266336,
-    "name": "Rua João Cardoso Aires",
+    "name": "Rua Jo\u00e3o Cardoso Aires",
     "length": 0.0238007,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -12601,7 +12601,7 @@
   },
   {
     "osm_id": 683266337,
-    "name": "Rua João Cardoso Aires",
+    "name": "Rua Jo\u00e3o Cardoso Aires",
     "length": 0.0054908,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -12661,7 +12661,7 @@
     "length": 0.0316612,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/696045645\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8727539, -8.0645669], [-34.8727191, -8.0645364], [-34.872538, -8.0645072], [-34.8724823, -8.0645218]]}, \"properties\": {\"id\": \"way/696045645\", \"name\": \"Rua da Moeda\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"highway\": \"pedestrian\", \"lit\": \"yes\", \"postal_code\": \"50030-040\", \"source:postal_code\": \"CNEFE\", \"surface\": \"paving_stones\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.847371",
@@ -12671,7 +12671,7 @@
   },
   {
     "osm_id": 700008077,
-    "name": "Rua do Hospício",
+    "name": "Rua do Hosp\u00edcio",
     "length": 0.0050367,
     "highway": "secondary",
     "has_cycleway": true,
@@ -12703,7 +12703,7 @@
     "length": 0.0229059,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/700979476\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9787486, -8.0758393], [-34.978663, -8.0760123], [-34.9786751, -8.0760182]]}, \"properties\": {\"id\": \"way/700979476\", \"name\": \"\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"bridge\": \"yes\", \"highway\": \"footway\", \"horse\": \"no\", \"layer\": \"1\", \"stroller\": \"yes\", \"surface\": \"concrete\", \"wheelchair\": \"yes\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.847446",
@@ -12769,7 +12769,7 @@
   },
   {
     "osm_id": 704220888,
-    "name": "Avenida João de Barros",
+    "name": "Avenida Jo\u00e3o de Barros",
     "length": 0.0307009,
     "highway": "secondary",
     "has_cycleway": true,
@@ -12825,7 +12825,7 @@
   },
   {
     "osm_id": 707023323,
-    "name": "Avenida Professor Artur de Sá",
+    "name": "Avenida Professor Artur de S\u00e1",
     "length": 0.0998118,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -12839,7 +12839,7 @@
   },
   {
     "osm_id": 707023325,
-    "name": "Avenida Professor Artur de Sá",
+    "name": "Avenida Professor Artur de S\u00e1",
     "length": 0.3364563,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -12881,7 +12881,7 @@
   },
   {
     "osm_id": 723619799,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.6338019,
     "highway": "residential",
     "has_cycleway": true,
@@ -12895,7 +12895,7 @@
   },
   {
     "osm_id": 723906438,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.0086438,
     "highway": "secondary",
     "has_cycleway": true,
@@ -12909,7 +12909,7 @@
   },
   {
     "osm_id": 723906439,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.2004986,
     "highway": "secondary",
     "has_cycleway": true,
@@ -12965,7 +12965,7 @@
   },
   {
     "osm_id": 750224855,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.0196461,
     "highway": "secondary",
     "has_cycleway": true,
@@ -12993,7 +12993,7 @@
   },
   {
     "osm_id": 750454501,
-    "name": "Túnel Chico Science",
+    "name": "T\u00fanel Chico Science",
     "length": 0.0054723,
     "highway": "primary",
     "has_cycleway": true,
@@ -13007,7 +13007,7 @@
   },
   {
     "osm_id": 752348375,
-    "name": "Avenida Mário Álvares Pereira de Lyra",
+    "name": "Avenida M\u00e1rio \u00c1lvares Pereira de Lyra",
     "length": 0.0269421,
     "highway": "tertiary_link",
     "has_cycleway": true,
@@ -13021,7 +13021,7 @@
   },
   {
     "osm_id": 753946881,
-    "name": "Rua Mem de Sá",
+    "name": "Rua Mem de S\u00e1",
     "length": 0.0028043,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -13035,7 +13035,7 @@
   },
   {
     "osm_id": 753946882,
-    "name": "Rua Mem de Sá",
+    "name": "Rua Mem de S\u00e1",
     "length": 0.005713,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -13049,7 +13049,7 @@
   },
   {
     "osm_id": 753963895,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.0015239,
     "highway": "primary",
     "has_cycleway": true,
@@ -13063,7 +13063,7 @@
   },
   {
     "osm_id": 753963896,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.0128638,
     "highway": "primary",
     "has_cycleway": true,
@@ -13077,7 +13077,7 @@
   },
   {
     "osm_id": 753963898,
-    "name": "Rotatória de Água Fria",
+    "name": "Rotat\u00f3ria de \u00c1gua Fria",
     "length": 0.0056466,
     "highway": "secondary",
     "has_cycleway": true,
@@ -13091,7 +13091,7 @@
   },
   {
     "osm_id": 754047612,
-    "name": "Rua da Regeneração",
+    "name": "Rua da Regenera\u00e7\u00e3o",
     "length": 0.0594225,
     "highway": "primary",
     "has_cycleway": true,
@@ -13105,7 +13105,7 @@
   },
   {
     "osm_id": 754276497,
-    "name": "Avenida Montevidéu",
+    "name": "Avenida Montevid\u00e9u",
     "length": 0.0568022,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -13119,7 +13119,7 @@
   },
   {
     "osm_id": 754547715,
-    "name": "Avenida Agamenon Magalhães - Pista Local",
+    "name": "Avenida Agamenon Magalh\u00e3es - Pista Local",
     "length": 0.0182984,
     "highway": "residential",
     "has_cycleway": true,
@@ -13189,7 +13189,7 @@
   },
   {
     "osm_id": 762739492,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.2551653,
     "highway": "residential",
     "has_cycleway": true,
@@ -13203,7 +13203,7 @@
   },
   {
     "osm_id": 762739493,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.021241,
     "highway": "residential",
     "has_cycleway": true,
@@ -13231,7 +13231,7 @@
   },
   {
     "osm_id": 762741651,
-    "name": "Rua José Alexandre Caçador",
+    "name": "Rua Jos\u00e9 Alexandre Ca\u00e7ador",
     "length": 0.0703978,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -13287,7 +13287,7 @@
   },
   {
     "osm_id": 762748536,
-    "name": "Rua Pedro Américo",
+    "name": "Rua Pedro Am\u00e9rico",
     "length": 0.138551,
     "highway": "residential",
     "has_cycleway": true,
@@ -13301,7 +13301,7 @@
   },
   {
     "osm_id": 762748537,
-    "name": "Rua Cônsul Vilares Fragoso",
+    "name": "Rua C\u00f4nsul Vilares Fragoso",
     "length": 0.3604681,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -13315,7 +13315,7 @@
   },
   {
     "osm_id": 762748538,
-    "name": "Rua Arsênio Calaça",
+    "name": "Rua Ars\u00eanio Cala\u00e7a",
     "length": 0.0436981,
     "highway": "residential",
     "has_cycleway": true,
@@ -13385,7 +13385,7 @@
   },
   {
     "osm_id": 762753486,
-    "name": "Avenida Maurício de Nassau",
+    "name": "Avenida Maur\u00edcio de Nassau",
     "length": 0.0618972,
     "highway": "secondary",
     "has_cycleway": true,
@@ -13441,7 +13441,7 @@
   },
   {
     "osm_id": 762760194,
-    "name": "Rua General Edson Amâncio Ramalho",
+    "name": "Rua General Edson Am\u00e2ncio Ramalho",
     "length": 0.160912,
     "highway": "secondary",
     "has_cycleway": true,
@@ -13469,7 +13469,7 @@
   },
   {
     "osm_id": 762760197,
-    "name": "Rua Barão de São Ângelo",
+    "name": "Rua Bar\u00e3o de S\u00e3o \u00c2ngelo",
     "length": 0.0167527,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -13497,7 +13497,7 @@
   },
   {
     "osm_id": 762896713,
-    "name": "Ciclovia Graça Araújo",
+    "name": "Ciclovia Gra\u00e7a Ara\u00fajo",
     "length": 1.2651883,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -13511,7 +13511,7 @@
   },
   {
     "osm_id": 762896714,
-    "name": "Ciclovia Graça Araújo",
+    "name": "Ciclovia Gra\u00e7a Ara\u00fajo",
     "length": 0.0030454,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -13525,7 +13525,7 @@
   },
   {
     "osm_id": 762906975,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.0247907,
     "highway": "trunk",
     "has_cycleway": true,
@@ -13539,7 +13539,7 @@
   },
   {
     "osm_id": 762927577,
-    "name": "Rua General Edson Amâncio Ramalho",
+    "name": "Rua General Edson Am\u00e2ncio Ramalho",
     "length": 0.1150882,
     "highway": "secondary",
     "has_cycleway": true,
@@ -13553,7 +13553,7 @@
   },
   {
     "osm_id": 762937129,
-    "name": "Avenida Marechal Juarez Távora",
+    "name": "Avenida Marechal Juarez T\u00e1vora",
     "length": 0.2484097,
     "highway": "secondary",
     "has_cycleway": true,
@@ -13567,7 +13567,7 @@
   },
   {
     "osm_id": 762937136,
-    "name": "Rua João Cardoso Aires",
+    "name": "Rua Jo\u00e3o Cardoso Aires",
     "length": 0.1667054,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -13581,7 +13581,7 @@
   },
   {
     "osm_id": 762937137,
-    "name": "Avenida Marechal Juarez Távora",
+    "name": "Avenida Marechal Juarez T\u00e1vora",
     "length": 0.1238849,
     "highway": "secondary",
     "has_cycleway": true,
@@ -13595,7 +13595,7 @@
   },
   {
     "osm_id": 762937141,
-    "name": "Avenida Lino Jordão",
+    "name": "Avenida Lino Jord\u00e3o",
     "length": 0.032889,
     "highway": "secondary",
     "has_cycleway": true,
@@ -13609,7 +13609,7 @@
   },
   {
     "osm_id": 762937142,
-    "name": "Avenida Marechal Juarez Távora",
+    "name": "Avenida Marechal Juarez T\u00e1vora",
     "length": 0.4311895,
     "highway": "secondary",
     "has_cycleway": true,
@@ -13623,11 +13623,11 @@
   },
   {
     "osm_id": 762937143,
-    "name": "Pontilhão",
+    "name": "Pontilh\u00e3o",
     "length": 0.0255765,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/762937143\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.905707, -8.1434752], [-34.9057294, -8.1434663], [-34.9058442, -8.1434222], [-34.9059229, -8.1433902]]}, \"properties\": {\"id\": \"way/762937143\", \"name\": \"Pontilh\\u00e3o\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"crossing\": \"marked\", \"cycleway\": \"crossing\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.848322",
@@ -13637,11 +13637,11 @@
   },
   {
     "osm_id": 762937144,
-    "name": "Pontilhão",
+    "name": "Pontilh\u00e3o",
     "length": 0.0169257,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/762937144\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9060571, -8.1433339], [-34.9061397, -8.1433014], [-34.9061998, -8.1432772]]}, \"properties\": {\"id\": \"way/762937144\", \"name\": \"Pontilh\\u00e3o\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"crossing\": \"marked\", \"cycleway\": \"crossing\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.848332",
@@ -13651,11 +13651,11 @@
   },
   {
     "osm_id": 762937145,
-    "name": "Pontilhão",
+    "name": "Pontilh\u00e3o",
     "length": 0.0160437,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/762937145\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9059229, -8.1433902], [-34.9060571, -8.1433339]]}, \"properties\": {\"id\": \"way/762937145\", \"name\": \"Pontilh\\u00e3o\", \"type\": \"Cal\\u00e7ada compartilhada\", \"access\": \"no\", \"bicycle\": \"designated\", \"bridge\": \"yes\", \"foot\": \"designated\", \"highway\": \"footway\", \"layer\": \"1\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.848343",
@@ -13665,7 +13665,7 @@
   },
   {
     "osm_id": 762937146,
-    "name": "Rua João Cardoso Aires",
+    "name": "Rua Jo\u00e3o Cardoso Aires",
     "length": 0.0514864,
     "highway": "residential",
     "has_cycleway": true,
@@ -13679,7 +13679,7 @@
   },
   {
     "osm_id": 762937147,
-    "name": "Rua Setúbal",
+    "name": "Rua Set\u00fabal",
     "length": 0.2842191,
     "highway": "residential",
     "has_cycleway": true,
@@ -13721,7 +13721,7 @@
   },
   {
     "osm_id": 762943310,
-    "name": "Rua José Domingues da Silva",
+    "name": "Rua Jos\u00e9 Domingues da Silva",
     "length": 0.2016953,
     "highway": "residential",
     "has_cycleway": true,
@@ -13749,7 +13749,7 @@
   },
   {
     "osm_id": 762953788,
-    "name": "Avenida Agamenon Magalhães - Pista Local",
+    "name": "Avenida Agamenon Magalh\u00e3es - Pista Local",
     "length": 0.1993569,
     "highway": "residential",
     "has_cycleway": true,
@@ -13791,7 +13791,7 @@
   },
   {
     "osm_id": 762960702,
-    "name": "Rua João Francisco Lisboa",
+    "name": "Rua Jo\u00e3o Francisco Lisboa",
     "length": 0.3662702,
     "highway": "residential",
     "has_cycleway": true,
@@ -13805,7 +13805,7 @@
   },
   {
     "osm_id": 762960703,
-    "name": "Rua Acadêmico Hélio Ramos",
+    "name": "Rua Acad\u00eamico H\u00e9lio Ramos",
     "length": 0.4101818,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -13833,7 +13833,7 @@
   },
   {
     "osm_id": 762960950,
-    "name": "Rua Frei Matias Tévis",
+    "name": "Rua Frei Matias T\u00e9vis",
     "length": 0.0986665,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -13847,7 +13847,7 @@
   },
   {
     "osm_id": 762960953,
-    "name": "Rua Frei Matias Tévis",
+    "name": "Rua Frei Matias T\u00e9vis",
     "length": 0.1265138,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -13875,7 +13875,7 @@
   },
   {
     "osm_id": 762962425,
-    "name": "Rua Tupinambás",
+    "name": "Rua Tupinamb\u00e1s",
     "length": 0.1019466,
     "highway": "residential",
     "has_cycleway": true,
@@ -14057,11 +14057,11 @@
   },
   {
     "osm_id": 764025312,
-    "name": "Pontilhão",
+    "name": "Pontilh\u00e3o",
     "length": 0.0114541,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/764025312\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.902884, -8.1350494], [-34.9029677, -8.1349882]]}, \"properties\": {\"id\": \"way/764025312\", \"name\": \"Pontilh\\u00e3o\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"crossing\": \"marked\", \"cycleway\": \"crossing\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.848719",
@@ -14071,11 +14071,11 @@
   },
   {
     "osm_id": 764025313,
-    "name": "Pontilhão",
+    "name": "Pontilh\u00e3o",
     "length": 0.0218166,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/764025313\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9030818, -8.1349524], [-34.9031559, -8.1349274], [-34.9032712, -8.1348948]]}, \"properties\": {\"id\": \"way/764025313\", \"name\": \"Pontilh\\u00e3o\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"crossing\": \"marked\", \"cycleway\": \"crossing\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.848729",
@@ -14085,11 +14085,11 @@
   },
   {
     "osm_id": 764025314,
-    "name": "Pontilhão",
+    "name": "Pontilh\u00e3o",
     "length": 0.0131754,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/764025314\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9029677, -8.1349882], [-34.9030818, -8.1349524]]}, \"properties\": {\"id\": \"way/764025314\", \"name\": \"Pontilh\\u00e3o\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"bridge\": \"yes\", \"highway\": \"footway\", \"layer\": \"1\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.848741",
@@ -14113,7 +14113,7 @@
   },
   {
     "osm_id": 764026177,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.0593142,
     "highway": "residential",
     "has_cycleway": true,
@@ -14183,7 +14183,7 @@
   },
   {
     "osm_id": 770273442,
-    "name": "Avenida Cruz Cabugá",
+    "name": "Avenida Cruz Cabug\u00e1",
     "length": 0.0134695,
     "highway": "secondary",
     "has_cycleway": true,
@@ -14211,7 +14211,7 @@
   },
   {
     "osm_id": 770310520,
-    "name": "Ponte Conde Maurício de Nassau",
+    "name": "Ponte Conde Maur\u00edcio de Nassau",
     "length": 0.0061389,
     "highway": "secondary",
     "has_cycleway": true,
@@ -14239,7 +14239,7 @@
   },
   {
     "osm_id": 770730306,
-    "name": "Rua João Fernandes Vieira",
+    "name": "Rua Jo\u00e3o Fernandes Vieira",
     "length": 0.1866732,
     "highway": "secondary",
     "has_cycleway": true,
@@ -14253,7 +14253,7 @@
   },
   {
     "osm_id": 770730307,
-    "name": "Avenida Montevidéu",
+    "name": "Avenida Montevid\u00e9u",
     "length": 0.0320711,
     "highway": "secondary",
     "has_cycleway": true,
@@ -14267,7 +14267,7 @@
   },
   {
     "osm_id": 770730308,
-    "name": "Avenida João de Barros",
+    "name": "Avenida Jo\u00e3o de Barros",
     "length": 0.3320973,
     "highway": "secondary",
     "has_cycleway": true,
@@ -14281,7 +14281,7 @@
   },
   {
     "osm_id": 770730881,
-    "name": "Rua Quitério Inácio de Melo",
+    "name": "Rua Quit\u00e9rio In\u00e1cio de Melo",
     "length": 0.0533189,
     "highway": "primary",
     "has_cycleway": true,
@@ -14337,7 +14337,7 @@
   },
   {
     "osm_id": 773053326,
-    "name": "Rua Doutor João Lacerda",
+    "name": "Rua Doutor Jo\u00e3o Lacerda",
     "length": 0.1512585,
     "highway": "secondary",
     "has_cycleway": true,
@@ -14393,7 +14393,7 @@
   },
   {
     "osm_id": 775975304,
-    "name": "Rua José de Alencar",
+    "name": "Rua Jos\u00e9 de Alencar",
     "length": 0.1993337,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -14407,7 +14407,7 @@
   },
   {
     "osm_id": 775975305,
-    "name": "Rua José de Alencar",
+    "name": "Rua Jos\u00e9 de Alencar",
     "length": 0.0908914,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -14435,7 +14435,7 @@
   },
   {
     "osm_id": 777105575,
-    "name": "Rua São Nicolau",
+    "name": "Rua S\u00e3o Nicolau",
     "length": 0.0929902,
     "highway": "secondary",
     "has_cycleway": true,
@@ -14449,7 +14449,7 @@
   },
   {
     "osm_id": 777693660,
-    "name": "Avenida Lino Jordão",
+    "name": "Avenida Lino Jord\u00e3o",
     "length": 0.0062179,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -14477,7 +14477,7 @@
   },
   {
     "osm_id": 777786581,
-    "name": "Rua Marquês de Maricá",
+    "name": "Rua Marqu\u00eas de Maric\u00e1",
     "length": 0.0146686,
     "highway": "secondary",
     "has_cycleway": true,
@@ -14495,7 +14495,7 @@
     "length": 0.1103921,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/778011329\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.920795, -8.0856571], [-34.9209753, -8.0866337]]}, \"properties\": {\"id\": \"way/778011329\", \"name\": \"Primeira Travessa Rua Passo De Santa Cruz\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"highway\": \"pedestrian\", \"horse\": \"yes\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.849103",
@@ -14505,7 +14505,7 @@
   },
   {
     "osm_id": 778025646,
-    "name": "Avenida Brasília Formosa",
+    "name": "Avenida Bras\u00edlia Formosa",
     "length": 0.580872,
     "highway": "residential",
     "has_cycleway": true,
@@ -14519,7 +14519,7 @@
   },
   {
     "osm_id": 778169420,
-    "name": "Avenida José Américo de Almeida",
+    "name": "Avenida Jos\u00e9 Am\u00e9rico de Almeida",
     "length": 0.209417,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -14617,11 +14617,11 @@
   },
   {
     "osm_id": 778867795,
-    "name": "Pontilhão do Canal do Arruda",
+    "name": "Pontilh\u00e3o do Canal do Arruda",
     "length": 0.0325545,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/778867795\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.904337, -8.0263775], [-34.9042833, -8.0260896]]}, \"properties\": {\"id\": \"way/778867795\", \"name\": \"Pontilh\\u00e3o do Canal do Arruda\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"bridge\": \"yes\", \"highway\": \"footway\", \"layer\": \"1\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.849243",
@@ -14645,7 +14645,7 @@
   },
   {
     "osm_id": 783884644,
-    "name": "Rua Engenheiro José Brandão Cavalcante",
+    "name": "Rua Engenheiro Jos\u00e9 Brand\u00e3o Cavalcante",
     "length": 0.0160629,
     "highway": "residential",
     "has_cycleway": true,
@@ -14659,7 +14659,7 @@
   },
   {
     "osm_id": 783884645,
-    "name": "Rua Engenheiro José Brandão Cavalcante",
+    "name": "Rua Engenheiro Jos\u00e9 Brand\u00e3o Cavalcante",
     "length": 0.0043467,
     "highway": "residential",
     "has_cycleway": true,
@@ -14673,7 +14673,7 @@
   },
   {
     "osm_id": 786325338,
-    "name": "Avenida Nossa Senhora da Saúde",
+    "name": "Avenida Nossa Senhora da Sa\u00fade",
     "length": 0.1654674,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -14687,7 +14687,7 @@
   },
   {
     "osm_id": 786325340,
-    "name": "Avenida Professor Estevão Francisco da Costa",
+    "name": "Avenida Professor Estev\u00e3o Francisco da Costa",
     "length": 0.1494735,
     "highway": "residential",
     "has_cycleway": true,
@@ -14701,7 +14701,7 @@
   },
   {
     "osm_id": 786325343,
-    "name": "Rua Amélia",
+    "name": "Rua Am\u00e9lia",
     "length": 0.486093,
     "highway": "secondary",
     "has_cycleway": true,
@@ -14729,7 +14729,7 @@
   },
   {
     "osm_id": 792570583,
-    "name": "Rua Santos Araújo",
+    "name": "Rua Santos Ara\u00fajo",
     "length": 0.1273477,
     "highway": "primary",
     "has_cycleway": true,
@@ -14743,7 +14743,7 @@
   },
   {
     "osm_id": 797179314,
-    "name": "Rua Acadêmico Hélio Ramos",
+    "name": "Rua Acad\u00eamico H\u00e9lio Ramos",
     "length": 0.0214115,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -14757,7 +14757,7 @@
   },
   {
     "osm_id": 797179315,
-    "name": "Rua Acadêmico Hélio Ramos",
+    "name": "Rua Acad\u00eamico H\u00e9lio Ramos",
     "length": 0.0214008,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -14771,7 +14771,7 @@
   },
   {
     "osm_id": 800702291,
-    "name": "Rua Engenheiro Brandão Cavalcante",
+    "name": "Rua Engenheiro Brand\u00e3o Cavalcante",
     "length": 0.3301311,
     "highway": "residential",
     "has_cycleway": true,
@@ -14841,7 +14841,7 @@
   },
   {
     "osm_id": 815012800,
-    "name": "Rua Ministro João Alberto",
+    "name": "Rua Ministro Jo\u00e3o Alberto",
     "length": 0.0335526,
     "highway": "tertiary_link",
     "has_cycleway": true,
@@ -14855,7 +14855,7 @@
   },
   {
     "osm_id": 815012801,
-    "name": "Rua Ministro João Alberto",
+    "name": "Rua Ministro Jo\u00e3o Alberto",
     "length": 0.0395613,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -14897,7 +14897,7 @@
   },
   {
     "osm_id": 821123750,
-    "name": "Rua Conde de Irajá",
+    "name": "Rua Conde de Iraj\u00e1",
     "length": 0.265651,
     "highway": "secondary",
     "has_cycleway": true,
@@ -14925,7 +14925,7 @@
   },
   {
     "osm_id": 821123758,
-    "name": "Rua Professor Antônio Coelho",
+    "name": "Rua Professor Ant\u00f4nio Coelho",
     "length": 0.331826,
     "highway": "residential",
     "has_cycleway": true,
@@ -14953,7 +14953,7 @@
   },
   {
     "osm_id": 823189908,
-    "name": "Rua Márcia Mendes",
+    "name": "Rua M\u00e1rcia Mendes",
     "length": 0.2963424,
     "highway": "residential",
     "has_cycleway": true,
@@ -14995,7 +14995,7 @@
   },
   {
     "osm_id": 824376340,
-    "name": "Rotatória de Água Fria",
+    "name": "Rotat\u00f3ria de \u00c1gua Fria",
     "length": 0.0049433,
     "highway": "secondary",
     "has_cycleway": true,
@@ -15121,7 +15121,7 @@
   },
   {
     "osm_id": 836834966,
-    "name": "Avenida Júlio César",
+    "name": "Avenida J\u00falio C\u00e9sar",
     "length": 0.169644,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -15135,7 +15135,7 @@
   },
   {
     "osm_id": 836834968,
-    "name": "Rua Três de Março",
+    "name": "Rua Tr\u00eas de Mar\u00e7o",
     "length": 0.0341906,
     "highway": "residential",
     "has_cycleway": true,
@@ -15163,7 +15163,7 @@
   },
   {
     "osm_id": 836834976,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.0083908,
     "highway": "primary",
     "has_cycleway": true,
@@ -15177,7 +15177,7 @@
   },
   {
     "osm_id": 836834977,
-    "name": "Estrada Velha de Água Fria",
+    "name": "Estrada Velha de \u00c1gua Fria",
     "length": 0.1512133,
     "highway": "secondary",
     "has_cycleway": true,
@@ -15331,7 +15331,7 @@
   },
   {
     "osm_id": 839072086,
-    "name": "Rua Coronel João Batista do Rego Barros",
+    "name": "Rua Coronel Jo\u00e3o Batista do Rego Barros",
     "length": 0.3062149,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -15387,7 +15387,7 @@
   },
   {
     "osm_id": 854786867,
-    "name": "Avenida Inácio Monteiro",
+    "name": "Avenida In\u00e1cio Monteiro",
     "length": 0.0111104,
     "highway": "residential",
     "has_cycleway": true,
@@ -15443,7 +15443,7 @@
   },
   {
     "osm_id": 854786882,
-    "name": "Avenida José Ferreira Lins",
+    "name": "Avenida Jos\u00e9 Ferreira Lins",
     "length": 0.077481,
     "highway": "residential",
     "has_cycleway": true,
@@ -15513,7 +15513,7 @@
   },
   {
     "osm_id": 854786902,
-    "name": "Rua Engenheiro José Brandão Cavalcante",
+    "name": "Rua Engenheiro Jos\u00e9 Brand\u00e3o Cavalcante",
     "length": 0.2269473,
     "highway": "residential",
     "has_cycleway": true,
@@ -15527,7 +15527,7 @@
   },
   {
     "osm_id": 854994654,
-    "name": "Rua Antônio Falcão",
+    "name": "Rua Ant\u00f4nio Falc\u00e3o",
     "length": 0.0990018,
     "highway": "secondary",
     "has_cycleway": true,
@@ -15597,7 +15597,7 @@
   },
   {
     "osm_id": 863027564,
-    "name": "Rua Manoel Brandão",
+    "name": "Rua Manoel Brand\u00e3o",
     "length": 0.077229,
     "highway": "residential",
     "has_cycleway": true,
@@ -15611,7 +15611,7 @@
   },
   {
     "osm_id": 863027568,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.013174,
     "highway": "primary",
     "has_cycleway": true,
@@ -15681,7 +15681,7 @@
   },
   {
     "osm_id": 880644137,
-    "name": "Rua Antônio Valdevino da Costa",
+    "name": "Rua Ant\u00f4nio Valdevino da Costa",
     "length": 0.0257919,
     "highway": "residential",
     "has_cycleway": true,
@@ -15737,7 +15737,7 @@
   },
   {
     "osm_id": 899950239,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.2101724,
     "highway": "residential",
     "has_cycleway": true,
@@ -15751,7 +15751,7 @@
   },
   {
     "osm_id": 901242723,
-    "name": "Avenida Júlio César",
+    "name": "Avenida J\u00falio C\u00e9sar",
     "length": 0.2874117,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -15765,7 +15765,7 @@
   },
   {
     "osm_id": 911290359,
-    "name": "Avenida Dom Hélder Câmara",
+    "name": "Avenida Dom H\u00e9lder C\u00e2mara",
     "length": 0.3640202,
     "highway": "secondary",
     "has_cycleway": true,
@@ -15779,7 +15779,7 @@
   },
   {
     "osm_id": 911290368,
-    "name": "Rua São Nicolau",
+    "name": "Rua S\u00e3o Nicolau",
     "length": 0.0557049,
     "highway": "secondary",
     "has_cycleway": true,
@@ -15793,7 +15793,7 @@
   },
   {
     "osm_id": 911290373,
-    "name": "Avenida Dom Hélder Câmara",
+    "name": "Avenida Dom H\u00e9lder C\u00e2mara",
     "length": 0.0399761,
     "highway": "secondary",
     "has_cycleway": true,
@@ -15821,7 +15821,7 @@
   },
   {
     "osm_id": 911290376,
-    "name": "Rua Itaimbé",
+    "name": "Rua Itaimb\u00e9",
     "length": 0.0559599,
     "highway": "residential",
     "has_cycleway": true,
@@ -15863,7 +15863,7 @@
   },
   {
     "osm_id": 924065445,
-    "name": "Rua Márcia Mendes",
+    "name": "Rua M\u00e1rcia Mendes",
     "length": 0.1348276,
     "highway": "unclassified",
     "has_cycleway": true,
@@ -15891,7 +15891,7 @@
   },
   {
     "osm_id": 927715995,
-    "name": "Rua Antônio Novais",
+    "name": "Rua Ant\u00f4nio Novais",
     "length": 0.124153,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -15919,7 +15919,7 @@
   },
   {
     "osm_id": 930355052,
-    "name": "Avenida Brasília Formosa",
+    "name": "Avenida Bras\u00edlia Formosa",
     "length": 0.0230098,
     "highway": "residential",
     "has_cycleway": true,
@@ -15933,7 +15933,7 @@
   },
   {
     "osm_id": 930355053,
-    "name": "Avenida Brasília Formosa",
+    "name": "Avenida Bras\u00edlia Formosa",
     "length": 0.0084889,
     "highway": "residential",
     "has_cycleway": true,
@@ -15961,11 +15961,11 @@
   },
   {
     "osm_id": 930662176,
-    "name": "Praça Pinto Damásio",
+    "name": "Pra\u00e7a Pinto Dam\u00e1sio",
     "length": 0.341165,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/930662176\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9596201, -8.0485851], [-34.9592079, -8.0486508], [-34.9591976, -8.0486539], [-34.959188, -8.0486574], [-34.9591812, -8.048662], [-34.9591761, -8.0486682], [-34.9591697, -8.0486767], [-34.9591659, -8.048685], [-34.9591637, -8.048694], [-34.9591633, -8.0487065], [-34.9593273, -8.0497062], [-34.9593306, -8.0497241], [-34.9593367, -8.0497315], [-34.9593422, -8.0497378], [-34.9593481, -8.0497407], [-34.9593585, -8.0497461], [-34.959371, -8.0497498], [-34.9597563, -8.0496526], [-34.9597679, -8.0496477], [-34.9597806, -8.0496378], [-34.9597906, -8.0496256], [-34.9597941, -8.0496172], [-34.9597964, -8.049608], [-34.9596262, -8.0485917], [-34.9596258, -8.04859], [-34.9596251, -8.0485881], [-34.9596239, -8.0485866], [-34.9596224, -8.0485857], [-34.9596201, -8.0485851]]}, \"properties\": {\"id\": \"way/930662176\", \"name\": \"Pra\\u00e7a Pinto Dam\\u00e1sio\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.850605",
@@ -15975,7 +15975,7 @@
   },
   {
     "osm_id": 930691563,
-    "name": "Rua Antônio Falcão",
+    "name": "Rua Ant\u00f4nio Falc\u00e3o",
     "length": 0.0788703,
     "highway": "secondary",
     "has_cycleway": true,
@@ -15989,7 +15989,7 @@
   },
   {
     "osm_id": 930691564,
-    "name": "Rua Antônio Falcão",
+    "name": "Rua Ant\u00f4nio Falc\u00e3o",
     "length": 0.1434043,
     "highway": "secondary",
     "has_cycleway": true,
@@ -16003,7 +16003,7 @@
   },
   {
     "osm_id": 930691566,
-    "name": "Rua Félix de Brito Melo",
+    "name": "Rua F\u00e9lix de Brito Melo",
     "length": 0.1443044,
     "highway": "secondary",
     "has_cycleway": true,
@@ -16017,7 +16017,7 @@
   },
   {
     "osm_id": 930691567,
-    "name": "Rua Félix de Brito Melo",
+    "name": "Rua F\u00e9lix de Brito Melo",
     "length": 0.0769517,
     "highway": "secondary",
     "has_cycleway": true,
@@ -16031,7 +16031,7 @@
   },
   {
     "osm_id": 930691568,
-    "name": "Rua Félix de Brito Melo",
+    "name": "Rua F\u00e9lix de Brito Melo",
     "length": 0.1058556,
     "highway": "secondary",
     "has_cycleway": true,
@@ -16045,7 +16045,7 @@
   },
   {
     "osm_id": 930790689,
-    "name": "Rua Itaquicé",
+    "name": "Rua Itaquic\u00e9",
     "length": 0.0923726,
     "highway": "residential",
     "has_cycleway": true,
@@ -16073,7 +16073,7 @@
   },
   {
     "osm_id": 930790692,
-    "name": "Rua Araçatuba",
+    "name": "Rua Ara\u00e7atuba",
     "length": 0.0869354,
     "highway": "residential",
     "has_cycleway": true,
@@ -16087,7 +16087,7 @@
   },
   {
     "osm_id": 930790693,
-    "name": "Rua Itaquicé",
+    "name": "Rua Itaquic\u00e9",
     "length": 0.169052,
     "highway": "residential",
     "has_cycleway": true,
@@ -16101,7 +16101,7 @@
   },
   {
     "osm_id": 930790695,
-    "name": "Avenida Dom Hélder Câmara",
+    "name": "Avenida Dom H\u00e9lder C\u00e2mara",
     "length": 0.0231736,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -16115,11 +16115,11 @@
   },
   {
     "osm_id": 930790696,
-    "name": "Avenida Dom Hélder Câmara",
+    "name": "Avenida Dom H\u00e9lder C\u00e2mara",
     "length": 0.0828855,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/930790696\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.927352, -8.1070389], [-34.927958, -8.1071208], [-34.927974, -8.107123], [-34.927996, -8.107127], [-34.9280047, -8.1071307], [-34.9280141, -8.107135], [-34.9280248, -8.1071402], [-34.9280368, -8.1071456], [-34.9280617, -8.1071587], [-34.9280869, -8.1071742]]}, \"properties\": {\"id\": \"way/930790696\", \"name\": \"Avenida Dom H\\u00e9lder C\\u00e2mara\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.850722",
@@ -16129,7 +16129,7 @@
   },
   {
     "osm_id": 930790697,
-    "name": "Avenida Dom Hélder Câmara",
+    "name": "Avenida Dom H\u00e9lder C\u00e2mara",
     "length": 0.0120002,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -16143,7 +16143,7 @@
   },
   {
     "osm_id": 930790699,
-    "name": "Avenida Dom Hélder Câmara",
+    "name": "Avenida Dom H\u00e9lder C\u00e2mara",
     "length": 0.0820725,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -16157,7 +16157,7 @@
   },
   {
     "osm_id": 930790700,
-    "name": "Avenida Dom Hélder Câmara",
+    "name": "Avenida Dom H\u00e9lder C\u00e2mara",
     "length": 0.0067778,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -16171,7 +16171,7 @@
   },
   {
     "osm_id": 930790701,
-    "name": "Avenida Dom Hélder Câmara",
+    "name": "Avenida Dom H\u00e9lder C\u00e2mara",
     "length": 0.004954,
     "highway": "secondary",
     "has_cycleway": true,
@@ -16199,11 +16199,11 @@
   },
   {
     "osm_id": 930798445,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.0313967,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/930798445\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8847298, -8.0423582], [-34.8845278, -8.0425575]]}, \"properties\": {\"id\": \"way/930798445\", \"name\": \"Avenida Governador Agamenon Magalh\\u00e3es\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"crossing:island\": \"yes\", \"foot\": \"permissive\", \"footway\": \"sidewalk\", \"highway\": \"footway\", \"surface\": \"concrete\", \"tactile_paving\": \"no\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.850780",
@@ -16213,7 +16213,7 @@
   },
   {
     "osm_id": 930798446,
-    "name": "Avenida Cruz Cabugá",
+    "name": "Avenida Cruz Cabug\u00e1",
     "length": 0.0204138,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -16227,7 +16227,7 @@
   },
   {
     "osm_id": 930798447,
-    "name": "Avenida Cruz Cabugá",
+    "name": "Avenida Cruz Cabug\u00e1",
     "length": 0.0914501,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -16241,7 +16241,7 @@
   },
   {
     "osm_id": 930798448,
-    "name": "Avenida Cruz Cabugá",
+    "name": "Avenida Cruz Cabug\u00e1",
     "length": 0.0342941,
     "highway": "secondary",
     "has_cycleway": true,
@@ -16255,7 +16255,7 @@
   },
   {
     "osm_id": 930798449,
-    "name": "Avenida Cruz Cabugá",
+    "name": "Avenida Cruz Cabug\u00e1",
     "length": 0.0402382,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -16339,7 +16339,7 @@
   },
   {
     "osm_id": 965719997,
-    "name": "Avenida Maurício de Nassau",
+    "name": "Avenida Maur\u00edcio de Nassau",
     "length": 0.0560129,
     "highway": "secondary",
     "has_cycleway": true,
@@ -16381,7 +16381,7 @@
   },
   {
     "osm_id": 965984036,
-    "name": "Rua Neto de Mendonça",
+    "name": "Rua Neto de Mendon\u00e7a",
     "length": 0.0249775,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16409,7 +16409,7 @@
   },
   {
     "osm_id": 966029958,
-    "name": "Rua Couto Magalhães",
+    "name": "Rua Couto Magalh\u00e3es",
     "length": 0.0294988,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16423,7 +16423,7 @@
   },
   {
     "osm_id": 966029959,
-    "name": "Rua José Alexandre Caçador",
+    "name": "Rua Jos\u00e9 Alexandre Ca\u00e7ador",
     "length": 0.0298986,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16437,7 +16437,7 @@
   },
   {
     "osm_id": 966034197,
-    "name": "Rua Professor Estevão Francisco da Costa",
+    "name": "Rua Professor Estev\u00e3o Francisco da Costa",
     "length": 0.0119253,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16451,7 +16451,7 @@
   },
   {
     "osm_id": 966034198,
-    "name": "Rua Professor Estevão Francisco da Costa",
+    "name": "Rua Professor Estev\u00e3o Francisco da Costa",
     "length": 0.0126006,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16465,7 +16465,7 @@
   },
   {
     "osm_id": 966034199,
-    "name": "Rua Professor Estevão Francisco da Costa",
+    "name": "Rua Professor Estev\u00e3o Francisco da Costa",
     "length": 0.0049111,
     "highway": "tertiary_link",
     "has_cycleway": true,
@@ -16479,7 +16479,7 @@
   },
   {
     "osm_id": 966166282,
-    "name": "Praça Zumbi dos Palmares",
+    "name": "Pra\u00e7a Zumbi dos Palmares",
     "length": 0.0529316,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16493,7 +16493,7 @@
   },
   {
     "osm_id": 966166283,
-    "name": "Praça Zumbi dos Palmares",
+    "name": "Pra\u00e7a Zumbi dos Palmares",
     "length": 0.0315774,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16507,7 +16507,7 @@
   },
   {
     "osm_id": 966166284,
-    "name": "Praça Zumbi dos Palmares",
+    "name": "Pra\u00e7a Zumbi dos Palmares",
     "length": 0.0125171,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16521,7 +16521,7 @@
   },
   {
     "osm_id": 966213965,
-    "name": "Rua Professor Estevão Francisco da Costa",
+    "name": "Rua Professor Estev\u00e3o Francisco da Costa",
     "length": 0.0094866,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16563,7 +16563,7 @@
   },
   {
     "osm_id": 966248371,
-    "name": "Rua Engenheiro José Brandão Cavalcante",
+    "name": "Rua Engenheiro Jos\u00e9 Brand\u00e3o Cavalcante",
     "length": 0.0007457,
     "highway": "residential",
     "has_cycleway": true,
@@ -16605,7 +16605,7 @@
   },
   {
     "osm_id": 966538453,
-    "name": "Rua Coronel João Batista do Rego Barros",
+    "name": "Rua Coronel Jo\u00e3o Batista do Rego Barros",
     "length": 0.0604602,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16689,7 +16689,7 @@
   },
   {
     "osm_id": 966590766,
-    "name": "Rua João Cardoso Aires",
+    "name": "Rua Jo\u00e3o Cardoso Aires",
     "length": 0.2147746,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16703,7 +16703,7 @@
   },
   {
     "osm_id": 966593153,
-    "name": "Rua Antônio Curado",
+    "name": "Rua Ant\u00f4nio Curado",
     "length": 0.2760481,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16717,7 +16717,7 @@
   },
   {
     "osm_id": 966787079,
-    "name": "Rua Ambrósio Machado",
+    "name": "Rua Ambr\u00f3sio Machado",
     "length": 0.0068575,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16731,7 +16731,7 @@
   },
   {
     "osm_id": 966787080,
-    "name": "Rua Ambrósio Machado",
+    "name": "Rua Ambr\u00f3sio Machado",
     "length": 0.0054456,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16745,7 +16745,7 @@
   },
   {
     "osm_id": 966787081,
-    "name": "Rua Ambrósio Machado",
+    "name": "Rua Ambr\u00f3sio Machado",
     "length": 0.0015371,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16759,7 +16759,7 @@
   },
   {
     "osm_id": 966787082,
-    "name": "Rua Ambrósio Machado",
+    "name": "Rua Ambr\u00f3sio Machado",
     "length": 0.002008,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16773,7 +16773,7 @@
   },
   {
     "osm_id": 966798842,
-    "name": "Avenida Professor Estevão Francisco da Costa",
+    "name": "Avenida Professor Estev\u00e3o Francisco da Costa",
     "length": 0.0132846,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -16801,7 +16801,7 @@
   },
   {
     "osm_id": 966804522,
-    "name": "Rua Félix de Brito Melo",
+    "name": "Rua F\u00e9lix de Brito Melo",
     "length": 0.0174413,
     "highway": "secondary",
     "has_cycleway": true,
@@ -16829,7 +16829,7 @@
   },
   {
     "osm_id": 966827332,
-    "name": "Rua Pintor Antônio Albuquerque",
+    "name": "Rua Pintor Ant\u00f4nio Albuquerque",
     "length": 0.0622837,
     "highway": "secondary",
     "has_cycleway": true,
@@ -16843,7 +16843,7 @@
   },
   {
     "osm_id": 966827333,
-    "name": "Rua Virgínia Heráclio",
+    "name": "Rua Virg\u00ednia Her\u00e1clio",
     "length": 0.0113951,
     "highway": "secondary",
     "has_cycleway": true,
@@ -16857,7 +16857,7 @@
   },
   {
     "osm_id": 966832034,
-    "name": "Rua Quitério Inácio de Melo",
+    "name": "Rua Quit\u00e9rio In\u00e1cio de Melo",
     "length": 0.048992,
     "highway": "primary",
     "has_cycleway": true,
@@ -16871,7 +16871,7 @@
   },
   {
     "osm_id": 966838174,
-    "name": "Rua Virgínia Heráclio",
+    "name": "Rua Virg\u00ednia Her\u00e1clio",
     "length": 0.0096707,
     "highway": "secondary",
     "has_cycleway": true,
@@ -17025,7 +17025,7 @@
   },
   {
     "osm_id": 967668730,
-    "name": "Praça Professor Campelo Barreto",
+    "name": "Pra\u00e7a Professor Campelo Barreto",
     "length": 0.0555275,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17039,7 +17039,7 @@
   },
   {
     "osm_id": 967668776,
-    "name": "Rua Mem de Sá",
+    "name": "Rua Mem de S\u00e1",
     "length": 0.0860882,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17053,7 +17053,7 @@
   },
   {
     "osm_id": 967909327,
-    "name": "Avenida Sebastião Salazar",
+    "name": "Avenida Sebasti\u00e3o Salazar",
     "length": 0.2827501,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17095,7 +17095,7 @@
   },
   {
     "osm_id": 967939989,
-    "name": "Rua Doutor José Mariano",
+    "name": "Rua Doutor Jos\u00e9 Mariano",
     "length": 0.0227071,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17109,7 +17109,7 @@
   },
   {
     "osm_id": 967962393,
-    "name": "Rua Amélia",
+    "name": "Rua Am\u00e9lia",
     "length": 0.2656687,
     "highway": "secondary",
     "has_cycleway": true,
@@ -17123,7 +17123,7 @@
   },
   {
     "osm_id": 967963850,
-    "name": "Praça da República",
+    "name": "Pra\u00e7a da Rep\u00fablica",
     "length": 0.0075797,
     "highway": "secondary",
     "has_cycleway": true,
@@ -17151,7 +17151,7 @@
   },
   {
     "osm_id": 967972504,
-    "name": "Travessa do Cais da Detenção",
+    "name": "Travessa do Cais da Deten\u00e7\u00e3o",
     "length": 0.0611973,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17193,7 +17193,7 @@
   },
   {
     "osm_id": 967979023,
-    "name": "Rua Antônio Gomes de Freitas",
+    "name": "Rua Ant\u00f4nio Gomes de Freitas",
     "length": 0.0103514,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17207,7 +17207,7 @@
   },
   {
     "osm_id": 967979024,
-    "name": "Rua Antônio Gomes de Freitas",
+    "name": "Rua Ant\u00f4nio Gomes de Freitas",
     "length": 0.0035343,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17221,7 +17221,7 @@
   },
   {
     "osm_id": 967998463,
-    "name": "Rua General Edson Amâncio Ramalho",
+    "name": "Rua General Edson Am\u00e2ncio Ramalho",
     "length": 0.0234033,
     "highway": "secondary",
     "has_cycleway": true,
@@ -17235,7 +17235,7 @@
   },
   {
     "osm_id": 968239742,
-    "name": "Rua do Hospício",
+    "name": "Rua do Hosp\u00edcio",
     "length": 0.0973522,
     "highway": "secondary",
     "has_cycleway": true,
@@ -17249,7 +17249,7 @@
   },
   {
     "osm_id": 968283969,
-    "name": "Rua Othon Paraíso",
+    "name": "Rua Othon Para\u00edso",
     "length": 0.0230186,
     "highway": "residential",
     "has_cycleway": true,
@@ -17277,7 +17277,7 @@
   },
   {
     "osm_id": 968292794,
-    "name": "Rua Marquês de Maricá",
+    "name": "Rua Marqu\u00eas de Maric\u00e1",
     "length": 0.027636,
     "highway": "secondary",
     "has_cycleway": true,
@@ -17291,7 +17291,7 @@
   },
   {
     "osm_id": 968292795,
-    "name": "Rua Marquês de Maricá",
+    "name": "Rua Marqu\u00eas de Maric\u00e1",
     "length": 0.0342512,
     "highway": "secondary",
     "has_cycleway": true,
@@ -17305,7 +17305,7 @@
   },
   {
     "osm_id": 968292796,
-    "name": "Rua Marquês de Maricá",
+    "name": "Rua Marqu\u00eas de Maric\u00e1",
     "length": 0.0316133,
     "highway": "secondary",
     "has_cycleway": true,
@@ -17319,7 +17319,7 @@
   },
   {
     "osm_id": 968292797,
-    "name": "Rua Marquês de Maricá",
+    "name": "Rua Marqu\u00eas de Maric\u00e1",
     "length": 0.0279034,
     "highway": "secondary",
     "has_cycleway": true,
@@ -17333,7 +17333,7 @@
   },
   {
     "osm_id": 968292798,
-    "name": "Rua Marquês de Maricá",
+    "name": "Rua Marqu\u00eas de Maric\u00e1",
     "length": 0.0305915,
     "highway": "secondary",
     "has_cycleway": true,
@@ -17375,7 +17375,7 @@
   },
   {
     "osm_id": 968299893,
-    "name": "Rua José de Alencar",
+    "name": "Rua Jos\u00e9 de Alencar",
     "length": 0.1009091,
     "highway": "residential",
     "has_cycleway": true,
@@ -17403,7 +17403,7 @@
   },
   {
     "osm_id": 968501095,
-    "name": "Rua Frei Matias Tévis",
+    "name": "Rua Frei Matias T\u00e9vis",
     "length": 0.020436,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17417,7 +17417,7 @@
   },
   {
     "osm_id": 968520978,
-    "name": "Avenida Inácio Monteiro",
+    "name": "Avenida In\u00e1cio Monteiro",
     "length": 0.0306379,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17431,7 +17431,7 @@
   },
   {
     "osm_id": 968523622,
-    "name": "Avenida Nossa Senhora da Saúde",
+    "name": "Avenida Nossa Senhora da Sa\u00fade",
     "length": 0.0218665,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17445,7 +17445,7 @@
   },
   {
     "osm_id": 968554681,
-    "name": "Avenida Professor Artur de Sá",
+    "name": "Avenida Professor Artur de S\u00e1",
     "length": 0.0204787,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17459,7 +17459,7 @@
   },
   {
     "osm_id": 968554682,
-    "name": "Avenida Professor Artur de Sá",
+    "name": "Avenida Professor Artur de S\u00e1",
     "length": 0.0996937,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17473,7 +17473,7 @@
   },
   {
     "osm_id": 968554683,
-    "name": "Avenida Professor Artur de Sá",
+    "name": "Avenida Professor Artur de S\u00e1",
     "length": 0.0421134,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17487,7 +17487,7 @@
   },
   {
     "osm_id": 968554685,
-    "name": "Avenida Professor Artur de Sá",
+    "name": "Avenida Professor Artur de S\u00e1",
     "length": 0.1109999,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17501,7 +17501,7 @@
   },
   {
     "osm_id": 968554686,
-    "name": "Avenida Professor Artur de Sá",
+    "name": "Avenida Professor Artur de S\u00e1",
     "length": 0.0860545,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17515,7 +17515,7 @@
   },
   {
     "osm_id": 968554687,
-    "name": "Avenida Professor Artur de Sá",
+    "name": "Avenida Professor Artur de S\u00e1",
     "length": 0.1175323,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17529,7 +17529,7 @@
   },
   {
     "osm_id": 968556419,
-    "name": "Avenida Professor Artur de Sá",
+    "name": "Avenida Professor Artur de S\u00e1",
     "length": 0.0522757,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17725,7 +17725,7 @@
   },
   {
     "osm_id": 968625619,
-    "name": "Avenida Marechal Juarez Távora",
+    "name": "Avenida Marechal Juarez T\u00e1vora",
     "length": 0.1451621,
     "highway": "secondary",
     "has_cycleway": true,
@@ -17739,7 +17739,7 @@
   },
   {
     "osm_id": 968629855,
-    "name": "Avenida Marechal Juarez Távora",
+    "name": "Avenida Marechal Juarez T\u00e1vora",
     "length": 0.025609,
     "highway": "secondary",
     "has_cycleway": true,
@@ -17753,7 +17753,7 @@
   },
   {
     "osm_id": 968629856,
-    "name": "Avenida Marechal Juarez Távora",
+    "name": "Avenida Marechal Juarez T\u00e1vora",
     "length": 0.303061,
     "highway": "secondary",
     "has_cycleway": true,
@@ -17767,7 +17767,7 @@
   },
   {
     "osm_id": 968629857,
-    "name": "Avenida Marechal Juarez Távora",
+    "name": "Avenida Marechal Juarez T\u00e1vora",
     "length": 0.0409955,
     "highway": "secondary",
     "has_cycleway": true,
@@ -17781,11 +17781,11 @@
   },
   {
     "osm_id": 968898254,
-    "name": "1A Travessa José da Silva Lucena",
+    "name": "1A Travessa Jos\u00e9 da Silva Lucena",
     "length": 0.0785791,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/968898254\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9041278, -8.1155209], [-34.9045649, -8.1149622]]}, \"properties\": {\"id\": \"way/968898254\", \"name\": \"1A Travessa Jos\\u00e9 da Silva Lucena\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"highway\": \"footway\", \"motor_vehicle\": \"no\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.852161",
@@ -17795,7 +17795,7 @@
   },
   {
     "osm_id": 969857667,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.0951631,
     "highway": "residential",
     "has_cycleway": true,
@@ -17823,7 +17823,7 @@
   },
   {
     "osm_id": 974688525,
-    "name": "Rua Marquês de Baipendi",
+    "name": "Rua Marqu\u00eas de Baipendi",
     "length": 0.0605911,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -17865,11 +17865,11 @@
   },
   {
     "osm_id": 991346778,
-    "name": "Praça Treze de Junho",
+    "name": "Pra\u00e7a Treze de Junho",
     "length": 0.0419389,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/991346778\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8950927, -8.028628], [-34.8951539, -8.0283541], [-34.8951757, -8.0282599]]}, \"properties\": {\"id\": \"way/991346778\", \"name\": \"Pra\\u00e7a Treze de Junho\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"foot\": \"permissive\", \"footway\": \"sidewalk\", \"highway\": \"footway\", \"surface\": \"concrete\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.852210",
@@ -17949,7 +17949,7 @@
   },
   {
     "osm_id": 998755059,
-    "name": "Rua Leão Falcão",
+    "name": "Rua Le\u00e3o Falc\u00e3o",
     "length": 0.0776279,
     "highway": "residential",
     "has_cycleway": true,
@@ -17991,7 +17991,7 @@
   },
   {
     "osm_id": 1002053172,
-    "name": "Praça do Baobá da Encruzilhada",
+    "name": "Pra\u00e7a do Baob\u00e1 da Encruzilhada",
     "length": 0.0279781,
     "highway": "residential",
     "has_cycleway": true,
@@ -18009,7 +18009,7 @@
     "length": 0.1106233,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1009012071\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9074006, -8.1204823], [-34.9074618, -8.1204762], [-34.907921, -8.1204389], [-34.9083839, -8.1203035]]}, \"properties\": {\"id\": \"way/1009012071\", \"name\": \"Rua Bruno Veloso\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"description\": \"Trecho de cal\\u00e7ada compartilhada com bicicleta\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.852312",
@@ -18061,7 +18061,7 @@
   },
   {
     "osm_id": 1010830123,
-    "name": "Ciclovia Graça Araújo",
+    "name": "Ciclovia Gra\u00e7a Ara\u00fajo",
     "length": 0.0321422,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -18079,7 +18079,7 @@
     "length": 0.1178348,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1010830124\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.879867, -8.0595287], [-34.8798761, -8.0595022], [-34.8798723, -8.0594768], [-34.8798615, -8.059459], [-34.8797918, -8.0593439], [-34.8793562, -8.0586102]]}, \"properties\": {\"id\": \"way/1010830124\", \"name\": \"Rua da Aurora\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"foot\": \"designated\", \"highway\": \"footway\", \"oneway\": \"no\", \"segregated\": \"no\", \"stroller\": \"yes\", \"surface\": \"concrete\", \"wheelchair\": \"yes\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.852365",
@@ -18121,7 +18121,7 @@
     "length": 0.2122848,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1016257109\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.905909, -8.1207589], [-34.9053184, -8.1208424], [-34.9052444, -8.1208529], [-34.9051935, -8.1208343], [-34.9051825, -8.1208303], [-34.905139, -8.1208303], [-34.9050909, -8.1208317], [-34.9050186, -8.1208413], [-34.9049629, -8.1208493], [-34.9041813, -8.1209376], [-34.9041463, -8.1209443], [-34.9040762, -8.1209632], [-34.9040558, -8.120977], [-34.9040354, -8.1209973], [-34.9040268, -8.121017]]}, \"properties\": {\"id\": \"way/1016257109\", \"name\": \"Rua Bruno Veloso\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"description\": \"Trecho de cal\\u00e7ada compartilhada com bicicleta\", \"footway\": \"sidewalk\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.852399",
@@ -18173,7 +18173,7 @@
   },
   {
     "osm_id": 1020109932,
-    "name": "Avenida Historiador Jordão Emerenciano",
+    "name": "Avenida Historiador Jord\u00e3o Emerenciano",
     "length": 0.038859,
     "highway": "residential",
     "has_cycleway": true,
@@ -18205,7 +18205,7 @@
     "length": 0.1570859,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1052528723\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8786706, -8.0602974], [-34.8793717, -8.0598514], [-34.8798404, -8.0595533], [-34.879867, -8.0595287]]}, \"properties\": {\"id\": \"way/1052528723\", \"name\": \"Ponte Princesa Isabel\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"bridge\": \"yes\", \"foot\": \"designated\", \"highway\": \"footway\", \"layer\": \"1\", \"oneway\": \"no\", \"segregated\": \"no\", \"stroller\": \"yes\", \"surface\": \"concrete\", \"wheelchair\": \"yes\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.852476",
@@ -18607,11 +18607,11 @@
   },
   {
     "osm_id": 1105544819,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.0295352,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1105544819\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8927623, -8.0487092], [-34.8927918, -8.0486925], [-34.8928435, -8.0486601], [-34.892968, -8.0485938], [-34.892995, -8.0485773]]}, \"properties\": {\"id\": \"way/1105544819\", \"name\": \"Avenida Governador Agamenon Magalh\\u00e3es\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853001",
@@ -18621,7 +18621,7 @@
   },
   {
     "osm_id": 1107369082,
-    "name": "Praça Melvin Jones",
+    "name": "Pra\u00e7a Melvin Jones",
     "length": 0.0348073,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -18667,7 +18667,7 @@
     "length": 0.121561,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1107376435\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9067469, -8.0337958], [-34.9066699, -8.0337927], [-34.9066005, -8.033808], [-34.9065189, -8.0338308], [-34.9064434, -8.0338583], [-34.9063371, -8.0338964], [-34.9062123, -8.0339346], [-34.9061353, -8.033959], [-34.9060398, -8.0339742], [-34.9059951, -8.0339941], [-34.9059628, -8.0340352], [-34.905952, -8.0340917], [-34.9059458, -8.0341451], [-34.9059307, -8.0342983]]}, \"properties\": {\"id\": \"way/1107376435\", \"name\": \"Rua Padre Roma\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"foot\": \"permissive\", \"footway\": \"sidewalk\", \"highway\": \"footway\", \"segregated\": \"no\", \"smoothness\": \"good\", \"surface\": \"paving_stones\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853065",
@@ -18737,7 +18737,7 @@
     "length": 0.1178331,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1107446160\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9041963, -8.0455356], [-34.9039867, -8.0454951], [-34.9037387, -8.0454402], [-34.9034783, -8.0453853], [-34.903151, -8.0453087]]}, \"properties\": {\"id\": \"way/1107446160\", \"name\": \"Ponte da Torre\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"bridge\": \"yes\", \"foot\": \"permissive\", \"footway\": \"sidewalk\", \"highway\": \"footway\", \"layer\": \"1\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853117",
@@ -18751,7 +18751,7 @@
     "length": 0.1031641,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1107446161\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.903151, -8.0453087], [-34.9031055, -8.0452953], [-34.9030782, -8.045278], [-34.9030586, -8.0452453], [-34.903046, -8.0452067], [-34.9030509, -8.0451616], [-34.9030528, -8.0451446], [-34.9030741, -8.0450862], [-34.9033391, -8.0444964]]}, \"properties\": {\"id\": \"way/1107446161\", \"name\": \"Ponte da Torre\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"foot\": \"permissive\", \"footway\": \"sidewalk\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853134",
@@ -18761,11 +18761,11 @@
   },
   {
     "osm_id": 1107451333,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.0058196,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1107451333\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.892995, -8.0485773], [-34.8930457, -8.0485921]]}, \"properties\": {\"id\": \"way/1107451333\", \"name\": \"Avenida Governador Agamenon Magalh\\u00e3es\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"foot\": \"permissive\", \"footway\": \"sidewalk\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853141",
@@ -18775,11 +18775,11 @@
   },
   {
     "osm_id": 1107451334,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.0058818,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1107451334\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8927623, -8.0487092], [-34.8927432, -8.0487586]]}, \"properties\": {\"id\": \"way/1107451334\", \"name\": \"Avenida Governador Agamenon Magalh\\u00e3es\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"foot\": \"permissive\", \"footway\": \"sidewalk\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853150",
@@ -18803,11 +18803,11 @@
   },
   {
     "osm_id": 1107459719,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.0511562,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1107459719\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8849385, -8.0420307], [-34.884944, -8.0421068], [-34.8848803, -8.0421708], [-34.8847812, -8.04219], [-34.8847068, -8.0423215], [-34.8847298, -8.0423582]]}, \"properties\": {\"id\": \"way/1107459719\", \"name\": \"Avenida Governador Agamenon Magalh\\u00e3es\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"foot\": \"permissive\", \"footway\": \"sidewalk\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853169",
@@ -18835,7 +18835,7 @@
     "length": 0.1654856,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1107522779\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8784411, -8.0644975], [-34.8784806, -8.0648105], [-34.8785354, -8.065029], [-34.8786076, -8.0652552], [-34.8785919, -8.0652897], [-34.877916, -8.0652222]]}, \"properties\": {\"id\": \"way/1107522779\", \"name\": \"\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"foot\": \"permissive\", \"footway\": \"sidewalk\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853191",
@@ -18845,7 +18845,7 @@
   },
   {
     "osm_id": 1107857914,
-    "name": "Rua Itanagé",
+    "name": "Rua Itanag\u00e9",
     "length": 0.1072727,
     "highway": "secondary",
     "has_cycleway": true,
@@ -18887,11 +18887,11 @@
   },
   {
     "osm_id": 1128460193,
-    "name": "Parque das Graças Lúcia Moura",
+    "name": "Parque das Gra\u00e7as L\u00facia Moura",
     "length": 0.5687915,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1128460193\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9036549, -8.052944], [-34.9036947, -8.0528054], [-34.9037345, -8.0526111], [-34.9037958, -8.0522725], [-34.9038799, -8.0517172], [-34.9039272, -8.0511641], [-34.9039388, -8.0508834], [-34.9039082, -8.0506069], [-34.9038085, -8.0500737], [-34.9036871, -8.0495932], [-34.903659, -8.0494923], [-34.9035162, -8.04909], [-34.9032182, -8.0483207], [-34.9031308, -8.0479706]]}, \"properties\": {\"id\": \"way/1128460193\", \"name\": \"Parque das Gra\\u00e7as L\\u00facia Moura\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"foot\": \"designated\", \"highway\": \"pedestrian\", \"lit\": \"yes\", \"oneway\": \"no\", \"smoothness\": \"good\", \"surface\": \"paving_stones\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853236",
@@ -18915,7 +18915,7 @@
   },
   {
     "osm_id": 1164743879,
-    "name": "Rua Alvenópolis",
+    "name": "Rua Alven\u00f3polis",
     "length": 0.2983826,
     "highway": "service",
     "has_cycleway": true,
@@ -18929,7 +18929,7 @@
   },
   {
     "osm_id": 1164743880,
-    "name": "Rua Alvenópolis",
+    "name": "Rua Alven\u00f3polis",
     "length": 0.0742871,
     "highway": "service",
     "has_cycleway": true,
@@ -18943,7 +18943,7 @@
   },
   {
     "osm_id": 1164743881,
-    "name": "Rua Alvenópolis",
+    "name": "Rua Alven\u00f3polis",
     "length": 0.0443765,
     "highway": "service",
     "has_cycleway": true,
@@ -18957,7 +18957,7 @@
   },
   {
     "osm_id": 1164743882,
-    "name": "Rua Alvenópolis",
+    "name": "Rua Alven\u00f3polis",
     "length": 0.013975,
     "highway": "service",
     "has_cycleway": true,
@@ -18985,7 +18985,7 @@
   },
   {
     "osm_id": 1175625343,
-    "name": "Rua Paissandú",
+    "name": "Rua Paissand\u00fa",
     "length": 0.0533333,
     "highway": "secondary",
     "has_cycleway": true,
@@ -19027,11 +19027,11 @@
   },
   {
     "osm_id": 1176343943,
-    "name": "Avenida Governador Agamenon Magalhães",
+    "name": "Avenida Governador Agamenon Magalh\u00e3es",
     "length": 0.048101,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1176343943\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8853737, -8.0421849], [-34.884944, -8.0421068]]}, \"properties\": {\"id\": \"way/1176343943\", \"name\": \"Avenida Governador Agamenon Magalh\\u00e3es\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"foot\": \"permissive\", \"footway\": \"sidewalk\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853349",
@@ -19041,7 +19041,7 @@
   },
   {
     "osm_id": 1177251511,
-    "name": "Rua Ibiporã",
+    "name": "Rua Ibipor\u00e3",
     "length": 0.4425906,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -19055,7 +19055,7 @@
   },
   {
     "osm_id": 1177251512,
-    "name": "Rua Ibiporã",
+    "name": "Rua Ibipor\u00e3",
     "length": 0.0820107,
     "highway": "residential",
     "has_cycleway": true,
@@ -19181,7 +19181,7 @@
   },
   {
     "osm_id": 1200826939,
-    "name": "Rua Carlos Alberto Valença",
+    "name": "Rua Carlos Alberto Valen\u00e7a",
     "length": 0.1386822,
     "highway": "residential",
     "has_cycleway": true,
@@ -19237,7 +19237,7 @@
   },
   {
     "osm_id": 1216298884,
-    "name": "Rua Eugênio Samico",
+    "name": "Rua Eug\u00eanio Samico",
     "length": 0.0856329,
     "highway": "residential",
     "has_cycleway": true,
@@ -19251,7 +19251,7 @@
   },
   {
     "osm_id": 1234964959,
-    "name": "Ciclovia Agamenon Magalhães",
+    "name": "Ciclovia Agamenon Magalh\u00e3es",
     "length": 1.8893399,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -19265,7 +19265,7 @@
   },
   {
     "osm_id": 1234964960,
-    "name": "Ciclovia Agamenon Magalhães",
+    "name": "Ciclovia Agamenon Magalh\u00e3es",
     "length": 1.8714282,
     "highway": "cycleway",
     "has_cycleway": true,
@@ -19279,11 +19279,11 @@
   },
   {
     "osm_id": 1234964961,
-    "name": "Ciclovia Agamenon Magalhães",
+    "name": "Ciclovia Agamenon Magalh\u00e3es",
     "length": 1.002831,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1234964961\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8958212, -8.0710495], [-34.8953953, -8.0715365], [-34.8945735, -8.0724989], [-34.8943389, -8.072781], [-34.894263, -8.0728943], [-34.8941988, -8.0730064], [-34.8941276, -8.0731648], [-34.8940867, -8.0732636], [-34.8940601, -8.0735632], [-34.8938578, -8.0741812], [-34.8938018, -8.0741644], [-34.8937821, -8.0741567], [-34.8935201, -8.0749545], [-34.8933686, -8.0753714], [-34.8933578, -8.0755786], [-34.8933149, -8.0757193], [-34.8933002, -8.0758229], [-34.8933082, -8.0759477], [-34.8933324, -8.0760659], [-34.8933605, -8.0761349], [-34.8934115, -8.0762305], [-34.8934732, -8.0763102], [-34.8935711, -8.0764403], [-34.8936153, -8.076516], [-34.8936596, -8.0766288], [-34.8936757, -8.0767152], [-34.8936864, -8.0768161], [-34.8936877, -8.076921], [-34.8936609, -8.0770537], [-34.8935617, -8.0773644], [-34.8932385, -8.0783483], [-34.8929976, -8.0790532]]}, \"properties\": {\"id\": \"way/1234964961\", \"name\": \"Ciclovia Agamenon Magalh\\u00e3es\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"bridge\": \"yes\", \"highway\": \"footway\", \"layer\": \"1\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853643",
@@ -19293,7 +19293,7 @@
   },
   {
     "osm_id": 1238509972,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.0155153,
     "highway": "residential",
     "has_cycleway": true,
@@ -19307,11 +19307,11 @@
   },
   {
     "osm_id": 1241145625,
-    "name": "Ciclovia Agamenon Magalhães",
+    "name": "Ciclovia Agamenon Magalh\u00e3es",
     "length": 0.7154746,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1241145625\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8921414, -8.0802202], [-34.8921759, -8.0804925], [-34.8921782, -8.0807023], [-34.8921554, -8.080823], [-34.8921181, -8.0809485], [-34.8920901, -8.0810392], [-34.892013, -8.0811831], [-34.891964, -8.0812513], [-34.8918694, -8.0813721], [-34.8915349, -8.0817576], [-34.8910971, -8.082272], [-34.890783, -8.0826453], [-34.8902182, -8.0833085], [-34.8892828, -8.0844057], [-34.8888901, -8.0848232], [-34.888632, -8.085102], [-34.8884301, -8.0853031]]}, \"properties\": {\"id\": \"way/1241145625\", \"name\": \"Ciclovia Agamenon Magalh\\u00e3es\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"highway\": \"footway\", \"surface\": \"paving_stones\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853674",
@@ -19325,7 +19325,7 @@
     "length": 0.003707,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1273806782\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9040268, -8.121017], [-34.9039933, -8.1210136]]}, \"properties\": {\"id\": \"way/1273806782\", \"name\": \"Rua Bruno Veloso\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"crossing\": \"uncontrolled\", \"crossing:markings\": \"yes\", \"description\": \"Trecho de cal\\u00e7ada compartilhada com bicicleta\", \"footway\": \"crossing\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853682",
@@ -19363,7 +19363,7 @@
   },
   {
     "osm_id": 1284274823,
-    "name": "Rua Itaimbé",
+    "name": "Rua Itaimb\u00e9",
     "length": 0.0545027,
     "highway": "residential",
     "has_cycleway": true,
@@ -19381,7 +19381,7 @@
     "length": 0.1698265,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1303718123\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9074397, -8.1206231], [-34.9073354, -8.120636], [-34.9072208, -8.1206305], [-34.9071325, -8.1206163], [-34.9070869, -8.1206119], [-34.907041, -8.1206152], [-34.906114, -8.1207222], [-34.9060133, -8.1207413], [-34.905909, -8.1207589]]}, \"properties\": {\"id\": \"way/1303718123\", \"name\": \"Rua Bruno Veloso\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"description\": \"Trecho de cal\\u00e7ada compartilhada com bicicleta\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853730",
@@ -19391,7 +19391,7 @@
   },
   {
     "osm_id": 1307312648,
-    "name": "Ponte Engenheiro Jaime Gusmão",
+    "name": "Ponte Engenheiro Jaime Gusm\u00e3o",
     "length": 0.4311885,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -19405,7 +19405,7 @@
   },
   {
     "osm_id": 1307312649,
-    "name": "Ponte Engenheiro Jaime Gusmão",
+    "name": "Ponte Engenheiro Jaime Gusm\u00e3o",
     "length": 0.4327231,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -19423,7 +19423,7 @@
     "length": 0.0768452,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1308479411\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9029844, -8.0451036], [-34.902932, -8.0451939], [-34.9029017, -8.0452356], [-34.902897, -8.045242], [-34.9028709, -8.0452637], [-34.9028349, -8.0452756], [-34.9029102, -8.0452994], [-34.9030203, -8.0453342], [-34.9029727, -8.0453025], [-34.9029595, -8.0452824], [-34.9029533, -8.0452526], [-34.902963, -8.0451834], [-34.9029691, -8.0451608], [-34.9029844, -8.0451036]]}, \"properties\": {\"id\": \"way/1308479411\", \"name\": \"\", \"type\": \"Cal\\u00e7ada compartilhada\", \"area\": \"yes\", \"bicycle\": \"yes\", \"foot\": \"designated\", \"highway\": \"pedestrian\", \"lit\": \"no\", \"motor_vehicle\": \"no\", \"surface\": \"concrete\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853819",
@@ -19433,11 +19433,11 @@
   },
   {
     "osm_id": 1308480931,
-    "name": "Parque das Graças Lúcia Moura",
+    "name": "Parque das Gra\u00e7as L\u00facia Moura",
     "length": 0.0304047,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1308480931\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9029035, -8.0453364], [-34.9028947, -8.0453735], [-34.9028834, -8.0454101], [-34.9028761, -8.045434], [-34.9027033, -8.0454524]]}, \"properties\": {\"id\": \"way/1308480931\", \"name\": \"Parque das Gra\\u00e7as L\\u00facia Moura\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"foot\": \"designated\", \"highway\": \"pedestrian\", \"lit\": \"yes\", \"oneway\": \"no\", \"surface\": \"concrete\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853830",
@@ -19475,7 +19475,7 @@
   },
   {
     "osm_id": 1310963802,
-    "name": "Ponte Engenheiro Jaime Gusmão",
+    "name": "Ponte Engenheiro Jaime Gusm\u00e3o",
     "length": 0.0224314,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -19489,7 +19489,7 @@
   },
   {
     "osm_id": 1310963803,
-    "name": "Ponte Engenheiro Jaime Gusmão",
+    "name": "Ponte Engenheiro Jaime Gusm\u00e3o",
     "length": 0.0124284,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -19517,7 +19517,7 @@
   },
   {
     "osm_id": 1310963807,
-    "name": "Ponte Engenheiro Jaime Gusmão",
+    "name": "Ponte Engenheiro Jaime Gusm\u00e3o",
     "length": 0.0173332,
     "highway": "tertiary",
     "has_cycleway": true,
@@ -19545,11 +19545,11 @@
   },
   {
     "osm_id": 1341354760,
-    "name": "Rua Primeiro de Março",
+    "name": "Rua Primeiro de Mar\u00e7o",
     "length": 0.1105559,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1341354760\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8774731, -8.0642833], [-34.8784151, -8.0644608], [-34.8784411, -8.0644975]]}, \"properties\": {\"id\": \"way/1341354760\", \"name\": \"Rua Primeiro de Mar\\u00e7o\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"foot\": \"permissive\", \"footway\": \"sidewalk\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853926",
@@ -19615,11 +19615,11 @@
   },
   {
     "osm_id": 1408853433,
-    "name": "Parque das Graças Lúcia Moura",
+    "name": "Parque das Gra\u00e7as L\u00facia Moura",
     "length": 0.2851486,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1408853433\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9031308, -8.0479706], [-34.902958, -8.0473919], [-34.9029162, -8.0472203], [-34.9028696, -8.0468362], [-34.9027899, -8.0464336], [-34.9027734, -8.0463631], [-34.9027591, -8.0462762], [-34.9027221, -8.045982], [-34.9027084, -8.0458642], [-34.9027033, -8.0454524]]}, \"properties\": {\"id\": \"way/1408853433\", \"name\": \"Parque das Gra\\u00e7as L\\u00facia Moura\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"foot\": \"designated\", \"highway\": \"pedestrian\", \"lit\": \"yes\", \"oneway\": \"no\", \"smoothness\": \"excellent\", \"surface\": \"concrete\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.853985",
@@ -19657,7 +19657,7 @@
   },
   {
     "osm_id": 1412255782,
-    "name": "Praça da República",
+    "name": "Pra\u00e7a da Rep\u00fablica",
     "length": 0.093006,
     "highway": "secondary",
     "has_cycleway": true,
@@ -19671,7 +19671,7 @@
   },
   {
     "osm_id": 1412255783,
-    "name": "Praça da República",
+    "name": "Pra\u00e7a da Rep\u00fablica",
     "length": 0.0906963,
     "highway": "secondary",
     "has_cycleway": true,
@@ -19717,7 +19717,7 @@
     "length": 0.0933146,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1429393047\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9203908, -8.0857938], [-34.9202372, -8.0852883], [-34.9203016, -8.0852644], [-34.920256, -8.0850254]]}, \"properties\": {\"id\": \"way/1429393047\", \"name\": \"Rua Dos Hebreus\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"highway\": \"pedestrian\", \"horse\": \"yes\", \"motor_vehicle\": \"yes\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.854067",
@@ -19731,7 +19731,7 @@
     "length": 0.0201963,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1429393048\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9202372, -8.0852883], [-34.9200622, -8.0853428]]}, \"properties\": {\"id\": \"way/1429393048\", \"name\": \"Beco\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"footway\": \"Beco\", \"highway\": \"pedestrian\", \"horse\": \"yes\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.854074",
@@ -19745,7 +19745,7 @@
     "length": 0.0547255,
     "highway": "pedestrian",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1430348601\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9222438, -8.0851482], [-34.9223019, -8.0853213], [-34.9224091, -8.0856123]]}, \"properties\": {\"id\": \"way/1430348601\", \"name\": \"Rua Doze De Outubro\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"yes\", \"highway\": \"pedestrian\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.854085",
@@ -19783,11 +19783,11 @@
   },
   {
     "osm_id": 1445810841,
-    "name": "Ciclovia Agamenon Magalhães",
+    "name": "Ciclovia Agamenon Magalh\u00e3es",
     "length": 0.2170199,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1445810841\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8929976, -8.0790532], [-34.8929717, -8.0791357], [-34.8929748, -8.0791635], [-34.8929778, -8.0791895], [-34.8929982, -8.0793304], [-34.8931265, -8.0794372], [-34.8931531, -8.0794604], [-34.8931677, -8.0794849], [-34.8931738, -8.0795113], [-34.8931653, -8.0795335], [-34.8931498, -8.0795523], [-34.8931292, -8.0795635], [-34.8930464, -8.0795897], [-34.8929485, -8.0796206], [-34.8927975, -8.0797124], [-34.8927346, -8.0796831], [-34.8926708, -8.0796546], [-34.8926467, -8.0796441], [-34.8925635, -8.0797245], [-34.8925388, -8.0797789], [-34.8924774, -8.0798415], [-34.8923983, -8.0799307], [-34.8923679, -8.0800064], [-34.8923271, -8.0801399], [-34.8923008, -8.0801809], [-34.8922716, -8.0801942], [-34.8921414, -8.0802202]]}, \"properties\": {\"id\": \"way/1445810841\", \"name\": \"Ciclovia Agamenon Magalh\\u00e3es\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.854149",
@@ -19797,11 +19797,11 @@
   },
   {
     "osm_id": 1445810842,
-    "name": "Ciclovia Agamenon Magalhães",
+    "name": "Ciclovia Agamenon Magalh\u00e3es",
     "length": 0.7081756,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1445810842\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8973612, -8.0654486], [-34.8973491, -8.0654649], [-34.8973072, -8.0655265], [-34.8972091, -8.0658062], [-34.8971367, -8.0663842], [-34.8970895, -8.0667138], [-34.896987, -8.0675192], [-34.8967852, -8.0690139], [-34.896759, -8.0691893], [-34.8967205, -8.0693876], [-34.8966805, -8.0695493], [-34.8966081, -8.0697979], [-34.8965988, -8.0699138], [-34.8966142, -8.070013], [-34.8966481, -8.0701213], [-34.8967036, -8.070225], [-34.8967883, -8.0702769], [-34.896719, -8.0703775], [-34.8964802, -8.0703333], [-34.8964757, -8.0704678], [-34.8963903, -8.0704749], [-34.8963212, -8.0705071], [-34.8962602, -8.0705564], [-34.896183, -8.0706389], [-34.8958212, -8.0710495]]}, \"properties\": {\"id\": \"way/1445810842\", \"name\": \"Ciclovia Agamenon Magalh\\u00e3es\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"highway\": \"footway\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.854178",
@@ -19811,11 +19811,11 @@
   },
   {
     "osm_id": 1458792180,
-    "name": "Ciclovia Agamenon Magalhães",
+    "name": "Ciclovia Agamenon Magalh\u00e3es",
     "length": 0.0218566,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1458792180\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8973985, -8.0652232], [-34.8973237, -8.0653587], [-34.8973256, -8.0654008]]}, \"properties\": {\"id\": \"way/1458792180\", \"name\": \"Ciclovia Agamenon Magalh\\u00e3es\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"ford\": \"yes\", \"highway\": \"footway\", \"layer\": \"-1\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.854186",
@@ -19825,11 +19825,11 @@
   },
   {
     "osm_id": 1458792181,
-    "name": "Ciclovia Agamenon Magalhães",
+    "name": "Ciclovia Agamenon Magalh\u00e3es",
     "length": 0.0350017,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1458792181\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.897551, -8.064947], [-34.8973985, -8.0652232]]}, \"properties\": {\"id\": \"way/1458792181\", \"name\": \"Ciclovia Agamenon Magalh\\u00e3es\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"ford\": \"yes\", \"highway\": \"footway\", \"layer\": \"-1\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.854193",
@@ -19839,11 +19839,11 @@
   },
   {
     "osm_id": 1458792182,
-    "name": "Ciclovia Agamenon Magalhães",
+    "name": "Ciclovia Agamenon Magalh\u00e3es",
     "length": 0.0066039,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1458792182\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8973256, -8.0654008], [-34.8973612, -8.0654486]]}, \"properties\": {\"id\": \"way/1458792182\", \"name\": \"Ciclovia Agamenon Magalh\\u00e3es\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"ford\": \"yes\", \"highway\": \"footway\", \"layer\": \"-1\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.854201",
@@ -19853,11 +19853,11 @@
   },
   {
     "osm_id": 1458792183,
-    "name": "Ciclovia Agamenon Magalhães",
+    "name": "Ciclovia Agamenon Magalh\u00e3es",
     "length": 0.1300677,
     "highway": "footway",
     "has_cycleway": true,
-    "cycleway_typology": "Calçada compartilhada",
+    "cycleway_typology": "Cal\u00e7ada compartilhada",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/1458792183\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8974799, -8.0639196], [-34.8975735, -8.0639281], [-34.8976039, -8.0639279], [-34.8976292, -8.0639304], [-34.8976222, -8.063985], [-34.8976229, -8.064019], [-34.8975431, -8.0647643], [-34.897551, -8.064947]]}, \"properties\": {\"id\": \"way/1458792183\", \"name\": \"Ciclovia Agamenon Magalh\\u00e3es\", \"type\": \"Cal\\u00e7ada compartilhada\", \"bicycle\": \"designated\", \"ford\": \"yes\", \"highway\": \"footway\", \"layer\": \"-1\"}}]}",
     "lastupdated": "2026-05-21T17:56:41.854214",
@@ -20119,7 +20119,7 @@
   },
   {
     "osm_id": 1476728422,
-    "name": "Avenida Professor José dos Anjos",
+    "name": "Avenida Professor Jos\u00e9 dos Anjos",
     "length": 0.0547599,
     "highway": "residential",
     "has_cycleway": true,
@@ -20231,7 +20231,7 @@
   },
   {
     "osm_id": 1495786369,
-    "name": "Praça da República",
+    "name": "Pra\u00e7a da Rep\u00fablica",
     "length": 0.0080439,
     "highway": "secondary",
     "has_cycleway": true,
@@ -20497,7 +20497,7 @@
   },
   {
     "osm_id": 757433306,
-    "name": "Residencial São Lourenço",
+    "name": "Residencial S\u00e3o Louren\u00e7o",
     "length": 0.9121279,
     "highway": "residential",
     "has_cycleway": true,
@@ -20511,7 +20511,7 @@
   },
   {
     "osm_id": 759372754,
-    "name": "Residencial São Lourenço",
+    "name": "Residencial S\u00e3o Louren\u00e7o",
     "length": 0.1225325,
     "highway": "residential",
     "has_cycleway": true,
@@ -20525,7 +20525,7 @@
   },
   {
     "osm_id": 1011556075,
-    "name": "Residencial São Lourenço",
+    "name": "Residencial S\u00e3o Louren\u00e7o",
     "length": 0.1594787,
     "highway": "residential",
     "has_cycleway": true,
@@ -20539,28 +20539,28 @@
   },
   {
     "osm_id": 128682906,
-    "name": "Avenida Luís Correia de Brito",
+    "name": "Avenida Lu\u00eds Correia de Brito",
     "length": 1.0757415,
     "highway": "secondary",
     "has_cycleway": true,
     "cycleway_typology": "Ciclofaixa",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/128682906\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8735111, -8.020468], [-34.873585, -8.0206917], [-34.8737004, -8.0210409], [-34.8738441, -8.0214756], [-34.8740577, -8.0221393], [-34.8741397, -8.0223939], [-34.8742465, -8.0227252], [-34.8742631, -8.0227767], [-34.8742944, -8.0228709], [-34.8746166, -8.0238394], [-34.8747948, -8.0244002], [-34.8748347, -8.024514], [-34.8749139, -8.0247786], [-34.8750148, -8.0250869], [-34.8751753, -8.0255827], [-34.8753052, -8.0260183], [-34.8753444, -8.026146], [-34.875401, -8.0263305], [-34.8755079, -8.0266374], [-34.8755613, -8.0267906], [-34.875594, -8.026889], [-34.8757538, -8.0274356], [-34.8759087, -8.0281947], [-34.876017, -8.0287837], [-34.8761403, -8.0293627], [-34.8761776, -8.0296559], [-34.8761938, -8.029755]]}, \"properties\": {\"id\": \"way/128682906\", \"name\": \"Avenida Lu\\u00eds Correia de Brito\", \"type\": \"Ciclofaixa\", \"alt_name\": \"Avenida Correia Brito;Avenida Correa de Brito\", \"cycleway:right\": \"lane\", \"highway\": \"secondary\", \"lanes\": \"2\", \"oneway\": \"no\", \"surface\": \"paved\"}}]}",
-    "lastupdated": "2026-05-21T22:02:16.582150",
+    "lastupdated": "2026-05-21T22:09:31.994010",
     "city_id": 2611606,
     "dual_carriageway": false,
     "pdc_typology": "notOnPDC"
   },
   {
     "osm_id": 698123733,
-    "name": "Avenida Luís Correia de Brito",
+    "name": "Avenida Lu\u00eds Correia de Brito",
     "length": 0.1903701,
     "highway": "secondary",
     "has_cycleway": true,
     "cycleway_typology": "Ciclofaixa",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/698123733\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.8761938, -8.029755], [-34.8761931, -8.0298192], [-34.8761862, -8.0299124], [-34.8761614, -8.0300082], [-34.876124, -8.0301141], [-34.8759133, -8.030731], [-34.8756792, -8.0313831]]}, \"properties\": {\"id\": \"way/698123733\", \"name\": \"Avenida Lu\\u00eds Correia de Brito\", \"type\": \"Ciclofaixa\", \"alt_name\": \"Avenida Correia Brito;Avenida Correa de Brito\", \"cycleway:right\": \"lane\", \"highway\": \"secondary\", \"lanes\": \"2\", \"oneway\": \"no\", \"surface\": \"paved\"}}]}",
-    "lastupdated": "2026-05-21T22:02:16.582779",
+    "lastupdated": "2026-05-21T22:09:31.994826",
     "city_id": 2611606,
     "dual_carriageway": false,
     "pdc_typology": "notOnPDC"
@@ -20574,7 +20574,7 @@
     "cycleway_typology": "Ciclofaixa",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/764386212\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9140492, -8.1487577], [-34.9132392, -8.149074], [-34.9124056, -8.1493814], [-34.9115634, -8.1497141]]}, \"properties\": {\"id\": \"way/764386212\", \"name\": \"Avenida Armindo Moura\", \"type\": \"Ciclofaixa\", \"cycleway:right\": \"lane\", \"highway\": \"secondary\", \"lanes\": \"2\", \"lit\": \"yes\", \"oneway\": \"no\", \"oneway:bicycle\": \"no\", \"postal_code\": \"51130-180\", \"source:postal_code\": \"CNEFE\", \"surface\": \"paved\"}}]}",
-    "lastupdated": "2026-05-21T22:02:16.582965",
+    "lastupdated": "2026-05-21T22:09:31.995045",
     "city_id": 2607901,
     "dual_carriageway": false,
     "pdc_typology": "notOnPDC"
@@ -20588,7 +20588,7 @@
     "cycleway_typology": "Ciclofaixa",
     "relation_id": 0,
     "geojson": "{\"type\": \"FeatureCollection\", \"features\": [{\"id\": \"way/775017832\", \"type\": \"Feature\", \"geometry\": {\"type\": \"LineString\", \"coordinates\": [[-34.9137472, -8.1479699], [-34.9140492, -8.1487577]]}, \"properties\": {\"id\": \"way/775017832\", \"name\": \"Rua Cosmorama\", \"type\": \"Ciclofaixa\", \"cycleway:right\": \"lane\", \"highway\": \"residential\", \"oneway\": \"no\", \"oneway:bicycle\": \"no\", \"postal_code\": \"51130-080\", \"source:postal_code\": \"CNEFE\", \"surface\": \"paved\"}}]}",
-    "lastupdated": "2026-05-21T22:02:16.583014",
+    "lastupdated": "2026-05-21T22:09:31.995108",
     "city_id": 2607901,
     "dual_carriageway": false,
     "pdc_typology": "notOnPDC"
