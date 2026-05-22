@@ -159,8 +159,8 @@ export const streetsHistory: AppRouteHandler<StreetsHistoryRoute> = async (
 			tarde: sql<number>`COUNT(*) FILTER (WHERE EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time) BETWEEN 12 AND 17)`,
 			noite: sql<number>`COUNT(*) FILTER (WHERE EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time) BETWEEN 18 AND 23)`,
 			madrugada: sql<number>`COUNT(*) FILTER (WHERE EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time) BETWEEN 0 AND 5)`,
-			masculino: sql<number>`COUNT(*) FILTER (WHERE ${emergencyCalls.gender} = 'M')`,
-			feminino: sql<number>`COUNT(*) FILTER (WHERE ${emergencyCalls.gender} = 'F')`,
+			masculino: sql<number>`COUNT(*) FILTER (WHERE ${emergencyCalls.gender} ILIKE 'masculino')`,
+			feminino: sql<number>`COUNT(*) FILTER (WHERE ${emergencyCalls.gender} ILIKE 'feminino')`,
 		})
 		.from(emergencyCalls)
 		.where(whereClause)

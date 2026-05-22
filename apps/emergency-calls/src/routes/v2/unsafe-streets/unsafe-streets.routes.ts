@@ -18,7 +18,7 @@ export const citySummary = createRoute({
 			}),
 		}),
 		query: z.object({
-			start_year: z.coerce.number().optional().openapi({
+			start_year: z.coerce.number().optional().default(2020).openapi({
 				description: "Start year",
 				example: 2020,
 			}),
@@ -101,7 +101,7 @@ export const cityConcentration = createRoute({
 				description: "Interval for concentration (1, 5, 10, 15, 20)",
 				example: 10,
 			}),
-			start_year: z.coerce.number().optional().openapi({
+			start_year: z.coerce.number().optional().default(2020).openapi({
 				description: "Start year",
 				example: 2020,
 			}),
@@ -151,7 +151,7 @@ export const cityGeoJSON = createRoute({
 				description: "Ending ranking position",
 				example: 10,
 			}),
-			start_year: z.coerce.number().optional().openapi({
+			start_year: z.coerce.number().optional().default(2020).openapi({
 				description: "Start year",
 				example: 2020,
 			}),

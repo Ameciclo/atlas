@@ -25,7 +25,7 @@ export const streetsHistory = createRoute({
 					description: "Outcome filter",
 					example: "validos",
 				}),
-			startYear: z.coerce.number().optional().openapi({
+			startYear: z.coerce.number().optional().default(2020).openapi({
 				description: "Start year",
 				example: 2020,
 			}),

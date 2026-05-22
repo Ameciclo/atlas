@@ -114,10 +114,10 @@ export const streetsHistory: AppRouteHandler<StreetsHistoryRoute> = async (c) =>
 		.select({
 			year: sql<number>`EXTRACT(YEAR FROM ${emergencyCalls.date})::int`,
 			total: count(),
-			dias_com_dados: sql<number>`COUNT(DISTINCT ${emergencyCalls.date}::date)`,
+			dias_com_dados: sql<number>`COUNT(DISTINCT ${emergencyCalls.date}::date)::int`,
 			ultimo_dia: sql<string>`MAX(${emergencyCalls.date}::date)::text`,
-			masculino: sql<number>`COUNT(*) FILTER (WHERE ${emergencyCalls.gender} = 'M')`,
-			feminino: sql<number>`COUNT(*) FILTER (WHERE ${emergencyCalls.gender} = 'F')`,
+			masculino: sql<number>`COUNT(*) FILTER (WHERE ${emergencyCalls.gender} ILIKE 'masculino')::int`,
+			feminino: sql<number>`COUNT(*) FILTER (WHERE ${emergencyCalls.gender} ILIKE 'feminino')::int`,
 		})
 		.from(emergencyCalls)
 		.where(whereClause)
