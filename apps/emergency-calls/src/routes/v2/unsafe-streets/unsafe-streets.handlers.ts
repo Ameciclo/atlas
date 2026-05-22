@@ -13,6 +13,10 @@ import type {
 	StreetRecordsRoute,
 } from "./unsafe-streets.routes.js";
 
+const genericPcrFilter = sql`${emergencyCalls.pcr_address} IS NOT NULL
+	AND ${emergencyCalls.pcr_address} != ''
+	AND UPPER(${emergencyCalls.pcr_address}) NOT IN ('NAO IDENTIFICADO', '#N/A', 'OUTRO MUNICIPIO')`;
+
 function fuzzyMatchStreet(emergencyName: string, pcrName: string): boolean {
 	const upper = (s: string) => s.toUpperCase();
 	const en = upper(emergencyName);
@@ -48,12 +52,12 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 
 	const [topStreetResult] = await db
 		.select({
-			location: emergencyCalls.address,
-			count: count(),
+			location: emergencyCalls.pcr_address,
+			count: sql<number>`count(*)::int`,
 		})
 		.from(emergencyCalls)
-		.where(eq(emergencyCalls.municipality, city))
-		.groupBy(emergencyCalls.address)
+		.where(and(eq(emergencyCalls.municipality, city), genericPcrFilter))
+		.groupBy(emergencyCalls.pcr_address)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(1);
 
@@ -182,12 +186,12 @@ export const cityConcentration: AppRouteHandler<
 	// Get top streets by accident count
 	const topStreets = await db
 		.select({
-			location: emergencyCalls.address,
-			count: count(),
+			location: emergencyCalls.pcr_address,
+			count: sql<number>`count(*)::int`,
 		})
 		.from(emergencyCalls)
-		.where(eq(emergencyCalls.municipality, city))
-		.groupBy(emergencyCalls.address)
+		.where(and(eq(emergencyCalls.municipality, city), genericPcrFilter))
+		.groupBy(emergencyCalls.pcr_address)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(interval);
 
@@ -237,12 +241,12 @@ export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
 
 	const topStreets = await db
 		.select({
-			location: emergencyCalls.address,
-			count: count(),
+			location: emergencyCalls.pcr_address,
+			count: sql<number>`count(*)::int`,
 		})
 		.from(emergencyCalls)
-		.where(eq(emergencyCalls.municipality, city))
-		.groupBy(emergencyCalls.address)
+		.where(and(eq(emergencyCalls.municipality, city), genericPcrFilter))
+		.groupBy(emergencyCalls.pcr_address)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(ranking_to)
 		.offset(ranking_from - 1);
