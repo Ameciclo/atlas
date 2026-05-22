@@ -44,6 +44,7 @@ export const streetsTop = createRoute({
 				dados: z.array(
 					z.object({
 						top: z.number(),
+						nome: z.string(),
 						sinistros: z.number(),
 						sinistros_acum: z.number(),
 						percentual: z.number(),
@@ -64,8 +65,12 @@ export const streetsSearch = createRoute({
 	description: "Search for accidents by street name",
 	request: {
 		query: z.object({
-			nome: z.string().openapi({
+			nome: z.string().optional().openapi({
 				description: "Street name to search",
+				example: "Boa Viagem",
+			}),
+			street: z.string().optional().openapi({
+				description: "Street name to search (alias for frontend compatibility)",
 				example: "Boa Viagem",
 			}),
 			limit: z.coerce.number().optional().default(100),
@@ -102,8 +107,12 @@ export const streetsHistory = createRoute({
 	description: "Get temporal history of accidents for a street",
 	request: {
 		query: z.object({
-			nome: z.string().openapi({
+			nome: z.string().optional().openapi({
 				description: "Street name",
+				example: "Avenida Boa Viagem",
+			}),
+			via: z.string().optional().openapi({
+				description: "Street name (alias for frontend compatibility)",
 				example: "Avenida Boa Viagem",
 			}),
 			startYear: z.coerce.number().optional(),

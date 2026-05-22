@@ -25,6 +25,7 @@ export const citySummary = createRoute({
 				total_accidents: z.number(),
 				accidents_per_year: z.record(z.number()),
 				total_streets: z.number(),
+				extensaoTotalKm: z.number().optional(),
 				most_dangerous_street: z.object({
 					name: z.string(),
 					total_accidents: z.number(),
@@ -61,6 +62,7 @@ export const streetSummary = createRoute({
 				street_name: z.string(),
 				total_victims: z.number(),
 				victims_per_year: z.record(z.number()),
+				street_extension_km: z.number().optional(),
 			}),
 			"Street accidents summary",
 		),
@@ -96,6 +98,7 @@ export const cityConcentration = createRoute({
 					z.object({
 						ranking: z.number(),
 						total_accidents: z.number(),
+						street_extension_km: z.number().optional(),
 					}),
 				),
 			}),
@@ -137,12 +140,13 @@ export const cityGeoJSON = createRoute({
 						type: z.literal("Feature"),
 						geometry: z.object({
 							type: z.string(),
-							coordinates: z.array(z.array(z.number())),
+							coordinates: z.any(),
 						}),
 						properties: z.object({
 							accidents_count: z.number(),
 							ranking: z.number(),
 							street_name: z.string(),
+							extension_km: z.number().optional(),
 						}),
 					}),
 				),
@@ -217,11 +221,12 @@ export const streetGeoJSON = createRoute({
 						type: z.literal("Feature"),
 						geometry: z.object({
 							type: z.string(),
-							coordinates: z.array(z.array(z.number())),
+							coordinates: z.any(),
 						}),
 						properties: z.object({
 							street_name: z.string(),
 							accidents_count: z.number(),
+							extension_km: z.number().optional(),
 						}),
 					}),
 				),

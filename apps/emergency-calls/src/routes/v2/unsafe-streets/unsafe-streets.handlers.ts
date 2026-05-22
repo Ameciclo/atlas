@@ -1,6 +1,6 @@
 import { and, eq, count, sql } from "drizzle-orm";
 import { db } from "../../../db/index.js";
-import { emergencyCalls } from "../../../db/schema.js";
+import { emergencyCalls, pcrStreets } from "../../../db/schema.js";
 import type { AppRouteHandler } from "../../../lib/types.js";
 import type {
 	CitySummaryRoute,
@@ -13,17 +13,22 @@ import type {
 	StreetRecordsRoute,
 } from "./unsafe-streets.routes.js";
 
+function fuzzyMatchStreet(emergencyName: string, pcrName: string): boolean {
+	const upper = (s: string) => s.toUpperCase();
+	const en = upper(emergencyName);
+	const pn = upper(pcrName);
+	return pn.includes(en) || en.includes(pn);
+}
+
 export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 
 	const { city } = c.req.valid("param");
 
-	// Get total accidents in the city
 	const [totalResult] = await db
 		.select({ count: count() })
 		.from(emergencyCalls)
 		.where(eq(emergencyCalls.municipality, city));
 
-	// Get accidents per year
 	const yearlyData = await db
 		.select({
 			year: sql<string>`EXTRACT(YEAR FROM ${emergencyCalls.date})::text`,
@@ -34,7 +39,6 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 		.groupBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`)
 		.orderBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`);
 
-	// Get total streets (approximate based on location descriptions)
 	const [streetsResult] = await db
 		.select({
 			count: sql<number>`COUNT(DISTINCT ${emergencyCalls.address})`,
@@ -42,7 +46,6 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 		.from(emergencyCalls)
 		.where(eq(emergencyCalls.municipality, city));
 
-	// Get most dangerous street
 	const [topStreetResult] = await db
 		.select({
 			location: emergencyCalls.address,
@@ -53,6 +56,29 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 		.groupBy(emergencyCalls.address)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(1);
+
+	let extensaoTotalKm: number | undefined;
+
+	try {
+		const result = await db.execute(sql`
+			SELECT COALESCE(SUM(pcr.db2gse_sde), 0) / 1000.0 AS extensao_km
+			FROM pcr_streets pcr
+			WHERE EXISTS (
+				SELECT 1 FROM emergency_calls ec
+				WHERE ec.municipality = ${city}
+				AND (
+					UPPER(pcr.nlogra_conc) LIKE UPPER('%' || COALESCE(ec.pcr_address, ec.address) || '%')
+					OR UPPER(COALESCE(ec.pcr_address, ec.address)) LIKE UPPER('%' || pcr.nlogra_conc || '%')
+				)
+			)
+		`);
+		const rows = (result as { rows?: Record<string, unknown>[] }).rows;
+		if (rows?.[0]?.extensao_km != null) {
+			extensaoTotalKm = Number(rows[0].extensao_km);
+		}
+	} catch {
+		extensaoTotalKm = undefined;
+	}
 
 	const accidentsPerYear = yearlyData.reduce(
 		(acc, item) => {
@@ -66,7 +92,8 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 		city,
 		total_accidents: totalResult?.count || 0,
 		accidents_per_year: accidentsPerYear,
-		total_streets: streetsResult?.count || 0,
+		total_streets: Number(streetsResult?.count || 0),
+		extensaoTotalKm,
 		most_dangerous_street: {
 			name: topStreetResult?.location || "",
 			total_accidents: topStreetResult?.count || 0,
@@ -115,10 +142,27 @@ export const streetSummary: AppRouteHandler<StreetSummaryRoute> = async (c) => {
 		{} as Record<string, number>,
 	);
 
+	let streetExtensionKm: number | undefined;
+	try {
+		const result = await db.execute(sql`
+			SELECT COALESCE(SUM(pcr.db2gse_sde), 0) / 1000.0 AS extension_km
+			FROM pcr_streets pcr
+			WHERE UPPER(pcr.nlogra_conc) LIKE UPPER(${'%' + street_name + '%'})
+			   OR UPPER(${street_name}) LIKE UPPER('%' || pcr.nlogra_conc || '%')
+		`);
+		const rows = (result as { rows?: Record<string, unknown>[] }).rows;
+		if (rows?.[0]?.extension_km != null) {
+			streetExtensionKm = Number(rows[0].extension_km);
+		}
+	} catch {
+		streetExtensionKm = undefined;
+	}
+
 	return c.json({
 		street_name,
 		total_victims: totalResult?.count || 0,
 		victims_per_year: victimsPerYear,
+		street_extension_km: streetExtensionKm,
 	});
 };
 
@@ -141,10 +185,37 @@ export const cityConcentration: AppRouteHandler<
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(interval);
 
-	const concentrationData = topStreets.map((street, index) => ({
-		ranking: index + 1,
-		total_accidents: street.count,
-	}));
+	const pcrExtensions: Record<string, number> = {};
+	try {
+		const pcrData = await db
+			.select({
+				street_name: pcrStreets.nlogra_conc,
+				extension_km: sql<number>`COALESCE(SUM(${pcrStreets.db2gse_sde}) / 1000.0, 0)`,
+			})
+			.from(pcrStreets)
+			.groupBy(pcrStreets.nlogra_conc);
+		for (const pcr of pcrData) {
+			pcrExtensions[pcr.street_name] = pcr.extension_km;
+		}
+	} catch {
+		// pcr_streets may not be available
+	}
+
+	const concentrationData = topStreets.map((street, index) => {
+		const streetLocation = street.location || "";
+		let extensionKm: number | undefined;
+		for (const [pcrName, km] of Object.entries(pcrExtensions)) {
+			if (fuzzyMatchStreet(streetLocation, pcrName)) {
+				extensionKm = km;
+				break;
+			}
+		}
+		return {
+			ranking: index + 1,
+			total_accidents: street.count,
+			street_extension_km: extensionKm,
+		};
+	});
 
 	return c.json({
 		city,
@@ -158,7 +229,6 @@ export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
 	const { city } = c.req.valid("param");
 	const { ranking_from = 1, ranking_to = 10 } = c.req.valid("query");
 
-	// Get top streets by accident count
 	const topStreets = await db
 		.select({
 			location: emergencyCalls.address,
@@ -171,18 +241,56 @@ export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
 		.limit(ranking_to)
 		.offset(ranking_from - 1);
 
-	const features = topStreets.map((street, index) => ({
-		type: "Feature" as const,
-		geometry: {
+	const pcrGeoMap: Record<string, { geometry: unknown; extension: number }> = {};
+	try {
+		const pcrGeoData = await db
+			.select({
+				street_name: pcrStreets.nlogra_conc,
+				geometry_json: sql<string>`ST_AsGeoJSON(ST_Collect(${pcrStreets.coordinates}))`,
+				extension_km: sql<number>`COALESCE(SUM(${pcrStreets.db2gse_sde}) / 1000.0, 0)`,
+			})
+			.from(pcrStreets)
+			.groupBy(pcrStreets.nlogra_conc);
+		for (const pcr of pcrGeoData) {
+			let geometry: unknown = { type: "LineString", coordinates: [] };
+			try {
+				geometry = JSON.parse(pcr.geometry_json);
+			} catch {
+				// keep default
+			}
+			pcrGeoMap[pcr.street_name] = { geometry, extension: pcr.extension_km };
+		}
+	} catch {
+		// pcr_streets may not be available
+	}
+
+	const features = topStreets.map((street, index) => {
+		const streetLocation = street.location || "Unknown";
+		let geometry: { type: string; coordinates?: unknown } = {
 			type: "LineString",
 			coordinates: [],
-		},
-		properties: {
-			accidents_count: street.count,
-			ranking: ranking_from + index,
-			street_name: street.location || "Unknown",
-		},
-	}));
+		};
+		let extensionKm: number | undefined;
+
+		for (const [pcrName, data] of Object.entries(pcrGeoMap)) {
+			if (fuzzyMatchStreet(streetLocation, pcrName)) {
+				geometry = data.geometry as { type: string; coordinates?: unknown };
+				extensionKm = data.extension;
+				break;
+			}
+		}
+
+		return {
+			type: "Feature" as const,
+			geometry,
+			properties: {
+				accidents_count: street.count,
+				ranking: ranking_from + index,
+				street_name: streetLocation,
+				extension_km: extensionKm,
+			},
+		};
+	});
 
 	return c.json({
 		type: "FeatureCollection" as const,
@@ -307,16 +415,48 @@ export const streetGeoJSON: AppRouteHandler<StreetGeoJSONRoute> = async (c) => {
 		.from(emergencyCalls)
 		.where(whereClause);
 
+	let geometry: { type: string; coordinates?: unknown } = {
+		type: "LineString",
+		coordinates: [],
+	};
+	let extensionKm: number | undefined;
+
+	try {
+		const geoResult = await db.execute(sql`
+			SELECT ST_AsGeoJSON(ST_Collect(pcr.coordinates)) AS geometry_json,
+			       COALESCE(SUM(pcr.db2gse_sde) / 1000.0, 0) AS extension_km
+			FROM pcr_streets pcr
+			WHERE UPPER(pcr.nlogra_conc) LIKE UPPER(${'%' + street_name + '%'})
+			   OR UPPER(${street_name}) LIKE UPPER('%' || pcr.nlogra_conc || '%')
+		`);
+		const rows = (geoResult as { rows?: Record<string, unknown>[] }).rows;
+		if (rows?.[0]) {
+			if (rows[0].geometry_json) {
+				try {
+					geometry = JSON.parse(rows[0].geometry_json as string) as {
+						type: string;
+						coordinates?: unknown;
+					};
+				} catch {
+					// keep default
+				}
+			}
+			if (rows[0].extension_km != null) {
+				extensionKm = Number(rows[0].extension_km);
+			}
+		}
+	} catch {
+		// pcr_streets may not be available
+	}
+
 	const features = [
 		{
 			type: "Feature" as const,
-			geometry: {
-				type: "LineString",
-				coordinates: [],
-			},
+			geometry,
 			properties: {
 				street_name,
 				accidents_count: result?.count || 0,
+				extension_km: extensionKm,
 			},
 		},
 	];

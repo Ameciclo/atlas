@@ -69,6 +69,7 @@ export const streetsTop: AppRouteHandler<StreetsTopRoute> = async (c) => {
 
 		return {
 			top: index + 1,
+			nome: street.address || "",
 			sinistros,
 			sinistros_acum: accumSinistros,
 			percentual: (sinistros / (topStreets[0]?.count || 1)) * 100,
@@ -82,7 +83,8 @@ export const streetsTop: AppRouteHandler<StreetsTopRoute> = async (c) => {
 
 export const streetsSearch: AppRouteHandler<StreetsSearchRoute> = async (c) => {
 
-	const { nome, limit } = c.req.valid("query");
+	const { nome, street, limit } = c.req.valid("query");
+	const searchTerm = nome || street || "";
 
 	const results = await db
 		.select({
@@ -95,7 +97,7 @@ export const streetsSearch: AppRouteHandler<StreetsSearchRoute> = async (c) => {
 			age: emergencyCalls.age,
 		})
 		.from(emergencyCalls)
-		.where(sql`${emergencyCalls.address} ILIKE ${`%${nome}%`}`)
+		.where(sql`${emergencyCalls.address} ILIKE ${`%${searchTerm}%`}`)
 		.limit(limit);
 
 	const sinistros = results.map((item) => ({
@@ -112,7 +114,7 @@ export const streetsSearch: AppRouteHandler<StreetsSearchRoute> = async (c) => {
 	return c.json({
 		sinistros,
 		total: sinistros.length,
-		busca: nome,
+		busca: searchTerm,
 	});
 };
 
@@ -120,10 +122,11 @@ export const streetsHistory: AppRouteHandler<StreetsHistoryRoute> = async (
 	c,
 ) => {
 
-	const { nome, startYear = 2020, endYear = 2024 } = c.req.valid("query");
+	const { nome, via, startYear = 2020, endYear = 2024 } = c.req.valid("query");
+	const streetName = nome || via || "";
 
 	const conditions = [
-		sql`${emergencyCalls.address} ILIKE ${`%${nome}%`}`,
+		sql`${emergencyCalls.address} ILIKE ${`%${streetName}%`}`,
 		sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) >= ${startYear}`,
 		sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) <= ${endYear}`,
 	];
