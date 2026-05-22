@@ -116,8 +116,8 @@ export const profiles = createRoute({
 				description: "City name (required)",
 				example: "RECIFE",
 			}),
-			start_year: z.coerce.number().int().optional().openapi({
-				description: "Start year",
+			start_year: z.coerce.number().int().optional().default(2020).openapi({
+				description: "Start year. Defaults to 2020",
 				example: 2020,
 			}),
 			end_year: z.coerce.number().int().optional().openapi({

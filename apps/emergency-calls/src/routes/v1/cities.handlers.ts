@@ -235,12 +235,19 @@ function normalizeAgeGroups(
 }
 
 export const cities: AppRouteHandler<CitiesRoute> = async (c) => {
+	const { start_year, end_year } = c.req.valid("query");
+
+	const yearCondition = end_year
+		? sql`EXTRACT(YEAR FROM ${emergencyCalls.date})::int BETWEEN ${start_year} AND ${end_year}`
+		: sql`EXTRACT(YEAR FROM ${emergencyCalls.date})::int >= ${start_year}`;
+
 	const citiesData = await db
 		.select({
 			municipality: emergencyCalls.municipality,
 			count: count(),
 		})
 		.from(emergencyCalls)
+		.where(yearCondition)
 		.groupBy(emergencyCalls.municipality)
 		.orderBy(sql`COUNT(*) DESC`);
 
@@ -256,7 +263,7 @@ export const cities: AppRouteHandler<CitiesRoute> = async (c) => {
 					invalidos: sql<number>`COUNT(*) FILTER (WHERE ${emergencyCalls.outcome_category} IS NULL)`,
 				})
 				.from(emergencyCalls)
-				.where(eq(emergencyCalls.municipality, name))
+				.where(and(yearCondition, eq(emergencyCalls.municipality, name)))
 				.groupBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`)
 				.orderBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`);
 

@@ -10,6 +10,18 @@ export const summary = createRoute({
 	tags,
 	summary: "Get emergency calls summary",
 	description: "Get statistical summary of SAMU emergency calls",
+	request: {
+		query: z.object({
+			start_year: z.coerce.number().int().optional().default(2020).openapi({
+				description: "Start year (default: 2020)",
+				example: 2020,
+			}),
+			end_year: z.coerce.number().int().optional().openapi({
+				description: "End year (optional)",
+				example: 2024,
+			}),
+		}),
+	},
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({

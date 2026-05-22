@@ -23,8 +23,8 @@ export const list = createRoute({
 				description: "Filter by accident subtype",
 				example: "ACIDENTMOTO",
 			}),
-			start_date: z.string().date().optional().openapi({
-				description: "Filter from this date (inclusive)",
+			start_date: z.string().date().optional().default("2020-01-01").openapi({
+				description: "Filter from this date (inclusive). Defaults to 2020-01-01",
 				example: "2018-01-01",
 			}),
 			end_date: z.string().date().optional().openapi({

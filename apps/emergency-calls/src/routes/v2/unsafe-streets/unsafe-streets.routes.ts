@@ -174,6 +174,7 @@ export const cityGeoJSON = createRoute({
 						}),
 						properties: z.object({
 							accidents_count: z.number(),
+							accidents_by_category: z.record(z.number()),
 							ranking: z.number(),
 							street_name: z.string(),
 							extension_km: z.number().optional(),
@@ -284,8 +285,8 @@ export const streetEvolution = createRoute({
 				description: "City name for filtering",
 				example: "RECIFE",
 			}),
-			start_year: z.coerce.number().optional().openapi({
-				description: "Start year",
+			start_year: z.coerce.number().optional().default(2020).openapi({
+				description: "Start year. Defaults to 2020",
 				example: 2020,
 			}),
 			end_year: z.coerce.number().optional().openapi({

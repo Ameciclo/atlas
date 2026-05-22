@@ -1,19 +1,27 @@
-import { count, eq, sql } from "drizzle-orm";
+import { and, count, eq, sql } from "drizzle-orm";
 import { db } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
+import type { AppRouteHandler } from "../../lib/types.js";
+import type { SummaryRoute } from "./summary.routes.js";
 
 export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
+	const { start_year, end_year } = c.req.valid("query");
+
+	const yearCondition = end_year
+		? sql`EXTRACT(YEAR FROM ${emergencyCalls.date})::int BETWEEN ${start_year} AND ${end_year}`
+		: sql`EXTRACT(YEAR FROM ${emergencyCalls.date})::int >= ${start_year}`;
 
 	const [totalResult] = await db
 		.select({ count: count() })
-		.from(emergencyCalls);
+		.from(emergencyCalls)
+		.where(yearCondition);
 
 	const totalChamadas = totalResult?.count || 0;
 
 	const [validResult] = await db
 		.select({ count: count() })
 		.from(emergencyCalls)
-		.where(sql`${emergencyCalls.outcome_category} IS NOT NULL`);
+		.where(and(yearCondition, sql`${emergencyCalls.outcome_category} IS NOT NULL`));
 
 	const totalDesfechosValidos = validResult?.count || 0;
 	const totalDesfechosInvalidos = totalChamadas - totalDesfechosValidos;
@@ -24,6 +32,7 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 			count: count(),
 		})
 		.from(emergencyCalls)
+		.where(yearCondition)
 		.groupBy(emergencyCalls.municipality)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(1);
@@ -34,6 +43,7 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 			count: count(),
 		})
 		.from(emergencyCalls)
+		.where(yearCondition)
 		.groupBy(emergencyCalls.subtype)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(10);
@@ -44,6 +54,7 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 			count: count(),
 		})
 		.from(emergencyCalls)
+		.where(yearCondition)
 		.groupBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`)
 		.orderBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`);
 
@@ -63,7 +74,7 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 					count: count(),
 				})
 				.from(emergencyCalls)
-				.where(eq(emergencyCalls.municipality, topCityResult.municipio!))
+				.where(and(yearCondition, eq(emergencyCalls.municipality, topCityResult.municipio!)))
 				.groupBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`)
 				.orderBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`)
 		: [];
@@ -74,7 +85,7 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 			count: count(),
 		})
 		.from(emergencyCalls)
-		.where(sql`${emergencyCalls.finalization_category} IS NOT NULL`)
+		.where(and(yearCondition, sql`${emergencyCalls.finalization_category} IS NOT NULL`))
 		.groupBy(emergencyCalls.finalization_category)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(10);
@@ -85,25 +96,25 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 			count: count(),
 		})
 		.from(emergencyCalls)
-		.where(sql`${emergencyCalls.outcome_category} IS NOT NULL`)
+		.where(and(yearCondition, sql`${emergencyCalls.outcome_category} IS NOT NULL`))
 		.groupBy(emergencyCalls.outcome_category)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(10);
 
 	const [periodResult] = await db
 		.select({
-			inicio: sql<number>`EXTRACT(YEAR FROM MIN(${emergencyCalls.date}))::int`,
-			fim: sql<number>`EXTRACT(YEAR FROM MAX(${emergencyCalls.date}))::int`,
 			ultimoMes: sql<string>`TO_CHAR(MAX(${emergencyCalls.date}), 'YYYY.MM')`,
 			ultimoDia: sql<string>`MAX(${emergencyCalls.date})::date::text`,
 		})
-		.from(emergencyCalls);
+		.from(emergencyCalls)
+		.where(yearCondition);
 
 	const [diasResult] = await db
 		.select({
 			count: sql<number>`COUNT(DISTINCT ${emergencyCalls.date}::date)`,
 		})
-		.from(emergencyCalls);
+		.from(emergencyCalls)
+		.where(yearCondition);
 
 	return c.json({
 		totalChamadas,
@@ -139,8 +150,8 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 		})),
 		evolucaoAnual,
 		periodo: {
-			inicio: periodResult?.inicio || 0,
-			fim: periodResult?.fim || 0,
+			inicio: start_year,
+			fim: end_year ?? (periodResult?.ultimoMes ? Number.parseInt(periodResult.ultimoMes.split(".")[0]) : start_year),
 			ultimoMes: periodResult?.ultimoMes || "",
 			ultimoDia: periodResult?.ultimoDia?.split("T")[0] || "",
 			totalDiasComDados: Number(diasResult?.count) || 0,

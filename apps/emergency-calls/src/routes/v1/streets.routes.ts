@@ -116,7 +116,7 @@ export const streetsHistory = createRoute({
 				description: "Street name (alias for frontend compatibility)",
 				example: "Avenida Boa Viagem",
 			}),
-			startYear: z.coerce.number().optional(),
+			startYear: z.coerce.number().optional().default(2020),
 			endYear: z.coerce.number().optional(),
 		}),
 	},

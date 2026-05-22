@@ -2,6 +2,7 @@ import { and, eq, count, sql } from "drizzle-orm";
 import { db } from "../../../db/index.js";
 import { emergencyCalls, pcrStreets } from "../../../db/schema.js";
 import type { AppRouteHandler } from "../../../lib/types.js";
+import { normalizeCategories } from "../../../lib/categories.js";
 import type {
 	CitySummaryRoute,
 	StreetSummaryRoute,
@@ -297,6 +298,26 @@ export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
 		.limit(ranking_to)
 		.offset(ranking_from - 1);
 
+	// Query A2: category breakdown per street
+	const categoryRows = await db
+		.select({
+			location: emergencyCalls.pcr_address,
+			subtype: emergencyCalls.subtype,
+			count: count(),
+		})
+		.from(emergencyCalls)
+		.where(and(...topStreetConditions))
+		.groupBy(emergencyCalls.pcr_address, emergencyCalls.subtype);
+
+	const categoryByStreet: Record<string, Record<string, number>> = {};
+	for (const row of categoryRows) {
+		const loc = row.location;
+		if (!loc) continue;
+		if (!categoryByStreet[loc]) categoryByStreet[loc] = {};
+		const subtype = row.subtype || "NONE";
+		categoryByStreet[loc][subtype] = (categoryByStreet[loc][subtype] || 0) + row.count;
+	}
+
 	// Build pcr_address -> nlogra_conc mapping via FK
 	const pcrAddressMap: Record<string, string> = {};
 	try {
@@ -355,6 +376,7 @@ export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
 			geometry: pcrData?.geometry as { type: string; coordinates?: unknown } || { type: "LineString", coordinates: [] },
 			properties: {
 				accidents_count: street.count,
+				accidents_by_category: normalizeCategories(categoryByStreet[streetLocation] || {}),
 				ranking: ranking_from + index,
 				street_name: streetLocation,
 				extension_km: pcrData?.extension,
