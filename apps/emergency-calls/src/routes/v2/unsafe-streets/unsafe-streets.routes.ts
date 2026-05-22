@@ -26,6 +26,10 @@ export const citySummary = createRoute({
 				accidents_per_year: z.record(z.number()),
 				total_streets: z.number(),
 				extensaoTotalKm: z.number().optional(),
+				period: z.object({
+					start_year: z.number(),
+					end_year: z.number(),
+				}),
 				most_dangerous_street: z.object({
 					name: z.string(),
 					total_accidents: z.number(),

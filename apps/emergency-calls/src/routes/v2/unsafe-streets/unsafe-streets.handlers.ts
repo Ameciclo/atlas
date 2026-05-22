@@ -25,14 +25,14 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 	const { city } = c.req.valid("param");
 
 	const [totalResult] = await db
-		.select({ count: count() })
+		.select({ count: sql<number>`count(*)::int` })
 		.from(emergencyCalls)
 		.where(eq(emergencyCalls.municipality, city));
 
 	const yearlyData = await db
 		.select({
 			year: sql<string>`EXTRACT(YEAR FROM ${emergencyCalls.date})::text`,
-			count: count(),
+			count: sql<number>`count(*)::int`,
 		})
 		.from(emergencyCalls)
 		.where(eq(emergencyCalls.municipality, city))
@@ -61,15 +61,14 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 
 	try {
 		const result = await db.execute(sql`
-			SELECT COALESCE(SUM(pcr.db2gse_sde), 0) / 1000.0 AS extensao_km
-			FROM pcr_streets pcr
-			WHERE EXISTS (
-				SELECT 1 FROM emergency_calls ec
+			SELECT COALESCE(SUM(ps.db2gse_sde), 0) / 1000.0 AS extensao_km
+			FROM pcr_streets ps
+			WHERE ps.nlogra_conc IN (
+				SELECT DISTINCT ec.pcr_address
+				FROM emergency_calls ec
 				WHERE ec.municipality = ${city}
-				AND (
-					UPPER(pcr.nlogra_conc) LIKE UPPER('%' || COALESCE(ec.pcr_address, ec.address) || '%')
-					OR UPPER(COALESCE(ec.pcr_address, ec.address)) LIKE UPPER('%' || pcr.nlogra_conc || '%')
-				)
+				  AND ec.pcr_address IS NOT NULL
+				  AND ec.pcr_address != ''
 			)
 		`);
 		const rows = (result as { rows?: Record<string, unknown>[] }).rows;
@@ -82,21 +81,28 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 
 	const accidentsPerYear = yearlyData.reduce(
 		(acc, item) => {
-			acc[item.year] = item.count;
+			acc[item.year] = Number(item.count);
 			return acc;
 		},
 		{} as Record<string, number>,
 	);
 
+	const years = Object.keys(accidentsPerYear).map(Number).filter((y) => !Number.isNaN(y));
+	const period = {
+		start_year: Math.min(...years),
+		end_year: Math.max(...years),
+	};
+
 	return c.json({
 		city,
-		total_accidents: totalResult?.count || 0,
+		total_accidents: Number(totalResult?.count || 0),
 		accidents_per_year: accidentsPerYear,
 		total_streets: Number(streetsResult?.count || 0),
 		extensaoTotalKm,
+		period,
 		most_dangerous_street: {
 			name: topStreetResult?.location || "",
-			total_accidents: topStreetResult?.count || 0,
+			total_accidents: Number(topStreetResult?.count || 0),
 		},
 	});
 };
