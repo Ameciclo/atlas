@@ -25,10 +25,6 @@ export const summary = createRoute({
 			z.unknown(),
 			"Cyclist profile summary statistics",
 		),
-		[HttpStatusCodes.UNPROCESSABLE_ENTITY]: jsonContent(
-			createErrorSchema(YearQuerySchema),
-			"Invalid parameters",
-		),
 	},
 });
 

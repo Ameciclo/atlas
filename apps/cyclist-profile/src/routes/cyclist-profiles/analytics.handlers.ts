@@ -3,6 +3,7 @@ import * as HttpStatusCodes from "stoker/http-status-codes";
 import { db } from "../../db/index.js";
 import { cyclistProfiles } from "@atlas/database/schemas/cyclist-profile";
 
+// biome-ignore lint/suspicious/noExplicitAny: pre-existing handlers with route-specific query schemas
 export const summary = async (c: any) => {
 	try {
 		const year = c.req.query("year") ? Number(c.req.query("year")) : undefined;
@@ -11,161 +12,68 @@ export const summary = async (c: any) => {
 			? sql`metadata->>'survey_year' = ${year.toString()}`
 			: sql`1=1`;
 
-		// Get total responses
-		const [totalResult] = await db
-			.select({ count: sql<number>`count(*)` })
-			.from(cyclistProfiles)
-			.where(yearFilter);
-
-		// Demographics - Gender
-		const genderStats = await db
+		// Single query to get all card metrics at once
+		const [stats] = await db
 			.select({
-				gender: sql<string>`data->>'gender'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'gender'`);
-
-		// Demographics - Age groups
-		const ageStats = await db
-			.select({
-				age_category: sql<string>`data->>'age_category'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'age_category'`);
-
-		// Demographics - Race
-		const raceStats = await db
-			.select({
-				race: sql<string>`data->>'color_race'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'color_race'`);
-
-		// Demographics - Education
-		const educationStats = await db
-			.select({
-				education: sql<string>`data->>'schooling'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'schooling'`);
-
-		// Demographics - Income
-		const incomeStats = await db
-			.select({
-				income: sql<string>`data->>'age_standard'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'age_standard'`);
-
-		// Usage patterns
-		const [avgDaysResult] = await db
-			.select({
-				avg_days: sql<number>`avg((data->'days_usage'->>'total')::numeric)`,
+				total: sql<number>`count(*)`,
+				women_pct: sql<number>`
+					round(
+						count(*) filter (where data->>'gender' = 'Feminino')::numeric / nullif(count(*), 0) * 100, 1
+					)`,
+				black_brown_pct: sql<number>`
+					round(
+						count(*) filter (where data->>'color_race' in ('Preta','Parda'))::numeric / nullif(count(*), 0) * 100, 1
+					)`,
+				low_income_pct: sql<number>`
+					round(
+						count(*) filter (where data->>'age_standard' in ('Ate 1 salario minimo','De 1 a 2 salarios minimos'))::numeric / nullif(count(*), 0) * 100, 1
+					)`,
+				collision_pct: sql<number>`
+					round(
+						count(*) filter (where data->>'collisions' = 'Sim')::numeric / nullif(count(*), 0) * 100, 1
+					)`,
+				frequent_pct: sql<number>`
+					round(
+						count(*) filter (where (data->'days_usage'->>'total')::int >= 5)::numeric / nullif(count(*), 0) * 100, 1
+					)`,
+				transport_combo_pct: sql<number>`
+					round(
+						count(*) filter (where data->>'transport_combination' is not null and data->>'transport_combination' != '' and data->>'transport_combination' != 'Nao')::numeric / nullif(count(*), 0) * 100, 1
+					)`,
+				distance_time_median: sql<number>`
+					round(percentile_cont(0.5) within group (order by (data->>'distance_time')::numeric)::numeric, 1)
+				`,
+				age_median: sql<number>`
+					round(percentile_cont(0.5) within group (order by (data->>'age')::numeric)::numeric, 1)
+				`,
+				days_avg: sql<number>`
+					round(avg((data->'days_usage'->>'total')::numeric), 1)
+				`,
 			})
 			.from(cyclistProfiles)
 			.where(yearFilter);
 
-		const bikeTypeStats = await db
-			.select({
-				bike_type: sql<string>`metadata->>'bike_type'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`metadata->>'bike_type'`);
-
-		// Motivations
-		const motivationStartStats = await db
-			.select({
-				motivation: sql<string>`data->>'motivation_to_start'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'motivation_to_start'`);
-
-		const motivationContinueStats = await db
-			.select({
-				motivation: sql<string>`data->>'motivation_to_continue'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'motivation_to_continue'`);
-
-		// Issues
-		const problemsStats = await db
-			.select({
-				problem: sql<string>`data->>'biggest_issue'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'biggest_issue'`);
-
-		const needsStats = await db
-			.select({
-				need: sql<string>`data->>'frequency_what'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'frequency_what'`);
-
-		const total = totalResult?.count || 0;
-
-		const toPercentage = (
-			stats: Array<{ count: number; [key: string]: unknown }>,
-		) =>
-			Object.fromEntries(
-				stats
-					.filter((s) => {
-						const firstKey = Object.keys(s)[0];
-						return s.count > 0 && firstKey && s[firstKey];
-					})
-					.map((s) => {
-						const firstKey = Object.keys(s)[0];
-						return [
-							firstKey ? s[firstKey] : "unknown",
-							Number(((s.count / total) * 100).toFixed(1)),
-						];
-					}),
-			);
+		const total = stats?.total || 0;
 
 		return c.json(
 			{
-				year: year || "all",
-				total_responses: total,
-				demographics: {
-					gender: toPercentage(genderStats),
-					age_groups: toPercentage(ageStats),
-					race: toPercentage(raceStats),
-					education: toPercentage(educationStats),
-					income: toPercentage(incomeStats),
+				data: {
+					interviews_count: Number(total),
+					women_percent: Number(stats?.women_pct || 0),
+					black_brown_percent: Number(stats?.black_brown_pct || 0),
+					low_income_percent: Number(stats?.low_income_pct || 0),
+					collision_report_percent: Number(stats?.collision_pct || 0),
+					frequent_cyclist_percent: Number(stats?.frequent_pct || 0),
+					transport_combination_percent: Number(stats?.transport_combo_pct || 0),
+					distance_time_median: Number(stats?.distance_time_median || 0),
+					age_median: Number(stats?.age_median || 0),
+					days_per_week_avg: Number(stats?.days_avg || 0),
 				},
-				usage_patterns: {
-					avg_days_per_week: avgDaysResult?.avg_days
-						? Number(Number(avgDaysResult.avg_days).toFixed(1))
-						: 0,
-					bike_type: toPercentage(bikeTypeStats),
-				},
-				motivations: {
-					to_start: toPercentage(motivationStartStats),
-					to_continue: toPercentage(motivationContinueStats),
-				},
-				issues: {
-					main_problems: toPercentage(problemsStats),
-					what_would_make_cycle_more: toPercentage(needsStats),
+				meta: {
+					year: year || "all",
+					observed_or_estimated: "observed",
+					data_basis: "profile_interviews",
+					n_interviews: Number(total),
 				},
 			},
 			HttpStatusCodes.OK,
