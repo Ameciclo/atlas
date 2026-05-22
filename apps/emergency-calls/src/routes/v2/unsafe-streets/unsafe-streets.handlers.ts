@@ -17,21 +17,25 @@ const genericPcrFilter = sql`${emergencyCalls.pcr_address} IS NOT NULL
 	AND ${emergencyCalls.pcr_address} != ''
 	AND UPPER(${emergencyCalls.pcr_address}) NOT IN ('NAO IDENTIFICADO', '#N/A', 'OUTRO MUNICIPIO')`;
 
-function fuzzyMatchStreet(emergencyName: string, pcrName: string): boolean {
-	const upper = (s: string) => s.toUpperCase();
-	const en = upper(emergencyName);
-	const pn = upper(pcrName);
-	return pn.includes(en) || en.includes(pn);
+function buildYearConditions(startYear?: number, endYear?: number) {
+	const conditions: ReturnType<typeof sql>[] = [];
+	if (startYear) conditions.push(sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) >= ${startYear}`);
+	if (endYear) conditions.push(sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) <= ${endYear}`);
+	return conditions;
 }
 
 export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 
 	const { city } = c.req.valid("param");
+	const { start_year, end_year } = c.req.valid("query");
+
+	const cityConditions = [eq(emergencyCalls.municipality, city), ...buildYearConditions(start_year, end_year)];
+	const cityWhere = and(...cityConditions);
 
 	const [totalResult] = await db
 		.select({ count: sql<number>`count(*)::int` })
 		.from(emergencyCalls)
-		.where(eq(emergencyCalls.municipality, city));
+		.where(cityWhere);
 
 	const yearlyData = await db
 		.select({
@@ -39,7 +43,7 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 			count: sql<number>`count(*)::int`,
 		})
 		.from(emergencyCalls)
-		.where(eq(emergencyCalls.municipality, city))
+		.where(cityWhere)
 		.groupBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`)
 		.orderBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`);
 
@@ -48,7 +52,9 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 			count: sql<number>`COUNT(DISTINCT ${emergencyCalls.address})`,
 		})
 		.from(emergencyCalls)
-		.where(eq(emergencyCalls.municipality, city));
+		.where(cityWhere);
+
+	const topStreetConditions = [eq(emergencyCalls.municipality, city), genericPcrFilter, ...buildYearConditions(start_year, end_year)];
 
 	const [topStreetResult] = await db
 		.select({
@@ -56,7 +62,7 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 			count: sql<number>`count(*)::int`,
 		})
 		.from(emergencyCalls)
-		.where(and(eq(emergencyCalls.municipality, city), genericPcrFilter))
+		.where(and(...topStreetConditions))
 		.groupBy(emergencyCalls.pcr_address)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(1);
@@ -64,17 +70,24 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 	let extensaoTotalKm: number | undefined;
 
 	try {
-		const result = await db.execute(sql`
+		let extensaoSql = sql`
 			SELECT COALESCE(SUM(ps.db2gse_sde), 0) / 1000.0 AS extensao_km
 			FROM pcr_streets ps
 			WHERE ps.nlogra_conc IN (
-				SELECT DISTINCT ec.pcr_address
-				FROM emergency_calls ec
+				SELECT DISTINCT ps2.nlogra_conc
+				FROM pcr_streets ps2
+				INNER JOIN emergency_calls ec ON ec.pcr_street_id = ps2.id
 				WHERE ec.municipality = ${city}
-				  AND ec.pcr_address IS NOT NULL
-				  AND ec.pcr_address != ''
-			)
-		`);
+				  AND ec.pcr_street_id IS NOT NULL
+		`;
+		if (start_year) {
+			extensaoSql = sql`${extensaoSql} AND EXTRACT(YEAR FROM ec.date) >= ${start_year}`;
+		}
+		if (end_year) {
+			extensaoSql = sql`${extensaoSql} AND EXTRACT(YEAR FROM ec.date) <= ${end_year}`;
+		}
+		extensaoSql = sql`${extensaoSql} )`;
+		const result = await db.execute(extensaoSql);
 		const rows = (result as { rows?: Record<string, unknown>[] }).rows;
 		if (rows?.[0]?.extensao_km != null) {
 			extensaoTotalKm = Number(rows[0].extensao_km);
@@ -118,7 +131,7 @@ export const streetSummary: AppRouteHandler<StreetSummaryRoute> = async (c) => {
 
 	// Build conditions
 	const conditions = [
-		sql`${emergencyCalls.address} ILIKE ${`%${street_name}%`}`,
+		sql`${emergencyCalls.pcr_address} ILIKE ${`%${street_name}%`}`,
 	];
 
 	if (city) {
@@ -154,12 +167,21 @@ export const streetSummary: AppRouteHandler<StreetSummaryRoute> = async (c) => {
 
 	let streetExtensionKm: number | undefined;
 	try {
-		const result = await db.execute(sql`
-			SELECT COALESCE(SUM(pcr.db2gse_sde), 0) / 1000.0 AS extension_km
-			FROM pcr_streets pcr
-			WHERE UPPER(pcr.nlogra_conc) LIKE UPPER(${'%' + street_name + '%'})
-			   OR UPPER(${street_name}) LIKE UPPER('%' || pcr.nlogra_conc || '%')
-		`);
+		let extensionQuery = sql`
+			SELECT COALESCE(SUM(ps.db2gse_sde), 0) / 1000.0 AS extension_km
+			FROM pcr_streets ps
+			WHERE ps.nlogra_conc IN (
+				SELECT DISTINCT ps2.nlogra_conc
+				FROM emergency_calls ec
+				INNER JOIN pcr_streets ps2 ON ec.pcr_street_id = ps2.id
+				WHERE ec.pcr_address ILIKE ${'%' + street_name + '%'}
+				  AND ec.pcr_street_id IS NOT NULL
+		`;
+		if (city) {
+			extensionQuery = sql`${extensionQuery} AND ec.municipality = ${city}`;
+		}
+		extensionQuery = sql`${extensionQuery} )`;
+		const result = await db.execute(extensionQuery);
 		const rows = (result as { rows?: Record<string, unknown>[] }).rows;
 		if (rows?.[0]?.extension_km != null) {
 			streetExtensionKm = Number(rows[0].extension_km);
@@ -181,7 +203,9 @@ export const cityConcentration: AppRouteHandler<
 > = async (c) => {
 
 	const { city } = c.req.valid("param");
-	const { interval = 10 } = c.req.valid("query");
+	const { interval = 10, start_year, end_year } = c.req.valid("query");
+
+	const topStreetConditions = [eq(emergencyCalls.municipality, city), genericPcrFilter, ...buildYearConditions(start_year, end_year)];
 
 	// Get top streets by accident count
 	const topStreets = await db
@@ -190,11 +214,37 @@ export const cityConcentration: AppRouteHandler<
 			count: sql<number>`count(*)::int`,
 		})
 		.from(emergencyCalls)
-		.where(and(eq(emergencyCalls.municipality, city), genericPcrFilter))
+		.where(and(...topStreetConditions))
 		.groupBy(emergencyCalls.pcr_address)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(interval);
 
+	// Build pcr_address -> nlogra_conc mapping via FK
+	const pcrAddressMap: Record<string, string> = {};
+	try {
+		const mappingRows = await db
+			.select({
+				pcr_address: emergencyCalls.pcr_address,
+				nlogra_conc: pcrStreets.nlogra_conc,
+			})
+			.from(emergencyCalls)
+			.innerJoin(pcrStreets, eq(emergencyCalls.pcr_street_id, pcrStreets.id))
+			.where(and(
+				eq(emergencyCalls.municipality, city),
+				sql`${emergencyCalls.pcr_street_id} IS NOT NULL`,
+			))
+			.groupBy(emergencyCalls.pcr_address, pcrStreets.nlogra_conc);
+		for (const row of mappingRows) {
+			const addr = row.pcr_address;
+			if (addr && !pcrAddressMap[addr]) {
+				pcrAddressMap[addr] = row.nlogra_conc;
+			}
+		}
+	} catch {
+		// pcr_streets may not be available
+	}
+
+	// Load PCR extensions by nlogra_conc
 	const pcrExtensions: Record<string, number> = {};
 	try {
 		const pcrData = await db
@@ -213,17 +263,11 @@ export const cityConcentration: AppRouteHandler<
 
 	const concentrationData = topStreets.map((street, index) => {
 		const streetLocation = street.location || "";
-		let extensionKm: number | undefined;
-		for (const [pcrName, km] of Object.entries(pcrExtensions)) {
-			if (fuzzyMatchStreet(streetLocation, pcrName)) {
-				extensionKm = km;
-				break;
-			}
-		}
+		const pcrName = pcrAddressMap[streetLocation];
 		return {
 			ranking: index + 1,
 			total_accidents: street.count,
-			street_extension_km: extensionKm,
+			street_extension_km: pcrName ? pcrExtensions[pcrName] : undefined,
 		};
 	});
 
@@ -237,7 +281,9 @@ export const cityConcentration: AppRouteHandler<
 export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
 
 	const { city } = c.req.valid("param");
-	const { ranking_from = 1, ranking_to = 10 } = c.req.valid("query");
+	const { ranking_from = 1, ranking_to = 10, start_year, end_year } = c.req.valid("query");
+
+	const topStreetConditions = [eq(emergencyCalls.municipality, city), genericPcrFilter, ...buildYearConditions(start_year, end_year)];
 
 	const topStreets = await db
 		.select({
@@ -245,11 +291,36 @@ export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
 			count: sql<number>`count(*)::int`,
 		})
 		.from(emergencyCalls)
-		.where(and(eq(emergencyCalls.municipality, city), genericPcrFilter))
+		.where(and(...topStreetConditions))
 		.groupBy(emergencyCalls.pcr_address)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(ranking_to)
 		.offset(ranking_from - 1);
+
+	// Build pcr_address -> nlogra_conc mapping via FK
+	const pcrAddressMap: Record<string, string> = {};
+	try {
+		const mappingRows = await db
+			.select({
+				pcr_address: emergencyCalls.pcr_address,
+				nlogra_conc: pcrStreets.nlogra_conc,
+			})
+			.from(emergencyCalls)
+			.innerJoin(pcrStreets, eq(emergencyCalls.pcr_street_id, pcrStreets.id))
+			.where(and(
+				eq(emergencyCalls.municipality, city),
+				sql`${emergencyCalls.pcr_street_id} IS NOT NULL`,
+			))
+			.groupBy(emergencyCalls.pcr_address, pcrStreets.nlogra_conc);
+		for (const row of mappingRows) {
+			const addr = row.pcr_address;
+			if (addr && !pcrAddressMap[addr]) {
+				pcrAddressMap[addr] = row.nlogra_conc;
+			}
+		}
+	} catch {
+		// pcr_streets may not be available
+	}
 
 	const pcrGeoMap: Record<string, { geometry: unknown; extension: number }> = {};
 	try {
@@ -276,28 +347,17 @@ export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
 
 	const features = topStreets.map((street, index) => {
 		const streetLocation = street.location || "Unknown";
-		let geometry: { type: string; coordinates?: unknown } = {
-			type: "LineString",
-			coordinates: [],
-		};
-		let extensionKm: number | undefined;
-
-		for (const [pcrName, data] of Object.entries(pcrGeoMap)) {
-			if (fuzzyMatchStreet(streetLocation, pcrName)) {
-				geometry = data.geometry as { type: string; coordinates?: unknown };
-				extensionKm = data.extension;
-				break;
-			}
-		}
+		const pcrName = pcrAddressMap[streetLocation];
+		const pcrData = pcrName ? pcrGeoMap[pcrName] : undefined;
 
 		return {
 			type: "Feature" as const,
-			geometry,
+			geometry: pcrData?.geometry as { type: string; coordinates?: unknown } || { type: "LineString", coordinates: [] },
 			properties: {
 				accidents_count: street.count,
 				ranking: ranking_from + index,
 				street_name: streetLocation,
-				extension_km: extensionKm,
+				extension_km: pcrData?.extension,
 			},
 		};
 	});
@@ -316,7 +376,7 @@ export const streetProfiles: AppRouteHandler<StreetProfilesRoute> = async (
 	const { city } = c.req.valid("query");
 
 	const conditions = [
-		sql`${emergencyCalls.address} ILIKE ${`%${street_name}%`}`,
+		sql`${emergencyCalls.pcr_address} ILIKE ${`%${street_name}%`}`,
 	];
 
 	if (city) {
@@ -411,7 +471,7 @@ export const streetGeoJSON: AppRouteHandler<StreetGeoJSONRoute> = async (c) => {
 	const { city } = c.req.valid("query");
 
 	const conditions = [
-		sql`${emergencyCalls.address} ILIKE ${`%${street_name}%`}`,
+		sql`${emergencyCalls.pcr_address} ILIKE ${`%${street_name}%`}`,
 	];
 
 	if (city) {
@@ -432,13 +492,22 @@ export const streetGeoJSON: AppRouteHandler<StreetGeoJSONRoute> = async (c) => {
 	let extensionKm: number | undefined;
 
 	try {
-		const geoResult = await db.execute(sql`
+		let geoQuery = sql`
 			SELECT ST_AsGeoJSON(ST_Collect(pcr.coordinates)) AS geometry_json,
 			       COALESCE(SUM(pcr.db2gse_sde) / 1000.0, 0) AS extension_km
 			FROM pcr_streets pcr
-			WHERE UPPER(pcr.nlogra_conc) LIKE UPPER(${'%' + street_name + '%'})
-			   OR UPPER(${street_name}) LIKE UPPER('%' || pcr.nlogra_conc || '%')
-		`);
+			WHERE pcr.nlogra_conc IN (
+				SELECT DISTINCT ps2.nlogra_conc
+				FROM emergency_calls ec
+				INNER JOIN pcr_streets ps2 ON ec.pcr_street_id = ps2.id
+				WHERE ec.pcr_address ILIKE ${'%' + street_name + '%'}
+				  AND ec.pcr_street_id IS NOT NULL
+		`;
+		if (city) {
+			geoQuery = sql`${geoQuery} AND ec.municipality = ${city}`;
+		}
+		geoQuery = sql`${geoQuery} )`;
+		const geoResult = await db.execute(geoQuery);
 		const rows = (geoResult as { rows?: Record<string, unknown>[] }).rows;
 		if (rows?.[0]) {
 			if (rows[0].geometry_json) {
@@ -485,7 +554,7 @@ export const streetEvolution: AppRouteHandler<StreetEvolutionRoute> = async (
 	const { city, start_year = 2020, end_year = 2022 } = c.req.valid("query");
 
 	const conditions = [
-		sql`${emergencyCalls.address} ILIKE ${`%${street_name}%`}`,
+		sql`${emergencyCalls.pcr_address} ILIKE ${`%${street_name}%`}`,
 		sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) >= ${start_year}`,
 		sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) <= ${end_year}`,
 	];
@@ -590,7 +659,7 @@ export const streetRecords: AppRouteHandler<StreetRecordsRoute> = async (c) => {
 	const { city, year } = c.req.valid("query");
 
 	const conditions = [
-		sql`${emergencyCalls.address} ILIKE ${`%${street_name}%`}`,
+		sql`${emergencyCalls.pcr_address} ILIKE ${`%${street_name}%`}`,
 	];
 
 	if (city) {
