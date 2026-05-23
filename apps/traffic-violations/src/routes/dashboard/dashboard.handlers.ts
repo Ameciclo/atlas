@@ -323,6 +323,16 @@ export const temporal = async (c: any) => {
 			endDate: end_date,
 		});
 
+		const yearlyData = await db
+			.select({
+				year: sql<string>`EXTRACT(YEAR FROM ${trafficViolations.violation_date})::text`,
+				count: count(),
+			})
+			.from(trafficViolations)
+			.where(whereClause)
+			.groupBy(sql`EXTRACT(YEAR FROM ${trafficViolations.violation_date})`)
+			.orderBy(sql`EXTRACT(YEAR FROM ${trafficViolations.violation_date})`);
+
 		const monthlyData = await db
 			.select({
 				month: sql<string>`EXTRACT(MONTH FROM ${trafficViolations.violation_date})::text`,
@@ -357,6 +367,11 @@ export const temporal = async (c: any) => {
 			.groupBy(sql`EXTRACT(HOUR FROM ${trafficViolations.violation_date})`)
 			.orderBy(sql`EXTRACT(HOUR FROM ${trafficViolations.violation_date})`);
 
+		const byYear: Record<string, number> = {};
+		for (const y of yearlyData) {
+			byYear[y.year] = y.count;
+		}
+
 		const byMonth: Record<string, number> = {};
 		for (const m of monthlyData) {
 			byMonth[m.month.padStart(2, "0")] = m.count;
@@ -372,7 +387,7 @@ export const temporal = async (c: any) => {
 			byHour[h.hour.padStart(2, "0")] = h.count;
 		}
 
-		return c.json({ by_month: byMonth, by_weekday: byWeekday, by_hour: byHour }, 200);
+		return c.json({ by_year: byYear, by_month: byMonth, by_weekday: byWeekday, by_hour: byHour }, 200);
 	} catch (error) {
 		console.error("Error fetching temporal data:", error);
 		return c.json({ error: "Internal server error" }, 500);

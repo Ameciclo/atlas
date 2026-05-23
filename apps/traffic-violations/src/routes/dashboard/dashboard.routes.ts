@@ -166,6 +166,7 @@ export const temporalRoute = createRoute({
 	responses: {
 		200: {
 			content: { "application/json": { schema: z.object({
+				by_year: z.record(z.number()),
 				by_month: z.record(z.number()),
 				by_weekday: z.record(z.number()),
 				by_hour: z.record(z.number()),
