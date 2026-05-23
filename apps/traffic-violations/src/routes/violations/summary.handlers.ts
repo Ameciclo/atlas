@@ -259,13 +259,16 @@ export const temporalAnalysis = async (c: any) => {
 		.groupBy(sql`TO_CHAR(${trafficViolations.violation_date}, 'Day')`)
 		.orderBy(sql`EXTRACT(DOW FROM ${trafficViolations.violation_date})`);
 
-	// Get hourly data (mock - would need time field)
-	const hourlyData = [
-		{ hour: "08", count: 850 },
-		{ hour: "12", count: 1200 },
-		{ hour: "17", count: 1450 },
-		{ hour: "19", count: 980 },
-	];
+	// Get hourly data
+	const hourlyData = await db
+		.select({
+			hour: sql<string>`EXTRACT(HOUR FROM ${trafficViolations.violation_date})::text`,
+			count: count(),
+		})
+		.from(trafficViolations)
+		.where(whereClause)
+		.groupBy(sql`EXTRACT(HOUR FROM ${trafficViolations.violation_date})`)
+		.orderBy(sql`EXTRACT(HOUR FROM ${trafficViolations.violation_date})`);
 
 	const byMonth = monthlyData.reduce(
 		(acc, item) => {

@@ -6,6 +6,8 @@ import {
 	timestamp,
 	jsonb,
 	boolean,
+	numeric,
+	index,
 } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
@@ -61,6 +63,47 @@ export const trafficViolations = pgTable("traffic_violations", {
 });
 
 // ============================================================================
+// Location / Street Matches Schema
+// Stores the result of matching location descriptions to official streets
+// ============================================================================
+
+export const locationStreetMatches = pgTable(
+	"location_street_matches",
+	{
+		id: serial("id").primaryKey(),
+		location_id: integer("location_id").notNull().unique(),
+		location_description: text("location_description").notNull(),
+		extracted_street_name: text("extracted_street_name"),
+		extracted_street_type: text("extracted_street_type"),
+		semaphore_number: text("semaphore_number"),
+		address_number: text("address_number"),
+		matched_street_code: integer("matched_street_code").references(
+			() => officialStreets.code,
+		),
+		match_method: text("match_method"),
+		match_confidence: numeric("match_confidence"),
+		alternative_candidates: jsonb("alternative_candidates"),
+		needs_validation: boolean("needs_validation").default(false),
+		validated_by: text("validated_by"),
+		validated_at: timestamp("validated_at", { withTimezone: true }),
+		validation_status: text("validation_status"), // pending, confirmed, rejected
+		normalized_data: jsonb("normalized_data"),
+		created_at: timestamp("created_at", { withTimezone: true })
+			.defaultNow()
+			.notNull(),
+		updated_at: timestamp("updated_at", { withTimezone: true })
+			.defaultNow()
+			.notNull(),
+	},
+	(table) => [
+		index("idx_lsm_location_id").on(table.location_id),
+		index("idx_lsm_matched_street").on(table.matched_street_code),
+		index("idx_lsm_needs_validation").on(table.needs_validation),
+		index("idx_lsm_match_method").on(table.match_method),
+	],
+);
+
+// ============================================================================
 // Relations
 // ============================================================================
 
@@ -68,6 +111,7 @@ export const officialStreetsRelations = relations(
 	officialStreets,
 	({ many }) => ({
 		trafficViolations: many(trafficViolations),
+		locationStreetMatches: many(locationStreetMatches),
 	}),
 );
 
@@ -76,6 +120,16 @@ export const trafficViolationsRelations = relations(
 	({ one }) => ({
 		street: one(officialStreets, {
 			fields: [trafficViolations.street_code],
+			references: [officialStreets.code],
+		}),
+	}),
+);
+
+export const locationStreetMatchesRelations = relations(
+	locationStreetMatches,
+	({ one }) => ({
+		street: one(officialStreets, {
+			fields: [locationStreetMatches.matched_street_code],
 			references: [officialStreets.code],
 		}),
 	}),
@@ -120,6 +174,31 @@ export const insertTrafficViolationSchema = createInsertSchema(
 export const selectTrafficViolationSchema =
 	createSelectSchema(trafficViolations);
 
+export const insertLocationStreetMatchSchema = createInsertSchema(
+	locationStreetMatches,
+	{
+		location_id: z.number().int().positive(),
+		location_description: z.string().min(1),
+		extracted_street_name: z.string().optional(),
+		extracted_street_type: z.string().optional(),
+		semaphore_number: z.string().optional(),
+		address_number: z.string().optional(),
+		matched_street_code: z.number().int().optional(),
+		match_method: z.string().optional(),
+		match_confidence: z.number().optional(),
+		alternative_candidates: z.record(z.any()).optional(),
+		needs_validation: z.boolean().optional(),
+		validated_by: z.string().optional(),
+		validated_at: z.coerce.date().optional(),
+		validation_status: z.string().optional(),
+		normalized_data: z.record(z.any()).optional(),
+	},
+);
+
+export const selectLocationStreetMatchSchema = createSelectSchema(
+	locationStreetMatches,
+);
+
 // ============================================================================
 // TypeScript Types
 // ============================================================================
@@ -136,4 +215,13 @@ export type TrafficViolationInsert = z.infer<
 >;
 export type TrafficViolationSelect = z.infer<
 	typeof selectTrafficViolationSchema
+>;
+
+export type LocationStreetMatch = typeof locationStreetMatches.$inferSelect;
+export type NewLocationStreetMatch = typeof locationStreetMatches.$inferInsert;
+export type LocationStreetMatchInsert = z.infer<
+	typeof insertLocationStreetMatchSchema
+>;
+export type LocationStreetMatchSelect = z.infer<
+	typeof selectLocationStreetMatchSchema
 >;

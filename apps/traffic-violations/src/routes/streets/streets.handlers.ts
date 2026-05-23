@@ -1,6 +1,6 @@
-import { and, count, eq, ilike, gte, lte, sql, desc } from "drizzle-orm";
+import { and, count, eq, ilike, gte, lte, sql, desc, inArray } from "drizzle-orm";
 import { db } from "../../db/index.js";
-import { officialStreets, trafficViolations } from "../../db/schema.js";
+import { officialStreets, trafficViolations, pcrStreets } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
 	listStreetsRoute,
@@ -153,18 +153,46 @@ export const streetsRanking: AppRouteHandler<
 			.orderBy(desc(count()))
 			.limit(limit);
 
-		const streets = streetsWithViolations.map((street, index) => ({
-			street_code: street.street_code || 0,
-			official_name: street.official_name,
-			short_name: street.short_name,
-			neighborhood_name: street.neighborhood_name,
-			total_violations: street.total_violations,
-			ranking: index + 1,
-			violations_per_km:
-				Math.round((street.total_violations / (Math.random() * 5 + 1)) * 100) /
-				100, // Mock calculation
-			transport_corridor: street.transport_corridor,
-		}));
+		// Fetch street lengths from pcr_streets
+		const streetCodes = streetsWithViolations
+			.map((s) => s.street_code)
+			.filter((c): c is number => c != null);
+
+		let lengthMap = new Map<number, number>();
+
+		if (streetCodes.length > 0) {
+			const lengths = await db
+				.select({
+					street_code: pcrStreets.clogra_codi,
+					total_km: sql<number>`SUM(${pcrStreets.db2gse_sde}) / 1000.0`,
+				})
+				.from(pcrStreets)
+				.where(inArray(pcrStreets.clogra_codi, streetCodes))
+				.groupBy(pcrStreets.clogra_codi);
+
+			lengthMap = new Map(
+				lengths.map((l) => [l.street_code, Number(l.total_km)]),
+			);
+		}
+
+		const streets = streetsWithViolations.map((street, index) => {
+			const totalKm = lengthMap.get(street.street_code || 0) || 0;
+			const violationsPerKm =
+				totalKm > 0
+					? Math.round((street.total_violations / totalKm) * 100) / 100
+					: 0;
+
+			return {
+				street_code: street.street_code || 0,
+				official_name: street.official_name,
+				short_name: street.short_name,
+				neighborhood_name: street.neighborhood_name,
+				total_violations: street.total_violations,
+				ranking: index + 1,
+				violations_per_km: violationsPerKm,
+				transport_corridor: street.transport_corridor,
+			};
+		});
 
 		return c.json({ streets }, 200) as any;
 	} catch (error) {

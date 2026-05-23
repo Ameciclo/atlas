@@ -51,7 +51,6 @@ const violationParamsSchema = z.object({
 });
 
 export type ViolationsByLocationRoute = typeof violationsByLocationRoute;
-export type ViolationsHotspotsRoute = typeof violationsHotspotsRoute;
 export type ViolationsGeoJSONRoute = typeof violationsGeoJSONRoute;
 
 // ============================================================================
@@ -186,62 +185,6 @@ export const violationsByLocationRoute = createRoute({
 	},
 });
 
-export const violationsHotspotsRoute = createRoute({
-	method: "get",
-	path: "/violations/hotspots",
-	tags: ["Traffic Violations"],
-	summary: "Get violation hotspots",
-	description: "Get clustered violation hotspots in GeoJSON format",
-	request: {
-		query: z.object({
-			violation_type_id: z.coerce.number().optional().openapi({
-				description: "Filter by violation type ID",
-				example: 5,
-			}),
-			limit: z.coerce.number().min(1).max(100).default(50).optional().openapi({
-				description: "Number of hotspots",
-				example: 50,
-			}),
-			radius_km: z.coerce
-				.number()
-				.min(0.1)
-				.max(10)
-				.default(1)
-				.optional()
-				.openapi({
-					description: "Clustering radius in kilometers",
-					example: 1,
-				}),
-		}),
-	},
-	responses: {
-		200: {
-			content: {
-				"application/json": {
-					schema: z.object({
-						type: z.literal("FeatureCollection"),
-						features: z.array(
-							z.object({
-								type: z.literal("Feature"),
-								geometry: z.object({
-									type: z.literal("Point"),
-									coordinates: z.array(z.number()),
-								}),
-								properties: z.object({
-									violations_count: z.number(),
-									radius_km: z.number(),
-									violation_types: z.array(z.string()),
-								}),
-							}),
-						),
-					}),
-				},
-			},
-			description: "Violation hotspots GeoJSON",
-		},
-	},
-});
-
 export const violationsGeoJSONRoute = createRoute({
 	method: "get",
 	path: "/violations/geojson",
@@ -288,14 +231,15 @@ export const violationsGeoJSONRoute = createRoute({
 							z.object({
 								type: z.literal("Feature"),
 								geometry: z.object({
-									type: z.literal("Point"),
-									coordinates: z.array(z.number()),
+									type: z.literal("MultiLineString"),
+									coordinates: z.array(z.array(z.array(z.number()))),
 								}),
 								properties: z.object({
 									violation_type: z.string(),
 									agent_id: z.number(),
 									date: z.string(),
 									description: z.string(),
+									street_code: z.number().nullable(),
 								}),
 							}),
 						),

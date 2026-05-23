@@ -13,4 +13,13 @@ export {
 	type NewOfficialStreet,
 	type OfficialStreetInsert,
 	type OfficialStreetSelect,
+	locationStreetMatches,
+	insertLocationStreetMatchSchema,
+	selectLocationStreetMatchSchema,
+	type LocationStreetMatch,
+	type NewLocationStreetMatch,
+	type LocationStreetMatchInsert,
+	type LocationStreetMatchSelect,
 } from "@atlas/database/schemas/traffic-violations";
+
+export { pcrStreets } from "@atlas/database/schemas/pcr-streets";
