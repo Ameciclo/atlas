@@ -62,6 +62,7 @@ export const overviewRoute = createRoute({
 				period_start: z.string().nullable(),
 				period_end: z.string().nullable(),
 				violation_types_count: z.number(),
+				law_codes_count: z.number(),
 				streets_count: z.number(),
 				neighborhoods_count: z.number(),
 				agent_breakdown: z.array(z.object({

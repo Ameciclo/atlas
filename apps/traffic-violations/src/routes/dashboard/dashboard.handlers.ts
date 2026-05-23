@@ -126,6 +126,16 @@ export const overview = async (c: any) => {
 					.as("distinct_neighborhoods"),
 			);
 
+		const [lawCodesResult] = await db
+			.select({ count: count() })
+			.from(
+				db
+					.selectDistinct({ law: trafficViolations.law_code })
+					.from(trafficViolations)
+					.where(sql`${trafficViolations.law_code} IS NOT NULL`)
+					.as("distinct_law_codes"),
+			);
+
 		const total = totalResult?.count || 0;
 
 		const agentData = await db
@@ -156,6 +166,7 @@ export const overview = async (c: any) => {
 			period_start: periodResult?.start || null,
 			period_end: periodResult?.end || null,
 			violation_types_count: typesResult?.count || 0,
+			law_codes_count: lawCodesResult?.count || 0,
 			streets_count: streetsResult?.count || 0,
 			neighborhoods_count: neighborhoodsResult?.count || 0,
 			agent_breakdown: agentBreakdown,
