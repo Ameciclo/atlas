@@ -9,6 +9,7 @@ const router = createRouter()
 	.openapi(routes.temporalRoute, handlers.temporal)
 	.openapi(routes.agentAnalysisRoute, handlers.agentAnalysis)
 	.openapi(routes.violationCodesRoute, handlers.violationCodes)
-	.openapi(routes.categoriesListRoute, handlers.categoriesList);
+	.openapi(routes.categoriesListRoute, handlers.categoriesList)
+	.openapi(routes.geojsonRoute, handlers.geojson);
 
 export default router;

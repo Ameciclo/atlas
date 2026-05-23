@@ -140,6 +140,13 @@ export const topStreetsRoute = createRoute({
 					total_violations: z.number(),
 					extension_km: z.number(),
 					violations_per_km: z.number(),
+					top_violation: z.object({
+						violation_code: z.string(),
+						law_code: z.string(),
+						description: z.string(),
+						count: z.number(),
+						percentage: z.number(),
+					}).nullable(),
 				})),
 			}) }},
 			description: "Top streets by violations",
@@ -258,6 +265,53 @@ export const categoriesListRoute = createRoute({
 				})),
 			}) }},
 			description: "Available categories",
+		},
+	},
+});
+
+// ============================================================================
+// 8. GeoJSON
+// ============================================================================
+
+export const geojsonRoute = createRoute({
+	method: "get",
+	path: "/dashboard/geojson",
+	tags: ["Dashboard"],
+	summary: "Infrações em GeoJSON",
+	description: "Retorna pontos de infração georreferenciados como FeatureCollection. Usa geometria das ruas (pcr_streets) via street_code.",
+	request: {
+		query: z.object({
+			violation_codes: violationCodesParam,
+			category: categoryParam,
+			agent_category: agentCategoryParam,
+			start_date: z.string().date().optional().openapi({ description: "Start date (YYYY-MM-DD)", example: "2023-01-01" }),
+			end_date: z.string().date().optional().openapi({ description: "End date (YYYY-MM-DD)", example: "2023-12-31" }),
+			limit: z.coerce.number().int().min(1).max(1000).default(100).optional().openapi({ description: "Number of violations", example: 100 }),
+		}),
+	},
+	responses: {
+		200: {
+			content: { "application/json": { schema: z.object({
+				type: z.literal("FeatureCollection"),
+				features: z.array(z.object({
+					type: z.literal("Feature"),
+					geometry: z.object({
+						type: z.literal("MultiLineString"),
+						coordinates: z.array(z.array(z.array(z.number()))),
+					}),
+					properties: z.object({
+						id: z.number(),
+						violation_code: z.string(),
+						law_code: z.string(),
+						description: z.string(),
+						date: z.string(),
+						agent_id: z.number(),
+						street_code: z.number().nullable(),
+						street_name: z.string().nullable(),
+					}),
+				})),
+			}) }},
+			description: "GeoJSON violations",
 		},
 	},
 });

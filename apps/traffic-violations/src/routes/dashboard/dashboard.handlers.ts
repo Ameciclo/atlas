@@ -284,8 +284,44 @@ export const topStreets = async (c: any) => {
 			lengthMap = new Map(lengths.map((l) => [l.street_code, Number(l.total_km)]));
 		}
 
+		// Get top violation per street
+		const topViolationMap = new Map<number, { violation_code: string; law_code: string; description: string; count: number }>();
+		for (const s of data) {
+			const code = s.street_code;
+			if (!code) continue;
+
+			const [top] = await db
+				.select({
+					violation_code: trafficViolations.violation_code,
+					law_code: sql<string>`MAX(${trafficViolations.law_code})`,
+					description: sql<string>`MAX(${trafficViolations.description})`,
+					count: count(),
+				})
+				.from(trafficViolations)
+				.where(
+					and(
+						eq(trafficViolations.street_code, code),
+						...(whereClause ? [whereClause] : []),
+					),
+				)
+				.groupBy(trafficViolations.violation_code)
+				.orderBy(desc(count()))
+				.limit(1);
+
+			if (top) {
+				topViolationMap.set(code, {
+					violation_code: top.violation_code,
+					law_code: top.law_code,
+					description: top.description,
+					count: top.count,
+				});
+			}
+		}
+
 		const streets = data.map((s) => {
 			const totalKm = lengthMap.get(s.street_code || 0) || 0;
+			const topViol = topViolationMap.get(s.street_code || 0);
+
 			return {
 				street_code: s.street_code || 0,
 				official_name: s.official_name,
@@ -296,6 +332,17 @@ export const topStreets = async (c: any) => {
 					totalKm > 0
 						? Math.round((s.total_violations / totalKm) * 100) / 100
 						: 0,
+				top_violation: topViol
+					? {
+							violation_code: topViol.violation_code,
+							law_code: topViol.law_code,
+							description: topViol.description,
+							count: topViol.count,
+							percentage: s.total_violations > 0
+								? Math.round((topViol.count / s.total_violations) * 1000) / 10
+								: 0,
+						}
+					: null,
 			};
 		});
 
@@ -553,6 +600,72 @@ export const categoriesList = async (c: any) => {
 		return c.json({ categories }, 200);
 	} catch (error) {
 		console.error("Error fetching categories:", error);
+		return c.json({ error: "Internal server error" }, 500);
+	}
+};
+
+// ============================================================================
+// 8. GeoJSON
+// ============================================================================
+
+export const geojson = async (c: any) => {
+	const { violation_codes, category, agent_category, start_date, end_date, limit } =
+		c.req.valid("query");
+
+	try {
+		const whereClause = await buildConditions({
+			codes: violation_codes,
+			category: category,
+			agentCategory: agent_category,
+			startDate: start_date,
+			endDate: end_date,
+		});
+
+		const violations = await db
+			.select({
+				id: trafficViolations.id,
+				violation_date: trafficViolations.violation_date,
+				violation_code: trafficViolations.violation_code,
+				law_code: trafficViolations.law_code,
+				description: trafficViolations.description,
+				agent_id: trafficViolations.agent_id,
+				street_code: trafficViolations.street_code,
+				street_name: officialStreets.official_name,
+				geometry: sql<string>`(
+					SELECT ST_AsGeoJSON(ST_Collect(${pcrStreets.coordinates}))
+					FROM pcr_streets
+					WHERE pcr_streets.clogra_codi = ${trafficViolations.street_code}
+				)`.as("geometry"),
+			})
+			.from(trafficViolations)
+			.leftJoin(officialStreets, eq(trafficViolations.street_code, officialStreets.code))
+			.where(whereClause)
+			.orderBy(desc(trafficViolations.violation_date))
+			.limit(limit);
+
+		const features = violations
+			.filter((v) => v.geometry)
+			.map((v) => {
+				const parsed = JSON.parse(v.geometry ?? "{}");
+				return {
+					type: "Feature" as const,
+					geometry: parsed.type ? parsed : { type: "MultiLineString", coordinates: [] },
+					properties: {
+						id: v.id,
+						violation_code: v.violation_code,
+						law_code: v.law_code,
+						description: v.description,
+						date: v.violation_date?.toISOString().split("T")[0] || "",
+						agent_id: v.agent_id,
+						street_code: v.street_code,
+						street_name: v.street_name,
+					},
+				};
+			});
+
+		return c.json({ type: "FeatureCollection" as const, features }, 200) as any;
+	} catch (error) {
+		console.error("Error fetching GeoJSON:", error);
 		return c.json({ error: "Internal server error" }, 500);
 	}
 };
