@@ -63,6 +63,25 @@ export const trafficViolations = pgTable("traffic_violations", {
 });
 
 // ============================================================================
+// Violation Categories Schema
+// Maps violation codes to editorial categories (frontend-driven classification)
+// ============================================================================
+
+export const violationCategories = pgTable("violation_categories", {
+	id: serial("id").primaryKey(),
+	violation_code: text("violation_code").notNull(),
+	law_code: text("law_code").notNull(),
+	description_keyword: text("description_keyword"),
+	category: text("category").notNull(),
+	created_at: timestamp("created_at", { withTimezone: true })
+		.defaultNow()
+		.notNull(),
+}, (table) => [
+	index("idx_vc_code").on(table.violation_code),
+	index("idx_vc_category").on(table.category),
+]);
+
+// ============================================================================
 // Location / Street Matches Schema
 // Stores the result of matching location descriptions to official streets
 // ============================================================================
@@ -199,6 +218,20 @@ export const selectLocationStreetMatchSchema = createSelectSchema(
 	locationStreetMatches,
 );
 
+export const insertViolationCategorySchema = createInsertSchema(
+	violationCategories,
+	{
+		violation_code: z.string().min(1),
+		law_code: z.string().min(1),
+		description_keyword: z.string().optional(),
+		category: z.string().min(1),
+	},
+);
+
+export const selectViolationCategorySchema = createSelectSchema(
+	violationCategories,
+);
+
 // ============================================================================
 // TypeScript Types
 // ============================================================================
@@ -225,3 +258,8 @@ export type LocationStreetMatchInsert = z.infer<
 export type LocationStreetMatchSelect = z.infer<
 	typeof selectLocationStreetMatchSchema
 >;
+
+export type ViolationCategory = typeof violationCategories.$inferSelect;
+export type NewViolationCategory = typeof violationCategories.$inferInsert;
+export type ViolationCategoryInsert = z.infer<typeof insertViolationCategorySchema>;
+export type ViolationCategorySelect = z.infer<typeof selectViolationCategorySchema>;

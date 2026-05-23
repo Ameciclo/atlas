@@ -4,8 +4,16 @@ const violationCodesParam = z
 	.string()
 	.optional()
 	.openapi({
-		description: "Comma-separated violation codes (e.g. 7455,6050,5541). Frontend defines categories.",
+		description: "Comma-separated violation codes (e.g. 7455,6050,5541). Alternative to 'category'.",
 		example: "7455,7463,6050",
+	});
+
+const categoryParam = z
+	.string()
+	.optional()
+	.openapi({
+		description: "Predefined category filter (e.g. 'Segurança viária', 'Pedestres'). Resolves to violation_codes internally. Alternative to 'violation_codes'.",
+		example: "Pedestres",
 	});
 
 const agentCategoryParam = z
@@ -82,6 +90,7 @@ export const topViolationsRoute = createRoute({
 	request: {
 		query: z.object({
 			violation_codes: violationCodesParam,
+			category: categoryParam,
 			agent_category: agentCategoryParam,
 			limit: limitParam,
 			...dateRangeParams,
@@ -105,8 +114,6 @@ export const topViolationsRoute = createRoute({
 
 // ============================================================================
 // 3. Top Streets
-// ============================================================================
-
 export const topStreetsRoute = createRoute({
 	method: "get",
 	path: "/dashboard/top-streets",
@@ -116,6 +123,7 @@ export const topStreetsRoute = createRoute({
 	request: {
 		query: z.object({
 			violation_codes: violationCodesParam,
+			category: categoryParam,
 			agent_category: agentCategoryParam,
 			limit: limitParam,
 			...dateRangeParams,
@@ -140,8 +148,6 @@ export const topStreetsRoute = createRoute({
 
 // ============================================================================
 // 4. Temporal
-// ============================================================================
-
 export const temporalRoute = createRoute({
 	method: "get",
 	path: "/dashboard/temporal",
@@ -151,6 +157,7 @@ export const temporalRoute = createRoute({
 	request: {
 		query: z.object({
 			violation_codes: violationCodesParam,
+			category: categoryParam,
 			agent_category: agentCategoryParam,
 			...dateRangeParams,
 		}),
@@ -169,8 +176,6 @@ export const temporalRoute = createRoute({
 
 // ============================================================================
 // 5. Agent Analysis
-// ============================================================================
-
 export const agentAnalysisRoute = createRoute({
 	method: "get",
 	path: "/dashboard/agent-analysis",
@@ -180,6 +185,7 @@ export const agentAnalysisRoute = createRoute({
 	request: {
 		query: z.object({
 			violation_codes: violationCodesParam,
+			category: categoryParam,
 			...dateRangeParams,
 		}),
 	},
@@ -226,6 +232,30 @@ export const violationCodesRoute = createRoute({
 				})),
 			}) }},
 			description: "Violation codes dictionary",
+		},
+	},
+});
+
+// ============================================================================
+// 7. Categories List
+// ============================================================================
+
+export const categoriesListRoute = createRoute({
+	method: "get",
+	path: "/dashboard/categories",
+	tags: ["Dashboard"],
+	summary: "Lista de categorias disponíveis",
+	description: "Retorna as categorias predefinidas com contagem de códigos de infração em cada uma",
+	responses: {
+		200: {
+			content: { "application/json": { schema: z.object({
+				categories: z.array(z.object({
+					category: z.string(),
+					code_count: z.number(),
+					total_violations: z.number(),
+				})),
+			}) }},
+			description: "Available categories",
 		},
 	},
 });

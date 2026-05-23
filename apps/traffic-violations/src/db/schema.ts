@@ -20,6 +20,13 @@ export {
 	type NewLocationStreetMatch,
 	type LocationStreetMatchInsert,
 	type LocationStreetMatchSelect,
+	violationCategories,
+	insertViolationCategorySchema,
+	selectViolationCategorySchema,
+	type ViolationCategory,
+	type NewViolationCategory,
+	type ViolationCategoryInsert,
+	type ViolationCategorySelect,
 } from "@atlas/database/schemas/traffic-violations";
 
 export { pcrStreets } from "@atlas/database/schemas/pcr-streets";

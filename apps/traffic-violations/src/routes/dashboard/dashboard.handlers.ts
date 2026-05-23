@@ -1,6 +1,6 @@
 import { and, count, desc, eq, gte, inArray, lte, sql } from "drizzle-orm";
 import { db } from "../../db/index.js";
-import { trafficViolations, officialStreets, pcrStreets } from "../../db/schema.js";
+import { trafficViolations, officialStreets, pcrStreets, violationCategories } from "../../db/schema.js";
 import type * as routes from "./dashboard.routes.js";
 
 // ============================================================================
@@ -29,6 +29,16 @@ function getAgentIds(category: string): number[] {
 	return [...ELETRONICO_IDS, ...MANUAL_IDS];
 }
 
+async function resolveCategoryCodes(category: string | undefined): Promise<string[] | null> {
+	if (!category) return null;
+	const rows = await db
+		.selectDistinct({ code: violationCategories.violation_code })
+		.from(violationCategories)
+		.where(eq(violationCategories.category, category));
+	const codes = rows.map((r) => r.code).filter(Boolean);
+	return codes.length > 0 ? codes : null;
+}
+
 function parseCodes(raw: string | undefined): string[] | null {
 	if (!raw) return null;
 	const codes = raw
@@ -42,15 +52,21 @@ function parseCodes(raw: string | undefined): string[] | null {
 // Shared condition builder
 // ============================================================================
 
-function buildConditions(params: {
+async function buildConditions(params: {
 	codes?: string | undefined;
+	category?: string | undefined;
 	agentCategory?: string | undefined;
 	startDate?: string | undefined;
 	endDate?: string | undefined;
 }) {
 	const conditions: ReturnType<typeof and>[] = [];
 
-	const codes = parseCodes(params.codes);
+	let codes = parseCodes(params.codes);
+
+	if (!codes && params.category) {
+		codes = await resolveCategoryCodes(params.category);
+	}
+
 	if (codes) {
 		conditions.push(inArray(trafficViolations.violation_code, codes));
 	}
@@ -155,12 +171,13 @@ export const overview = async (c: any) => {
 // ============================================================================
 
 export const topViolations = async (c: any) => {
-	const { violation_codes, agent_category, limit, start_date, end_date } =
+	const { violation_codes, category, agent_category, limit, start_date, end_date } =
 		c.req.valid("query");
 
 	try {
-		const whereClause = buildConditions({
+		const whereClause = await buildConditions({
 			codes: violation_codes,
+			category: category,
 			agentCategory: agent_category,
 			startDate: start_date,
 			endDate: end_date,
@@ -206,12 +223,13 @@ export const topViolations = async (c: any) => {
 // ============================================================================
 
 export const topStreets = async (c: any) => {
-	const { violation_codes, agent_category, limit, start_date, end_date } =
+	const { violation_codes, category, agent_category, limit, start_date, end_date } =
 		c.req.valid("query");
 
 	try {
-		const whereClause = buildConditions({
+		const whereClause = await buildConditions({
 			codes: violation_codes,
+			category: category,
 			agentCategory: agent_category,
 			startDate: start_date,
 			endDate: end_date,
@@ -282,12 +300,13 @@ export const topStreets = async (c: any) => {
 // ============================================================================
 
 export const temporal = async (c: any) => {
-	const { violation_codes, agent_category, start_date, end_date } =
+	const { violation_codes, category, agent_category, start_date, end_date } =
 		c.req.valid("query");
 
 	try {
-		const whereClause = buildConditions({
+		const whereClause = await buildConditions({
 			codes: violation_codes,
+			category: category,
 			agentCategory: agent_category,
 			startDate: start_date,
 			endDate: end_date,
@@ -354,11 +373,12 @@ export const temporal = async (c: any) => {
 // ============================================================================
 
 export const agentAnalysis = async (c: any) => {
-	const { violation_codes, start_date, end_date } = c.req.valid("query");
+	const { violation_codes, category, start_date, end_date } = c.req.valid("query");
 
 	try {
-		const baseWhere = buildConditions({
+		const baseWhere = await buildConditions({
 			codes: violation_codes,
+			category: category,
 			startDate: start_date,
 			endDate: end_date,
 		});
@@ -458,6 +478,55 @@ export const violationCodes = async (c: any) => {
 		);
 	} catch (error) {
 		console.error("Error fetching violation codes:", error);
+		return c.json({ error: "Internal server error" }, 500);
+	}
+};
+
+// ============================================================================
+// 7. Categories List
+// ============================================================================
+
+export const categoriesList = async (c: any) => {
+	try {
+		const data = await db
+			.select({
+				category: violationCategories.category,
+				code_count: sql<number>`COUNT(DISTINCT ${violationCategories.violation_code})`,
+			})
+			.from(violationCategories)
+			.groupBy(violationCategories.category)
+			.orderBy(violationCategories.category);
+
+		// Get total violations per category
+		const categories = await Promise.all(
+			data.map(async (cat) => {
+				const codes = await db
+					.selectDistinct({ code: violationCategories.violation_code })
+					.from(violationCategories)
+					.where(eq(violationCategories.category, cat.category));
+
+				const codeList = codes.map((c) => c.code);
+				let totalViolations = 0;
+
+				if (codeList.length > 0) {
+					const [result] = await db
+						.select({ count: count() })
+						.from(trafficViolations)
+						.where(inArray(trafficViolations.violation_code, codeList));
+					totalViolations = result?.count || 0;
+				}
+
+				return {
+					category: cat.category,
+					code_count: cat.code_count,
+					total_violations: totalViolations,
+				};
+			}),
+		);
+
+		return c.json({ categories }, 200);
+	} catch (error) {
+		console.error("Error fetching categories:", error);
 		return c.json({ error: "Internal server error" }, 500);
 	}
 };
