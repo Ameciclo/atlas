@@ -403,6 +403,7 @@ export const surveyLocations = async (c: any) => {
 		const gender = c.req.query("gender");
 		const race = c.req.query("race");
 		const income = c.req.query("income");
+		const minInterviews = c.req.query("min_interviews") ? Number(c.req.query("min_interviews")) : 30;
 
 		// Build filters
 		const filters = [sql`coordinates IS NOT NULL`];
@@ -453,7 +454,7 @@ export const surveyLocations = async (c: any) => {
 				sql`metadata->>'area'`,
 				sql`metadata->>'survey_year'`,
 			)
-			.having(sql`count(*) >= 3`) // Only locations with 3+ responses
+			.having(sql`count(*) >= ${minInterviews}`)
 			.orderBy(sql`count(*) desc`);
 
 		return c.json(

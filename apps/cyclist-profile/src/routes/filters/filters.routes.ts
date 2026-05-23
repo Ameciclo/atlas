@@ -44,6 +44,14 @@ export const list = createRoute({
 	path: "/filters",
 	method: "get",
 	tags,
+	request: {
+		query: z.object({
+			min_interviews: z.coerce.number().int().optional().default(30).openapi({
+				description: "Minimum number of interviews per count point (default: 30)",
+				example: 30,
+			}),
+		}),
+	},
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			filtersResponseSchema,

@@ -24,7 +24,8 @@ function buildFilters(f: Filters): ReturnType<typeof sql>[] {
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
 	const query = c.req.valid("query");
-	const filters = buildFilters(query);
+	const { min_interviews, ...filterFields } = query;
+	const filters = buildFilters(filterFields);
 	const whereClause = sql.join(filters, sql` AND `);
 
 	const rows = await db
@@ -43,7 +44,7 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 		.from(cyclistProfiles)
 		.where(whereClause)
 		.groupBy(sql`ST_Y(coordinates)`, sql`ST_X(coordinates)`, sql`metadata->>'neighborhood'`, sql`metadata->>'area'`, sql`metadata->>'survey_year'`)
-		.having(sql`count(*) >= 3`)
+		.having(sql`count(*) >= ${min_interviews}`)
 		.orderBy(sql`count(*) desc`);
 
 	return c.json({
@@ -66,7 +67,8 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 
 export const geojson: AppRouteHandler<GeoJsonRoute> = async (c) => {
 	const query = c.req.valid("query");
-	const filters = buildFilters(query);
+	const { min_interviews, ...filterFields } = query;
+	const filters = buildFilters(filterFields);
 	const whereClause = sql.join(filters, sql` AND `);
 
 	const rows = await db
@@ -83,7 +85,7 @@ export const geojson: AppRouteHandler<GeoJsonRoute> = async (c) => {
 		.from(cyclistProfiles)
 		.where(whereClause)
 		.groupBy(sql`ST_Y(coordinates)`, sql`ST_X(coordinates)`, sql`metadata->>'neighborhood'`, sql`metadata->>'area'`)
-		.having(sql`count(*) >= 3`)
+		.having(sql`count(*) >= ${min_interviews}`)
 		.orderBy(sql`count(*) desc`);
 
 	return c.json({

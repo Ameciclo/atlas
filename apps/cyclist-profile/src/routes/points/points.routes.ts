@@ -10,6 +10,10 @@ const querySchema = z.object({
 	gender: z.string().optional(),
 	race: z.string().optional(),
 	income: z.string().optional(),
+	min_interviews: z.coerce.number().int().optional().default(30).openapi({
+		description: "Minimum number of interviews per point (default: 30)",
+		example: 30,
+	}),
 });
 
 export const list = createRoute({

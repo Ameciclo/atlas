@@ -78,6 +78,10 @@ const LocationQuerySchema = z.object({
 	gender: z.string().optional(),
 	race: z.string().optional(),
 	income: z.string().optional(),
+	min_interviews: z.coerce.number().int().optional().default(30).openapi({
+		description: "Minimum number of interviews per location (default: 30)",
+		example: 30,
+	}),
 });
 
 const LocationGenderQuerySchema = z.object({

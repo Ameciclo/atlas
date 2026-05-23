@@ -24,6 +24,7 @@ async function distinctValues(field: string, limit = 30) {
 }
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
+	const { min_interviews } = c.req.valid("query");
 	const [yearsResult, totalResult] = await Promise.all([
 		db
 			.select({
@@ -85,6 +86,7 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 			.from(cyclistProfiles)
 			.where(sql`coordinates IS NOT NULL AND metadata->>'neighborhood' IS NOT NULL AND metadata->>'neighborhood' != ''`)
 			.groupBy(sql`metadata->>'neighborhood'`)
+			.having(sql`count(*) >= ${min_interviews}`)
 			.orderBy(sql`count(*) desc`),
 	]);
 
