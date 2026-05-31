@@ -186,7 +186,7 @@ async function doSearch(matchId) {
     '<label class="candidate" style="cursor:pointer" onclick="selectCandidate(' + matchId + ',' + s.code + ')">' +
     '<input type="radio" name="cand_' + matchId + '" value="' + s.code + '">' +
     '<span class="c-name">' + esc(s.official_name) + '</span>' +
-    '<span class="c-code">cód. ' + s.code + ' | ' + esc(s.neighborhood_name || '') + '</span>' +
+    '<span class="c-code">cód. ' + s.code + '</span>' +
     '</label>'
   ).join('');
 }
@@ -263,19 +263,20 @@ render();
 </html>`;
 
 export const validationPageRoute = createRoute({
-  method: "get",
-  path: "/validations",
-  tags: ["Validation"],
-  summary: "Human validation interface",
-  description: "Interactive HTML page for reviewing and confirming low-confidence street matches.",
-  responses: {
-    200: {
-      content: {
-        "text/html": { schema: z.string() },
-      },
-      description: "Validation HTML page",
-    },
-  },
+	method: "get",
+	path: "/validations",
+	tags: ["Validation"],
+	summary: "Human validation interface",
+	description:
+		"Interactive HTML page for reviewing and confirming low-confidence street matches.",
+	responses: {
+		200: {
+			content: {
+				"text/html": { schema: z.string() },
+			},
+			description: "Validation HTML page",
+		},
+	},
 });
 
 export { VALIDATION_HTML };

@@ -1,90 +1,16 @@
-import { and, count, desc, eq, gte, inArray, lte, sql } from "drizzle-orm";
+import { and, count, desc, eq, inArray, isNull, sql } from "drizzle-orm";
 import { db } from "../../db/index.js";
-import { trafficViolations, officialStreets, pcrStreets, violationCategories } from "../../db/schema.js";
+import {
+	streetCodes,
+	pcrStreets,
+	trafficViolations,
+	violationCategories,
+} from "../../db/schema.js";
+import {
+	AGENT_INFO,
+	buildConditions,
+} from "../../lib/query-helpers.js";
 import type * as routes from "./dashboard.routes.js";
-
-// ============================================================================
-// Agent mapping
-// ============================================================================
-
-const AGENT_INFO: Record<number, { description: string; category: "eletronico" | "manual" }> = {
-	0: { description: "NA", category: "manual" },
-	1: { description: "Convênio BPTRAN", category: "manual" },
-	2: { description: "Zona Azul - Talão Manual", category: "manual" },
-	3: { description: "Lombada Eletrônica", category: "eletronico" },
-	4: { description: "Radar", category: "eletronico" },
-	5: { description: "Fotosensor", category: "eletronico" },
-	6: { description: "Autos no Talão Manual", category: "manual" },
-	7: { description: "Zona Azul - Talão Eletrônico", category: "manual" },
-	8: { description: "Autos no Talão Eletrônico", category: "manual" },
-	9: { description: "Faixa Azul", category: "eletronico" },
-};
-
-const ELETRONICO_IDS = [3, 4, 5, 9];
-const MANUAL_IDS = [0, 1, 2, 6, 7, 8];
-
-function getAgentIds(category: string): number[] {
-	if (category === "eletronico") return ELETRONICO_IDS;
-	if (category === "manual") return MANUAL_IDS;
-	return [...ELETRONICO_IDS, ...MANUAL_IDS];
-}
-
-async function resolveCategoryCodes(category: string | undefined): Promise<string[] | null> {
-	if (!category) return null;
-	const rows = await db
-		.selectDistinct({ code: violationCategories.violation_code })
-		.from(violationCategories)
-		.where(eq(violationCategories.category, category));
-	const codes = rows.map((r) => r.code).filter(Boolean);
-	return codes.length > 0 ? codes : null;
-}
-
-function parseCodes(raw: string | undefined): string[] | null {
-	if (!raw) return null;
-	const codes = raw
-		.split(",")
-		.map((c) => c.trim())
-		.filter(Boolean);
-	return codes.length > 0 ? codes : null;
-}
-
-// ============================================================================
-// Shared condition builder
-// ============================================================================
-
-async function buildConditions(params: {
-	codes?: string | undefined;
-	category?: string | undefined;
-	agentCategory?: string | undefined;
-	startDate?: string | undefined;
-	endDate?: string | undefined;
-}) {
-	const conditions: ReturnType<typeof and>[] = [];
-
-	let codes = parseCodes(params.codes);
-
-	if (!codes && params.category) {
-		codes = await resolveCategoryCodes(params.category);
-	}
-
-	if (codes) {
-		conditions.push(inArray(trafficViolations.violation_code, codes));
-	}
-
-	const agentIds = getAgentIds(params.agentCategory || "all");
-	if (params.agentCategory && params.agentCategory !== "all") {
-		conditions.push(inArray(trafficViolations.agent_id, agentIds));
-	}
-
-	if (params.startDate) {
-		conditions.push(gte(trafficViolations.violation_date, new Date(params.startDate)));
-	}
-	if (params.endDate) {
-		conditions.push(lte(trafficViolations.violation_date, new Date(params.endDate)));
-	}
-
-	return conditions.length > 0 ? and(...conditions) : undefined;
-}
 
 // ============================================================================
 // 1. Overview
@@ -114,17 +40,7 @@ export const overview = async (c: any) => {
 
 		const [streetsResult] = await db
 			.select({ count: count() })
-			.from(officialStreets);
-
-		const [neighborhoodsResult] = await db
-			.select({ count: count() })
-			.from(
-				db
-					.selectDistinct({ name: officialStreets.neighborhood_name })
-					.from(officialStreets)
-					.where(sql`${officialStreets.neighborhood_name} IS NOT NULL`)
-					.as("distinct_neighborhoods"),
-			);
+			.from(streetCodes);
 
 		const [lawCodesResult] = await db
 			.select({ count: count() })
@@ -161,16 +77,19 @@ export const overview = async (c: any) => {
 			};
 		});
 
-		return c.json({
-			total_violations: total,
-			period_start: periodResult?.start || null,
-			period_end: periodResult?.end || null,
-			violation_types_count: typesResult?.count || 0,
-			law_codes_count: lawCodesResult?.count || 0,
-			streets_count: streetsResult?.count || 0,
-			neighborhoods_count: neighborhoodsResult?.count || 0,
-			agent_breakdown: agentBreakdown,
-		}, 200);
+		return c.json(
+			{
+				total_violations: total,
+				period_start: periodResult?.start || null,
+				period_end: periodResult?.end || null,
+				violation_types_count: typesResult?.count || 0,
+				law_codes_count: lawCodesResult?.count || 0,
+				streets_count: streetsResult?.count || 0,
+				neighborhoods_count: 0,
+				agent_breakdown: agentBreakdown,
+			},
+			200,
+		);
 	} catch (error) {
 		console.error("Error fetching overview:", error);
 		return c.json({ error: "Internal server error" }, 500);
@@ -182,8 +101,14 @@ export const overview = async (c: any) => {
 // ============================================================================
 
 export const topViolations = async (c: any) => {
-	const { violation_codes, category, agent_category, limit, start_date, end_date } =
-		c.req.valid("query");
+	const {
+		violation_codes,
+		category,
+		agent_category,
+		limit,
+		start_date,
+		end_date,
+	} = c.req.valid("query");
 
 	try {
 		const whereClause = await buildConditions({
@@ -234,8 +159,14 @@ export const topViolations = async (c: any) => {
 // ============================================================================
 
 export const topStreets = async (c: any) => {
-	const { violation_codes, category, agent_category, limit, start_date, end_date } =
-		c.req.valid("query");
+	const {
+		violation_codes,
+		category,
+		agent_category,
+		limit,
+		start_date,
+		end_date,
+	} = c.req.valid("query");
 
 	try {
 		const whereClause = await buildConditions({
@@ -249,43 +180,51 @@ export const topStreets = async (c: any) => {
 		const data = await db
 			.select({
 				street_code: trafficViolations.street_code,
-				official_name: officialStreets.official_name,
-				neighborhood_name: officialStreets.neighborhood_name,
+				official_name: streetCodes.official_name,
 				total_violations: count(),
 			})
 			.from(trafficViolations)
 			.innerJoin(
-				officialStreets,
-				eq(trafficViolations.street_code, officialStreets.code),
+				streetCodes,
+				eq(trafficViolations.street_code, streetCodes.code),
 			)
 			.where(whereClause)
 			.groupBy(
 				trafficViolations.street_code,
-				officialStreets.official_name,
-				officialStreets.neighborhood_name,
+				streetCodes.official_name,
 			)
 			.orderBy(desc(count()))
 			.limit(limit);
 
-		const streetCodes = data
+		const streetCodeList = data
 			.map((s) => s.street_code)
 			.filter((c): c is number => c != null);
 
 		let lengthMap = new Map<number, number>();
-		if (streetCodes.length > 0) {
+		if (streetCodeList.length > 0) {
 			const lengths = await db
 				.select({
 					street_code: pcrStreets.clogra_codi,
 					total_km: sql<number>`SUM(${pcrStreets.db2gse_sde}) / 1000.0`,
 				})
 				.from(pcrStreets)
-				.where(inArray(pcrStreets.clogra_codi, streetCodes))
+				.where(inArray(pcrStreets.clogra_codi, streetCodeList))
 				.groupBy(pcrStreets.clogra_codi);
-			lengthMap = new Map(lengths.map((l) => [l.street_code, Number(l.total_km)]));
+			lengthMap = new Map(
+				lengths.map((l) => [l.street_code, Number(l.total_km)]),
+			);
 		}
 
 		// Get top violation per street
-		const topViolationMap = new Map<number, { violation_code: string; law_code: string; description: string; count: number }>();
+		const topViolationMap = new Map<
+			number,
+			{
+				violation_code: string;
+				law_code: string;
+				description: string;
+				count: number;
+			}
+		>();
 		for (const s of data) {
 			const code = s.street_code;
 			if (!code) continue;
@@ -325,7 +264,6 @@ export const topStreets = async (c: any) => {
 			return {
 				street_code: s.street_code || 0,
 				official_name: s.official_name,
-				neighborhood_name: s.neighborhood_name,
 				total_violations: s.total_violations,
 				extension_km: Math.round(totalKm * 100) / 100,
 				violations_per_km:
@@ -338,9 +276,10 @@ export const topStreets = async (c: any) => {
 							law_code: topViol.law_code,
 							description: topViol.description,
 							count: topViol.count,
-							percentage: s.total_violations > 0
-								? Math.round((topViol.count / s.total_violations) * 1000) / 10
-								: 0,
+							percentage:
+								s.total_violations > 0
+									? Math.round((topViol.count / s.total_violations) * 1000) / 10
+									: 0,
 						}
 					: null,
 			};
@@ -434,7 +373,15 @@ export const temporal = async (c: any) => {
 			byHour[h.hour.padStart(2, "0")] = h.count;
 		}
 
-		return c.json({ by_year: byYear, by_month: byMonth, by_weekday: byWeekday, by_hour: byHour }, 200);
+		return c.json(
+			{
+				by_year: byYear,
+				by_month: byMonth,
+				by_weekday: byWeekday,
+				by_hour: byHour,
+			},
+			200,
+		);
 	} catch (error) {
 		console.error("Error fetching temporal data:", error);
 		return c.json({ error: "Internal server error" }, 500);
@@ -446,7 +393,8 @@ export const temporal = async (c: any) => {
 // ============================================================================
 
 export const agentAnalysis = async (c: any) => {
-	const { violation_codes, category, start_date, end_date } = c.req.valid("query");
+	const { violation_codes, category, start_date, end_date } =
+		c.req.valid("query");
 
 	try {
 		const baseWhere = await buildConditions({
@@ -533,8 +481,19 @@ export const violationCodes = async (c: any) => {
 				law_code: sql<string>`MAX(${trafficViolations.law_code})`,
 				description: sql<string>`MAX(${trafficViolations.description})`,
 				count: count(),
+				category: sql<string>`MAX(${violationCategories.category})`,
 			})
 			.from(trafficViolations)
+			.leftJoin(
+				violationCategories,
+				and(
+					eq(
+						trafficViolations.violation_code,
+						violationCategories.violation_code,
+					),
+					isNull(violationCategories.description_keyword),
+				),
+			)
 			.groupBy(trafficViolations.violation_code)
 			.orderBy(desc(count()));
 
@@ -544,6 +503,7 @@ export const violationCodes = async (c: any) => {
 					violation_code: v.violation_code,
 					law_code: v.law_code,
 					description: v.description,
+					category: v.category || "",
 					count: v.count,
 				})),
 			},
@@ -600,72 +560,6 @@ export const categoriesList = async (c: any) => {
 		return c.json({ categories }, 200);
 	} catch (error) {
 		console.error("Error fetching categories:", error);
-		return c.json({ error: "Internal server error" }, 500);
-	}
-};
-
-// ============================================================================
-// 8. GeoJSON
-// ============================================================================
-
-export const geojson = async (c: any) => {
-	const { violation_codes, category, agent_category, start_date, end_date, limit } =
-		c.req.valid("query");
-
-	try {
-		const whereClause = await buildConditions({
-			codes: violation_codes,
-			category: category,
-			agentCategory: agent_category,
-			startDate: start_date,
-			endDate: end_date,
-		});
-
-		const violations = await db
-			.select({
-				id: trafficViolations.id,
-				violation_date: trafficViolations.violation_date,
-				violation_code: trafficViolations.violation_code,
-				law_code: trafficViolations.law_code,
-				description: trafficViolations.description,
-				agent_id: trafficViolations.agent_id,
-				street_code: trafficViolations.street_code,
-				street_name: officialStreets.official_name,
-				geometry: sql<string>`(
-					SELECT ST_AsGeoJSON(ST_Collect(${pcrStreets.coordinates}))
-					FROM pcr_streets
-					WHERE pcr_streets.clogra_codi = ${trafficViolations.street_code}
-				)`.as("geometry"),
-			})
-			.from(trafficViolations)
-			.leftJoin(officialStreets, eq(trafficViolations.street_code, officialStreets.code))
-			.where(whereClause)
-			.orderBy(desc(trafficViolations.violation_date))
-			.limit(limit);
-
-		const features = violations
-			.filter((v) => v.geometry)
-			.map((v) => {
-				const parsed = JSON.parse(v.geometry ?? "{}");
-				return {
-					type: "Feature" as const,
-					geometry: parsed.type ? parsed : { type: "MultiLineString", coordinates: [] },
-					properties: {
-						id: v.id,
-						violation_code: v.violation_code,
-						law_code: v.law_code,
-						description: v.description,
-						date: v.violation_date?.toISOString().split("T")[0] || "",
-						agent_id: v.agent_id,
-						street_code: v.street_code,
-						street_name: v.street_name,
-					},
-				};
-			});
-
-		return c.json({ type: "FeatureCollection" as const, features }, 200) as any;
-	} catch (error) {
-		console.error("Error fetching GeoJSON:", error);
 		return c.json({ error: "Internal server error" }, 500);
 	}
 };

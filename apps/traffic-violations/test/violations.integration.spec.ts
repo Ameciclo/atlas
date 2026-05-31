@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
 import { testClient } from "hono/testing";
+import { describe, expect, it } from "vitest";
 import { createApp } from "../src/lib/create-app.js";
 import { violationsRoutes } from "../src/routes/violations/violations.index.js";
 
@@ -137,56 +137,6 @@ describe("Violations API Integration Tests", () => {
 				expect(data.locations[0]).toHaveProperty("total_violations");
 				expect(data.locations[0]).toHaveProperty("location_description");
 			}
-		});
-	});
-
-	describe("GET /v1/violations/geojson", () => {
-		it("should return GeoJSON for current month", async () => {
-			const res = await client.v1.violations.geojson.$get();
-			expect(res.status).toBe(200);
-
-			const data = await res.json();
-			expect(data).toHaveProperty("type", "FeatureCollection");
-			expect(data).toHaveProperty("features");
-			expect(Array.isArray(data.features)).toBe(true);
-		});
-
-		it("should return GeoJSON for specific month/year", async () => {
-			const res = await client.v1.violations.geojson.$get({
-				query: {
-					month: "10",
-					year: "2023",
-				},
-			});
-			expect(res.status).toBe(200);
-
-			const data = await res.json();
-			expect(data).toHaveProperty("type", "FeatureCollection");
-			expect(data).toHaveProperty("features");
-		});
-
-		it("should filter by violation_type_id", async () => {
-			const res = await client.v1.violations.geojson.$get({
-				query: {
-					violation_type_id: "5",
-				},
-			});
-			expect(res.status).toBe(200);
-
-			const data = await res.json();
-			expect(data).toHaveProperty("type", "FeatureCollection");
-		});
-
-		it("should respect limit parameter", async () => {
-			const res = await client.v1.violations.geojson.$get({
-				query: {
-					limit: "10",
-				},
-			});
-			expect(res.status).toBe(200);
-
-			const data = await res.json();
-			expect(data.features.length).toBeLessThanOrEqual(10);
 		});
 	});
 

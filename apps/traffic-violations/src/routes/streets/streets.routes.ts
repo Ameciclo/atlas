@@ -23,10 +23,6 @@ export const listStreetsRoute = createRoute({
 				description: "Search in street names",
 				example: "rua",
 			}),
-			neighborhood: z.string().optional().openapi({
-				description: "Filter by neighborhood name",
-				example: "BOA VIAGEM",
-			}),
 		}),
 	},
 	responses: {
@@ -43,10 +39,6 @@ export const listStreetsRoute = createRoute({
 								short_name: z.string(),
 								pavement_code: z.string().nullable(),
 								pavement_description: z.string().nullable(),
-								transport_corridor: z.boolean().nullable(),
-								perimeter_road: z.boolean().nullable(),
-								neighborhood_code: z.number().nullable(),
-								neighborhood_name: z.string().nullable(),
 							}),
 						),
 						pagination: z.object({
@@ -99,10 +91,6 @@ export const getStreetRoute = createRoute({
 						short_name: z.string(),
 						pavement_code: z.string().nullable(),
 						pavement_description: z.string().nullable(),
-						transport_corridor: z.boolean().nullable(),
-						perimeter_road: z.boolean().nullable(),
-						neighborhood_code: z.number().nullable(),
-						neighborhood_name: z.string().nullable(),
 						created_at: z.string(),
 						updated_at: z.string(),
 					}),
@@ -169,11 +157,9 @@ export const streetsRankingRoute = createRoute({
 								street_code: z.number(),
 								official_name: z.string(),
 								short_name: z.string(),
-								neighborhood_name: z.string().nullable(),
 								total_violations: z.number(),
 								ranking: z.number(),
 								violations_per_km: z.number(),
-								transport_corridor: z.boolean().nullable(),
 							}),
 						),
 					}),
@@ -206,9 +192,6 @@ export const streetSummaryRoute = createRoute({
 						street: z.object({
 							code: z.number(),
 							official_name: z.string(),
-							neighborhood_name: z.string().nullable(),
-							transport_corridor: z.boolean().nullable(),
-							perimeter_road: z.boolean().nullable(),
 						}),
 						violations_summary: z.object({
 							total_violations: z.number(),
@@ -336,6 +319,85 @@ export const neighborhoodsRoute = createRoute({
 				},
 			},
 			description: "Neighborhoods violations",
+		},
+	},
+});
+
+export const streetsGeoJSONRoute = createRoute({
+	method: "get",
+	path: "/streets/geojson",
+	tags,
+	summary: "Streets GeoJSON with violation counts",
+	description:
+		"Retorna ruas com contagem de infrações como FeatureCollection GeoJSON. Uma Feature por rua, com geometria MultiLineString e properties com dados agregados.",
+	request: {
+		query: z.object({
+			violation_codes: z.string().optional().openapi({
+				description:
+					"Comma-separated violation codes (e.g. 7455,6050,5541). Alternative to 'category'.",
+				example: "7455,6050",
+			}),
+			category: z.string().optional().openapi({
+				description:
+					"Predefined category filter (e.g. 'Segurança viária', 'Pedestres'). Resolves to violation_codes internally.",
+				example: "Pedestres",
+			}),
+			agent_category: z
+				.enum(["all", "eletronico", "manual"])
+				.default("all")
+				.optional()
+				.openapi({
+					description:
+						"Filter by agent category: eletronico (3,4,5,9) or manual (0,1,2,6,7,8)",
+					example: "eletronico",
+				}),
+			start_date: z.string().date().optional().openapi({
+				description: "Start date (YYYY-MM-DD)",
+				example: "2023-01-01",
+			}),
+			end_date: z.string().date().optional().openapi({
+				description: "End date (YYYY-MM-DD)",
+				example: "2023-12-31",
+			}),
+			limit: z.coerce
+				.number()
+				.int()
+				.min(1)
+				.max(100)
+				.default(50)
+				.optional()
+				.openapi({
+					description: "Number of streets to return",
+					example: 50,
+				}),
+		}),
+	},
+	responses: {
+		200: {
+			content: {
+				"application/json": {
+					schema: z.object({
+						type: z.literal("FeatureCollection"),
+						features: z.array(
+							z.object({
+								type: z.literal("Feature"),
+								geometry: z.object({
+									type: z.literal("MultiLineString"),
+									coordinates: z.array(z.array(z.array(z.number()))),
+								}),
+								properties: z.object({
+									street_code: z.number(),
+									street_name: z.string(),
+									total_violations: z.number(),
+									extension_km: z.number(),
+									violations_per_km: z.number(),
+								}),
+							}),
+						),
+					}),
+				},
+			},
+			description: "Streets GeoJSON with violation counts",
 		},
 	},
 });

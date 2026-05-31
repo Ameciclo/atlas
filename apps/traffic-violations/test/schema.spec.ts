@@ -1,9 +1,9 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
 	insertTrafficViolationSchema,
+	type NewTrafficViolation,
 	selectTrafficViolationSchema,
 	type TrafficViolation,
-	type NewTrafficViolation,
 } from "../src/db/schema.js";
 
 describe("Traffic Violations Schema", () => {

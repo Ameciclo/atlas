@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 // Mock do módulo de banco de dados ANTES dos imports
 vi.mock("../src/db/index.js", () => {

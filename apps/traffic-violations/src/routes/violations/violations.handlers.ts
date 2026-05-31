@@ -1,12 +1,11 @@
-import { eq, and, gte, lte, count, desc, sql } from "drizzle-orm";
+import { and, count, desc, eq, gte, lte } from "drizzle-orm";
 import { db } from "../../db/index.js";
-import { trafficViolations, pcrStreets } from "../../db/schema.js";
+import { trafficViolations } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
-	listViolationsRoute,
 	getViolationRoute,
+	listViolationsRoute,
 	ViolationsByLocationRoute,
-	ViolationsGeoJSONRoute,
 } from "./violations.routes.js";
 
 // ============================================================================
@@ -143,87 +142,6 @@ export const violationsByLocationHandler: AppRouteHandler<
 		return c.json({ locations }, 200) as any;
 	} catch (error) {
 		console.error("Error fetching violations by location:", error);
-		return c.json({ error: "Internal server error" }, 500);
-	}
-};
-
-export const violationsGeoJSONHandler: AppRouteHandler<
-	ViolationsGeoJSONRoute
-> = async (c) => {
-	const {
-		month,
-		year,
-		violation_type_id,
-		agent_id,
-		limit = 100,
-	} = c.req.valid("query");
-
-	try {
-		const conditions: any[] = [];
-
-		const startOfMonth = new Date(year, month - 1, 1);
-		const endOfMonth = new Date(year, month, 0, 23, 59, 59, 999);
-
-		conditions.push(
-			gte(trafficViolations.violation_date, startOfMonth),
-			lte(trafficViolations.violation_date, endOfMonth),
-		);
-		if (violation_type_id) {
-			conditions.push(
-				eq(trafficViolations.violation_type_id, violation_type_id),
-			);
-		}
-		if (agent_id) {
-			conditions.push(eq(trafficViolations.agent_id, agent_id));
-		}
-
-		const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
-
-		const violations = await db
-			.select({
-				id: trafficViolations.id,
-				violation_date: trafficViolations.violation_date,
-				description: trafficViolations.description,
-				agent_id: trafficViolations.agent_id,
-				violation_type_id: trafficViolations.violation_type_id,
-				street_code: trafficViolations.street_code,
-				geometry: sql<string>`(
-					SELECT ST_AsGeoJSON(ST_Collect(${pcrStreets.coordinates}))
-					FROM pcr_streets
-					WHERE pcr_streets.clogra_codi = ${trafficViolations.street_code}
-				)`.as("geometry"),
-			})
-			.from(trafficViolations)
-			.where(whereClause)
-			.orderBy(desc(trafficViolations.violation_date))
-			.limit(limit);
-
-		const features = violations
-			.filter((v) => v.geometry)
-			.map((violation) => {
-				const parsed = JSON.parse(violation.geometry ?? "");
-				return {
-					type: "Feature" as const,
-					geometry: parsed,
-					properties: {
-						violation_type: `Type ${violation.violation_type_id}`,
-						agent_id: violation.agent_id,
-						date: violation.violation_date?.toISOString().split("T")[0] || "",
-						description: violation.description,
-						street_code: violation.street_code,
-					},
-				};
-			});
-
-		return c.json(
-			{
-				type: "FeatureCollection" as const,
-				features,
-			},
-			200,
-		) as any;
-	} catch (error) {
-		console.error("Error fetching violations GeoJSON:", error);
 		return c.json({ error: "Internal server error" }, 500);
 	}
 };

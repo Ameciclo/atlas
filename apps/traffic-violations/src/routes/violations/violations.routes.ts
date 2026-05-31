@@ -51,7 +51,6 @@ const violationParamsSchema = z.object({
 });
 
 export type ViolationsByLocationRoute = typeof violationsByLocationRoute;
-export type ViolationsGeoJSONRoute = typeof violationsGeoJSONRoute;
 
 // ============================================================================
 // Response Schemas
@@ -181,72 +180,6 @@ export const violationsByLocationRoute = createRoute({
 				},
 			},
 			description: "Violations by location",
-		},
-	},
-});
-
-export const violationsGeoJSONRoute = createRoute({
-	method: "get",
-	path: "/violations/geojson",
-	tags: ["Traffic Violations"],
-	summary: "Get violations GeoJSON",
-	description: "Get violations in GeoJSON format",
-	request: {
-		query: z.object({
-			month: z.coerce.number().int().min(1).max(12).openapi({
-				description: "Filter by month (1-12). Required parameter",
-				example: 12,
-			}),
-			year: z.coerce.number().int().min(2020).max(2030).openapi({
-				description: "Filter by year. Required parameter",
-				example: 2023,
-			}),
-			violation_type_id: z.coerce.number().optional().openapi({
-				description: "Filter by violation type ID",
-				example: 5,
-			}),
-			agent_id: z.coerce.number().optional().openapi({
-				description: "Filter by agent ID",
-				example: 142,
-			}),
-			limit: z.coerce
-				.number()
-				.min(1)
-				.max(1000)
-				.default(100)
-				.optional()
-				.openapi({
-					description: "Number of violations",
-					example: 100,
-				}),
-		}),
-	},
-	responses: {
-		200: {
-			content: {
-				"application/json": {
-					schema: z.object({
-						type: z.literal("FeatureCollection"),
-						features: z.array(
-							z.object({
-								type: z.literal("Feature"),
-								geometry: z.object({
-									type: z.literal("MultiLineString"),
-									coordinates: z.array(z.array(z.array(z.number()))),
-								}),
-								properties: z.object({
-									violation_type: z.string(),
-									agent_id: z.number(),
-									date: z.string(),
-									description: z.string(),
-									street_code: z.number().nullable(),
-								}),
-							}),
-						),
-					}),
-				},
-			},
-			description: "Violations GeoJSON",
 		},
 	},
 });

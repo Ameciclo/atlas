@@ -61,6 +61,22 @@ async function generateOpenAPISpec() {
 					name: "System",
 					description: "System operations",
 				},
+				{
+					name: "Streets",
+					description: "Operations related to streets and geospatial data",
+				},
+				{
+					name: "Dashboard",
+					description: "Dashboard analytics and aggregations",
+				},
+				{
+					name: "Matching",
+					description: "Location-to-street matching operations",
+				},
+				{
+					name: "Validation",
+					description: "Human validation of street matches",
+				},
 			],
 		});
 

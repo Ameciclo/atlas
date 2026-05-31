@@ -1,4 +1,4 @@
-import { and, eq, gte, lte, count, sql } from "drizzle-orm";
+import { and, count, eq, gte, lte, sql } from "drizzle-orm";
 import { db } from "../../db/index.js";
 import { trafficViolations } from "../../db/schema.js";
 

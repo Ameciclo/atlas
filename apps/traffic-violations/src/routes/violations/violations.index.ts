@@ -1,16 +1,14 @@
 import { createRouter } from "../../lib/create-app.js";
 import {
-	listViolationsRoute,
-	getViolationRoute,
-	violationsByLocationRoute,
-	violationsGeoJSONRoute,
-} from "./violations.routes.js";
-import {
-	listViolationsHandler,
 	getViolationHandler,
+	listViolationsHandler,
 	violationsByLocationHandler,
-	violationsGeoJSONHandler,
 } from "./violations.handlers.js";
+import {
+	getViolationRoute,
+	listViolationsRoute,
+	violationsByLocationRoute,
+} from "./violations.routes.js";
 
 // ============================================================================
 // Router
@@ -19,7 +17,6 @@ import {
 const violationsRouter = createRouter()
 	.openapi(listViolationsRoute, listViolationsHandler)
 	.openapi(violationsByLocationRoute, violationsByLocationHandler)
-	.openapi(violationsGeoJSONRoute, violationsGeoJSONHandler)
 	.openapi(getViolationRoute, getViolationHandler);
 
 export default violationsRouter;

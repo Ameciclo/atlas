@@ -1,46 +1,48 @@
 import "dotenv/config";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { sql } from "drizzle-orm";
 import { db } from "./index.js";
 import { violationCategories } from "./schema.js";
-import { sql } from "drizzle-orm";
 
 // ============================================================================
 // Normalize law_code for matching (DB side: remove commas, clean "§")
 // ============================================================================
 
 function normalizeLaw(law: string): string {
-	return law
-		.toLowerCase()
-		.replace(/,\s*/g, " ")
-		.replace(/\s+/g, " ")
-		// "nico" -> "único" only if not preceded by ú/§ (avoid "único" -> "úúnico")
-		.replace(/(?<![ú§])nico/gi, "único")
-		.replace(/§\s*único/gi, "parágrafo único")
-		.replace(/pargrafo/gi, "parágrafo")
-		.replace(/alnea/gi, "alínea")
-		.replace(/alínea\s+\w/gi, "")
-		.replace(/\s+c\/c\s+.*$/i, "")
-		// Fix missing space: "Art.168" → "Art. 168"
-		.replace(/art\.(\d)/g, "art. $1")
-		.trim();
+	return (
+		law
+			.toLowerCase()
+			.replace(/,\s*/g, " ")
+			.replace(/\s+/g, " ")
+			// "nico" -> "único" only if not preceded by ú/§ (avoid "único" -> "úúnico")
+			.replace(/(?<![ú§])nico/gi, "único")
+			.replace(/§\s*único/gi, "parágrafo único")
+			.replace(/pargrafo/gi, "parágrafo")
+			.replace(/alnea/gi, "alínea")
+			.replace(/alínea\s+\w/gi, "")
+			.replace(/\s+c\/c\s+.*$/i, "")
+			// Fix missing space: "Art.168" → "Art. 168"
+			.replace(/art\.(\d)/g, "art. $1")
+			.trim()
+	);
 }
 
 // Manual overrides for DB codes that don't match CSV
 const MANUAL_MAPPINGS: Record<string, string> = {
-	"7064": "Segurança viária",    // Art. 244 Inc. IV - farol apagado
+	"7064": "Segurança viária", // Art. 244 Inc. IV - farol apagado
 	"6416": "Administrativas/documentais", // Art. 221 parágrafo único
 	"6920": "Administrativas/documentais", // Art. 233 c/c 123
-	"7242": "Segurança viária",    // Art. 250 I b
-	"7277": "Segurança viária",    // Art. 250 Inc. II
-	"7722": "Segurança viária",    // Art. 250 I e
-	"7110": "Ciclistas",           // Art. 244 §1º alínea a - ciclo passageiro
-	"7137": "Ciclistas",           // Art. 244 §1º alínea c - ciclo crianças
-	"7633": "Segurança viária",    // Art. 252 §único - celular
-	"7765": "Segurança viária",    // Art. 278 § único c/c 210
-	"7670": "Ciclistas",           // Art. 182 Inc. XI - parar sobre ciclovia
-	"7684": "Segurança viária",    // Art. 244 Inc. X - capacete sem viseira
-	"7714": "Segurança viária",    // Art. 244 Inc. XI - passageiro sem viseira
+	"7242": "Segurança viária", // Art. 250 I b
+	"7277": "Segurança viária", // Art. 250 Inc. II
+	"7722": "Segurança viária", // Art. 250 I e
+	"7110": "Ciclistas", // Art. 244 §1º alínea a - ciclo passageiro
+	"7137": "Ciclistas", // Art. 244 §1º alínea c - ciclo crianças
+	"7633": "Segurança viária", // Art. 252 §único - celular
+	"7765": "Segurança viária", // Art. 278 § único c/c 210
+	"7670": "Ciclistas", // Art. 182 Inc. XI - parar sobre ciclovia
+	"7684": "Segurança viária", // Art. 244 Inc. X - capacete sem viseira
+	"7714": "Segurança viária", // Art. 244 Inc. XI - passageiro sem viseira
 };
 
 // ============================================================================
@@ -58,7 +60,10 @@ interface CsvRow {
 }
 
 async function loadCSV(): Promise<CsvRow[]> {
-	const path = join(import.meta.dirname, "../../src/db/tabela_infracoes_ctb_classificada_pedestres_ciclistas_separados.csv");
+	const path = join(
+		import.meta.dirname,
+		"../../src/db/tabela_infracoes_ctb_classificada_pedestres_ciclistas_separados.csv",
+	);
 	const raw = await readFile(path, "utf-8");
 	const lines = raw.trim().split("\n");
 
@@ -110,12 +115,36 @@ function buildKeywordRules(): KeywordRule[] {
 		{ violation_code: "5452", keyword: "pedestre", category: "Pedestres" },
 		{ violation_code: "5452", keyword: "ciclovia", category: "Ciclistas" },
 		{ violation_code: "5452", keyword: "ciclofaixa", category: "Ciclistas" },
-		{ violation_code: "5452", keyword: "gramados", category: "Estacionamento/uso da via" },
-		{ violation_code: "5452", keyword: "jardim", category: "Estacionamento/uso da via" },
-		{ violation_code: "5452", keyword: "canteiros", category: "Estacionamento/uso da via" },
-		{ violation_code: "5452", keyword: "ilhas", category: "Estacionamento/uso da via" },
-		{ violation_code: "5452", keyword: "refúgios", category: "Estacionamento/uso da via" },
-		{ violation_code: "5452", keyword: "marcas de canalização", category: "Estacionamento/uso da via" },
+		{
+			violation_code: "5452",
+			keyword: "gramados",
+			category: "Estacionamento/uso da via",
+		},
+		{
+			violation_code: "5452",
+			keyword: "jardim",
+			category: "Estacionamento/uso da via",
+		},
+		{
+			violation_code: "5452",
+			keyword: "canteiros",
+			category: "Estacionamento/uso da via",
+		},
+		{
+			violation_code: "5452",
+			keyword: "ilhas",
+			category: "Estacionamento/uso da via",
+		},
+		{
+			violation_code: "5452",
+			keyword: "refúgios",
+			category: "Estacionamento/uso da via",
+		},
+		{
+			violation_code: "5452",
+			keyword: "marcas de canalização",
+			category: "Estacionamento/uso da via",
+		},
 
 		// Art. 193 (code 5819) - transitar em calçada/ciclovia
 		{ violation_code: "5819", keyword: "calçadas", category: "Pedestres" },
@@ -123,7 +152,11 @@ function buildKeywordRules(): KeywordRule[] {
 		{ violation_code: "5819", keyword: "passarelas", category: "Pedestres" },
 		{ violation_code: "5819", keyword: "ciclovias", category: "Ciclistas" },
 		{ violation_code: "5819", keyword: "ciclofaixas", category: "Ciclistas" },
-		{ violation_code: "5819", keyword: "acostamentos", category: "Segurança viária" },
+		{
+			violation_code: "5819",
+			keyword: "acostamentos",
+			category: "Segurança viária",
+		},
 
 		// Art. 182 Inc. VI (code 5622) - parar no passeio/faixa pedestre
 		{ violation_code: "5622", keyword: "passeio", category: "Pedestres" },
@@ -131,13 +164,25 @@ function buildKeywordRules(): KeywordRule[] {
 
 		// Art. 214 Inc. I (code 6122) - preferência a pedestre/ciclista
 		{ violation_code: "6122", keyword: "pedestre", category: "Pedestres" },
-		{ violation_code: "6122", keyword: "não motorizado", category: "Ciclistas" },
+		{
+			violation_code: "6122",
+			keyword: "não motorizado",
+			category: "Ciclistas",
+		},
 
 		// Art. 206 Inc. III (codes 6017, 6025) - retorno sobre calçada/canteiro
 		{ violation_code: "6017", keyword: "calçada", category: "Pedestres" },
 		{ violation_code: "6017", keyword: "passeio", category: "Pedestres" },
-		{ violation_code: "6017", keyword: "faixas de pedestres", category: "Pedestres" },
-		{ violation_code: "6017", keyword: "não motorizados", category: "Ciclistas" },
+		{
+			violation_code: "6017",
+			keyword: "faixas de pedestres",
+			category: "Pedestres",
+		},
+		{
+			violation_code: "6017",
+			keyword: "não motorizados",
+			category: "Ciclistas",
+		},
 	];
 
 	// Note: the default category from CSV applies when no keyword matches
@@ -194,7 +239,9 @@ async function seed() {
 
 		if (categories && categories.size > 0) {
 			// Check if this code needs keyword-based sub-classification
-			const codeRules = keywordRules.filter((r) => r.violation_code === row.violation_code);
+			const codeRules = keywordRules.filter(
+				(r) => r.violation_code === row.violation_code,
+			);
 
 			if (codeRules.length > 0) {
 				// Insert keyword-based rules
@@ -237,7 +284,9 @@ async function seed() {
 			matched++;
 		} else {
 			if (unmatched < 10) {
-				console.log(`   ⚠ UNMATCHED: ${row.violation_code} (${row.law_code} → "${dbLawNorm}")`);
+				console.log(
+					`   ⚠ UNMATCHED: ${row.violation_code} (${row.law_code} → "${dbLawNorm}")`,
+				);
 			}
 			unmatched++;
 		}
@@ -257,9 +306,14 @@ async function seed() {
 	console.log(`   ✓ Inserted ${inserts.length} rows into violation_categories`);
 
 	// 6. Summary
-	const [total] = await db.select({ count: sql<number>`count(*)` }).from(violationCategories);
+	const [total] = await db
+		.select({ count: sql<number>`count(*)` })
+		.from(violationCategories);
 	const byCat = await db
-		.select({ category: violationCategories.category, count: sql<number>`count(*)` })
+		.select({
+			category: violationCategories.category,
+			count: sql<number>`count(*)`,
+		})
 		.from(violationCategories)
 		.groupBy(violationCategories.category)
 		.orderBy(sql`count(*) DESC`);
@@ -272,9 +326,15 @@ async function seed() {
 	console.log("\n✅ Seed complete.\n");
 }
 
-seed()
-	.then(() => process.exit(0))
-	.catch((err) => {
-		console.error("Seed failed:", err);
-		process.exit(1);
-	});
+export { seed };
+
+// Self-execute when run directly
+const currentFile = import.meta.url.replace("file://", "");
+if (process.argv[1]?.endsWith(currentFile) || process.argv[1]?.endsWith("seed-violation-categories.ts") || process.argv[1]?.endsWith("seed-violation-categories.js")) {
+	seed()
+		.then(() => process.exit(0))
+		.catch((err) => {
+			console.error("Seed failed:", err);
+			process.exit(1);
+		});
+}
