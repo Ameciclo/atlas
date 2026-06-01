@@ -1,10 +1,9 @@
-import { and, count, desc, eq, inArray, isNull, sql } from "drizzle-orm";
+import { and, count, desc, eq, inArray, sql } from "drizzle-orm";
 import { db } from "../../db/index.js";
 import {
 	streetCodes,
 	pcrStreets,
 	trafficViolations,
-	violationCategories,
 } from "../../db/schema.js";
 import {
 	AGENT_INFO,
@@ -126,6 +125,23 @@ export const topViolations = async (c: any) => {
 
 		const total = totalResult?.count || 0;
 
+		const [grandTotalResult] = await db
+			.select({ count: count() })
+			.from(trafficViolations);
+
+		const grandTotal = grandTotalResult?.count || 0;
+
+		const codesTotal = await db
+			.select({ count: count() })
+			.from(
+				db
+					.select({ c: trafficViolations.violation_code })
+					.from(trafficViolations)
+					.where(whereClause)
+					.groupBy(trafficViolations.violation_code)
+					.as("codes"),
+			);
+
 		const data = await db
 			.select({
 				violation_code: trafficViolations.violation_code,
@@ -147,7 +163,12 @@ export const topViolations = async (c: any) => {
 			percentage: total > 0 ? Math.round((v.count / total) * 1000) / 10 : 0,
 		}));
 
-		return c.json({ violations }, 200);
+		return c.json({
+			total,
+			percentage: grandTotal > 0 ? Math.round((total / grandTotal) * 1000) / 10 : 0,
+			violations_count: codesTotal[0]?.count || data.length,
+			violations,
+		}, 200);
 	} catch (error) {
 		console.error("Error fetching top violations:", error);
 		return c.json({ error: "Internal server error" }, 500);
@@ -475,25 +496,20 @@ export const agentAnalysis = async (c: any) => {
 
 export const violationCodes = async (c: any) => {
 	try {
+		// Most frequent category per violation_code from infraction_catalog
 		const data = await db
 			.select({
 				violation_code: trafficViolations.violation_code,
 				law_code: sql<string>`MAX(${trafficViolations.law_code})`,
 				description: sql<string>`MAX(${trafficViolations.description})`,
 				count: count(),
-				category: sql<string>`MAX(${violationCategories.category})`,
+				category: sql<string>`(
+					SELECT ic.category FROM infraction_catalog ic
+					WHERE ic.violation_code = ${trafficViolations.violation_code}
+					ORDER BY ic.total_rows DESC LIMIT 1
+				)`,
 			})
 			.from(trafficViolations)
-			.leftJoin(
-				violationCategories,
-				and(
-					eq(
-						trafficViolations.violation_code,
-						violationCategories.violation_code,
-					),
-					isNull(violationCategories.description_keyword),
-				),
-			)
 			.groupBy(trafficViolations.violation_code)
 			.orderBy(desc(count()));
 
@@ -523,36 +539,33 @@ export const categoriesList = async (c: any) => {
 	try {
 		const data = await db
 			.select({
-				category: violationCategories.category,
-				code_count: sql<number>`COUNT(DISTINCT ${violationCategories.violation_code})`,
+				category: sql<string>`ic.category`,
+				code_count: sql<number>`COUNT(DISTINCT ic.violation_code)`,
 			})
-			.from(violationCategories)
-			.groupBy(violationCategories.category)
-			.orderBy(violationCategories.category);
+			.from(sql`infraction_catalog ic`)
+			.where(sql`ic.category IS NOT NULL`)
+			.groupBy(sql`ic.category`)
+			.orderBy(sql`ic.category`);
 
-		// Get total violations per category
+		// Get total violations per category using description-based matching
 		const categories = await Promise.all(
 			data.map(async (cat) => {
-				const codes = await db
-					.selectDistinct({ code: violationCategories.violation_code })
-					.from(violationCategories)
-					.where(eq(violationCategories.category, cat.category));
-
-				const codeList = codes.map((c) => c.code);
-				let totalViolations = 0;
-
-				if (codeList.length > 0) {
-					const [result] = await db
-						.select({ count: count() })
-						.from(trafficViolations)
-						.where(inArray(trafficViolations.violation_code, codeList));
-					totalViolations = result?.count || 0;
-				}
+				const [result] = await db
+					.select({ count: count() })
+					.from(trafficViolations)
+					.where(
+						sql`EXISTS (
+							SELECT 1 FROM infraction_catalog ic
+							WHERE ic.category = ${cat.category}
+							  AND ${trafficViolations.violation_code} = ic.violation_code
+							  AND ${trafficViolations.description} = ANY(ic.known_variants)
+						)`,
+					);
 
 				return {
 					category: cat.category,
 					code_count: cat.code_count,
-					total_violations: totalViolations,
+					total_violations: result?.count || 0,
 				};
 			}),
 		);

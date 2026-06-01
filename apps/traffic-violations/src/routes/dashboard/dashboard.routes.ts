@@ -107,6 +107,9 @@ export const topViolationsRoute = createRoute({
 			content: {
 				"application/json": {
 					schema: z.object({
+						total: z.number(),
+						percentage: z.number(),
+						violations_count: z.number(),
 						violations: z.array(
 							z.object({
 								violation_code: z.string(),

@@ -17,3 +17,10 @@ Logradouros por face de quadra.csv
 
 # Generated seed data (run: python3 src/db/etl-normalize.py --apply)
 src/db/migrations/0001_seed_traffic_locations.sql
+
+# Generated location data
+traffic_locations_v3.tsv
+
+# Generated catalog data
+descricoes_infracoes_corrigidas_expanded.csv
+infraction_catalog.csv

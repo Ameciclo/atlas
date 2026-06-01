@@ -1,22 +1,17 @@
 import "dotenv/config";
 
 async function main() {
-	console.log("🚀 Running full seed pipeline...\n");
+	console.log("Seed pipeline\n");
 
-	console.log("── Step 1: Seed violation_categories ──\n");
-	const { seed } = await import("./seed-violation-categories.js");
-	await seed();
+	const { seedInfractionCatalog } = await import("./seed-catalog.js");
+	await seedInfractionCatalog();
 
-	console.log("── Step 2: Seed & apply description_corrections ──\n");
-	const { seedAndApply } = await import("./seed-description-corrections.js");
-	await seedAndApply();
-
-	console.log("✅ Full seed pipeline complete.\n");
+	console.log("Seed complete.\n");
 }
 
 main()
 	.then(() => process.exit(0))
 	.catch((err) => {
-		console.error("Seed pipeline failed:", err);
+		console.error("Seed failed:", err);
 		process.exit(1);
 	});

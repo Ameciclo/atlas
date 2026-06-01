@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """
-ETL: Normalize v3 semicolon CSV files -> unified infracoes_reduzido.tsv + extended location dict.
+ETL v3: Normalize 19 raw files → infracoes_reduzido_v3.tsv (7 columns).
+Handles 2 formats (Datastore TSV 2007-2012+2025, semicolon CSV 2013-2024).
+
+Output columns (TSV, tab-separated, UTF-8):
+  violation_date  agent_id  violation_code  law_code  description  location_id  location_description
+
 Usage: python3 etl-normalize.py [--apply]
-  --apply   Actually write output files (otherwise dry-run)
 """
 
 import csv
@@ -11,328 +15,384 @@ import os
 import re
 import sys
 from collections import Counter
+from datetime import datetime
 
 DIR = os.path.dirname(os.path.abspath(__file__))
 INFRA_DIR = os.path.join(DIR, "all-infracoes")
-OUT_TSV = os.path.join(DIR, "infracoes_reduzido_v2.tsv")
-OUT_DICT = os.path.join(DIR, "dict_locais_v3.json")
-OUT_SQL = os.path.join(DIR, "migrations/0001_seed_traffic_locations.sql")
+DICT_LOCAIS = os.path.join(DIR, "dict_locais_v3.json")
+CORRECTIONS_CSV = os.path.join(DIR, "descricoes_infracoes_corrigidas_expanded.csv")
+OUT_TSV = os.path.join(DIR, "infracoes_reduzido_v3.tsv")
 
 APPLY = "--apply" in sys.argv
 
-# ---------------------------------------------------------------------------
-# Load existing dictionaries
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# Load reference data
+# ===========================================================================
 
-with open(os.path.join(DIR, "dict_agentes_v2.json")) as f:
-    agentes_map = json.load(f)  # {"Código 3 - LOMBADA...": 3, ...}
+def load_location_dict():
+    """Load dict_locais_v3.json → mapping raw_string to location_id."""
+    with open(DICT_LOCAIS, "r", encoding="utf-8") as f:
+        enriched = json.load(f)
+    # Build simple string→id mapping
+    return {key: enriched[key]["id"] for key in enriched}
 
-with open(os.path.join(DIR, "dict_infracoes_v2.json")) as f:
-    infracoes_map = json.load(f)  # {"7455|Art. 218...|Desc...": 0, ...}
+def load_corrections():
+    """Load encoding corrections → mapping broken_desc to corrected_desc."""
+    corrections = {}
+    with open(CORRECTIONS_CSV, "r", encoding="utf-8") as f:
+        reader = csv.reader(f)
+        next(reader)  # skip header
+        for row in reader:
+            if len(row) >= 4:
+                orig = row[2].strip().replace('"', '')
+                corr = row[3].strip().replace('"', '')
+                if orig and corr and orig != corr:
+                    corrections[orig] = corr
+    return corrections
 
-with open(os.path.join(DIR, "dict_locais_v2.json")) as f:
-    locais_map = json.load(f)  # {"RUA TAL...": 0, ...}
+# ===========================================================================
+# File definitions
+# ===========================================================================
 
-# Build reverse lookup for infracoes: code|law_code|description -> id
-# But the v3 files have the description in the data, so we match on first 3 fields
-
-def build_infracao_key(code, law, desc):
-    """Normalize infraction code and build lookup key."""
-    code = code.strip().replace(",0", "").replace(",", "")
-    law = law.strip()
-    desc = desc.strip()
-    return f"{code}|{law}|{desc}"
-
-infracoes_lookup = {}
-for k, v in infracoes_map.items():
-    parts = k.split("|", 2)
-    if len(parts) >= 3:
-        normalized = f"{parts[0]}|{parts[1].upper()}|{re.sub(r'\s+', ' ', parts[2].strip())}"
-    else:
-        normalized = k.upper() if len(parts) <= 2 else k
-    infracoes_lookup[normalized] = v
-
-# ---------------------------------------------------------------------------
-# V3 file definitions
-# ---------------------------------------------------------------------------
-
-V3_FILES = {
-    "2021": os.path.join(INFRA_DIR, "6bf55076-5aaa-4bf5-9f45-5a57352ac0c8.tsv"),
-    "2022": os.path.join(INFRA_DIR, "896622f2-4104-4c6b-acc5-bded85fa8a26.tsv"),
-    "2023": os.path.join(INFRA_DIR, "9eabe813-a17c-4e8f-b91d-66ba7d4c269f.tsv"),
-    "2024": os.path.join(INFRA_DIR, "fd97260b-4a91-4c6a-ad14-7285e5f6ed9a.tsv"),
-    "2025": os.path.join(INFRA_DIR, "16db0dcc-f871-46ee-8e0e-457072b5f940.tsv"),
+# TSV files: tab-separated, header with _id, columns in order
+TSV_FILES = {
+    "2007": os.path.join(INFRA_DIR, "2007.tsv"),
+    "2008": os.path.join(INFRA_DIR, "2008.tsv"),
+    "2009": os.path.join(INFRA_DIR, "2009.tsv"),
+    "2010": os.path.join(INFRA_DIR, "2010.tsv"),
+    "2011": os.path.join(INFRA_DIR, "2011.tsv"),
+    "2012": os.path.join(INFRA_DIR, "2012.tsv"),
+    "2025": os.path.join(INFRA_DIR, "2025.tsv"),
 }
 
-# ---------------------------------------------------------------------------
-# Normalize date from various formats
-# ---------------------------------------------------------------------------
+CSV_FILES = {
+    str(y): os.path.join(INFRA_DIR, f"{y}.tsv")
+    for y in range(2013, 2025)
+}
 
-def normalize_date(date_str: str) -> str:
-    """Return YYYY-MM-DD from DD/MM/YYYY, YYYY-MM-DD, or YYYY-MM-DDTHH:MM:SS."""
-    date_str = date_str.strip()
-    # DD/MM/YYYY HH:MM
-    m = re.match(r"(\d{2})/(\d{2})/(\d{4})\s", date_str)
-    if m:
-        return f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
-    # DD/MM/YYYY
-    m = re.match(r"(\d{2})/(\d{2})/(\d{4})$", date_str)
-    if m:
-        return f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
-    # YYYY-MM-DDTHH:MM:SS
-    m = re.match(r"(\d{4}-\d{2}-\d{2})T", date_str)
-    if m:
-        return m.group(1)
-    # YYYY-MM-DD
-    m = re.match(r"(\d{4}-\d{2}-\d{2})$", date_str)
-    if m:
-        return m.group(1)
-    return date_str[:10] if len(date_str) >= 10 else date_str
+# ===========================================================================
+# Date/Time parsing
+# ===========================================================================
 
-def normalize_time(time_str: str) -> str:
-    """Return HH:MM:SS or HH:MM from various time formats."""
-    time_str = time_str.strip()
-    m = re.match(r"(\d{2}:\d{2}:\d{2})", time_str)
-    if m:
-        return m.group(1)
-    m = re.match(r"(\d{2}:\d{2})", time_str)
-    if m:
-        return m.group(1) + ":00"
-    return time_str[:8] if len(time_str) >= 8 else time_str + ":00"
-
-# ---------------------------------------------------------------------------
-# Lookup agent ID
-# ---------------------------------------------------------------------------
-
-def lookup_agent(raw_agent: str) -> int:
-    """Map agent description text to integer ID."""
-    raw = raw_agent.strip()
-    if not raw:
-        return -1  # skip empty agents
-
-    # Clean ,0 suffix (2022 data artifact)
-    raw = raw.replace(",0", "").strip()
-
-    # Try exact match first
-    if raw in agentes_map:
-        return agentes_map[raw]
-    # Try matching by code prefix ("Código 3 - ...")
-    m = re.match(r"C[oó]digo\s*(\d+)", raw)
-    if m:
-        agent_id = int(m.group(1))
-        for k, v in agentes_map.items():
-            if v == agent_id:
-                return agent_id
-        # If code number not in dict, register it with the code as ID
-        return agent_id
-    # Fallback: try numeric ID
-    if raw.isdigit():
-        return int(raw)
-    print(f"  WARNING: unknown agent: {raw[:60]}")
-    return -1
-
-# ---------------------------------------------------------------------------
-# Lookup infraction ID
-# ---------------------------------------------------------------------------
-
-def lookup_infracao(code: str, law: str, desc: str) -> int:
-    """Map infraction code + law + description to integer ID."""
-    code_clean = code.strip().replace(",0", "").replace(",", "")
-    law_clean = law.strip().upper()  # normalize casing (Art., ARt., ART., art.)
-    desc_clean = re.sub(r"\s+", " ", desc.strip())
-    key = f"{code_clean}|{law_clean}|{desc_clean}"
-    if key in infracoes_lookup:
-        return infracoes_lookup[key]
-    # Fuzzy: try matching by code + law only
-    for k, v in infracoes_map.items():
-        parts = k.split("|", 2)
-        if len(parts) >= 2 and parts[0] == code_clean and parts[1].upper() == law_clean:
-            return v
-    # Fallback: use code as ID
-    return -1
-
-# ---------------------------------------------------------------------------
-# Assign location ID
-# ---------------------------------------------------------------------------
-
-next_location_id = max(int(v) for v in locais_map.values()) + 1
-new_locations = {}  # raw_description -> location_id for new entries
-
-def lookup_location(raw_loc: str, year: str) -> int:
-    """Map raw location text to integer ID, assigning new IDs as needed."""
-    global next_location_id
-    loc = raw_loc.strip()
-    if loc in locais_map:
-        return int(locais_map[loc])
-    if loc in new_locations:
-        return new_locations[loc]
-    lid = next_location_id
-    new_locations[loc] = lid
-    next_location_id += 1
-    return lid
-
-# ---------------------------------------------------------------------------
-# Process one v3 file
-# ---------------------------------------------------------------------------
-
-def process_file(filepath: str, year: str, writer):
-    """Read a semicolon CSV file and write normalized TSV rows.
+def parse_violation_date(date_str, time_str):
+    """Parse date and time into YYYY-MM-DD HH:MM:SS or None.
     
-    Detects column order per-row (the 2022 file has rows with both orderings concatenated).
+    Handles 4 date formats:
+    - YYYY-MM-DD (TSV 2007-2012,2025; CSV 2013-2014,2016-2023)
+    - YYYY/MM/DD (CSV 2015)
+    - DD/MM/YYYY (CSV 2024)
+    
+    Time always comes from the separate horainfracao column.
+    The date column may include a time component (always 00:00 for 2015/2024) — ignored.
     """
-    rows = 0
-    skipped = 0
-    unknown_agents = set()
-    unknown_infr = set()
+    date_str = (date_str or "").strip()
+    time_str = (time_str or "").strip()
+    
+    if not date_str:
+        return None
+    
+    # Parse date (only the date part, ignoring any trailing time component)
+    parsed_date = None
+    
+    # Format: YYYY-MM-DD
+    m = re.match(r"(\d{4})-(\d{2})-(\d{2})", date_str)
+    if m:
+        parsed_date = f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+    
+    # Format: DD/MM/YYYY
+    if not parsed_date:
+        m = re.match(r"(\d{2})/(\d{2})/(\d{4})", date_str)
+        if m:
+            parsed_date = f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
+    
+    # Format: YYYY/MM/DD
+    if not parsed_date:
+        m = re.match(r"(\d{4})/(\d{2})/(\d{2})", date_str)
+        if m:
+            parsed_date = f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+    
+    if not parsed_date:
+        return None
+    
+    # Parse time from the separate horainfracao column
+    parsed_time = "00:00:00"
+    if time_str:
+        tm = re.search(r"(\d{1,2}):(\d{2})(?::(\d{2}))?", time_str)
+        if tm:
+            h, m, s = int(tm.group(1)), tm.group(2), tm.group(3) or "00"
+            parsed_time = f"{h:02d}:{m}:{s}"
+    
+    return f"{parsed_date} {parsed_time}"
 
-    with open(filepath, "r", encoding="utf-8-sig") as f:
-        reader = csv.reader(f, delimiter=";")
-        header = next(reader)  # skip header
+# ===========================================================================
+# Agent extraction
+# ===========================================================================
 
-        for row in reader:
-            if len(row) < 8:
-                skipped += 1
-                continue
+def extract_agent_id(raw):
+    """Extract agent number (1-9) from agenteequipamento text. Returns 0 for NA."""
+    if not raw or not raw.strip():
+        return 0
+    
+    raw = raw.strip()
+    
+    # Corruption markers
+    if raw == "Agente/Equipamento":
+        return -1  # header leaked, discard
+    if re.match(r'^\d{5,}$', raw):
+        return -1  # corrupted row
+    
+    # Extract first digit 1-9
+    nums = re.findall(r'\d+', raw)
+    for n in nums:
+        ni = int(n)
+        if 1 <= ni <= 9:
+            return ni
+    
+    return 0  # NA
 
-            datainfracao = row[0].strip().replace('"', '')
-            horainfracao = row[1].strip().replace('"', '')
-            agenteequipamento = row[3].strip().replace('"', '')
-            infracao = row[4].strip().replace('"', '')
-            descricaoinfracao = row[5].strip().replace('"', '')
+# ===========================================================================
+# Row parsing per format
+# ===========================================================================
 
-            # Auto-detect column order per row: law article starts with "Art."
-            # Some 2022 rows have swapped col6/col7
-            val6 = row[6].strip().replace('"', '') if len(row) > 6 else ""
-            val7 = row[7].strip().replace('"', '') if len(row) > 7 else ""
-            is_law6 = val6.upper().startswith("ART.")
-            is_law7 = val7.upper().startswith("ART.")
+def parse_tsv_row(row):
+    """Parse a TSV row (2007-2012, 2025).
+    Returns dict with extracted fields or None if invalid.
+    """
+    if len(row) < 9:
+        return None
+    
+    date_str = row[1].strip() if len(row) > 1 else ""
+    time_str = row[2].strip() if len(row) > 2 else ""
+    agent_raw = row[4].strip() if len(row) > 4 else ""
+    code = row[5].strip() if len(row) > 5 else ""
+    desc = row[6].strip() if len(row) > 6 else ""
+    law = row[7].strip() if len(row) > 7 else ""
+    loc = row[8].strip() if len(row) > 8 else ""
+    
+    return _process_fields(date_str, time_str, agent_raw, code, desc, law, loc)
 
-            if is_law7 and not is_law6:
-                # 2022 order: col6=location, col7=law
-                amparolegal = val7
-                localcometimento = val6
-            elif is_law6 and not is_law7:
-                # Standard order: col6=law, col7=location
-                amparolegal = val6
-                localcometimento = val7
-            elif is_law6 and is_law7:
-                # Both look like law (rare) — use standard order
-                amparolegal = val6
-                localcometimento = val7
-            else:
-                # Neither looks like law (rare) — use standard order
-                amparolegal = val6
-                localcometimento = val7
+def parse_csv_row(row, year):
+    """Parse a semicolon CSV row (2013-2024).
+    Handles column swap detection for 2022.
+    """
+    if len(row) < 7:
+        return None
+    
+    # Clean quoted fields
+    fields = [f.strip().replace('"', '') for f in row]
+    while len(fields) < 8:
+        fields.append("")
+    
+    date_str = fields[0]
+    time_str = fields[1] if len(fields) > 1 else ""
+    agent_raw = fields[3] if len(fields) > 3 else ""
+    code = fields[4] if len(fields) > 4 else ""
+    desc = fields[5] if len(fields) > 5 else ""
+    val6 = fields[6] if len(fields) > 6 else ""
+    val7 = fields[7] if len(fields) > 7 else ""
+    
+    # Detect column swap (2022 has location before law)
+    is_law6 = val6.upper().startswith("ART.")
+    is_law7 = val7.upper().startswith("ART.")
+    
+    if is_law7 and not is_law6:
+        law = val7
+        loc = val6
+    elif is_law6 and not is_law7:
+        law = val6
+        loc = val7
+    elif is_law6 and is_law7:
+        law = val6
+        loc = val7
+    else:
+        law = val6
+        loc = val7
+    
+    return _process_fields(date_str, time_str, agent_raw, code, desc, law, loc)
 
-            date_norm = normalize_date(datainfracao)
-            time_norm = normalize_time(horainfracao)
-            agent_id = lookup_agent(agenteequipamento)
-            infracao_id = lookup_infracao(infracao, amparolegal, descricaoinfracao)
-            location_id = lookup_location(localcometimento, year)
+def _process_fields(date_str, time_str, agent_raw, code, desc, law, loc):
+    """Common field processing for both formats."""
+    
+    # Clean violation_code
+    code = code.replace(",0", "").replace(",", "").strip()
+    if not code or not code.isdigit():
+        return None
+    
+    # Validate amparolegal
+    law = law.strip()
+    if not law.upper().startswith("ART."):
+        return None
+    law = law.replace(",0", "").strip()
+    
+    # Parse date
+    violation_date = parse_violation_date(date_str, time_str)
+    if not violation_date:
+        return None
+    
+    # Extract agent_id
+    agent_id = extract_agent_id(agent_raw)
+    if agent_id < 0:
+        return None  # corrupted row, discard
+    
+    # Clean description
+    desc = desc.strip()
+    
+    # Clean location
+    loc = loc.strip()
+    
+    return {
+        "violation_date": violation_date,
+        "agent_id": agent_id,
+        "violation_code": code,
+        "law_code": law,
+        "description": desc,
+        "location_raw": loc,
+    }
 
-            if agent_id < 0:
-                unknown_agents.add(agenteequipamento[:60])
-                skipped += 1
-                continue
-            if infracao_id < 0:
-                unknown_infr.add(f"{infracao[:20]}|{amparolegal[:40]}")
-                skipped += 1
-                continue
-
-            if writer:
-                writer.writerow([date_norm, time_norm, str(agent_id), str(infracao_id), str(location_id)])
-            rows += 1
-
-    for a in list(unknown_agents)[:5]:
-        print(f"  WARNING: unknown agent: {a}")
-    if len(unknown_agents) > 5:
-        print(f"  ... and {len(unknown_agents) - 5} more unknown agents")
-    if unknown_infr:
-        print(f"  WARNING: {len(unknown_infr)} unknown infraction combos")
-        for u in list(unknown_infr)[:3]:
-            print(f"    {u[:100]}")
-
-    return rows, skipped
-
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# Main processing
+# ===========================================================================
 
 def main():
     print("=" * 60)
-    print("ETL: Normalizing v3 semicolon CSV files")
-    print(f"  Existing locations: {len(locais_map)}")
-    print(f"  Existing agents:    {len(agentes_map)}")
-    print(f"  Existing infractions: {len(infracoes_map)}")
-    print(f"  Next location ID:    {next_location_id}")
+    print("ETL v3: Normalizing 19 files → infracoes_reduzido_v3.tsv")
     print()
-
+    
+    # Load references
+    print("Loading reference data...")
+    loc_dict = load_location_dict()
+    corrections = load_corrections()
+    print(f"  Location dict: {len(loc_dict):,} entries")
+    print(f"  Corrections:   {len(corrections):,} pairs")
+    print()
+    
+    # Process files
     totals = {}
     total_rows = 0
-
+    total_skipped = Counter()
+    
+    writer = None
+    out_f = None
     if APPLY:
         out_f = open(OUT_TSV, "w", newline="", encoding="utf-8")
         writer = csv.writer(out_f, delimiter="\t", lineterminator="\n")
-     # Write header
-        writer.writerow(["datainfracao", "horainfracao", "agente_id", "infracao_id", "local_id"])
-    else:
-        writer = None
-
-    for year, filepath in sorted(V3_FILES.items()):
-        if not os.path.exists(filepath):
-            print(f"  {year}: FILE NOT FOUND: {filepath}")
+        writer.writerow([
+            "violation_date", "agent_id", "violation_code",
+            "law_code", "description", "location_id", "location_description"
+        ])
+    
+    # Process TSV files
+    for year in sorted(TSV_FILES.keys()):
+        fpath = TSV_FILES[year]
+        if not os.path.exists(fpath):
+            print(f"  {year}: FILE NOT FOUND: {fpath}")
             continue
-
-        print(f"  {year}: reading {os.path.basename(filepath)}...")
-        rows, skipped = process_file(filepath, year, writer)
+        
+        rows = 0
+        skipped = Counter()
+        print(f"  {year} (TSV): reading...", end=" ", flush=True)
+        
+        with open(fpath, "r", encoding="utf-8-sig") as f:
+            reader = csv.reader(f, delimiter="\t")
+            next(reader)  # skip header
+            for row in reader:
+                parsed = parse_tsv_row(row)
+                if not parsed:
+                    skipped["invalid_row"] += 1
+                    continue
+                
+                # Apply encoding correction to description
+                desc = corrections.get(parsed["description"], parsed["description"])
+                
+                # Lookup location_id
+                loc_raw = parsed["location_raw"]
+                loc_id = loc_dict.get(loc_raw)
+                if loc_id is None:
+                    skipped["unknown_location"] += 1
+                    continue
+                
+                if writer:
+                    writer.writerow([
+                        parsed["violation_date"],
+                        parsed["agent_id"],
+                        parsed["violation_code"],
+                        parsed["law_code"],
+                        desc,
+                        loc_id,
+                        loc_raw,
+                    ])
+                rows += 1
+        
         totals[year] = rows
         total_rows += rows
-        print(f"         {rows:,} rows written, {skipped} skipped")
-
-    if APPLY and writer:
+        for k, v in skipped.items():
+            total_skipped[k] += v
+        print(f"{rows:,} rows, {sum(skipped.values())} skipped")
+    
+    # Process CSV files
+    for year in sorted(CSV_FILES.keys()):
+        fpath = CSV_FILES[year]
+        if not os.path.exists(fpath):
+            print(f"  {year}: FILE NOT FOUND: {fpath}")
+            continue
+        
+        rows = 0
+        skipped = Counter()
+        print(f"  {year} (CSV): reading...", end=" ", flush=True)
+        
+        with open(fpath, "r", encoding="utf-8-sig") as f:
+            reader = csv.reader(f, delimiter=";")
+            next(reader)  # skip header
+            for row in reader:
+                parsed = parse_csv_row(row, year)
+                if not parsed:
+                    skipped["invalid_row"] += 1
+                    continue
+                
+                # Apply encoding correction to description
+                desc = corrections.get(parsed["description"], parsed["description"])
+                
+                # Lookup location_id
+                loc_raw = parsed["location_raw"]
+                loc_id = loc_dict.get(loc_raw)
+                if loc_id is None:
+                    skipped["unknown_location"] += 1
+                    continue
+                
+                if writer:
+                    writer.writerow([
+                        parsed["violation_date"],
+                        parsed["agent_id"],
+                        parsed["violation_code"],
+                        parsed["law_code"],
+                        desc,
+                        loc_id,
+                        loc_raw,
+                    ])
+                rows += 1
+        
+        totals[year] = rows
+        total_rows += rows
+        for k, v in skipped.items():
+            total_skipped[k] += v
+        print(f"{rows:,} rows, {sum(skipped.values())} skipped")
+    
+    if APPLY and out_f:
         out_f.close()
-
-    # Print summary
+    
+    # Summary
     print()
     print(f"Total rows written: {total_rows:,}")
-    print(f"New locations discovered: {len(new_locations)}")
+    for k, v in total_skipped.most_common():
+        print(f"  Skipped ({k}): {v:,}")
     print()
-
-    # Write extended location dictionary
-    full_dict = dict(locais_map)
-    for desc, lid in new_locations.items():
-        full_dict[desc] = lid
-
-    if APPLY:
-        with open(OUT_DICT, "w", encoding="utf-8") as f:
-            json.dump(full_dict, f, ensure_ascii=False)
-        print(f"Extended dict written: {OUT_DICT}")
-        print(f"  ({len(full_dict):,} total entries)")
-
-        # Generate SQL to populate traffic_locations
-        with open(OUT_SQL, "w", encoding="utf-8") as f:
-            f.write("-- Seed traffic_locations from extended dictionary\n")
-            f.write("-- Run AFTER migration 0000_add_traffic_locations_equipment.sql\n\n")
-            f.write("TRUNCATE traffic_locations RESTART IDENTITY CASCADE;\n\n")
-
-            # Batch into INSERT statements
-            batch_size = 5000
-            entries = sorted(full_dict.items(), key=lambda x: int(x[1]))
-            for i in range(0, len(entries), batch_size):
-                batch = entries[i:i + batch_size]
-                values = []
-                for desc, lid in batch:
-                    is_new = "true" if str(lid) in {str(v) for v in new_locations.values()} else "false"
-                    safe_desc = desc.replace("'", "''")
-                    values.append(f"({lid}, '{safe_desc}', {is_new})")
-                f.write(f"INSERT INTO traffic_locations (location_id, raw_description, is_new)\n")
-                f.write(f"VALUES {', '.join(values)};\n\n")
-
-            f.write(f"-- Total: {len(full_dict):,} locations ({len(new_locations)} new)\n")
-        print(f"SQL seed written: {OUT_SQL}")
+    
+    if not APPLY:
+        print("[DRY-RUN] Use --apply to write output.")
     else:
-        print("[DRY-RUN] No files written. Use --apply to generate output.")
-
+        size_mb = os.path.getsize(OUT_TSV) / (1024 * 1024)
+        print(f"Output: {OUT_TSV} ({size_mb:.1f} MB)")
+    
     print()
     print("=" * 60)
     print("Done.")
