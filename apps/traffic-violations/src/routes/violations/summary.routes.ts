@@ -21,7 +21,6 @@ const summaryResponseSchema = z.object({
 const byTypeResponseSchema = z.object({
 	violation_types: z.array(
 		z.object({
-			violation_type_id: z.number(),
 			description: z.string(),
 			total_violations: z.number(),
 			percentage: z.number(),
@@ -117,7 +116,6 @@ export const temporalAnalysis = createRoute({
 		query: z.object({
 			start_date: z.string().date().optional(),
 			end_date: z.string().date().optional(),
-			violation_type_id: z.coerce.number().int().positive().optional(),
 		}),
 	},
 	responses: {

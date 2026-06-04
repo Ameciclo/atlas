@@ -15,14 +15,14 @@ type CategoryInfo = {
 
 async function loadExistingCategories(): Promise<Map<string, CategoryInfo>> {
 	const rows = await db.execute(sql`
-		SELECT violation_code, category, description_keyword
+		SELECT cttu_code, category, description_keyword
 		FROM violation_categories
-		ORDER BY violation_code, description_keyword NULLS FIRST
+		ORDER BY cttu_code, description_keyword NULLS FIRST
 	`);
 
 	const map = new Map<string, CategoryInfo>();
 	for (const row of (rows as any).rows || rows) {
-		const code = row.violation_code as string;
+		const code = row.cttu_code as string;
 		const cat = row.category as string;
 		const kw = row.description_keyword as string | null;
 
@@ -69,12 +69,12 @@ async function main() {
 	console.log("📊 Fetching all distinct (code, description) pairs...");
 	const pairs = await db.execute(sql`
 		SELECT 
-			violation_code,
+			cttu_code,
 			MAX(law_code) as law_code,
 			description,
 			COUNT(*) as total
 		FROM traffic_violations
-		GROUP BY violation_code, description
+		GROUP BY cttu_code, description
 		ORDER BY COUNT(*) DESC
 	`);
 
@@ -87,7 +87,7 @@ async function main() {
 	let unclassified = 0;
 
 	for (const row of rows) {
-		const cttu = row.violation_code as string;
+		const cttu = row.cttu_code as string;
 		const law = (row.law_code as string).replace(/,/g, ";"); // escape commas for CSV
 		const desc = (row.description as string).replace(/"/g, '""'); // escape quotes
 		const total = row.total as number;

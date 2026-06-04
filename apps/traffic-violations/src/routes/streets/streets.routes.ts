@@ -137,10 +137,6 @@ export const streetsRankingRoute = createRoute({
 				description: "End date (YYYY-MM-DD)",
 				example: "2023-12-31",
 			}),
-			violation_type_id: z.coerce.number().optional().openapi({
-				description: "Filter by violation type ID",
-				example: 5,
-			}),
 			limit: z.coerce.number().min(1).max(100).default(50).openapi({
 				description: "Number of results",
 				example: 50,
@@ -198,9 +194,8 @@ export const streetSummaryRoute = createRoute({
 							violations_per_year: z.record(z.number()),
 							top_violation_types: z.array(
 								z.object({
-									type_id: z.number(),
-									description: z.string(),
-									count: z.number(),
+								description: z.string(),
+								count: z.number(),
 								}),
 							),
 						}),
@@ -234,10 +229,6 @@ export const streetViolationsRoute = createRoute({
 				description: "End date (YYYY-MM-DD)",
 				example: "2023-12-31",
 			}),
-			violation_type_id: z.coerce.number().optional().openapi({
-				description: "Filter by violation type ID",
-				example: 5,
-			}),
 			limit: z.coerce.number().min(1).max(1000).default(100).openapi({
 				description: "Number of results",
 				example: 100,
@@ -258,7 +249,7 @@ export const streetViolationsRoute = createRoute({
 								id: z.number(),
 								date: z.string(),
 								time: z.string().nullable(),
-								violation_type_id: z.number(),
+								description: z.string(),
 								violation_description: z.string(),
 								agent_id: z.number(),
 								location_id: z.number().nullable(),

@@ -4,7 +4,7 @@ ETL v3: Normalize 19 raw files → infracoes_reduzido_v3.tsv (7 columns).
 Handles 2 formats (Datastore TSV 2007-2012+2025, semicolon CSV 2013-2024).
 
 Output columns (TSV, tab-separated, UTF-8):
-  violation_date  agent_id  violation_code  law_code  description  location_id  location_description
+  violation_date  agent_id  cttu_code  law_code  description  location_id  location_description
 
 Usage: python3 etl-normalize.py [--apply]
 """
@@ -20,7 +20,6 @@ from datetime import datetime
 DIR = os.path.dirname(os.path.abspath(__file__))
 INFRA_DIR = os.path.join(DIR, "all-infracoes")
 DICT_LOCAIS = os.path.join(DIR, "dict_locais_v3.json")
-CORRECTIONS_CSV = os.path.join(DIR, "descricoes_infracoes_corrigidas_expanded.csv")
 OUT_TSV = os.path.join(DIR, "infracoes_reduzido_v3.tsv")
 
 APPLY = "--apply" in sys.argv
@@ -35,20 +34,6 @@ def load_location_dict():
         enriched = json.load(f)
     # Build simple string→id mapping
     return {key: enriched[key]["id"] for key in enriched}
-
-def load_corrections():
-    """Load encoding corrections → mapping broken_desc to corrected_desc."""
-    corrections = {}
-    with open(CORRECTIONS_CSV, "r", encoding="utf-8") as f:
-        reader = csv.reader(f)
-        next(reader)  # skip header
-        for row in reader:
-            if len(row) >= 4:
-                orig = row[2].strip().replace('"', '')
-                corr = row[3].strip().replace('"', '')
-                if orig and corr and orig != corr:
-                    corrections[orig] = corr
-    return corrections
 
 # ===========================================================================
 # File definitions
@@ -213,7 +198,7 @@ def parse_csv_row(row, year):
 def _process_fields(date_str, time_str, agent_raw, code, desc, law, loc):
     """Common field processing for both formats."""
     
-    # Clean violation_code
+    # Clean cttu_code
     code = code.replace(",0", "").replace(",", "").strip()
     if not code or not code.isdigit():
         return None
@@ -243,7 +228,7 @@ def _process_fields(date_str, time_str, agent_raw, code, desc, law, loc):
     return {
         "violation_date": violation_date,
         "agent_id": agent_id,
-        "violation_code": code,
+        "cttu_code": code,
         "law_code": law,
         "description": desc,
         "location_raw": loc,
@@ -261,9 +246,7 @@ def main():
     # Load references
     print("Loading reference data...")
     loc_dict = load_location_dict()
-    corrections = load_corrections()
     print(f"  Location dict: {len(loc_dict):,} entries")
-    print(f"  Corrections:   {len(corrections):,} pairs")
     print()
     
     # Process files
@@ -277,7 +260,7 @@ def main():
         out_f = open(OUT_TSV, "w", newline="", encoding="utf-8")
         writer = csv.writer(out_f, delimiter="\t", lineterminator="\n")
         writer.writerow([
-            "violation_date", "agent_id", "violation_code",
+            "violation_date", "agent_id", "cttu_code",
             "law_code", "description", "location_id", "location_description"
         ])
     
@@ -301,45 +284,42 @@ def main():
                     skipped["invalid_row"] += 1
                     continue
                 
-                # Apply encoding correction to description
-                desc = corrections.get(parsed["description"], parsed["description"])
-                
                 # Lookup location_id
                 loc_raw = parsed["location_raw"]
                 loc_id = loc_dict.get(loc_raw)
                 if loc_id is None:
                     skipped["unknown_location"] += 1
                     continue
-                
+
                 if writer:
                     writer.writerow([
                         parsed["violation_date"],
                         parsed["agent_id"],
-                        parsed["violation_code"],
+                        parsed["cttu_code"],
                         parsed["law_code"],
-                        desc,
+                        parsed["description"],
                         loc_id,
                         loc_raw,
                     ])
                 rows += 1
-        
+
         totals[year] = rows
         total_rows += rows
         for k, v in skipped.items():
             total_skipped[k] += v
         print(f"{rows:,} rows, {sum(skipped.values())} skipped")
-    
+
     # Process CSV files
     for year in sorted(CSV_FILES.keys()):
         fpath = CSV_FILES[year]
         if not os.path.exists(fpath):
             print(f"  {year}: FILE NOT FOUND: {fpath}")
             continue
-        
+
         rows = 0
         skipped = Counter()
         print(f"  {year} (CSV): reading...", end=" ", flush=True)
-        
+
         with open(fpath, "r", encoding="utf-8-sig") as f:
             reader = csv.reader(f, delimiter=";")
             next(reader)  # skip header
@@ -348,24 +328,21 @@ def main():
                 if not parsed:
                     skipped["invalid_row"] += 1
                     continue
-                
-                # Apply encoding correction to description
-                desc = corrections.get(parsed["description"], parsed["description"])
-                
+
                 # Lookup location_id
                 loc_raw = parsed["location_raw"]
                 loc_id = loc_dict.get(loc_raw)
                 if loc_id is None:
                     skipped["unknown_location"] += 1
                     continue
-                
+
                 if writer:
                     writer.writerow([
                         parsed["violation_date"],
                         parsed["agent_id"],
-                        parsed["violation_code"],
+                        parsed["cttu_code"],
                         parsed["law_code"],
-                        desc,
+                        parsed["description"],
                         loc_id,
                         loc_raw,
                     ])

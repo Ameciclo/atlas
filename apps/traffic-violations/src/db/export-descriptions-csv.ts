@@ -5,17 +5,17 @@ import { db } from "./index.js";
 
 async function main() {
 	const rows = await db.execute(`
-		SELECT DISTINCT violation_code, MAX(law_code) as law_code, description
+		SELECT DISTINCT cttu_code, MAX(law_code) as law_code, description
 		FROM traffic_violations
-		GROUP BY violation_code, description
-		ORDER BY violation_code, description
+		GROUP BY cttu_code, description
+		ORDER BY cttu_code, description
 	`);
 
 	const data = (rows as any).rows || rows;
 
-	let csv = "violation_code,law_code,description\n";
+	let csv = "cttu_code,law_code,description\n";
 	for (const r of data) {
-		const code = r.violation_code;
+		const code = r.cttu_code;
 		const law = (r.law_code as string).replace(/"/g, '""');
 		const desc = (r.description as string).replace(/"/g, '""');
 		csv += `"${code}","${law}","${desc}"\n`;
@@ -25,7 +25,7 @@ async function main() {
 	await writeFile(path, csv, "utf-8");
 
 	console.log(`✅ CSV gerado: ${path}`);
-	console.log(`   ${data.length} pares únicos (violation_code + description)`);
+	console.log(`   ${data.length} pares únicos (cttu_code + description)`);
 }
 
 main()

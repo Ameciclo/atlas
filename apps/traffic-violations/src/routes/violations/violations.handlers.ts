@@ -19,7 +19,6 @@ export const listViolationsHandler: AppRouteHandler<
 		month,
 		year,
 		agent_id,
-		violation_type_id,
 		location_id,
 		limit = 10,
 		offset = 0,
@@ -40,12 +39,6 @@ export const listViolationsHandler: AppRouteHandler<
 
 		if (agent_id) {
 			conditions.push(eq(trafficViolations.agent_id, agent_id));
-		}
-
-		if (violation_type_id) {
-			conditions.push(
-				eq(trafficViolations.violation_type_id, violation_type_id),
-			);
 		}
 
 		if (location_id) {
@@ -118,7 +111,6 @@ export const violationsByLocationHandler: AppRouteHandler<
 			.select({
 				location_id: trafficViolations.location_id,
 				location_description: trafficViolations.location_description,
-				coordinates: trafficViolations.coordinates,
 				total_violations: count(),
 			})
 			.from(trafficViolations)
@@ -126,7 +118,6 @@ export const violationsByLocationHandler: AppRouteHandler<
 			.groupBy(
 				trafficViolations.location_id,
 				trafficViolations.location_description,
-				trafficViolations.coordinates,
 			)
 			.orderBy(desc(count()))
 			.limit(limit);
@@ -136,7 +127,6 @@ export const violationsByLocationHandler: AppRouteHandler<
 			location_description: location.location_description,
 			total_violations: location.total_violations,
 			ranking: index + 1,
-			coordinates: location.coordinates,
 		}));
 
 		return c.json({ locations }, 200) as any;

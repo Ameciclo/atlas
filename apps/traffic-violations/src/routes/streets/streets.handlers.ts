@@ -112,7 +112,7 @@ export const getStreet: AppRouteHandler<typeof getStreetRoute> = async (c) => {
 export const streetsRanking: AppRouteHandler<
 	typeof streetsRankingRoute
 > = async (c) => {
-	const { start_date, end_date, violation_type_id, limit } =
+	const { start_date, end_date, limit } =
 		c.req.valid("query");
 
 	try {
@@ -126,11 +126,6 @@ export const streetsRanking: AppRouteHandler<
 		if (end_date) {
 			conditions.push(
 				lte(trafficViolations.violation_date, new Date(end_date)),
-			);
-		}
-		if (violation_type_id) {
-			conditions.push(
-				eq(trafficViolations.violation_type_id, violation_type_id),
 			);
 		}
 
@@ -241,19 +236,15 @@ export const streetSummary: AppRouteHandler<typeof streetSummaryRoute> = async (
 			.groupBy(sql`EXTRACT(YEAR FROM ${trafficViolations.violation_date})`)
 			.orderBy(sql`EXTRACT(YEAR FROM ${trafficViolations.violation_date})`);
 
-		// Get top violation types
-		const topTypes = await db
+		// Get top violation descriptions
+		const topDescriptions = await db
 			.select({
-				type_id: trafficViolations.violation_type_id,
 				description: trafficViolations.description,
 				count: count(),
 			})
 			.from(trafficViolations)
 			.where(eq(trafficViolations.street_code, street_code))
-			.groupBy(
-				trafficViolations.violation_type_id,
-				trafficViolations.description,
-			)
+			.groupBy(trafficViolations.description)
 			.orderBy(desc(count()))
 			.limit(5);
 
@@ -265,8 +256,7 @@ export const streetSummary: AppRouteHandler<typeof streetSummaryRoute> = async (
 			{} as Record<string, number>,
 		);
 
-		const topViolationTypes = topTypes.map((type) => ({
-			type_id: type.type_id,
+		const topViolationTypes = topDescriptions.map((type) => ({
 			description: type.description,
 			count: type.count,
 		}));
@@ -292,7 +282,7 @@ export const streetViolations: AppRouteHandler<
 	typeof streetViolationsRoute
 > = async (c) => {
 	const { street_code } = c.req.valid("param");
-	const { start_date, end_date, violation_type_id, limit, offset } =
+	const { start_date, end_date, limit, offset } =
 		c.req.valid("query");
 
 	try {
@@ -306,11 +296,6 @@ export const streetViolations: AppRouteHandler<
 		if (end_date) {
 			conditions.push(
 				lte(trafficViolations.violation_date, new Date(end_date)),
-			);
-		}
-		if (violation_type_id) {
-			conditions.push(
-				eq(trafficViolations.violation_type_id, violation_type_id),
 			);
 		}
 
@@ -328,7 +313,7 @@ export const streetViolations: AppRouteHandler<
 				id: trafficViolations.id,
 				date: sql<string>`${trafficViolations.violation_date}::date::text`,
 				time: sql<string>`${trafficViolations.violation_date}::time::text`,
-				violation_type_id: trafficViolations.violation_type_id,
+				description: trafficViolations.description,
 				violation_description: trafficViolations.description,
 				agent_id: trafficViolations.agent_id,
 				location_id: trafficViolations.location_id,

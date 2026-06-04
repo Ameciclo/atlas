@@ -3,7 +3,7 @@
   "info": {
     "title": "Cyclist Profile API",
     "version": "1.0.0",
-    "description": "API for managing cyclist profiles",
+    "description": "API for managing and analyzing cyclist profile survey data",
     "contact": {
       "name": "Atlas Team",
       "url": "https://github.com/Ameciclo/atlas"
@@ -21,16 +21,16 @@
   ],
   "tags": [
     {
+      "name": "System",
+      "description": "System operations"
+    },
+    {
       "name": "Cyclist Profiles",
       "description": "Operations related to cyclist profiles"
     },
     {
       "name": "Cyclist Analytics",
       "description": "Analytics and insights for cyclist data"
-    },
-    {
-      "name": "System",
-      "description": "System operations"
     }
   ],
   "components": {
@@ -45,23 +45,1275 @@
         ],
         "responses": {
           "200": {
-            "description": "Health check response",
+            "description": "Service is healthy",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
                       "type": "string"
                     },
                     "service": {
                       "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
                     }
                   },
                   "required": [
                     "status",
-                    "service"
+                    "timestamp",
+                    "service",
+                    "database"
                   ]
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service is unhealthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "service",
+                    "database"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/dictionary": {
+      "get": {
+        "tags": [
+          "Dictionary"
+        ],
+        "responses": {
+          "200": {
+            "description": "Data dictionary for cyclist profile fields",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "fields": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "category",
+                                  "numeric",
+                                  "boolean",
+                                  "text"
+                                ]
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "source": {
+                                "type": "string"
+                              },
+                              "group": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "field",
+                              "label",
+                              "type",
+                              "description",
+                              "source",
+                              "group"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "fields"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "group",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Available category values",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "label": {
+                            "type": "string"
+                          },
+                          "count": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "code",
+                          "label"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/filters": {
+      "get": {
+        "tags": [
+          "Filters"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "default": 30,
+              "description": "Minimum number of interviews per count point (default: 30)",
+              "example": 30
+            },
+            "required": false,
+            "name": "min_interviews",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Available filter options for the UI",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "years": {
+                          "type": "array",
+                          "items": {
+                            "type": "number"
+                          }
+                        },
+                        "areas": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "label"
+                            ]
+                          }
+                        },
+                        "genders": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "label"
+                            ]
+                          }
+                        },
+                        "race_colors": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "label"
+                            ]
+                          }
+                        },
+                        "age_categories": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "label"
+                            ]
+                          }
+                        },
+                        "schooling_levels": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "label"
+                            ]
+                          }
+                        },
+                        "income_ranges": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "label"
+                            ]
+                          }
+                        },
+                        "bike_types": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "label"
+                            ]
+                          }
+                        },
+                        "years_using_options": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "label"
+                            ]
+                          }
+                        },
+                        "issues": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "label"
+                            ]
+                          }
+                        },
+                        "needs": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "label"
+                            ]
+                          }
+                        },
+                        "motivations_start": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "label"
+                            ]
+                          }
+                        },
+                        "motivations_continue": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "label"
+                            ]
+                          }
+                        },
+                        "transport_modes": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "label"
+                            ]
+                          }
+                        },
+                        "weekdays": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "label"
+                            ]
+                          }
+                        },
+                        "count_points": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              },
+                              "lat": {
+                                "type": "number",
+                                "nullable": true
+                              },
+                              "lon": {
+                                "type": "number",
+                                "nullable": true
+                              },
+                              "years": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number"
+                                }
+                              },
+                              "count": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "label",
+                              "lat",
+                              "lon",
+                              "years",
+                              "count"
+                            ]
+                          }
+                        },
+                        "total_interviews": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "years",
+                        "areas",
+                        "genders",
+                        "race_colors",
+                        "age_categories",
+                        "schooling_levels",
+                        "income_ranges",
+                        "bike_types",
+                        "years_using_options",
+                        "issues",
+                        "needs",
+                        "motivations_start",
+                        "motivations_continue",
+                        "transport_modes",
+                        "weekdays",
+                        "count_points",
+                        "total_interviews"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/cross": {
+      "post": {
+        "tags": [
+          "Cross"
+        ],
+        "requestBody": {
+          "description": "Cross-tabulation query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "year": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      },
+                      "gender": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "race_color": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "age_min": {
+                        "type": "number"
+                      },
+                      "age_max": {
+                        "type": "number"
+                      },
+                      "age_group": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "schooling": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "income_range": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "bike_type": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "collided": {
+                        "type": "boolean"
+                      },
+                      "days_total_min": {
+                        "type": "number"
+                      },
+                      "days_total_max": {
+                        "type": "number"
+                      },
+                      "days_working_min": {
+                        "type": "number"
+                      },
+                      "days_working_max": {
+                        "type": "number"
+                      },
+                      "years_using": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "distance_time_min": {
+                        "type": "number"
+                      },
+                      "distance_time_max": {
+                        "type": "number"
+                      },
+                      "biggest_issue": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "biggest_need": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "motivation_to_start": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "motivation_to_continue": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "living_place": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "origin_place": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "destination_place": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "combines_transport": {
+                        "type": "boolean"
+                      },
+                      "transport_mode": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "weekday": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "area": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "point_neighborhood": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "default": {}
+                  },
+                  "group_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 3,
+                    "default": []
+                  },
+                  "compare_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 2,
+                    "default": []
+                  },
+                  "metrics": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "default": [
+                      "count",
+                      "percent"
+                    ]
+                  },
+                  "options": {
+                    "type": "object",
+                    "properties": {
+                      "include_total": {
+                        "type": "boolean",
+                        "default": false
+                      },
+                      "include_unknown": {
+                        "type": "boolean",
+                        "default": false
+                      },
+                      "min_n": {
+                        "type": "number",
+                        "default": 5
+                      },
+                      "sort": {
+                        "type": "object",
+                        "properties": {
+                          "field": {
+                            "type": "string"
+                          },
+                          "direction": {
+                            "type": "string",
+                            "enum": [
+                              "asc",
+                              "desc"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "field",
+                          "direction"
+                        ]
+                      },
+                      "limit": {
+                        "type": "number"
+                      }
+                    },
+                    "default": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cross-tabulation results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/points": {
+      "get": {
+        "tags": [
+          "Points"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false,
+            "name": "year",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "area",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "gender",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "race",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "income",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "default": 30,
+              "description": "Minimum number of interviews per point (default: 30)",
+              "example": 30
+            },
+            "required": false,
+            "name": "min_interviews",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Survey points with aggregated data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/points.geojson": {
+      "get": {
+        "tags": [
+          "Points"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "required": false,
+            "name": "year",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "area",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "gender",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "race",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "income",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "default": 30,
+              "description": "Minimum number of interviews per point (default: 30)",
+              "example": 30
+            },
+            "required": false,
+            "name": "min_interviews",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Survey points in GeoJSON format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/od/matrix": {
+      "post": {
+        "tags": [
+          "OriginDestination"
+        ],
+        "requestBody": {
+          "description": "OD matrix query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "year": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      },
+                      "gender": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "income_range": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "race_color": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "default": {}
+                  },
+                  "metric": {
+                    "type": "string",
+                    "enum": [
+                      "interviews_count",
+                      "distance_time_median"
+                    ],
+                    "default": "interviews_count"
+                  },
+                  "min_count": {
+                    "type": "number",
+                    "default": 3
+                  },
+                  "limit": {
+                    "type": "number",
+                    "default": 50
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OD matrix",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/od/flows.geojson": {
+      "post": {
+        "tags": [
+          "OriginDestination"
+        ],
+        "requestBody": {
+          "description": "OD flows query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "year": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      },
+                      "gender": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "income_range": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "race_color": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "default": {}
+                  },
+                  "metric": {
+                    "type": "string",
+                    "enum": [
+                      "interviews_count",
+                      "distance_time_median"
+                    ],
+                    "default": "interviews_count"
+                  },
+                  "min_count": {
+                    "type": "number",
+                    "default": 3
+                  },
+                  "limit": {
+                    "type": "number",
+                    "default": 50
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OD flows in GeoJSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/distribution": {
+      "post": {
+        "tags": [
+          "Distribution"
+        ],
+        "requestBody": {
+          "description": "Distribution query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "year": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      },
+                      "gender": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "default": {}
+                  },
+                  "variable": {
+                    "type": "string",
+                    "enum": [
+                      "age",
+                      "distance_time",
+                      "days_total"
+                    ]
+                  },
+                  "group_by": {
+                    "type": "string"
+                  },
+                  "bin_size": {
+                    "type": "number"
+                  },
+                  "bins": {
+                    "type": "number",
+                    "default": 10
+                  }
+                },
+                "required": [
+                  "variable"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Distribution data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/downloads/aggregate.csv": {
+      "post": {
+        "tags": [
+          "Downloads"
+        ],
+        "requestBody": {
+          "description": "Download query parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filters": {
+                    "type": "object",
+                    "properties": {
+                      "year": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      },
+                      "gender": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "race_color": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "income_range": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "biggest_issue": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "default": {}
+                  },
+                  "group_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "default": []
+                  },
+                  "compare_by": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "default": []
+                  },
+                  "metrics": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "default": [
+                      "count"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "CSV download",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -766,69 +2018,6 @@
                 }
               }
             }
-          },
-          "422": {
-            "description": "Invalid parameters",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "error": {
-                      "type": "object",
-                      "properties": {
-                        "issues": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "code": {
-                                "type": "string"
-                              },
-                              "path": {
-                                "type": "array",
-                                "items": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string"
-                                    },
-                                    {
-                                      "type": "number"
-                                    }
-                                  ]
-                                }
-                              },
-                              "message": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "code",
-                              "path"
-                            ]
-                          }
-                        },
-                        "name": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "issues",
-                        "name"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "success",
-                    "error"
-                  ]
-                }
-              }
-            }
           }
         }
       }
@@ -1265,6 +2454,18 @@
             },
             "required": false,
             "name": "income",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "default": 30,
+              "description": "Minimum number of interviews per location (default: 30)",
+              "example": 30
+            },
+            "required": false,
+            "name": "min_interviews",
             "in": "query"
           }
         ],

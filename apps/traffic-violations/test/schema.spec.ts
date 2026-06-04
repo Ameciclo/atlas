@@ -12,14 +12,11 @@ describe("Traffic Violations Schema", () => {
 			const validData = {
 				violation_date: new Date("2023-01-15T10:30:00Z"),
 				agent_id: 123,
-				violation_type_id: 5,
 				location_id: 10,
-				violation_code: "ART201",
+				cttu_code: "ART201",
 				law_code: "CTB_ART201",
 				description: "Estacionar em local proibido",
 				location_description: "Rua das Flores, 100",
-				coordinates: "-8.0476 -34.8770",
-				complementary_data: { additional_info: "test" },
 			};
 
 			const result = insertTrafficViolationSchema.safeParse(validData);
@@ -30,7 +27,7 @@ describe("Traffic Violations Schema", () => {
 			const invalidData = {
 				violation_date: "invalid-date",
 				agent_id: -1,
-				violation_code: "",
+				cttu_code: "",
 			};
 
 			const result = insertTrafficViolationSchema.safeParse(invalidData);
@@ -41,9 +38,8 @@ describe("Traffic Violations Schema", () => {
 			const minimalData = {
 				violation_date: new Date("2023-01-15T10:30:00Z"),
 				agent_id: 123,
-				violation_type_id: 5,
 				location_id: 10,
-				violation_code: "ART201",
+				cttu_code: "ART201",
 				law_code: "CTB_ART201",
 				description: "Estacionar em local proibido",
 				location_description: "Rua das Flores, 100",
@@ -60,15 +56,12 @@ describe("Traffic Violations Schema", () => {
 				id: 1,
 				violation_date: new Date("2023-01-15T10:30:00Z"),
 				agent_id: 123,
-				violation_type_id: 5,
 				location_id: 10,
-				violation_code: "ART201",
+				cttu_code: "ART201",
 				law_code: "CTB_ART201",
 				description: "Estacionar em local proibido",
 				location_description: "Rua das Flores, 100",
-				coordinates: "-8.0476 -34.8770",
 				street_code: 12345,
-				complementary_data: { additional_info: "test" },
 				created_at: new Date("2023-01-15T10:30:00Z"),
 				updated_at: new Date("2023-01-15T10:30:00Z"),
 			};
@@ -84,14 +77,11 @@ describe("Traffic Violations Schema", () => {
 				id: 1,
 				violation_date: new Date(),
 				agent_id: 123,
-				violation_type_id: 5,
 				location_id: 10,
-				violation_code: "ART201",
+				cttu_code: "ART201",
 				law_code: "CTB_ART201",
 				description: "Test description",
 				location_description: "Test location",
-				coordinates: null,
-				complementary_data: null,
 				created_at: new Date(),
 				updated_at: new Date(),
 			};
@@ -105,9 +95,8 @@ describe("Traffic Violations Schema", () => {
 			const newViolation: NewTrafficViolation = {
 				violation_date: new Date(),
 				agent_id: 123,
-				violation_type_id: 5,
 				location_id: 10,
-				violation_code: "ART201",
+				cttu_code: "ART201",
 				law_code: "CTB_ART201",
 				description: "Test description",
 				location_description: "Test location",

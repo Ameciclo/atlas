@@ -18,10 +18,6 @@ const listViolationsQuerySchema = z.object({
 		description: "Filter by agent ID",
 		example: 1,
 	}),
-	violation_type_id: z.coerce.number().int().positive().optional().openapi({
-		description: "Filter by violation type ID",
-		example: 5,
-	}),
 	location_id: z.coerce.number().int().positive().optional().openapi({
 		description: "Filter by location ID",
 		example: 10,
@@ -173,7 +169,6 @@ export const violationsByLocationRoute = createRoute({
 								location_description: z.string(),
 								total_violations: z.number(),
 								ranking: z.number(),
-								coordinates: z.string().nullable(),
 							}),
 						),
 					}),

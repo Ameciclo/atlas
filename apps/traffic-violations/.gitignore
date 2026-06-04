@@ -23,4 +23,4 @@ traffic_locations_v3.tsv
 
 # Generated catalog data
 descricoes_infracoes_corrigidas_expanded.csv
-infraction_catalog.csv
+traffic_violations_catalog.csv

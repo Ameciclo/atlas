@@ -32,7 +32,7 @@ export const overview = async (c: any) => {
 			.select({ count: count() })
 			.from(
 				db
-					.selectDistinct({ code: trafficViolations.violation_code })
+					.selectDistinct({ code: trafficViolations.cttu_code })
 					.from(trafficViolations)
 					.as("distinct_codes"),
 			);
@@ -135,23 +135,23 @@ export const topViolations = async (c: any) => {
 			.select({ count: count() })
 			.from(
 				db
-					.select({ c: trafficViolations.violation_code })
+					.select({ c: trafficViolations.cttu_code })
 					.from(trafficViolations)
 					.where(whereClause)
-					.groupBy(trafficViolations.violation_code)
+					.groupBy(trafficViolations.cttu_code)
 					.as("codes"),
 			);
 
 		const data = await db
 			.select({
-				violation_code: trafficViolations.violation_code,
+				violation_code: trafficViolations.cttu_code,
 				law_code: sql<string>`MAX(${trafficViolations.law_code})`,
 				description: sql<string>`MAX(${trafficViolations.description})`,
 				count: count(),
 			})
 			.from(trafficViolations)
 			.where(whereClause)
-			.groupBy(trafficViolations.violation_code)
+			.groupBy(trafficViolations.cttu_code)
 			.orderBy(desc(count()))
 			.limit(limit);
 
@@ -252,7 +252,7 @@ export const topStreets = async (c: any) => {
 
 			const [top] = await db
 				.select({
-					violation_code: trafficViolations.violation_code,
+					violation_code: trafficViolations.cttu_code,
 					law_code: sql<string>`MAX(${trafficViolations.law_code})`,
 					description: sql<string>`MAX(${trafficViolations.description})`,
 					count: count(),
@@ -264,7 +264,7 @@ export const topStreets = async (c: any) => {
 						...(whereClause ? [whereClause] : []),
 					),
 				)
-				.groupBy(trafficViolations.violation_code)
+				.groupBy(trafficViolations.cttu_code)
 				.orderBy(desc(count()))
 				.limit(1);
 
@@ -451,7 +451,7 @@ export const agentAnalysis = async (c: any) => {
 
 				const topViols = await db
 					.select({
-						violation_code: trafficViolations.violation_code,
+						violation_code: trafficViolations.cttu_code,
 						law_code: sql<string>`MAX(${trafficViolations.law_code})`,
 						description: sql<string>`MAX(${trafficViolations.description})`,
 						count: count(),
@@ -463,7 +463,7 @@ export const agentAnalysis = async (c: any) => {
 							...(baseWhere ? [baseWhere] : []),
 						),
 					)
-					.groupBy(trafficViolations.violation_code)
+					.groupBy(trafficViolations.cttu_code)
 					.orderBy(desc(count()))
 					.limit(5);
 
@@ -496,21 +496,21 @@ export const agentAnalysis = async (c: any) => {
 
 export const violationCodes = async (c: any) => {
 	try {
-		// Most frequent category per violation_code from infraction_catalog
+		// Most frequent category per cttu_code, resolved via description matching
 		const data = await db
 			.select({
-				violation_code: trafficViolations.violation_code,
+				violation_code: trafficViolations.cttu_code,
 				law_code: sql<string>`MAX(${trafficViolations.law_code})`,
 				description: sql<string>`MAX(${trafficViolations.description})`,
 				count: count(),
 				category: sql<string>`(
-					SELECT ic.category FROM infraction_catalog ic
-					WHERE ic.violation_code = ${trafficViolations.violation_code}
-					ORDER BY ic.total_rows DESC LIMIT 1
+					SELECT ic.category FROM traffic_violations_catalog ic
+					WHERE ${trafficViolations.description} = ANY(ic.known_variants)
+					ORDER BY ic.category LIMIT 1
 				)`,
 			})
 			.from(trafficViolations)
-			.groupBy(trafficViolations.violation_code)
+			.groupBy(trafficViolations.cttu_code)
 			.orderBy(desc(count()));
 
 		return c.json(
@@ -540,9 +540,9 @@ export const categoriesList = async (c: any) => {
 		const data = await db
 			.select({
 				category: sql<string>`ic.category`,
-				code_count: sql<number>`COUNT(DISTINCT ic.violation_code)`,
+				code_count: sql<number>`COUNT(DISTINCT ic.id)`,
 			})
-			.from(sql`infraction_catalog ic`)
+			.from(sql`traffic_violations_catalog ic`)
 			.where(sql`ic.category IS NOT NULL`)
 			.groupBy(sql`ic.category`)
 			.orderBy(sql`ic.category`);
@@ -555,9 +555,8 @@ export const categoriesList = async (c: any) => {
 					.from(trafficViolations)
 					.where(
 						sql`EXISTS (
-							SELECT 1 FROM infraction_catalog ic
+							SELECT 1 FROM traffic_violations_catalog ic
 							WHERE ic.category = ${cat.category}
-							  AND ${trafficViolations.violation_code} = ic.violation_code
 							  AND ${trafficViolations.description} = ANY(ic.known_variants)
 						)`,
 					);

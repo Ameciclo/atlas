@@ -86,10 +86,10 @@ describe("Violations API Integration Tests", () => {
 			expect(Array.isArray(data)).toBe(true);
 		});
 
-		it("should filter by violation_type_id", async () => {
+		it("should filter by agent_id", async () => {
 			const res = await client.v1.violations.$get({
 				query: {
-					violation_type_id: "5",
+					agent_id: 1,
 				},
 			});
 			expect(res.status).toBe(200);

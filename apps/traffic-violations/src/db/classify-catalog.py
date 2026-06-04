@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Classify infraction_catalog.csv using CTB reference table + keyword rules.
+Classify traffic_violations_catalog.csv using CTB reference table + keyword rules.
 Port of seed-violation-categories.ts classification logic.
 
 Usage: python3 classify-catalog.py [--apply]
@@ -14,8 +14,8 @@ from collections import defaultdict
 
 DIR = os.path.dirname(os.path.abspath(__file__))
 CTB_CSV = os.path.join(DIR, "tabela_infracoes_ctb_classificada_pedestres_ciclistas_separados.csv")
-CATALOG_CSV = os.path.join(DIR, "infraction_catalog.csv")
-OUT_CSV = os.path.join(DIR, "infraction_catalog_classified.csv")
+CATALOG_CSV = os.path.join(DIR, "traffic_violations_catalog.csv")
+OUT_CSV = os.path.join(DIR, "traffic_violations_catalog_classified.csv")
 
 APPLY = "--apply" in sys.argv
 
@@ -132,11 +132,11 @@ def load_ctb_classification():
 
 
 # ---------------------------------------------------------------------------
-# Build (violation_code, law_code) lookup from raw data
+# Build (cttu_code, law_code) lookup from raw data
 # ---------------------------------------------------------------------------
 
 def build_code_law_lookup():
-    """Map violation_code -> law_code by reading all 19 raw files."""
+    """Map cttu_code -> law_code by reading all 19 raw files."""
     code_to_law = {}
     infra_dir = os.path.join(DIR, "all-infracoes")
     tsv_years = {"2007", "2008", "2009", "2010", "2011", "2012", "2025"}
@@ -209,17 +209,17 @@ def classify():
         # Strategy 1: Match law via CTB table
         categories = ctb.get(norm_law, set())
 
-        # Strategy 2: Find the violation_code that maps to this law
-        violation_code = None
+        # Strategy 2: Find the cttu_code that maps to this law
+        cttu_code = None
         for code, l in code_to_law.items():
             if normalize_law(l) == norm_law:
-                violation_code = code
+                cttu_code = code
                 break
 
         # Strategy 3: Try manual mapping
         manual_cat = None
-        if violation_code and violation_code in MANUAL_MAPPINGS:
-            manual_cat = MANUAL_MAPPINGS[violation_code]
+        if cttu_code and cttu_code in MANUAL_MAPPINGS:
+            manual_cat = MANUAL_MAPPINGS[cttu_code]
             categories.add(manual_cat)
 
         if not categories and not manual_cat:
@@ -230,9 +230,9 @@ def classify():
         # Determine final category
         final_cat = ""
 
-        if violation_code and violation_code in kw_by_code:
+        if cttu_code and cttu_code in kw_by_code:
             # Check keyword rules: which keyword matches the description?
-            for kw, cat in kw_by_code[violation_code]:
+            for kw, cat in kw_by_code[cttu_code]:
                 if kw in desc:
                     final_cat = cat
                     break

@@ -10,7 +10,7 @@ erDiagram
         int agent_id
         int violation_type_id
         int location_id
-        text violation_code
+        text cttu_code
         text law_code
         text description
         text location_description
@@ -43,7 +43,7 @@ erDiagram
 
     violation_categories {
         int id PK
-        text violation_code
+        text cttu_code
         text category "Pedestres | Ciclistas | Seguranca viaria | ..."
         text description_keyword "NULL = categoria padrao"
     }
@@ -61,7 +61,7 @@ erDiagram
 
     traffic_violations }o--|| official_streets : "street_code → code"
     traffic_violations }o--o{ pcr_streets : "street_code → clogra_codi"
-    traffic_violations }o--o{ violation_categories : "violation_code → violation_code"
+    traffic_violations }o--o{ violation_categories : "cttu_code → cttu_code"
     location_street_matches }o--|| official_streets : "matched_street_code → code"
 ```
 
@@ -73,7 +73,7 @@ erDiagram
 |--------|----|---------|-----|-------|
 | `traffic_violations.street_code` | integer | `official_streets.code` | integer | 1 rua tem N infrações |
 | `pcr_streets.clogra_codi` | integer | `official_streets.code` | integer | 1 rua tem N segmentos geográficos |
-| `traffic_violations.violation_code` | text | `violation_categories.violation_code` | text | 1 código pode ter N categorias (1 default + N por keyword) |
+| `traffic_violations.cttu_code` | text | `violation_categories.cttu_code` | text | 1 código pode ter N categorias (1 default + N por keyword) |
 | `location_street_matches.matched_street_code` | integer | `official_streets.code` | integer | resultado do pipeline de matching |
 
 ---
@@ -223,10 +223,10 @@ graph TB
 ## Como funciona `violation_categories`
 
 ```
-violation_code = "5452", description_keyword = NULL,        category = "Estacionamento/uso da via"  ← padrão
-violation_code = "5452", description_keyword = "pedestre",  category = "Pedestres"                   ← override
-violation_code = "5452", description_keyword = "ciclovia",  category = "Ciclistas"                    ← override
-violation_code = "5452", description_keyword = "gramados",  category = "Estacionamento/uso da via"    ← override
+cttu_code = "5452", description_keyword = NULL,        category = "Estacionamento/uso da via"  ← padrão
+cttu_code = "5452", description_keyword = "pedestre",  category = "Pedestres"                   ← override
+cttu_code = "5452", description_keyword = "ciclovia",  category = "Ciclistas"                    ← override
+cttu_code = "5452", description_keyword = "gramados",  category = "Estacionamento/uso da via"    ← override
 ```
 
 **Regra**: O JOIN nos endpoints usa `description_keyword IS NULL` para pegar a categoria **padrão** de cada código. As linhas com keyword específica são usadas apenas pelo seed script para classificação fina de descrições.

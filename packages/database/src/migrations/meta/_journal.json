@@ -78,6 +78,20 @@
 			"when": 1747870000000,
 			"tag": "0010_link_emergency_calls_pcr_streets",
 			"breakpoints": true
+		},
+		{
+			"idx": 11,
+			"version": "7",
+			"when": 1747890000000,
+			"tag": "0012_add_execution_columns",
+			"breakpoints": true
+		},
+		{
+			"idx": 12,
+			"version": "7",
+			"when": 1780062000000,
+			"tag": "0013_drop_official_streets",
+			"breakpoints": true
 		}
 	]
 }

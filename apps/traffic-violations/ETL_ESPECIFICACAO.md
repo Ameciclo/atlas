@@ -111,17 +111,17 @@ Essa tabela **já existe no código** em `src/lib/query-helpers.ts` como `AGENT_
 
 ---
 
-## 4. Infração, Amparo Legal e Descrição → `infraction_catalog`
+## 4. Infração, Amparo Legal e Descrição → `traffic_violations_catalog`
 
 ### Colunas nos arquivos
 
 | Campo | TSV (col) | CSV (col) | Destino no banco |
 |-------|-----------|-----------|-----------------|
-| `infracao` | 6 | 5 | `violation_code` |
+| `infracao` | 6 | 5 | `cttu_code` |
 | `amparolegal` | 8 (ou 7 se trocado) | 7 (ou 8 se trocado) | `law_code` |
 | `descricaoinfracao` | 7 | 6 | `description` |
 
-### Relação `violation_code` ↔ `law_code`
+### Relação `cttu_code` ↔ `law_code`
 
 Após normalização (remover `do CTB`, corrigir `alnea`→`alínea`, unificar `§único`/`nico`), a relação é **essencialmente 1:1**:
 
@@ -144,7 +144,7 @@ Leis com >1 descrição (especificidade):    100 artigos
 
 ### Catálogo de Infrações
 
-Arquivo: `src/db/infraction_catalog_classified.csv`
+Arquivo: `src/db/traffic_violations_catalog_classified.csv`
 
 Tabela de referência com 500 linhas. Colunas:
 
@@ -199,20 +199,20 @@ Deixar de dar passagem aos veículos de incêndio...  → Segurança viária
    ├── Aplica 414 correções manuais existentes
    ├── Auto-detecta +266 correções de encoding (similaridade trigram >72%)
    ├── Detecta 5 truncamentos (descrição é prefixo de outra mais longa)
-   └── Output: infraction_catalog.csv (500 linhas, category vazia)
+   └── Output: traffic_violations_catalog.csv (500 linhas, category vazia)
 
 2. classify-catalog.py
    ├── Cruza law_code com tabela CTB (243 artigos classificados)
    ├── Aplica 13 mapeamentos manuais (códigos não batidos)
    ├── Aplica 28 regras de keyword (sub-classificação por descrição)
-   └── Output: infraction_catalog_classified.csv (500 linhas, 489 classificadas)
+   └── Output: traffic_violations_catalog_classified.csv (500 linhas, 489 classificadas)
 ```
 
 ### Uso no ETL
 
 O ETL usa o catálogo como **dimensão de classificação**. Para cada linha bruta:
 
-1. Extrai `violation_code`, `law_code`, `description`
+1. Extrai `cttu_code`, `law_code`, `description`
 2. Limpa: remove `,0` do código, descarta se `law_code` não começa com `Art.`
 3. Corrige encoding da `description` via `descricoes_infracoes_corrigidas_expanded.csv`
 4. Faz lookup no catálogo por `(law_code, canonical_description)` → obtém `category`
@@ -368,12 +368,11 @@ Arquivo canônico: `infracoes_reduzido_v3.tsv`
 
 Colunas (TSV, tab-separated, UTF-8):
 ```
-violation_date  agent_id  violation_code  law_code  description  location_id  location_description
-```
+violation_date  agent_id  cttu_code  law_code  description  location_id  location_description
 
 - `violation_date`: `YYYY-MM-DD HH:MM:SS` (timestamp)
 - `agent_id`: inteiro 0–9 (da tabela de equivalência)
-- `violation_code`: string numérica, sem `,0`
+- `cttu_code`: string numérica, sem `,0`
 - `law_code`: texto limpo do amparo legal
 - `description`: melhor versão disponível (com acentos, sem truncamento)
 - `location_id`: inteiro sequencial único
@@ -385,14 +384,14 @@ violation_date  agent_id  violation_code  law_code  description  location_id  lo
 
 ```
 PRÉ-REQUISITOS (rodar uma vez, geram artefatos de referência):
-0a. build-infraction-catalog.py --apply   → infraction_catalog.csv + correções de encoding
-0b. classify-catalog.py --apply            → infraction_catalog_classified.csv
+0a. build-infraction-catalog.py --apply   → traffic_violations_catalog.csv + correções de encoding
+0b. classify-catalog.py --apply            → traffic_violations_catalog_classified.csv
 0c. build-location-dict.py --apply         → dict_locais_v3.json + traffic_locations SQL
 
 EXECUÇÃO PRINCIPAL:
 1. ETL Python          → infracoes_reduzido_v3.tsv + dict_locais_v3.json
 2. Bulk COPY           → traffic_violations (PostgreSQL)
 3. SQL Seed            → traffic_locations (via 0001_seed_traffic_locations.sql)
-4. seed-catalog.ts     → popula infraction_catalog + aplica category nas violations
+4. seed-catalog.ts     → popula traffic_violations_catalog + aplica category nas violations
 5. match-pipeline.ts   → popula location_street_matches + street_code (matching geoespacial)
 ```

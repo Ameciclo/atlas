@@ -27,6 +27,22 @@
     {
       "name": "System",
       "description": "System operations"
+    },
+    {
+      "name": "Streets",
+      "description": "Operations related to streets and geospatial data"
+    },
+    {
+      "name": "Dashboard",
+      "description": "Dashboard analytics and aggregations"
+    },
+    {
+      "name": "Matching",
+      "description": "Location-to-street matching operations"
+    },
+    {
+      "name": "Validation",
+      "description": "Human validation of street matches"
     }
   ],
   "components": {
@@ -168,18 +184,6 @@
               "type": "integer",
               "minimum": 0,
               "exclusiveMinimum": true,
-              "description": "Filter by violation type ID",
-              "example": 5
-            },
-            "required": false,
-            "name": "violation_type_id",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "exclusiveMinimum": true,
               "description": "Filter by location ID",
               "example": 10
             },
@@ -237,17 +241,12 @@
                         "minimum": -2147483648,
                         "maximum": 2147483647
                       },
-                      "violation_type_id": {
-                        "type": "integer",
-                        "minimum": -2147483648,
-                        "maximum": 2147483647
-                      },
                       "location_id": {
                         "type": "integer",
                         "minimum": -2147483648,
                         "maximum": 2147483647
                       },
-                      "violation_code": {
+                      "cttu_code": {
                         "type": "string"
                       },
                       "law_code": {
@@ -259,46 +258,17 @@
                       "location_description": {
                         "type": "string"
                       },
-                      "coordinates": {
-                        "type": "string",
-                        "nullable": true
-                      },
                       "street_code": {
                         "type": "integer",
                         "nullable": true,
                         "minimum": -2147483648,
                         "maximum": 2147483647
                       },
-                      "complementary_data": {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "number"
-                          },
-                          {
-                            "type": "boolean"
-                          },
-                          {
-                            "nullable": true
-                          },
-                          {
-                            "type": "object",
-                            "additionalProperties": {
-                              "nullable": true
-                            }
-                          },
-                          {
-                            "type": "array",
-                            "items": {
-                              "nullable": true
-                            }
-                          },
-                          {
-                            "nullable": true
-                          }
-                        ]
+                      "violation_id": {
+                        "type": "integer",
+                        "nullable": true,
+                        "minimum": -2147483648,
+                        "maximum": 2147483647
                       },
                       "created_at": {
                         "type": "string"
@@ -311,15 +281,13 @@
                       "id",
                       "violation_date",
                       "agent_id",
-                      "violation_type_id",
                       "location_id",
-                      "violation_code",
+                      "cttu_code",
                       "law_code",
                       "description",
                       "location_description",
-                      "coordinates",
                       "street_code",
-                      "complementary_data",
+                      "violation_id",
                       "created_at",
                       "updated_at"
                     ],
@@ -421,315 +389,19 @@
                           },
                           "ranking": {
                             "type": "number"
-                          },
-                          "coordinates": {
-                            "type": "string",
-                            "nullable": true
                           }
                         },
                         "required": [
                           "location_id",
                           "location_description",
                           "total_violations",
-                          "ranking",
-                          "coordinates"
+                          "ranking"
                         ]
                       }
                     }
                   },
                   "required": [
                     "locations"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/violations/hotspots": {
-      "get": {
-        "tags": [
-          "Traffic Violations"
-        ],
-        "summary": "Get violation hotspots",
-        "description": "Get clustered violation hotspots in GeoJSON format",
-        "parameters": [
-          {
-            "schema": {
-              "type": "number",
-              "nullable": true,
-              "description": "Filter by violation type ID",
-              "example": 5
-            },
-            "required": false,
-            "name": "violation_type_id",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "number",
-              "minimum": 1,
-              "maximum": 100,
-              "default": 50,
-              "description": "Number of hotspots",
-              "example": 50
-            },
-            "required": false,
-            "name": "limit",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "number",
-              "minimum": 0.1,
-              "maximum": 10,
-              "default": 1,
-              "description": "Clustering radius in kilometers",
-              "example": 1
-            },
-            "required": false,
-            "name": "radius_km",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Violation hotspots GeoJSON",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": [
-                        "FeatureCollection"
-                      ]
-                    },
-                    "features": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string",
-                            "enum": [
-                              "Feature"
-                            ]
-                          },
-                          "geometry": {
-                            "type": "object",
-                            "properties": {
-                              "type": {
-                                "type": "string",
-                                "enum": [
-                                  "Point"
-                                ]
-                              },
-                              "coordinates": {
-                                "type": "array",
-                                "items": {
-                                  "type": "number"
-                                }
-                              }
-                            },
-                            "required": [
-                              "type",
-                              "coordinates"
-                            ]
-                          },
-                          "properties": {
-                            "type": "object",
-                            "properties": {
-                              "violations_count": {
-                                "type": "number"
-                              },
-                              "radius_km": {
-                                "type": "number"
-                              },
-                              "violation_types": {
-                                "type": "array",
-                                "items": {
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "required": [
-                              "violations_count",
-                              "radius_km",
-                              "violation_types"
-                            ]
-                          }
-                        },
-                        "required": [
-                          "type",
-                          "geometry",
-                          "properties"
-                        ]
-                      }
-                    }
-                  },
-                  "required": [
-                    "type",
-                    "features"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/violations/geojson": {
-      "get": {
-        "tags": [
-          "Traffic Violations"
-        ],
-        "summary": "Get violations GeoJSON",
-        "description": "Get violations in GeoJSON format",
-        "parameters": [
-          {
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 12,
-              "description": "Filter by month (1-12). Required parameter",
-              "example": 12
-            },
-            "required": true,
-            "name": "month",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "integer",
-              "minimum": 2020,
-              "maximum": 2030,
-              "description": "Filter by year. Required parameter",
-              "example": 2023
-            },
-            "required": true,
-            "name": "year",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "number",
-              "nullable": true,
-              "description": "Filter by violation type ID",
-              "example": 5
-            },
-            "required": false,
-            "name": "violation_type_id",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "number",
-              "nullable": true,
-              "description": "Filter by agent ID",
-              "example": 142
-            },
-            "required": false,
-            "name": "agent_id",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "number",
-              "minimum": 1,
-              "maximum": 1000,
-              "default": 100,
-              "description": "Number of violations",
-              "example": 100
-            },
-            "required": false,
-            "name": "limit",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Violations GeoJSON",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": [
-                        "FeatureCollection"
-                      ]
-                    },
-                    "features": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string",
-                            "enum": [
-                              "Feature"
-                            ]
-                          },
-                          "geometry": {
-                            "type": "object",
-                            "properties": {
-                              "type": {
-                                "type": "string",
-                                "enum": [
-                                  "Point"
-                                ]
-                              },
-                              "coordinates": {
-                                "type": "array",
-                                "items": {
-                                  "type": "number"
-                                }
-                              }
-                            },
-                            "required": [
-                              "type",
-                              "coordinates"
-                            ]
-                          },
-                          "properties": {
-                            "type": "object",
-                            "properties": {
-                              "violation_type": {
-                                "type": "string"
-                              },
-                              "agent_id": {
-                                "type": "number"
-                              },
-                              "date": {
-                                "type": "string"
-                              },
-                              "description": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "violation_type",
-                              "agent_id",
-                              "date",
-                              "description"
-                            ]
-                          }
-                        },
-                        "required": [
-                          "type",
-                          "geometry",
-                          "properties"
-                        ]
-                      }
-                    }
-                  },
-                  "required": [
-                    "type",
-                    "features"
                   ]
                 }
               }
@@ -780,17 +452,12 @@
                       "minimum": -2147483648,
                       "maximum": 2147483647
                     },
-                    "violation_type_id": {
-                      "type": "integer",
-                      "minimum": -2147483648,
-                      "maximum": 2147483647
-                    },
                     "location_id": {
                       "type": "integer",
                       "minimum": -2147483648,
                       "maximum": 2147483647
                     },
-                    "violation_code": {
+                    "cttu_code": {
                       "type": "string"
                     },
                     "law_code": {
@@ -802,46 +469,17 @@
                     "location_description": {
                       "type": "string"
                     },
-                    "coordinates": {
-                      "type": "string",
-                      "nullable": true
-                    },
                     "street_code": {
                       "type": "integer",
                       "nullable": true,
                       "minimum": -2147483648,
                       "maximum": 2147483647
                     },
-                    "complementary_data": {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "number"
-                        },
-                        {
-                          "type": "boolean"
-                        },
-                        {
-                          "nullable": true
-                        },
-                        {
-                          "type": "object",
-                          "additionalProperties": {
-                            "nullable": true
-                          }
-                        },
-                        {
-                          "type": "array",
-                          "items": {
-                            "nullable": true
-                          }
-                        },
-                        {
-                          "nullable": true
-                        }
-                      ]
+                    "violation_id": {
+                      "type": "integer",
+                      "nullable": true,
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
                     },
                     "created_at": {
                       "type": "string"
@@ -854,15 +492,13 @@
                     "id",
                     "violation_date",
                     "agent_id",
-                    "violation_type_id",
                     "location_id",
-                    "violation_code",
+                    "cttu_code",
                     "law_code",
                     "description",
                     "location_description",
-                    "coordinates",
                     "street_code",
-                    "complementary_data",
+                    "violation_id",
                     "created_at",
                     "updated_at"
                   ],
@@ -1049,9 +685,6 @@
                       "items": {
                         "type": "object",
                         "properties": {
-                          "violation_type_id": {
-                            "type": "number"
-                          },
                           "description": {
                             "type": "string"
                           },
@@ -1069,7 +702,6 @@
                           }
                         },
                         "required": [
-                          "violation_type_id",
                           "description",
                           "total_violations",
                           "percentage",
@@ -1199,16 +831,6 @@
             "required": false,
             "name": "end_date",
             "in": "query"
-          },
-          {
-            "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "exclusiveMinimum": true
-            },
-            "required": false,
-            "name": "violation_type_id",
-            "in": "query"
           }
         ],
         "responses": {
@@ -1308,16 +930,6 @@
             "required": false,
             "name": "search",
             "in": "query"
-          },
-          {
-            "schema": {
-              "type": "string",
-              "description": "Filter by neighborhood name",
-              "example": "BOA VIAGEM"
-            },
-            "required": false,
-            "name": "neighborhood",
-            "in": "query"
           }
         ],
         "responses": {
@@ -1355,22 +967,6 @@
                           "pavement_description": {
                             "type": "string",
                             "nullable": true
-                          },
-                          "transport_corridor": {
-                            "type": "boolean",
-                            "nullable": true
-                          },
-                          "perimeter_road": {
-                            "type": "boolean",
-                            "nullable": true
-                          },
-                          "neighborhood_code": {
-                            "type": "number",
-                            "nullable": true
-                          },
-                          "neighborhood_name": {
-                            "type": "string",
-                            "nullable": true
                           }
                         },
                         "required": [
@@ -1380,11 +976,7 @@
                           "official_name",
                           "short_name",
                           "pavement_code",
-                          "pavement_description",
-                          "transport_corridor",
-                          "perimeter_road",
-                          "neighborhood_code",
-                          "neighborhood_name"
+                          "pavement_description"
                         ]
                       }
                     },
@@ -1441,130 +1033,177 @@
         }
       }
     },
-    "/v1/streets/{code}": {
+    "/v1/streets/geojson": {
       "get": {
         "tags": [
           "Streets"
         ],
-        "summary": "Get street by code",
-        "description": "Get detailed information about a specific street by its code",
+        "summary": "Streets GeoJSON with violation counts",
+        "description": "Retorna ruas com contagem de infrações como FeatureCollection GeoJSON. Uma Feature por rua, com geometria MultiLineString e properties com dados agregados.",
         "parameters": [
           {
             "schema": {
-              "type": "number",
-              "nullable": true,
-              "description": "Street code",
-              "example": 6939
+              "type": "string",
+              "description": "Comma-separated violation codes (e.g. 7455,6050,5541). Alternative to 'category'.",
+              "example": "7455,6050"
             },
             "required": false,
-            "name": "code",
-            "in": "path"
+            "name": "violation_codes",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Predefined category filter (e.g. 'Segurança viária', 'Pedestres'). Resolves to violation_codes internally.",
+              "example": "Pedestres"
+            },
+            "required": false,
+            "name": "category",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "eletronico",
+                "manual"
+              ],
+              "default": "all",
+              "description": "Filter by agent category: eletronico (3,4,5,9) or manual (0,1,2,6,7,8)",
+              "example": "eletronico"
+            },
+            "required": false,
+            "name": "agent_category",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "Start date (YYYY-MM-DD)",
+              "example": "2023-01-01"
+            },
+            "required": false,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "End date (YYYY-MM-DD)",
+              "example": "2023-12-31"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50,
+              "description": "Number of streets to return",
+              "example": 50
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
           }
         ],
         "responses": {
           "200": {
-            "description": "Street details",
+            "description": "Streets GeoJSON with violation counts",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "code": {
-                      "type": "number"
-                    },
-                    "name_concatenated": {
-                      "type": "string"
-                    },
-                    "official_name": {
-                      "type": "string"
-                    },
-                    "short_name": {
-                      "type": "string"
-                    },
-                    "pavement_code": {
+                    "type": {
                       "type": "string",
-                      "nullable": true
+                      "enum": [
+                        "FeatureCollection"
+                      ]
                     },
-                    "pavement_description": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "transport_corridor": {
-                      "type": "boolean",
-                      "nullable": true
-                    },
-                    "perimeter_road": {
-                      "type": "boolean",
-                      "nullable": true
-                    },
-                    "neighborhood_code": {
-                      "type": "number",
-                      "nullable": true
-                    },
-                    "neighborhood_name": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "created_at": {
-                      "type": "string"
-                    },
-                    "updated_at": {
-                      "type": "string"
+                    "features": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "Feature"
+                            ]
+                          },
+                          "geometry": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "MultiLineString"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "number"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ]
+                          },
+                          "properties": {
+                            "type": "object",
+                            "properties": {
+                              "street_code": {
+                                "type": "number"
+                              },
+                              "street_name": {
+                                "type": "string"
+                              },
+                              "total_violations": {
+                                "type": "number"
+                              },
+                              "extension_km": {
+                                "type": "number"
+                              },
+                              "violations_per_km": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "street_code",
+                              "street_name",
+                              "total_violations",
+                              "extension_km",
+                              "violations_per_km"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "geometry",
+                          "properties"
+                        ]
+                      }
                     }
                   },
                   "required": [
-                    "id",
-                    "code",
-                    "name_concatenated",
-                    "official_name",
-                    "short_name",
-                    "pavement_code",
-                    "pavement_description",
-                    "transport_corridor",
-                    "perimeter_road",
-                    "neighborhood_code",
-                    "neighborhood_name",
-                    "created_at",
-                    "updated_at"
-                  ]
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Street not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "error"
-                  ]
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "error"
+                    "type",
+                    "features"
                   ]
                 }
               }
@@ -1604,17 +1243,6 @@
           {
             "schema": {
               "type": "number",
-              "nullable": true,
-              "description": "Filter by violation type ID",
-              "example": 5
-            },
-            "required": false,
-            "name": "violation_type_id",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "number",
               "minimum": 1,
               "maximum": 100,
               "default": 50,
@@ -1648,10 +1276,6 @@
                           "short_name": {
                             "type": "string"
                           },
-                          "neighborhood_name": {
-                            "type": "string",
-                            "nullable": true
-                          },
                           "total_violations": {
                             "type": "number"
                           },
@@ -1660,299 +1284,21 @@
                           },
                           "violations_per_km": {
                             "type": "number"
-                          },
-                          "transport_corridor": {
-                            "type": "boolean",
-                            "nullable": true
                           }
                         },
                         "required": [
                           "street_code",
                           "official_name",
                           "short_name",
-                          "neighborhood_name",
                           "total_violations",
                           "ranking",
-                          "violations_per_km",
-                          "transport_corridor"
+                          "violations_per_km"
                         ]
                       }
                     }
                   },
                   "required": [
                     "streets"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/streets/{street_code}/summary": {
-      "get": {
-        "tags": [
-          "Streets"
-        ],
-        "summary": "Get street violations summary",
-        "description": "Get summary of violations for a specific street",
-        "parameters": [
-          {
-            "schema": {
-              "type": "number",
-              "nullable": true,
-              "description": "Street code",
-              "example": 1025
-            },
-            "required": false,
-            "name": "street_code",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Street violations summary",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "street": {
-                      "type": "object",
-                      "properties": {
-                        "code": {
-                          "type": "number"
-                        },
-                        "official_name": {
-                          "type": "string"
-                        },
-                        "neighborhood_name": {
-                          "type": "string",
-                          "nullable": true
-                        },
-                        "transport_corridor": {
-                          "type": "boolean",
-                          "nullable": true
-                        },
-                        "perimeter_road": {
-                          "type": "boolean",
-                          "nullable": true
-                        }
-                      },
-                      "required": [
-                        "code",
-                        "official_name",
-                        "neighborhood_name",
-                        "transport_corridor",
-                        "perimeter_road"
-                      ]
-                    },
-                    "violations_summary": {
-                      "type": "object",
-                      "properties": {
-                        "total_violations": {
-                          "type": "number"
-                        },
-                        "violations_per_year": {
-                          "type": "object",
-                          "additionalProperties": {
-                            "type": "number"
-                          }
-                        },
-                        "top_violation_types": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "type_id": {
-                                "type": "number"
-                              },
-                              "description": {
-                                "type": "string"
-                              },
-                              "count": {
-                                "type": "number"
-                              }
-                            },
-                            "required": [
-                              "type_id",
-                              "description",
-                              "count"
-                            ]
-                          }
-                        }
-                      },
-                      "required": [
-                        "total_violations",
-                        "violations_per_year",
-                        "top_violation_types"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "street",
-                    "violations_summary"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/streets/{street_code}/violations": {
-      "get": {
-        "tags": [
-          "Streets"
-        ],
-        "summary": "Get street violations",
-        "description": "Get violations for a specific street",
-        "parameters": [
-          {
-            "schema": {
-              "type": "number",
-              "nullable": true,
-              "description": "Street code",
-              "example": 1025
-            },
-            "required": false,
-            "name": "street_code",
-            "in": "path"
-          },
-          {
-            "schema": {
-              "type": "string",
-              "description": "Start date (YYYY-MM-DD)",
-              "example": "2023-01-01"
-            },
-            "required": false,
-            "name": "start_date",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "string",
-              "description": "End date (YYYY-MM-DD)",
-              "example": "2023-12-31"
-            },
-            "required": false,
-            "name": "end_date",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "number",
-              "nullable": true,
-              "description": "Filter by violation type ID",
-              "example": 5
-            },
-            "required": false,
-            "name": "violation_type_id",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "number",
-              "minimum": 1,
-              "maximum": 1000,
-              "default": 100,
-              "description": "Number of results",
-              "example": 100
-            },
-            "required": false,
-            "name": "limit",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "number",
-              "nullable": true,
-              "minimum": 0,
-              "default": 0,
-              "description": "Offset for pagination",
-              "example": 0
-            },
-            "required": false,
-            "name": "offset",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Street violations",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "number"
-                          },
-                          "date": {
-                            "type": "string"
-                          },
-                          "time": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "violation_type_id": {
-                            "type": "number"
-                          },
-                          "violation_description": {
-                            "type": "string"
-                          },
-                          "agent_id": {
-                            "type": "number"
-                          },
-                          "location_id": {
-                            "type": "number",
-                            "nullable": true
-                          },
-                          "location_description": {
-                            "type": "string",
-                            "nullable": true
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "date",
-                          "time",
-                          "violation_type_id",
-                          "violation_description",
-                          "agent_id",
-                          "location_id",
-                          "location_description"
-                        ]
-                      }
-                    },
-                    "pagination": {
-                      "type": "object",
-                      "properties": {
-                        "limit": {
-                          "type": "number"
-                        },
-                        "offset": {
-                          "type": "number"
-                        },
-                        "total": {
-                          "type": "number"
-                        }
-                      },
-                      "required": [
-                        "limit",
-                        "offset",
-                        "total"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "data",
-                    "pagination"
                   ]
                 }
               }
@@ -2049,6 +1395,1118 @@
                   },
                   "required": [
                     "neighborhoods"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/streets/{code}": {
+      "get": {
+        "tags": [
+          "Streets"
+        ],
+        "summary": "Get street by code",
+        "description": "Get detailed information about a specific street by its code",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "Street code",
+              "example": 6939
+            },
+            "required": false,
+            "name": "code",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Street details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "code": {
+                      "type": "number"
+                    },
+                    "name_concatenated": {
+                      "type": "string"
+                    },
+                    "official_name": {
+                      "type": "string"
+                    },
+                    "short_name": {
+                      "type": "string"
+                    },
+                    "pavement_code": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "pavement_description": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "code",
+                    "name_concatenated",
+                    "official_name",
+                    "short_name",
+                    "pavement_code",
+                    "pavement_description",
+                    "created_at",
+                    "updated_at"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Street not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/streets/{street_code}/summary": {
+      "get": {
+        "tags": [
+          "Streets"
+        ],
+        "summary": "Get street violations summary",
+        "description": "Get summary of violations for a specific street",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "Street code",
+              "example": 1025
+            },
+            "required": false,
+            "name": "street_code",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Street violations summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "street": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "number"
+                        },
+                        "official_name": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "official_name"
+                      ]
+                    },
+                    "violations_summary": {
+                      "type": "object",
+                      "properties": {
+                        "total_violations": {
+                          "type": "number"
+                        },
+                        "violations_per_year": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "number"
+                          }
+                        },
+                        "top_violation_types": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "description": {
+                                "type": "string"
+                              },
+                              "count": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "description",
+                              "count"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "total_violations",
+                        "violations_per_year",
+                        "top_violation_types"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "street",
+                    "violations_summary"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/streets/{street_code}/violations": {
+      "get": {
+        "tags": [
+          "Streets"
+        ],
+        "summary": "Get street violations",
+        "description": "Get violations for a specific street",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "Street code",
+              "example": 1025
+            },
+            "required": false,
+            "name": "street_code",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Start date (YYYY-MM-DD)",
+              "example": "2023-01-01"
+            },
+            "required": false,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "End date (YYYY-MM-DD)",
+              "example": "2023-12-31"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 1000,
+              "default": 100,
+              "description": "Number of results",
+              "example": 100
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "minimum": 0,
+              "default": 0,
+              "description": "Offset for pagination",
+              "example": 0
+            },
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Street violations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "date": {
+                            "type": "string"
+                          },
+                          "time": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "violation_description": {
+                            "type": "string"
+                          },
+                          "agent_id": {
+                            "type": "number"
+                          },
+                          "location_id": {
+                            "type": "number",
+                            "nullable": true
+                          },
+                          "location_description": {
+                            "type": "string",
+                            "nullable": true
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "date",
+                          "time",
+                          "description",
+                          "violation_description",
+                          "agent_id",
+                          "location_id",
+                          "location_description"
+                        ]
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "limit": {
+                          "type": "number"
+                        },
+                        "offset": {
+                          "type": "number"
+                        },
+                        "total": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "limit",
+                        "offset",
+                        "total"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "pagination"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/validations": {
+      "get": {
+        "tags": [
+          "Validation"
+        ],
+        "summary": "Human validation interface",
+        "description": "Interactive HTML page for reviewing and confirming low-confidence street matches.",
+        "responses": {
+          "200": {
+            "description": "Validation HTML page",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/dashboard/overview": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Visão geral da base",
+        "description": "Cards do topo: total, período, nº de tipos, nº de ruas, breakdown por agente",
+        "responses": {
+          "200": {
+            "description": "Dashboard overview",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total_violations": {
+                      "type": "number"
+                    },
+                    "period_start": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "period_end": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "violation_types_count": {
+                      "type": "number"
+                    },
+                    "law_codes_count": {
+                      "type": "number"
+                    },
+                    "streets_count": {
+                      "type": "number"
+                    },
+                    "neighborhoods_count": {
+                      "type": "number"
+                    },
+                    "agent_breakdown": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "agent_id": {
+                            "type": "number"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "count": {
+                            "type": "number"
+                          },
+                          "percentage": {
+                            "type": "number"
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "eletronico",
+                              "manual"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "agent_id",
+                          "description",
+                          "count",
+                          "percentage",
+                          "category"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "total_violations",
+                    "period_start",
+                    "period_end",
+                    "violation_types_count",
+                    "law_codes_count",
+                    "streets_count",
+                    "neighborhoods_count",
+                    "agent_breakdown"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/dashboard/top-violations": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Top infrações mais registradas",
+        "description": "Ranking principal de infrações com filtro por categoria de agente e códigos",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated violation codes (e.g. 7455,6050,5541). Alternative to 'category'.",
+              "example": "7455,7463,6050"
+            },
+            "required": false,
+            "name": "violation_codes",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Predefined category filter (e.g. 'Segurança viária', 'Pedestres'). Resolves to violation_codes internally. Alternative to 'violation_codes'.",
+              "example": "Pedestres"
+            },
+            "required": false,
+            "name": "category",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "eletronico",
+                "manual"
+              ],
+              "default": "all",
+              "description": "Filter by agent category: eletronico (3,4,5,9) or manual (1,2,6,7,8)",
+              "example": "eletronico"
+            },
+            "required": false,
+            "name": "agent_category",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 10,
+              "description": "Number of results",
+              "example": 10
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "Start date (YYYY-MM-DD)",
+              "example": "2020-01-01"
+            },
+            "required": false,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "End date (YYYY-MM-DD)",
+              "example": "2023-12-31"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Top violations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "number"
+                    },
+                    "percentage": {
+                      "type": "number"
+                    },
+                    "violations_count": {
+                      "type": "number"
+                    },
+                    "violations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "violation_code": {
+                            "type": "string"
+                          },
+                          "law_code": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "count": {
+                            "type": "number"
+                          },
+                          "percentage": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "violation_code",
+                          "law_code",
+                          "description",
+                          "count",
+                          "percentage"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "total",
+                    "percentage",
+                    "violations_count",
+                    "violations"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/dashboard/top-streets": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Top ruas com mais infrações",
+        "description": "Ranking de ruas por contagem de infrações, com filtro por códigos e datas",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated violation codes (e.g. 7455,6050,5541). Alternative to 'category'.",
+              "example": "7455,7463,6050"
+            },
+            "required": false,
+            "name": "violation_codes",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Predefined category filter (e.g. 'Segurança viária', 'Pedestres'). Resolves to violation_codes internally. Alternative to 'violation_codes'.",
+              "example": "Pedestres"
+            },
+            "required": false,
+            "name": "category",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "eletronico",
+                "manual"
+              ],
+              "default": "all",
+              "description": "Filter by agent category: eletronico (3,4,5,9) or manual (1,2,6,7,8)",
+              "example": "eletronico"
+            },
+            "required": false,
+            "name": "agent_category",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 10,
+              "description": "Number of results",
+              "example": 10
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "Start date (YYYY-MM-DD)",
+              "example": "2020-01-01"
+            },
+            "required": false,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "End date (YYYY-MM-DD)",
+              "example": "2023-12-31"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Top streets by violations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "streets": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "street_code": {
+                            "type": "number"
+                          },
+                          "official_name": {
+                            "type": "string"
+                          },
+                          "total_violations": {
+                            "type": "number"
+                          },
+                          "extension_km": {
+                            "type": "number"
+                          },
+                          "violations_per_km": {
+                            "type": "number"
+                          },
+                          "top_violation": {
+                            "type": "object",
+                            "nullable": true,
+                            "properties": {
+                              "violation_code": {
+                                "type": "string"
+                              },
+                              "law_code": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "count": {
+                                "type": "number"
+                              },
+                              "percentage": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "violation_code",
+                              "law_code",
+                              "description",
+                              "count",
+                              "percentage"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "street_code",
+                          "official_name",
+                          "total_violations",
+                          "extension_km",
+                          "violations_per_km",
+                          "top_violation"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "streets"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/dashboard/temporal": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Análise temporal das infrações",
+        "description": "Infrações por mês, dia da semana e hora do dia",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated violation codes (e.g. 7455,6050,5541). Alternative to 'category'.",
+              "example": "7455,7463,6050"
+            },
+            "required": false,
+            "name": "violation_codes",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Predefined category filter (e.g. 'Segurança viária', 'Pedestres'). Resolves to violation_codes internally. Alternative to 'violation_codes'.",
+              "example": "Pedestres"
+            },
+            "required": false,
+            "name": "category",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "eletronico",
+                "manual"
+              ],
+              "default": "all",
+              "description": "Filter by agent category: eletronico (3,4,5,9) or manual (1,2,6,7,8)",
+              "example": "eletronico"
+            },
+            "required": false,
+            "name": "agent_category",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "Start date (YYYY-MM-DD)",
+              "example": "2020-01-01"
+            },
+            "required": false,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "End date (YYYY-MM-DD)",
+              "example": "2023-12-31"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Temporal analysis",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "by_year": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    },
+                    "by_month": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    },
+                    "by_weekday": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    },
+                    "by_hour": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "required": [
+                    "by_year",
+                    "by_month",
+                    "by_weekday",
+                    "by_hour"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/dashboard/agent-analysis": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Quem fiscaliza o quê",
+        "description": "Breakdown por tipo de agente com top infrações por agente",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Comma-separated violation codes (e.g. 7455,6050,5541). Alternative to 'category'.",
+              "example": "7455,7463,6050"
+            },
+            "required": false,
+            "name": "violation_codes",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Predefined category filter (e.g. 'Segurança viária', 'Pedestres'). Resolves to violation_codes internally. Alternative to 'violation_codes'.",
+              "example": "Pedestres"
+            },
+            "required": false,
+            "name": "category",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "Start date (YYYY-MM-DD)",
+              "example": "2020-01-01"
+            },
+            "required": false,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "End date (YYYY-MM-DD)",
+              "example": "2023-12-31"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agent analysis",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "agents": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "agent_id": {
+                            "type": "number"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "eletronico",
+                              "manual"
+                            ]
+                          },
+                          "total": {
+                            "type": "number"
+                          },
+                          "percentage": {
+                            "type": "number"
+                          },
+                          "top_violations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "violation_code": {
+                                  "type": "string"
+                                },
+                                "law_code": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                },
+                                "count": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "violation_code",
+                                "law_code",
+                                "description",
+                                "count"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "agent_id",
+                          "description",
+                          "category",
+                          "total",
+                          "percentage",
+                          "top_violations"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "agents"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/dashboard/violation-codes": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Dicionário de códigos de infração",
+        "description": "Lista todos os códigos de infração com descrições para o frontend montar categorias",
+        "responses": {
+          "200": {
+            "description": "Violation codes dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "codes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "violation_code": {
+                            "type": "string"
+                          },
+                          "law_code": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string"
+                          },
+                          "count": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "violation_code",
+                          "law_code",
+                          "description",
+                          "category",
+                          "count"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "codes"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/dashboard/categories": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Lista de categorias disponíveis",
+        "description": "Retorna as categorias predefinidas com contagem de códigos de infração em cada uma",
+        "responses": {
+          "200": {
+            "description": "Available categories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "categories": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "code_count": {
+                            "type": "number"
+                          },
+                          "total_violations": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "category",
+                          "code_count",
+                          "total_violations"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "categories"
                   ]
                 }
               }

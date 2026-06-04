@@ -73,6 +73,8 @@
 		"db:migrate": "tsx src/migrate.ts",
 		"db:seed": "tsx src/seed.ts",
 		"db:seed:cyclist-counts": "tsx src/seed-cyclist-counts.ts",
+		"db:seed:cyclist-counts-imported": "tsx src/seed-cyclist-counts-imported.ts",
+		"db:import-sheets": "tsx src/import-google-sheets.ts",
 		"db:seed:cyclist-profiles": "tsx src/seed-cyclist-profiles.ts",
 		"db:seed:bicycle-racks": "tsx src/seed-bicycle-racks.ts",
 		"db:seed-traffic-calls": "tsx src/seed-traffic-calls.ts",
@@ -86,12 +88,14 @@
 		"drizzle-orm": "^0.43.1",
 		"drizzle-zod": "^0.7.1",
 		"pg": "^8.14.1",
+		"xlsx": "^0.18.5",
 		"zod": "^3.24.4"
 	},
 	"devDependencies": {
 		"@atlas/typescript-config": "workspace:*",
 		"@types/node": "^22.15.17",
 		"@types/pg": "^8.11.13",
+		"@types/xlsx": "^0.0.36",
 		"csv-parse": "^6.1.0",
 		"drizzle-kit": "^0.31.0",
 		"tsx": "^4.19.3",

@@ -86,7 +86,7 @@
 | `src/db/dict_locais_v2.json` | **38 MB** | Dicionário base de locais (~568K entradas). Essencial pro ETL |
 | `src/db/dict_variantes_ruas.json` | 4.6 KB | Regras de substituição de nomes de rua (194 variantes) |
 | `src/db/dicionario_infracoes.csv` | 72 KB | Dicionário gerado (code, law, desc, category, total) |
-| `src/db/descricoes_infracoes.csv` | 59 KB | Export do banco (violation_code, law_code, description) |
+| `src/db/descricoes_infracoes.csv` | 59 KB | Export do banco (cttu_code, law_code, description) |
 | `src/db/descricoes_infracoes_corrigidas.csv` | 113 KB | Versão corrigida manualmente (554 pares) |
 | `src/db/tabela_infracoes_ctb_classificada_*.csv` | 44 KB | Tabela CTB oficial classificada (243 artigos) |
 | `src/db/equipamentos-fiscalizacao.csv` | 14 KB | Equipamentos de fiscalização |
@@ -179,12 +179,12 @@
        │          │ is_new, source_year │
        │          └─────────────────────┘
        │
-       │ (lógico, JOIN via violation_code)
+       │ (lógico, JOIN via cttu_code)
        ▼
 ┌──────────────────────┐    ┌──────────────────────────┐
 │ violation_categories │    │ description_corrections  │
 │                      │    │                          │
-│ violation_code       │    │ violation_code           │
+│ cttu_code            │    │ cttu_code               │
 │ law_code             │    │ original_description     │
 │ description_keyword  │    │ corrected_description    │
 │ category             │    │ applied (bool)           │
@@ -207,7 +207,7 @@
 | `agent_id` | integer | NOT NULL | 0-9 (ver AGENT_INFO) |
 | `violation_type_id` | integer | NOT NULL | ID do tipo de infração |
 | `location_id` | integer | NOT NULL | FK lógico → `traffic_locations.location_id` |
-| `violation_code` | text | NOT NULL | Código CTTU (ex: "5452", "7455") |
+| `cttu_code` | text | NOT NULL | Código CTTU (ex: "5452", "7455") |
 | `law_code` | text | NOT NULL | Artigo do CTB (ex: "Art. 181 Inc. VIII") |
 | `description` | text | NOT NULL | Descrição da infração |
 | `location_description` | text | NOT NULL | Texto bruto do local |
@@ -223,7 +223,7 @@
 | Coluna | Tipo | Null | Descrição |
 |--------|------|------|-----------|
 | `id` | serial PK | NOT NULL | |
-| `violation_code` | text | NOT NULL | INDEX |
+| `cttu_code` | text | NOT NULL | INDEX |
 | `law_code` | text | NOT NULL | |
 | `description_keyword` | text | nullable | NULL = categoria padrão; preenchido = override por keyword |
 | `category` | text | NOT NULL | INDEX. Ex: "Pedestres", "Ciclistas", "Segurança viária" |
@@ -302,7 +302,7 @@ ETAPA 3: SEED DE CATEGORIAS (classificação CTB)
     │
     ├── Step 1: seed-violation-categories.ts
     │     Entrada: tabela_infracoes_ctb_classificada_*.csv (243 artigos)
-    │     Lê: traffic_violations (violation_code, law_code)
+    │     Lê: traffic_violations (cttu_code, law_code)
     │     Escreve: violation_categories (DELETE + INSERT)
     │     Resultado: cada código → {Pedestres, Ciclistas, Segurança viária, ...}
     │
@@ -411,10 +411,10 @@ As infrações são classificadas em 6 categorias editoriais:
 
 ```
 violation_categories
-├── violation_code = "5452", description_keyword = NULL      → "Estacionamento/uso da via" (padrão)
-├── violation_code = "5452", description_keyword = "passeio"  → "Pedestres"               (override)
-├── violation_code = "5452", description_keyword = "ciclovia" → "Ciclistas"               (override)
-└── violation_code = "5452", description_keyword = "gramados" → "Estacionamento/uso da via" (override)
+├── cttu_code = "5452", description_keyword = NULL      → "Estacionamento/uso da via" (padrão)
+├── cttu_code = "5452", description_keyword = "passeio"  → "Pedestres"               (override)
+├── cttu_code = "5452", description_keyword = "ciclovia" → "Ciclistas"               (override)
+└── cttu_code = "5452", description_keyword = "gramados" → "Estacionamento/uso da via" (override)
 ```
 
 **Regra**: O JOIN nos endpoints usa `description_keyword IS NULL` para pegar a categoria **padrão**. As linhas com keyword são usadas apenas pelo `generate-dictionary-csv.ts` para pré-classificação fina.

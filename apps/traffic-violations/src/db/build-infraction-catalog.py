@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Build the infraction_catalog by:
+Build the traffic_violations_catalog by:
 1. Auto-detecting and fixing encoding-broken descriptions (accent variants)
 2. Replacing truncated descriptions with their longest variant
-3. Producing infraction_catalog.csv ready for classification
+3. Producing traffic_violations_catalog.csv ready for classification
 
 Usage: python3 build-infraction-catalog.py [--apply]
   --apply   Write output files (otherwise dry-run)
@@ -20,7 +20,7 @@ DIR = os.path.dirname(os.path.abspath(__file__))
 INFRA_DIR = os.path.join(DIR, "all-infracoes")
 CORRECTIONS_CSV = os.path.join(DIR, "descricoes_infracoes_corrigidas.csv")
 OUT_CORRECTIONS = os.path.join(DIR, "descricoes_infracoes_corrigidas_expanded.csv")
-OUT_CATALOG = os.path.join(DIR, "infraction_catalog.csv")
+OUT_CATALOG = os.path.join(DIR, "traffic_violations_catalog.csv")
 OUT_MAPPING = os.path.join(DIR, "descricao_mapping.csv")
 
 APPLY = "--apply" in sys.argv
@@ -298,7 +298,7 @@ def main():
 
     with open(OUT_CORRECTIONS, "w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(["violation_code", "law_code", "description", "description_corrected"])
+        writer.writerow(["cttu_code", "law_code", "description", "description_corrected"])
         for orig, corr in sorted(all_corrections.items()):
             writer.writerow(["", "", orig, corr])
     print(f"Expanded corrections written: {OUT_CORRECTIONS}")
@@ -336,7 +336,7 @@ def main():
 
     print()
     print("=" * 60)
-    print("Done. Next step: classify infraction_catalog.csv")
+    print("Done. Next step: classify traffic_violations_catalog.csv")
 
 
 if __name__ == "__main__":

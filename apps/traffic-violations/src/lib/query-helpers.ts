@@ -1,21 +1,6 @@
 import { and, eq, gte, inArray, lte, sql } from "drizzle-orm";
-import { pgTable, text, integer } from "drizzle-orm/pg-core";
 import { db } from "../db/index.js";
-import { trafficViolations } from "../db/schema.js";
-
-// ============================================================================
-// infraction_catalog table definition (runtime, matches migration 0002)
-// ============================================================================
-
-const infractionCatalog = pgTable("infraction_catalog", {
-	id: integer("id").primaryKey(),
-	violation_code: text("violation_code").notNull(),
-	law_code: text("law_code").notNull(),
-	canonical_description: text("canonical_description").notNull(),
-	known_variants: text("known_variants").array().notNull().default(sql`'{}'`),
-	category: text("category").notNull(),
-	total_rows: integer("total_rows").default(0),
-});
+import { trafficViolations, trafficViolationsCatalog } from "../db/schema.js";
 
 // ============================================================================
 // Agent mapping
@@ -60,16 +45,13 @@ export function parseCodes(raw: string | undefined): string[] | null {
 }
 
 // ============================================================================
-// Category resolution — description-based via infraction_catalog
+// Category resolution — description-based via traffic_violations_catalog
 // ============================================================================
 
 async function buildCategoryCondition(category: string) {
-	// Returns a SQL condition matching violations to infraction_catalog by description
-	// Uses description = ANY(known_variants) — exact match, no ILIKE
 	return sql`EXISTS (
-		SELECT 1 FROM infraction_catalog ic
+		SELECT 1 FROM ${trafficViolationsCatalog} ic
 		WHERE ic.category = ${category}
-		  AND ${trafficViolations.violation_code} = ic.violation_code
 		  AND ${trafficViolations.description} = ANY(ic.known_variants)
 	)`;
 }
@@ -90,7 +72,7 @@ export async function buildConditions(params: {
 	const explicitCodes = parseCodes(params.codes);
 
 	if (explicitCodes) {
-		conditions.push(inArray(trafficViolations.violation_code, explicitCodes));
+		conditions.push(inArray(trafficViolations.cttu_code, explicitCodes));
 	}
 	if (params.category) {
 		conditions.push(await buildCategoryCondition(params.category));

@@ -4,46 +4,13 @@ import { join } from "node:path";
 import { sql } from "drizzle-orm";
 import { db } from "./index.js";
 
-// ============================================================================
-// Types
-// ============================================================================
-
 interface CatalogRow {
+	id: number;
 	law_code: string;
 	canonical_description: string;
+	known_variants: string[];
 	category: string;
-	total_rows: string;
-}
-
-interface MappingRow {
-	raw_description: string;
-	canonical_description: string;
-	frequency: string;
-}
-
-function parseCSV(raw: string): CatalogRow[] {
-	const lines = raw.trim().split("\n");
-	return lines.slice(1).map((line) => {
-		const values = parseCsvLine(line);
-		return {
-			law_code: values[0] || "",
-			canonical_description: values[1] || "",
-			category: values[2] || "",
-			total_rows: values[3] || "",
-		};
-	});
-}
-
-function parseMappingCSV(raw: string): MappingRow[] {
-	const lines = raw.trim().split("\n");
-	return lines.slice(1).map((line) => {
-		const values = parseCsvLine(line);
-		return {
-			raw_description: values[0] || "",
-			canonical_description: values[1] || "",
-			frequency: values[2] || "",
-		};
-	});
+	differentiation: string | null;
 }
 
 function parseCsvLine(line: string): string[] {
@@ -65,159 +32,94 @@ function parseCsvLine(line: string): string[] {
 	return values.map((v) => v.replace(/^"|"$/g, ""));
 }
 
-// ============================================================================
-// Build code -> law lookup from DB
-// ============================================================================
-
-async function buildCodeLawMap(): Promise<Map<string, string>> {
-	const rows = await db.execute(sql`
-		SELECT DISTINCT violation_code, MAX(law_code) as law_code
-		FROM traffic_violations
-		WHERE law_code IS NOT NULL
-		GROUP BY violation_code
-	`);
-	const codeToLaw = new Map<string, string>();
-	const dbRows = (rows as any).rows || rows;
-	for (const row of dbRows) {
-		const code = String(row.violation_code || "").trim();
-		const law = String(row.law_code || "").trim();
-		if (code && law) codeToLaw.set(code, law);
-	}
-	return codeToLaw;
+function parseCatalogCSV(raw: string): CatalogRow[] {
+	const lines = raw.trim().split("\n");
+	return lines.slice(1).map((line) => {
+		const values = parseCsvLine(line);
+		let variants: string[];
+		try {
+			variants = JSON.parse(values[3] || "[]");
+		} catch {
+			variants = [values[3] || ""];
+		}
+		const diff = values[5]?.trim() || null;
+		return {
+			id: Number(values[0]) || 0,
+			law_code: values[1] || "",
+			canonical_description: values[2] || "",
+			known_variants: variants,
+			category: values[4] || "",
+			differentiation: diff,
+		};
+	}).filter((r) => r.id > 0);
 }
-
-function normalizeLaw(law: string): string {
-	return law
-		.toLowerCase()
-		.replace(/,\s*/g, " ")
-		.replace(/\s+/g, " ")
-		.replace(/(?<![ú§])nico/gi, "único")
-		.replace(/§\s*único/gi, "parágrafo único")
-		.replace(/pargrafo/gi, "parágrafo")
-		.replace(/alnea/gi, "alínea")
-		.replace(/\balínea\s+\w/gi, "")
-		.replace(/\s+c\/c\s+.*$/i, "")
-		.replace(/art\.(\d)/g, "art. $1")
-		.replace(/\s*do\s+ctb\.?\s*$/i, "")
-		.replace(/\binciso\b/gi, "inc.")
-		.replace(/,?\s*§?\s*1\s*$/gi, " parágrafo 1")
-		.replace(/§\s*1[º°]\s*/gi, "parágrafo 1 ")
-		.replace(/§\s*2[º°]\s*/gi, "parágrafo 2 ")
-		.trim();
-}
-
-// ============================================================================
-// Seed infraction_catalog with canonical descriptions + known variants
-// ============================================================================
 
 async function seedInfractionCatalog() {
-	console.log("Seeding infraction_catalog...\n");
+	console.log("Seeding traffic_violations_catalog...\n");
 
 	const catalogPath = join(
 		import.meta.dirname,
-		"../../src/db/infraction_catalog_classified.csv",
-	);
-	const mappingPath = join(
-		import.meta.dirname,
-		"../../src/db/descricao_mapping.csv",
+		"../../src/db/infracoes - Página1.csv",
 	);
 
 	const catalogRaw = await readFile(catalogPath, "utf-8");
-	const catalog = parseCSV(catalogRaw).filter((r) => r.category);
-	console.log(`  Loaded ${catalog.length} classified catalog rows`);
+	const catalog = parseCatalogCSV(catalogRaw);
+	console.log(`  Loaded ${catalog.length} catalog rows from CSV`);
 
-	const mappingRaw = await readFile(mappingPath, "utf-8");
-	const mapping = parseMappingCSV(mappingRaw);
-	console.log(`  Loaded ${mapping.length} description mappings`);
-
-	// Build canonical -> [variants] lookup from mapping
-	const variantsByCanonical = new Map<string, string[]>();
-	for (const m of mapping) {
-		const canonical = m.canonical_description;
-		const raw = m.raw_description;
-		if (!variantsByCanonical.has(canonical)) {
-			variantsByCanonical.set(canonical, []);
-		}
-		const arr = variantsByCanonical.get(canonical)!;
-		if (!arr.includes(raw)) arr.push(raw);
-	}
-
-	// Build code -> law mapping for resolving violation_code
-	const codeToLaw = await buildCodeLawMap();
-	const lawToCodes = new Map<string, string[]>();
-	for (const [code, law] of codeToLaw) {
-		const norm = normalizeLaw(law);
-		if (!lawToCodes.has(norm)) lawToCodes.set(norm, []);
-		lawToCodes.get(norm)!.push(code);
-	}
-	console.log(`  ${codeToLaw.size} codes mapped to ${lawToCodes.size} normalized laws`);
-
-	// Build inserts for infraction_catalog
-	const inserts: Array<{
-		violation_code: string;
-		law_code: string;
-		canonical_description: string;
-		known_variants: string[];
-		category: string;
-		total_rows: number;
-	}> = [];
-
-	for (const row of catalog) {
-		const normLaw = normalizeLaw(row.law_code);
-		const codes = lawToCodes.get(normLaw);
-		if (!codes || codes.length === 0) continue;
-
-		const variants = variantsByCanonical.get(row.canonical_description) || [];
-		// Always ensure canonical_description itself is in the variants
-		if (!variants.includes(row.canonical_description)) {
-			variants.push(row.canonical_description);
-		}
-		if (variants.length === 0) {
-			variants.push(row.canonical_description);
-		}
-
-		for (const code of codes) {
-			inserts.push({
-				violation_code: code,
-				law_code: row.law_code,
-				canonical_description: row.canonical_description,
-				known_variants: variants,
-				category: row.category,
-				total_rows: Number.parseInt(row.total_rows) || 0,
-			});
-		}
-	}
+	const inserts = catalog.map((r) => ({
+		law_code: r.law_code,
+		canonical_description: r.canonical_description,
+		known_variants: r.known_variants,
+		category: r.category,
+		differentiation: r.differentiation,
+	}));
 
 	console.log(`  ${inserts.length} rows to insert`);
 
-	await db.execute(sql`TRUNCATE infraction_catalog RESTART IDENTITY CASCADE`);
-
-	// Deduplicate: same (violation_code, canonical_description) → keep first
-	const seen = new Set<string>();
-	const deduped = inserts.filter((r) => {
-		const key = `${r.violation_code}|${r.canonical_description}`;
-		if (seen.has(key)) return false;
-		seen.add(key);
-		return true;
-	});
-	console.log(`  ${deduped.length} unique rows after dedup`);
+	await db.execute(sql`TRUNCATE traffic_violations_catalog RESTART IDENTITY CASCADE`);
 
 	const batchSize = 100;
-	for (let i = 0; i < deduped.length; i += batchSize) {
-		const batch = deduped.slice(i, i + batchSize);
+	for (let i = 0; i < inserts.length; i += batchSize) {
+		const batch = inserts.slice(i, i + batchSize);
 		await db.execute(
-			sql`INSERT INTO infraction_catalog (violation_code, law_code, canonical_description, known_variants, category, total_rows)
+			sql`INSERT INTO traffic_violations_catalog (law_code, canonical_description, known_variants, category, differentiation)
 			    SELECT * FROM json_to_recordset(${JSON.stringify(batch)}::json)
-			    AS x(violation_code text, law_code text, canonical_description text, known_variants text[], category text, total_rows integer)`,
+			    AS x(law_code text, canonical_description text, known_variants text[], category text, differentiation text)`,
 		);
 	}
 
-	console.log(`  Inserted ${inserts.length} rows\n`);
-}
+	console.log(`  Inserted ${inserts.length} rows`);
 
-// ============================================================================
-// Main
-// ============================================================================
+	console.log("\n  Updating traffic_violations.violation_id and description...");
+
+	await db.execute(sql`UPDATE traffic_violations SET violation_id = NULL`);
+
+	const result = await db.execute(sql`
+		UPDATE traffic_violations tv SET
+			violation_id = best.catalog_id,
+			description = best.canonical_description
+		FROM (
+			SELECT DISTINCT ON (tv2.id)
+				tv2.id as violation_row_id,
+				tvc.id as catalog_id,
+				tvc.canonical_description
+			FROM traffic_violations tv2
+			JOIN traffic_violations_catalog tvc
+				ON tv2.description = tvc.canonical_description
+				OR tv2.description = ANY(tvc.known_variants)
+			ORDER BY
+				tv2.id,
+				CASE WHEN tv2.description = tvc.canonical_description THEN 0 ELSE 1 END,
+				tvc.id
+		) best
+		WHERE tv.id = best.violation_row_id
+	`);
+
+	const updatedCount = "rowCount" in result ? result.rowCount : "?";
+	console.log(`  Updated ${updatedCount} traffic_violations rows`);
+
+	console.log("\nPipeline complete.\n");
+}
 
 async function main() {
 	console.log("Seed catalog pipeline\n");
