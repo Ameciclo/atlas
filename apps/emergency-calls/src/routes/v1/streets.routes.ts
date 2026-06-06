@@ -16,13 +16,10 @@ export const streetsSummary = createRoute({
 				totalSinistros: z.number(),
 				totalViasIdentificadas: z.number(),
 				totalVias: z.number(),
-				extensaoTotalKm: z.number(),
-				extensaoMediaKm: z.number(),
 				viaMaisPerigosa: z.object({
 					nome: z.string(),
 					total: z.number(),
 					percentual: z.number(),
-					extensao: z.number(),
 				}),
 			}),
 			"Streets summary",
@@ -47,12 +44,9 @@ export const streetsTop = createRoute({
 				dados: z.array(
 					z.object({
 						top: z.number(),
+						nome: z.string(),
 						sinistros: z.number(),
 						sinistros_acum: z.number(),
-						km: z.number(),
-						km_acum: z.number(),
-						sinistros_por_km: z.number(),
-						sinistros_por_km_acum: z.number(),
 						percentual: z.number(),
 						percentual_acum: z.number(),
 					}),
@@ -71,8 +65,12 @@ export const streetsSearch = createRoute({
 	description: "Search for accidents by street name",
 	request: {
 		query: z.object({
-			nome: z.string().openapi({
+			nome: z.string().optional().openapi({
 				description: "Street name to search",
+				example: "Boa Viagem",
+			}),
+			street: z.string().optional().openapi({
+				description: "Street name to search (alias for frontend compatibility)",
 				example: "Boa Viagem",
 			}),
 			limit: z.coerce.number().optional().default(100),
@@ -91,6 +89,7 @@ export const streetsSearch = createRoute({
 						categoria: z.string(),
 						sexo: z.string(),
 						idade: z.number().nullable(),
+						motivo_desf_cat: z.string().nullable(),
 					}),
 				),
 				total: z.number(),
@@ -109,11 +108,15 @@ export const streetsHistory = createRoute({
 	description: "Get temporal history of accidents for a street",
 	request: {
 		query: z.object({
-			nome: z.string().openapi({
+			nome: z.string().optional().openapi({
 				description: "Street name",
 				example: "Avenida Boa Viagem",
 			}),
-			startYear: z.coerce.number().optional(),
+			via: z.string().optional().openapi({
+				description: "Street name (alias for frontend compatibility)",
+				example: "Avenida Boa Viagem",
+			}),
+			startYear: z.coerce.number().optional().default(2020),
 			endYear: z.coerce.number().optional(),
 		}),
 	},

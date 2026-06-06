@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 // Mock do módulo de banco de dados ANTES dos imports
 vi.mock("../src/db/index.js", () => {
@@ -20,14 +20,11 @@ describe("TrafficViolations API", () => {
 		id: 1,
 		violation_date: new Date("2023-01-15T10:30:00Z"),
 		agent_id: 123,
-		violation_type_id: 5,
 		location_id: 10,
-		violation_code: "ART201",
+		cttu_code: "ART201",
 		law_code: "CTB_ART201",
 		description: "Estacionar em local proibido",
 		location_description: "Rua das Flores, 100",
-		coordinates: "-8.0476 -34.8770",
-		complementary_data: { additional_info: "test" },
 		created_at: new Date("2023-01-15T10:30:00Z"),
 		updated_at: new Date("2023-01-15T10:30:00Z"),
 	};

@@ -1,7 +1,7 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
-	listViolationsRoute,
 	getViolationRoute,
+	listViolationsRoute,
 } from "../src/routes/violations/violations.routes.js";
 
 describe("Violations Routes", () => {

@@ -1,10 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import type { Context } from "hono";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
-	listViolationsHandler,
 	getViolationHandler,
+	listViolationsHandler,
 	violationsByLocationHandler,
-	violationsGeoJSONHandler,
 } from "../src/routes/violations/violations.handlers.js";
 
 // Mock do banco de dados
@@ -47,11 +46,6 @@ describe("Violations Handlers", () => {
 		it("should be defined", () => {
 			expect(violationsByLocationHandler).toBeDefined();
 			expect(typeof violationsByLocationHandler).toBe("function");
-		});
-
-		it("should be defined", () => {
-			expect(violationsGeoJSONHandler).toBeDefined();
-			expect(typeof violationsGeoJSONHandler).toBe("function");
 		});
 	});
 
@@ -107,24 +101,6 @@ describe("Violations Handlers", () => {
 			mockContext.json.mockReturnValue({ locations: [] });
 
 			const _result = await violationsByLocationHandler(mockContext as Context);
-			expect(mockContext.req.valid).toHaveBeenCalledWith("query");
-			expect(mockContext.json).toHaveBeenCalled();
-		});
-	});
-
-	describe("violationsGeoJSONHandler", () => {
-		it("should handle month/year parameters", async () => {
-			mockContext.req.valid.mockReturnValue({
-				month: 10,
-				year: 2023,
-				limit: 100,
-			});
-			mockContext.json.mockReturnValue({
-				type: "FeatureCollection",
-				features: [],
-			});
-
-			const _result = await violationsGeoJSONHandler(mockContext as Context);
 			expect(mockContext.req.valid).toHaveBeenCalledWith("query");
 			expect(mockContext.json).toHaveBeenCalled();
 		});

@@ -18,10 +18,6 @@ const listViolationsQuerySchema = z.object({
 		description: "Filter by agent ID",
 		example: 1,
 	}),
-	violation_type_id: z.coerce.number().int().positive().optional().openapi({
-		description: "Filter by violation type ID",
-		example: 5,
-	}),
 	location_id: z.coerce.number().int().positive().optional().openapi({
 		description: "Filter by location ID",
 		example: 10,
@@ -51,8 +47,6 @@ const violationParamsSchema = z.object({
 });
 
 export type ViolationsByLocationRoute = typeof violationsByLocationRoute;
-export type ViolationsHotspotsRoute = typeof violationsHotspotsRoute;
-export type ViolationsGeoJSONRoute = typeof violationsGeoJSONRoute;
 
 // ============================================================================
 // Response Schemas
@@ -175,134 +169,12 @@ export const violationsByLocationRoute = createRoute({
 								location_description: z.string(),
 								total_violations: z.number(),
 								ranking: z.number(),
-								coordinates: z.string().nullable(),
 							}),
 						),
 					}),
 				},
 			},
 			description: "Violations by location",
-		},
-	},
-});
-
-export const violationsHotspotsRoute = createRoute({
-	method: "get",
-	path: "/violations/hotspots",
-	tags: ["Traffic Violations"],
-	summary: "Get violation hotspots",
-	description: "Get clustered violation hotspots in GeoJSON format",
-	request: {
-		query: z.object({
-			violation_type_id: z.coerce.number().optional().openapi({
-				description: "Filter by violation type ID",
-				example: 5,
-			}),
-			limit: z.coerce.number().min(1).max(100).default(50).optional().openapi({
-				description: "Number of hotspots",
-				example: 50,
-			}),
-			radius_km: z.coerce
-				.number()
-				.min(0.1)
-				.max(10)
-				.default(1)
-				.optional()
-				.openapi({
-					description: "Clustering radius in kilometers",
-					example: 1,
-				}),
-		}),
-	},
-	responses: {
-		200: {
-			content: {
-				"application/json": {
-					schema: z.object({
-						type: z.literal("FeatureCollection"),
-						features: z.array(
-							z.object({
-								type: z.literal("Feature"),
-								geometry: z.object({
-									type: z.literal("Point"),
-									coordinates: z.array(z.number()),
-								}),
-								properties: z.object({
-									violations_count: z.number(),
-									radius_km: z.number(),
-									violation_types: z.array(z.string()),
-								}),
-							}),
-						),
-					}),
-				},
-			},
-			description: "Violation hotspots GeoJSON",
-		},
-	},
-});
-
-export const violationsGeoJSONRoute = createRoute({
-	method: "get",
-	path: "/violations/geojson",
-	tags: ["Traffic Violations"],
-	summary: "Get violations GeoJSON",
-	description: "Get violations in GeoJSON format",
-	request: {
-		query: z.object({
-			month: z.coerce.number().int().min(1).max(12).openapi({
-				description: "Filter by month (1-12). Required parameter",
-				example: 12,
-			}),
-			year: z.coerce.number().int().min(2020).max(2030).openapi({
-				description: "Filter by year. Required parameter",
-				example: 2023,
-			}),
-			violation_type_id: z.coerce.number().optional().openapi({
-				description: "Filter by violation type ID",
-				example: 5,
-			}),
-			agent_id: z.coerce.number().optional().openapi({
-				description: "Filter by agent ID",
-				example: 142,
-			}),
-			limit: z.coerce
-				.number()
-				.min(1)
-				.max(1000)
-				.default(100)
-				.optional()
-				.openapi({
-					description: "Number of violations",
-					example: 100,
-				}),
-		}),
-	},
-	responses: {
-		200: {
-			content: {
-				"application/json": {
-					schema: z.object({
-						type: z.literal("FeatureCollection"),
-						features: z.array(
-							z.object({
-								type: z.literal("Feature"),
-								geometry: z.object({
-									type: z.literal("Point"),
-									coordinates: z.array(z.number()),
-								}),
-								properties: z.object({
-									violation_type: z.string(),
-									agent_id: z.number(),
-									date: z.string(),
-									description: z.string(),
-								}),
-							}),
-						),
-					}),
-				},
-			},
-			description: "Violations GeoJSON",
 		},
 	},
 });

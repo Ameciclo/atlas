@@ -1,5 +1,5 @@
 import { and, count, sql } from "drizzle-orm";
-import { db, ensureConnection } from "../../db/index.js";
+import { db } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
@@ -12,7 +12,7 @@ import type {
 export const streetsSummary: AppRouteHandler<StreetsSummaryRoute> = async (
 	c,
 ) => {
-	await ensureConnection();
+
 
 	const [totalResult] = await db
 		.select({ count: count() })
@@ -37,21 +37,18 @@ export const streetsSummary: AppRouteHandler<StreetsSummaryRoute> = async (
 	return c.json({
 		totalSinistros: totalResult?.count || 0,
 		totalViasIdentificadas: Math.floor((streetsResult?.count || 0) * 0.9),
-		totalVias: streetsResult?.count || 0,
-		extensaoTotalKm: 2500.75,
-		extensaoMediaKm: 2.15,
+		totalVias: Number(streetsResult?.count) || 0,
 		viaMaisPerigosa: {
 			nome: topStreetResult?.address || "",
 			total: topStreetResult?.count || 0,
 			percentual:
 				((topStreetResult?.count || 0) / (totalResult?.count || 1)) * 100,
-			extensao: 8.5,
 		},
 	});
 };
 
 export const streetsTop: AppRouteHandler<StreetsTopRoute> = async (c) => {
-	await ensureConnection();
+
 	const { limit } = c.req.valid("query");
 
 	const topStreets = await db
@@ -65,24 +62,19 @@ export const streetsTop: AppRouteHandler<StreetsTopRoute> = async (c) => {
 		.limit(limit);
 
 	let accumSinistros = 0;
-	let accumKm = 0;
 
 	const dados = topStreets.map((street, index) => {
 		const sinistros = street.count;
-		const km = Math.random() * 10 + 1; // Mock data
 		accumSinistros += sinistros;
-		accumKm += km;
 
 		return {
 			top: index + 1,
+			nome: street.address || "",
 			sinistros,
 			sinistros_acum: accumSinistros,
-			km,
-			km_acum: accumKm,
-			sinistros_por_km: sinistros / km,
-			sinistros_por_km_acum: accumSinistros / accumKm,
 			percentual: (sinistros / (topStreets[0]?.count || 1)) * 100,
-			percentual_acum: (accumSinistros / (topStreets[0]?.count || 1)) * 100,
+			percentual_acum:
+				(accumSinistros / (topStreets[0]?.count || 1)) * 100,
 		};
 	});
 
@@ -90,8 +82,9 @@ export const streetsTop: AppRouteHandler<StreetsTopRoute> = async (c) => {
 };
 
 export const streetsSearch: AppRouteHandler<StreetsSearchRoute> = async (c) => {
-	await ensureConnection();
-	const { nome, limit } = c.req.valid("query");
+
+	const { nome, street, limit } = c.req.valid("query");
+	const searchTerm = nome || street || "";
 
 	const results = await db
 		.select({
@@ -102,9 +95,10 @@ export const streetsSearch: AppRouteHandler<StreetsSearchRoute> = async (c) => {
 			subtype: emergencyCalls.subtype,
 			gender: emergencyCalls.gender,
 			age: emergencyCalls.age,
+			outcome: emergencyCalls.outcome_category,
 		})
 		.from(emergencyCalls)
-		.where(sql`${emergencyCalls.address} ILIKE ${`%${nome}%`}`)
+		.where(sql`${emergencyCalls.address} ILIKE ${`%${searchTerm}%`}`)
 		.limit(limit);
 
 	const sinistros = results.map((item) => ({
@@ -116,30 +110,32 @@ export const streetsSearch: AppRouteHandler<StreetsSearchRoute> = async (c) => {
 		categoria: item.subtype || "UNKNOWN",
 		sexo: item.gender || "U",
 		idade: item.age,
+		motivo_desf_cat: item.outcome || null,
 	}));
 
 	return c.json({
 		sinistros,
 		total: sinistros.length,
-		busca: nome,
+		busca: searchTerm,
 	});
 };
 
 export const streetsHistory: AppRouteHandler<StreetsHistoryRoute> = async (
 	c,
 ) => {
-	await ensureConnection();
-	const { nome, startYear = 2020, endYear = 2024 } = c.req.valid("query");
+
+	const { nome, via, startYear = 2020, endYear = 2024 } = c.req.valid("query");
+	const streetName = nome || via || "";
 
 	const conditions = [
-		sql`${emergencyCalls.address} ILIKE ${`%${nome}%`}`,
+		sql`${emergencyCalls.address} ILIKE ${`%${streetName}%`}`,
 		sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) >= ${startYear}`,
 		sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) <= ${endYear}`,
 	];
 
 	const whereClause = and(...conditions);
 
-	const yearlyData = await db
+	const yearlyMonthData = await db
 		.select({
 			year: sql<number>`EXTRACT(YEAR FROM ${emergencyCalls.date})::int`,
 			month: sql<number>`EXTRACT(MONTH FROM ${emergencyCalls.date})::int`,
@@ -156,8 +152,102 @@ export const streetsHistory: AppRouteHandler<StreetsHistoryRoute> = async (
 			sql`EXTRACT(MONTH FROM ${emergencyCalls.date})`,
 		);
 
-	// Group by year
-	const yearlyGroups = yearlyData.reduce(
+	const yearlyData = await db
+		.select({
+			year: sql<number>`EXTRACT(YEAR FROM ${emergencyCalls.date})::int`,
+			dias_com_dados: sql<number>`COUNT(DISTINCT ${emergencyCalls.date}::date)`,
+			dias_com_sinistros: sql<number>`COUNT(DISTINCT ${emergencyCalls.date}::date)`,
+			manha: sql<number>`COUNT(*) FILTER (WHERE EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time) BETWEEN 6 AND 11)`,
+			tarde: sql<number>`COUNT(*) FILTER (WHERE EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time) BETWEEN 12 AND 17)`,
+			noite: sql<number>`COUNT(*) FILTER (WHERE EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time) BETWEEN 18 AND 23)`,
+			madrugada: sql<number>`COUNT(*) FILTER (WHERE EXTRACT(HOUR FROM ${emergencyCalls.time_minute}::time) BETWEEN 0 AND 5)`,
+			masculino: sql<number>`COUNT(*) FILTER (WHERE ${emergencyCalls.gender} ILIKE 'masculino')`,
+			feminino: sql<number>`COUNT(*) FILTER (WHERE ${emergencyCalls.gender} ILIKE 'feminino')`,
+		})
+		.from(emergencyCalls)
+		.where(whereClause)
+		.groupBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`)
+		.orderBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`);
+
+	const yearlyWeekdayData = await db
+		.select({
+			year: sql<number>`EXTRACT(YEAR FROM ${emergencyCalls.date})::int`,
+			dow: sql<number>`EXTRACT(DOW FROM ${emergencyCalls.date})::int`,
+			count: count(),
+		})
+		.from(emergencyCalls)
+		.where(whereClause)
+		.groupBy(
+			sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`,
+			sql`EXTRACT(DOW FROM ${emergencyCalls.date})`,
+		)
+		.orderBy(sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`)
+		.limit(500);
+
+	const yearlyAgeData = await db
+		.select({
+			year: sql<number>`EXTRACT(YEAR FROM ${emergencyCalls.date})::int`,
+			age_group: sql<string>`
+				CASE
+					WHEN ${emergencyCalls.age} < 18 THEN '0-17'
+					WHEN ${emergencyCalls.age} BETWEEN 18 AND 29 THEN '18-29'
+					WHEN ${emergencyCalls.age} BETWEEN 30 AND 49 THEN '30-49'
+					ELSE '50+'
+				END
+			`,
+			count: count(),
+		})
+		.from(emergencyCalls)
+		.where(whereClause)
+		.groupBy(
+			sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`,
+			sql`
+				CASE
+					WHEN ${emergencyCalls.age} < 18 THEN '0-17'
+					WHEN ${emergencyCalls.age} BETWEEN 18 AND 29 THEN '18-29'
+					WHEN ${emergencyCalls.age} BETWEEN 30 AND 49 THEN '30-49'
+					ELSE '50+'
+				END
+			`,
+		);
+
+	const yearlyCategoryData = await db
+		.select({
+			year: sql<number>`EXTRACT(YEAR FROM ${emergencyCalls.date})::int`,
+			category: emergencyCalls.subtype,
+			count: count(),
+		})
+		.from(emergencyCalls)
+		.where(whereClause)
+		.groupBy(
+			sql`EXTRACT(YEAR FROM ${emergencyCalls.date})`,
+			emergencyCalls.subtype,
+		);
+
+	const yearlyMap = new Map<number, typeof yearlyData[0]>();
+	for (const row of yearlyData) {
+		yearlyMap.set(row.year, row);
+	}
+
+	const weekdayByYear = new Map<number, Record<string, number>>();
+	for (const row of yearlyWeekdayData) {
+		if (!weekdayByYear.has(row.year)) weekdayByYear.set(row.year, {});
+		weekdayByYear.get(row.year)![row.dow.toString()] = row.count;
+	}
+
+	const ageByYear = new Map<number, Record<string, number>>();
+	for (const row of yearlyAgeData) {
+		if (!ageByYear.has(row.year)) ageByYear.set(row.year, {});
+		ageByYear.get(row.year)![row.age_group] = row.count;
+	}
+
+	const categoryByYear = new Map<number, Record<string, number>>();
+	for (const row of yearlyCategoryData) {
+		if (!categoryByYear.has(row.year)) categoryByYear.set(row.year, {});
+		categoryByYear.get(row.year)![row.category || "UNKNOWN"] = row.count;
+	}
+
+	const yearlyGroups = yearlyMonthData.reduce(
 		(acc, item) => {
 			if (!acc[item.year]) {
 				acc[item.year] = [];
@@ -165,7 +255,7 @@ export const streetsHistory: AppRouteHandler<StreetsHistoryRoute> = async (
 			acc[item.year].push(item);
 			return acc;
 		},
-		{} as Record<number, typeof yearlyData>,
+		{} as Record<number, typeof yearlyMonthData>,
 	);
 
 	const evolucao = Object.entries(yearlyGroups).map(([year, data]) => {
@@ -178,26 +268,28 @@ export const streetsHistory: AppRouteHandler<StreetsHistoryRoute> = async (
 			{} as Record<string, number>,
 		);
 
+		const y = Number(year);
+		const yr = yearlyMap.get(y);
+
 		return {
-			ano: parseInt(year, 10),
+			ano: y,
 			sinistros: totalSinistros,
 			meses,
-			dias_com_dados: 365,
-			dias_com_sinistros: Math.floor(totalSinistros * 0.3),
-			dias_semana: { "0": 5, "1": 8, "2": 7, "3": 6, "4": 9, "5": 6, "6": 4 },
-			horarios: { "6": 1, "7": 3, "8": 5, "17": 4, "18": 8, "19": 6 },
+			dias_com_dados: yr?.dias_com_dados || 0,
+			dias_com_sinistros: yr?.dias_com_sinistros || 0,
+			dias_semana: weekdayByYear.get(y) || {},
+			horarios: {
+				manha: yr?.manha || 0,
+				tarde: yr?.tarde || 0,
+				noite: yr?.noite || 0,
+				madrugada: yr?.madrugada || 0,
+			},
 			por_sexo: {
-				masculino: Math.floor(totalSinistros * 0.7),
-				feminino: Math.floor(totalSinistros * 0.3),
+				masculino: yr?.masculino || 0,
+				feminino: yr?.feminino || 0,
 			},
-			por_faixa_etaria: {
-				"18_29_anos": Math.floor(totalSinistros * 0.4),
-				"30_49_anos": Math.floor(totalSinistros * 0.35),
-			},
-			por_categoria: {
-				sinistro_moto: Math.floor(totalSinistros * 0.6),
-				atropelamento_carro: Math.floor(totalSinistros * 0.4),
-			},
+			por_faixa_etaria: ageByYear.get(y) || {},
+			por_categoria: categoryByYear.get(y) || {},
 		};
 	});
 

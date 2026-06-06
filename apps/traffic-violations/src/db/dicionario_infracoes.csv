@@ -1,0 +1,554 @@
+our_code,cttu_code,law_code,description,category,total
+,"7455","Art. 218; Inc. I","Transitar em velocidade superior mxima permitida para o local em at 20% (vinte por cento).","Segurança viária",456493
+,"7455","Art. 218; Inc. I","Transitar em velocidade superior à máxima permitida para o local em até 20% (vinte por cento).","Segurança viária",259565
+,"5550","Art. 181; Inc. XVIII","Estacionar o veculo em locais e horrios proibidos especificamente pela sinalizao (Placa - Proibi","Estacionamento/uso da via",162893
+,"5541","Art. 181; Inc. XVII","Estacionar o veculo em desacordo com as condies regulamentadas - estacionamento rotativo.","Estacionamento/uso da via",142274
+,"7633","Art. 252; nico","Dirigir o veculo segurando o telefone celular.","Segurança viária",122111
+,"5541","Art. 181; Inc. XVII","Estacionar o veículo em desacordo com as condições regulamentadas - estacionamento rotativo.","Estacionamento/uso da via",100279
+,"7587","Art. 184; Inc. III","Transitar na faixa ou via exclusiva regulam. p/ transp. públ. coletivo passag.","Transporte coletivo",94955
+,"5452","Art. 181; Inc. VIII","Estacionar o veculo no passeio.","Pedestres",69744
+,"6050","Art. 208","Avanar o sinal vermelho do semforo.","Segurança viária",68615
+,"7463","Art. 218; Inc. II","Transitar em velocidade superior mxima permitida para o local em mais de 20% (vinte por cento) at","Segurança viária",55634
+,"5550","Art. 181; Inc. XVIII","Estacionar o veículo em locais e horários proibidos especificamente pela sinalização (Placa - Proibi","Estacionamento/uso da via",50638
+,"7633","Art. 252; §único","Dirigir o veículo segurando o telefone celular.","Segurança viária",46322
+,"7633","Art. 252; nico","Dirigir o veculo manuseando o telefone celular.","Segurança viária",42185
+,"5746","Art. 187; Inc. I","Transitar em locais e horários não permitidos pela regulamentação estabelecida pela autoridade.","Fluidez do trânsito",39871
+,"6050","Art. 208","Avançar o sinal vermelho do semáforo - fiscalização eletrônica.","Segurança viária",37609
+,"6050","Art. 208","Avanar o sinal vermelho do semforo - fiscalizao eletrnica.","Segurança viária",37161
+,"7587","Art. 184; Inc. III","Transitar na faixa ou via exclusiva regulam. p/ transp. pbl. coletivo passag.","Transporte coletivo",34860
+,"7340","Art. 252; Inc. IV","Dirigir o veculo usando calado que no se firme nos ps ou que comprometa a utilizao dos pedais.","Segurança viária",30241
+,"7463","Art. 218; Inc. II","Transitar em velocidade superior à máxima permitida para o local em mais de 20% (vinte por cento) at","Segurança viária",29886
+,"5207","Art. 169","Dirigir sem ateno ou sem os cuidados indispensveis Segurana.","Segurança viária",29632
+,"5746","Art. 187; Inc. I","Transitar em locais e horrios no permitidos pela regulamentao estabelecida pela autoridade.","Fluidez do trânsito",29108
+,"6041","Art. 207","Executar operao de converso esquerda em locais proibidos pela sinalizao.","Segurança viária",26050
+,"5452","Art. 181; Inc. VIII","Estacionar o veículo no passeio.","Pedestres",22835
+,"7366","Art. 252; Inc. VI","Dirigir o veculo utilizando-se de telefone celular.","Segurança viária",21401
+,"5568","Art. 181; Inc. XIX","Estacionar o veculo em locais e horrios de estacionamento e parada proibidos pela sinalizao (pla","Estacionamento/uso da via",19093
+,"5541","Art. 181; Inc. XVII","Estacionar o veculo em desacordo com as condies regulamentadas - ponto ou vaga de txi.","Estacionamento/uso da via",16634
+,"6050","Art. 208","Avançar o sinal vermelho do semáforo, exceto onde houver sinalização que permita a livre conversão à","Segurança viária",16042
+,"7340","Art. 252; Inc. IV","Dirigir o veículo usando calçado que não se firme nos pés ou que comprometa a utilização dos pedais.","Segurança viária",15929
+,"6041","Art. 207","Executar operação de conversão à esquerda em locais proibidos pela sinalização.","Segurança viária",10824
+,"5185","Art. 167","Deixar o passageiro de usar o cinto de segurana, conforme o Art. 65, do CTB.","Segurança viária",10442
+,"7633","Art. 252; §único","Dirigir o veículo manuseando o telefone celular.","Segurança viária",10405
+,"5673","Art. 183","Parar o veículo sobre a faixa de pedestre na mudança de sinal luminos (fiscalização eletrônica).","Pedestres",9506
+,"5541","Art. 181; Inc. XVII","Estacionar o veculo em desacordo com as condies regulamentadas - vaga de carga / descarga.","Estacionamento/uso da via",9075
+,"5541","Art. 181; Inc. XVII","Estacionar o veículo em desacordo com as condições regulamentadas - ponto ou vaga de táxi.","Estacionamento/uso da via",8739
+,"5185","Art. 167","Deixar o condutor de usar o cinto de segurana, conforme o Art. 65, do CTB.","Segurança viária",7941
+,"5738","Art. 186; Inc. II","Transitar pela contramo de direo em vias com sinalizao de regulamentao de sentido nico.","Segurança viária",7766
+,"5541","Art. 181; Inc. XVII","Estacionar o veculo em desacordo com as condies regulamentadas especificamente pela sinalizao.","Estacionamento/uso da via",7424
+,"5487","Art. 181; Inc. XI","Estacionar o veculo ao lado de outro veculo em fila dupla.","Fluidez do trânsito",7303
+,"5525","Art. 181; Inc. XV","Estacionar o veculo na contramo de direo.","Estacionamento/uso da via",7116
+,"5843","Art. 196","Deixar de indicar com antecedncia, mediante gesto regulamentar de brao ou luz indicadora de dire","Segurança viária",6816
+,"5630","Art. 182; Inc. VII","Parar o veculo na rea de cruzamento de vias, prejudicando a circulao de veculos e pedestres.","Fluidez do trânsito",6761
+,"5673","Art. 183","Parar o veculo sobre a faixa de pedestre na mudana de sinal luminoso.","Pedestres",6710
+,"5568","Art. 181; Inc. XIX","Estacionar o veículo em locais e horários de estacionamento e parada proibidos pela sinalização (pla","Estacionamento/uso da via",5931
+,"6041","Art. 207","Executar operao de converso direita em locais proibidos pela sinalizao.","Segurança viária",5898
+,"5460","Art. 181; Inc. IX","Estacionar o veculo onde houver guia de calada (meio-fio) rebaixada, destinada entrada ou sada","Estacionamento/uso da via",5539
+,"6599","Art. 230; Inc. V","Conduzir o veculo registrado que no esteja devidamente licenciado.","Administrativas/documentais",5345
+,"5541","Art. 181; Inc. XVII","Estacionar o veículo em desacordo com as condições regulamentadas especificamente pela sinalização.","Estacionamento/uso da via",5257
+,"5851","Art. 197","Deixar de deslocar, com antecedncia, o veculo para a faixa mais direita, quando for manobrar.","Segurança viária",5202
+,"7366","Art. 252; Inc. VI","Dirigir o veículo utilizando-se de telefone celular.","Segurança viária",5176
+,"6050","Art. 208","Avançar o sinal vermelho do semáforo.","Segurança viária",5135
+,"7625","ARt. 181; inc. XX","Estacionar o veculo nas vagas reservadas aos idosos, sem credencial que comprove tal condio.","Pedestres",5059
+,"5851","Art. 197","Deixar de deslocar, com antecedncia, o veculo para a faixa mais esquerda, quando for manobrar.","Segurança viária",5014
+,"6599","Art. 230; Inc. V","Conduzir o veículo registrado que não esteja devidamente licenciado.","Administrativas/documentais",4795
+,"6041","Art. 207","Executar operação de conversão à direita em locais proibidos pela sinalização.","Segurança viária",4757
+,"7234","Art. 250; Inc. I; alnea a","Quando o veculo estiver em movimento deixar de manter acesa a luz baixa durante a noite.","Segurança viária",4552
+,"7358","Art. 252; Inc. V","Dirigir o veculo com apenas uma das mos, exceto quando permitido pelo CTB.","Segurança viária",4400
+,"5380","Art. 181; Inc. I","Estacionar o veculo nas esquinas e a menos de cinco metros do bordo do alinhamento da via transvers","Estacionamento/uso da via",4396
+,"5479","Art. 181; Inc. X","Estacionar o veculo impedindo a movimentao de outro veculo.","Estacionamento/uso da via",4180
+,"5622","Art. 182; Inc. VI","Parar o veculo sobre faixa destinada a pedestres.","Pedestres",3855
+,"7471","Art. 218; Inc. III","Transitar em velocidade superior mxima permitida para o local em mais de 50%.","Segurança viária",3523
+,"5487","Art. 181; Inc. XI","Estacionar o veículo ao lado de outro veículo em fila dupla.","Fluidez do trânsito",3490
+,"5738","Art. 186; Inc. II","Transitar pela contramão de direção em vias com sinalização de regulamentação de sentido único.","Segurança viária",3460
+,"5010","Art. 162; Inc. I","Dirigir veculo sem possuir Carteira Nacional de Habilitao, Permisso para Dirigir ou Autorizao","Administrativas/documentais",3106
+,"5630","Art. 182; Inc. VII","Parar o veículo na área de cruzamento de vias, prejudicando a circulação de veículos e pedestres.","Fluidez do trânsito",3015
+,"5991","Art. 206; Inc. I","Executar operao de retorno em locais proibidos pela sinalizao.","Segurança viária",2913
+,"7625","Art. 181; inc. XX","Estacionar o veculo nas vagas reservadas s pessoas com deficincia, sem credencial que comprove ta","Pedestres",2776
+,"5673","Art. 183","Parar o veculo sobre a faixa de pedestre na mudana de sinal luminos (fiscalizao eletrnica).","Pedestres",2736
+,"5185","Art. 167","Deixar o condutor de usar o cinto de segurança, conforme o Art. 65, do CTB.","Segurança viária",2724
+,"5452","Art. 181; Inc. VIII","Estacionar o veculo sobre ciclovia ou ciclofaixa.","Ciclistas",2658
+,"5720","Art. 186; Inc. I","Transitar pela contramo de direo em vias com duplo sentido de circulao.","Segurança viária",2535
+,"5185","Art. 167","Deixar o passageiro de usar o cinto de segurança, conforme o Art. 65, do CTB.","Segurança viária",2531
+,"5835","Art. 195","Desobedecer s ordens emanadas da autoridade competente de trnsito ou de seus agentes.","Administrativas/documentais",2529
+,"5703","Art. 185; Inc. I","Deixar de conservar o veculo na faixa a ele destinada pela sinalizao de regulamentao, exceto em","Fluidez do trânsito",2493
+,"7030","Art. 244; Inc. I","Conduzir motocicleta, motoneta e ciclomotor sem usar capacete de segurana.","Segurança viária",2488
+,"5452","Art. 181; Inc. VIII","Estacionar o veculo sobre faixa destinada a pedestre.","Pedestres",2438
+,"5622","Art. 182; Inc. VI","Parar o veculo no passeio.","Pedestres",2394
+,"7684","Art. 244; X","Conduzir motocicleta, motoneta ou ciclomotor com viseira ou óculos de proteção em desacordo com a re","Segurança viária",2257
+,"7315","Art. 252; Inc. I","Dirigir o veculo com o brao do lado de fora.","Segurança viária",2252
+,"5673","Art. 183","Parar o veículo sobre a faixa de pedestre na mudança de sinal luminoso.","Pedestres",2158
+,"5851","Art. 197","Deixar de deslocar, com antecedência, o veículo para a faixa mais à esquerda, quando for manobrar.","Segurança viária",2119
+,"5592","Art. 182; Inc. III","Parar o veculo afastado da guia da calada (meio-fio) a mais de um metro.","Estacionamento/uso da via",2080
+,"6602","Art. 230; Inc. VI","Conduzir o veculo com qualquer uma das placas sem condies de legibilidade e visibilidade.","Administrativas/documentais",2070
+,"5452","Art. 181; Inc. VIII","Estacionar o veículo sobre faixa destinada a pedestre.","Pedestres",2050
+,"5509","Art. 181; Inc. XIII","Estacionar veculo onde houver sinalizao horizontal delimitadora de ponto de embarque e desembarqu","Transporte coletivo",2032
+,"5410","Art. 181; Inc. IV","Estacionar o veculo em desacordo com as posies estabelecidas no Cdigo de Trnsito Brasileiro.","Estacionamento/uso da via",2001
+,"5207","Art. 169","Dirigir sem atenção ou sem os cuidados indispensáveis à Segurança.","Segurança viária",1949
+,"5010","Art. 162; Inc. I","Dirigir veículo sem possuir Carteira Nacional de Habilitação, Permissão para Dirigir ou Autorização","Administrativas/documentais",1871
+,"5665","Art. 182; Inc. X","Parar o veculo em local e horrio proibidos especificamente pela sinalizao (placa - Proibido Para","Estacionamento/uso da via",1863
+,"7048","Art. 244; Inc. II","Conduzir motocicleta, motoneta e ciclomotor transportando passageiro sem o capacete de segurana.","Segurança viária",1847
+,"6050","Art. 208","Avanar o sinal de parada obrigatria.","Segurança viária",1834
+,"5525","Art. 181; Inc. XV","Estacionar o veículo na contramão de direção.","Estacionamento/uso da via",1781
+,"7471","Art. 218; Inc. III","Transitar em velocidade superior à máxima permitida para o local em mais de 50%.","Segurança viária",1774
+,"7625","ARt. 181; inc. XX","Estacionar o veículo nas vagas reservadas aos idosos, sem credencial que comprove tal condição.","Pedestres",1747
+,"5479","Art. 181; Inc. X","Estacionar o veículo impedindo a movimentação de outro veículo.","Estacionamento/uso da via",1734
+,"5460","Art. 181; Inc. IX","Estacionar o veículo onde houver guia de calçada (meio-fio) rebaixada, destinada à entrada ou saída","Estacionamento/uso da via",1728
+,"5452","Art. 181; Inc. VIII","Estacionar o veculo nas ilhas ou refgios.","Estacionamento/uso da via",1676
+,"5843","Art. 196","Deixar de indicar com antecedência, mediante gesto regulamentar de braço ou luz indicadora de direçã","Segurança viária",1589
+,"6602","Art. 230; Inc. VI","Conduzir o veículo com qualquer uma das placas sem condições de legibilidade e visibilidade.","Administrativas/documentais",1564
+,"5541","Art. 181; Inc. XVII","Estacionar o veículo em desacordo com as condições regulamentadas - vaga de carga / descarga.","Estacionamento/uso da via",1555
+,"6491","Art. 227; Inc. II","Usar buzina prolongada e sucessivamente a qualquer pretexto.","Outras/não classificadas",1495
+,"5380","Art. 181; Inc. I","Estacionar o veículo nas esquinas e a menos de cinco metros do bordo do alinhamento da via transvers","Estacionamento/uso da via",1478
+,"5452","Art. 181; Inc. VIII","Estacionar o veículo sobre ciclovia ou ciclofaixa.","Ciclistas",1430
+,"6050","Art. 208","Avançar o sinal de parada obrigatória.","Segurança viária",1423
+,"5819","Art. 193","Transitar com veculo em caladas, passeios.","Pedestres",1355
+,"5622","Art. 182; Inc. VI","Parar o veículo no passeio.","Pedestres",1290
+,"5452","Art. 181; Inc. VIII","Estacionar o veculo ao lado ou sobre marcas de canalizao.","Pedestres",1252
+,"5819","Art. 193","Transitar com veculo em canteiros centrais divisores de pista de rolamento.","Pedestres",1251
+,"7285","Art. 250; Inc. III","Quando o veculo estiver em movimento deixar de manter a placa traseira iluminada, noite.","Administrativas/documentais",1203
+,"5452","Art. 181; Inc. VIII","Estacionar o veculo ao lado ou sobre gramados ou jardim pblico.","Estacionamento/uso da via",1156
+,"6726","Art. 230; Inc. XVIII","Conduzir o veículo em mau estado de conservação, comprometendo a segurança.","Segurança viária",1119
+,"6017","Art. 206; Inc. III","Executar operao de retorno passando por cima de canteiros de divises de pista de rolamento.","Ciclistas",1088
+,"6408","Art. 221","Portar no veculo placas de identificao em desacordo com as especificaes e modelos estabelecidos","Administrativas/documentais",1017
+,"7030","Art. 244; Inc. I","Conduzir motocicleta, motoneta e ciclomotor sem usar capacete de segurança.","Segurança viária",1015
+,"5819","Art. 193","Transitar com veículo em ciclovias, ciclofaixas.","Ciclistas",1007
+,"5720","Art. 186; Inc. I","Transitar pela contramão de direção em vias com duplo sentido de circulação.","Segurança viária",994
+,"5452","Art. 181; Inc. VIII","Estacionar o veculo ao lado ou sobre canteiros centrais divisores de pista de rolamento.","Estacionamento/uso da via",886
+,"7234","Art. 250; Inc. I; alínea a","Quando o veículo estiver em movimento deixar de manter acesa a luz baixa durante a noite.","Segurança viária",849
+,"7625","Art. 181; inc. XX","Estacionar o veículo nas vagas reservadas às pessoas com deficiência, sem credencial que comprove ta","Pedestres",849
+,"5835","Art. 195","Desobedecer às ordens emanadas da autoridade competente de trânsito ou de seus agentes.","Administrativas/documentais",848
+,"5509","Art. 181; Inc. XIII","Estacionar veículo onde houver sinalização horizontal delimitadora de ponto de embarque e desembarqu","Transporte coletivo",845
+,"5045","Art. 162; Inc. V","Dirigir veculo com validade da CNH/PPD vencida h mais de trinta dias.","Administrativas/documentais",833
+,"5193","Art.168","Transportar crianas sem observncia das normas de segurana especiais estabelecidas no CTB.","Segurança viária",814
+,"5991","Art. 206; Inc. I","Executar operação de retorno em locais proibidos pela sinalização.","Segurança viária",812
+,"5851","Art. 197","Deixar de deslocar, com antecedência, o veículo para a faixa mais à direita, quando for manobrar.","Segurança viária",806
+,"6769","Art. 230; Inc. XXII","Conduzir o veculo com defeito no sistema de iluminao, de sinalizao ou com lmpadas queimadas.","Segurança viária",800
+,"6033","Art. 206; Inc. V","Executar operao de retorno com prejuzo da livre circulao ou da segurana, ainda que em locais p","Segurança viária",793
+,"6122","Art. 214; Inc. I","Deixar de dar preferncia de passagem a pedestre e a veculo no motorizado na faixa a ele destinada","Pedestres",792
+,"7366","Art. 252; Inc. VI","Dirigir o veculo utilizando-se de fones nos ouvidos conectados aparelhagem sonora.","Segurança viária",790
+,"5703","Art. 185; Inc. I","Deixar de conservar o veículo na faixa a ele destinada pela sinalização de regulamentação, exceto em","Fluidez do trânsito",785
+,"7358","Art. 252; Inc. V","Dirigir o veículo com apenas uma das mãos, exceto quando permitido pelo CTB.","Segurança viária",780
+,"6483","Art. 227; Inc. I","Usar buzina em situao que no a de simples toque breve como advertncia ao pedestre ou a condutore","Outras/não classificadas",771
+,"5045","Art. 162; Inc. V","Dirigir veículo com validade da CNH/PPD vencida há mais de trinta dias.","Administrativas/documentais",771
+,"5622","Art. 182; Inc. VI","Parar o veículo sobre faixa destinada a pedestres.","Pedestres",766
+,"5819","Art. 193","Transitar com veículo em calçadas, passeios.","Pedestres",757
+,"5819","Art. 193","Transitar com veculo em marcas de canalizao.","Pedestres",748
+,"7048","Art. 244; Inc. II","Conduzir motocicleta, motoneta e ciclomotor transportando passageiro sem o capacete de segurança.","Segurança viária",746
+,"6769","Art. 230; Inc. XXII","Conduzir o veículo com defeito no sistema de iluminação, de sinalização ou com lâmpadas queimadas.","Segurança viária",702
+,"6033","Art. 206; Inc. V","Executar operação de retorno com prejuízo da livre circulação ou da segurança, ainda que em locais p","Segurança viária",696
+,"5452","Art. 181; Inc. VIII","Estacionar o veículo ao lado ou sobre gramados ou jardim público.","Estacionamento/uso da via",657
+,"6556","Art. 230; Inc. I","Conduzir o veculo com o lacre de identificao violado ou falsificado.","Administrativas/documentais",653
+,"6645","Art. 230; Inc. X","Conduzir o veículo com equipamento obrigatório em desacordo com o estabelecido pelo CONTRAN.","Segurança viária",651
+,"5410","Art. 181; Inc. IV","Estacionar o veículo em desacordo com as posições estabelecidas no Código de Trânsito Brasileiro.","Estacionamento/uso da via",595
+,"6017","Art. 206; Inc. III","Executar operao de retorno passando por cima de faixas de pedestres.","Pedestres",585
+,"7064","Art. 244; Inc. IV","Conduzir motocicleta, motoneta e ciclomotor com faris apagados.","Segurança viária",573
+,"7315","Art. 252; Inc. I","Dirigir o veículo com o braço do lado de fora.","Segurança viária",568
+,"5819","Art. 193","Transitar com veculo em ciclovias, ciclofaixas.","Ciclistas",560
+,"5665","Art. 182; Inc. X","Parar o veículo em local e horário proibidos especificamente pela sinalização (placa - Proibido Para","Estacionamento/uso da via",544
+,"5681","Art. 184; Inc. I","Transitar com o veculo na faixa ou pista da direita, regulamentada como de circulao exclusiva par","Fluidez do trânsito",511
+,"7323","Art. 252; Inc. II","Dirigir o veculo transportando animais sua esquerda ou entre os braos e pernas.","Segurança viária",510
+,"6017","Art. 206; Inc. III","Executar operação de retorno passando por cima de canteiros de divisões de pista de rolamento.","Ciclistas",488
+,"5819","Art. 193","Transitar com veículo em canteiros centrais divisores de pista de rolamento.","Pedestres",476
+,"5231","Art. 172","Atirar do veculo objetos ou substncias.","Segurança viária",444
+,"6190","Art. 216","Entrar ou sair de áreas lindeiras sem estar adequadamente posicionado para ingresso na via e sem as","Pedestres",440
+,"5819","Art. 193","Transitar com veículo em marcas de canalização.","Pedestres",429
+,"6408","Art. 221","Portar no veículo placas de identificação em desacordo com as especificações e modelos estabelecidos","Administrativas/documentais",429
+,"5690","Art. 184; Inc. II","Transitar com o veculo na faixa ou pista da esquerda regulamentada como de circulao exclusiva par","Fluidez do trânsito",421
+,"6599","Art. 230; Inc. V","Conduzir o veculo que no esteja registrado.","Administrativas/documentais",403
+,"5690","Art. 184; Inc. II","Transitar com o veículo na faixa ou pista da esquerda regulamentada como de circulação exclusiva par","Fluidez do trânsito",402
+,"6912","Art. 232","Conduzir veculo sem os documentos de porte obrigatrio referidos no CTB.","Administrativas/documentais",358
+,"6726","Art. 230; Inc. XVIII","Conduzir o veculo em mau estado de conservao, comprometendo a segurana.","Segurança viária",357
+,"5118","Art. 164; c/c Art. 162; Inc. I","Permitir posse/condução do veículo a pessoa sem Carteira Nacional de Habilitação, Permissão para Dir","Administrativas/documentais",341
+,"5452","Art. 181; Inc. VIII","Estacionar o veículo ao lado ou sobre marcas de canalização.","Estacionamento/uso da via",328
+,"5622","Art. 182; Inc. VI","Parar o veculo nas marcas de canalizao.","Pedestres",324
+,"7670","Art. 182; XI","Parar o veículo sobre ciclovia ou ciclofaixa.","Ciclistas",320
+,"6017","Art. 206; Inc. III","Executar operação de retorno passando por cima de faixas de pedestres.","Pedestres",313
+,"6068","Art. 209","Transpor, sem autorizao, bloqueio virio com ou sem sinalizao ou dispositivos auxiliares.","Administrativas/documentais",312
+,"5827","Art. 194","Transitar em marcha r, salvo na distncia necessria a pequenas manobras e de forma a no causar","Segurança viária",310
+,"5894","Art. 201","Deixar de guardar a distância lateral de um metro e cinqüenta centímetros ao passar ou ultrapassar b","Ciclistas",293
+,"5770","Art. 189","Deixar de dar passagem as ambulncias, em servio de urgncia e devidamente identificados.","Segurança viária",289
+,"6130","Art. 214; Inc. II","Deixar de dar preferncia de passagem a pedestre e a veculo no motorizado que no haja concludo a","Pedestres",281
+,"6637","Art. 230; Inc. IX","Conduzir o veculo com equipamento obrigatrio ineficiente ou inoperante.","Segurança viária",277
+,"5967","Art. 203; Inc. V","Ultrapassar pela contramo outro veculo onde houver marcao viria longitudinal de diviso de flux","Segurança viária",276
+,"5592","Art. 182; Inc. III","Parar o veículo afastado da guia da calçada (meio-fio) a mais de um metro.","Estacionamento/uso da via",273
+,"6017","Art. 206; Inc. III","Executar operao de retorno passando por cima de calada, passeio.","Pedestres",270
+,"5274","Art. 175","Utilizar veculo para demonstrar/exibir manobra perigosa mediante arrancada brusca","Segurança viária",266
+,"6068","Art. 209","Transpor, sem autorização, bloqueio viário com ou sem sinalização ou dispositivos auxiliares.","Administrativas/documentais",263
+,"6076","Art. 210","Transpor, sem autorização, bloqueio viário policial.","Segurança viária",260
+,"5118","Art. 164; c/c Art. 162; Inc. I","Permitir posse/conduo do veculo a pessoa sem Carteira Nacional de Habilitao, Permisso para Dir","Administrativas/documentais",253
+,"7684","Art. 244; X","Conduzir motocicleta, motoneta ou ciclomotor com a utilização de capacete de segurança sem viseira o","Segurança viária",240
+,"6637","Art. 230; Inc. IX","Conduzir o veículo com equipamento obrigatório ineficiente ou inoperante.","Segurança viária",237
+,"5622","Art. 182; Inc. VI","Parar o veculo nos canteiros centrais e divisores de pista de rolamento.","Pedestres",233
+,"7323","Art. 252; Inc. II","Dirigir o veículo transportando animais à sua esquerda ou entre os braços e pernas.","Segurança viária",216
+,"5681","Art. 184; Inc. I","Transitar com o veículo na faixa ou pista da direita, regulamentada como de circulação exclusiva par","Fluidez do trânsito",214
+,"6858","Art. 231; Inc. VII","Transitar com o veculo com lotao excedente.","Segurança viária",213
+,"5274","Art. 175","Utilizar veículo para demonstrar/exibir manobra perigosa mediante arrancada brusca","Segurança viária",201
+,"6025","Art. 206; Inc. IV","Executar operao de retorno nas intersees, entrando na contramo de direo da via transversal.","Segurança viária",197
+,"6122","Art. 214; Inc. I","Deixar de dar preferência de passagem a pedestre e a veículo não motorizado na faixa a ele destinada","Ciclistas",186
+,"5193","Art.168","Transportar crianças sem observância das normas de segurança especiais estabelecidas no CTB.","Segurança viária",179
+,"6599","Art. 230; Inc. V","Conduzir o veículo que não esteja registrado.","Administrativas/documentais",175
+,"5215","Art. 170","Dirigir ameaando os pedestres que estejam atravessando a via pblica.","Pedestres",173
+,"5452","Art. 181; Inc. VIII","Estacionar o veículo ao lado ou sobre canteiros centrais divisores de pista de rolamento.","Estacionamento/uso da via",171
+,"7285","Art. 250; Inc. III","Quando o veículo estiver em movimento deixar de manter a placa traseira iluminada, à noite.","Administrativas/documentais",170
+,"5231","Art. 172","Atirar do veículo objetos ou substâncias.","Segurança viária",166
+,"5452","Art. 181; Inc. VIII","Estacionar o veículo nas ilhas ou refúgios.","Estacionamento/uso da via",161
+,"5037","Art. 162; Inc. III","Dirigir veculo com Carteira Nacional de Habilitao de categoria diferente da do veculo.","Administrativas/documentais",154
+,"6483","Art. 227; Inc. I","Usar buzina em situação que não a de simples toque breve como advertência ao pedestre ou a condutore","Outras/não classificadas",151
+,"5495","Art. 181; Inc. XII","Estacionar o veculo na rea de cruzamento de vias, prejudicando a circulao de veculos e pedestre","Fluidez do trânsito",147
+,"5959","Art. 203; Inc. IV","Ultrapassar pela contramo outro veculo parado em fila junto a sinais luminosos.","Segurança viária",146
+,"5037","Art. 162; Inc. III","Dirigir veículo com Carteira Nacional de Habilitação de categoria diferente da do veículo.","Administrativas/documentais",136
+,"6610","Art. 230; Inc. VII","Conduzir o veículo com a característica alterada.","Administrativas/documentais",133
+,"6556","Art. 230; Inc. I","Conduzir o veículo com o lacre de identificação violado ou falsificado.","Administrativas/documentais",129
+,"6564","Art. 230; Inc. II","Conduzir o veculo transportando passageiros em compartimento de carga.","Segurança viária",128
+,"5401","Art. 181; Inc. III","Estacionar o veculo afastado da guia da calada (meio-fio) a mais de um metro.","Estacionamento/uso da via",128
+,"5770","Art. 189","Deixar de dar passagem as ambulâncias, em serviço de urgência e devidamente identificados.","Segurança viária",128
+,"5029","Art. 162; Inc. II","Dirigir veículo com Carteira Nacional de Habilitação, Permissão para Dirigir ou Autorização para Con","Administrativas/documentais",126
+,"7099","Art. 244; Inc. VII","Conduzir motocicleta, motoneta, ciclomotor sem segurar o guidom com ambas as mos.","Segurança viária",121
+,"5606","Art. 182; Inc. IV","Parar o veculo em desacordo com as posies estabelecidas no Cdigo de Trnsito Brasileiro.","Estacionamento/uso da via",119
+,"7579","Art. 165-A","Recusar-se a ser submetido a teste, exame clnico, percia ou outro procedimento que permita certifi","Segurança viária",117
+,"7366","Art. 252; Inc. VI","Dirigir o veículo utilizando-se de fones nos ouvidos conectados à aparelhagem sonora.","Segurança viária",116
+,"5827","Art. 194","Transitar em marcha à ré, salvo na distância necessária a pequenas manobras e de forma a não causar","Segurança viária",114
+,"6580","Art. 230; Inc. IV","Conduzir o veculo sem qualquer uma das placas de identificao.","Administrativas/documentais",113
+,"5401","Art. 181; Inc. III","Estacionar o veículo afastado da guia da calçada (meio-fio) a mais de um metro.","Estacionamento/uso da via",112
+,"5576","Art. 182; Inc. I","Parar o veculo nas esquinas e a menos de cinco metros do bordo do alinhamento da via transversal.","Estacionamento/uso da via",107
+,"5215","Art. 170","Dirigir ameaando os demais veculos.","Pedestres",107
+,"5215","Art. 170","Dirigir ameaçando os pedestres que estejam atravessando a via pública.","Pedestres",106
+,"6025","Art. 206; Inc. IV","Executar operação de retorno nas interseções, entrando na contramão de direção da via transversal.","Segurança viária",106
+,"6670","Art. 230; Inc. XIII","Conduzir o veículo com o equipamento do sistema de iluminação e de sinalização alterados.","Segurança viária",105
+,"7056","Art. 244; Inc. III","Conduzir motocicleta, motoneta, ciclomotor fazendo malabarismo ou equilibrando-se em uma roda.","Segurança viária",102
+,"5967","Art. 203; Inc. V","Ultrapassar pela contramão outro veículo onde houver marcação viária longitudinal de divisão de flux","Segurança viária",101
+,"5169","Art. 165","Dirigir sob a influncia de lcool.","Segurança viária",101
+,"6912","Art. 232","Conduzir veículo sem os documentos de porte obrigatório referidos no CTB.","Administrativas/documentais",99
+,"6017","Art. 206; Inc. III","Executar operação de retorno passando por cima de calçada, passeio.","Pedestres",98
+,"6637","Art. 230; Inc. IX","Conduzir o veculo sem equipamento obrigatrio.","Segurança viária",97
+,"6530","Art. 228","Usar no veículo equipamento com som em volume ou freqüência que não sejam autorizados pelo CONTRAN.","Outras/não classificadas",97
+,"6637","Art. 230; Inc. IX","Conduzir o veículo sem equipamento obrigatório.","Segurança viária",95
+,"5274","Art. 175","Utilizar veculo para demonstrar/exibir manobra perigosa mediante derrapagem/frenagem com deslizamen","Segurança viária",94
+,"6530","Art. 228","Usar no veculo equipamento com som em volume ou freqncia que no sejam autorizados pelo CONTRAN.","Outras/não classificadas",94
+,"6440","Art. 224","Fazer uso do facho de luz alta dos faris em vias providas de iluminao pblica.","Segurança viária",94
+,"7269","Art. 250; I; d","Quando o veículo estiver em movimento deixar de manter acesa a luz baixa, de dia, no caso de motocic","Segurança viária",93
+,"5622","Art. 182; Inc. VI","Parar o veculo nas ilhas ou refgios.","Pedestres",90
+,"7323","Art. 252; Inc. II","Dirigir o veculo transportando volume sua esquerda ou entre os braos e pernas.","Segurança viária",86
+,"6190","Art. 216","Entrar ou sair de reas lindeiras sem estar adequadamente posicionado para ingresso na via e sem as","Pedestres",86
+,"6858","Art. 231; Inc. VII","Transitar com o veículo com lotação excedente.","Segurança viária",85
+,"6580","Art. 230; Inc. IV","Conduzir o veículo sem qualquer uma das placas de identificação.","Administrativas/documentais",84
+,"7714","Art. 244; XI","Conduzir motocicleta, motoneta ou ciclomotor transportando passageiro com o capacete de segurança co","Segurança viária",77
+,"5959","Art. 203; Inc. IV","Ultrapassar pela contramão outro veículo parado em fila junto a sinais luminosos.","Segurança viária",76
+,"5215","Art. 170","Dirigir ameaçando os demais veículos.","Pedestres",75
+,"6670","Art. 230; Inc. XIII","Conduzir o veculo com o equipamento do sistema de iluminao e de sinalizao alterados.","Segurança viária",69
+,"6610","Art. 230; Inc. VII","Conduzir o veculo com a caracterstica alterada.","Administrativas/documentais",64
+,"6076","Art. 210","Transpor, sem autorizao, bloqueio virio policial.","Segurança viária",64
+,"5657","Art. 182; Inc. IX","Parar o veculo na contramo de direo.","Estacionamento/uso da via",64
+,"5061","Art. 163; c/c Art. 162; Inc. I","Entregar veículo a pessoa sem possuir Carteira Nacional de Habilitação, Permissão para Dirigir ou Au","Administrativas/documentais",64
+,"6130","Art. 214; Inc. II","Deixar de dar preferência de passagem a pedestre e a veículo não motorizado que não haja concluído a","Pedestres",59
+,"6564","Art. 230; Inc. II","Conduzir o veículo transportando passageiros em compartimento de carga.","Segurança viária",59
+,"5584","Art. 182; Inc. II","Parar o veículo afastado da guia da calçada (meio-fio) de cinqüenta centímetros a um metro.","Estacionamento/uso da via",59
+,"5029","Art. 162; Inc. II","Dirigir veculo com Carteira Nacional de Habilitao, Permisso para Dirigir ou Autorizao para Con","Administrativas/documentais",58
+,"6653","Art. 230; Inc. XI","Conduzir o veículo com descarga livre.","Outras/não classificadas",58
+,"6971","Art. 238","Recusar-se a entregar autoridade de trnsito ou a seus agentes, mediante recibo, os documentos de","Administrativas/documentais",54
+,"5819","Art. 193","Transitar com veculo em passarelas.","Pedestres",53
+,"5614","Art. 182; Inc. V","Parar o veculo na pista de rolamento das vias de trnsito rpido.","Segurança viária",52
+,"5169","Art. 165","Dirigir sob a influência de álcool.","Segurança viária",52
+,"5770","Art. 189","Deixar de dar passagem aos veculos de socorro de incndio e salvamento em servio de urgncia e dev","Segurança viária",51
+,"5142","Art. 164; c/c Art. 162; Inc. V","Permitir posse/conduo do veculo a pessoa com CNH/PPD vencida h mais de 30 dias.","Administrativas/documentais",50
+,"5878","Art. 199","Ultrapassar pela direita, salvo quando o veculo da frente estiver colocado na faixa apropriada e de","Segurança viária",49
+,"7099","Art. 244; Inc. VII","Conduzir motocicleta, motoneta, ciclomotor sem segurar o guidom com ambas as mãos.","Segurança viária",47
+,"5061","Art. 163; c/c Art. 162; Inc. I","Entregar veculo a pessoa sem possuir Carteira Nacional de Habilitao, Permisso para Dirigir ou Au","Administrativas/documentais",47
+,"5223","Art. 171","Usar o veculo para arremessar sobre os pedestres, gua ou detritos.","Pedestres",47
+,"5819","Art. 193","Transitar com veculo em ilhas, refgios.","Pedestres",45
+,"7579","Art. 165-A","Recusar-se a ser submetido a teste, exame clínico, perícia ou outro procedimento que permita certifi","Segurança viária",44
+,"5819","Art. 193","Transitar com veículo em passarelas.","Pedestres",44
+,"5398","Art. 181; Inc. II","Estacionar o veículo afastado da guia da calçada (meio-fio) de cinqüenta centímetros a um metro.","Estacionamento/uso da via",42
+,"5495","Art. 181; Inc. XII","Estacionar o veículo na área de cruzamento de vias, prejudicando a circulação de veículos e pedestre","Fluidez do trânsito",41
+,"5800","Art. 192","Deixar de guardar distância de segurança lateral e frontal entre o seu veículo e os demais, bem como","Segurança viária",41
+,"7293","Art. 251; Inc. I","Utilizar as luzes do veculo, o pisca-alerta, exceto em imobilizaes ou situaes de emergncia.","Segurança viária",41
+,"5371","Art. 180","Ter seu veculo imobilizado na via por falta de combustvel.","Fluidez do trânsito",40
+,"5053","Art. 162; Inc. VI","Dirigir veículo sem usar lentes corretoras de visão.","Segurança viária",40
+,"6700","Art. 230; Inc. XVI","Conduzir o veículo com vidros total ou parcialmente cobertos por películas, painéis/ pintura.","Segurança viária",40
+,"5371","Art. 180","Ter seu veículo imobilizado na via por falta de combustível.","Fluidez do trânsito",39
+,"5096","Art. 163; c/c Art. 162; Inc. V","Entregar veículo a pessoa com CNH/PPD vencida há mais de trinta dias.","Administrativas/documentais",39
+,"5517","Art. 181; Inc. XIV","Estacionar o veculo nas pontes.","Segurança viária",39
+,"6084","Art. 211","Ultrapassar veculos motorizados em fila, parados em razo de sinal luminoso.","Fluidez do trânsito",39
+,"7714","Art. 244; XI","Conduzir motocicleta, motoneta ou ciclomotor transportando passageiro com o capacete de segurança se","Segurança viária",38
+,"6947","Art. 235","Conduzir animais nas partes externas do veculo.","Segurança viária",37
+,"5800","Art. 192","Deixar de guardar distncia de segurana lateral e frontal entre o seu veculo e os demais, bem como","Segurança viária",37
+,"5819","Art. 193","Transitar com veículo em ilhas, refúgios.","Pedestres",36
+,"5347","Art. 178","Deixar o condutor, envolvido em acidente sem vtima, de adotar providncias para remover o veculo d","Fluidez do trânsito",35
+,"6009","Art. 206; Inc. II","Executar operao de retorno nas pontes.","Segurança viária",35
+,"7374","Art. 253","Bloquear a via com veículo.","Fluidez do trânsito",34
+,"5274","Art. 175","Utilizar veículo para demonstrar/exibir manobra perigosa mediante derrapagem/frenagem com deslizamen","Segurança viária",34
+,"7374","Art. 253","Bloquear a via com veculo.","Fluidez do trânsito",33
+,"5142","Art. 164; c/c Art. 162; Inc. V","Permitir posse/condução do veículo a pessoa com CNH/PPD vencida há mais de 30 dias.","Administrativas/documentais",33
+,"6556","Art. 230; Inc. I","Conduzir o veículo com a placa violada ou falsificada.","Administrativas/documentais",32
+,"5398","Art. 181; Inc. II","Estacionar o veculo afastado da guia da calada (meio-fio) de cinqenta centmetros a um metro.","Estacionamento/uso da via",32
+,"6017","Art. 206; Inc. III","Executar operao de retorno passando por cima de ilhas, refgio.","Ciclistas",32
+,"5878","Art. 199","Ultrapassar pela direita, salvo quando o veículo da frente estiver colocado na faixa apropriada e de","Segurança viária",30
+,"7293","Art. 251; Inc. I","Utilizar as luzes do veículo, o pisca-alerta, exceto em imobilizações ou situações de emergência.","Segurança viária",30
+,"5584","Art. 182; Inc. II","Parar o veculo afastado da guia da calada (meio-fio) de cinqenta centmetros a um metro.","Estacionamento/uso da via",30
+,"6548","Art. 229","Usar no veículo aparelho de alarme ou que produza sons e ruído que perturbem o sossego público, em d","Outras/não classificadas",28
+,"6009","Art. 206; Inc. II","Executar operação de retorno nas pontes.","Segurança viária",28
+,"7072","Art. 244; Inc. V","Conduzir motocicleta, motoneta e ciclomotor transportando criana menor de sete anos.","Segurança viária",28
+,"5053","Art. 162; Inc. VI","Dirigir veculo sem usar lentes corretoras de viso.","Segurança viária",28
+,"6084","Art. 211","Ultrapassar veículos motorizados em fila, parados em razão de sinal luminoso.","Fluidez do trânsito",28
+,"5770","Art. 189","Deixar de dar passagem aos veculos de polcia em servio de urgncia e devidamente identificados.","Segurança viária",27
+,"6165","Art. 214; Inc. V","Deixar de dar preferncia de passagem a pedestre e a veiculo no motorizado que esteja atravessando","Pedestres",27
+,"5789","Art. 190","Seguir o veiculo em servico de urgncia, estando este com prioridade de passagem devidamente identif","Segurança viária",26
+,"6971","Art. 238","Recusar-se a entregar à autoridade de trânsito ou a seus agentes, mediante recibo, os documentos de","Administrativas/documentais",26
+,"5797","Art. 191","Forçar passagem entre veículos que, transitando em sentidos opostos, estejam na iminência de passar","Segurança viária",25
+,"7064","Art. 244; Inc. IV","Conduzir motocicleta, motoneta e ciclomotor com faróis apagados.","Segurança viária",25
+,"5223","Art. 171","Usar o veículo para arremessar sobre os pedestres, água ou detritos.","Pedestres",25
+,"5622","Art. 182; Inc. VI","Parar o veículo nas marcas de canalização.","Pedestres",24
+,"5231","Art. 172","Abandonar na via objetos ou substncias.","Segurança viária",24
+,"5576","Art. 182; Inc. I","Parar o veículo nas esquinas e a menos de cinco metros do bordo do alinhamento da via transversal.","Estacionamento/uso da via",24
+,"6270","Art. 220; Inc. II","Deixar de reduzir a velocidade de forma compatvel com a segurana do trnsito nos locais onde o tr","Segurança viária",24
+,"6394","Art. 220; Inc. XIV","Deixar de reduzir a velocidade do veculo de forma compatvel com a segurana do trnsito onde haja","Pedestres",21
+,"6645","Art. 230; Inc. X","Conduzir o veculo com equipamento obrigatrio em desacordo com o estabelecido pelo CONTRAN.","Segurança viária",21
+,"7030","Art. 244; Inc. I","Conduzir motocicleta, motoneta e ciclomotor sem vesturio aprovado pelo CONTRAN.","Segurança viária",21
+,"6653","Art. 230; Inc. XI","Conduzir o veculo com descarga livre.","Outras/não classificadas",19
+,"6955","Art. 236","Rebocar outro veculo com cabo flexvel ou corda.","Segurança viária",19
+,"6432","Art. 223","Transitar com o farol desregulado de forma a perturbar a viso de outro condutor.","Segurança viária",19
+,"5657","Art. 182; Inc. IX","Parar o veículo na contramão de direção.","Estacionamento/uso da via",19
+,"6157","Art. 214; Inc. IV","Deixar de dar preferncia de passagem a pedestre e a veculo no motorizado quando iniciado a traves","Pedestres",19
+,"5770","Art. 189","Deixar de dar passagem aos veículos de socorro de incêndio e salvamento em serviço de urgência e dev","Segurança viária",18
+,"5517","Art. 181; Inc. XIV","Estacionar o veculo nos viadutos.","Segurança viária",17
+,"6980","Art. 239","Retirar do local veculo legalmente retido para regularizao, sem permisso da autoridade competent","Administrativas/documentais",17
+,"5134","Art. 164; c/c Art. 162; Inc. III","Permitir posse/condução do veículo a pessoa com CNH de categoria diferente da do veículo.","Administrativas/documentais",17
+,"5347","Art. 178","Deixar o condutor, envolvido em acidente sem vítima, de adotar providências para remover o veículo d","Fluidez do trânsito",16
+,"5797","Art. 191","Forar passagem entre veculos que, transitando em sentidos opostos, estejam na iminncia de passar","Segurança viária",16
+,"6700","Art. 230; Inc. XVI","Conduzir o veculo com vidros total ou parcialmente cobertos por pelculas, painis/ pintura.","Segurança viária",16
+,"6149","Art. 214; Inc. III","Deixar de dar preferncia de passagem a pedestre portadores de deficincia fsica, crianas, idosos","Pedestres",16
+,"6629","Art. 230; Inc. VIII","Conduzir o veculo sem ter sido submetido inspeo de segurana veicular, quando obrigatria.","Segurança viária",16
+,"5649","Art. 182; Inc. VIII","Parar o veculo nas pontes.","Segurança viária",16
+,"5282","Art. 176; Inc. I","Deixar o condutor envolvido em acidente com vtima de prestar ou providenciar socorro vtima, pode","Segurança viária",15
+,"6629","Art. 230; Inc. VIII","Conduzir o veículo sem ter sido submetido à inspeção de segurança veicular, quando obrigatória.","Segurança viária",15
+,"7072","Art. 244; Inc. V","Conduzir motocicleta, motoneta e ciclomotor transportando criança menor de 10 (dez) anos.","Segurança viária",15
+,"7048","Art. 244; Inc. II","Conduzir motocicleta, motoneta e ciclomotor transportando passageiro fora do assento suplementar col","Segurança viária",14
+,"6084","Art. 211","Ultrapassar veculos motorizados em fila, parados em razo de qualquer outro obstculo.","Fluidez do trânsito",14
+,"6521","Art. 227; Inc. V","Usar buzina em desacordo com os padres e freqncias estabelecidas pelo CONTRAN.","Outras/não classificadas",14
+,"6556","Art. 230; Inc. I","Conduzir o veculo com a placa violada ou falsificada.","Administrativas/documentais",14
+,"5258","Art. 174","Promover, na via, exibio e demonstrao de percia em manobra de veculo sem permisso da autorida","Segurança viária",14
+,"5223","Art. 171","Usar o veículo para arremessar sobre os veículos, água ou detritos.","Pedestres",14
+,"5231","Art. 172","Abandonar na via objetos ou substâncias.","Segurança viária",13
+,"5258","Art. 174","Promover, na via, exibição e demonstração de perícia em manobra de veículo sem permissão da autorida","Segurança viária",13
+,"5126","Art. 164; c/c Art. 162; Inc. II","Permitir posse/condução do veículo a pessoa com Carteira Nacional de Habilitação, Permissão para Dir","Administrativas/documentais",13
+,"5290","Art. 176; Inc. II","Deixar o condutor envolvido em acidente com vtima de adotar providncias, podendo faz-lo, no senti","Segurança viária",13
+,"5819","Art. 193","Transitar com veculo em ajardinamentos, gramados e jardins pblicos.","Pedestres",13
+,"5622","Art. 182; Inc. VI","Parar o veículo nos canteiros centrais e divisores de pista de rolamento.","Pedestres",13
+,"6785","Art. 231; Inc. II; alnea a","Transitar com veculo derramando a carga que esteja transportando.","Segurança viária",12
+,"6980","Art. 239","Retirar do local veículo legalmente retido para regularização, sem permissão da autoridade competent","Administrativas/documentais",12
+,"5134","Art. 164; c/c Art. 162; Inc. III","Permitir posse/conduo do veculo a pessoa com CNH de categoria diferente da do veculo.","Administrativas/documentais",12
+,"5711","Art. 185; Inc. II","Deixar de conservar nas faixas da direita, o veculo lento e de maior porte.","Fluidez do trânsito",12
+,"6955","Art. 236","Rebocar outro veículo com cabo flexível ou corda.","Segurança viária",12
+,"5983","Art. 205","Ultrapassar veículo em movimento que integre cortejo, préstito, desfile e formações militares.","Fluidez do trânsito",12
+,"5916","Art. 202; Inc. II","Ultrapassar outro veculo em intersees.","Segurança viária",11
+,"5746","Art. 187; Inc. I","Transitar em locais e horrios no permitidos pela regulamentao - rodzio.","Fluidez do trânsito",11
+,"6785","Art. 231; Inc. II; alínea a","Transitar com veículo derramando a carga que esteja transportando.","Segurança viária",11
+,"5517","Art. 181; Inc. XIV","Estacionar o veículo nos viadutos.","Segurança viária",11
+,"6661","Art. 230; Inc. XII","Conduzir o veculo com equipamento ou acessrio proibido.","Segurança viária",11
+,"6386","Art. 220; Inc. XIII","Deixar de reduzir a velocidade do veículo de forma compatível com a segurança do trânsito ao ultrapa","Ciclistas",11
+,"6440","Art. 224","Fazer uso do facho de luz alta dos faróis em vias providas de iluminação pública.","Segurança viária",11
+,"5770","Art. 189","Deixar de dar passagem aos veculos de operao e fiscalizao de trnsito devidamente identificados","Segurança viária",10
+,"5614","Art. 182; Inc. V","Parar o veculo na pista de rolamento das demais vias dotadas de acostamento.","Segurança viária",10
+,"5606","Art. 182; Inc. IV","Parar o veículo em desacordo com as posições estabelecidas no Código de Trânsito Brasileiro.","Estacionamento/uso da via",10
+,"6394","Art. 220; Inc. XIV","Deixar de reduzir a velocidade do veculo de forma compatvel com a segurana do trnsito nas proxim","Pedestres",10
+,"6947","Art. 235","Conduzir animais nas partes externas do veículo.","Segurança viária",10
+,"7439","Art. 254; Inc. VI","É proibido ao pedestre desobedecer à sinalização de trânsito específica.","Pedestres",10
+,"6572","Art. 230; Inc. III","Conduzir o veículo com dispositivo anti-radar.","Segurança viária",9
+,"7080","Art. 244; Inc. VI","Conduzir motocicleta, motoneta e ciclomotor rebocando outro veículo.","Segurança viária",9
+,"6394","Art. 220; Inc. XIV","Deixar de reduzir a velocidade do veículo de forma compatível com a segurança do trânsito onde haja","Pedestres",9
+,"5240","Art. 173","Disputar corrida.","Segurança viária",9
+,"5789","Art. 190","Seguir o veiculo em servico de urgência, estando este com prioridade de passagem devidamente identif","Segurança viária",9
+,"6149","Art. 214; Inc. III","Deixar de dar preferência de passagem a pedestre portadores de deficiência física, crianças, idosos","Pedestres",9
+,"6661","Art. 230; Inc. XII","Conduzir o veículo com equipamento ou acessório proibido.","Segurança viária",9
+,"7102","Art. 244; Inc. VIII","Conduzir motocicleta, motoneta, ciclomotor transportando carga incompatvel com suas especificaes.","Segurança viária",8
+,"6947","Art. 235","Conduzir carga nas partes externas do veculo.","Segurança viária",8
+,"7218","Art. 248","Transportar em veculo destinado ao transporte de passageiros, carga excedente em desacordo com o es","Segurança viária",8
+,"6017","Art. 206; Inc. III","Executar operao de retorno passando por cima de faixas de veculos no motorizados.","Ciclistas",8
+,"5770","Art. 189","Deixar de dar passagem aos veículos de polícia em serviço de urgência e devidamente identificados.","Segurança viária",8
+,"5517","Art. 181; Inc. XIV","Estacionar o veículo nas pontes.","Segurança viária",8
+,"6947","Art. 235","Conduzir pessoas nas partes externas do veculo.","Segurança viária",8
+,"7331","Art. 252; Inc. III","Dirigir o veculo com incapacidade fsica ou mental temporria que comprometa a segurana do trnsit","Segurança viária",8
+,"6181","Art. 215; Inc. II","Deixar de dar preferência de passagem nas interseções com sinalização de regulamentação - Dê a Prefe","Segurança viária",8
+,"6270","Art. 220; Inc. II","Deixar de reduzir a velocidade de forma compatível com a segurança do trânsito nos locais onde o trâ","Segurança viária",8
+,"6394","Art. 220; Inc. XIV","Deixar de reduzir a velocidade do veículo de forma compatível com a segurança do trânsito nas proxim","Pedestres",8
+,"6165","Art. 214; Inc. V","Deixar de dar preferência de passagem a pedestre e a veiculo não motorizado que esteja atravessando","Pedestres",8
+,"6157","Art. 214; Inc. IV","Deixar de dar preferência de passagem a pedestre e a veículo não motorizado quando iniciado a traves","Pedestres",8
+,"7102","Art. 244; Inc. VIII","Conduzir motocicleta, motoneta, ciclomotor transportando carga incompatível com suas especificações.","Segurança viária",8
+,"6017","Art. 206; Inc. III","Executar operação de retorno passando por cima de ilhas, refúgio.","Ciclistas",7
+,"5223","Art. 171","Usar o veculo para arremessar sobre os veculos, gua ou detritos.","Pedestres",7
+,"5088","Art. 163; c/c Art. 162; Inc. III","Entregar veculo a pessoa com Carteira Nacional de Habilitao de categoria diferente da do veculo","Administrativas/documentais",7
+,"5096","Art. 163; c/c Art. 162; Inc. V","Entregar veculo a pessoa com CNH/PPD vencida h mais de trinta dias.","Administrativas/documentais",7
+,"5762","Art. 188","Transitar ao lado de outro veculo, interrompendo ou perturbando o trnsito.","Fluidez do trânsito",7
+,"5770","Art. 189","Deixar de dar passagem aos veículos de operação e fiscalização de trânsito devidamente identificados","Segurança viária",7
+,"7242","Art. 250; I; b","Quando o veculo estiver em movimento deixar de manter acesa a luz baixa de dia, nos tneis providos","Segurança viária",7
+,"5959","Art. 203; Inc. IV","Ultrapassar pela contramo outro veculo parado em fila junto a cruzamentos.","Segurança viária",7
+,"6548","Art. 229","Usar no veculo aparelho de alarme ou que produza sons e rudo que perturbem o sossego pblico, em d","Outras/não classificadas",6
+,"7617","Art. 253-A","Usar qualquer veículo para, deliberadamente, interromper circulação na via sem autorização do órgão.","Fluidez do trânsito",6
+,"6734","Art. 230; Inc. XIX","Conduzir o veculo sem acionar o limpador de pra-brisa sob chuva.","Segurança viária",6
+,"5428","Art. 181; Inc. V","Estacionar o veculo na pista de rolamento das vias de trnsito rpido.","Segurança viária",6
+,"5916","Art. 202; Inc. II","Ultrapassar outro veículo em interseções.","Segurança viária",6
+,"5614","Art. 182; Inc. V","Parar o veculo na pista de rolamento das estradas.","Segurança viária",6
+,"7323","Art. 252; Inc. II","Dirigir o veculo transportando pessoas, sua esquerda ou entre os braos e pernas.","Segurança viária",6
+,"5819","Art. 193","Transitar com veículo em ajardinamentos, gramados e jardins públicos.","Pedestres",6
+,"6173","Art. 215; Inc. I; alínea a","Deixar de dar preferência de passagem, em intersecção não sinalizada, a veículo que estiver circulan","Segurança viária",5
+,"7080","Art. 244; Inc. VI","Conduzir motocicleta, motoneta e ciclomotor rebocando outro veculo.","Segurança viária",5
+,"7056","Art. 244; Inc. III; c/c §1º","Conduzir ciclo fazendo malabarismo ou equilibrando-se em uma roda.","Segurança viária",5
+,"5126","Art. 164; c/c Art. 162; Inc. II","Permitir posse/conduo do veculo a pessoa com Carteira Nacional de Habilitao, Permisso para Dir","Administrativas/documentais",5
+,"6173","Art. 215; Inc. I; alínea b","Deixar de dar preferência de passagem, em intersecção não sinalizada, a veículo que vier da direita.","Segurança viária",5
+,"6173","Art. 215; Inc. I; alnea a","Deixar de dar preferncia de passagem, em interseco no sinalizada, a veculo que estiver circulan","Segurança viária",5
+,"6432","Art. 223","Transitar com o facho de luz alta de forma a perturbar a viso de outro condutor.","Segurança viária",5
+,"5088","Art. 163; c/c Art. 162; Inc. III","Entregar veículo a pessoa com Carteira Nacional de Habilitação de categoria diferente da do veículo","Administrativas/documentais",5
+,"5070","Art. 163; c/c Art. 162; Inc. II","Entregar veculo a pessoa com Carteira Nacional de Habilitao, Permisso para Dirigir ou Autoriza","Administrativas/documentais",5
+,"5959","Art. 203; Inc. IV","Ultrapassar pela contramão outro veículo parado em fila junto a cruzamentos.","Segurança viária",5
+,"6777","Art. 231; Inc. I","Transitar com o veculo danificando a via, suas instalaes e equipamentos.","Segurança viária",5
+,"5959","Art. 203; Inc. IV","Ultrapassar pela contramo outro veculo parado em fila junto a qualquer outro impedimento livre c","Segurança viária",5
+,"6360","Art. 220; Inc. XI","Deixar de reduzir a velocidade do veculo de forma compatvel com a segurana do trnsito aproxima","Segurança viária",5
+,"6556","Art. 230; Inc. I","Conduzir o veculo com o selo violado ou falsificado.","Administrativas/documentais",5
+,"6262","Art. 220; Inc. I","Deixar de reduzir a velocidade do veiculo de forma compativel com a seguranca do trnsito quando se","Pedestres",5
+,"5932","Art. 203; Inc. II","Ultrapassar pela contramo outro veculo nas faixas de pedestre.","Pedestres",5
+,"5290","Art. 176; Inc. II","Deixar o condutor envolvido em acidente com vítima de adotar providências, podendo fazê-lo, no senti","Segurança viária",5
+,"5614","Art. 182; Inc. V","Parar o veículo na pista de rolamento das vias de trânsito rápido.","Segurança viária",5
+,"5282","Art. 176; Inc. I","Deixar o condutor envolvido em acidente com vítima de prestar ou providenciar socorro à vítima, pode","Segurança viária",5
+,"7102","Art. 244 inciso VIII","Conduzir motoc/moton/transportando carga em desacordo c/ 2 do artigo 139 - a CTB","Segurança viária",5
+,"6513","Art. 227; Inc. IV","Usar buzina em locais e horrios proibidos pela sinalizao.","Outras/não classificadas",5
+,"6513","Art. 227; Inc. IV","Usar buzina em locais e horários proibidos pela sinalização.","Outras/não classificadas",5
+,"6459","Art. 225; Inc. I","Deixar de sinalizar a via para tornar visível o local, quando tiver de remover o veículo da pista de","Segurança viária",4
+,"6297","Art. 220; Inc. IV","Deixar de reduzir a velocidade do veculo de forma compatvel com a segurana do trnsito ao aproxim","Segurança viária",4
+,"6327","Art. 220; Inc. VII","Deixar de reduzir a velocidade do veculo de forma compatvel com a segurana do trnsito ao aproxim","Segurança viária",4
+,"5649","Art. 182; Inc. VIII","Parar o veculo nos viadutos.","Segurança viária",4
+,"6521","Art. 227; Inc. V","Usar buzina em desacordo com os padrões e freqüências estabelecidas pelo CONTRAN.","Outras/não classificadas",4
+,"5266","Art. 174","Participar na via, como condutor, de exibio e demonstrao de percia em manobra de veculo, sem p","Segurança viária",4
+,"5304","Art. 176; Inc. III","Deixar o condutor envolvido em acidente com vtima de preservar o local, de forma a facilitar os tra","Segurança viária",4
+,"7765","Art. 278; § único c/c 210","FUGIR O CONDUTOR A ACAO POLICIAL","Segurança viária",4
+,"6823","Art. 231; Inc. IV","Transitar com o veculo e/ou carga com dimenses superiores aos limites estabelecidos pela sinaliza","Segurança viária",4
+,"6947","Art. 235","Conduzir carga nas partes externas do veículo.","Segurança viária",4
+,"7110","Art. 244; § 1º; alínea a","Conduzir ciclo transportando passageiro fora da garupa ou do assento especial a ele destinado.","Ciclistas",4
+,"7226","Art. 249","Deixar de manter acesas, noite, as luzes de posio, quando o veculo estiver parado para fins de","Segurança viária",4
+,"7242","Art. 250; I; b","Quando o veículo estiver em movimento deixar de manter acesa a luz baixa de dia, sob chuva, neblina","Segurança viária",4
+,"5762","Art. 188","Transitar ao lado de outro veículo, interrompendo ou perturbando o trânsito.","Fluidez do trânsito",4
+,"5037","Art. 162; Inc. III","Dirigir veculo com Permisso para Dirigir de categoria diferente da do veculo.","Administrativas/documentais",4
+,"5614","Art. 182; Inc. V","Parar o veículo na pista de rolamento das demais vias dotadas de acostamento.","Segurança viária",4
+,"6254","Art. 219","Transitar em velocidade inferior metade da mxima da via, salvo faixa da direita.","Fluidez do trânsito",4
+,"6262","Art. 220; Inc. I","Deixar de reduzir a velocidade do veiculo de forma compativel com a seguranca do trânsito quando se","Pedestres",4
+,"7617","Art. 253-A","Usar qualquer veculo para, deliberadamente, interromper circulao na via sem autorizao do rgo.","Fluidez do trânsito",3
+,"5428","Art. 181; Inc. V","Estacionar o veículo na pista de rolamento das vias de trânsito rápido.","Segurança viária",3
+,"6424","Art. 222","Deixar de manter ligado, nas situaes de atendimento de emergncia, o sistema de iluminao vermelh","Segurança viária",3
+,"5770","Art. 189","Deixar de dar passagem aos veículos precedidos de batedores devidamente identificados.","Segurança viária",3
+,"5614","Art. 182; Inc. V","Parar o veculo na pista de rolamento das rodovias.","Segurança viária",3
+,"5320","Art. 176; Inc. V","Deixar o condutor envolvido em acidente com vtima de identificar-se ao policial e de lhe prestar in","Administrativas/documentais",3
+,"5444","Art. 181; Inc. VII","Estacionar o veculo nos acostamentos, salvo motivo de fora maior.","Estacionamento/uso da via",3
+,"7269","Art. 250; Inc. I; alnea d","Quando o veculo estiver em movimento deixar de manter acesa a luz baixa, de dia e de noite, tratand","Segurança viária",3
+,"5746","Art. 187; Inc. I","Transitar em locais e horários não permitidos pela regulamentação - rodízio.","Fluidez do trânsito",3
+,"7250","Art. 250; Inc. I; alnea c","Quando o veculo estiver em movimento deixar de manter acesa a luz baixa, de dia e de noite, tratand","Segurança viária",3
+,"6297","Art. 220; Inc. IV","Deixar de reduzir a velocidade do veículo de forma compatível com a segurança do trânsito ao aproxim","Segurança viária",3
+,"6807","Art. 231; Inc. II; alínea c","Transitar com o veículo derramando, lançando ou arrastando qualquer objeto que possa acarretar risco","Segurança viária",3
+,"7137","Art. 244; § 1º; alínea c","Conduzir ciclo transportando crianças sem condições de cuidar de sua própria segurança.","Ciclistas",3
+,"7099","Art.244; Inc. VII; c/c 1","Conduzir ciclo sem segurar o guidom com ambas as mos.","Segurança viária",3
+,"6386","Art. 220; Inc. XIII","Deixar de reduzir a velocidade do veculo de forma compatvel com a segurana do trnsito ao ultrapa","Ciclistas",3
+,"7137","Art. 244; 1; alnea c","Conduzir ciclo transportando crianas sem condies de cuidar de sua prpria segurana.","Ciclistas",3
+,"6173","Art. 215; Inc. I; alnea b","Deixar de dar preferncia de passagem, em interseco no sinalizada, a veculo que vier da direita.","Segurança viária",3
+,"6289","Art. 220; Inc. III","Deixar de reduzir a velocidade do veculo de forma compatvel com a segurana do trnsito ao aproxim","Segurança viária",3
+,"5908","Art. 202; Inc. I","Ultrapassar outro veculo pelo acostamento.","Segurança viária",3
+,"5932","Art. 203; Inc. II","Ultrapassar pela contramão outro veículo nas faixas de pedestre.","Pedestres",3
+,"6084","Art. 211","Ultrapassar veculos motorizados em fila, parados em razo de bloqueio virio parcial.","Fluidez do trânsito",3
+,"5894","Art. 201","Deixar de guardar a distncia lateral de um metro e cinqenta centmetros ao passar ou ultrapassar b","Ciclistas",3
+,"5975","Art. 204","Deixar de parar o veculo no acostamento direita, para aguardar a oportunidade de cruzar pista ou","Segurança viária",3
+,"5860","Art. 198","Deixar de dar passagem pela esquerda, quando solicitado.","Fluidez do trânsito",3
+,"5312","Art. 176; Inc. IV","Deixar o condutor envolvido em acidente com vtima de adotar providncias para remover o veculo do","Fluidez do trânsito",3
+,"6866","Art. 231; Inc. VIII","Transitar com o veículo efetuando transporte remunerado de bens, quando não for licenciado para esse","Administrativas/documentais",2
+,"6866","Art. 231; Inc. VIII","Transitar com o veículo efetuando transporte remunerado de pessoas quando não for licenciado para es","Administrativas/documentais",2
+,"6920","Art. 233 c/c 123; inc. III","Deixar de efetuar registro do veculo em 30 dias, quando for alterada qualquer caracterstica do ve","Administrativas/documentais",2
+,"6920","Art. 233 c/c 123; inc. II","Deixar de efetuar registro do veculo em 30 dias, quando mudar o municpio de domiclio ou residnci","Administrativas/documentais",2
+,"5959","Art. 203; Inc. IV","Ultrapassar pela contramão outro veículo parado em fila junto a qualquer outro impedimento à livre c","Segurança viária",2
+,"6947","Art. 235","Conduzir pessoas nas partes externas do veículo.","Segurança viária",2
+,"6653","Art. 230; Inc. XI","Conduzir o veículo com silenciador de motor de explosão defeituoso, deficiente ou inoperante.","Outras/não classificadas",2
+,"5428","Art. 181; Inc. V","Estacionar o veculo na pista de rolamento das vias dotadas de acostamento.","Segurança viária",2
+,"6009","Art. 206; Inc. II","Executar operação de retorno nas curvas.","Segurança viária",2
+,"6009","Art. 206; Inc. II","Executar operao de retorno nas curvas.","Segurança viária",2
+,"5886","Art. 200","Ultrapassar pela direita veculo de transporte coletivo ou de escolares, parado para embarque ou des","Pedestres",2
+,"5428","Art. 181; Inc. V","Estacionar o veículo na pista de rolamento das estradas.","Segurança viária",2
+,"6017","Art. 206; Inc. III","Executar operação de retorno passando por cima de ajardinamento.","Ciclistas",2
+,"5436","Art. 181; Inc. VI","Estacionar veculo junto ou sobre hidrantes de incndio, registro de gua ou tampas de poos de visi","Estacionamento/uso da via",2
+,"7072","Art. 244; Inc. V","Conduzir motocicleta, motoneta e ciclomotor transportando criança menor de sete anos.","Segurança viária",2
+,"5428","Art. 181; Inc. V","Estacionar o veculo na pista de rolamento das estradas.","Segurança viária",2
+,"6017","Art. 206; Inc. III","Executar operação de retorno passando por cima de faixas de veículos não motorizados.","Ciclistas",2
+,"6610","Art. 230; Inc. VII","Conduzir o veículo com a cor alterada.","Administrativas/documentais",2
+,"6017","Art. 206; Inc. III","Executar operao de retorno passando por cima de ajardinamento.","Ciclistas",2
+,"5266","Art. 174","Participar na via, como condutor, de exibição e demonstração de perícia em manobra de veículo, sem p","Segurança viária",2
+,"5169","Art. 165","Dirigir sob a influncia de qualquer substncia psicoativa que determine dependncia","Segurança viária",2
+,"7323","Art. 252; Inc. II","Dirigir o veículo transportando pessoas, à sua esquerda ou entre os braços e pernas.","Segurança viária",2
+,"7331","Art. 252; Inc. III","Dirigir o veículo com incapacidade física ou mental temporária que comprometa a segurança do trânsit","Segurança viária",2
+,"5150","Art. 164; c/c Art. 162; Inc. VI","Permitir posse/conduo do veculo a pessoa sem usar lentes corretoras de viso.","Administrativas/documentais",2
+,"6556","Art. 230; Inc. I","Conduzir o veículo com inscrição do chassi violada ou falsificada.","Administrativas/documentais",2
+,"5649","Art. 182; Inc. VIII","Parar o veículo nas pontes.","Segurança viária",2
+,"6432","Art. 223","Transitar com o farol desregulado de forma a perturbar a visão de outro condutor.","Segurança viária",2
+,"6432","Art. 223","Transitar com o facho de luz alta de forma a perturbar a visão de outro condutor.","Segurança viária",2
+,"5533","Art. 181; Inc. XVI","Estacionar o veculo em aclive ou declive, no estando devidamente freado e sem calo de segurana,","Segurança viária",2
+,"5711","Art. 185; Inc. II","Deixar de conservar nas faixas da direita, o veículo lento e de maior porte.","Fluidez do trânsito",2
+,"6319","Art. 220; Inc. VI","Deixar de reduzir a velocidade do veculo de forma compatvel com a segurana do trnsito nos trecho","Segurança viária",2
+,"5037","Art. 162; Inc. III","Dirigir veículo com Permissão para Dirigir de categoria diferente da do veículo.","Administrativas/documentais",2
+,"6785","Art. 231; Inc. II; alnea a","Transitar com veculo lanando a carga que esteja transportando.","Segurança viária",2
+,"6807","Art. 231; Inc. II; alnea c","Transitar com o veculo derramando, lanando ou arrastando qualquer objeto que possa acarretar risco","Segurança viária",2
+,"6777","Art. 231; Inc. I","Transitar com o veículo danificando a via, suas instalações e equipamentos.","Segurança viária",2
+,"7072","Art. 244; Inc. V","Conduzir motocicleta, motoneta e ciclomotor transportando criança sem condições de cuidar de sua pró","Segurança viária",1
+,"7250","Art. 250; I; c","Quando o veículo estiver em movimento, deixar de manter acesa a luz baixa, de dia no caso de veículo","Segurança viária",1
+,"5444","Art. 181; Inc. VII","Estacionar o veículo nos acostamentos, salvo motivo de força maior.","Estacionamento/uso da via",1
+,"7617","Art. 253-A","Usar veículo para, deliberadamente, restringir circulação na via sem autorização do órgão.","Fluidez do trânsito",1
+,"7277","Art. 250; Inc. II","Quando o veculo estiver em movimento deixar de manter acesas pelo menos as luzes de posio sob chu","Segurança viária",1
+,"6181","Art. 215; Inc. II","Deixar de dar preferncia de passagem nas intersees com sinalizao de regulamentao - D a Prefe","Segurança viária",1
+,"5517","Art. 181; Inc. XIV","Estacionar o veículo nos túneis.","Segurança viária",1
+,"5363","Art. 179; Inc. II","Fazer ou deixar que se faa reparo em veculo na via pblica, salvo nos casos de impedimento absolut","Fluidez do trânsito",1
+,"5819","Art. 193","Transitar com veculo em acostamentos.","Segurança viária",1
+,"7307","Art. 251; Inc. II","Utilizar as luzes do veículo, baixa e alta, de forma intermitente, exceto quando permitido pelo CTB.","Segurança viária",1
+,"5436","Art. 181; Inc. VI","Estacionar veículo junto ou sobre hidrantes de incêndio, registro de água ou tampas de poços de visi","Estacionamento/uso da via",1
+,"5169","Art. 165","Dirigir sob a influência de qualquer substância psicoativa que determine dependência","Segurança viária",1
+,"5428","Art. 181; Inc. V","Estacionar o veículo na pista de rolamento das vias dotadas de acostamento.","Segurança viária",1
+,"6009","Art. 206; Inc. II","Executar operao de retorno nos viadutos.","Segurança viária",1
+,"6556","Art. 230; Inc. I","Conduzir o veículo com qualquer outro elemento de identificação violado ou falsificado.","Administrativas/documentais",1
+,"6556","Art. 230; Inc. I","Conduzir o veículo com o selo violado ou falsificado.","Administrativas/documentais",1
+,"6920","Art. 233 c/c 123; inc. III","Deixar de efetuar registro do veículo em 30 dias, quando for alterada qualquer característica do veí","Administrativas/documentais",1
+,"5304","Art. 176; Inc. III","Deixar o condutor envolvido em acidente com vítima de preservar o local, de forma a facilitar os tra","Segurança viária",1
+,"6360","Art. 220; Inc. XI","Deixar de reduzir a velocidade do veículo de forma compatível com a segurança do trânsito à aproxima","Segurança viária",1
+,"6823","Art. 231; Inc. IV","Transitar com o veculo e/ou carga com dimenses superiores aos limites estabelecidos legalmente, se","Segurança viária",1
+,"5150","Art. 164; c/c Art. 162; Inc. VI","Permitir posse/condução do veículo a pessoa sem usar lentes corretoras de visão.","Administrativas/documentais",1
+,"6874","Art. 231; Inc. IX","Transitar com o veículo desligado em declive.","Segurança viária",1
+,"6823","Art. 231; Inc. IV","Transitar com o veículo e/ou carga com dimensões superiores aos limites estabelecidos pela sinalizaç","Segurança viária",1
+,"5649","Art. 182; Inc. VIII","Parar o veculo nos tneis.","Segurança viária",1
+,"7005","Art. 241","Deixar de atualizar o cadastro de habilitação do condutor.","Administrativas/documentais",1
+,"6475","Art. 226","Deixar de retirar todo e qualquer objeto utilizado para sinalização temporária da via.","Fluidez do trânsito",1
+,"6459","Art. 225; Inc. I","Deixar de sinalizar a via para tornar visvel o local, quando tiver que permanecer no acostamento.","Segurança viária",1
+,"6459","Art. 225; Inc. I","Deixar de sinalizar a via para tornar visvel o local, quando tiver de remover o veculo da pista de","Segurança viária",1
+,"5746","Art. 187; Inc. I","Transitar em locais e horrios no permitidos pela regulamentao - Caminho.","Fluidez do trânsito",1
+,"7404","Art. 254; Inc. III","proibido ao pedestre atravessar a via dentro das reas de cruzamento, exceto onde permitido pela s","Pedestres",1
+,"6793","Art. 231; Inc. II; alnea b","Transitar com o veculo derramando, lanandosobre a via combustvel ou lubrificante que esteja utili","Segurança viária",1
+,"7439","Art. 254; Inc. VI","proibido ao pedestre desobedecer sinalizao de trnsito especfica.","Pedestres",1
+,"6793","Art. 231; Inc. II; alínea b","Transitar com o veículo derramando, lançandosobre a via combustível ou lubrificante que esteja utili","Segurança viária",1
+,"5924","Art. 203; Inc. I","Ultrapassar pela contramão outro veículo nas curvas, sem visibilidade suficiente.","Segurança viária",1
+,"5959","Art. 203; Inc. IV","Ultrapassar pela contramão outro veículo parado em fila junto a porteiras, cancelas.","Segurança viária",1
+,"5983","Art. 205","Ultrapassar veculo em movimento que integre cortejo, prstito, desfile e formaes militares.","Fluidez do trânsito",1
+,"6424","Art. 222","Deixar de manter ligado, nas situações de atendimento de emergência, o sistema de iluminação vermelh","Segurança viária",1
+,"6416","Art. 221; parágrafo único","Confeccionar, distribuir ou colocar, em veículo próprio ou de terceiros, placas de identificação não","Administrativas/documentais",1
+,"5746","Art. 187; Inc. I","Transitar em locais e horários não permitidos pela regulamentação - Caminhão.","Fluidez do trânsito",1
+,"6734","Art. 230; Inc. XIX","Conduzir o veículo sem acionar o limpador de pára-brisa sob chuva.","Segurança viária",1
+,"5070","Art. 163; c/c Art. 162; Inc. II","Entregar veículo a pessoa com Carteira Nacional de Habilitação, Permissão para Dirigir ou Autorizaçã","Administrativas/documentais",1
+,"6416","Art. 221; pargrafo nico","Confeccionar, distribuir ou colocar, em veculo prprio ou de terceiros, placas de identificao no","Administrativas/documentais",1
+,"6203","Art. 217","Entrar ou sair de fila de veículos estacionados sem dar preferência de passagem a pedestres e a outr","Pedestres",1
+,"5924","Art. 203; Inc. I","Ultrapassar pela contramo outro veculo nas curvas, sem visibilidade suficiente.","Segurança viária",1
+,"7617","ART. 253-A","Usar veculo para, deliberadamente, perturbar circulao na via sem autorizao do rgo.","Fluidez do trânsito",1
+,"7102","Art. 244 inciso VIII","Conduzir motoc/moton/transportando carga em desacordo c/ § 2º do artigo 139 - a CTB","Segurança viária",1
+,"6610","Art. 230; Inc. VII","Conduzir o veculo com a cor alterada.","Administrativas/documentais",1
+,"5819","Art. 193","Transitar com veículo em acostamentos.","Segurança viária",1
+,"7099","Art.244; Inc. VII; c/c §1º","Conduzir ciclo sem segurar o guidom com ambas as mãos.","Segurança viária",1
+,"7145","Art. 245","Utilizar a via para depsito de mercadorias, materiais ou equipamentos.","Estacionamento/uso da via",1
+,"7153","Art. 246","Deixar de sinalizar qualquer obstculo livre circulao, segurana de veculo e pedestres, na ca","Segurança viária",1
+,"7153","Art. 246","Obstaculizar a via indevidamente - sem agravamento.","Segurança viária",1
+,"7722","Art. 250; I; e","Em movimento deixar de manter acesa a luz baixa de dia, em rodovias de pista simples situadas fora d","Segurança viária",1
+,"7218","Art. 248","Transportar em veículo destinado ao transporte de passageiros, carga excedente em desacordo com o es","Segurança viária",1
+,"7226","Art. 249","Deixar de manter acesas, à noite, as luzes de posição, quando o veículo estiver parado para fins de","Segurança viária",1
+,"5614","Art. 182; Inc. V","Parar o veículo na pista de rolamento das estradas.","Segurança viária",1
+,"5517","Art. 181; Inc. XIV","Estacionar o veculo nos tneis.","Segurança viária",1
+,"5177","Art. 166","Confiar ou entregar a direção de veículo a pessoa que, mesmo habilitada, por seu estado físico ou ps","Segurança viária",1
+,"5266","Art. 174","Participar na via, como condutor, de competio sem permisso da autoridade de trnsito com circunsc","Segurança viária",1
+,"7242","Art. 250; I; b","Quando o veículo estiver em movimento deixar de manter acesa a luz baixa de dia, nos túneis.","Segurança viária",1
+,"5428","Art. 181; Inc. V","Estacionar o veculo na pista de rolamento das rodovias.","Segurança viária",1

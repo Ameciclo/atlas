@@ -1,0 +1,26 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Raw data (large files)
+all-infracoes/
+infracoes_reduzido*.tsv
+enderecos_otimizado.csv
+Trechos de Logradouros.geojson
+dict_locais_v3.json
+Logradouros por face de quadra.csv
+
+# Generated seed data (run: python3 src/db/etl-normalize.py --apply)
+src/db/migrations/0001_seed_traffic_locations.sql
+
+# Generated location data
+traffic_locations_v3.tsv
+
+# Generated catalog data
+descricoes_infracoes_corrigidas_expanded.csv
+traffic_violations_catalog.csv

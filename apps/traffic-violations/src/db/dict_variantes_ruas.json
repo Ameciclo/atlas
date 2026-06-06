@@ -1,0 +1,194 @@
+[
+	{
+		"pattern": "RUA IMPERADOR PEDRO SEGUNDO",
+		"replacement": "RUA IMPERADOR DOM PEDRO II",
+		"target_code": 50393,
+		"note": "PEDRO SEGUNDO = DOM PEDRO II (variante coloquial)"
+	},
+	{
+		"pattern": "RUA IMPERADOR PEDRO II",
+		"replacement": "RUA IMPERADOR DOM PEDRO II",
+		"target_code": 50393,
+		"note": "faltava DOM no nome"
+	},
+	{
+		"pattern": "AVENIDA ENGENHEIRO ANTONIO DE GOES",
+		"replacement": "AV ANTONIO DE GOES",
+		"target_code": 5770,
+		"note": "ENGENHEIRO omitido no PCR"
+	},
+	{
+		"pattern": "AV ENGENHEIRO ANTONIO DE GOES",
+		"replacement": "AV ANTONIO DE GOES",
+		"target_code": 5770,
+		"note": "ENGENHEIRO omitido no PCR"
+	},
+	{
+		"pattern": "RUA PADRE BERNADINO PESSOA",
+		"replacement": "RUA PADRE BERNARDINO PESSOA",
+		"target_code": 11258,
+		"note": "typo: BERNADINO -> BERNARDINO"
+	},
+	{
+		"pattern": "AV 17 DE AGOSTO",
+		"replacement": "AV DEZESSETE DE AGOSTO",
+		"target_code": 19526,
+		"note": "17 = DEZESSETE"
+	},
+	{
+		"pattern": "AVENIDA ENGENHEIRO AGAMENON MAGALHAES MELO",
+		"replacement": "AV ENGENHEIRO AGAMENON DE MAGALHAES MELO",
+		"target_code": 1147,
+		"note": "faltava DE no nome do PCR"
+	},
+	{
+		"pattern": "AV ENGENHEIRO AGAMENON MAGALHAES MELO",
+		"replacement": "AV ENGENHEIRO AGAMENON DE MAGALHAES MELO",
+		"target_code": 1147,
+		"note": "faltava DE no nome do PCR"
+	},
+	{
+		"pattern": "AV DOMINGOS FERREIRA",
+		"replacement": "AV ENGENHEIRO DOMINGOS FERREIRA",
+		"target_code": 20184,
+		"note": "faltava ENGENHEIRO"
+	},
+	{
+		"pattern": "RUA PALMA",
+		"replacement": "RUA DA PALMA",
+		"target_code": 48585,
+		"note": "faltava DA"
+	},
+	{
+		"pattern": "PRACA DO ARSENAL DA MARINHA",
+		"replacement": "PRC ARSENAL DA MARINHA",
+		"target_code": 65870,
+		"note": "removido DO"
+	},
+	{
+		"pattern": "PRC DO ARSENAL DA MARINHA",
+		"replacement": "PRC ARSENAL DA MARINHA",
+		"target_code": 65870,
+		"note": "removido DO"
+	},
+	{
+		"pattern": "RUA JORNALISTA EDMUNDO BITENCOURT",
+		"replacement": "RUA JORNALISTA EDMUNDO BITTENCOURT",
+		"target_code": 20710,
+		"note": "typo: BITENCOURT -> BITTENCOURT"
+	},
+	{
+		"pattern": "MARECHAL MASCARENHAS DE MORAES",
+		"replacement": "AV MARECHAL MASCARENHAS DE MORAES",
+		"target_code": 43451,
+		"note": "faltava prefixo AV"
+	},
+	{
+		"pattern": "RUA CONCORDIA",
+		"replacement": "RUA DA CONCORDIA",
+		"target_code": 17264,
+		"note": "faltava DA"
+	},
+	{
+		"pattern": "SANTA RITA",
+		"replacement": "RUA SANTA RITA",
+		"target_code": 58750,
+		"note": "faltava prefixo RUA"
+	},
+	{
+		"pattern": "RUA CORONEL URIEL SERGIO GARDIM",
+		"replacement": "RUA CORONEL URIEL SERGIO CARDIM",
+		"target_code": 62421,
+		"note": "typo: GARDIM -> CARDIM"
+	},
+	{
+		"pattern": "DO FORTE",
+		"replacement": "RUA DO FORTE",
+		"target_code": 24996,
+		"note": "faltava prefixo RUA"
+	},
+	{
+		"pattern": "RUA AGUA DOCE",
+		"replacement": "RUA ENGENHO AGUA DOCE",
+		"target_code": 21490,
+		"note": "faltava ENGENHO"
+	},
+	{
+		"pattern": "RUA RIACHUELO",
+		"replacement": "RUA DO RIACHUELO",
+		"target_code": 57266,
+		"note": "faltava DO"
+	},
+	{
+		"pattern": "RUA GENERAL JOAQUIM INACIO",
+		"replacement": "RUA GENERAL JOAQUIM INACIO",
+		"target_code": 34703,
+		"note": "GAL. expandido para GENERAL"
+	},
+	{
+		"pattern": "DA DETENCAO",
+		"replacement": "C DA DETENCAO",
+		"target_code": 19380,
+		"note": "faltava prefixo C (CANAL?)"
+	},
+	{
+		"pattern": "RUA ARAGAO",
+		"replacement": "RUA DO ARAGAO",
+		"target_code": 7013,
+		"note": "faltava DO"
+	},
+	{
+		"pattern": "RUA DAS CALCADAS",
+		"replacement": "RUA DAS CALCADAS",
+		"target_code": 13439,
+		"note": "já é exato após normalização"
+	},
+	{
+		"pattern": "DANTAS BARRETO",
+		"replacement": "AV DANTAS BARRETO",
+		"target_code": 19054,
+		"note": "faltava prefixo AV"
+	},
+	{
+		"pattern": "GOVERNADOR AGAMENON MAGALHAES",
+		"replacement": "AV GOVERNADOR AGAMENON MAGALHAES",
+		"target_code": 1155,
+		"note": "faltava prefixo AV"
+	},
+	{
+		"pattern": "RUA PRINCESA IZABEL",
+		"replacement": "RUA PRINCESA ISABEL",
+		"target_code": 24368,
+		"note": "IZABEL -> ISABEL (typo comum)"
+	},
+	{
+		"pattern": "AVENIDA SUL",
+		"replacement": "AV SUL",
+		"target_code": 49670,
+		"note": "AV SUL (match direto com concat)"
+	},
+	{
+		"pattern": "AV SUL",
+		"replacement": "AV SUL",
+		"target_code": 49670,
+		"note": "AV SUL (match direto com concat)"
+	},
+	{
+		"pattern": "RUA SENADOR CARLOS WILSON CAMPOS INFRAERO",
+		"replacement": "RUA SENADOR CARLOS WILSON CAMPOS",
+		"target_code": 63834,
+		"note": "removeu sufixo INFRAERO"
+	},
+	{
+		"pattern": "RUA DA AURORA",
+		"replacement": "RUA DA AURORA",
+		"target_code": 10838,
+		"note": "match exato"
+	},
+	{
+		"pattern": "AVENIDA SUL",
+		"replacement": "AV SUL",
+		"target_code": 49670,
+		"note": "match por concat AV SUL"
+	}
+]

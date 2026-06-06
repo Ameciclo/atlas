@@ -1,27 +1,10 @@
-import { and, count, desc, eq } from "drizzle-orm";
+import { and, count, desc, eq, inArray } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { db } from "../../db/index.js";
 import { trafficDeaths } from "../../db/schema.js";
+import { RMR_6_DIGIT_CODES, RMR_6_DIGIT_NAMES } from "../../lib/rmr.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type * as routes from "./by-city.routes.js";
-
-// City code to name mapping for RMR (Região Metropolitana do Recife)
-const CITY_NAMES: Record<number, string> = {
-	2600054: "Abreu e Lima",
-	2601052: "Araçoiaba",
-	2602902: "Cabo de Santo Agostinho",
-	2603454: "Camaragibe",
-	2606804: "Igarassu",
-	2607604: "Ilha de Itamaracá",
-	2607208: "Ipojuca",
-	2607752: "Itapissuma",
-	2607901: "Jaboatão dos Guararapes",
-	2609402: "Moreno",
-	2609600: "Olinda",
-	2610707: "Paulista",
-	2611606: "Recife",
-	2613701: "São Lourenço da Mata",
-};
 
 export const getDeathsByCity: AppRouteHandler<
 	typeof routes.getDeathsByCity
@@ -35,7 +18,9 @@ export const getDeathsByCity: AppRouteHandler<
 			: trafficDeaths.codmunres;
 
 	// Build conditions array with explicit type
-	const conditions: ReturnType<typeof eq>[] = [];
+	const conditions: ReturnType<typeof eq | typeof inArray>[] = [
+		inArray(cityCodeField, RMR_6_DIGIT_CODES),
+	];
 	if (year) {
 		conditions.push(eq(trafficDeaths.data_year, year));
 	}
@@ -47,7 +32,7 @@ export const getDeathsByCity: AppRouteHandler<
 			total_deaths: count(),
 		})
 		.from(trafficDeaths)
-		.where(conditions.length > 0 ? and(...conditions) : undefined)
+		.where(and(...conditions))
 		.groupBy(cityCodeField)
 		.orderBy(desc(count()));
 
@@ -56,7 +41,7 @@ export const getDeathsByCity: AppRouteHandler<
 		.filter((r) => r.city_code !== null)
 		.map((r) => ({
 			city_code: r.city_code as number,
-			city_name: CITY_NAMES[r.city_code as number] || null,
+			city_name: RMR_6_DIGIT_NAMES[r.city_code as number] || null,
 			total_deaths: r.total_deaths,
 		}));
 

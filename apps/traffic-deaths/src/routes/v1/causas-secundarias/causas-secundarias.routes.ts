@@ -8,6 +8,20 @@ export const getCausasSecundariasV1 = createRoute({
 	path: "/causas-secundarias",
 	method: "get",
 	tags,
+	request: {
+		query: z.object({
+			cityCode: z.coerce.number().optional(),
+			municipio: z.coerce.number().optional(),
+			startYear: z.coerce.number().optional(),
+			anoInicio: z.coerce.number().optional(),
+			endYear: z.coerce.number().optional(),
+			anoFim: z.coerce.number().optional(),
+			locationType: z.enum(["residence", "occurrence"]).optional(),
+			tipoLocal: z.enum(["residencia", "ocorrencia"]).optional(),
+			transportMode: z.string().optional(),
+			modoTransporte: z.string().optional(),
+		}),
+	},
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({

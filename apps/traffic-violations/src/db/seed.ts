@@ -11,13 +11,11 @@ async function seed() {
 			{
 				violation_date: new Date(),
 				agent_id: 1,
-				violation_type_id: 1,
 				location_id: 1,
-				violation_code: "001",
+				cttu_code: "001",
 				law_code: "CTB-001",
 				description: "Example violation",
 				location_description: "Example location",
-				complementary_data: {},
 			},
 		]);
 

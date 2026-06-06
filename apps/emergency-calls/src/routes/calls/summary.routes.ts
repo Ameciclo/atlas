@@ -116,8 +116,8 @@ export const profiles = createRoute({
 				description: "City name (required)",
 				example: "RECIFE",
 			}),
-			start_year: z.coerce.number().int().optional().openapi({
-				description: "Start year",
+			start_year: z.coerce.number().int().optional().default(2020).openapi({
+				description: "Start year. Defaults to 2020",
 				example: 2020,
 			}),
 			end_year: z.coerce.number().int().optional().openapi({
@@ -129,14 +129,9 @@ export const profiles = createRoute({
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
-				city: z.string(),
-				period: z.object({
-					start_year: z.number(),
-					end_year: z.number(),
-				}),
-				by_gender: z.record(z.number()),
-				by_age_group: z.record(z.number()),
-				by_type: z.record(z.number()),
+				por_sexo: z.record(z.number()),
+				por_faixa_etaria: z.record(z.number()),
+				por_categoria: z.record(z.number()),
 			}),
 			"Emergency call demographic profiles",
 		),

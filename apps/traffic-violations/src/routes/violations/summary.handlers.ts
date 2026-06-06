@@ -1,4 +1,4 @@
-import { and, eq, gte, lte, count, sql } from "drizzle-orm";
+import { and, count, eq, gte, lte, sql } from "drizzle-orm";
 import { db } from "../../db/index.js";
 import { trafficViolations } from "../../db/schema.js";
 
@@ -26,15 +26,14 @@ export const summary = async (c: any) => {
 		.groupBy(sql`EXTRACT(YEAR FROM ${trafficViolations.violation_date})`)
 		.orderBy(sql`EXTRACT(YEAR FROM ${trafficViolations.violation_date})`);
 
-	// Get top violation type
+	// Get top violation description
 	const [topTypeResult] = await db
 		.select({
-			violation_type_id: trafficViolations.violation_type_id,
 			description: trafficViolations.description,
 			count: count(),
 		})
 		.from(trafficViolations)
-		.groupBy(trafficViolations.violation_type_id, trafficViolations.description)
+		.groupBy(trafficViolations.description)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(1);
 
@@ -65,7 +64,6 @@ export const summary = async (c: any) => {
 		},
 		violations_per_year: violationsPerYear,
 		top_violation_type: {
-			id: topTypeResult?.violation_type_id || 0,
 			description: topTypeResult?.description || "",
 			total: topTypeResult?.count || 0,
 		},
@@ -98,22 +96,21 @@ export const byType = async (c: any) => {
 		.from(trafficViolations)
 		.where(whereClause);
 
-	// Get violations by type
+	// Get violations by description
 	const typeData = await db
 		.select({
-			violation_type_id: trafficViolations.violation_type_id,
 			description: trafficViolations.description,
 			count: count(),
 		})
 		.from(trafficViolations)
 		.where(whereClause)
-		.groupBy(trafficViolations.violation_type_id, trafficViolations.description)
+		.groupBy(trafficViolations.description)
 		.orderBy(sql`COUNT(*) DESC`)
 		.limit(limit);
 
 	const violationTypes = await Promise.all(
 		typeData.map(async (type) => {
-			// Get yearly data for this type
+			// Get yearly data for this description
 			const yearlyData = await db
 				.select({
 					year: sql<string>`EXTRACT(YEAR FROM ${trafficViolations.violation_date})::text`,
@@ -122,7 +119,7 @@ export const byType = async (c: any) => {
 				.from(trafficViolations)
 				.where(
 					and(
-						eq(trafficViolations.violation_type_id, type.violation_type_id),
+						eq(trafficViolations.description, type.description),
 						...(conditions.length > 0 ? conditions : ([] as any[])),
 					),
 				)
@@ -138,7 +135,6 @@ export const byType = async (c: any) => {
 			);
 
 			return {
-				violation_type_id: type.violation_type_id,
 				description: type.description,
 				total_violations: type.count,
 				percentage: totalResult?.count
@@ -219,7 +215,7 @@ export const byAgent = async (c: any) => {
 };
 
 export const temporalAnalysis = async (c: any) => {
-	const { start_date, end_date, violation_type_id } = c.req.valid("query");
+	const { start_date, end_date } = c.req.valid("query");
 
 	// Build conditions
 	const conditions: any[] = [];
@@ -230,9 +226,6 @@ export const temporalAnalysis = async (c: any) => {
 	}
 	if (end_date) {
 		conditions.push(lte(trafficViolations.violation_date, new Date(end_date)));
-	}
-	if (violation_type_id) {
-		conditions.push(eq(trafficViolations.violation_type_id, violation_type_id));
 	}
 
 	const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
@@ -259,13 +252,16 @@ export const temporalAnalysis = async (c: any) => {
 		.groupBy(sql`TO_CHAR(${trafficViolations.violation_date}, 'Day')`)
 		.orderBy(sql`EXTRACT(DOW FROM ${trafficViolations.violation_date})`);
 
-	// Get hourly data (mock - would need time field)
-	const hourlyData = [
-		{ hour: "08", count: 850 },
-		{ hour: "12", count: 1200 },
-		{ hour: "17", count: 1450 },
-		{ hour: "19", count: 980 },
-	];
+	// Get hourly data
+	const hourlyData = await db
+		.select({
+			hour: sql<string>`EXTRACT(HOUR FROM ${trafficViolations.violation_date})::text`,
+			count: count(),
+		})
+		.from(trafficViolations)
+		.where(whereClause)
+		.groupBy(sql`EXTRACT(HOUR FROM ${trafficViolations.violation_date})`)
+		.orderBy(sql`EXTRACT(HOUR FROM ${trafficViolations.violation_date})`);
 
 	const byMonth = monthlyData.reduce(
 		(acc, item) => {

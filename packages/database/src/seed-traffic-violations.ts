@@ -35,7 +35,7 @@ interface AddressData {
 function parseViolationDescription(description: string) {
 	const parts = description.split("|");
 	return {
-		violation_code: parts[0] || "",
+		cttu_code: parts[0] || "",
 		law_code: parts[1] || "",
 		description: parts[2] || "",
 	};
@@ -68,10 +68,10 @@ export async function seedTrafficViolations(config: DatabaseConfig = {}) {
 		const violationDict: ViolationDict = JSON.parse(violationDictRaw);
 		const locationDict: LocationDict = JSON.parse(locationDictRaw);
 
-		// Get existing street codes from official_streets table
+		// Get existing street codes from street_codes table
 		const existingStreets = await db
-			.select({ code: trafficViolationsSchema.officialStreets.code })
-			.from(trafficViolationsSchema.officialStreets);
+			.select({ code: trafficViolationsSchema.streetCodes.code })
+			.from(trafficViolationsSchema.streetCodes);
 		const existingStreetCodes = new Set(existingStreets.map((s) => s.code));
 
 		// Parse CSV data
@@ -142,18 +142,18 @@ export async function seedTrafficViolations(config: DatabaseConfig = {}) {
 				if (!violationDescription || !locationDescription) continue;
 
 				// Parse violation description
-				const { violation_code, law_code, description } =
+				const { cttu_code, law_code, description } =
 					parseViolationDescription(violationDescription);
 
 				// Get address info from CSV data
 				const addressInfo = addressLookup[violationData.local_id];
 				const prefeituraAddress = locationDescription;
 
-				// Get street code from address info (only if it exists in official_streets)
+				// Get street code from address info (only if it exists in street_codes)
 				let streetCode: number | null = null;
 				if (addressInfo?.codigo_logradouro) {
 					const code = Number(addressInfo.codigo_logradouro);
-					// Only set if it's a valid number, not 0, and exists in official_streets
+					// Only set if it's a valid number, not 0, and exists in street_codes
 					if (
 						!Number.isNaN(code) &&
 						code > 0 &&
@@ -162,10 +162,6 @@ export async function seedTrafficViolations(config: DatabaseConfig = {}) {
 						streetCode = code;
 					}
 				}
-
-				// COORDINATES DISABLED: Field is already PostGIS geometry, not text
-				// Need to use ST_GeomFromText() or raw SQL for PostGIS insertion
-				const coordinates = null;
 
 				// Build timestamp with validation
 				const violationDateTime = new Date(
@@ -186,24 +182,16 @@ export async function seedTrafficViolations(config: DatabaseConfig = {}) {
 				violationsToInsert.push({
 					violation_date: violationDateTime,
 					agent_id: violationData.agente_id,
-					violation_type_id: violationData.infracao_id,
 					location_id: violationData.local_id,
-					violation_code,
+					cttu_code,
 					law_code,
 					description,
 					location_description: prefeituraAddress,
-					coordinates,
 					street_code: streetCode,
-					complementary_data: {
-						original_violation_string: violationDescription,
-						address_info: addressInfo || null,
-					},
 				});
 			}
 
 			if (violationsToInsert.length > 0) {
-				// No coordinate validation needed - all coordinates are null
-
 				try {
 					await db
 						.insert(trafficViolationsSchema.trafficViolations)

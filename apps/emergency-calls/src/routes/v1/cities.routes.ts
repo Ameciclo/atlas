@@ -10,6 +10,18 @@ export const cities = createRoute({
 	tags,
 	summary: "Get cities with emergency calls data",
 	description: "List cities with SAMU data and detailed history",
+	request: {
+		query: z.object({
+			start_year: z.coerce.number().int().optional().default(2020).openapi({
+				description: "Start year (default: 2020)",
+				example: 2020,
+			}),
+			end_year: z.coerce.number().int().optional().openapi({
+				description: "End year (optional)",
+				example: 2024,
+			}),
+		}),
+	},
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
@@ -17,19 +29,20 @@ export const cities = createRoute({
 					z.object({
 						municipio_samu: z.string(),
 						count: z.number(),
-						id: z.number(),
 						name: z.string(),
 						rmr: z.boolean(),
 						ranking: z.number(),
+						display_name: z.string(),
 						historico_anual: z.array(
 							z.object({
 								ano: z.number(),
 								total_chamados: z.number(),
-								projecao_total_chamados: z.number(),
+								total: z.number(),
 								validos: z.object({
 									total: z.number(),
 									atendimento_concluido: z.number(),
 									removido_particulares: z.number(),
+									removido_bombeiros: z.number(),
 									obito_local: z.number(),
 								}),
 								invalidos: z.number(),

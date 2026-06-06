@@ -1,32 +1,45 @@
-import { and, count, eq, ilike, gte, lte, sql, desc } from "drizzle-orm";
+import {
+	and,
+	count,
+	desc,
+	eq,
+	gte,
+	ilike,
+	inArray,
+	lte,
+	sql,
+} from "drizzle-orm";
 import { db } from "../../db/index.js";
-import { officialStreets, trafficViolations } from "../../db/schema.js";
+import {
+	streetCodes,
+	pcrStreets,
+	trafficViolations,
+} from "../../db/schema.js";
+import {
+	buildConditions,
+} from "../../lib/query-helpers.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
-	listStreetsRoute,
 	getStreetRoute,
-	streetsRankingRoute,
-	streetSummaryRoute,
-	streetViolationsRoute,
+	listStreetsRoute,
 	neighborhoodsRoute,
+	streetSummaryRoute,
+	streetsGeoJSONRoute,
+	streetsRankingRoute,
+	streetViolationsRoute,
 } from "./streets.routes.js";
 
 export const listStreets: AppRouteHandler<typeof listStreetsRoute> = async (
 	c,
 ) => {
-	const { page, limit, search, neighborhood } = c.req.valid("query");
+	const { page, limit, search } = c.req.valid("query");
 	const offset = (page - 1) * limit;
 
 	try {
 		// Build where conditions
 		const conditions = [];
 		if (search) {
-			conditions.push(ilike(officialStreets.official_name, `%${search}%`));
-		}
-		if (neighborhood) {
-			conditions.push(
-				ilike(officialStreets.neighborhood_name, `%${neighborhood}%`),
-			);
+			conditions.push(ilike(streetCodes.official_name, `%${search}%`));
 		}
 
 		const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
@@ -34,7 +47,7 @@ export const listStreets: AppRouteHandler<typeof listStreetsRoute> = async (
 		// Get total count
 		const [totalResult] = await db
 			.select({ count: count() })
-			.from(officialStreets)
+			.from(streetCodes)
 			.where(whereClause);
 
 		const total = totalResult?.count || 0;
@@ -43,23 +56,19 @@ export const listStreets: AppRouteHandler<typeof listStreetsRoute> = async (
 		// Get paginated data
 		const streets = await db
 			.select({
-				id: officialStreets.id,
-				code: officialStreets.code,
-				name_concatenated: officialStreets.name_concatenated,
-				official_name: officialStreets.official_name,
-				short_name: officialStreets.short_name,
-				pavement_code: officialStreets.pavement_code,
-				pavement_description: officialStreets.pavement_description,
-				transport_corridor: officialStreets.transport_corridor,
-				perimeter_road: officialStreets.perimeter_road,
-				neighborhood_code: officialStreets.neighborhood_code,
-				neighborhood_name: officialStreets.neighborhood_name,
+				id: streetCodes.id,
+				code: streetCodes.code,
+				name_concatenated: streetCodes.name_concatenated,
+				official_name: streetCodes.official_name,
+				short_name: streetCodes.short_name,
+				pavement_code: streetCodes.pavement_code,
+				pavement_description: streetCodes.pavement_description,
 			})
-			.from(officialStreets)
+			.from(streetCodes)
 			.where(whereClause)
 			.limit(limit)
 			.offset(offset)
-			.orderBy(officialStreets.official_name);
+			.orderBy(streetCodes.official_name);
 
 		return c.json(
 			{
@@ -85,8 +94,8 @@ export const getStreet: AppRouteHandler<typeof getStreetRoute> = async (c) => {
 	try {
 		const [street] = await db
 			.select()
-			.from(officialStreets)
-			.where(eq(officialStreets.code, code))
+			.from(streetCodes)
+			.where(eq(streetCodes.code, code))
 			.limit(1);
 
 		if (!street) {
@@ -103,7 +112,7 @@ export const getStreet: AppRouteHandler<typeof getStreetRoute> = async (c) => {
 export const streetsRanking: AppRouteHandler<
 	typeof streetsRankingRoute
 > = async (c) => {
-	const { start_date, end_date, violation_type_id, limit } =
+	const { start_date, end_date, limit } =
 		c.req.valid("query");
 
 	try {
@@ -119,11 +128,6 @@ export const streetsRanking: AppRouteHandler<
 				lte(trafficViolations.violation_date, new Date(end_date)),
 			);
 		}
-		if (violation_type_id) {
-			conditions.push(
-				eq(trafficViolations.violation_type_id, violation_type_id),
-			);
-		}
 
 		const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
 
@@ -131,40 +135,62 @@ export const streetsRanking: AppRouteHandler<
 		const streetsWithViolations = await db
 			.select({
 				street_code: trafficViolations.street_code,
-				official_name: officialStreets.official_name,
-				short_name: officialStreets.short_name,
-				neighborhood_name: officialStreets.neighborhood_name,
-				transport_corridor: officialStreets.transport_corridor,
+				official_name: streetCodes.official_name,
+				short_name: streetCodes.short_name,
 				total_violations: count(),
 			})
 			.from(trafficViolations)
 			.innerJoin(
-				officialStreets,
-				eq(trafficViolations.street_code, officialStreets.code),
+				streetCodes,
+				eq(trafficViolations.street_code, streetCodes.code),
 			)
 			.where(whereClause)
 			.groupBy(
 				trafficViolations.street_code,
-				officialStreets.official_name,
-				officialStreets.short_name,
-				officialStreets.neighborhood_name,
-				officialStreets.transport_corridor,
+				streetCodes.official_name,
+				streetCodes.short_name,
 			)
 			.orderBy(desc(count()))
 			.limit(limit);
 
-		const streets = streetsWithViolations.map((street, index) => ({
-			street_code: street.street_code || 0,
-			official_name: street.official_name,
-			short_name: street.short_name,
-			neighborhood_name: street.neighborhood_name,
-			total_violations: street.total_violations,
-			ranking: index + 1,
-			violations_per_km:
-				Math.round((street.total_violations / (Math.random() * 5 + 1)) * 100) /
-				100, // Mock calculation
-			transport_corridor: street.transport_corridor,
-		}));
+		// Fetch street lengths from pcr_streets
+		const streetCodeList = streetsWithViolations
+			.map((s) => s.street_code)
+			.filter((c): c is number => c != null);
+
+		let lengthMap = new Map<number, number>();
+
+		if (streetCodeList.length > 0) {
+			const lengths = await db
+				.select({
+					street_code: pcrStreets.clogra_codi,
+					total_km: sql<number>`SUM(${pcrStreets.db2gse_sde}) / 1000.0`,
+				})
+				.from(pcrStreets)
+				.where(inArray(pcrStreets.clogra_codi, streetCodeList))
+				.groupBy(pcrStreets.clogra_codi);
+
+			lengthMap = new Map(
+				lengths.map((l) => [l.street_code, Number(l.total_km)]),
+			);
+		}
+
+		const streets = streetsWithViolations.map((street, index) => {
+			const totalKm = lengthMap.get(street.street_code || 0) || 0;
+			const violationsPerKm =
+				totalKm > 0
+					? Math.round((street.total_violations / totalKm) * 100) / 100
+					: 0;
+
+			return {
+				street_code: street.street_code || 0,
+				official_name: street.official_name,
+				short_name: street.short_name,
+				total_violations: street.total_violations,
+				ranking: index + 1,
+				violations_per_km: violationsPerKm,
+			};
+		});
 
 		return c.json({ streets }, 200) as any;
 	} catch (error) {
@@ -182,14 +208,11 @@ export const streetSummary: AppRouteHandler<typeof streetSummaryRoute> = async (
 		// Get street info
 		const [street] = await db
 			.select({
-				code: officialStreets.code,
-				official_name: officialStreets.official_name,
-				neighborhood_name: officialStreets.neighborhood_name,
-				transport_corridor: officialStreets.transport_corridor,
-				perimeter_road: officialStreets.perimeter_road,
+				code: streetCodes.code,
+				official_name: streetCodes.official_name,
 			})
-			.from(officialStreets)
-			.where(eq(officialStreets.code, street_code))
+			.from(streetCodes)
+			.where(eq(streetCodes.code, street_code))
 			.limit(1);
 
 		if (!street) {
@@ -213,19 +236,15 @@ export const streetSummary: AppRouteHandler<typeof streetSummaryRoute> = async (
 			.groupBy(sql`EXTRACT(YEAR FROM ${trafficViolations.violation_date})`)
 			.orderBy(sql`EXTRACT(YEAR FROM ${trafficViolations.violation_date})`);
 
-		// Get top violation types
-		const topTypes = await db
+		// Get top violation descriptions
+		const topDescriptions = await db
 			.select({
-				type_id: trafficViolations.violation_type_id,
 				description: trafficViolations.description,
 				count: count(),
 			})
 			.from(trafficViolations)
 			.where(eq(trafficViolations.street_code, street_code))
-			.groupBy(
-				trafficViolations.violation_type_id,
-				trafficViolations.description,
-			)
+			.groupBy(trafficViolations.description)
 			.orderBy(desc(count()))
 			.limit(5);
 
@@ -237,8 +256,7 @@ export const streetSummary: AppRouteHandler<typeof streetSummaryRoute> = async (
 			{} as Record<string, number>,
 		);
 
-		const topViolationTypes = topTypes.map((type) => ({
-			type_id: type.type_id,
+		const topViolationTypes = topDescriptions.map((type) => ({
 			description: type.description,
 			count: type.count,
 		}));
@@ -264,7 +282,7 @@ export const streetViolations: AppRouteHandler<
 	typeof streetViolationsRoute
 > = async (c) => {
 	const { street_code } = c.req.valid("param");
-	const { start_date, end_date, violation_type_id, limit, offset } =
+	const { start_date, end_date, limit, offset } =
 		c.req.valid("query");
 
 	try {
@@ -278,11 +296,6 @@ export const streetViolations: AppRouteHandler<
 		if (end_date) {
 			conditions.push(
 				lte(trafficViolations.violation_date, new Date(end_date)),
-			);
-		}
-		if (violation_type_id) {
-			conditions.push(
-				eq(trafficViolations.violation_type_id, violation_type_id),
 			);
 		}
 
@@ -300,7 +313,7 @@ export const streetViolations: AppRouteHandler<
 				id: trafficViolations.id,
 				date: sql<string>`${trafficViolations.violation_date}::date::text`,
 				time: sql<string>`${trafficViolations.violation_date}::time::text`,
-				violation_type_id: trafficViolations.violation_type_id,
+				description: trafficViolations.description,
 				violation_description: trafficViolations.description,
 				agent_id: trafficViolations.agent_id,
 				location_id: trafficViolations.location_id,
@@ -332,62 +345,120 @@ export const streetViolations: AppRouteHandler<
 export const neighborhoods: AppRouteHandler<typeof neighborhoodsRoute> = async (
 	c,
 ) => {
-	const { start_date, end_date, limit } = c.req.valid("query");
+	return c.json({ neighborhoods: [] }, 200) as any;
+};
+
+export const streetsGeoJSON: AppRouteHandler<
+	typeof streetsGeoJSONRoute
+> = async (c) => {
+	const {
+		violation_codes,
+		category,
+		agent_category,
+		start_date,
+		end_date,
+		limit,
+	} = c.req.valid("query");
+
+	const resultLimit = limit ?? 50;
 
 	try {
-		// Build date conditions
-		const conditions = [];
-		if (start_date) {
-			conditions.push(
-				gte(trafficViolations.violation_date, new Date(start_date)),
-			);
-		}
-		if (end_date) {
-			conditions.push(
-				lte(trafficViolations.violation_date, new Date(end_date)),
-			);
-		}
+		const whereClause = await buildConditions({
+			codes: violation_codes,
+			category,
+			agentCategory: agent_category,
+			startDate: start_date,
+			endDate: end_date,
+		});
 
-		const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
-
-		// Get neighborhoods with violation counts
-		const neighborhoodsData = await db
+		// Step 1: Get top streets by violation count (no pcrStreets join).
+		// This avoids count inflation from pcr street segments and is fast.
+		const streetsData = await db
 			.select({
-				neighborhood_code: officialStreets.neighborhood_code,
-				neighborhood_name: officialStreets.neighborhood_name,
-				total_violations: count(trafficViolations.id),
-				total_streets: sql<number>`COUNT(DISTINCT ${officialStreets.code})`,
+				street_code: trafficViolations.street_code,
+				street_name: streetCodes.official_name,
+				total_violations: count(),
 			})
 			.from(trafficViolations)
 			.innerJoin(
-				officialStreets,
-				eq(trafficViolations.street_code, officialStreets.code),
+				streetCodes,
+				eq(trafficViolations.street_code, streetCodes.code),
 			)
 			.where(whereClause)
 			.groupBy(
-				officialStreets.neighborhood_code,
-				officialStreets.neighborhood_name,
+				trafficViolations.street_code,
+				streetCodes.official_name,
 			)
-			.orderBy(desc(count(trafficViolations.id)))
-			.limit(limit);
+			.orderBy(desc(count()))
+			.limit(resultLimit);
 
-		const neighborhoods = neighborhoodsData
-			.filter((n) => n.neighborhood_name) // Filter out null neighborhoods
-			.map((neighborhood, index) => ({
-				neighborhood_code: neighborhood.neighborhood_code,
-				neighborhood_name: neighborhood.neighborhood_name || "Unknown",
-				total_violations: neighborhood.total_violations,
-				total_streets: neighborhood.total_streets,
-				violations_per_street:
-					Math.round(
-						(neighborhood.total_violations / neighborhood.total_streets) * 100,
-					) / 100,
-				ranking: index + 1,
-			}));
+		const streetCodeList = streetsData
+			.map((s) => s.street_code)
+			.filter((c): c is number => c != null);
 
-		return c.json({ neighborhoods }, 200) as any;
+		// Step 2: Get geometry and length from pcrStreets only for top streets.
+		// Two separate queries because SUM(db2gse_sde) <> ST_Collect aggregates differently.
+			const geoMap = new Map<number, string>();
+		const lengthMap = new Map<number, number>();
+
+		if (streetCodeList.length > 0) {
+			const [geoResults, lengthResults] = await Promise.all([
+				db
+					.select({
+						street_code: pcrStreets.clogra_codi,
+						geometry:
+							sql<string>`ST_AsGeoJSON(ST_Collect(${pcrStreets.coordinates}))`.as(
+								"geometry",
+							),
+					})
+					.from(pcrStreets)
+					.where(inArray(pcrStreets.clogra_codi, streetCodeList))
+					.groupBy(pcrStreets.clogra_codi),
+				db
+					.select({
+						street_code: pcrStreets.clogra_codi,
+						total_km: sql<number>`SUM(${pcrStreets.db2gse_sde}) / 1000.0`,
+					})
+					.from(pcrStreets)
+					.where(inArray(pcrStreets.clogra_codi, streetCodeList))
+					.groupBy(pcrStreets.clogra_codi),
+			]);
+
+			for (const g of geoResults) {
+				geoMap.set(g.street_code, g.geometry);
+			}
+			for (const l of lengthResults) {
+				lengthMap.set(l.street_code, Number(l.total_km));
+			}
+		}
+
+		const features = streetsData
+			.map((s) => {
+				const code = s.street_code ?? 0;
+				const totalKm = lengthMap.get(code) || 0;
+				const geometry = geoMap.get(code);
+				const parsed = geometry ? JSON.parse(geometry) : null;
+				return {
+					type: "Feature" as const,
+					geometry: parsed?.type
+						? parsed
+						: { type: "MultiLineString", coordinates: [] },
+					properties: {
+						street_code: code,
+						street_name: s.street_name,
+						total_violations: s.total_violations,
+						extension_km: Math.round(totalKm * 100) / 100,
+						violations_per_km:
+							totalKm > 0
+								? Math.round((s.total_violations / totalKm) * 100) / 100
+								: 0,
+					},
+				};
+			});
+
+		return c.json({ type: "FeatureCollection" as const, features }, 200) as any;
 	} catch (error) {
-		console.error("Error fetching neighborhoods:", error);
+		console.error("Error fetching streets GeoJSON:", error);
 		return c.json({ error: "Internal server error" }, 500);
 	}
 };

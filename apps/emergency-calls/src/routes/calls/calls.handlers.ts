@@ -1,13 +1,13 @@
 import { and, eq, gte, lte, count } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import * as HttpStatusPhrases from "stoker/http-status-phrases";
-import { db, ensureConnection } from "../../db/index.js";
+import { db } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type { GetByIdRoute, ListRoute } from "./calls.routes.js";
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
-	await ensureConnection();
+
 	const { municipality, subtype, start_date, end_date, limit, offset } =
 		c.req.valid("query");
 
@@ -55,7 +55,7 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 };
 
 export const getById: AppRouteHandler<GetByIdRoute> = async (c) => {
-	await ensureConnection();
+
 	const { id } = c.req.valid("param");
 
 	const call = await db.query.emergencyCalls.findFirst({

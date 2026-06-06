@@ -43,7 +43,7 @@ export async function seedPcrStreets(config: DatabaseConfig = {}) {
 
 		const dataPath = join(
 			import.meta.dirname,
-			"../seed-data/pcr_streets/trechos-de-logradouros.geojson",
+			"../../../apps/traffic-violations/src/db/Trechos de Logradouros.geojson",
 		);
 
 		const geoJsonData = await readFile(dataPath, "utf-8");

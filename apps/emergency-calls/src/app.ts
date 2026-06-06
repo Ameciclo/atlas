@@ -12,16 +12,18 @@ import v1CitiesRoutes from "./routes/v1/cities.index.js";
 
 // V2 Routes
 import v2UnsafeStreetsRoutes from "./routes/v2/unsafe-streets/unsafe-streets.index.js";
+import v2StreetsHistoryRoutes from "./routes/v2/streets/history/streets-history.index.js";
 
 const app = createApp()
 	.route("/", healthRoutes)
-	.route("/v1", callsRoutes)
 	.route("/v1", callsSummaryRoutes)
+	.route("/v1", callsRoutes)
 	.route("/v1", v1SummaryRoutes)
 	.route("/v1", v1FiltersRoutes)
 	.route("/v1", v1StreetsRoutes)
 	.route("/v1", v1CitiesRoutes)
 	.route("/v1", analyticsRoutes)
-	.route("/v2", v2UnsafeStreetsRoutes);
+	.route("/v2", v2UnsafeStreetsRoutes)
+	.route("/v2", v2StreetsHistoryRoutes);
 
 export default app;

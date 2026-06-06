@@ -39,7 +39,7 @@ export const list = createRoute({
 	tags,
 	summary: "List cycling infrastructure",
 	description:
-		"Get all cycling infrastructure from ciclomapa (existing infrastructure)",
+		"This endpoint is deprecated. Use /v1/ways/all-ways and /v1/ways/summary instead.",
 	request: {
 		query: z.object({
 			type: z.string().optional().openapi({

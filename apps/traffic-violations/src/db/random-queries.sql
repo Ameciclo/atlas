@@ -34,13 +34,12 @@ ORDER BY month;
 -- 3. ANÁLISE DE TIPOS DE VIOLAÇÃO
 -- ============================================================================
 
--- Top 10 tipos de violação mais frequentes
+-- Top 10 violações mais frequentes por código CTTU
 SELECT 
-  violation_type_id,
-  violation_code,
+  cttu_code,
   COUNT(*) as frequency
 FROM traffic_violations 
-GROUP BY violation_type_id, violation_code 
+GROUP BY cttu_code 
 ORDER BY frequency DESC 
 LIMIT 10;
 
@@ -145,7 +144,7 @@ SELECT
   COUNT(CASE WHEN agent_id IS NULL THEN 1 END) as null_agent_id,
   COUNT(CASE WHEN violation_type_id IS NULL THEN 1 END) as null_violation_type_id,
   COUNT(CASE WHEN location_id IS NULL THEN 1 END) as null_location_id,
-  COUNT(CASE WHEN violation_code IS NULL THEN 1 END) as null_violation_code,
+  COUNT(CASE WHEN cttu_code IS NULL THEN 1 END) as null_cttu_code,
   COUNT(CASE WHEN law_code IS NULL THEN 1 END) as null_law_code,
   COUNT(CASE WHEN description IS NULL THEN 1 END) as null_description,
   COUNT(CASE WHEN location_description IS NULL THEN 1 END) as null_location_description
@@ -176,13 +175,13 @@ ORDER BY hour;
 -- ============================================================================
 
 -- 5 violações mais recentes
-SELECT id, violation_date, violation_code, location_description
+SELECT id, violation_date, cttu_code, location_description
 FROM traffic_violations 
 ORDER BY violation_date DESC 
 LIMIT 5;
 
 -- 5 violações mais antigas
-SELECT id, violation_date, violation_code, location_description
+SELECT id, violation_date, cttu_code, location_description
 FROM traffic_violations 
 ORDER BY violation_date ASC 
 LIMIT 5;
@@ -256,7 +255,7 @@ FROM traffic_violations
 WHERE EXTRACT(YEAR FROM violation_date) = 2024;
 
 -- Amostra de registros de 2024
-SELECT id, violation_date, violation_code, location_description
+SELECT id, violation_date, cttu_code, location_description
 FROM traffic_violations 
 WHERE EXTRACT(YEAR FROM violation_date) = 2024
 ORDER BY violation_date DESC

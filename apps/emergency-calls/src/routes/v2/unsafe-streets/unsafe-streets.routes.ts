@@ -17,6 +17,16 @@ export const citySummary = createRoute({
 				example: "RECIFE",
 			}),
 		}),
+		query: z.object({
+			start_year: z.coerce.number().optional().default(2020).openapi({
+				description: "Start year",
+				example: 2020,
+			}),
+			end_year: z.coerce.number().optional().openapi({
+				description: "End year",
+				example: 2022,
+			}),
+		}),
 	},
 	responses: {
 		[HttpStatusCodes.OK]: jsonContent(
@@ -25,6 +35,11 @@ export const citySummary = createRoute({
 				total_accidents: z.number(),
 				accidents_per_year: z.record(z.number()),
 				total_streets: z.number(),
+				extensaoTotalKm: z.number().optional(),
+				period: z.object({
+					start_year: z.number(),
+					end_year: z.number(),
+				}),
 				most_dangerous_street: z.object({
 					name: z.string(),
 					total_accidents: z.number(),
@@ -61,7 +76,7 @@ export const streetSummary = createRoute({
 				street_name: z.string(),
 				total_victims: z.number(),
 				victims_per_year: z.record(z.number()),
-				street_extension_km: z.number(),
+				street_extension_km: z.number().optional(),
 			}),
 			"Street accidents summary",
 		),
@@ -86,6 +101,14 @@ export const cityConcentration = createRoute({
 				description: "Interval for concentration (1, 5, 10, 15, 20)",
 				example: 10,
 			}),
+			start_year: z.coerce.number().optional().default(2020).openapi({
+				description: "Start year",
+				example: 2020,
+			}),
+			end_year: z.coerce.number().optional().openapi({
+				description: "End year",
+				example: 2022,
+			}),
 		}),
 	},
 	responses: {
@@ -97,7 +120,7 @@ export const cityConcentration = createRoute({
 					z.object({
 						ranking: z.number(),
 						total_accidents: z.number(),
-						street_extension_km: z.number(),
+						street_extension_km: z.number().optional(),
 					}),
 				),
 			}),
@@ -128,6 +151,14 @@ export const cityGeoJSON = createRoute({
 				description: "Ending ranking position",
 				example: 10,
 			}),
+			start_year: z.coerce.number().optional().default(2020).openapi({
+				description: "Start year",
+				example: 2020,
+			}),
+			end_year: z.coerce.number().optional().openapi({
+				description: "End year",
+				example: 2022,
+			}),
 		}),
 	},
 	responses: {
@@ -139,13 +170,14 @@ export const cityGeoJSON = createRoute({
 						type: z.literal("Feature"),
 						geometry: z.object({
 							type: z.string(),
-							coordinates: z.array(z.array(z.number())),
+							coordinates: z.any(),
 						}),
 						properties: z.object({
 							accidents_count: z.number(),
+							accidents_by_category: z.record(z.number()),
 							ranking: z.number(),
-							extension_km: z.number(),
 							street_name: z.string(),
+							extension_km: z.number().optional(),
 						}),
 					}),
 				),
@@ -220,11 +252,12 @@ export const streetGeoJSON = createRoute({
 						type: z.literal("Feature"),
 						geometry: z.object({
 							type: z.string(),
-							coordinates: z.array(z.array(z.number())),
+							coordinates: z.any(),
 						}),
 						properties: z.object({
 							street_name: z.string(),
 							accidents_count: z.number(),
+							extension_km: z.number().optional(),
 						}),
 					}),
 				),
@@ -252,8 +285,8 @@ export const streetEvolution = createRoute({
 				description: "City name for filtering",
 				example: "RECIFE",
 			}),
-			start_year: z.coerce.number().optional().openapi({
-				description: "Start year",
+			start_year: z.coerce.number().optional().default(2020).openapi({
+				description: "Start year. Defaults to 2020",
 				example: 2020,
 			}),
 			end_year: z.coerce.number().optional().openapi({

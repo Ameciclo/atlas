@@ -43,6 +43,55 @@
 			"when": 1762539263151,
 			"tag": "0005_remarkable_inhumans",
 			"breakpoints": true
+		},
+		{
+			"idx": 6,
+			"version": "7",
+			"when": 1763400000000,
+			"tag": "0006_slim_cyclops",
+			"breakpoints": true
+		},
+		{
+			"idx": 7,
+			"version": "7",
+			"when": 1768200000000,
+			"tag": "0007_clean_duplicates",
+			"breakpoints": true
+		},
+		{
+			"idx": 8,
+			"version": "7",
+			"when": 1747850000000,
+			"tag": "0008_remove_ciclomapa",
+			"breakpoints": true
+		},
+		{
+			"idx": 9,
+			"version": "7",
+			"when": 1747860000000,
+			"tag": "0009_raving_goldbug",
+			"breakpoints": true
+		},
+		{
+			"idx": 10,
+			"version": "7",
+			"when": 1747870000000,
+			"tag": "0010_link_emergency_calls_pcr_streets",
+			"breakpoints": true
+		},
+		{
+			"idx": 11,
+			"version": "7",
+			"when": 1747890000000,
+			"tag": "0012_add_execution_columns",
+			"breakpoints": true
+		},
+		{
+			"idx": 12,
+			"version": "7",
+			"when": 1780062000000,
+			"tag": "0013_drop_official_streets",
+			"breakpoints": true
 		}
 	]
 }

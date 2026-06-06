@@ -1,24 +1,22 @@
 import { config } from "dotenv";
-config({ path: "../../.env" });
-import { drizzle } from "drizzle-orm/node-postgres";
-import pkg from "pg";
 
-const { Client } = pkg;
+config({ path: "../../.env" });
 
 import * as schema from "@atlas/database/schemas/traffic-violations";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { Pool } from "pg";
 
-const client = new Client({
+const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
-	ssl: false, // Disable SSL for local development
+	ssl: false,
 });
 
-let connected = false;
-
-export const db = drizzle(client, { schema });
+export const db = drizzle(pool, { schema });
 
 export async function ensureConnection() {
-	if (!connected) {
-		await client.connect();
-		connected = true;
+	try {
+		await pool.query("SELECT 1");
+	} catch {
+		// pool handles reconnection automatically
 	}
 }
