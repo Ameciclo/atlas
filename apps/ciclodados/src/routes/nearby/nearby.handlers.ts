@@ -190,21 +190,30 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 
 	// 6. Infraestrutura cicloviária existente (agrupada)
 	const existingInfra = await db.execute(sql`
+		WITH parsed_ways AS (
+			SELECT 
+				prw.osm_properties,
+				prw.name,
+				ST_GeomFromGeoJSON(prw.geojson#>'{features,0,geometry}')::geography as way_geography
+			FROM pdc_relation_ways prw
+			WHERE prw.geojson#>'{features,0,geometry}' IS NOT NULL
+		)
 		SELECT 
-			infra_type as type, 
+			osm_properties->>'cycleway_typology' as type, 
 			COALESCE(name, 'Sem nome') as name,
 			MIN(ST_Distance(
 				ST_Point(${lng}, ${lat})::geography,
-				coordinates::geography
+				way_geography
 			)) as distance_meters,
 			COUNT(*) as segments
-		FROM ciclomapa_infra 
-		WHERE ST_DWithin(
+		FROM parsed_ways
+		WHERE (osm_properties->>'has_cycleway')::boolean = true
+		  AND ST_DWithin(
 			ST_Point(${lng}, ${lat})::geography,
-			coordinates::geography,
+			way_geography,
 			${radiusConfig.cycling_infra}
 		)
-		GROUP BY infra_type, COALESCE(name, 'Sem nome')
+		GROUP BY osm_properties->>'cycleway_typology', COALESCE(name, 'Sem nome')
 		ORDER BY distance_meters
 		LIMIT 5
 	`);
@@ -220,10 +229,12 @@ export const nearbyHandler: RouteHandler<typeof nearbyRoute> = async (c) => {
 			cir.pdc_cities,
 			cir.pdc_km
 		FROM cyclist_infra_relations cir
-		JOIN pdc_relation_ways prw ON cir.id = prw.relation_id
+		JOIN pdc_relation_ways prw 
+			ON cir.id = prw.relation_id 
+			AND prw.geojson#>'{features,0,geometry}' IS NOT NULL
 		WHERE ST_DWithin(
 			ST_Point(${lng}, ${lat})::geography,
-			coordinates::geography,
+			ST_GeomFromGeoJSON(prw.geojson#>'{features,0,geometry}')::geography,
 			${radiusConfig.cycling_infra}
 		) AND cir.pdc_ref IS NOT NULL
 		LIMIT 5
