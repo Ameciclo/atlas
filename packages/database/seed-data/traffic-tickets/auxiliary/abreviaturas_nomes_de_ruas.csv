@@ -1,0 +1,133 @@
+﻿abreviatura,chave_normalizada,expansao,categoria,ambigua,prioridade,origem
+Dep.,DEP,Deputado,cargo_politico,nao,comum,adicionada
+Dep.ª,DEP,Deputada,cargo_politico,nao,comum,adicionada
+Gov.,GOV,Governador,cargo_politico,nao,comum,lista fornecida
+Gov.ª,GOV,Governadora,cargo_politico,nao,comum,adicionada
+Min.,MIN,Ministro,cargo_politico,nao,comum,lista fornecida
+Min.ª,MIN,Ministra,cargo_politico,nao,comum,adicionada
+Pref.,PREF,Prefeito,cargo_politico,nao,comum,lista fornecida
+Pref.ª,PREF,Prefeita,cargo_politico,nao,comum,adicionada
+Pres.,PRES,Presidente,cargo_politico,nao,comum,lista fornecida
+Sen.,SEN,Senador,cargo_politico,nao,comum,adicionada
+Sen.ª,SEN,Senadora,cargo_politico,nao,comum,adicionada
+Ver.,VER,Vereador,cargo_politico,nao,comum,adicionada
+Ver.ª,VER,Vereadora,cargo_politico,nao,comum,adicionada
+Ac.,AC,Acesso,tipo_logradouro,nao,comum,adicionada
+Al,AL,Alameda,tipo_logradouro,nao,comum,variante comum
+Al.,AL,Alameda,tipo_logradouro,nao,comum,lista fornecida
+Av,AV,Avenida,tipo_logradouro,nao,comum,variante comum
+Av.,AV,Avenida,tipo_logradouro,nao,comum,lista fornecida
+Aven.,AVEN,Avenida,tipo_logradouro,nao,comum,lista fornecida
+B.,B,Beco,tipo_logradouro,nao,comum,lista fornecida
+Bco.,BCO,Beco,tipo_logradouro,nao,comum,adicionada
+C.,C,Calçada,tipo_logradouro,nao,comum,lista fornecida
+Calç.,CALC,Calçada,tipo_logradouro,nao,comum,lista fornecida
+Conj.,CONJ,Conjunto,tipo_logradouro,nao,comum,adicionada
+Esc.,ESC,Escadas,tipo_logradouro,sim,comum,lista fornecida
+Esc.,ESC,Escadinhas,tipo_logradouro,sim,comum,lista fornecida
+Est.,EST,Estrada,tipo_logradouro,nao,comum,lista fornecida
+Estr.,ESTR,Estrada,tipo_logradouro,nao,comum,lista fornecida
+Jd.,JD,Jardim,tipo_logradouro,nao,comum,adicionada
+L.,L,Largo,tipo_logradouro,nao,comum,lista fornecida
+Lgo.,LGO,Largo,tipo_logradouro,nao,comum,adicionada
+Lot.,LOT,Loteamento,tipo_logradouro,nao,comum,adicionada
+Marg.,MARG,Marginal,tipo_logradouro,nao,comum,adicionada
+P.,P,Praça,tipo_logradouro,sim,comum,lista fornecida
+Pç.,PC,Praça,tipo_logradouro,nao,comum,adicionada
+Pça.,PCA,Praça,tipo_logradouro,nao,comum,adicionada
+Pq.,PQ,Parque,tipo_logradouro,nao,comum,adicionada
+Psg.,PSG,Passagem,tipo_logradouro,nao,comum,adicionada
+Pss.,PSS,Passagem,tipo_logradouro,nao,comum,adicionada
+Qd.,QD,Quadra,tipo_logradouro,nao,comum,adicionada
+R,R,Rua,tipo_logradouro,nao,comum,variante comum
+R.,R,Rua,tipo_logradouro,nao,comum,lista fornecida
+Rdv.,RDV,Rodovia,tipo_logradouro,nao,comum,adicionada
+Rod.,ROD,Rodovia,tipo_logradouro,nao,comum,lista fornecida
+Srv.,SRV,Servidão,tipo_logradouro,nao,comum,lista fornecida
+T.,T,Travessa,tipo_logradouro,nao,comum,lista fornecida
+Trav.,TRAV,Travessa,tipo_logradouro,nao,comum,lista fornecida
+Tun.,TUN,Túnel,tipo_logradouro,nao,comum,adicionada
+Tv.,TV,Travessa,tipo_logradouro,nao,comum,adicionada
+Vd.,VD,Viaduto,tipo_logradouro,nao,comum,adicionada
+Vl.,VL,Vila,tipo_logradouro,nao,comum,adicionada
+Bar.,BAR,Barão,titulo_honorifico,nao,comum,lista fornecida
+Cde.,CDE,Conde,titulo_honorifico,nao,comum,lista fornecida
+Cdessa.,CDESSA,Condessa,titulo_honorifico,nao,comum,lista fornecida
+Com.,COM,Comendador,titulo_honorifico,nao,comum,variante comum
+Comend.,COMEND,Comendador,titulo_honorifico,nao,comum,lista fornecida
+V.de,VDE,Visconde,titulo_honorifico,nao,comum,lista fornecida
+Vde.,VDE,Visconde,titulo_honorifico,nao,comum,adicionada
+V.dessa,VDESSA,Viscondessa,titulo_honorifico,nao,comum,lista fornecida
+Alm.,ALM,Almirante,titulo_militar,nao,comum,lista fornecida
+Alm.-Esqdra,ALMESQDRA,Almirante-de-Esquadra,titulo_militar,nao,comum,lista fornecida
+Brig.,BRIG,Brigadeiro,titulo_militar,nao,comum,lista fornecida
+C.-Alm.,CALM,Contra-Almirante,titulo_militar,nao,comum,lista fornecida
+Cap.,CAP,Capitão,titulo_militar,nao,comum,lista fornecida
+Cap. Corv.,CAPCORV,Capitão-de-Corveta,titulo_militar,nao,comum,lista fornecida
+Cap. Fr.,CAPFR,Capitão-de-Fragata,titulo_militar,nao,comum,lista fornecida
+Cap.-Ten.,CAPTEN,Capitão-Tenente,titulo_militar,nao,comum,lista fornecida
+Cb.,CB,Cabo,titulo_militar,nao,comum,lista fornecida
+Cel.,CEL,Coronel,titulo_militar,nao,comum,lista fornecida
+Gal.,GAL,General,titulo_militar,nao,comum,lista fornecida
+Gen.,GEN,General,titulo_militar,nao,comum,adicionada
+Maj.,MAJ,Major,titulo_militar,nao,comum,lista fornecida
+Maj.-Brig.,MAJBRIG,Major-Brigadeiro,titulo_militar,nao,comum,lista fornecida
+Mal.,MAL,Marechal,titulo_militar,nao,comum,lista fornecida
+Sarg.,SARG,Sargento,titulo_militar,nao,comum,lista fornecida
+Sgt.,SGT,Sargento,titulo_militar,nao,comum,adicionada
+Sold.,SOLD,Soldado,titulo_militar,nao,comum,adicionada
+Subten.,SUBTEN,Subtenente,titulo_militar,nao,comum,adicionada
+Ten.,TEN,Tenente,titulo_militar,nao,comum,lista fornecida
+Ten.-Cel.,TENCEL,Tenente-Coronel,titulo_militar,nao,comum,lista fornecida
+T.te,TTE,Tenente,titulo_militar,nao,comum,lista fornecida
+T.te-C.el,TTECEL,Tenente-Coronel,titulo_militar,nao,comum,lista fornecida
+V.-Alm.,VALM,Vice-Almirante,titulo_militar,nao,comum,lista fornecida
+Adv.,ADV,Advogado,titulo_profissional,nao,comum,lista fornecida
+Arq.,ARQ,Arquiteto,titulo_profissional,nao,comum,adicionada
+Arq.ª,ARQ,Arquiteta,titulo_profissional,nao,comum,adicionada
+Cons.,CONS,Conselheiro,titulo_profissional,nao,comum,lista fornecida
+Des.,DES,Desembargador,titulo_profissional,nao,comum,adicionada
+Desemb.,DESEMB,Desembargador,titulo_profissional,nao,comum,lista fornecida
+Dr.,DR,Doutor,titulo_profissional,nao,comum,lista fornecida
+Dr.ª,DR,Doutora,titulo_profissional,nao,comum,lista fornecida
+Dra.,DRA,Doutora,titulo_profissional,nao,comum,lista fornecida
+Eng.,ENG,Engenheiro,titulo_profissional,nao,comum,variante comum
+Eng.ª,ENG,Engenheira,titulo_profissional,nao,comum,lista fornecida
+Eng.º,ENG,Engenheiro,titulo_profissional,nao,comum,lista fornecida
+Escr.,ESCR,Escritor,titulo_profissional,nao,comum,lista fornecida
+Jorn.,JORN,Jornalista,titulo_profissional,nao,comum,adicionada
+Juiz.,JUIZ,Juiz,titulo_profissional,nao,comum,adicionada
+Maest.,MAEST,Maestro,titulo_profissional,nao,comum,adicionada
+Mtro.,MTRO,Maestro,titulo_profissional,nao,comum,adicionada
+Poet.,POET,Poeta,titulo_profissional,nao,comum,adicionada
+Proc.,PROC,Procurador,titulo_profissional,nao,comum,adicionada
+Prof.,PROF,Professor,titulo_profissional,nao,comum,lista fornecida
+Prof.ª,PROF,Professora,titulo_profissional,nao,comum,lista fornecida
+Profa.,PROFA,Professora,titulo_profissional,nao,comum,adicionada
+Prom.,PROM,Promotor,titulo_profissional,nao,comum,adicionada
+Arceb.,ARCEB,Arcebispo,titulo_religioso,nao,comum,lista fornecida
+Bp.,BP,Bispo,titulo_religioso,nao,comum,lista fornecida
+Côn.,CON,Cônego,titulo_religioso,nao,comum,lista fornecida
+Fr.,FR,Frei,titulo_religioso,nao,comum,lista fornecida
+Irm.,IRM,Irmã,titulo_religioso,sim,comum,adicionada
+Irm.,IRM,Irmão,titulo_religioso,sim,comum,adicionada
+Mons.,MONS,Monsenhor,titulo_religioso,nao,comum,lista fornecida
+N. S.,NS,Nossa Senhora,titulo_religioso,sim,comum,adicionada
+Nsa. Sra.,NSASRA,Nossa Senhora,titulo_religioso,nao,comum,adicionada
+N. Sr.,NSR,Nosso Senhor,titulo_religioso,nao,comum,adicionada
+N. Sra.,NSRA,Nossa Senhora,titulo_religioso,nao,comum,adicionada
+P.,P,Padre,titulo_religioso,sim,comum,lista fornecida
+Pe.,PE,Padre,titulo_religioso,nao,comum,lista fornecida
+Rev.,REV,Reverendo,titulo_religioso,nao,comum,lista fornecida
+S.,S,Santa,titulo_religioso,sim,comum,lista fornecida
+S.,S,Santo,titulo_religioso,sim,comum,lista fornecida
+S.,S,São,titulo_religioso,sim,comum,lista fornecida
+S.ta,STA,Santa,titulo_religioso,nao,comum,lista fornecida
+Sta.,STA,Santa,titulo_religioso,nao,comum,adicionada
+S.to,STO,Santo,titulo_religioso,nao,comum,lista fornecida
+Sto.,STO,Santo,titulo_religioso,nao,comum,lista fornecida
+D.,D,Dom,tratamento,sim,comum,lista fornecida
+D.,D,Dona,tratamento,sim,comum,lista fornecida
+Da.,DA,Dona,tratamento,nao,comum,lista fornecida
+Sr.,SR,Senhor,tratamento,nao,comum,adicionada
+Sra.,SRA,Senhora,tratamento,nao,comum,adicionada

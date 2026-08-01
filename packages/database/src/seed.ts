@@ -8,10 +8,13 @@ import { seedTrafficDeaths } from "./seed-traffic-deaths.js";
 import { seedBicycleRacksFromGeoJSON } from "./seed-bicycle-racks.js";
 import { seedTrafficCalls } from "./seed-traffic-calls.js";
 import { seedOfficialStreets } from "./seed-official-streets.js";
-import { seedTrafficViolations } from "./seed-traffic-violations.js";
-import { seedCyclingInfra } from "./seed-cycling-infra.js";
+import {
+	seedCyclingInfra,
+	seedCyclingInfraStatic,
+} from "./seed-cycling-infra.js";
 import { seedSharedBike } from "./seed-shared-bike.js";
 import { seedPcrStreets } from "./seed-pcr-streets.js";
+import { seedTrafficTickets } from "./seed-traffic-tickets.js";
 
 // Load environment variables from .env.local first, then .env
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
@@ -129,11 +132,11 @@ async function masterSeed(options: SeedOptions = {}) {
 			fn: seedOfficialStreets,
 		},
 		{
-			name: "Traffic Violations",
-			id: "violations",
-			icon: "🚨",
-			color: chalk.magenta,
-			fn: seedTrafficViolations,
+			name: "Cycling Infra Static",
+			id: "cycling-infra-static",
+			icon: "🗺️",
+			color: chalk.cyan,
+			fn: seedCyclingInfraStatic,
 		},
 		{
 			name: "Cycling Infrastructure",
@@ -155,6 +158,13 @@ async function masterSeed(options: SeedOptions = {}) {
 			icon: "🛣️",
 			color: chalk.yellow,
 			fn: seedPcrStreets,
+		},
+		{
+			name: "Traffic Tickets",
+			id: "traffic-tickets",
+			icon: "🚗",
+			color: chalk.magenta,
+			fn: seedTrafficTickets,
 		},
 	];
 

@@ -1,0 +1,1213 @@
+semaforo	street_code	street_name	score	raw_location	location_index
+1	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+2	1465	Avenida Conselheiro Aguiar	1.000	Av. Conselheiro Aguiar	1
+2	61220	Rua Tomé Gibson	0.667	Rua Thomé Gibson	2
+3	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+3	25640	Rua Franca Pereira	1.000	Rua França Pereira	2
+4	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+4	56260	Rua Barão de Souza Leão	1.000	Rua Barão de Souza Leão	2
+5	1465	Avenida Conselheiro Aguiar	1.000	Av. Conselheiro Aguiar	1
+5	8460	Rua Artur Muniz	1.000	Rua Artur Muniz	2
+6	1465	Avenida Conselheiro Aguiar	1.000	Av. Conselheiro Aguiar	1
+6	5690	Rua Antônio Falcão	1.000	Rua Antônio Falcão	2
+7	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+7	32468	Rua Jamaica	1.000	Rua Jamaica	2
+8	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+8	11916	Rua Bom Pastor	1.000	Rua Bom Pastor	2
+9	18481	Avenida Cruz Cabuga	1.000	Av.Cruz Cabugá	1
+10	49352	Avenida Parnamirim	1.000	Av. Parnamirim	2
+11	52221	Rua Conselheiro Portela	1.000	Rua Conselheiro Portela	1
+12	65242	Rua Barão da Vitória	1.000	Rua Barão da Vitória	1
+12	36277	Rua Floriano Peixoto	1.000	Rua Floriano Peixoto	2
+13	11584	Rua do Sol	1.000	Rua do Sol	1
+13	120022	Rua Nova	1.000	Rua Nova	2
+14	11584	Rua do Sol	1.000	Rua do Sol	1
+14	28010	Avenida Guararapes	1.000	Av. Guararapes	2
+15	19054	Avenida Dantas Barreto	1.000	Av. Dantas Barreto	1
+15	28010	Avenida Guararapes	1.000	Av. Guararapes	2
+16	56871	Avenida Recife	1.000	Av. Recife	1
+16	46191	Rua São Nicolau	1.000	Rua São Nicolau	2
+17	46310	Rua Nossa Senhora do Carmo	0.750	Av. Nossa Senhora do Carmo	1
+17	15911	Rua Duque de Caxias	1.000	Rua Duque de Caxias	2
+18	50393	Rua Imperador Dom Pedro II	1.000	Rua do Imperador	1
+18	117714	Rua Treze de Março	1.000	Rua 1º de Março	2
+19	57630	Avenida Rio Branco	1.000	Av. Rio Branco	1
+19	6564	Cais do Apolo	1.000	Cais do Apolo	2
+20	47406	Avenida Marquês de Olinda	0.667	Av. Marquez de Olinda	1
+20	19429	Rua Madre de Deus	1.000	Rua Madre de Deus	2
+21	29238	Rua da Hora	1.000	Rua da Hora	1
+22	31810	Rua Princesa Isabel	1.000	Rua Princesa Isabel	1
+22	99295	Rua Bela Aurora	1.000	Rua da Aurora	2
+23	11738	Avenida Conde da Boa Vista	1.000	Av. Conde da Boa Vista	1
+23	29335	Rua do Hospício	1.000	Rua do Hospício	2
+24	11738	Avenida Conde da Boa Vista	1.000	Av. Conde da Boa Vista	1
+24	26565	Rua Gervásio Pires	1.000	Rua Gervásio Pires	2
+25	11738	Avenida Conde da Boa Vista	1.000	Av. Conde da Boa Vista	1
+25	56073	Rua da Soledade	1.000	Rua da Soledade	2
+26	10650	Estrada de Belém	1.000	Estrada de Belém	1
+26	47171	Rua Odorico Mendes	1.000	Rua Odorico Mendes	2
+27	11738	Avenida Conde da Boa Vista	1.000	Av. Conde da Boa Vista	1
+27	12165	Rua Dom Bosco	1.000	Rua Dom Bosco	2
+28	41459	Avenida Manoel Borba	1.000	Av. Manoel Borba	1
+28	12165	Rua Dom Bosco	1.000	Rua Dom Bosco	2
+29	41459	Avenida Manoel Borba	1.000	Av. Manoel Borba	1
+29	35190	Rua José de Alencar	1.000	Rua José de Alencar	2
+30	61492	Rua Treze de Maio	1.000	Rua 13 de Maio	1
+30	75108	Rua dos Palmares	1.000	Rua Dos Palmares	2
+31	29335	Rua do Hospício	1.000	Rua do Hospício	1
+31	31810	Rua Princesa Isabel	1.000	Rua Princesa Isabel	2
+32	29335	Rua do Hospício	1.000	Rua do Hospício	1
+32	56286	Avenida Visconde de Suassuna	0.667	Av. Visc. De Suassuna	2
+33	29335	Rua do Hospício	1.000	Rua do Hospício	1
+33	43664	Rua da Matriz	1.000	Rua da Matriz	2
+34	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+34	18481	Avenida Cruz Cabuga	1.000	Av. Cruz Cabugá	2
+35	19054	Avenida Dantas Barreto	1.000	Av. Dantas Barreto	1
+35	30104	Rua Imperial	1.000	Rua Imperial	2
+36	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+36	61492	Rua Treze de Maio	1.000	Rua 13 de Maio	2
+37	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+37	59595	Avenida Rui Barbosa	1.000	Av. Rui Barbosa	2
+38	98116	Avenida Advogado José Paulo Cavalcanti	1.000	Av. Adv. José Paulo Cavalcanti	1
+39	45306	Rua Motocolombó	1.000	Rua Motocolombó	1
+39	9016	Rua Professor Augusto Wanderley Filho	1.000	Rua Augusto Wanderley	2
+40	32956	Rua Jener de Souza	0.667	Rua Jenner de Souza	2
+41	52680	Rua do Príncipe	1.000	Rua do Príncipe	1
+41	26565	Rua Gervásio Pires	1.000	Rua Gervásio Pires	2
+42	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+42	10650	Estrada de Belém	1.000	Estrada de Belém	2
+43	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+43	33405	Avenida João de Barros	1.000	Av. João de Barros	2
+44	36641	Avenida Doutor José Rufino	1.000	Av. Dr. José Rufino	1
+44	58050	Rua Rio Ipojuca	1.000	Rua Ipojuca	2
+45	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+45	24082	Rua Fernando César D`Andrade	1.000	Rua Fernando Cesar	2
+46	59382	Avenida Conselheiro Rosa e Silva	1.000	Av. Conselheiro Rosa e Silva	1
+46	73237	Rua Amélia	1.000	Rua Amélia	2
+47	59382	Avenida Conselheiro Rosa e Silva	1.000	Av. Conselheiro Rosa e Silva	1
+47	53996	Avenida Santos Dumont	1.000	Av. Santos Dumont	2
+48	59595	Avenida Rui Barbosa	1.000	Av. Rui Barbosa	1
+48	73237	Rua Amélia	1.000	Rua Amélia	2
+49	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+49	47171	Rua Odorico Mendes	1.000	Rua Odorico Mendes	2
+50	36420	Rua José Osório	1.000	Rua José Osório	1
+50	1880	Avenida Visconde de Albuquerque	0.667	Rua Visconde de Albuquerque	2
+51	10910	Rua Benfica	1.000	Rua Benfica	1
+51	57061	Estrada dos Remédios	1.000	Estrada dos Remédios	2
+52	175	Avenida Engenheiro Abdias de Carvalho	1.000	Av. Abdias de Carvalho	1
+52	57061	Estrada dos Remédios	1.000	Estrada dos Remédios	2
+53	9032	Rua São Miguel	1.000	Rua São Miguel	1
+53	57061	Estrada dos Remédios	1.000	Estrada dos Remédios	2
+54	19054	Avenida Dantas Barreto	1.000	Av. Dantas Barreto	1
+54	26182	Rua São João	1.000	Rua São João	2
+55	56871	Avenida Recife	1.000	Av. Recife	1
+55	5428	Rua Pintor Antônio Albuquerque	1.000	Rua Pintor Antônio Albuquerque	2
+56	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+56	49018	Rua Marquês do Paraná	0.667	Rua Marquez do Paraná	2
+57	175	Avenida Engenheiro Abdias de Carvalho	1.000	Av. Abdias de Carvalho	1
+57	14982	Rua Carlos Gomes	1.000	Rua Carlos Gomes	2
+58	175	Avenida Engenheiro Abdias de Carvalho	1.000	Av. Abdias de Carvalho	1
+58	53775	Avenida General San Martin	1.000	Av. Gal. San Martin	2
+59	56871	Avenida Recife	1.000	Av. Recife	1
+59	32107	Rua Capitão Jacinto da Cruz	1.000	Rua Cap. Jacínto da Cruz	2
+60	64378	Rua Dr Vicente Gomes	0.750	Rua Dr. Vincente Gomes	1
+60	55093	Rua Setubal	1.000	Rua Setubal	2
+61	8222	Estrada do Arraial	1.000	Estrada do Arraial	1
+61	9814	Rua Cônego Barata	1.000	Rua Cônego Barata	2
+62	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+62	9814	Rua Cônego Barata	1.000	Rua Cônego Barata	2
+63	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+63	43974	Rua Mem de Sá	0.500	Rua Men de Sá	2
+64	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+64	68039	Rua São Bento	1.000	Rua São Bento	2
+65	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+65	46663	Rua Nova Descoberta	1.000	Rua Nova Descoberta	2
+66	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+66	38482	Rua Padre Lemos	1.000	Rua Padre Lemos	2
+67	53775	Avenida General San Martin	1.000	Av. Gal. San Martin	1
+67	27022	Rua Gomes Taborda	1.000	Rua Gomes Taborda	2
+68	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+68	28711	Rua Henrique Dias	1.000	Rua Henrique Dias	2
+69	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+69	48500	Rua Paissandú	1.000	Rua Paissandú	2
+70	32921	Rua Jean Emile Favre	1.000	Rua Jean Emile Favre	1
+70	54240	Rua Saturnino Meireles	1.000	Rua Saturnino Meireles	2
+71	34720	Rua Joaquim Nabuco	1.000	Rua Joaquim Nabuco	1
+71	18252	Rua das Creoulas	1.000	Rua das Creoulas	2
+72	56391	Avenida Sul Gov. Cid Sampaio	1.000	Av. Sul	1
+73	46213	Rua Nicolau Pereira	1.000	Rua Nicolau Pereira	1
+73	49905	Rua da Paz	1.000	Rua da Paz	2
+74	8222	Estrada do Arraial	1.000	Estrada do Arraial	1
+74	28517	Rua da Harmonia	1.000	Rua da Harmonia	2
+75	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+75	15024	Avenida Governador Carlos de Lima Cavalcanti	0.750	Av. Carlos de Lima Cavalcante	2
+76	75396	Cais Santa Rita	1.000	Cais de Santa Rita	1
+77	10596	Avenida Beira Rio	1.000	Av. Beira Rio	1
+78	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+78	12661	Rua Buenos Aires	1.000	Rua Buenos Aires	2
+79	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+79	10260	Córrego do Bartolomeu	0.667	Rua Córrego do Bartolomeu	2
+80	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+80	53775	Avenida General San Martin	1.000	Av. Gal. San Martin	2
+81	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+81	53996	Avenida Santos Dumont	1.000	Av. Santos Dumont	2
+82	36641	Avenida Doutor José Rufino	1.000	Av. Dr. José Rufino	1
+82	34428	Rua João Teixeira	1.000	Rua João Teixeira	2
+83	41459	Avenida Manoel Borba	1.000	Av. Manoel Borba	1
+83	46337	Rua das Ninfas	1.000	Rua das Ninfas	2
+84	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+84	8060	Avenida Armindo Moura	1.000	Av. Armindo Moura	2
+85	56871	Avenida Recife	1.000	Av. Recife	1
+85	22888	Rua Capitão Estevão Fernandes	1.000	Rua Cap. Estevão Fernandes	2
+86	31135	Rua Barão de Itamaracá	1.000	Rua Barão de Itamaracá	1
+86	22713	Rua do Espinheiro	1.000	Rua do Espinheiro	2
+87	30104	Rua Imperial	1.000	Rua Imperial	1
+87	98779	Rua São Lourenço da Mata	1.000	Rua Lourenço de Sá	2
+88	107719	Avenida Mauricio de Nassau	1.000	Av. Maurício de Nassau	1
+88	54283	Rua N s da Saúde	0.750	Rua Nossa Senhora da Saúde	2
+89	33405	Avenida João de Barros	1.000	Av. João de Barros	1
+89	22713	Rua do Espinheiro	1.000	Rua do Espinheiro	2
+90	99295	Rua Bela Aurora	1.000	Rua da Aurora	1
+90	43125	Avenida Mario Melo	1.000	Av. Mário Melo	2
+91	23566	Rua Falcão de Lacerda	1.000	Rua Falcão de Lacerda	1
+92	29335	Rua do Hospício	1.000	Rua do Hospício	1
+92	57266	Rua do Riachuelo	1.000	Rua do Riachuelo	2
+93	3620	Rua Alvares de Azevedo	1.000	Rua Álvares de Azevedo	1
+93	27227	Rua Gouveia de Barros	1.000	Rua Gouveia de Barros	2
+94	10650	Estrada de Belém	1.000	Estrada de Belém	1
+94	52752	Rua Prudente de Moraes	1.000	Rua Prudente de Moraes	2
+95	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+95	39683	Largo Dom Luiz	1.000	Largo D. Luiz	2
+96	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+96	41114	Rua da Mangabeira	1.000	Rua da Mangabeira	2
+97	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+98	53996	Avenida Santos Dumont	1.000	Av. Santos Dumont	1
+98	36196	Rua Doutor José Maria	1.000	Rua Dr. José Maria	2
+99	59382	Avenida Conselheiro Rosa e Silva	0.750	Av. Cons. Rosa e Siva	1
+99	17442	Rua Barão de Contendas	1.000	Rua Barão de contendas	2
+100	12009	Estrada do Bongi	0.667	Estrada Velha do Bongi	1
+100	17922	Rua Cosme Viana	1.000	Rua Cosme Viana	2
+101	32921	Rua Jean Emile Favre	1.000	Rua Jean Emile Favre	1
+101	11657	Rua Blumenau	1.000	Rua Blumenau	2
+102	59595	Avenida Rui Barbosa	1.000	Av. Rui Barbosa	1
+102	18252	Rua das Creoulas	1.000	Rua das Creoulas	2
+103	5770	Avenida  Antônio de Goes	0.667	Av. Antônio de Góis	1
+103	41483	Rua Manoel de Brito	1.000	Rua Manoel de Brito	2
+104	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+104	28932	Avenida Herculano Bandeira	1.000	Av. Herculano Bandeira	2
+105	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+105	61220	Rua Tomé Gibson	0.667	Rua Thomé Gibson	2
+106	56839	Rua Real da Torre	1.000	Rua Real da Torre	1
+106	30600	Rua Conde de Irajá	1.000	Rua Conde de Irajá	2
+107	19526	Avenida Dezessete de Agosto	1.000	Av. 17 de Agosto	1
+107	8222	Estrada do Arraial	1.000	Estrada do Arraial	2
+108	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+109	107719	Avenida Mauricio de Nassau	1.000	Av. Maurício de Nassau	1
+110	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+110	50717	Rua Pereira da Costa	1.000	Rua Pereira da Costa	2
+111	31186	Rua Itanagé	1.000	Rua Itanagé	1
+111	11657	Rua Blumenau	1.000	Rua Blumenau	2
+112	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+112	14702	Rua Padre Carapuceiro	1.000	Rua Padre Carapuceiro	2
+113	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+113	22497	Rua Ernesto de Paula Santos	1.000	Rua Ernesto de Paula Santos	2
+114	1465	Avenida Conselheiro Aguiar	1.000	Av. Conselheiro Aguiar	1
+114	10898	Rua Coronel Benedito Chaves	0.667	Rua Cel.Benedito Chaves	2
+115	1465	Avenida Conselheiro Aguiar	1.000	Av. Conselheiro Aguiar	1
+115	14702	Rua Padre Carapuceiro	1.000	Rua Padre Carapuceiro	2
+116	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+117	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+118	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+119	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+119	47562	Rua Ondina	1.000	Rua Ondina	2
+120	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+120	12629	Rua Bruno Veloso	1.000	Rua Bruno Veloso	2
+121	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+121	8842	Rua Atlântico	1.000	Rua do Atlântico	2
+122	56278	Rua Frei Matias Tévis	0.500	Av. Frei Matias Teves	1
+122	33359	Rua Dr João Asfora	0.750	Rua Dr. João Ásfora	2
+123	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+123	11126	Rua Dona Benvinda de Farias	1.000	Rua Benvinda de Farias	2
+124	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+125	1465	Avenida Conselheiro Aguiar	1.000	Av. Conselheiro Aguiar	1
+125	11258	Rua Padre Bernardino Pessoa	0.750	Rua Padre Bernadino Pessoa	2
+126	59595	Avenida Rui Barbosa	1.000	Av. Rui Barbosa	1
+126	22624	Rua Esmeraldino Bandeira	1.000	Rua Esmeraldino Bandeira	2
+127	1465	Avenida Conselheiro Aguiar	1.000	Av. Conselheiro Aguiar	1
+127	22497	Rua Ernesto de Paula Santos	1.000	Rua Ernesto de Paula Santos	2
+128	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+128	10898	Rua Coronel Benedito Chaves	1.000	Rua Cel. Benedito Chaves	2
+129	32972	Rua Visconde de Jequitinhonha	0.667	Av. Visconde de Jequitinhonha	1
+129	56260	Rua Barão de Souza Leão	1.000	Rua Barão de Souza Leão	2
+130	56871	Avenida Recife	1.000	Av. Recife	1
+130	32921	Rua Jean Emile Favre	1.000	Rua Jean Emile Favre	2
+131	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+131	35270	Avenida Professor José dos Anjos	1.000	Av. Prof. José dos Anjos	2
+132	175	Avenida Engenheiro Abdias de Carvalho	1.000	Av. Abdias de Carvalho	1
+132	33855	Rua João Ivo da Silva	1.000	Rua João Ivo	2
+133	1465	Avenida Conselheiro Aguiar	1.000	Av. Conselheiro Aguiar	1
+134	42986	Avenida Mário Álvares Pereira de Lyra	1.000	Av. Mário Álvares de Lyra	1
+134	34908	Rua Professor Joaquim Xavier de Brito	1.000	Rua Prof. Joaquim Xavier de Brito	2
+135	32921	Rua Jean Emile Favre	1.000	Rua Jean Emile Favre	1
+135	70033	Avenida Costa e Silva	1.000	Av. Costa e Silva	2
+136	49573	Rua Paula Batista	1.000	Rua Paula Batista	1
+136	46027	Rua Major Nereu Guerra	1.000	Rua Nereu Guerra	2
+137	28932	Avenida Herculano Bandeira	1.000	Av. Herculano Bandeira	1
+137	44520	Rua Miranda Falcão	1.000	Rua Miranda Falcão	2
+138	28932	Avenida Herculano Bandeira	1.000	Av. Herculano Bandeira	1
+138	1465	Avenida Conselheiro Aguiar	1.000	Av. Conselheiro Aguiar	2
+139	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+139	11126	Rua Dona Benvinda de Farias	1.000	Rua Benvinda de Farias	2
+140	1465	Avenida Conselheiro Aguiar	1.000	Av. Conselheiro Aguiar	1
+140	50717	Rua Pereira da Costa	1.000	Rua Pereira da Costa	2
+141	19054	Avenida Dantas Barreto	1.000	Av. Dantas Barreto	1
+141	55794	Rua Siqueira Campos	1.000	Rua Siqueira Campos	2
+142	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+142	50717	Rua Pereira da Costa	1.000	Rua Pereira da Costa	2
+143	1465	Avenida Conselheiro Aguiar	1.000	Av. Conselheiro Aguiar	1
+143	28690	Rua Henrique Capitulino	1.000	Rua Henrique Capitulino	2
+144	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+144	11258	Rua Padre Bernardino Pessoa	0.750	Rua Padre Bernadino Pessoa	2
+145	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+145	5690	Rua Antônio Falcão	1.000	Rua Antônio Falcão	2
+146	1465	Avenida Conselheiro Aguiar	1.000	Av. Conselheiro Aguiar	1
+146	12629	Rua Bruno Veloso	1.000	Rua Bruno Veloso	2
+147	1465	Avenida Conselheiro Aguiar	1.000	Av. Conselheiro Aguiar	1
+147	57398	Rua Ribeiro de Brito	1.000	Rua Ribeiro de Brito	2
+148	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+148	43044	Rua Professor Mário Castro	1.000	Rua Prof. Mário de Castro	2
+149	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+149	9709	Rua Baltazar Passos	1.000	Rua Baltazar Passos	2
+150	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+150	77046	Rua S D 1096	0.500	Rua Cel. Antônio Veloso	2
+151	39063	Avenida Lins Petit	0.667	Av. Lins Pettit	1
+152	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+152	10898	Rua Coronel Benedito Chaves	1.000	Rua Benedito Chaves	2
+153	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+154	32972	Rua Visconde de Jequitinhonha	0.667	Av. Visconde de Jequitinhonha	1
+154	9709	Rua Baltazar Passos	1.000	Rua Baltazar Passos	2
+155	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+155	57398	Rua Ribeiro de Brito	1.000	Rua Ribeiro de Brito	2
+156	36641	Avenida Doutor José Rufino	1.000	Av. Dr. José Rufino	1
+157	6637	Rua Aprígio Guimarães	1.000	Rua Aprígio Guimarães	1
+157	49638	Rua Paulino de Farias	1.000	Rua Paulino de Farias	2
+158	32972	Rua Visconde de Jequitinhonha	0.667	Av. Visconde de Jequitinhonha	1
+158	43044	Rua Professor Mário Castro	1.000	Rua Prof. Mário de Castro	2
+159	56260	Rua Barão de Souza Leão	1.000	Rua Barão de Souza Leão	1
+159	53317	Rua Sá e Souza	1.000	Rua Sá e Souza	2
+160	45810	Rua dos Navegantes	1.000	Rua dos Navegantes	1
+160	12629	Rua Bruno Veloso	1.000	Rua Bruno Veloso	2
+161	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+161	32921	Rua Jean Emile Favre	1.000	Rua Jean Emile de Favre	2
+162	11738	Avenida Conde da Boa Vista	1.000	Av. Conde da Boa Vista	1
+162	99295	Rua Bela Aurora	1.000	Rua da Aurora	2
+163	19054	Avenida Dantas Barreto	1.000	Av. Dantas Barreto	1
+163	120022	Rua Nova	1.000	Rua Nova	2
+164	43370	Avenida Martins de Barros	1.000	Av. Martins de Barros	1
+165	6564	Cais do Apolo	1.000	Cais do Apolo	1
+165	47406	Avenida Marquês de Olinda	0.667	Av. Marquez de Olinda	2
+166	22713	Rua do Espinheiro	1.000	Rua do Espinheiro	1
+167	31810	Rua Princesa Isabel	1.000	Rua Princesa Isabel	1
+167	101516	Rua da União	1.000	Rua da União	2
+168	31810	Rua Princesa Isabel	1.000	Rua Princesa Isabel	1
+168	117080	Rua da Saudade	1.000	Rua da Saudade	2
+169	41459	Avenida Manoel Borba	1.000	Av. Manoel Borba	1
+169	26565	Rua Gervásio Pires	1.000	Rua Gervásio Pires	2
+170	52680	Rua do Príncipe	1.000	Rua do Príncipe	1
+171	18481	Avenida Cruz Cabuga	1.000	Av. Cruz Cabugá	1
+171	43125	Avenida Mario Melo	1.000	Av. Mário Melo	2
+172	56286	Avenida Visconde de Suassuna	1.000	Av. Visconde de Suassuna	1
+172	61492	Rua Treze de Maio	1.000	Rua 13 de Maio	2
+173	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+173	9784	Rua Dr Bandeira Filho	0.750	Rua Dr. Bandeira Filho	2
+174	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+174	12165	Rua Dom Bosco	1.000	Rua Dom Bosco	2
+175	57266	Rua do Riachuelo	1.000	Rua do Riachuelo	1
+175	26565	Rua Gervásio Pires	1.000	Rua Gervásio Pires	2
+176	52680	Rua do Príncipe	1.000	Rua do Príncipe	1
+176	14761	Rua Bispo Cardoso Ayres	0.750	Rua Bispo Cardoso Aires	2
+177	73237	Rua Amélia	1.000	Rua Amélia	1
+177	107247	Rua Futuro	1.000	Rua do Futuro	2
+178	73237	Rua Amélia	1.000	Rua Amélia	1
+178	6017	Rua Antônio Novais	0.667	Rua Antônio Novaes	2
+179	36420	Rua José Osório	1.000	Rua José Osório	1
+179	56839	Rua Real da Torre	1.000	Rua Real da Torre	2
+180	17264	Rua da Concórdia	1.000	Rua da Concórdia	1
+180	26182	Rua São João	1.000	Rua de São João	2
+181	19054	Avenida Dantas Barreto	1.000	Av. Dantas Barreto	1
+181	50482	Rua do Peixoto	1.000	Rua do Peixoto	2
+182	17264	Rua da Concórdia	1.000	Rua da Concórdia	1
+182	50482	Rua do Peixoto	1.000	Rua do Peixoto	2
+183	24228	Avenida Fernando Simões Barbosa	1.000	Av. Fernando Simões Barbosa	1
+183	32140	Rua Jack Ayres	0.667	Rua Jack Aires	2
+184	31135	Rua Barão de Itamaracá	1.000	Rua Barão de Itamaracá	1
+184	29238	Rua da Hora	1.000	Rua da Hora	2
+185	53775	Avenida General San Martin	1.000	Av. Gal. San Martin	1
+185	16896	Rua Clotilde de Oliveira	0.750	Rua Próx. Clotilde de Oliveira	2
+186	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+186	17523	Rua da Coragem	1.000	Rua Coragem	2
+187	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+187	56952	Rua da Regeneração	1.000	Rua da Regeneração	2
+188	53996	Avenida Santos Dumont	1.000	Av. Santos Dumont	1
+188	107247	Rua Futuro	1.000	Rua do Futuro	2
+189	41750	Rua Manuel de Medeiros	0.750	Rua Dom Manuel de Medeiros	1
+190	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+190	38393	Rua Padre Leandro Camelo	0.750	Rua Frei Leandro Camelo	2
+191	35467	Rua José Bonifácio	1.000	Rua José Bonifácio	1
+191	30600	Rua Conde de Irajá	1.000	Rua Conde de Irajá	2
+192	56839	Rua Real da Torre	1.000	Rua Real da Torre	1
+192	72656	Rua Dom Manoel da Costa	1.000	Rua D. Manoel da Costa	2
+193	35467	Rua José Bonifácio	1.000	Rua José Bonifácio	1
+193	4723	Rua Padre Anchieta	1.000	Rua Padre Anchieta	2
+194	43370	Avenida Martins de Barros	1.000	Av. Martins de Barros	1
+194	117714	Rua Treze de Março	1.000	Rua 1º de Março	2
+195	73237	Rua Amélia	1.000	Rua Amélia	1
+195	22713	Rua do Espinheiro	1.000	Rua do Espinheiro	2
+196	2496	Avenida Alfredo Lisboa	1.000	Av. Alfredo Lisboa	1
+196	65218	Rua Vital de Oliveira	1.000	Rua Vital de Oliveira	2
+197	11584	Rua do Sol	1.000	Rua do Sol	1
+198	33405	Avenida João de Barros	1.000	Av. João de Barros	1
+198	38679	Rua Dr Leopoldo Lins	1.000	Rua Leopoldo Lins	2
+199	26182	Rua São João	1.000	Rua de São João	1
+199	24996	Rua do Forte	1.000	Rua do Forte	2
+200	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+200	61220	Rua Tomé Gibson	0.667	Rua Thomé Gibson	2
+201	10650	Estrada de Belém	1.000	Estrada de Belém	1
+201	6130	Rua Antônio Rangel	1.000	Rua Antônio Rangel	2
+202	18481	Avenida Cruz Cabuga	1.000	Av. Cruz Cabugá	1
+202	15466	Rua dos Casados	0.750	Rua Dna. Maria de Souza	2
+203	46310	Rua Nossa Senhora do Carmo	0.750	Av. Nossa Senhora do Carmo	1
+203	50393	Rua Imperador Dom Pedro II	1.000	Rua do Imperador	2
+204	46310	Rua Nossa Senhora do Carmo	0.750	Av. Nossa Senhora do Carmo	1
+204	43370	Avenida Martins de Barros	1.000	Av. Martins de Barros	2
+205	56391	Avenida Sul Gov. Cid Sampaio	0.600	Av. Sul(Pista principal)	1
+206	50393	Rua Imperador Dom Pedro II	1.000	Rua do Imperador	1
+206	55794	Rua Siqueira Campos	1.000	Rua Siqueira Campos	2
+207	30104	Rua Imperial	1.000	Rua Imperial	1
+207	50482	Rua do Peixoto	1.000	Rua do Peixoto	2
+208	36641	Avenida Doutor José Rufino	1.000	Av. Dr. José Rufino	1
+208	37923	Rua Lagoa de Itaenga	1.000	Rua Itaenga	2
+209	36234	Rua Doutor José Mariano	1.000	Rua Dr. José Mariano	1
+209	62944	Rua Velha	1.000	Rua Velha	2
+210	99295	Rua Bela Aurora	1.000	Rua da Aurora	1
+210	60682	Rua Imperatriz Tereza Cristina	1.000	Rua da Imperatriz	2
+211	56391	Avenida Sul Gov. Cid Sampaio	0.600	Av. Sul(corredor de ônibus)	1
+212	56871	Avenida Recife	1.000	Av. Recife	1
+212	37672	Avenida Presidente Kennedy	1.000	Av. Presidente Kennedy	2
+213	36641	Avenida Doutor José Rufino	1.000	Av. Dr. José Rufino	1
+213	20230	Rua Domingos Teotonio	1.000	Rua Domingos Teotônio	2
+214	59382	Avenida Conselheiro Rosa e Silva	1.000	Av. Conselheiro Rosa e Silva	1
+214	40797	Avenida Dr Malaquias	0.667	Av. Dr. Malaquias	2
+215	107247	Rua Futuro	1.000	Rua do Futuro	1
+215	40797	Avenida Dr Malaquias	0.667	Av. Dr. Malaquias	2
+216	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+216	14702	Rua Padre Carapuceiro	1.000	Rua Padre Carapuceiro	2
+217	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+217	22497	Rua Ernesto de Paula Santos	1.000	Rua Ernesto de Paula Santos	2
+218	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+218	56260	Rua Barão de Souza Leão	1.000	Rua Barão de Souza Leão	2
+219	47120	Rua Odete Monteiro	1.000	Rua Odete Monteiro	1
+220	41459	Avenida Manoel Borba	1.000	Av. Manoel Borba	1
+220	56073	Rua da Soledade	1.000	Rua da Soledade	2
+221	26565	Rua Gervásio Pires	1.000	Rua Gervásio Pires	1
+221	12122	Rua Barão de São Borja	1.000	Rua Barão de São Borja	2
+222	56073	Rua da Soledade	1.000	Rua da Soledade	1
+222	47511	Avenida Oliveira Lima	1.000	Rua Oliveira Lima	2
+223	59080	Rua Padre Roma	1.000	Rua Padre Roma	1
+223	107247	Rua Futuro	1.000	Rua do Futuro	2
+224	72656	Rua Dom Manoel da Costa	0.750	Rua Dom Manoel de Medeiros	1
+225	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+225	40371	Avenida General Mac Arthur	1.000	Av. General Mac. Arthur	2
+226	5770	Avenida  Antônio de Goes	0.667	Av. Antônio de Góis	1
+226	1465	Avenida Conselheiro Aguiar	1.000	Av. Cons. Aguiar	2
+227	5690	Rua Antônio Falcão	1.000	Rua Antônio Falcão	1
+227	25259	Rua Francisco da Cunha	1.000	Rua Francisco da Cunha	2
+228	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+229	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+229	39250	Rua São Mateus	1.000	Rua São Mateus	2
+230	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+230	16306	Rua Professor Chaves Batista	1.000	Rua Prof. Chaves Batista	2
+231	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+231	51985	Rua General Polidoro	1.000	Rua General Polidoro	2
+232	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+232	59013	Rua Rodrigues Ferreira	1.000	Rua Rodrigues Ferreira	2
+233	14982	Rua Carlos Gomes	1.000	Rua Carlos Gomes	1
+233	12009	Estrada do Bongi	1.000	Estrada do Bongi	2
+234	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+234	65609	Rua Waldemar Nery Carneiro Monteiro	0.667	Rua Inácio Monteiro	2
+235	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+235	16195	Rua Claudio Brotherhood	1.000	Rua Cláudio Brotherhood	2
+236	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+236	27472	Rua Gregório Júnior	1.000	Rua Gregório Jr.	2
+237	56839	Rua Real da Torre	1.000	Rua Real da Torre	1
+238	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+238	25666	Rua Frederico	1.000	Rua Frederico	2
+239	39250	Rua São Mateus	1.000	Rua São Mateus	1
+239	107719	Avenida Mauricio de Nassau	1.000	Av. Maurício de Nassau	2
+240	1465	Avenida Conselheiro Aguiar	1.000	Av. Cons. Aguiar	1
+240	38407	Rua Frei Leandro	1.000	Rua Frei Leandro	2
+241	1465	Avenida Conselheiro Aguiar	1.000	Av. Cons. Aguiar	1
+241	34096	Rua Desembargador João Paes	1.000	Rua Des. João Paes	2
+242	57061	Estrada dos Remédios	1.000	Estrada dos Remédios	1
+242	46213	Rua Nicolau Pereira	1.000	Rua Nicolau Pereira	2
+243	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+243	9164	Rua da Aurora	0.667	Rua da Aurora(Ponte Limoeiro)	2
+244	56286	Avenida Visconde de Suassuna	1.000	Av. Visconde de Suassuna	1
+244	26565	Rua Gervásio Pires	1.000	Rua Gervásio Pires	2
+245	20060	Rua Vinte e Um de Abril	1.000	Rua 21 de Abril	1
+245	41653	Avenida Manoel Goncalves da Luz	1.000	Av. Manoel Gonçalves da Luz	2
+246	9830	Estrada do Barbalho	1.000	Estrada do Barbalho	1
+246	107719	Avenida Mauricio de Nassau	1.000	Av. Maurício de Nassau	2
+247	56871	Avenida Recife	1.000	Av. Recife	1
+247	56537	Avenida Raimundo Diniz	0.667	Rua Raimundo Diniz	2
+248	20001	Rua Dois Irmãos	0.667	Av. Dois Irmãos	1
+249	24988	Estrada do Forte do Arraial Novo do Bom Jesus	0.500	Av. do Forte	1
+249	27022	Rua Gomes Taborda	1.000	Rua Gomes Taborda	2
+250	105007	Avenida João Cabral de Melo Neto	1.000	Av. João Cabral de Melo Neto	1
+250	44342	Rua Tenente Mindelo	1.000	Rua Tenente Mindelo	2
+251	19526	Avenida Dezessete de Agosto	1.000	Av. 17 de Agosto	1
+251	51063	Rua Piauí	1.000	Rua Piaui	2
+252	72656	Rua Dom Manoel da Costa	1.000	Rua Dom Manoel da Costa	1
+252	38075	Rua Padre Landim	1.000	Rua Padre Landim	2
+253	59382	Avenida Conselheiro Rosa e Silva	1.000	Av. Cons. Rosa e Silva	1
+253	36196	Rua Doutor José Maria	1.000	Rua Dr. José Maria	2
+254	11916	Rua Bom Pastor	1.000	Rua do Bom Pastor	1
+254	3646	Rua Comendador Álvares de Carvalho	1.000	Rua Comendador A. de Carvalho	2
+255	2330	Cais da Alfândega	1.000	Cais da Alfândega	1
+256	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+257	10910	Rua Benfica	1.000	Rua Benfica	1
+257	56839	Rua Real da Torre	1.000	Rua Real da Torre	2
+258	32972	Rua Visconde de Jequitinhonha	0.667	Av. Visconde de Jequitinhonha	1
+258	8060	Avenida Armindo Moura	1.000	Av Armindo Moura	2
+259	56871	Avenida Recife	1.000	Av. Recife	1
+259	1805	Rua Senador Alberto Pasqualini	0.750	Rua Senador Alberto Pasqualine	2
+260	56391	Avenida Sul Gov. Cid Sampaio	1.000	Av. Sul	1
+260	75620	Rua Nova da Cabanga	1.000	Rua Nova da Cabanga	2
+261	56871	Avenida Recife	1.000	Av. Recife	1
+261	3336	Rua Alto Nossa Senhora de Fátima	1.000	Rua Nossa Senhora de Fátima	2
+262	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+263	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+264	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+265	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+266	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+267	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+268	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+269	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+270	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+271	175	Avenida Engenheiro Abdias de Carvalho	1.000	Av. Abdias de Carvalho	1
+272	175	Avenida Engenheiro Abdias de Carvalho	1.000	Av. Abdias de Carvalho	1
+273	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+274	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+275	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+276	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+277	5770	Avenida  Antônio de Goes	0.667	Av. Antônio de Góis	1
+277	44520	Rua Miranda Falcão	1.000	Rua Miranda Falcão	2
+278	50393	Rua Imperador Dom Pedro II	1.000	Rua do Imperador	2
+279	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+279	3662	Rua Alvaro Amorim	1.000	Rua Álvaro Amorim	2
+280	61182	Rua Tomaz Gonzaga	0.667	Rua Tomás Gonzaga	1
+280	72427	Avenida Professor Estevão Francisco da Costa	0.500	Rua Profº.Estevão Fran. da Costa	2
+281	34797	Avenida Joaquim Ribeiro	1.000	Av. Joaquim Ribeiro	1
+281	57410	Rua Ribeiro Pessoa	1.000	Rua Ribeiro Pessoa	2
+282	33138	Rua Jerônimo Vilela	1.000	Rua Jerônimo Vilela	1
+282	25658	Rua Franklin Távora	1.000	Rua Franklin Távora	2
+283	8222	Estrada do Arraial	1.000	Estrada do Arraial	1
+283	49573	Rua Paula Batista	1.000	Rua Paula Batista	2
+284	46310	Rua Nossa Senhora do Carmo	0.750	Av. Nossa Senhora do Carmo	1
+284	19054	Avenida Dantas Barreto	1.000	Av. Dantas Barreto	2
+285	23566	Rua Falcão de Lacerda	1.000	Rua Falcão de Lacerda	1
+285	26751	Avenida Quinze de Novembro	1.000	Rua 15 de Novembro	2
+286	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+286	24066	Rua Arquiteto Fernando Almeida	1.000	Rua Arquiteto Fernando Almeida	2
+287	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+287	34967	Rua Missionário Joel Carlson	1.000	Rua Missionário Joel Carlson	2
+288	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+288	32956	Rua Jener de Souza	0.667	Rua Engº.Alves de Souza	2
+289	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+289	60356	Rua Doutor Tavares Correia	1.000	Rua Dr. Tavares Correia	2
+290	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+290	58904	Rua jornalista Silvio Oliveira	0.750	Rua Jornalista Cleóphas de Oliveira	2
+291	8222	Estrada do Arraial	1.000	Estrada do Arraial	1
+292	59595	Avenida Rui Barbosa	1.000	Av. Rui Barbosa	1
+292	40797	Avenida Dr Malaquias	0.667	Av. Dr. Malaquias	2
+293	5428	Rua Pintor Antônio Albuquerque	1.000	Rua Pintor Antônio Albuquerque	1
+293	28614	Rua Hélio Brandão	1.000	Rua Hélio Brandão	2
+294	12165	Rua Dom Bosco	1.000	Rua Dom Bosco	1
+294	28711	Rua Henrique Dias	1.000	Rua Henrique Dias	2
+295	8222	Estrada do Arraial	1.000	Estrada do Arraial	1
+295	26905	Rua Desembargador Góis Cavalcante	0.750	Rua Desemb. Góis Cavalcante	2
+296	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+296	14206	Rua Maria Cândida	1.000	Rua Maria Candida	2
+297	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+298	57398	Rua Ribeiro de Brito	1.000	Rua Ribeiro de Brito	1
+298	32972	Rua Visconde de Jequitinhonha	1.000	Rua Visconde de Jequitinhonha	2
+299	11738	Avenida Conde da Boa Vista	1.000	Av. Conde da Boa Vista	1
+299	47970	Rua Osvaldo Cruz	1.000	Rua Osvaldo Cruz	2
+300	9032	Rua São Miguel	1.000	Rua São Miguel	1
+301	35467	Rua José Bonifácio	1.000	Rua José Bonifácio	1
+301	65323	Rua Vitoriano Palhares	1.000	Rua Vitoriano Palhares	2
+302	30104	Rua Imperial	1.000	Rua Imperial	1
+303	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+303	833	Rua Jornalista Adeth Leite	1.000	Rua Adeth Leite	2
+304	22497	Rua Ernesto de Paula Santos	1.000	Rua Ernesto de Paula Santos	1
+304	32972	Rua Visconde de Jequitinhonha	1.000	Rua Visconde de Jequitinhonha	2
+305	59595	Avenida Rui Barbosa	1.000	Av. Rui Barbosa	1
+305	1791	Rua Alberto Paiva	0.750	Rua Senador Alberto Paiva	2
+306	62952	Estrada Velha de Água Fria	1.000	Estrada Velha de Água Fria	1
+306	35270	Avenida Professor José dos Anjos	0.750	Rua Prof. José dos Anjos	2
+307	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+307	62375	Rua Coronel Urbano Ribeiro de Sena	1.000	Rua Cel. Urbano de Sena	2
+308	33928	Rua João Lira	1.000	Rua João Lira	1
+308	117080	Rua da Saudade	1.000	Rua da Saudade	2
+309	59382	Avenida Conselheiro Rosa e Silva	1.000	Av. Conselheiro Rosa e Silva	1
+310	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+311	56391	Avenida Sul Gov. Cid Sampaio	1.000	Av. Sul	1
+312	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+312	28517	Rua da Harmonia	1.000	Rua da Harmonia	2
+313	20060	Rua Vinte e Um de Abril	1.000	Rua 21 de Abril	1
+314	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+314	30163	Rua Expedicionário Inácio Gomes	1.000	Rua Expedicionário Inácio Gomes	2
+315	46191	Rua São Nicolau	1.000	Rua São Nicolau	1
+315	167	Rua Abdias Cabral de Moura	1.000	Rua Abdias Cabral de Moura	2
+316	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Masc. de Morais	1
+317	56235	Rua Souza Bandeira	1.000	Rua Souza Bandeira	1
+317	42870	Rua Marquês de Maricá	1.000	Rua Marquês de Maricá	2
+318	1465	Avenida Conselheiro Aguiar	1.000	Av. Cons. Aguiar	1
+318	54720	Rua Coronel Sérgio Henrique Cardim	1.000	Rua Cel. Sérgio Cardim	2
+319	56871	Avenida Recife	1.000	Av. Recife	1
+319	58831	Avenida Senador Robert Kennedy	1.000	Av. Senador Robert Kennedy	2
+320	56391	Avenida Sul Gov. Cid Sampaio	1.000	Av. Sul	1
+320	13960	Ponte de Afogados	1.000	Ponte dos Afogados	2
+321	14702	Rua Padre Carapuceiro	1.000	Rua Padre Carapuceiro	1
+321	24228	Avenida Fernando Simões Barbosa	1.000	Av. Fernando Simões Barbosa	2
+322	19453	Rua Dez de Julho	1.000	Rua Dez de Julho	1
+323	20052	Avenida Dois Rios	1.000	Av. Dois Rios	1
+324	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+324	6068	Rua Antônio Pedro de Figueiredo	1.000	Rua Antônio Pedro Figueiredo	2
+325	20052	Avenida Dois Rios	1.000	Av. Dois Rios	1
+326	53775	Avenida General San Martin	1.000	Av. Gal. San Martin	1
+326	21199	Rua Delmiro Gouveia	1.000	Rua Delmiro Gouveia	2
+327	175	Avenida Engenheiro Abdias de Carvalho	1.000	Av. Abdias de Carvalho	1
+328	175	Avenida Engenheiro Abdias de Carvalho	1.000	Av. Abdias de Carvalho	1
+329	22497	Rua Ernesto de Paula Santos	1.000	Rua Ernesto de Paula Santos	1
+329	24228	Avenida Fernando Simões Barbosa	1.000	Av. Fernando Simões Barbosa	2
+330	22497	Rua Ernesto de Paula Santos	1.000	Rua Ernesto de Paula Santos	1
+330	20168	Rua Tenente Domingos de Brito	1.000	Rua Ten. Domingos de Brito	2
+331	57398	Rua Ribeiro de Brito	1.000	Rua Ribeiro de Brito	1
+331	20168	Rua Tenente Domingos de Brito	1.000	Rua Ten. Domingos de Brito	2
+332	57398	Rua Ribeiro de Brito	1.000	Rua Ribeiro de Brito	1
+332	24228	Avenida Fernando Simões Barbosa	1.000	Av. Fernando Simões Barbosa	2
+333	9032	Rua São Miguel	1.000	Rua São Miguel	1
+333	53970	Rua Santos Araújo	1.000	Rua Santos Araújo	2
+334	20060	Rua Vinte e Um de Abril	1.000	Rua 21 de Abril	1
+334	17922	Rua Cosme Viana	1.000	Rua Cosme Viana	2
+335	24228	Avenida Fernando Simões Barbosa	1.000	Av. Fernando Simões Barbosa	1
+335	12629	Rua Bruno Veloso	1.000	Rua Bruno Veloso	2
+336	56871	Avenida Recife	1.000	Av. Recife	1
+337	56871	Avenida Recife	1.000	Av. Recife	1
+338	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+338	12629	Rua Bruno Veloso	1.000	Rua Bruno Veloso	2
+339	33405	Avenida João de Barros	1.000	Av. João de Barros	1
+340	6564	Cais do Apolo	1.000	Cais do Apolo	1
+341	33138	Rua Jerônimo Vilela	1.000	Rua Jerônimo Vilela	1
+341	9610	Rua Marquês de Baipendi	0.667	Rua Marquês de Baiapendi	2
+342	9814	Rua Cônego Barata	1.000	Rua Cônego Barata	1
+343	18481	Avenida Cruz Cabuga	1.000	Av. Cruz Cabugá	1
+343	15881	Avenida Dr Jayme da Fonte	0.667	Av. Jaime da Fonte	2
+344	18481	Avenida Cruz Cabuga	1.000	Av. Cruz Cabugá	1
+344	61379	Beco da Tramways	1.000	Beco do Tramways	2
+345	19526	Avenida Dezessete de Agosto	1.000	Av. 17 de Agosto	1
+345	38490	Rua Lemos Torres	1.000	Rua Lemos Torres	2
+346	19526	Avenida Dezessete de Agosto	1.000	Av. 17 de Agosto	1
+346	38598	Rua Leonardo Bezerra Cavalcanti	1.000	Rua Leonardo Cavalcanti	2
+347	9814	Rua Cônego Barata	1.000	Rua Cônego Barata	1
+348	14982	Rua Carlos Gomes	1.000	Rua Carlos Gomes	1
+348	27022	Rua Gomes Taborda	1.000	Rua Gomes Taborda	2
+349	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+350	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+351	20052	Avenida Dois Rios	1.000	Av. Dois Rios	1
+351	58734	Rua Rio Xingu	1.000	Rua Rio Xingú	2
+352	30104	Rua Imperial	1.000	Rua Imperial	1
+352	23299	Rua Cabo Eutrópio	1.000	Rua Cabo Eutrópio	2
+353	35971	Avenida José Gonçalves de Medeiros	0.750	Rua José Gonçalves de Medeiros	1
+353	57061	Estrada dos Remédios	1.000	Estrada dos Remédios	2
+354	175	Avenida Engenheiro Abdias de Carvalho	1.000	Av. Abdias de Carvalho	1
+354	20990	Rua Santa Edwirges	0.667	Rua Santa Edwirgens	2
+355	175	Avenida Engenheiro Abdias de Carvalho	1.000	Av. Abdias de Carvalho	1
+356	33405	Avenida João de Barros	1.000	Av. João de Barros	1
+356	56286	Avenida Visconde de Suassuna	1.000	Av. Visconde de Suassuna	2
+357	47171	Rua Odorico Mendes	1.000	Rua Odorico Mendes	1
+357	25534	Rua Professor Francisco da Trindade	1.000	Rua Prof. Francisco Trindade	2
+358	21385	Estrada do Encanamento	1.000	Estrada do Encanamento	2
+359	17043	Rua dos Coelhos	1.000	Rua dos Coelhos	1
+360	1791	Rua Alberto Paiva	1.000	Rua Alberto Paiva	1
+360	6017	Rua Antônio Novais	0.667	Rua Antônio Novaes	2
+361	29238	Rua da Hora	1.000	Rua da Hora	1
+361	73237	Rua Amélia	0.667	Rua Amélia(J. L. Silveira)	2
+362	57029	Rua Regueira Costa	1.000	Rua Regueira Costa	1
+362	36196	Rua Doutor José Maria	1.000	Rua Dr. José Maria	2
+363	44733	Rua das Moças	1.000	Rua das Moças	1
+363	17426	Rua Constança	0.500	Rua Constância	2
+364	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+364	35270	Avenida Professor José dos Anjos	0.750	Rua Prof. José dos Anjos	2
+365	33405	Avenida João de Barros	1.000	Av. João de Barros	1
+365	34657	Rua Joaquim Felipe	1.000	Rua Joaquim Felipe	2
+366	1465	Avenida Conselheiro Aguiar	1.000	Av. Cons. Aguiar	1
+366	25640	Rua Franca Pereira	1.000	Rua França Pereira	2
+367	43621	Avenida Sport Clube do Recife	0.500	Rua Sport Club do Recife	1
+367	36340	Rua José Múcio Monteiro	1.000	Rua José Múcio Monteiro	2
+368	34797	Avenida Joaquim Ribeiro	1.000	Av. Joaquim Ribeiro	1
+368	25526	Rua Francisco Torres	1.000	Rua Francisco Torres	2
+369	38482	Rua Padre Lemos	1.000	Rua Padre Lemos	1
+370	19526	Avenida Dezessete de Agosto	1.000	Av. 17 de Agosto	1
+371	53775	Avenida General San Martin	1.000	Av. Gal. San Martin	1
+372	19526	Avenida Dezessete de Agosto	1.000	Av. 17 de Agosto	1
+373	22780	Rua Estado de Israel	1.000	Rua Estado de Israel	1
+373	33359	Rua Dr João Asfora	0.750	Rua Dr. João Ásfora	2
+374	39896	Avenida Professor Luiz Freire	1.000	Av. Professor Luiz Freire	1
+375	175	Avenida Engenheiro Abdias de Carvalho	1.000	Av. Abdias de Carvalho	1
+375	24988	Estrada do Forte do Arraial Novo do Bom Jesus	0.500	Av. do Forte	2
+376	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+376	27600	Rua Guadalupe	1.000	Rua Guadalupe	2
+377	19330	Rua Marechal Deodoro	1.000	Rua Marechal Deodoro	1
+377	15644	Rua Castro Alves	1.000	Rua Castro Alves	2
+378	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+379	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+380	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+380	8460	Rua Artur Muniz	1.000	Rua Artur Muniz	2
+381	19054	Avenida Dantas Barreto	1.000	Av. Dantas Barreto	1
+381	61093	Rua Tobias Barreto	0.500	Rua Tobias Barreto(Pista Leste)	2
+382	19054	Avenida Dantas Barreto	1.000	Av. Dantas Barreto	1
+382	61093	Rua Tobias Barreto	1.000	Rua Tobias Barreto	2
+383	75396	Cais Santa Rita	1.000	Cais de Santa Rita	1
+383	43370	Avenida Martins de Barros	1.000	Av. Martins de Barros	2
+384	19054	Avenida Dantas Barreto	1.000	Av. Dantas Barreto	1
+384	49468	Rua Passo da Pátria	0.667	Rua Passo da Pátria(Central)	2
+385	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+385	45500	Rua Muritiba	1.000	Rua Muritiba	2
+386	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+386	30872	Rua Itacare	1.000	Rua Itacaré	2
+387	10596	Avenida Beira Rio	1.000	Av. Beira Rio	1
+387	36420	Rua José Osório	1.000	Rua José Osório	2
+388	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+388	85650	Avenida Cidade de Monteiro	1.000	Av. Cidade do Monteiro	2
+389	19526	Avenida Dezessete de Agosto	1.000	Av. 17 de Agosto	1
+390	57061	Estrada dos Remédios	1.000	Estrada dos Remédios	1
+390	59692	Rua Tabaiares	1.000	Rua Tabaiares	2
+391	9032	Rua São Miguel	1.000	Rua São Miguel	1
+392	9032	Rua São Miguel	1.000	Rua São Miguel	1
+392	65536	Rua Yony Sampaio	0.500	Rua do Troley	2
+393	56871	Avenida Recife	1.000	Av. Recife	1
+393	27120	Rua Gonçalves de Magalhães	1.000	Rua Gonçalves Magalhães	2
+394	12009	Estrada do Bongi	0.667	Estrada Velha do Bongi	1
+394	57061	Estrada dos Remédios	1.000	Estrada dos Remédios	2
+395	39047	Rua Lindolfo Color	1.000	Rua Lindolfo Collor	1
+395	5657	Rua Antônio Curado	1.000	Rua Antônio Curado	2
+396	47546	Rua Olivia Menelau	1.000	Rua Olívia Menelau	1
+396	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	2
+397	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+398	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+399	40029	Rua Arquiteto Luiz Nunes	0.750	Rua Arquiteto Luis Nunes	1
+399	3662	Rua Alvaro Amorim	1.000	Rua Álvaro Amorim	2
+400	36374	Avenida Desembargador José Neves	1.000	Av. Desembargador José Neves	1
+401	12165	Rua Dom Bosco	1.000	Rua Dom Bosco	1
+402	40371	Avenida General Mac Arthur	0.667	Av. Gal.Mac. Arthur	1
+402	35106	Rua Jorge de Lima	1.000	Rua Jorge de Lima	2
+403	53775	Avenida General San Martin	0.667	Av. Gal.San Martin	1
+404	8222	Estrada do Arraial	1.000	Estrada do Arraial	1
+404	38482	Rua Padre Lemos	1.000	Rua Padre Lemos	2
+405	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+405	37290	Rua Júlio Ramos	1.000	Rua Júlio Ramos	2
+406	107247	Rua Futuro	1.000	Rua do Futuro	1
+407	56260	Rua Barão de Souza Leão	1.000	Rua Barão de Souza Leão	1
+408	17264	Rua da Concórdia	1.000	Rua da Concórdia	1
+409	30600	Rua Conde de Irajá	1.000	Rua Conde de Irajá	1
+410	19526	Avenida Dezessete de Agosto	1.000	Av. 17 de Agosto	1
+411	23566	Rua Falcão de Lacerda	1.000	Rua Falcão de Lacerda	1
+412	33405	Avenida João de Barros	1.000	Av. João de Barros	1
+412	65196	Rua Dom Vital	1.000	Rua Dom Vital	2
+413	1880	Avenida Visconde de Albuquerque	1.000	Av. Visconde de Albuquerque	1
+414	30104	Rua Imperial	1.000	Rua Imperial	1
+415	19526	Avenida Dezessete de Agosto	1.000	Av. 17 de Agosto	1
+415	65080	Rua Virgínia Loreto	1.000	Rua Virgínia Loreto	2
+416	20001	Rua Dois Irmãos	0.667	Av. Dois Irmãos	1
+417	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+418	32956	Rua Jener de Souza	0.667	Rua Jenner de Souza	2
+419	1465	Avenida Conselheiro Aguiar	1.000	Av. Conselheiro Aguiar	1
+419	56260	Rua Barão de Souza Leão	1.000	Rua Barão de Souza Leão	2
+420	65838	Rua Capitão Zuzinha	1.000	Rua Capitão Zuzinha	1
+420	53317	Rua Sá e Souza	1.000	Rua Sá e Souza	2
+421	8222	Estrada do Arraial	1.000	Estrada do Arraial	1
+421	54380	Rua Sebastião Alves	1.000	Rua Sebastião Alves	2
+422	175	Avenida Engenheiro Abdias de Carvalho	1.000	Av. Abdias de Carvalho	1
+422	46949	Rua Treze de Março	1.000	Rua 15 de Março	2
+423	9032	Rua São Miguel	1.000	Rua São Miguel	1
+423	47155	Rua Odilon Tucuman	1.000	Rua Odilon Tucuman	2
+424	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+424	12750	Rua Bujaru	1.000	Rua Bujarú	2
+425	9032	Rua São Miguel	1.000	Rua São Miguel	1
+426	17922	Rua Cosme Viana	1.000	Rua Cosme Viana	1
+426	779	Rua Doutor Adelino	1.000	Rua Doutor Adelino	2
+427	87416	Rua Treze de Maio	1.000	Rua Treze de Maio	1
+427	50016	Rua Pedro Afonso	1.000	Rua Pedro Afonso	2
+428	61492	Rua Treze de Maio	1.000	Rua 13 de Maio	1
+428	54267	Avenida da Saudade	1.000	Av. Da Saudade	2
+429	99295	Rua Bela Aurora	1.000	Rua da Aurora	1
+429	40932	Rua Mamede Simões	1.000	Rua Mamede Simões	2
+430	17922	Rua Cosme Viana	1.000	Rua Cosme Viana	1
+430	2437	Rua Coronel Alfredo Duarte	0.667	Rua Cel.Alfredo Duarte	2
+431	2135	Rua Alegre	1.000	Rua Alegre	1
+431	65730	Rua Zeferino Agra	1.000	Rua Zeferino Agra	2
+432	28290	Rua Guilherme Pinto	1.000	Rua Guilherme Pinto	1
+433	32972	Rua Visconde de Jequitinhonha	0.667	Av. Visconde de Jequitinhonha	1
+433	65838	Rua Capitão Zuzinha	1.000	Rua Capitão Zuzinha	2
+434	36641	Avenida Doutor José Rufino	1.000	Av. Dr. José Rufino	1
+434	53724	Rua do Sancho	1.000	Rua do Sancho	2
+435	28517	Rua da Harmonia	1.000	Rua da Harmonia	1
+435	21385	Estrada do Encanamento	1.000	Estrada do Encanamento	2
+436	6564	Cais do Apolo	1.000	Cais do Apolo	1
+436	44300	Avenida Militar	1.000	Av. Militar	2
+437	19453	Rua Dez de Julho	1.000	Rua 10 de Julho	1
+437	68012	Avenida Dom João VI	0.600	Av. Dom João VI (canal do Jordão)	2
+438	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+439	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+440	7005	Avenida Liberdade	1.000	Av. Liberdade	1
+440	37648	Rua Juvêncio Marques da Cunha	1.000	Rua Juvêncio Marques da Cunha	2
+441	8060	Avenida Armindo Moura	1.000	Av. Armindo Moura	1
+441	17957	Rua Cosmorama	1.000	Rua Cosmorama	2
+442	55573	Rua Sargento Silvino Macêdo	0.750	Rua Sgt. Silvino Macedo	1
+442	6300	Avenida Antônio Torres Galvão	0.750	Rua Antônio Torres Galvão	2
+443	32972	Rua Visconde de Jequitinhonha	0.667	Av. Visconde de Jequitinhonha	1
+443	16659	Avenida Charles Darwin	0.667	Rua Charles Darwin	2
+444	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+444	54720	Rua Coronel Sérgio Henrique Cardim	1.000	Rua Cel. Sérgio Cardim	2
+445	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+445	65692	Rua Engenheiro Zael Diogenes	1.000	Rua Zael Diógenes	2
+446	8222	Estrada do Arraial	1.000	Estrada do Arraial	1
+447	62405	Rua Uriel de Holanda	1.000	Rua Uriel de Holanda	1
+447	29076	Avenida Hildebrando de Vasconcelos	1.000	Av. Hildebrando Vasconcelos	2
+448	56235	Rua Souza Bandeira	1.000	Rua Souza Bandeira	1
+448	61182	Rua Tomaz Gonzaga	1.000	Rua Tomaz Gonzaga	2
+449	32921	Rua Jean Emile Favre	1.000	Rua Jean Emile Favre	1
+449	30880	Rua Itacari	1.000	Rua Itacari	2
+450	48763	Rua Pampulha	1.000	Rua Pampulha	1
+450	31879	Rua Izabel de Souza	1.000	Rua Izabel de Souza	2
+451	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+451	60909	Rua Tijucal	1.000	Rua Tijucal	2
+452	59595	Avenida Rui Barbosa	1.000	Av. Rui Barbosa	1
+453	6564	Cais do Apolo	1.000	Cais do Apolo	1
+454	6564	Cais do Apolo	1.000	Cais do Apolo	1
+455	18481	Avenida Cruz Cabuga	1.000	Av.Cruz Cabugá	1
+456	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+456	53562	Rua Salvador de Sá	1.000	Rua Salvador de Sá	2
+457	18481	Avenida Cruz Cabuga	1.000	Av. Cruz Cabugá	1
+457	7420	Rua Araripina	1.000	Rua Araripina	2
+458	10650	Estrada de Belém	1.000	Estrada de Belém	1
+458	27103	Rua Gonçalves Dias	1.000	Rua Gonçalves Dias	2
+459	59382	Avenida Conselheiro Rosa e Silva	1.000	Av. Conselheiro Rosa e Silva	1
+459	52221	Rua Conselheiro Portela	1.000	Rua Conselheiro Portela	2
+460	49352	Avenida Parnamirim	1.000	Av. Parnamirim	1
+460	38598	Rua Leonardo Bezerra Cavalcanti	0.750	Rua Leonardo Bezerra Cavalcante	2
+461	56871	Avenida Recife	1.000	Av. Recife	1
+462	21385	Estrada do Encanamento	1.000	Estrada do Encanamento	1
+462	24341	Rua Ferreira Lopes	1.000	Rua Ferreira Lopes	2
+463	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+463	64840	Rua Vinte e Quatro de Agosto	1.000	Rua Vinte e Quatro de Agosto	2
+464	52221	Rua Conselheiro Portela	1.000	Rua Conselheiro Portela	1
+464	31135	Rua Barão de Itamaracá	1.000	Rua Barão de Itamaracá	2
+465	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+466	52680	Rua do Príncipe	1.000	Rua do Príncipe	1
+467	65242	Rua Barão da Vitória	1.000	Rua Barão de Vitória	1
+468	18481	Avenida Cruz Cabuga	1.000	Av. Cruz Cabugá	1
+469	19526	Avenida Dezessete de Agosto	1.000	Av. 17 de Agosto	1
+469	32263	Rua Jáder de Andrade	1.000	Rua Jader de Andrade	2
+470	18481	Avenida Cruz Cabuga	1.000	Av. Cruz Cabugá	1
+471	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Masc. de Morais	1
+471	33782	Rua João Fontes	1.000	Rua João Fontes	2
+472	44733	Rua das Moças	1.000	Rua das Moças	1
+472	56952	Rua da Regeneração	1.000	Rua da Regeneração	2
+473	67369	Ponte Giratória	0.500	Ponte 12 de Setembro	1
+473	75396	Cais Santa Rita	1.000	Cais de Santa Rita	2
+474	18481	Avenida Cruz Cabuga	1.000	Av. Cruz Cabugá	1
+475	20052	Avenida Dois Rios	1.000	Av. Dois Rios	1
+475	57720	Rua Rio Chuy	0.667	Rua Rio Chuí	2
+476	56260	Rua Barão de Souza Leão	1.000	Rua Barão de Souza Leão	1
+476	36374	Avenida Desembargador José Neves	0.750	Rua Desembargador José Neves	2
+477	19429	Rua Madre de Deus	1.000	Rua Madre de Deus	1
+477	2496	Avenida Alfredo Lisboa	1.000	Av. Alfredo Lisboa	2
+478	17957	Rua Cosmorama	1.000	Rua Cosmorama	1
+478	33537	Rua João Cardoso Aires	1.000	Rua João Cardoso Aires	2
+479	18481	Avenida Cruz Cabuga	1.000	Av. Cruz Cabugá	1
+479	25119	Rua Francisco Barreto	1.000	Rua F. Barreto	2
+480	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+481	43621	Avenida Sport Clube do Recife	0.500	Rua Sport Club do Recife	1
+481	10901	Rua Professor Benedito Monteiro	0.667	Rua Prof.Benedito Monteiro	2
+482	24988	Estrada do Forte do Arraial Novo do Bom Jesus	0.500	Av. Do Forte	1
+483	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+483	64378	Rua Dr Vicente Gomes	1.000	Rua Vicente Gomes	2
+484	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+484	28690	Rua Henrique Capitulino	1.000	Rua Henrique Capitulino	2
+485	38598	Rua Leonardo Bezerra Cavalcanti	0.667	Rua Leonardo Cavalcante	1
+485	29831	Rua Igarassu	1.000	Rua Igarassu	2
+486	11738	Avenida Conde da Boa Vista	1.000	Av. Conde da Boa Vista	1
+486	20613	Rua Sete de Setembro	1.000	Rua Sete de Setembro	2
+487	35467	Rua José Bonifácio	1.000	Rua José Bonifácio	1
+487	42285	Rua Marcos André	1.000	Rua Marcos André	2
+489	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+489	36420	Rua José Osório	1.000	Rua José Osório	2
+490	56278	Rua Frei Matias Tévis	0.500	Av. Frei Matias Teves	1
+490	25097	Rua Francisco Alves	1.000	Rua Francisco Alves	2
+491	36641	Avenida Doutor José Rufino	1.000	Av. Dr. José Rufino	1
+492	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+492	56618	Rua Ramiz Galvão	1.000	Rua Ramiz Galvão	2
+493	40029	Rua Arquiteto Luiz Nunes	1.000	Rua Arquiteto Luiz Nunes	1
+494	56871	Avenida Recife	1.000	Av. Recife	1
+494	27464	Avenida Capitão Gregório de Caldas	0.667	Rua Gregório Caldas	2
+495	43974	Rua Mem de Sá	1.000	Rua Mem de Sá	1
+495	33081	Rua Professor Jerônimo Gueiros	1.000	Rua Prof. Jerônimo Gueiros	2
+496	57398	Rua Ribeiro de Brito	1.000	Rua Ribeiro de Brito	1
+496	1180	Rua Agenor Lopes	1.000	Rua Agenor Lopes	2
+497	36641	Avenida Doutor José Rufino	1.000	Av. Dr. José Rufino	1
+498	34720	Rua Joaquim Nabuco	1.000	Rua Joaquim Nabuco	1
+498	28290	Rua Guilherme Pinto	1.000	Rua Guilherme Pinto	2
+499	17922	Rua Cosme Viana	1.000	Rua Cosme Viana	1
+499	60593	Rua Padre Teófilo Tworz	0.667	Rua Pe. Teófilo Twortz	2
+500	20001	Rua Dois Irmãos	0.667	Av. Dois Irmãos	1
+500	41041	Rua Mandacaru	1.000	Rua Mandacaru	2
+501	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+502	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+502	31097	Rua Itália	1.000	Rua Itália	2
+503	33855	Rua João Ivo da Silva	1.000	Rua João Ivo da Silva	1
+504	10650	Estrada de Belém	1.000	Estrada de Belém	1
+504	24945	Rua Fonseca Oliveira	1.000	Rua Fonseca de Oliveira	2
+505	46191	Rua São Nicolau	1.000	Rua São Nicolau	1
+505	28614	Rua Hélio Brandão	1.000	Rua Hélio Brandão	2
+506	36641	Avenida Doutor José Rufino	1.000	Av. Dr. José Rufino	1
+507	49670	Avenida São Paulo	1.000	Av. São Paulo	1
+507	38385	Rua Leandro Barreto	1.000	Rua Leandro Barreto	2
+508	25097	Rua Francisco Alves	1.000	Rua Francisco Alves	1
+509	56391	Avenida Sul Gov. Cid Sampaio	1.000	Av. Sul	1
+509	36676	Rua Padre José de Sá Leitão	1.000	Rua Padre José de Sá Leitão	2
+510	30104	Rua Imperial	1.000	Rua Imperial	1
+510	56685	Travessa do Raposo	1.000	Travessa do Raposo	2
+511	30104	Rua Imperial	1.000	Rua Imperial	1
+511	9326	Travessa Padre Azevedo	1.000	Travessa do Azevedo	2
+512	58211	Avenida Rio Largo	1.000	Av. Rio Largo	1
+512	67377	Avenida Doze de Junho	1.000	Av. Doze de Junho	2
+513	60801	Rua Conselheiro Theodoro	0.667	Rua Conselheiro Teodoro	1
+513	61182	Rua Tomaz Gonzaga	0.667	Rua Tomás Gonzaga	2
+514	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+515	10910	Rua Benfica	1.000	Rua Benfica	1
+517	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+518	20052	Avenida Dois Rios	1.000	Av. Dois Rios	1
+518	20788	Rua Jornalista Edson Regis	1.000	Rua Jornalista Edson Regis	2
+519	20966	Rua Professor Eduardo Wanderley Filho	1.000	Rua Prof. Eduardo Wanderley Filho	1
+520	28630	Rua Acadêmico Hélio Ramos	1.000	Rua Acadêmico Hélio Ramos	1
+520	72052	Rua Amaro Gomes Poroca	1.000	Rua Amaro Poroca	2
+521	52221	Rua Conselheiro Portela	1.000	Rua Conselheiro Portela	1
+521	107247	Rua Futuro	1.000	Rua do Futuro	2
+522	59382	Avenida Conselheiro Rosa e Silva	0.750	Av. Coselheiro Rosa e Silva	1
+522	5312	Rua Antenor Navarro	1.000	Rua Antenor Navarro	2
+523	18481	Avenida Cruz Cabuga	1.000	Av. Cruz Cabugá	1
+524	57061	Estrada dos Remédios	1.000	Estrada dos Remédios	1
+524	30236	Rua Inconfidentes	1.000	Rua Inconfidentes	2
+525	17922	Rua Cosme Viana	1.000	Rua Cosme Viana	1
+525	61409	Rua Três de Agosto	1.000	Rua 3 de Agosto	2
+526	3620	Rua Alvares de Azevedo	1.000	Rua Álvares de Azevedo	1
+526	75108	Rua dos Palmares	1.000	Rua dos Palmares	2
+527	32921	Rua Jean Emile Favre	1.000	Rua Jean Emile Favre	1
+527	25119	Rua Francisco Barreto	1.000	Rua Francisco Barreto	2
+528	93866	Rua da Paz	1.000	Rua Paz	1
+528	33545	Rua João Carlos Guimarães	1.000	Rua João Carlos Guimarães	2
+529	8060	Avenida Armindo Moura	1.000	Av. Armindo Moura	1
+530	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+531	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+531	56871	Avenida Recife	1.000	Av. Recife	2
+532	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+532	65560	Rua Capitão Waldir de Melo	0.500	Rua Dr. Waldir Pessoa	2
+533	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+533	9830	Estrada do Barbalho	1.000	Estrada do Barbalho	2
+534	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+534	48763	Rua Pampulha	1.000	Rua Pampulha	2
+535	6530	Rua de Apipucos	0.500	Av. Apipucos	1
+536	56952	Rua da Regeneração	1.000	Rua da Regeneração	1
+536	299	Rua Abelardo Machado Botelho	1.000	Rua do Machado	2
+537	40029	Rua Arquiteto Luiz Nunes	1.000	Rua Arquiteto Luiz Nunes	1
+537	51250	Avenida Pinheiros	1.000	Av. Pinheiros	2
+538	5770	Avenida  Antônio de Goes	0.667	Av. Antônio de Góis	1
+538	36242	Rua José Mariano Filho	1.000	Rua José Mariano Filho	2
+539	36641	Avenida Doutor José Rufino	1.000	Av. Dr. José Rufino	1
+539	20303	Rua Dorothéia Vieira	0.667	Rua Dorotéia Vieira	2
+540	6530	Rua de Apipucos	0.500	Av. Apipucos	1
+540	5703	Rua João Batista de Barros Ribeiro	0.750	Rua Cel.João Batista R. Barros	2
+541	34908	Rua Professor Joaquim Xavier de Brito	1.000	Rua Prof. Joaquim Xavier de Brito	1
+541	44261	Rua Dr Miguel Vieira Ferreira	1.000	Rua Miguel Vieira	2
+542	14702	Rua Padre Carapuceiro	1.000	Rua Padre Carapuceiro	1
+543	68012	Avenida Dom João VI	0.500	Av. D. João VI( Canal do Jordão )	1
+543	6300	Avenida Antônio Torres Galvão	0.750	Rua Antônio Torres Galvão	2
+544	23965	Rua Félix de Brito e Melo	0.500	Rua Félix de Brito	1
+544	34045	Avenida Professor João Medeiros	1.000	Av. Prof. João Medeiros	2
+545	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+545	23965	Rua Félix de Brito e Melo	0.500	Rua Félix de Brito	2
+546	1465	Avenida Conselheiro Aguiar	1.000	Av. Cons. Aguiar	1
+546	23965	Rua Félix de Brito e Melo	0.500	Rua Félix de Brito	2
+547	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+547	23965	Rua Félix de Brito e Melo	0.500	Rua Félix de Brito	2
+548	11720	Avenida Boa Viagem	1.000	Av.Boa Viagem	1
+548	11258	Rua Padre Bernardino Pessoa	1.000	Rua Padre Bernardino Pessoa	2
+549	1465	Avenida Conselheiro Aguiar	1.000	Av. Cons. Aguiar	1
+549	35475	Rua Professor José Brandão	1.000	Rua Prof. José Brandão	2
+550	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+550	35475	Rua Professor José Brandão	1.000	Rua Prof. José Brandão	2
+551	23965	Rua Félix de Brito e Melo	0.500	Rua Félix de Brito	1
+551	25259	Rua Francisco da Cunha	1.000	Rua Francisco da Cunha	2
+553	8885	Rua Augusto Calheiros	1.000	Rua Augusto Calheiros	1
+553	21326	Rua Emília Torreão	1.000	Rua Emília Torreão	2
+554	50970	Rua Petronila Botelho	1.000	Rua Petronila V. Botelho	1
+554	35270	Avenida Professor José dos Anjos	1.000	Av. Prof. José dos Anjos	2
+555	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+555	5690	Rua Antônio Falcão	1.000	Rua Antônio Falcão	2
+556	17957	Rua Cosmorama	1.000	Rua Cosmorama	1
+556	9709	Rua Baltazar Passos	1.000	Rua Baltazar Passos	2
+557	36641	Avenida Doutor José Rufino	1.000	Av. Dr. José Rufino	1
+557	64580	Rua Doutor Vilas Boa	1.000	Rua Dr. Vilas Boas	2
+558	27022	Rua Gomes Taborda	1.000	Rua Gomes Taborda	1
+559	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+559	17841	Rua Cortês	1.000	Rua Côrtes	2
+560	40029	Rua Arquiteto Luiz Nunes	1.000	Rua Arquiteto Luiz Nunes	1
+561	20052	Avenida Dois Rios	1.000	Av. Dois Rios	1
+561	1171	Rua Pintor Agenor de Albuquerque César	1.000	Rua Pintor Agenor Albuquerque	2
+562	59595	Avenida Rui Barbosa	1.000	Av. Rui Barbosa	1
+562	27294	Rua das Graças	1.000	Rua das Graças	2
+563	17698	Avenida Correia de Brito	0.750	Av. Luis Correia de Brito	1
+563	35270	Avenida Professor José dos Anjos	1.000	Av. Prof. José dos Anjos	2
+564	32921	Rua Jean Emile Favre	1.000	Rua Jean Emile Favre	1
+564	83755	Rua Potengi	1.000	Rua Potengi	2
+565	33138	Rua Jerônimo Vilela	1.000	Rua Jerônimo Vilela	1
+565	40550	Rua Dr Machado	1.000	Rua Dr. Machado	2
+566	44261	Rua Dr Miguel Vieira Ferreira	0.800	Rua Dr. Miguel Vieira Ferreira	1
+566	65609	Rua Waldemar Nery Carneiro Monteiro	0.667	Rua Inácio Monteiro	2
+567	36374	Avenida Desembargador José Neves	0.750	Rua Des. José Neves	1
+567	34096	Rua Desembargador João Paes	1.000	Rua Desembargador João Paes	2
+568	15903	Avenida Caxangá	1.000	Av. Caxangá	1
+568	1074	Avenida Afonso Olindense	1.000	Av. Afonso Olindense	2
+569	9172	Rua Aurora Caçote	1.000	Rua Aurora Caçote	1
+570	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Mascarenhas de Morais	1
+571	75396	Cais Santa Rita	1.000	Cais de Santa Rita	1
+572	19453	Rua Dez de Julho	1.000	Rua 10 de Julho	1
+572	64823	Avenida Vinte de Janeiro	1.000	Rua 20 de Janeiro	2
+573	19453	Rua Dez de Julho	1.000	Rua 10 de Julho	1
+573	65609	Rua Waldemar Nery Carneiro Monteiro	1.000	Rua Waldemar Nery C. Monteiro	2
+574	33537	Rua João Cardoso Aires	1.000	Rua João Cardoso Aires	1
+574	53317	Rua Sá e Souza	1.000	Rua Sá e Souza	2
+575	10529	Avenida Beberibe	1.000	Av. Beberibe	1
+575	18937	Rua Cantora Dalva de Oliveira	1.000	Rua Cantora Dalva de Oliveira	2
+576	1880	Avenida Visconde de Albuquerque	1.000	Av. Visconde de Albuquerque	1
+576	19267	Rua Demóstenes de Olinda	1.000	Rua Demóstenes de Olinda	2
+577	51985	Rua General Polidoro	1.000	Rua Gal. Polidoro	1
+577	140	Rua Abatia	1.000	Rua Abatiá	2
+578	56073	Rua da Soledade	1.000	Rua da Soledade	1
+578	27170	Rua do Progresso	1.000	Rua do Progresso	2
+579	99295	Rua Bela Aurora	1.000	Rua da Aurora	1
+579	57266	Rua do Riachuelo	1.000	Rua do Riachuelo	2
+580	36374	Avenida Desembargador José Neves	1.000	Av. Desembargador José Neves	1
+581	42625	Avenida Maria Irene	1.000	Av. Maria Irene	1
+582	75396	Cais Santa Rita	1.000	Cais de Santa Rita	1
+583	75396	Cais Santa Rita	1.000	Cais de Santa Rita	1
+584	42625	Avenida Maria Irene	1.000	Av. Maria Irene	1
+585	38598	Rua Leonardo Bezerra Cavalcanti	1.000	Rua Leonardo Bezerra Cavalcanti	1
+585	74160	Rua Jornal Vanguarda	0.667	Rua Jornal do Commércio	2
+586	21199	Rua Delmiro Gouveia	1.000	Rua Delmiro Gouveia	1
+587	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+588	41750	Rua Manuel de Medeiros	1.000	Rua Manuel de Medeiros	1
+588	94609	Estrada dos Pintos	1.000	Estrada dos Pintos	2
+589	47120	Rua Odete Monteiro	1.000	Rua Odete Monteiro	1
+590	10910	Rua Benfica	1.000	Rua Benfica	1
+591	15903	Avenida Caxangá	1.000	Av Caxangá	1
+591	41793	Rua Manoel Moreira	1.000	Rua Manoel Moreira	2
+592	68012	Avenida Dom João VI	1.000	Av. Dom João VI	1
+593	21385	Estrada do Encanamento	1.000	Estrada do Encanamento	1
+593	61999	Estrada das Ubaias	1.000	Estrada das Ubaias	2
+594	20052	Avenida Dois Rios	1.000	Av. Dois Rios	1
+595	34720	Rua Joaquim Nabuco	1.000	Rua Joaquim Nabuco	1
+595	4235	Rua Monsenhor Ambrosino Leite	0.750	Rua Monsenhor Ambrozino Leite	2
+596	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+597	47120	Rua Odete Monteiro	1.000	Rua Odete Monteiro	1
+597	33880	Rua Doutor João Lacerda	1.000	Rua Dr. João Lacerda	2
+598	28517	Rua da Harmonia	1.000	Rua da Harmonia	1
+598	46027	Rua Major Nereu Guerra	1.000	Rua Major Nereu Guerra	2
+599	56871	Avenida Recife	1.000	Av. Recife	1
+600	4235	Rua Monsenhor Ambrosino Leite	0.750	Rua Monsenhor Ambrozino Leite	1
+600	50849	Rua das Pernambucanas	1.000	Rua das Pernambucanas	2
+601	35467	Rua José Bonifácio	1.000	Rua José Bonifacio	1
+601	36056	Rua José de Holanda	1.000	Rua José de Holanda	2
+602	38482	Rua Padre Lemos	1.000	Rua Pe. Lemos	1
+602	60313	Rua Visconde de Taunay	1.000	Rua Visconde de Taunay	2
+603	28010	Avenida Guararapes	1.000	Av. Guararapes	1
+604	28010	Avenida Guararapes	1.000	Av. Guararapes	1
+605	15903	Avenida Caxangá	1.000	Av Caxangá	1
+606	15903	Avenida Caxangá	1.000	Av Caxangá	1
+607	15903	Avenida Caxangá	1.000	Av Caxangá	1
+608	15903	Avenida Caxangá	1.000	Av Caxangá	1
+609	15903	Avenida Caxangá	1.000	Av Caxangá	1
+610	15903	Avenida Caxangá	1.000	Av Caxangá	1
+611	20060	Rua Vinte e Um de Abril	1.000	Rua 21 de Abril	1
+612	10650	Estrada de Belém	1.000	Estrada de Belém	1
+613	26905	Rua Desembargador Góis Cavalcante	0.750	Rua Des. Goes Cavalcante	1
+614	19526	Avenida Dezessete de Agosto	1.000	Av. 17 de Agosto	1
+614	24619	Avenida Flor de Santana	1.000	Av. Flor de Santana	2
+615	36641	Avenida Doutor José Rufino	1.000	Av. Dr. José Rufino	1
+616	56871	Avenida Recife	1.000	Av. Recife	1
+617	56871	Avenida Recife	1.000	Av. Recife	1
+618	56871	Avenida Recife	1.000	Av. Recife	1
+619	56871	Avenida Recife	1.000	Av. Recife	1
+620	56871	Avenida Recife	1.000	Av. Recife	1
+620	60097	Avenida Tapajos	1.000	Av. Tapajós	2
+621	56871	Avenida Recife	1.000	Av. Recife	1
+622	56952	Rua da Regeneração	1.000	Rua da Regeneração	1
+623	14982	Rua Carlos Gomes	1.000	Rua Carlos Gomes	1
+623	57452	Rua Ricardo Salazar	1.000	Rua Ricardo Salazar	2
+624	56286	Avenida Visconde de Suassuna	0.667	Av. Visc. de Suassuna	1
+625	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Masc. de Morais	1
+626	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Masc. de Morais	1
+627	18481	Avenida Cruz Cabuga	1.000	Av. Cruz Cabugá	1
+628	10910	Rua Benfica	1.000	Rua Benfica	1
+628	19259	Rua Demócrito de Souza Filho	1.000	Rua Demócrito de Souza Filho	2
+629	10910	Rua Benfica	1.000	Rua Benfica	1
+629	7951	Rua Arlindo Gouveia	1.000	Rua Arlindo Gouveia	2
+630	30600	Rua Conde de Irajá	1.000	Rua Conde do Irajá	1
+630	10596	Avenida Beira Rio	1.000	Av. Beira Rio	2
+631	43451	Avenida Marechal Mascarenhas de Moraes	0.667	Av. Masc. de Morais	1
+631	46566	Rua Noruega	1.000	Rua Noruega	2
+632	40029	Rua Arquiteto Luiz Nunes	1.000	Rua Arquiteto Luiz Nunes	1
+633	40029	Rua Arquiteto Luiz Nunes	1.000	Rua Arquiteto Luiz Nunes	1
+633	34967	Rua Missionário Joel Carlson	0.750	Rua Miss. Joel Carlson	2
+634	40029	Rua Arquiteto Luiz Nunes	1.000	Rua Arquiteto Luiz Nunes	1
+634	3786	Avenida Engenheiro Alves de Souza	1.000	Av. Eng. Alves de Souza	2
+635	40029	Rua Arquiteto Luiz Nunes	1.000	Rua Arquiteto Luiz Nunes	1
+636	49310	Rua Paris	1.000	Rua Paris	1
+636	32921	Rua Jean Emile Favre	1.000	Rua Jean Emile Favre	2
+637	40029	Rua Arquiteto Luiz Nunes	1.000	Rua Arquiteto Luiz Nunes	1
+638	1074	Avenida Afonso Olindense	1.000	Av. Afonso Olindense	1
+638	59013	Rua Rodrigues Ferreira	1.000	Rua Rodrigues Ferreira	2
+639	68012	Avenida Dom João VI	1.000	Av. Dom João VI	1
+640	40371	Avenida General Mac Arthur	1.000	Av. Gal. Mac. Arthur	1
+640	55573	Rua Sargento Silvino Macêdo	0.750	Rua Sgt Silvino de Macedo	2
+641	62405	Rua Uriel de Holanda	1.000	Rua Uriel de Holanda	1
+642	33138	Rua Jerônimo Vilela	1.000	Rua Jeronimo Vilela	1
+643	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+643	26964	Rua Gomes Coutinho	1.000	Rua Gomes Coutinho	2
+644	56260	Rua Barão de Souza Leão	1.000	Rua Barão de Souza Leão	1
+644	64823	Avenida Vinte de Janeiro	1.000	Rua 20 de Janeiro	2
+645	107719	Avenida Mauricio de Nassau	1.000	Av. Mauricio de Nassau	1
+646	19526	Avenida Dezessete de Agosto	1.000	Av. 17 de Agosto	1
+646	47856	Rua Engenheiro Oscar Ferreira	1.000	Rua Engenheiro Oscar Ferreira	2
+647	8222	Estrada do Arraial	1.000	Estrada do Arraial	1
+648	5690	Rua Antônio Falcão	1.000	Rua Antonio Falcão	1
+648	20761	Rua General Edson Amancio Ramalho	1.000	Rua Gal. Edson A. Ramalho	2
+649	97438	Rua João Tude de Melo	1.000	Rua João Tude de Melo	1
+649	65080	Rua Virgínia Loreto	1.000	Rua Virgínia Loreto	2
+650	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+651	34339	Rua João Sales Menezes	1.000	Rua João Sales	1
+651	5622	Rua Professor Antônio Coelho	0.750	Av. Prof. Antônio Coelho	2
+652	42986	Avenida Mário Álvares Pereira de Lyra	0.800	Av. Mário Álvares Pereirade Lyra	1
+652	43729	Rua Mauricéia	0.500	Rua Mauricéa	2
+653	22780	Rua Estado de Israel	1.000	Rua Estado de Israel	1
+653	39063	Avenida Lins Petit	0.667	Rua Lins Petit	2
+654	49670	Avenida São Paulo	1.000	Av. São Paulo	1
+654	28789	Rua Construtor Luiz Carvalhedo de Castro	1.000	Rua Construtor Luiz Carvalhedo	2
+655	61999	Estrada das Ubaias	1.000	Estrada da Ubaias	1
+655	45586	Rua Conselheiro Nabuco	1.000	Rua Conselheiro Nabuco	2
+656	33405	Avenida João de Barros	1.000	Av. João de Barros	1
+656	29238	Rua da Hora	1.000	Rua da Hora	2
+657	28932	Avenida Herculano Bandeira	1.000	Av Herculano Bandeira	1
+657	46477	Rua Nogueira de Souza	1.000	Rua Nogueira de Souza	2
+658	57142	Avenida Consul Joseph Noujaim	0.500	Av. República Árabe Unida	1
+658	46477	Rua Nogueira de Souza	1.000	Rua Nogueira de Souza	2
+659	41483	Rua Manoel de Brito	1.000	Rua Manoel de Brito	1
+659	57142	Avenida Consul Joseph Noujaim	0.500	Av. República Árabe Unida	2
+660	28932	Avenida Herculano Bandeira	1.000	Av. Herculano Bandeira	1
+660	8966	Rua Arquiteto Augusto Reinaldo	1.000	Rua Arquiteto Augusto Reinaldo	2
+661	54232	Avenida Saturnino de Brito	1.000	Av. Saturnino de Brito	1
+661	54232	Avenida Saturnino de Brito	0.500	Largo do Cabanga	2
+662	54232	Avenida Saturnino de Brito	0.500	Largo do Cabanga	1
+663	11720	Avenida Boa Viagem	1.000	Av. Boa Viagem	1
+663	28690	Rua Henrique Capitulino	1.000	Rua Henrique Capitulino	2
+664	33405	Avenida João de Barros	1.000	Av. João de Barros	1
+664	8346	Rua Artur  Azevedo	0.667	Rua Arthur Azevedo	2
+665	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+665	2410	Rua Alfredo de Castro	1.000	Rua Alfredo de Castro	2
+666	15644	Rua Castro Alves	1.000	Rua Castro Alves	1
+666	36668	Rua José de Sá Carneiro	1.000	Rua José de Sá Carneiro	2
+667	40371	Avenida General Mac Arthur	1.000	Av. General Mac Arthur	1
+668	36277	Rua Floriano Peixoto	1.000	Rua Floriano Peixoto	1
+669	68012	Avenida Dom João VI	1.000	Av. Dom João VI	1
+669	36730	Rua José da Silva Lucena	1.000	Rua José da Silva Lucena	2
+670	68012	Avenida Dom João VI	1.000	Av. Dom João VI	1
+670	14702	Rua Padre Carapuceiro	1.000	Rua Padre Carapuceiro	2
+671	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte Miguel Arraes de Alencar	1
+671	73890	Rua Coronel João Batista do Rego Barros	1.000	Rua Cel. João Batista do Rêgo Barros	2
+672	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+672	33359	Rua Dr João Asfora	0.750	Rua Dr. João Asfora	2
+673	40371	Avenida General Mac Arthur	1.000	Av. Gal. Mac. Arthur	1
+674	18481	Avenida Cruz Cabuga	1.000	Av. Cruz Cabugá	1
+674	50016	Rua Pedro Afonso	0.750	Rua Dr. Pedro Afonso	2
+675	73237	Rua Amélia	1.000	Rua Amélia	1
+675	22624	Rua Esmeraldino Bandeira	1.000	Rua Esmeraldino Bandeira	2
+676	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte	1
+676	47848	Rua Oscar de Barros	1.000	Rua Oscar de Barros	2
+677	46540	Avenida Norte Miguel Arraes de Alencar	1.000	Av. Norte	1
+677	2976	Rua Alto da Bela Vista	0.667	Rua Bella Vista	2
+678	32956	Rua Jener de Souza	0.667	Rua Jenner de Souza	1
+679	11738	Avenida Conde da Boa Vista	1.000	Av. Conde da Boa Vista	1
+679	35190	Rua José de Alencar	1.000	Rua José de Alencar	2
+680	11738	Avenida Conde da Boa Vista	1.000	Av. Conde da Boa Vista	1
+681	11738	Avenida Conde da Boa Vista	1.000	Av. Conde da Boa Vista	1
+681	46337	Rua das Ninfas	1.000	Rua das Ninfas	2
+682	11738	Avenida Conde da Boa Vista	1.000	Av. Conde da Boa Vista	1
+682	30341	Rua Padre Inglês	1.000	Rua Padre Inglês	2
+683	11738	Avenida Conde da Boa Vista	1.000	Av. Conde da Boa Vista	1
+684	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+685	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+686	59382	Avenida Conselheiro Rosa e Silva	1.000	Av. Conselheiro Rosa e Silva	1
+686	46124	Rua Neto Mendonça	1.000	Rua Neto de Mendonça	2
+687	175	Avenida Engenheiro Abdias de Carvalho	1.000	Av. Abdias de Carvalho	1
+688	175	Avenida Engenheiro Abdias de Carvalho	1.000	Av. Abdias de Carvalho	1
+689	10596	Avenida Beira Rio	1.000	Av. Beira Rio	1
+689	19267	Rua Demóstenes de Olinda	1.000	Rua Demóstenes Olinda	2
+690	10596	Avenida Beira Rio	1.000	Av. Beira Rio	1
+691	10596	Avenida Beira Rio	1.000	Av. Beira Rio	1
+692	10596	Avenida Beira Rio	1.000	Av. Beira Rio	1
+693	53775	Avenida General San Martin	1.000	Av. Gal. San Martin	1
+694	59080	Rua Padre Roma	1.000	Rua Pe. Roma	1
+694	61069	Rua Tito Rosas	0.667	Rua Tito Rosa	2
+695	59080	Rua Padre Roma	1.000	Rua Pe. Roma	1
+695	54500	Rua Sebastião Malta Arcoverde	1.000	Rua Sebastião Malta Arcoverde	2
+696	28517	Rua da Harmonia	1.000	Rua da Harmonia	1
+696	45586	Rua Conselheiro Nabuco	1.000	Rua Conselheiro Nabuco	2
+697	57398	Rua Ribeiro de Brito	1.000	Rua Ribeiro de Brito	1
+697	5266	Rua Coronel Anizio Rodrigues Coelho	1.000	Rua Cel. Anízio Rodrigues Coelho	2
+698	12629	Rua Bruno Veloso	1.000	Rua Bruno Veloso	1
+698	5266	Rua Coronel Anizio Rodrigues Coelho	1.000	Rua Cel. Anízio Rodrigues Coelho	2
+699	12629	Rua Bruno Veloso	1.000	Rua Bruno Veloso	1
+699	1180	Rua Agenor Lopes	1.000	Rua Agenor Lopes	2
+700	12629	Rua Bruno Veloso	1.000	Rua Bruno Veloso	1
+701	12629	Rua Bruno Veloso	1.000	Rua Bruno Veloso	1
+702	94323	Rua Senzala	1.000	Rua Senzala	1
+702	20001	Rua Dois Irmãos	1.000	Rua Dois Irmãos	2
+703	57142	Avenida Consul Joseph Noujaim	0.500	Av. República Árabe Unida	1
+703	125040	Entrada  Avenida República do Líbano	1.000	Av. República do Líbano	2
+704	56871	Avenida Recife	1.000	Av. Recife	1
+704	85200	Rua Maestro Alcides Leão	1.000	Rua Maestro Alcides Leão	2
+705	56871	Avenida Recife	1.000	Av. Recife	1
+705	707058	Rua Lourival Bandeira de Melo	0.750	Rua Laura Bandeira de Melo	2
+706	36641	Avenida Doutor José Rufino	1.000	Av. Dr. José Rufino	1
+707	20052	Avenida Dois Rios	1.000	Av. Dois Rios	1
+707	80705	Ladeira da Cohab	1.000	Ladeira da Cohab	2
+708	82171	Travessa Padre Carapuceiro	1.000	Travessa Pe. Carapuceiro	1
+709	20184	Avenida Engenheiro Domingos Ferreira	1.000	Av. Domingos Ferreira	1
+709	77399	Rua Uniflor	1.000	Rua Uniflor	2
+710	35807	Avenida Engenheiro José Estelita	1.000	Av. Eng. José Estelita	1
+711	1155	Avenida Governador Agamenon Magalhães	1.000	Av. Gov. Agamenon Magalhães	1
+711	36137	Rua José Luiz da Silveira Barros	0.800	Rua Jose Luis da Silveira Barros	2
+712	41750	Rua Manuel de Medeiros	0.750	Rua Dom Manuel de Medeiros	1

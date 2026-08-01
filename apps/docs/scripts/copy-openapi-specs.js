@@ -29,11 +29,13 @@ let copiedCount = 0;
 
 for (const appName of appDirs) {
 	const openapiFile = path.join(appsDir, appName, "openapi.json");
-	
+
 	if (fs.existsSync(openapiFile)) {
 		const targetFile = path.join(openapiDir, `${appName}.json`);
 		fs.copyFileSync(openapiFile, targetFile);
-		console.log(`Copied ${appName}/openapi.json → public/openapi/${appName}.json`);
+		console.log(
+			`Copied ${appName}/openapi.json → public/openapi/${appName}.json`,
+		);
 		copiedCount++;
 	}
 }

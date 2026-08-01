@@ -1,0 +1,87 @@
+{
+	"city": "ABREU E LIMA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 21,
+			"Desistência da solicitação": 3,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Outros Desfechos": 1,
+			"Removido pelos Bombeiros/CIODS": 13,
+			"Removido por Particulares": 8,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 12
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 22,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Óbito no Local/Atendimento": 1,
+			"Removido pelos Bombeiros/CIODS": 3,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 4
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 140,
+			"Desistência da solicitação": 11,
+			"Inválido/Duplicado/Cancelado/Trote": 3,
+			"Não necessita/Sem Condições Clínicas": 2,
+			"Óbito no Local/Atendimento": 1,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 10,
+			"Removido pelos Bombeiros/CIODS": 42,
+			"Removido por Particulares": 18,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 71
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 140,
+			"Desistência da solicitação": 5,
+			"Óbito no Local/Atendimento": 4,
+			"Outros Desfechos": 3,
+			"Recusa de Remoção": 10,
+			"Removido pelos Bombeiros/CIODS": 39,
+			"Removido por Particulares": 19,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 83
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 76,
+			"Desistência da solicitação": 5,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 5,
+			"Removido pelos Bombeiros/CIODS": 19,
+			"Removido por Particulares": 15,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 58
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 219,
+			"Desistência da solicitação": 15,
+			"Inválido/Duplicado/Cancelado/Trote": 6,
+			"Óbito no Local/Atendimento": 2,
+			"Outros Desfechos": 3,
+			"Recusa de Remoção": 12,
+			"Removido pelos Bombeiros/CIODS": 39,
+			"Removido por Particulares": 25,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 63
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 264,
+			"Desistência da solicitação": 28,
+			"Inválido/Duplicado/Cancelado/Trote": 10,
+			"Óbito no Local/Atendimento": 2,
+			"Outros Desfechos": 2,
+			"Recusa de Remoção": 10,
+			"Removido pelos Bombeiros/CIODS": 60,
+			"Removido por Particulares": 51,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 86
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 57,
+			"Desistência da solicitação": 8,
+			"Inválido/Duplicado/Cancelado/Trote": 3,
+			"Removido pelos Bombeiros/CIODS": 11,
+			"Removido por Particulares": 11,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 19
+		}
+	}
+}

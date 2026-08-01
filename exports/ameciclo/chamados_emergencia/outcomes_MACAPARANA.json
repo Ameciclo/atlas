@@ -1,0 +1,64 @@
+{
+	"city": "MACAPARANA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 11,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido por Particulares": 2
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 3,
+			"Removido por Particulares": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 54,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 9,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 51,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 8,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 7
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 29,
+			"Desistência da solicitação": 3,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1,
+			"Removido pelos Bombeiros/CIODS": 2,
+			"Removido por Particulares": 6,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 42,
+			"Desistência da solicitação": 1,
+			"Removido pelos Bombeiros/CIODS": 2,
+			"Removido por Particulares": 15,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 62,
+			"Desistência da solicitação": 8,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Não necessita/Sem Condições Clínicas": 2,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 2,
+			"Removido pelos Bombeiros/CIODS": 4,
+			"Removido por Particulares": 20,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 17,
+			"Desistência da solicitação": 2,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 6,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		}
+	}
+}

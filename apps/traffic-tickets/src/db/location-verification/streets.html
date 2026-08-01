@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificacao por Rua - Traffic Tickets</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .header {
+    background: #16213e;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #0f3460;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .header h1 { color: #e94560; font-size: 16px; }
+  .header a { color: #888; font-size: 12px; text-decoration: none; margin-left: 12px; }
+  .header a:hover { color: #e94560; }
+
+  .stats-bar {
+    background: #0f3460;
+    padding: 6px 20px;
+    display: flex;
+    gap: 18px;
+    flex-shrink: 0;
+    font-size: 12px;
+    color: #888;
+    border-bottom: 1px solid #0f3460;
+    flex-wrap: wrap;
+  }
+  .stats-bar span strong { color: #e0e0e0; }
+  .stats-bar .green { color: #2d6a4f; }
+  .stats-bar .red { color: #e94560; }
+
+  .main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .left-panel {
+    width: 400px;
+    min-width: 320px;
+    background: #16213e;
+    border-right: 1px solid #0f3460;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .left-panel .search-box {
+    padding: 10px 12px 6px;
+    flex-shrink: 0;
+  }
+  .left-panel input[type="text"] {
+    width: 100%;
+    background: #0f3460;
+    border: 1px solid #e94560;
+    border-radius: 6px;
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  .left-panel input:focus { outline: none; border-color: #ff6b8a; }
+  .left-panel .street-filters {
+    padding: 4px 12px 6px;
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+    font-size: 11px;
+    color: #888;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .left-panel .street-filters label { white-space: nowrap; cursor: pointer; }
+  .left-panel .street-filters input { width: 13px; height: 13px; accent-color: #e94560; margin-right: 3px; cursor: pointer; }
+  .left-panel .street-list { flex: 1; overflow-y: auto; }
+  .street-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #0f3460;
+    transition: background 0.15s;
+  }
+  .street-item:hover { background: #0f3460; }
+  .street-item.active { background: #0f3460; border-left: 3px solid #e94560; padding-left: 9px; }
+  .street-item .name { font-size: 13px; font-weight: bold; color: #fff; margin-bottom: 2px; word-break: break-word; }
+  .street-item .name .official { font-size: 10px; color: #888; font-weight: normal; margin-left: 4px; }
+  .street-item .stats { font-size: 10px; color: #888; }
+  .street-item .stats span { margin-right: 8px; white-space: nowrap; }
+  .street-item .stats .v { color: #e94560; }
+
+  .right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #1a1a2e;
+  }
+  .right-panel .placeholder {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #444;
+    font-size: 16px;
+  }
+  .right-panel .top-bar {
+    padding: 10px 20px;
+    background: #16213e;
+    border-bottom: 1px solid #0f3460;
+    flex-shrink: 0;
+  }
+  .right-panel .top-bar h2 { font-size: 14px; color: #fff; margin-bottom: 4px; }
+  .right-panel .top-bar .counts { font-size: 11px; color: #888; margin-bottom: 6px; }
+  .right-panel .top-bar .counts span { margin-right: 12px; }
+  .right-panel .top-bar .filters {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 11px;
+    color: #888;
+  }
+  .right-panel .top-bar .filters label { white-space: nowrap; cursor: pointer; }
+  .right-panel .top-bar .filters input { width: 13px; height: 13px; accent-color: #e94560; margin-right: 3px; cursor: pointer; }
+  .right-panel .top-bar .filters select {
+    background: #0f3460;
+    border: 1px solid #e94560;
+    border-radius: 4px;
+    color: #fff;
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+  .right-panel .batch-bar {
+    padding: 6px 20px;
+    flex-shrink: 0;
+    display: none;
+    gap: 6px;
+    align-items: center;
+    border-bottom: 1px solid #0f3460;
+    background: #1a1a2e;
+    flex-wrap: wrap;
+  }
+  .right-panel .batch-bar.active { display: flex; }
+  .right-panel .batch-bar .count { color: #e94560; font-size: 12px; font-weight: bold; }
+
+  .location-table-wrap { flex: 1; overflow-y: auto; }
+  .location-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .location-table th {
+    position: sticky;
+    top: 0;
+    background: #16213e;
+    color: #888;
+    font-size: 10px;
+    text-transform: uppercase;
+    padding: 7px 8px;
+    text-align: left;
+    z-index: 1;
+  }
+  .location-table td { padding: 6px 8px; border-bottom: 1px solid #16213e; vertical-align: middle; }
+  .location-table tr:hover { background: #0f346015; }
+  .location-table tr.ok { background: #2d6a4f15; }
+  .location-table tr.flagged { background: #9b222615; }
+  .location-table tr.limbo { background: #d4a01315; }
+  .location-table .raw { font-size: 11px; max-width: 260px; word-break: break-word; }
+  .location-table .extracted { font-weight: bold; }
+  .location-table .vio-count { color: #e94560; font-weight: bold; text-align: right; white-space: nowrap; }
+
+  .btn {
+    border: none;
+    border-radius: 5px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: scale(1.03); }
+  .btn:active { transform: scale(0.97); }
+  .btn-yes { background: #2d6a4f; color: white; }
+  .btn-no { background: #9b2226; color: white; }
+  .btn-all { background: #2d6a4f; color: white; padding: 5px 10px; font-size: 11px; }
+  .btn-skip { background: #495057; color: white; }
+  .btn-row { display: flex; gap: 3px; flex-wrap: nowrap; }
+
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: #16213e;
+    border-radius: 12px;
+    padding: 24px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .modal h3 { margin-bottom: 10px; color: #e94560; }
+  .modal textarea {
+    width: 100%;
+    min-height: 60px;
+    background: #0f3460;
+    border: 1px solid #e94560;
+    border-radius: 6px;
+    color: #fff;
+    padding: 8px;
+    font-family: monospace;
+    font-size: 12px;
+  }
+  .modal input[type="text"] {
+    width: 100%;
+    background: #0f3460;
+    border: 1px solid #e94560;
+    border-radius: 6px;
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .modal label { font-size: 11px; color: #888; display: block; margin-top: 8px; }
+  .modal label:first-of-type { margin-top: 0; }
+  .modal .batch-info {
+    background: #0f3460;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 8px 0;
+    font-size: 12px;
+    color: #e94560;
+  }
+
+  .search-wrap { position: relative; }
+  .search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 180px;
+    overflow-y: auto;
+    background: #0f3460;
+    border: 1px solid #e94560;
+    border-radius: 0 0 6px 6px;
+    z-index: 10;
+    display: none;
+  }
+  .search-results.active { display: block; }
+  .search-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 12px;
+    border-bottom: 1px solid #16213e;
+  }
+  .search-item:hover { background: #e94560; }
+  .search-item .code { color:#888; font-size:10px; margin-left:5px; }
+
+  .badge-sem { background:#d4a013;color:#000;padding:1px 6px;border-radius:9px;font-size:10px;font-weight:bold; }
+  .badge-post { background:#7b2ff7;color:#fff;padding:1px 6px;border-radius:9px;font-size:10px;font-weight:bold; }
+
+  .extracted-editable {
+    cursor: pointer;
+    border-bottom: 1px dashed #888;
+    padding: 2px 0;
+  }
+  .extracted-editable:hover { color: #e94560; border-bottom-color: #e94560; }
+
+  .inline-search-wrap { position: relative; }
+  .inline-search-wrap input {
+    background: #0f3460;
+    border: 1px solid #e94560;
+    border-radius: 4px;
+    color: #fff;
+    padding: 3px 6px;
+    font-size: 12px;
+    width: 100%;
+    min-width: 200px;
+  }
+  .inline-search-wrap input:focus { outline: none; border-color: #ff6b8a; }
+  .inline-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 160px;
+    overflow-y: auto;
+    background: #0f3460;
+    border: 1px solid #e94560;
+    border-radius: 0 0 4px 4px;
+    z-index: 10;
+  }
+  .inline-results .search-item { font-size: 11px; padding: 6px 8px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1 style="display:inline;">Verificacao por Rua</h1>
+    <a href="/">Individual</a>
+    <a href="/equipment">Equipamentos</a>
+    <a href="/limbo" style="color:#d4a013;">Limbo</a>
+  </div>
+</div>
+
+<div class="stats-bar" id="stats-bar">
+  <span>Locais: <strong id="stat-total">-</strong></span>
+  <span>Revisados: <strong id="stat-reviewed">-</strong></span>
+  <span class="red">Corrigidos: <strong id="stat-corrected">-</strong></span>
+  <span style="color:#d4a013;">Limbo: <strong id="stat-limbo">-</strong></span>
+  <span>Ruas: <strong id="stat-streets">-</strong></span>
+  <span class="green">Ruas revisadas: <strong id="stat-streets-rev">-</strong></span>
+</div>
+
+<div class="main">
+  <div class="left-panel">
+    <div class="search-box">
+      <input type="text" id="street-filter" placeholder="Buscar rua (nome ou codigo)..." oninput="filterStreets()">
+    </div>
+    <div class="street-filters">
+      <label><input type="checkbox" id="filt-unreviewed-streets" onchange="filterStreets()"> Nao revisadas</label>
+    </div>
+    <div class="street-list" id="street-list">
+      <div style="padding:20px;color:#888;text-align:center;">Carregando...</div>
+    </div>
+  </div>
+
+  <div class="right-panel" id="right-panel">
+    <div class="placeholder">Selecione uma rua para ver os enderecos</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h3 id="modal-title">Corrigir match</h3>
+    <div class="batch-info" id="modal-batch-info" style="display:none;"></div>
+    <p style="margin-bottom:6px;font-size:11px;color:#888;" id="modal-loc-id"></p>
+    <div id="modal-single-info">
+      <label>Raw description</label>
+      <div style="background:#0f3460;padding:8px;border-radius:6px;margin:4px 0 8px;word-break:break-word;font-size:12px;" id="modal-raw"></div>
+      <label>Extracted atual</label>
+      <div style="background:#0f3460;padding:8px;border-radius:6px;margin:4px 0 8px;border:1px solid #9b2226;font-size:12px;" id="modal-current"></div>
+    </div>
+    <label>Buscar rua correta</label>
+    <div class="search-wrap">
+      <input type="text" id="modal-search" placeholder="Nome da rua...">
+      <div class="search-results" id="modal-search-results"></div>
+    </div>
+    <label>Corrected street</label>
+    <input type="text" id="modal-corrected-street" placeholder="Selecionado da busca..." readonly>
+    <label>Corrected street code</label>
+    <input type="text" id="modal-corrected-code" placeholder="Selecionado da busca..." readonly>
+    <label>Notas</label>
+    <textarea id="modal-notes" placeholder="Opcional..."></textarea>
+    <div style="display:flex;gap:8px;margin-top:12px;">
+      <button class="btn btn-no" onclick="confirmCorrection()">Salvar</button>
+      <button class="btn btn-skip" onclick="closeModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let allStreets = [];
+let allSummary = null;
+let activeCode = null;
+let activeLocations = [];
+let pendingCorrection = null;
+let searchTimer = null;
+let rightFilters = { hideEquip: false, status: 'pending,verified,corrected,limbo', equipType: '' };
+let sortCol = 'vio';
+let sortDir = -1;
+
+async function loadStreets() {
+  const r = await fetch('/api/street-summary');
+  allSummary = await r.json();
+  allStreets = allSummary.streets;
+  updateStatsBar();
+  renderStreetList();
+}
+
+function updateStatsBar() {
+  if (!allSummary) return;
+  const t = allSummary.totals;
+  document.getElementById('stat-total').textContent = t.total_locations.toLocaleString();
+  document.getElementById('stat-reviewed').textContent = t.total_reviewed.toLocaleString();
+  document.getElementById('stat-corrected').textContent = t.total_corrected.toLocaleString();
+  document.getElementById('stat-limbo').textContent = (t.total_limbo || 0).toLocaleString();
+  document.getElementById('stat-streets').textContent = t.total_streets.toLocaleString();
+  document.getElementById('stat-streets-rev').textContent = t.total_streets_reviewed.toLocaleString();
+}
+
+function setSort(col) {
+  if (sortCol === col) {
+    sortDir = -sortDir;
+  } else {
+    sortCol = col;
+    sortDir = col === 'vio' || col === 'id' ? -1 : 1;
+  }
+  updateSortIndicators();
+  if (activeCode) selectStreet(activeCode);
+}
+
+function updateSortIndicators() {
+  ['id', 'raw', 'extracted', 'vio'].forEach(c => {
+    const el = document.getElementById('sort-' + c);
+    if (!el) return;
+    el.textContent = sortCol === c ? (sortDir === -1 ? ' ▼' : ' ▲') : '';
+  });
+}
+
+function sortLocations() {
+  if (!activeLocations.length) return;
+  activeLocations.sort((a, b) => {
+    let ka, kb;
+    switch (sortCol) {
+      case 'id': ka = parseInt(a.location_id) || 0; kb = parseInt(b.location_id) || 0; break;
+      case 'raw': ka = (a.raw_description || '').toLowerCase(); kb = (b.raw_description || '').toLowerCase(); break;
+      case 'extracted': ka = (a.extracted_street || '').toLowerCase(); kb = (b.extracted_street || '').toLowerCase(); break;
+      case 'vio': ka = a.violation_count || 0; kb = b.violation_count || 0; break;
+      default: return 0;
+    }
+    if (ka < kb) return -sortDir;
+    if (ka > kb) return sortDir;
+    return 0;
+  });
+}
+
+function applyLocFilters() {
+  const searchEl = document.getElementById('filt-loc-search');
+  const search = searchEl ? (searchEl.value || '').toLowerCase() : '';
+  const wordsEl = document.getElementById('filt-loc-words');
+  const wordLimit = wordsEl ? (parseInt(wordsEl.value) || 0) : 0;
+  const all = window._allLocations || [];
+
+  if (search) {
+    activeLocations = all.filter(l => {
+      const invert = document.getElementById('filt-loc-invert');
+      const rawText = (l.raw_description || '').toLowerCase();
+      if (wordLimit > 0) {
+        const rawForSearch = rawText.split(/\s+/).slice(0, wordLimit).join(' ');
+        const match = rawForSearch.includes(search);
+        return invert && invert.checked ? !match : match;
+      }
+      const match = rawText.includes(search) ||
+        (l.extracted_street || '').toLowerCase().includes(search) ||
+        (l.street_code || '').includes(search) ||
+        (l.corrected_street || '').toLowerCase().includes(search) ||
+        (l.corrected_street_code || '').includes(search);
+      return invert && invert.checked ? !match : match;
+    });
+  } else {
+    activeLocations = all.slice();
+  }
+  sortLocations();
+
+  const tbody = document.getElementById('loc-tbody');
+  if (tbody) renderLocationTable();
+}
+
+function renderStreetList() {
+  const filter = (document.getElementById('street-filter').value || '').toLowerCase();
+  const unreviewedOnly = document.getElementById('filt-unreviewed-streets').checked;
+  const filtered = allStreets.filter(s => {
+    if (unreviewedOnly && s.verified === 0 && s.flagged === 0) return true;
+    if (unreviewedOnly) return false;
+    if (!filter) return true;
+    const q = filter;
+    return (s.extracted_name || '').toLowerCase().includes(q)
+        || (s.official_name || '').toLowerCase().includes(q)
+        || s.street_code.includes(q);
+  });
+
+  const el = document.getElementById('street-list');
+  el.innerHTML = filtered.map((s, i) => `
+    <div class="street-item${s.street_code === activeCode ? ' active' : ''}" onclick="selectStreet('${escAttr(s.street_code)}')">
+      <div class="name">${esc(s.extracted_name || s.official_name)} <span class="official">${s.extracted_name !== s.official_name ? esc(s.official_name) : ''} [${s.street_code}]</span></div>
+      <div class="stats">
+        <span class="v">${s.total_violations.toLocaleString()} inf</span>
+        <span>${s.total_locations} loc</span>
+        <span style="color:#2d6a4f;">${s.verified} ok</span>
+        <span style="color:#9b2226;">${s.flagged} corr</span>
+        <span style="color:#d4a013;">${s.limbo || 0} limbo</span>
+        <span style="color:#888;">${s.unverified} pend</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterStreets() {
+  renderStreetList();
+}
+
+async function selectStreet(code) {
+  activeCode = code;
+  renderStreetList();
+
+  let url = '/api/street-locations?code=' + code;
+  if (rightFilters.hideEquip) url += '&hide_equip=1';
+  if (rightFilters.equipType) url += '&equip_type=' + rightFilters.equipType;
+  if (rightFilters.status) url += '&status=' + rightFilters.status;
+
+  const r = await fetch(url);
+  activeLocations = await r.json();
+  window._allLocations = activeLocations.slice();
+  applyLocFilters();
+
+  const st = allStreets.find(s => s.street_code === code) || {};
+  const displayed = activeLocations;
+  const ok = displayed.filter(l => l.verified === 'true').length;
+  const fl = displayed.filter(l => l.verified === 'false').length;
+  const lb = displayed.filter(l => l.verified === 'limbo').length;
+  const un = displayed.length - ok - fl - lb;
+
+  document.getElementById('right-panel').innerHTML = `
+    <div class="top-bar">
+      <div>
+        <h2>${esc(st.extracted_name || st.official_name)} <span style="color:#888;font-size:11px;font-weight:normal;">[${code}]</span></h2>
+        <div class="counts" id="loc-counts">
+          <span class="v">${(st.total_violations || 0).toLocaleString()} infracoes</span>
+          <span>${displayed.length} locais</span>
+          <span style="color:#2d6a4f;">${ok} ok</span>
+          <span style="color:#9b2226;">${fl} corrigidos</span>
+          <span style="color:#d4a013;">${lb} limbo</span>
+          <span style="color:#888;">${un} pendentes</span>
+        </div>
+        <div class="filters">
+          <label><input type="checkbox" id="filt-hide-equip" ${rightFilters.hideEquip ? 'checked' : ''} onchange="onRightFilterChange()"> Esconder semaforos/postes</label>
+          <span>Status:</span>
+          <label style="cursor:pointer;"><input type="checkbox" id="filt-st-pending" ${rightFilters.status.includes('pending') ? 'checked' : ''} onchange="onRightFilterChange()"> Pendentes</label>
+          <label style="cursor:pointer;"><input type="checkbox" id="filt-st-ok" ${rightFilters.status.includes('verified') ? 'checked' : ''} onchange="onRightFilterChange()"> OK</label>
+          <label style="cursor:pointer;"><input type="checkbox" id="filt-st-corrected" ${rightFilters.status.includes('corrected') ? 'checked' : ''} onchange="onRightFilterChange()"> Corrigidos</label>
+          <label style="cursor:pointer;"><input type="checkbox" id="filt-st-limbo" ${rightFilters.status.includes('limbo') ? 'checked' : ''} onchange="onRightFilterChange()"> Limbo</label>
+          <span>Tipo:</span>
+          <select id="filt-equip-type" onchange="onRightFilterChange()" style="background:#0f3460;border:1px solid #e94560;border-radius:4px;color:#fff;padding:3px 6px;font-size:11px;">
+            <option value="">Todos</option>
+            <option value="equipment" ${rightFilters.equipType === 'equipment' ? 'selected' : ''}>Equipamentos</option>
+            <option value="semaphore" ${rightFilters.equipType === 'semaphore' ? 'selected' : ''}>Semaforos</option>
+            <option value="post" ${rightFilters.equipType === 'post' ? 'selected' : ''}>Postes</option>
+          </select>
+          <span>Buscar:</span>
+          <input type="text" id="filt-loc-search" placeholder="Buscar no raw description..." style="background:#0f3460;border:1px solid #e94560;border-radius:4px;color:#fff;padding:3px 8px;font-size:11px;width:220px;" oninput="applyLocFilters()">
+          <select id="filt-loc-words" onchange="applyLocFilters()" style="background:#0f3460;border:1px solid #e94560;border-radius:4px;color:#fff;padding:3px 4px;font-size:10px;">
+            <option value="0">Todo texto</option>
+            <option value="3">3 palavras</option>
+            <option value="5" selected>5 palavras</option>
+            <option value="8">8 palavras</option>
+            <option value="10">10 palavras</option>
+          </select>
+          <label style="font-size:11px;color:#888;white-space:nowrap;"><input type="checkbox" id="filt-loc-invert" onchange="applyLocFilters()"> Inverter</label>
+          ${un > 0 ? `
+          <button class="btn btn-all" onclick="markStreetOK()">OK todos pendentes</button>
+          <button class="btn btn-no" onclick="openStreetCorrection()">Corrigir todos pendentes</button>
+          ` : ''}
+        </div>
+      </div>
+    </div>
+    <div class="batch-bar" id="batch-bar" style="display:none;">
+      <span class="count" id="batch-count-label">0 selecionados</span>
+      <button class="btn btn-no" onclick="openBatchCorrection()">Corrigir selecionados</button>
+      <button class="btn btn-all" onclick="batchMarkOK()">OK selecionados</button>
+      <button class="btn" style="background:#d4a013;color:#000;" onclick="batchLimbo()">Limbo selecionados</button>
+      <button class="btn btn-skip" onclick="batchUnverify()">Desfazer selecionados</button>
+    </div>
+    <div class="location-table-wrap">
+      <table class="location-table">
+        <thead>
+          <tr>
+            <th style="width:24px;padding:0 4px;"><input type="checkbox" id="select-all-locs" onchange="toggleSelectAllLocs()" title="Selecionar todos"></th>
+            <th onclick="setSort('id')" style="cursor:pointer;"># <span id="sort-id"></span></th>
+            <th onclick="setSort('raw')" style="cursor:pointer;">Raw description <span id="sort-raw"></span></th>
+            <th onclick="setSort('extracted')" style="cursor:pointer;">Extracted <span id="sort-extracted"></span></th>
+            <th onclick="setSort('vio')" style="cursor:pointer;">Infracoes <span id="sort-vio"></span></th>
+            <th>Tipo</th><th>Acoes</th>
+          </tr>
+        </thead>
+        <tbody id="loc-tbody"></tbody>
+      </table>
+    </div>`;
+
+  renderLocationTable();
+}
+
+function renderLocationTable() {
+  const tbody = document.getElementById('loc-tbody');
+  if (!tbody) return;
+  const locs = activeLocations;
+
+  updateSortIndicators();
+  tbody.innerHTML = locs.map((l, i) => {
+    let rowClass = '';
+    if (l.verified === 'true') rowClass = 'ok';
+    else if (l.verified === 'false') rowClass = 'flagged';
+    else if (l.verified === 'limbo') rowClass = 'limbo';
+
+    let typeBadge = '';
+    if (l._location_type === 'semaphore') typeBadge = '<span class="badge-sem">SEM</span>';
+    else if (l._location_type === 'post') typeBadge = '<span class="badge-post">POST</span>';
+
+    let actions = '';
+    if (l.verified === 'true') {
+      actions = '<span style="color:#2d6a4f;font-size:11px;">OK</span> <button class="btn btn-skip" style="padding:2px 6px;font-size:10px;" onclick="unverify('+i+')">desfazer</button>';
+    } else if (l.verified === 'false') {
+      actions = '<div style="font-size:10px;"><span style="color:#9b2226;">Corrigido</span> <button class="btn btn-skip" style="padding:2px 6px;font-size:10px;" onclick="unverify('+i+')">desfazer</button><br><span style="color:#888;">'+esc(l.corrected_street || '-')+'</span></div>';
+    } else if (l.verified === 'limbo') {
+      actions = '<span style="color:#d4a013;font-size:11px;">Limbo</span> <button class="btn btn-skip" style="padding:2px 6px;font-size:10px;" onclick="unverify('+i+')">desfazer</button>';
+    } else {
+      actions = '<div class="btn-row"><button class="btn btn-yes" onclick="markOK('+i+')">OK</button><button class="btn btn-no" onclick="openFlag('+i+')">X</button> <button class="btn" style="background:#d4a013;color:#000;padding:5px 8px;font-size:10px;" onclick="markLimbo('+i+')">Limbo</button></div>';
+    }
+
+    let extractedHtml;
+    if (l.corrected_street) {
+      extractedHtml = '<span style="color:#2d6a4f;font-weight:bold;">' + esc(l.corrected_street) + '</span> <span style="color:#2d6a4f;font-size:10px;">[' + (l.corrected_street_code || '') + ']</span>';
+      if (l.extracted_street && l.extracted_street !== l.corrected_street) {
+        extractedHtml += '<br><span style="color:#666;font-size:10px;text-decoration:line-through;">' + esc(l.extracted_street) + ' [' + (l.street_code || '') + ']</span>';
+      }
+    } else if (l.verified === 'limbo') {
+      extractedHtml = '<span style="color:#d4a013;">' + esc(l.extracted_street || '-') + '</span>';
+    } else if (l.verified) {
+      extractedHtml = esc(l.extracted_street || '-');
+    } else {
+      extractedHtml = '<span class="extracted-editable" onclick="inlineEdit(this, '+i+')" title="Clique para editar">' + esc(l.extracted_street || '-') + '</span>';
+    }
+    return '<tr class="'+rowClass+'">'+
+      '<td style="padding:0 4px;"><input type="checkbox" class="loc-cb" data-idx="'+i+'" onchange="updateLocBatchBar()"></td>'+
+      '<td>'+(i+1)+'</td>'+
+      '<td class="raw">'+esc(l.raw_description)+'</td>'+
+      '<td class="extracted">'+extractedHtml+'</td>'+
+      '<td class="vio-count">'+l.violation_count.toLocaleString()+'</td>'+
+      '<td>'+typeBadge+'</td>'+
+      '<td>'+actions+'</td>'+
+    '</tr>';
+  }).join('');
+
+  const ok = locs.filter(l => l.verified === 'true').length;
+  const fl = locs.filter(l => l.verified === 'false').length;
+  const lb = locs.filter(l => l.verified === 'limbo').length;
+  const un = locs.length - ok - fl - lb;
+  const all = window._allLocations || [];
+  const allOk = all.filter(l => l.verified === 'true').length;
+  const allFl = all.filter(l => l.verified === 'false').length;
+  const allLb = all.filter(l => l.verified === 'limbo').length;
+  const allUn = all.length - allOk - allFl - allLb;
+
+  const countsEl = document.getElementById('loc-counts');
+  if (countsEl) {
+    const showTotal = allUn !== un;
+    countsEl.innerHTML = '<span style="color:#888;">' + locs.length + ' locais</span>' +
+      '<span style="color:#2d6a4f;">' + ok + ' ok</span>' +
+      '<span style="color:#9b2226;">' + fl + ' corrigidos</span>' +
+      '<span style="color:#d4a013;">' + lb + ' limbo</span>' +
+      '<span style="color:#888;">' + un + ' pendentes</span>' +
+      (showTotal ? '<span style="color:#666;">(de ' + all.length + ' na rua)</span>' : '');
+  }
+}
+
+function onRightFilterChange() {
+  rightFilters.hideEquip = document.getElementById('filt-hide-equip').checked;
+  rightFilters.equipType = document.getElementById('filt-equip-type').value;
+  const parts = [];
+  if (document.getElementById('filt-st-pending').checked) parts.push('pending');
+  if (document.getElementById('filt-st-ok').checked) parts.push('verified');
+  if (document.getElementById('filt-st-corrected').checked) parts.push('corrected');
+  if (document.getElementById('filt-st-limbo').checked) parts.push('limbo');
+  rightFilters.status = parts.join(',');
+  selectStreet(activeCode);
+}
+
+function toggleSelectAllLocs() {
+  const checked = document.getElementById('select-all-locs').checked;
+  document.querySelectorAll('.loc-cb').forEach(cb => { cb.checked = checked; });
+  updateLocBatchBar();
+}
+
+function updateLocBatchBar() {
+  const count = document.querySelectorAll('.loc-cb:checked').length;
+  const bar = document.getElementById('batch-bar');
+  if (count > 0) {
+    bar.style.display = 'flex';
+    document.getElementById('batch-count-label').textContent = count + ' selecionado' + (count > 1 ? 's' : '');
+  } else {
+    bar.style.display = 'none';
+  }
+}
+
+function getSelectedLocationIds() {
+  const ids = [];
+  document.querySelectorAll('.loc-cb:checked').forEach(cb => {
+    const idx = parseInt(cb.getAttribute('data-idx'));
+    if (activeLocations[idx]) ids.push(activeLocations[idx].location_id);
+  });
+  return ids;
+}
+
+function openBatchCorrection() {
+  window._batchMode = true;
+  window._batchIds = getSelectedLocationIds();
+  const ids = window._batchIds;
+  document.getElementById('modal-title').textContent = 'Corrigir em lote';
+  document.getElementById('modal-batch-info').style.display = 'block';
+  document.getElementById('modal-batch-info').textContent = ids.length + ' localizacoe' + (ids.length > 1 ? 's' : '') + ' selecionada' + (ids.length > 1 ? 's' : '');
+  document.getElementById('modal-single-info').style.display = 'none';
+  document.getElementById('modal-loc-id').textContent = '';
+  document.getElementById('modal-corrected-street').value = '';
+  document.getElementById('modal-corrected-code').value = '';
+  document.getElementById('modal-notes').value = '';
+  document.getElementById('modal-search').value = '';
+  document.getElementById('modal-search-results').innerHTML = '';
+  document.getElementById('modal-search-results').classList.remove('active');
+  document.getElementById('modal').classList.add('active');
+  document.getElementById('modal-search').focus();
+}
+
+async function batchMarkOK() {
+  const ids = getSelectedLocationIds();
+  if (ids.length === 0) return;
+  if (!confirm('Marcar ' + ids.length + ' localizacoes como OK?')) return;
+  for (const lid of ids) {
+    await fetch('/api/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ location_id: lid, verified: 'true' }),
+    });
+  }
+  document.getElementById('select-all-locs').checked = false;
+  await refreshStreets();
+  selectStreet(activeCode);
+}
+
+async function batchLimbo() {
+  const ids = getSelectedLocationIds();
+  if (ids.length === 0) return;
+  if (!confirm('Mandar ' + ids.length + ' localizacoes para o limbo?')) return;
+  for (const lid of ids) {
+    await fetch('/api/limbo', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ location_id: lid }),
+    });
+  }
+  document.getElementById('select-all-locs').checked = false;
+  await refreshStreets();
+  selectStreet(activeCode);
+}
+
+async function markOK(idx) {
+  const l = activeLocations[idx];
+  await fetch('/api/verify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ location_id: l.location_id, verified: 'true' }),
+  });
+  l.verified = 'true';
+  await refreshStreets();
+  selectStreet(activeCode);
+}
+
+async function markLimbo(idx) {
+  const l = activeLocations[idx];
+  await fetch('/api/limbo', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ location_id: l.location_id }),
+  });
+  l.verified = 'limbo';
+  await refreshStreets();
+  selectStreet(activeCode);
+}
+
+function openFlag(idx) {
+  window._batchMode = false;
+  pendingCorrection = activeLocations[idx];
+  document.getElementById('modal-title').textContent = 'Corrigir match';
+  document.getElementById('modal-batch-info').style.display = 'none';
+  document.getElementById('modal-single-info').style.display = 'block';
+  document.getElementById('modal-loc-id').textContent = 'Location #' + pendingCorrection.location_id;
+  document.getElementById('modal-raw').textContent = pendingCorrection.raw_description;
+  document.getElementById('modal-current').textContent = pendingCorrection.extracted_street || '(vazio)';
+  document.getElementById('modal-corrected-street').value = '';
+  document.getElementById('modal-corrected-code').value = '';
+  document.getElementById('modal-notes').value = '';
+  document.getElementById('modal-search').value = '';
+  document.getElementById('modal-search-results').innerHTML = '';
+  document.getElementById('modal-search-results').classList.remove('active');
+  document.getElementById('modal').classList.add('active');
+  document.getElementById('modal-search').focus();
+}
+
+function openStreetCorrection() {
+  window._batchMode = true;
+  window._batchIds = [];
+  const un = activeLocations.filter(l => !l.verified).length;
+  document.getElementById('modal-title').textContent = 'Corrigir todos pendentes desta rua';
+  document.getElementById('modal-batch-info').style.display = 'block';
+  document.getElementById('modal-batch-info').textContent = 'Rua [' + activeCode + '] | ' + un.toLocaleString() + ' locais pendentes';
+  document.getElementById('modal-single-info').style.display = 'none';
+  document.getElementById('modal-loc-id').textContent = '';
+  document.getElementById('modal-corrected-street').value = '';
+  document.getElementById('modal-corrected-code').value = '';
+  document.getElementById('modal-notes').value = '';
+  document.getElementById('modal-search').value = '';
+  document.getElementById('modal-search-results').innerHTML = '';
+  document.getElementById('modal-search-results').classList.remove('active');
+  document.getElementById('modal').classList.add('active');
+  document.getElementById('modal-search').focus();
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+}
+
+async function confirmCorrection() {
+  const correctedStreet = document.getElementById('modal-corrected-street').value;
+  const correctedCode = document.getElementById('modal-corrected-code').value;
+  const notes = document.getElementById('modal-notes').value;
+  closeModal();
+
+  if (window._batchMode) {
+    if (window._batchIds && window._batchIds.length > 0) {
+      for (const lid of window._batchIds) {
+        await fetch('/api/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            location_id: lid,
+            verified: 'false',
+            corrected_street: correctedStreet,
+            corrected_street_code: correctedCode,
+            notes: notes,
+          }),
+        });
+      }
+      window._batchIds = [];
+    } else {
+      await fetch('/api/streets/correct-batch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          street_codes: [activeCode],
+          corrected_code: correctedCode,
+          corrected_name: correctedStreet,
+          notes: notes,
+        }),
+      });
+    }
+    document.getElementById('select-all-locs').checked = false;
+    await refreshStreets();
+    selectStreet(activeCode);
+    return;
+  }
+
+  if (!pendingCorrection) return;
+  await fetch('/api/verify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      location_id: pendingCorrection.location_id,
+      verified: 'false',
+      corrected_street: correctedStreet,
+      corrected_street_code: correctedCode,
+      notes: notes,
+    }),
+  });
+  await refreshStreets();
+  selectStreet(activeCode);
+}
+
+async function markStreetOK() {
+  const un = activeLocations.filter(l => !l.verified).length;
+  if (un === 0) return;
+  if (!confirm('Marcar ' + un.toLocaleString() + ' locais como OK na rua [' + activeCode + ']?')) return;
+  await fetch('/api/streets/ok-batch', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ street_codes: [activeCode] }),
+  });
+  await refreshStreets();
+  selectStreet(activeCode);
+}
+
+async function searchStreets(q) {
+  const resultsEl = document.getElementById('modal-search-results');
+  if (!q || q.length < 2) { resultsEl.classList.remove('active'); resultsEl.innerHTML = ''; return; }
+  const r = await fetch('/api/streets/search?q=' + encodeURIComponent(q));
+  const streets = await r.json();
+  resultsEl.innerHTML = streets.map(s =>
+    '<div class="search-item" onclick="selectStreetCorrection(\''+escAttr(s.official_name)+'\', \''+s.code+'\')">'+esc(s.official_name)+'<span class="code">'+s.code+'</span></div>'
+  ).join('');
+  resultsEl.classList.add('active');
+}
+
+function selectStreetCorrection(name, code) {
+  document.getElementById('modal-corrected-street').value = name;
+  document.getElementById('modal-corrected-code').value = code;
+  document.getElementById('modal-search-results').classList.remove('active');
+  document.getElementById('modal-search-results').innerHTML = '';
+  document.getElementById('modal-search').value = name;
+}
+
+async function refreshStreets() {
+  const r = await fetch('/api/street-summary');
+  allSummary = await r.json();
+  allStreets = allSummary.streets;
+  updateStatsBar();
+}
+
+function esc(s) {
+  if (!s) return '';
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+function escAttr(s) {
+  if (!s) return '';
+  return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+document.getElementById('modal-search').addEventListener('input', function() {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => searchStreets(this.value), 250);
+});
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+async function unverify(idx) {
+  const l = activeLocations[idx];
+  if (!l) return;
+  await fetch('/api/unverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ location_id: l.location_id }),
+  });
+  l.verified = '';
+  l.corrected_street = '';
+  l.corrected_street_code = '';
+  l.notes = '';
+  await refreshStreets();
+  selectStreet(activeCode);
+}
+
+async function batchUnverify() {
+  const ids = getSelectedLocationIds();
+  if (ids.length === 0) return;
+  if (!confirm('Desfazer ' + ids.length + ' localizacoes?')) return;
+  for (const lid of ids) {
+    await fetch('/api/unverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ location_id: lid }),
+    });
+  }
+  document.getElementById('select-all-locs').checked = false;
+  await refreshStreets();
+  selectStreet(activeCode);
+}
+
+function inlineEdit(el, idx) {
+  const l = activeLocations[idx];
+  if (!l || l.verified) return;
+  const oldHtml = el.outerHTML;
+  const wrapper = document.createElement('div');
+  wrapper.className = 'inline-search-wrap';
+  wrapper.innerHTML = '<input type="text" value="'+escAttr(l.extracted_street || '')+'" placeholder="Buscar rua...">' +
+    '<div class="inline-results" style="display:none;"></div>';
+  el.parentNode.replaceChild(wrapper, el);
+  const input = wrapper.querySelector('input');
+  const resultsEl = wrapper.querySelector('.inline-results');
+  input.focus();
+  input.select();
+
+  let timer = null;
+  input.addEventListener('input', function() {
+    clearTimeout(timer);
+    const val = this.value;
+    timer = setTimeout(async () => {
+      if (!val || val.length < 2) { resultsEl.style.display = 'none'; resultsEl.innerHTML = ''; return; }
+      const r = await fetch('/api/streets/search?q=' + encodeURIComponent(val));
+      const streets = await r.json();
+      if (streets.length === 0) { resultsEl.style.display = 'none'; resultsEl.innerHTML = ''; return; }
+      resultsEl.innerHTML = streets.map(s =>
+        '<div class="search-item" data-code="'+s.code+'" data-name="'+escAttr(s.official_name)+'">'+esc(s.official_name)+'<span class="code">'+s.code+'</span></div>'
+      ).join('');
+      resultsEl.style.display = 'block';
+      resultsEl.querySelectorAll('.search-item').forEach(item => {
+        item.addEventListener('mousedown', function(e) {
+          e.preventDefault();
+          const code = this.getAttribute('data-code');
+          const name = this.getAttribute('data-name');
+          inlineSelect(code, name, idx, wrapper, l);
+        });
+      });
+    }, 250);
+  });
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { inlineCancel(wrapper, l, oldHtml); }
+  });
+
+  input.addEventListener('blur', function() {
+    setTimeout(() => {
+      if (document.activeElement !== input && !wrapper.contains(document.activeElement)) {
+        inlineCancel(wrapper, l, oldHtml);
+      }
+    }, 150);
+  });
+}
+
+async function inlineSelect(code, name, idx, wrapper, l) {
+  l.verified = 'false';
+  l.corrected_street = name;
+  l.corrected_street_code = code;
+  await fetch('/api/verify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ location_id: l.location_id, verified: 'false',
+      corrected_street: name, corrected_street_code: code }),
+  });
+  wrapper.parentNode.innerHTML = '<span>'+esc(name)+' <span style="color:#888;font-size:10px;">['+code+']</span></span>';
+  await refreshStreets();
+  renderLocationTable();
+}
+
+function inlineCancel(wrapper, l, oldHtml) {
+  wrapper.parentNode.innerHTML = oldHtml;
+}
+
+loadStreets();
+</script>
+</body>
+</html>

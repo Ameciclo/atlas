@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import {
 	closeDatabase,
 	createConnectedDatabase,
@@ -45,7 +46,10 @@ export async function seedSharedBike(config?: DatabaseConfig) {
 		console.log("🚴 Starting shared bike stations seed...");
 
 		// Read GeoJSON file
-		const geoJsonPath = "../../apps/shared-bike/src/db/bike-pe.geojson";
+		const geoJsonPath = join(
+			import.meta.dirname,
+			"../../../apps/shared-bike/src/db/bike-pe.geojson",
+		);
 		const geoJsonContent = await readFile(geoJsonPath, "utf-8");
 		const geoData: GeoJSONCollection = JSON.parse(geoJsonContent);
 
@@ -143,7 +147,10 @@ export async function seedSharedBike(config?: DatabaseConfig) {
 				continue;
 			}
 
-			await db.insert(sharedBikeStations).values(stationsData).onConflictDoNothing();
+			await db
+				.insert(sharedBikeStations)
+				.values(stationsData)
+				.onConflictDoNothing();
 			processed += batch.length;
 			console.log(
 				`✅ Processed ${processed}/${geoData.features.length} stations`,

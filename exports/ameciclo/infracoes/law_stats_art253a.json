@@ -1,0 +1,202 @@
+{
+	"total_violations": 19,
+	"period_start": "2016-01-01",
+	"period_end": "2023-12-31",
+	"law_code_breakdown": [
+		{
+			"law_code": "Art. 253-A",
+			"description": "Usar qualquer veículo para, deliberadamente, interromper, restringir ou perturbar a circulação na via sem autorização do órgão ou entidade de trânsito com circunscrição sobre ela.",
+			"count": 17,
+			"evolution": {
+				"by_year": [
+					{
+						"year": 2016,
+						"count": 5
+					},
+					{
+						"year": 2019,
+						"count": 2
+					},
+					{
+						"year": 2020,
+						"count": 2
+					},
+					{
+						"year": 2021,
+						"count": 1
+					},
+					{
+						"year": 2022,
+						"count": 7
+					}
+				],
+				"by_month": [
+					{
+						"year": 2016,
+						"month": 7,
+						"count": 2
+					},
+					{
+						"year": 2016,
+						"month": 8,
+						"count": 1
+					},
+					{
+						"year": 2016,
+						"month": 9,
+						"count": 1
+					},
+					{
+						"year": 2016,
+						"month": 11,
+						"count": 1
+					},
+					{
+						"year": 2019,
+						"month": 8,
+						"count": 1
+					},
+					{
+						"year": 2019,
+						"month": 9,
+						"count": 1
+					},
+					{
+						"year": 2020,
+						"month": 4,
+						"count": 2
+					},
+					{
+						"year": 2021,
+						"month": 8,
+						"count": 1
+					},
+					{
+						"year": 2022,
+						"month": 1,
+						"count": 1
+					},
+					{
+						"year": 2022,
+						"month": 8,
+						"count": 6
+					}
+				],
+				"by_weekday": [
+					{
+						"year": 2016,
+						"counts": [1, 1, 0, 0, 0, 3, 0]
+					},
+					{
+						"year": 2019,
+						"counts": [1, 1, 0, 0, 0, 0, 0]
+					},
+					{
+						"year": 2020,
+						"counts": [0, 0, 0, 1, 1, 0, 0]
+					},
+					{
+						"year": 2021,
+						"counts": [0, 0, 0, 1, 0, 0, 0]
+					},
+					{
+						"year": 2022,
+						"counts": [6, 0, 0, 0, 1, 0, 0]
+					}
+				],
+				"by_hour": [
+					{
+						"year": 2016,
+						"counts": [
+							0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0
+						]
+					},
+					{
+						"year": 2019,
+						"counts": [
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+							0, 0
+						]
+					},
+					{
+						"year": 2020,
+						"counts": [
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0
+						]
+					},
+					{
+						"year": 2021,
+						"counts": [
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+							0, 0
+						]
+					},
+					{
+						"year": 2022,
+						"counts": [
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+							0, 0
+						]
+					}
+				]
+			}
+		},
+		{
+			"law_code": "Art. 253-A §1º",
+			"description": "Organizar a conduta prevista no caput do Art. 253-A.",
+			"count": 2,
+			"evolution": {
+				"by_year": [
+					{
+						"year": 2018,
+						"count": 1
+					},
+					{
+						"year": 2023,
+						"count": 1
+					}
+				],
+				"by_month": [
+					{
+						"year": 2018,
+						"month": 10,
+						"count": 1
+					},
+					{
+						"year": 2023,
+						"month": 10,
+						"count": 1
+					}
+				],
+				"by_weekday": [
+					{
+						"year": 2018,
+						"counts": [0, 1, 0, 0, 0, 0, 0]
+					},
+					{
+						"year": 2023,
+						"counts": [0, 1, 0, 0, 0, 0, 0]
+					}
+				],
+				"by_hour": [
+					{
+						"year": 2018,
+						"counts": [
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+							0, 0
+						]
+					},
+					{
+						"year": 2023,
+						"counts": [
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0
+						]
+					}
+				]
+			}
+		}
+	]
+}

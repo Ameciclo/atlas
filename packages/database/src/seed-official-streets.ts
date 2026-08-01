@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { DatabaseConfig } from "./connection.js";
 import { closeDatabase, createConnectedDatabase } from "./connection.js";
-import * as trafficViolationsSchema from "./schemas/traffic-violations/index.js";
+import * as trafficTicketsSchema from "./schemas/traffic-tickets/index.js";
 
 interface StreetData {
 	_id: number;
@@ -50,11 +50,8 @@ export async function seedOfficialStreets(config: DatabaseConfig = {}) {
 	try {
 		console.log("🌱 Starting official streets seed...");
 
-		const basePath = join(
-			import.meta.dirname,
-			"../../../apps/traffic-violations/src/db",
-		);
-		const dataPath = join(basePath, "logradouros-bairro.tsv");
+		const basePath = join(import.meta.dirname, "../seed-data/traffic-tickets");
+		const dataPath = join(basePath, "auxiliary", "logradouros-bairro.tsv");
 
 		const tsvData = await readFile(dataPath, "utf-8");
 
@@ -82,17 +79,13 @@ export async function seedOfficialStreets(config: DatabaseConfig = {}) {
 					short_name: streetData.nome_logradouro_resumido,
 					pavement_code: streetData.cod_indica_pavimentacao,
 					pavement_description: streetData.desc_indica_pavimentacao,
-					transport_corridor: streetData.indica_corredor_transporte === "CTUS",
-					perimeter_road: streetData.indica_perimetral === "PERIMETRAL",
-					neighborhood_code: streetData.codbairro,
-					neighborhood_name: streetData.nomeBairro,
 				});
 			}
 
 			if (streetsToInsert.length > 0) {
 				try {
 					await db
-						.insert(trafficViolationsSchema.officialStreets)
+						.insert(trafficTicketsSchema.officialStreets)
 						.values(streetsToInsert)
 						.onConflictDoNothing();
 				} catch (insertError) {

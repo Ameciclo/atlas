@@ -3,6 +3,7 @@ import * as HttpStatusCodes from "stoker/http-status-codes";
 import { db } from "../../db/index.js";
 import { cyclistProfiles } from "@atlas/database/schemas/cyclist-profile";
 
+// biome-ignore lint/suspicious/noExplicitAny: pre-existing handlers with route-specific query schemas
 export const summary = async (c: any) => {
 	try {
 		const year = c.req.query("year") ? Number(c.req.query("year")) : undefined;
@@ -11,161 +12,70 @@ export const summary = async (c: any) => {
 			? sql`metadata->>'survey_year' = ${year.toString()}`
 			: sql`1=1`;
 
-		// Get total responses
-		const [totalResult] = await db
-			.select({ count: sql<number>`count(*)` })
-			.from(cyclistProfiles)
-			.where(yearFilter);
-
-		// Demographics - Gender
-		const genderStats = await db
+		// Single query to get all card metrics at once
+		const [stats] = await db
 			.select({
-				gender: sql<string>`data->>'gender'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'gender'`);
-
-		// Demographics - Age groups
-		const ageStats = await db
-			.select({
-				age_category: sql<string>`data->>'age_category'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'age_category'`);
-
-		// Demographics - Race
-		const raceStats = await db
-			.select({
-				race: sql<string>`data->>'color_race'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'color_race'`);
-
-		// Demographics - Education
-		const educationStats = await db
-			.select({
-				education: sql<string>`data->>'schooling'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'schooling'`);
-
-		// Demographics - Income
-		const incomeStats = await db
-			.select({
-				income: sql<string>`data->>'age_standard'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'age_standard'`);
-
-		// Usage patterns
-		const [avgDaysResult] = await db
-			.select({
-				avg_days: sql<number>`avg((data->'days_usage'->>'total')::numeric)`,
+				total: sql<number>`count(*)`,
+				women_pct: sql<number>`
+					round(
+						count(*) filter (where data->>'gender' = 'Feminino')::numeric / nullif(count(*), 0) * 100, 1
+					)`,
+				black_brown_pct: sql<number>`
+					round(
+						count(*) filter (where data->>'color_race' in ('Preta','Parda'))::numeric / nullif(count(*), 0) * 100, 1
+					)`,
+				low_income_pct: sql<number>`
+					round(
+						count(*) filter (where data->>'age_standard' in ('Ate 1 salario minimo','De 1 a 2 salarios minimos'))::numeric / nullif(count(*), 0) * 100, 1
+					)`,
+				collision_pct: sql<number>`
+					round(
+						count(*) filter (where data->>'collisions' = 'Sim')::numeric / nullif(count(*), 0) * 100, 1
+					)`,
+				frequent_pct: sql<number>`
+					round(
+						count(*) filter (where (data->'days_usage'->>'total')::int >= 5)::numeric / nullif(count(*), 0) * 100, 1
+					)`,
+				transport_combo_pct: sql<number>`
+					round(
+						count(*) filter (where data->>'transport_combination' is not null and data->>'transport_combination' != '' and data->>'transport_combination' != 'Nao')::numeric / nullif(count(*), 0) * 100, 1
+					)`,
+				distance_time_median: sql<number>`
+					round(percentile_cont(0.5) within group (order by (data->>'distance_time')::numeric)::numeric, 1)
+				`,
+				age_median: sql<number>`
+					round(percentile_cont(0.5) within group (order by (data->>'age')::numeric)::numeric, 1)
+				`,
+				days_avg: sql<number>`
+					round(avg((data->'days_usage'->>'total')::numeric), 1)
+				`,
 			})
 			.from(cyclistProfiles)
 			.where(yearFilter);
 
-		const bikeTypeStats = await db
-			.select({
-				bike_type: sql<string>`metadata->>'bike_type'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`metadata->>'bike_type'`);
-
-		// Motivations
-		const motivationStartStats = await db
-			.select({
-				motivation: sql<string>`data->>'motivation_to_start'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'motivation_to_start'`);
-
-		const motivationContinueStats = await db
-			.select({
-				motivation: sql<string>`data->>'motivation_to_continue'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'motivation_to_continue'`);
-
-		// Issues
-		const problemsStats = await db
-			.select({
-				problem: sql<string>`data->>'biggest_issue'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'biggest_issue'`);
-
-		const needsStats = await db
-			.select({
-				need: sql<string>`data->>'frequency_what'`,
-				count: sql<number>`count(*)`,
-			})
-			.from(cyclistProfiles)
-			.where(yearFilter)
-			.groupBy(sql`data->>'frequency_what'`);
-
-		const total = totalResult?.count || 0;
-
-		const toPercentage = (
-			stats: Array<{ count: number; [key: string]: unknown }>,
-		) =>
-			Object.fromEntries(
-				stats
-					.filter((s) => {
-						const firstKey = Object.keys(s)[0];
-						return s.count > 0 && firstKey && s[firstKey];
-					})
-					.map((s) => {
-						const firstKey = Object.keys(s)[0];
-						return [
-							firstKey ? s[firstKey] : "unknown",
-							Number(((s.count / total) * 100).toFixed(1)),
-						];
-					}),
-			);
+		const total = stats?.total || 0;
 
 		return c.json(
 			{
-				year: year || "all",
-				total_responses: total,
-				demographics: {
-					gender: toPercentage(genderStats),
-					age_groups: toPercentage(ageStats),
-					race: toPercentage(raceStats),
-					education: toPercentage(educationStats),
-					income: toPercentage(incomeStats),
+				data: {
+					interviews_count: Number(total),
+					women_percent: Number(stats?.women_pct || 0),
+					black_brown_percent: Number(stats?.black_brown_pct || 0),
+					low_income_percent: Number(stats?.low_income_pct || 0),
+					collision_report_percent: Number(stats?.collision_pct || 0),
+					frequent_cyclist_percent: Number(stats?.frequent_pct || 0),
+					transport_combination_percent: Number(
+						stats?.transport_combo_pct || 0,
+					),
+					distance_time_median: Number(stats?.distance_time_median || 0),
+					age_median: Number(stats?.age_median || 0),
+					days_per_week_avg: Number(stats?.days_avg || 0),
 				},
-				usage_patterns: {
-					avg_days_per_week: avgDaysResult?.avg_days
-						? Number(Number(avgDaysResult.avg_days).toFixed(1))
-						: 0,
-					bike_type: toPercentage(bikeTypeStats),
-				},
-				motivations: {
-					to_start: toPercentage(motivationStartStats),
-					to_continue: toPercentage(motivationContinueStats),
-				},
-				issues: {
-					main_problems: toPercentage(problemsStats),
-					what_would_make_cycle_more: toPercentage(needsStats),
+				meta: {
+					year: year || "all",
+					observed_or_estimated: "observed",
+					data_basis: "profile_interviews",
+					n_interviews: Number(total),
 				},
 			},
 			HttpStatusCodes.OK,
@@ -495,6 +405,9 @@ export const surveyLocations = async (c: any) => {
 		const gender = c.req.query("gender");
 		const race = c.req.query("race");
 		const income = c.req.query("income");
+		const minInterviews = c.req.query("min_interviews")
+			? Number(c.req.query("min_interviews"))
+			: 30;
 
 		// Build filters
 		const filters = [sql`coordinates IS NOT NULL`];
@@ -520,9 +433,7 @@ export const surveyLocations = async (c: any) => {
 			.select({
 				lat: sql<number>`ST_Y(coordinates)`,
 				lon: sql<number>`ST_X(coordinates)`,
-				neighborhood: sql<string>`metadata->>'neighborhood'`,
 				street: sql<string>`metadata->>'street'`,
-				area: sql<string>`metadata->>'area'`,
 				survey_year: sql<string>`metadata->>'survey_year'`,
 				count: sql<number>`count(*)`,
 				avg_age: sql<number>`avg((data->>'age')::numeric)`,
@@ -534,62 +445,154 @@ export const surveyLocations = async (c: any) => {
 				accidents_percentage: sql<number>`(count(*) filter (where data->>'collisions' = 'Sim')::float / count(*) * 100)`,
 				top_motivation: sql<string>`mode() within group (order by data->>'motivation_to_continue')`,
 				top_issue: sql<string>`mode() within group (order by data->>'biggest_issue')`,
+				area: sql<string>`mode() within group (order by metadata->>'area')`,
+				neighborhood: sql<string>`mode() within group (order by metadata->>'neighborhood')`,
 			})
 			.from(cyclistProfiles)
 			.where(whereClause)
 			.groupBy(
 				sql`ST_Y(coordinates)`,
 				sql`ST_X(coordinates)`,
-				sql`metadata->>'neighborhood'`,
 				sql`metadata->>'street'`,
-				sql`metadata->>'area'`,
 				sql`metadata->>'survey_year'`,
 			)
-			.having(sql`count(*) >= 3`) // Only locations with 3+ responses
+			.having(sql`count(*) >= ${minInterviews}`)
 			.orderBy(sql`count(*) desc`);
+
+		// Get distribution data for motivations, issues, age ranges, and demographics
+		const distRows = await db
+			.select({
+				street: sql<string>`metadata->>'street'`,
+				survey_year: sql<string>`metadata->>'survey_year'`,
+				motivation: sql<string>`data->>'motivation_to_continue'`,
+				issue: sql<string>`data->>'biggest_issue'`,
+				age: sql<number>`(data->>'age')::int`,
+				income: sql<string>`data->>'age_standard'`,
+				schooling: sql<string>`data->>'schooling'`,
+				color_race: sql<string>`data->>'color_race'`,
+			})
+			.from(cyclistProfiles)
+			.where(whereClause);
+
+		type DistMap = Map<
+			string,
+			{
+				motivations: Record<string, number>;
+				issues: Record<string, number>;
+				age_ranges: Record<string, number>;
+				income_distribution: Record<string, number>;
+				schooling_distribution: Record<string, number>;
+				color_race_distribution: Record<string, number>;
+			}
+		>;
+		const distMap: DistMap = new Map();
+
+		for (const row of distRows) {
+			const key = `${row.street}|${row.survey_year}`;
+			if (!distMap.has(key)) {
+				distMap.set(key, {
+					motivations: {},
+					issues: {},
+					age_ranges: {
+						"18-25": 0,
+						"26-35": 0,
+						"36-45": 0,
+						"46-60": 0,
+						"60+": 0,
+					},
+					income_distribution: {},
+					schooling_distribution: {},
+					color_race_distribution: {},
+				});
+			}
+			const dist = distMap.get(key)!;
+
+			if (row.motivation) {
+				const mot = row.motivation.trim();
+				dist.motivations[mot] = (dist.motivations[mot] || 0) + 1;
+			}
+			if (row.issue) {
+				const iss = row.issue.trim();
+				dist.issues[iss] = (dist.issues[iss] || 0) + 1;
+			}
+			if (row.age !== null && row.age !== undefined && !Number.isNaN(row.age)) {
+				const a = Number(row.age);
+				if (a >= 60) dist.age_ranges["60+"] = (dist.age_ranges["60+"] || 0) + 1;
+				else if (a >= 46) dist.age_ranges["46-60"] = (dist.age_ranges["46-60"] || 0) + 1;
+				else if (a >= 36) dist.age_ranges["36-45"] = (dist.age_ranges["36-45"] || 0) + 1;
+				else if (a >= 26) dist.age_ranges["26-35"] = (dist.age_ranges["26-35"] || 0) + 1;
+				else if (a >= 18) dist.age_ranges["18-25"] = (dist.age_ranges["18-25"] || 0) + 1;
+			}
+			if (row.income) {
+				const inc = row.income.trim();
+				dist.income_distribution[inc] =
+					(dist.income_distribution[inc] || 0) + 1;
+			}
+			if (row.schooling) {
+				const esc = row.schooling.trim();
+				dist.schooling_distribution[esc] =
+					(dist.schooling_distribution[esc] || 0) + 1;
+			}
+			if (row.color_race) {
+				const cr = row.color_race.trim();
+				dist.color_race_distribution[cr] =
+					(dist.color_race_distribution[cr] || 0) + 1;
+			}
+		}
 
 		return c.json(
 			{
 				filters: { year, gender, race, income },
 				total_locations: locationData.length,
-				locations: locationData.map((loc) => ({
-					coordinates: {
-						lat: loc.lat ? Number(Number(loc.lat).toFixed(6)) : 0,
-						lon: loc.lon ? Number(Number(loc.lon).toFixed(6)) : 0,
-					},
-					location_info: {
-						neighborhood: loc.neighborhood || "N/A",
-						street: loc.street || "N/A",
-						area: loc.area || "N/A",
-						survey_year: loc.survey_year,
-					},
-					statistics: {
-						total_responses: loc.count,
-						avg_age: loc.avg_age ? Number(Number(loc.avg_age).toFixed(1)) : 0,
-						avg_days_per_week: loc.avg_days_usage
-							? Number(Number(loc.avg_days_usage).toFixed(1))
-							: 0,
-						avg_trip_time_minutes: loc.avg_distance_time
-							? Number(Number(loc.avg_distance_time).toFixed(1))
-							: 0,
-						gender_distribution: {
-							male_percentage: loc.male_percentage
-								? Number(Number(loc.male_percentage).toFixed(1))
-								: 0,
-							female_percentage: loc.female_percentage
-								? Number(Number(loc.female_percentage).toFixed(1))
-								: 0,
+				locations: locationData.map((loc) => {
+					const key = `${loc.street}|${loc.survey_year}`;
+					const dist = distMap.get(key);
+
+					return {
+						coordinates: {
+							lat: loc.lat ? Number(Number(loc.lat).toFixed(6)) : 0,
+							lon: loc.lon ? Number(Number(loc.lon).toFixed(6)) : 0,
 						},
-						private_bike_percentage: loc.private_bike_percentage
-							? Number(Number(loc.private_bike_percentage).toFixed(1))
-							: 0,
-						accidents_percentage: loc.accidents_percentage
-							? Number(Number(loc.accidents_percentage).toFixed(1))
-							: 0,
-						top_motivation: loc.top_motivation || "N/A",
-						top_issue: loc.top_issue || "N/A",
-					},
-				})),
+						location_info: {
+							neighborhood: loc.neighborhood || "N/A",
+							street: loc.street || "N/A",
+							area: loc.area || "N/A",
+							survey_year: loc.survey_year,
+						},
+						statistics: {
+							total_responses: loc.count,
+							avg_age: loc.avg_age ? Number(Number(loc.avg_age).toFixed(1)) : 0,
+							avg_days_per_week: loc.avg_days_usage
+								? Number(Number(loc.avg_days_usage).toFixed(1))
+								: 0,
+							avg_trip_time_minutes: loc.avg_distance_time
+								? Number(Number(loc.avg_distance_time).toFixed(1))
+								: 0,
+							gender_distribution: {
+								male_percentage: loc.male_percentage
+									? Number(Number(loc.male_percentage).toFixed(1))
+									: 0,
+								female_percentage: loc.female_percentage
+									? Number(Number(loc.female_percentage).toFixed(1))
+									: 0,
+							},
+							private_bike_percentage: loc.private_bike_percentage
+								? Number(Number(loc.private_bike_percentage).toFixed(1))
+								: 0,
+							accidents_percentage: loc.accidents_percentage
+								? Number(Number(loc.accidents_percentage).toFixed(1))
+								: 0,
+							top_motivation: loc.top_motivation || "N/A",
+							top_issue: loc.top_issue || "N/A",
+							motivations: dist?.motivations || {},
+							issues: dist?.issues || {},
+							age_ranges: dist?.age_ranges || {},
+							income_distribution: dist?.income_distribution || {},
+							schooling_distribution: dist?.schooling_distribution || {},
+							color_race_distribution: dist?.color_race_distribution || {},
+						},
+					};
+				}),
 			},
 			HttpStatusCodes.OK,
 		);

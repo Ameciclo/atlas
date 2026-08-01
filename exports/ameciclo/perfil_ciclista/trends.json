@@ -1,0 +1,36 @@
+{
+	"trends": [
+		{
+			"year": 2015,
+			"total_responses": "250",
+			"gender_distribution": {
+				"Feminino": 14.8,
+				"Masculino": 85.2
+			}
+		},
+		{
+			"year": 2018,
+			"total_responses": "499",
+			"gender_distribution": {
+				"Feminino": 19.8,
+				"Masculino": 80.2
+			}
+		},
+		{
+			"year": 2021,
+			"total_responses": "750",
+			"gender_distribution": {
+				"Feminino": 19.5,
+				"Masculino": 80.5
+			}
+		},
+		{
+			"year": 2024,
+			"total_responses": "746",
+			"gender_distribution": {
+				"Feminino": 28.6,
+				"Masculino": 71.4
+			}
+		}
+	]
+}

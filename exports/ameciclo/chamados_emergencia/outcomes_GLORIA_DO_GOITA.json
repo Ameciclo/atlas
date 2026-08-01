@@ -1,0 +1,67 @@
+{
+	"city": "GLORIA DO GOITA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 1,
+			"Desistência da solicitação": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 1,
+			"Óbito no Local/Atendimento": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 47,
+			"Desistência da solicitação": 4,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 3,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 20,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 9
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 39,
+			"Inválido/Duplicado/Cancelado/Trote": 3,
+			"Óbito no Local/Atendimento": 3,
+			"Recusa de Remoção": 3,
+			"Removido por Particulares": 19,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 8
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 45,
+			"Desistência da solicitação": 2,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Recusa de Remoção": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 57,
+			"Desistência da solicitação": 5,
+			"Óbito no Local/Atendimento": 1,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 4,
+			"Removido por Particulares": 23,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 15
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 83,
+			"Desistência da solicitação": 3,
+			"Inválido/Duplicado/Cancelado/Trote": 4,
+			"Óbito no Local/Atendimento": 2,
+			"Recusa de Remoção": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 27,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 9
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 6,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 4
+		}
+	}
+}

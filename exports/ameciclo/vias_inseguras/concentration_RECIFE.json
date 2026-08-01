@@ -1,0 +1,56 @@
+{
+	"city": "RECIFE",
+	"interval": 10,
+	"concentration_data": [
+		{
+			"ranking": 1,
+			"total_accidents": 1835,
+			"street_extension_km": 34.9256328125
+		},
+		{
+			"ranking": 2,
+			"total_accidents": 1122,
+			"street_extension_km": 21.987263671875
+		},
+		{
+			"ranking": 3,
+			"total_accidents": 936,
+			"street_extension_km": 14.7501689453125
+		},
+		{
+			"ranking": 4,
+			"total_accidents": 901,
+			"street_extension_km": 17.666671875
+		},
+		{
+			"ranking": 5,
+			"total_accidents": 854,
+			"street_extension_km": 13.3531240234375
+		},
+		{
+			"ranking": 6,
+			"total_accidents": 759,
+			"street_extension_km": 14.5702236328125
+		},
+		{
+			"ranking": 7,
+			"total_accidents": 713,
+			"street_extension_km": 7.3097275390625
+		},
+		{
+			"ranking": 8,
+			"total_accidents": 693,
+			"street_extension_km": 3.98643603515625
+		},
+		{
+			"ranking": 9,
+			"total_accidents": 685,
+			"street_extension_km": 8.6160087890625
+		},
+		{
+			"ranking": 10,
+			"total_accidents": 509,
+			"street_extension_km": 10.090640625
+		}
+	]
+}

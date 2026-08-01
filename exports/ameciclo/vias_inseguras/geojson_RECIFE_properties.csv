@@ -1,0 +1,11 @@
+accidents_count,accidents_by_category.sinistro_moto,accidents_by_category.sinistro_carro,accidents_by_category.sinistro_bicicleta,accidents_by_category.sinistro_onibus_caminhao,accidents_by_category.atropelamento_carro,accidents_by_category.atropelamento_moto,accidents_by_category.atropelamento_onibus_caminhao,accidents_by_category.atropelamento_bicicleta,accidents_by_category.outro,ranking,street_name,extension_km
+1835,1463,153,55,22,69,56,9,3,5,1,ROD BR CENTO E UM,34.9256328125
+1122,862,71,63,9,51,55,7,3,1,2,AV GOVERNADOR AGAMENON MAGALHAES,21.987263671875
+936,732,65,50,8,42,23,10,1,5,3,AV MARECHAL MASCARENHAS DE MORAES,14.7501689453125
+901,662,47,59,20,42,58,6,6,1,4,AV NORTE MIGUEL ARRAES DE ALENCAR,17.666671875
+854,627,46,74,8,33,47,10,8,1,5,AV CAXANGA,13.3531240234375
+759,583,51,38,11,25,38,5,3,5,6,AV RECIFE,14.5702236328125
+713,565,22,49,9,26,21,6,12,3,7,AV BEBERIBE,7.3097275390625
+693,582,26,27,1,17,30,4,3,3,8,AV DR JOSE RUFINO,3.98643603515625
+685,535,53,45,4,15,31,1,1,0,9,AV ENGENHEIRO ABDIAS DE CARVALHO,8.6160087890625
+509,357,47,32,11,40,13,6,2,1,10,AV ENGENHEIRO DOMINGOS FERREIRA,10.090640625

@@ -38,9 +38,13 @@
 			"types": "./dist/schemas/emergency-calls/index.d.ts",
 			"import": "./dist/schemas/emergency-calls/index.js"
 		},
-		"./schemas/traffic-violations": {
-			"types": "./dist/schemas/traffic-violations/index.d.ts",
-			"import": "./dist/schemas/traffic-violations/index.js"
+		"./schemas/emergency-calls/categories": {
+			"types": "./dist/schemas/emergency-calls/categories.d.ts",
+			"import": "./dist/schemas/emergency-calls/categories.js"
+		},
+		"./schemas/traffic-tickets": {
+			"types": "./dist/schemas/traffic-tickets/index.d.ts",
+			"import": "./dist/schemas/traffic-tickets/index.js"
 		},
 		"./schemas/test-db-service": {
 			"types": "./dist/schemas/test-db-service/index.d.ts",
@@ -77,8 +81,13 @@
 		"db:seed:bicycle-racks": "tsx src/seed-bicycle-racks.ts",
 		"db:seed-traffic-calls": "tsx src/seed-traffic-calls.ts",
 		"db:seed-cycling-infra": "tsx src/seed-cycling-infra.ts",
+		"db:seed-cycling-infra-static": "tsx src/seed.ts --only=cycling-infra-static",
+		"db:seed-static": "tsx src/seed.ts --only=cycling-infra-static",
 		"db:seed-shared-bike": "tsx src/seed-shared-bike.ts",
-		"db:reset": "tsx src/reset.ts"
+		"db:seed:traffic-deaths": "tsx src/seed-traffic-deaths.ts",
+		"db:seed:traffic-tickets": "tsx src/seed-traffic-tickets.ts",
+		"db:reset": "tsx src/reset.ts",
+		"db:refresh-mvs": "tsx src/refresh-traffic-tickets-mvs.ts"
 	},
 	"dependencies": {
 		"@aws-sdk/client-s3": "^3.922.0",
@@ -94,6 +103,7 @@
 		"@types/pg": "^8.11.13",
 		"csv-parse": "^6.1.0",
 		"drizzle-kit": "^0.31.0",
+		"drizzle-seed": "^0.3.1",
 		"tsx": "^4.19.3",
 		"typescript": "^5.8.3"
 	},

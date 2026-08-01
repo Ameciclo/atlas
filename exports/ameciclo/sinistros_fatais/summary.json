@@ -1,0 +1,106 @@
+{
+	"porLocalOcorrencia": {
+		"totalSinistrosUltimos10Anos": 6279,
+		"totalUltimoAno": 715,
+		"ultimoAno": 2024,
+		"crescimentoRelacaoAnoAnterior": 5.77,
+		"anoMaisViolento": {
+			"ano": 2015,
+			"total": 748
+		},
+		"dadosPorAno": [
+			{
+				"ano": 2015,
+				"total": 748
+			},
+			{
+				"ano": 2016,
+				"total": 713
+			},
+			{
+				"ano": 2017,
+				"total": 665
+			},
+			{
+				"ano": 2018,
+				"total": 630
+			},
+			{
+				"ano": 2019,
+				"total": 567
+			},
+			{
+				"ano": 2020,
+				"total": 571
+			},
+			{
+				"ano": 2021,
+				"total": 497
+			},
+			{
+				"ano": 2022,
+				"total": 497
+			},
+			{
+				"ano": 2023,
+				"total": 676
+			},
+			{
+				"ano": 2024,
+				"total": 715
+			}
+		]
+	},
+	"porLocalResidencia": {
+		"totalSinistrosUltimos10Anos": 3941,
+		"totalUltimoAno": 442,
+		"ultimoAno": 2024,
+		"crescimentoRelacaoAnoAnterior": 12.47,
+		"anoMaisViolento": {
+			"ano": 2015,
+			"total": 496
+		},
+		"dadosPorAno": [
+			{
+				"ano": 2015,
+				"total": 496
+			},
+			{
+				"ano": 2016,
+				"total": 473
+			},
+			{
+				"ano": 2017,
+				"total": 453
+			},
+			{
+				"ano": 2018,
+				"total": 364
+			},
+			{
+				"ano": 2019,
+				"total": 331
+			},
+			{
+				"ano": 2020,
+				"total": 345
+			},
+			{
+				"ano": 2021,
+				"total": 326
+			},
+			{
+				"ano": 2022,
+				"total": 318
+			},
+			{
+				"ano": 2023,
+				"total": 393
+			},
+			{
+				"ano": 2024,
+				"total": 442
+			}
+		]
+	}
+}

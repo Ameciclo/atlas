@@ -1,0 +1,66 @@
+{
+	"city": "TAMANDARE",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 14,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 10,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 62,
+			"Desistência da solicitação": 3,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 11,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 83,
+			"Desistência da solicitação": 2,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 11,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 12
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 32,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 8,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 81,
+			"Desistência da solicitação": 2,
+			"Inválido/Duplicado/Cancelado/Trote": 4,
+			"Óbito no Local/Atendimento": 1,
+			"Outros Desfechos": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 14,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 11
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 85,
+			"Desistência da solicitação": 7,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 22,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 24,
+			"Desistência da solicitação": 1,
+			"Removido por Particulares": 12,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		}
+	}
+}

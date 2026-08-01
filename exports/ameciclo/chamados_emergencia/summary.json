@@ -1,0 +1,200 @@
+{
+	"totalChamadas": 99171,
+	"totalDesfechosValidos": 99171,
+	"totalDesfechosInvalidos": 0,
+	"cidadeMaisViolenta": {
+		"municipio": "RECIFE",
+		"totalValidas": 36650,
+		"totalInvalidas": 0,
+		"total": 36650,
+		"evolucaoAnual": [
+			{
+				"ano": 2020,
+				"totalValidas": 5188,
+				"totalInvalidas": 0,
+				"total": 5188
+			},
+			{
+				"ano": 2021,
+				"totalValidas": 6151,
+				"totalInvalidas": 0,
+				"total": 6151
+			},
+			{
+				"ano": 2022,
+				"totalValidas": 3443,
+				"totalInvalidas": 0,
+				"total": 3443
+			},
+			{
+				"ano": 2023,
+				"totalValidas": 8121,
+				"totalInvalidas": 0,
+				"total": 8121
+			},
+			{
+				"ano": 2024,
+				"totalValidas": 11030,
+				"totalInvalidas": 0,
+				"total": 11030
+			},
+			{
+				"ano": 2025,
+				"totalValidas": 2717,
+				"totalInvalidas": 0,
+				"total": 2717
+			}
+		]
+	},
+	"porCategoria": [
+		{
+			"categoria": "ACIDENTE DE TRANSITO ENVOLVENDO MOTO",
+			"count": 61931
+		},
+		{
+			"categoria": "ACIDENTMOTO",
+			"count": 9553
+		},
+		{
+			"categoria": "ACIDENTE DE TRANSITO COM CARROS",
+			"count": 6908
+		},
+		{
+			"categoria": "ACIDENTE DE TRANSITO ENVOLVENDO BICICLETA",
+			"count": 5812
+		},
+		{
+			"categoria": "ATROPELAMENTO POR CARRO",
+			"count": 3695
+		},
+		{
+			"categoria": "ATROPELAMENTO POR MOTO",
+			"count": 3202
+		},
+		{
+			"categoria": "ACIDENTE COM ANIMAIS TERRESTRES",
+			"count": 1554
+		},
+		{
+			"categoria": "ACIDENTE DE TRANSITO ENVOLVENDO ONIBUS OU CAMINHAO",
+			"count": 1296
+		},
+		{
+			"categoria": "ACIDENTCARRO",
+			"count": 1222
+		},
+		{
+			"categoria": "ACIDENTBIKE",
+			"count": 1180
+		}
+	],
+	"porMotivoFinalizacao": [
+		{
+			"motivo": "Atendimento SAMU",
+			"count": 88052
+		},
+		{
+			"motivo": "Inválido/Trote/Duplicada/Desistência",
+			"count": 5882
+		},
+		{
+			"motivo": "Atendimento Bombeiros/CIODS",
+			"count": 3699
+		},
+		{
+			"motivo": "Atendimento Particular/Outros",
+			"count": 1511
+		},
+		{
+			"motivo": "Óbito",
+			"count": 27
+		}
+	],
+	"porMotivoDesfecho": [
+		{
+			"motivo": "Atendimento Concluído com Êxito",
+			"count": 58045
+		},
+		{
+			"motivo": "Sem Desfecho/Casa Fechada/Não há paciente",
+			"count": 15770
+		},
+		{
+			"motivo": "Removido por Particulares",
+			"count": 8041
+		},
+		{
+			"motivo": "Removido pelos Bombeiros/CIODS",
+			"count": 6580
+		},
+		{
+			"motivo": "Recusa de Remoção",
+			"count": 4765
+		},
+		{
+			"motivo": "Desistência da solicitação",
+			"count": 2968
+		},
+		{
+			"motivo": "Inválido/Duplicado/Cancelado/Trote",
+			"count": 1360
+		},
+		{
+			"motivo": "Óbito no Local/Atendimento",
+			"count": 1001
+		},
+		{
+			"motivo": "Outros Desfechos",
+			"count": 447
+		},
+		{
+			"motivo": "Não necessita/Sem Condições Clínicas",
+			"count": 194
+		}
+	],
+	"evolucaoAnual": [
+		{
+			"ano": 2020,
+			"count": 15446,
+			"projecao": 16218,
+			"ultimaData": "2020-12-31"
+		},
+		{
+			"ano": 2021,
+			"count": 17585,
+			"projecao": 18464,
+			"ultimaData": "2021-12-31"
+		},
+		{
+			"ano": 2022,
+			"count": 9968,
+			"projecao": 10466,
+			"ultimaData": "2022-12-31"
+		},
+		{
+			"ano": 2023,
+			"count": 21251,
+			"projecao": 22313,
+			"ultimaData": "2023-12-31"
+		},
+		{
+			"ano": 2024,
+			"count": 27624,
+			"projecao": 29005,
+			"ultimaData": "2024-12-31"
+		},
+		{
+			"ano": 2025,
+			"count": 7297,
+			"projecao": 7661,
+			"ultimaData": "2025-12-31"
+		}
+	],
+	"periodo": {
+		"inicio": 2020,
+		"fim": 2025,
+		"ultimoMes": "2025.04",
+		"ultimoDia": "2025-04-30",
+		"totalDiasComDados": 1794
+	}
+}

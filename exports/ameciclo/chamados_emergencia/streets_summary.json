@@ -1,0 +1,10 @@
+{
+	"totalSinistros": 103584,
+	"totalViasIdentificadas": 29727,
+	"totalVias": 33030,
+	"viaMaisPerigosa": {
+		"nome": "PE",
+		"total": 7177,
+		"percentual": 6.928676243435279
+	}
+}

@@ -1,0 +1,71 @@
+{
+	"city": "RIBEIRAO",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 12,
+			"Óbito no Local/Atendimento": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 7,
+			"Desistência da solicitação": 1,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 62,
+			"Desistência da solicitação": 3,
+			"Inválido/Duplicado/Cancelado/Trote": 3,
+			"Óbito no Local/Atendimento": 4,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 11,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 14
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 56,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 6,
+			"Recusa de Remoção": 6,
+			"Removido por Particulares": 11,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 13
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 27,
+			"Desistência da solicitação": 4,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 48,
+			"Desistência da solicitação": 4,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 15,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 4
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 83,
+			"Desistência da solicitação": 7,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Óbito no Local/Atendimento": 6,
+			"Recusa de Remoção": 4,
+			"Removido pelos Bombeiros/CIODS": 2,
+			"Removido por Particulares": 15,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 17
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 26,
+			"Óbito no Local/Atendimento": 2,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		}
+	}
+}

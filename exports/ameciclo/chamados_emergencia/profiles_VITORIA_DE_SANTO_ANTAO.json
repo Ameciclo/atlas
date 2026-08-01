@@ -1,0 +1,26 @@
+{
+	"por_sexo": {
+		"masculino": 2534,
+		"feminino": 650,
+		"nao_informado": 88
+	},
+	"por_faixa_etaria": {
+		"0_17_anos": 647,
+		"18_29_anos": 813,
+		"30_49_anos": 1022,
+		"50_64_anos": 278,
+		"65_mais_anos": 79,
+		"nao_informado": 433
+	},
+	"por_categoria": {
+		"sinistro_moto": 2531,
+		"sinistro_carro": 260,
+		"sinistro_bicicleta": 121,
+		"sinistro_onibus_caminhao": 32,
+		"atropelamento_carro": 155,
+		"atropelamento_moto": 130,
+		"atropelamento_onibus_caminhao": 6,
+		"atropelamento_bicicleta": 9,
+		"outro": 28
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"total_violations": 0,
+	"period_start": null,
+	"period_end": null,
+	"street_info": null,
+	"evolution": {
+		"by_year": [],
+		"by_month": [],
+		"by_weekday": [],
+		"by_hour": []
+	},
+	"category": [],
+	"violations": [],
+	"agents": []
+}

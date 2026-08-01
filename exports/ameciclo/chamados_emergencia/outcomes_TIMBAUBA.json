@@ -1,0 +1,69 @@
+{
+	"city": "TIMBAUBA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 16,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 2
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 8,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 4
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 85,
+			"Desistência da solicitação": 3,
+			"Inválido/Duplicado/Cancelado/Trote": 3,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 4,
+			"Removido por Particulares": 20,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 17
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 140,
+			"Desistência da solicitação": 3,
+			"Óbito no Local/Atendimento": 3,
+			"Outros Desfechos": 3,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 17,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 12
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 66,
+			"Desistência da solicitação": 2,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 3,
+			"Removido por Particulares": 19,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 9
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 131,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Outros Desfechos": 2,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 32,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 16
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 110,
+			"Desistência da solicitação": 5,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 3,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 23,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 10
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 43,
+			"Desistência da solicitação": 1,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		}
+	}
+}

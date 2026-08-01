@@ -1,0 +1,21 @@
+{
+	"city": "SALGADINHO",
+	"outcomes_by_year": {
+		"2020": {
+			"Atendimento Concluído com Êxito": 1,
+			"Removido por Particulares": 1
+		},
+		"2022": {
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 1
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 3,
+			"Óbito no Local/Atendimento": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 1
+		}
+	}
+}

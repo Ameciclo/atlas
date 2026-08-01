@@ -1,0 +1,1886 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Traffic Tickets API",
+    "version": "1.0.0",
+    "description": "API for managing traffic tickets data",
+    "contact": {
+      "name": "Atlas Team",
+      "url": "https://github.com/Ameciclo/atlas"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3013",
+      "description": "Local development server"
+    },
+    {
+      "url": "https://api.ameciclo.org/traffic-tickets",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Traffic Tickets",
+      "description": "Operations related to traffic tickets"
+    },
+    {
+      "name": "System",
+      "description": "System operations"
+    },
+    {
+      "name": "Streets",
+      "description": "Operations related to streets and geospatial data"
+    },
+    {
+      "name": "Dashboard",
+      "description": "Dashboard analytics and aggregations"
+    },
+    {
+      "name": "Matching",
+      "description": "Location-to-street matching operations"
+    },
+    {
+      "name": "Validation",
+      "description": "Human validation of street matches"
+    }
+  ],
+  "components": {
+    "schemas": {},
+    "parameters": {}
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "service",
+                    "database"
+                  ]
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service is unhealthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected",
+                        "disconnected"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "timestamp",
+                    "service",
+                    "database"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/streets": {
+      "get": {
+        "tags": [
+          "Streets"
+        ],
+        "summary": "List official streets",
+        "description": "Get a paginated list of official streets with optional filtering",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "minimum": 1,
+              "default": 1,
+              "description": "Page number",
+              "example": 1
+            },
+            "required": false,
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "description": "Number of items per page",
+              "example": 20
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Search in street names",
+              "example": "rua"
+            },
+            "required": false,
+            "name": "search",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of streets",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "code": {
+                            "type": "number"
+                          },
+                          "name_concatenated": {
+                            "type": "string"
+                          },
+                          "official_name": {
+                            "type": "string"
+                          },
+                          "short_name": {
+                            "type": "string"
+                          },
+                          "pavement_code": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "pavement_description": {
+                            "type": "string",
+                            "nullable": true
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "code",
+                          "name_concatenated",
+                          "official_name",
+                          "short_name",
+                          "pavement_code",
+                          "pavement_description"
+                        ]
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "number"
+                        },
+                        "limit": {
+                          "type": "number"
+                        },
+                        "total": {
+                          "type": "number"
+                        },
+                        "totalPages": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "page",
+                        "limit",
+                        "total",
+                        "totalPages"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "pagination"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/streets/nearby": {
+      "get": {
+        "tags": [
+          "Streets"
+        ],
+        "summary": "Find streets near a GPS point with violation data",
+        "description": "Given lat/lng, returns nearby streets with GeoJSON geometry, distance, total violations, per-year breakdown, and top violation. Uses PostGIS ST_DWithin on pcr_streets.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "minimum": -90,
+              "maximum": 90,
+              "description": "Latitude",
+              "example": -8.05
+            },
+            "required": false,
+            "name": "lat",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "minimum": -180,
+              "maximum": 180,
+              "description": "Longitude",
+              "example": -34.9
+            },
+            "required": false,
+            "name": "lng",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 500,
+              "default": 50,
+              "description": "Search radius in meters",
+              "example": 50
+            },
+            "required": false,
+            "name": "radius",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 10,
+              "description": "Maximum number of streets to return",
+              "example": 5
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Nearby streets with violation data as GeoJSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "FeatureCollection"
+                      ]
+                    },
+                    "features": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "Feature"
+                            ]
+                          },
+                          "geometry": {
+                            "nullable": true
+                          },
+                          "properties": {
+                            "type": "object",
+                            "properties": {
+                              "street_code": {
+                                "type": "number"
+                              },
+                              "street_name": {
+                                "type": "string"
+                              },
+                              "distance_meters": {
+                                "type": "number"
+                              },
+                              "total_violations": {
+                                "type": "number"
+                              },
+                              "extension_km": {
+                                "type": "number"
+                              },
+                              "violations_per_km": {
+                                "type": "number"
+                              },
+                              "by_year": {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "number"
+                                }
+                              },
+                              "top_violation": {
+                                "type": "object",
+                                "nullable": true,
+                                "properties": {
+                                  "description": {
+                                    "type": "string"
+                                  },
+                                  "percentage": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "description",
+                                  "percentage"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "street_code",
+                              "street_name",
+                              "distance_meters",
+                              "total_violations",
+                              "extension_km",
+                              "violations_per_km",
+                              "by_year",
+                              "top_violation"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "properties"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "features"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/streets/geojson": {
+      "get": {
+        "tags": [
+          "Streets"
+        ],
+        "summary": "Streets GeoJSON with violation counts (all years)",
+        "description": "Retorna as top N ruas (union top-all-time + top-per-year) como FeatureCollection GeoJSON. Cada Feature inclui contagens por ano para filtragem client-side.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Filter by category (exact match against traffic_tickets_catalog.category)",
+              "example": "Velocidade"
+            },
+            "required": false,
+            "name": "category",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Filter by law article prefix (normalized: lowercase, no spaces). Matches law_code_search.",
+              "example": "Art. 181"
+            },
+            "required": false,
+            "name": "law",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "boolean",
+              "nullable": true,
+              "description": "Filter to only cyclist-related violations (distance, bike lanes, door opening, etc.)"
+            },
+            "required": false,
+            "name": "cyclist",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 500,
+              "default": 100,
+              "description": "Number of top streets per group (all-time + per-year). Final count is the union.",
+              "example": 100
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "minimum": 0,
+              "maximum": 0.01,
+              "default": 0.0001,
+              "description": "ST_Simplify tolerance in degrees (~0.0001 = 10m). Higher = faster, less precise geometry",
+              "example": 0.001
+            },
+            "required": false,
+            "name": "simplify_tolerance",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Streets GeoJSON with violation counts per year",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "FeatureCollection"
+                      ]
+                    },
+                    "features": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "Feature"
+                            ]
+                          },
+                          "geometry": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "MultiLineString"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "number"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ]
+                          },
+                          "properties": {
+                            "type": "object",
+                            "properties": {
+                              "street_code": {
+                                "type": "number"
+                              },
+                              "street_name": {
+                                "type": "string"
+                              },
+                              "total_violations": {
+                                "type": "number"
+                              },
+                              "extension_km": {
+                                "type": "number"
+                              },
+                              "violations_per_km": {
+                                "type": "number"
+                              },
+                              "by_year": {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "number"
+                                }
+                              },
+                              "top_violation": {
+                                "type": "object",
+                                "nullable": true,
+                                "properties": {
+                                  "description": {
+                                    "type": "string"
+                                  },
+                                  "percentage": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "description",
+                                  "percentage"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "street_code",
+                              "street_name",
+                              "total_violations",
+                              "extension_km",
+                              "violations_per_km",
+                              "by_year",
+                              "top_violation"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "geometry",
+                          "properties"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "features"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/overview": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Visão geral da base",
+        "description": "SSR único: stats + evolução + breakdowns. Filtros: ?category=, ?law=, ?street_code=",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "category",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "law",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true
+            },
+            "required": false,
+            "name": "street_code",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 20,
+              "default": 5
+            },
+            "required": false,
+            "name": "top_violations_limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dashboard overview",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total_violations": {
+                      "type": "number"
+                    },
+                    "period_start": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "period_end": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "violation_types_count": {
+                      "type": "number"
+                    },
+                    "law_codes_count": {
+                      "type": "number"
+                    },
+                    "streets_count": {
+                      "type": "number"
+                    },
+                    "evolution": {
+                      "type": "object",
+                      "properties": {
+                        "by_year": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "year": {
+                                "type": "number"
+                              },
+                              "count": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "year",
+                              "count"
+                            ]
+                          }
+                        },
+                        "by_month": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "year": {
+                                "type": "number"
+                              },
+                              "month": {
+                                "type": "number"
+                              },
+                              "count": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "year",
+                              "month",
+                              "count"
+                            ]
+                          }
+                        },
+                        "by_weekday": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "year": {
+                                "type": "number"
+                              },
+                              "counts": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "required": [
+                              "year",
+                              "counts"
+                            ]
+                          }
+                        },
+                        "by_hour": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "year": {
+                                "type": "number"
+                              },
+                              "counts": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "required": [
+                              "year",
+                              "counts"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "by_year",
+                        "by_month",
+                        "by_weekday",
+                        "by_hour"
+                      ]
+                    },
+                    "category": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "count": {
+                            "type": "number"
+                          },
+                          "percentage": {
+                            "type": "number"
+                          },
+                          "law_codes_count": {
+                            "type": "number"
+                          },
+                          "top_violations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "law_code": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                },
+                                "count": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "law_code",
+                                "description",
+                                "count"
+                              ]
+                            }
+                          },
+                          "by_year": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "year": {
+                                  "type": "number"
+                                },
+                                "count": {
+                                  "type": "number"
+                                },
+                                "percentage": {
+                                  "type": "number"
+                                },
+                                "top_violations": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "law_code": {
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "type": "string"
+                                      },
+                                      "count": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "law_code",
+                                      "description",
+                                      "count"
+                                    ]
+                                  }
+                                }
+                              },
+                              "required": [
+                                "year",
+                                "count",
+                                "percentage",
+                                "top_violations"
+                              ]
+                            }
+                          },
+                          "by_month": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "year": {
+                                  "type": "number"
+                                },
+                                "month": {
+                                  "type": "number"
+                                },
+                                "count": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "year",
+                                "month",
+                                "count"
+                              ]
+                            }
+                          },
+                          "by_weekday": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "year": {
+                                  "type": "number"
+                                },
+                                "counts": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "year",
+                                "counts"
+                              ]
+                            }
+                          },
+                          "by_hour": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "year": {
+                                  "type": "number"
+                                },
+                                "counts": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "year",
+                                "counts"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "category",
+                          "count",
+                          "percentage",
+                          "law_codes_count",
+                          "top_violations",
+                          "by_year",
+                          "by_month",
+                          "by_weekday",
+                          "by_hour"
+                        ]
+                      }
+                    },
+                    "agents": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "agent_id": {
+                            "type": "number"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "count": {
+                            "type": "number"
+                          },
+                          "percentage": {
+                            "type": "number"
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "eletronico",
+                              "manual"
+                            ]
+                          },
+                          "top_violations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "law_code": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                },
+                                "count": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "law_code",
+                                "description",
+                                "count"
+                              ]
+                            }
+                          },
+                          "by_year": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "year": {
+                                  "type": "number"
+                                },
+                                "count": {
+                                  "type": "number"
+                                },
+                                "percentage": {
+                                  "type": "number"
+                                },
+                                "top_violations": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "law_code": {
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "type": "string"
+                                      },
+                                      "count": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "law_code",
+                                      "description",
+                                      "count"
+                                    ]
+                                  }
+                                }
+                              },
+                              "required": [
+                                "year",
+                                "count",
+                                "percentage",
+                                "top_violations"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "agent_id",
+                          "description",
+                          "count",
+                          "percentage",
+                          "category",
+                          "top_violations",
+                          "by_year"
+                        ]
+                      }
+                    },
+                    "law_codes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "law_code": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "count": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "law_code",
+                          "description",
+                          "count"
+                        ]
+                      }
+                    },
+                    "street_info": {
+                      "type": "object",
+                      "properties": {
+                        "street_code": {
+                          "type": "number"
+                        },
+                        "official_name": {
+                          "type": "string"
+                        },
+                        "extension_km": {
+                          "type": "number"
+                        },
+                        "violations_per_km": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "street_code",
+                        "official_name",
+                        "extension_km",
+                        "violations_per_km"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "total_violations",
+                    "period_start",
+                    "period_end",
+                    "violation_types_count",
+                    "law_codes_count",
+                    "streets_count",
+                    "evolution",
+                    "category",
+                    "agents"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/violation-codes": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Dicionário de códigos de infração",
+        "description": "Lista todos os códigos de infração com descrições para o frontend montar categorias",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "Start date (YYYY-MM-DD)"
+            },
+            "required": false,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "End date (YYYY-MM-DD)"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Filter by violation category"
+            },
+            "required": false,
+            "name": "category",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "description": "Filter by street code"
+            },
+            "required": false,
+            "name": "street_code",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "boolean",
+              "nullable": true,
+              "description": "Include per-year breakdown in each code"
+            },
+            "required": false,
+            "name": "include_by_year",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Violation codes dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "codes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "law_code": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string"
+                          },
+                          "count": {
+                            "type": "number"
+                          },
+                          "by_year": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "number"
+                            }
+                          }
+                        },
+                        "required": [
+                          "law_code",
+                          "description",
+                          "category",
+                          "count"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "codes"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/law-stats": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Estatísticas por artigo de lei",
+        "description": "Visão enxuta para um artigo específico: total + evolução temporal por law_code. Aceita ?law=Art. 201, ?law=Art. 181, etc.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Artigo de lei (ex: Art. 201, Art. 181)"
+            },
+            "required": true,
+            "name": "law",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Law statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total_violations": {
+                      "type": "number"
+                    },
+                    "period_start": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "period_end": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "law_code_breakdown": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "law_code": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "count": {
+                            "type": "number"
+                          },
+                          "evolution": {
+                            "type": "object",
+                            "properties": {
+                              "by_year": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "year": {
+                                      "type": "number"
+                                    },
+                                    "count": {
+                                      "type": "number"
+                                    }
+                                  },
+                                  "required": [
+                                    "year",
+                                    "count"
+                                  ]
+                                }
+                              },
+                              "by_month": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "year": {
+                                      "type": "number"
+                                    },
+                                    "month": {
+                                      "type": "number"
+                                    },
+                                    "count": {
+                                      "type": "number"
+                                    }
+                                  },
+                                  "required": [
+                                    "year",
+                                    "month",
+                                    "count"
+                                  ]
+                                }
+                              },
+                              "by_weekday": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "year": {
+                                      "type": "number"
+                                    },
+                                    "counts": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "number"
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "year",
+                                    "counts"
+                                  ]
+                                }
+                              },
+                              "by_hour": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "year": {
+                                      "type": "number"
+                                    },
+                                    "counts": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "number"
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "year",
+                                    "counts"
+                                  ]
+                                }
+                              }
+                            },
+                            "required": [
+                              "by_year",
+                              "by_month",
+                              "by_weekday",
+                              "by_hour"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "law_code",
+                          "description",
+                          "count",
+                          "evolution"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "total_violations",
+                    "period_start",
+                    "period_end",
+                    "law_code_breakdown"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/street-stats": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "summary": "Estatísticas por logradouro",
+        "description": "Visão completa para um logradouro específico: total, evolução temporal, categorias, infrações, agentes. Aceita ?street_code= e ?limit_violations=",
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "description": "Código do logradouro (ex: 123)"
+            },
+            "required": false,
+            "name": "street_code",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Limitar para as top N infrações (padrão: todas)"
+            },
+            "required": false,
+            "name": "limit_violations",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Street statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total_violations": {
+                      "type": "number"
+                    },
+                    "period_start": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "period_end": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "street_info": {
+                      "type": "object",
+                      "nullable": true,
+                      "properties": {
+                        "street_code": {
+                          "type": "number"
+                        },
+                        "official_name": {
+                          "type": "string"
+                        },
+                        "extension_km": {
+                          "type": "number"
+                        },
+                        "violations_per_km": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "street_code",
+                        "official_name",
+                        "extension_km",
+                        "violations_per_km"
+                      ]
+                    },
+                    "evolution": {
+                      "type": "object",
+                      "properties": {
+                        "by_year": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "year": {
+                                "type": "number"
+                              },
+                              "count": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "year",
+                              "count"
+                            ]
+                          }
+                        },
+                        "by_month": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "year": {
+                                "type": "number"
+                              },
+                              "month": {
+                                "type": "number"
+                              },
+                              "count": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "year",
+                              "month",
+                              "count"
+                            ]
+                          }
+                        },
+                        "by_weekday": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "year": {
+                                "type": "number"
+                              },
+                              "counts": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "required": [
+                              "year",
+                              "counts"
+                            ]
+                          }
+                        },
+                        "by_hour": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "year": {
+                                "type": "number"
+                              },
+                              "counts": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "required": [
+                              "year",
+                              "counts"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "by_year",
+                        "by_month",
+                        "by_weekday",
+                        "by_hour"
+                      ]
+                    },
+                    "category": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "count": {
+                            "type": "number"
+                          },
+                          "percentage": {
+                            "type": "number"
+                          },
+                          "by_year": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "year": {
+                                  "type": "number"
+                                },
+                                "count": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "year",
+                                "count"
+                              ]
+                            }
+                          },
+                          "by_month": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "year": {
+                                  "type": "number"
+                                },
+                                "month": {
+                                  "type": "number"
+                                },
+                                "count": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "year",
+                                "month",
+                                "count"
+                              ]
+                            }
+                          },
+                          "by_weekday": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "year": {
+                                  "type": "number"
+                                },
+                                "counts": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "year",
+                                "counts"
+                              ]
+                            }
+                          },
+                          "by_hour": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "year": {
+                                  "type": "number"
+                                },
+                                "counts": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "year",
+                                "counts"
+                              ]
+                            }
+                          },
+                          "top_violations": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "law_code": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                },
+                                "count": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "law_code",
+                                "description",
+                                "count"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "category",
+                          "count",
+                          "percentage",
+                          "by_year",
+                          "by_month",
+                          "by_weekday",
+                          "by_hour",
+                          "top_violations"
+                        ]
+                      }
+                    },
+                    "violations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "law_code": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "count": {
+                            "type": "number"
+                          },
+                          "percentage": {
+                            "type": "number"
+                          },
+                          "by_year": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "year": {
+                                  "type": "number"
+                                },
+                                "count": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "year",
+                                "count"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "law_code",
+                          "description",
+                          "count",
+                          "percentage",
+                          "by_year"
+                        ]
+                      }
+                    },
+                    "agents": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "agent_id": {
+                            "type": "number"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "count": {
+                            "type": "number"
+                          },
+                          "percentage": {
+                            "type": "number"
+                          },
+                          "category": {
+                            "type": "string",
+                            "enum": [
+                              "eletronico",
+                              "manual"
+                            ]
+                          },
+                          "by_year": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "year": {
+                                  "type": "number"
+                                },
+                                "count": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "year",
+                                "count"
+                              ]
+                            }
+                          },
+                          "by_month": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "year": {
+                                  "type": "number"
+                                },
+                                "month": {
+                                  "type": "number"
+                                },
+                                "count": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "year",
+                                "month",
+                                "count"
+                              ]
+                            }
+                          },
+                          "by_weekday": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "year": {
+                                  "type": "number"
+                                },
+                                "counts": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "year",
+                                "counts"
+                              ]
+                            }
+                          },
+                          "by_hour": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "year": {
+                                  "type": "number"
+                                },
+                                "counts": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "year",
+                                "counts"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "agent_id",
+                          "description",
+                          "count",
+                          "percentage",
+                          "category",
+                          "by_year",
+                          "by_month",
+                          "by_weekday",
+                          "by_hour"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "total_violations",
+                    "period_start",
+                    "period_end",
+                    "street_info",
+                    "evolution",
+                    "category",
+                    "violations",
+                    "agents"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+	"city": "VERTENTE DO LERIO",
+	"outcomes_by_year": {
+		"2018": {
+			"Removido por Particulares": 1
+		},
+		"2019": {
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 2,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 7,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 2,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Outros Desfechos": 1,
+			"Removido por Particulares": 1
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 2,
+			"Desistência da solicitação": 2,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 4,
+			"Óbito no Local/Atendimento": 3,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 7
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 3,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		}
+	}
+}

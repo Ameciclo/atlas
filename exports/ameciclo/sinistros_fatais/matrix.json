@@ -1,0 +1,37 @@
+{
+	"matrix": [
+		[0, 235, 7268, 13791, 6464, 0, 0, 1469, 29312],
+		[64, 102, 1971, 4266, 2215, 484, 2244, 46, 2346],
+		[3360, 480, 8426, 28649, 14800, 12429, 17022, 295, 38201],
+		[422, 52, 571, 13085, 14252, 7729, 13247, 161, 29130],
+		[29, 7, 48, 353, 2715, 702, 4101, 39, 1740],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[2547, 83, 75, 109, 1505, 6582, 288, 204, 52710],
+		[665, 231, 263, 56, 51, 98, 121, 791, 7872]
+	],
+	"labels": {
+		"rows": [
+			"Pedestre",
+			"Ciclista",
+			"Motociclista",
+			"Automóvel/Caminhonete",
+			"Veículo pesado/Ônibus",
+			"Objeto fixo",
+			"Sem colisão",
+			"Outros",
+			"Não especificado"
+		],
+		"columns": [
+			"Pedestre",
+			"Ciclista",
+			"Motociclista",
+			"Automóvel/Caminhonete",
+			"Veículo pesado/Ônibus",
+			"Objeto fixo",
+			"Sem colisão",
+			"Outros",
+			"Não especificado"
+		]
+	}
+}

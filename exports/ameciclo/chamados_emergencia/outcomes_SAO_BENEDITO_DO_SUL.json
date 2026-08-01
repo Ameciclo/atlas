@@ -1,0 +1,41 @@
+{
+	"city": "SAO BENEDITO DO SUL",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 5,
+			"Removido por Particulares": 2
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 3
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 20,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 15,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 7
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 5,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 1
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 14,
+			"Desistência da solicitação": 1
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 9,
+			"Desistência da solicitação": 1,
+			"Removido por Particulares": 1
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 3
+		}
+	}
+}

@@ -1,0 +1,144 @@
+{
+	"cities": [
+		{
+			"city_id": 2600054,
+			"city_name": "Abreu e Lima",
+			"existing_infrastructure_km": 1.617,
+			"planned_infrastructure_km": 17.7,
+			"implemented_from_plan_km": 10.143,
+			"plan_coverage_percentage": 57.3,
+			"by_type": {},
+			"last_updated": "2026-07-22T17:27:58.726Z"
+		},
+		{
+			"city_id": 2601052,
+			"city_name": "Araçoiaba",
+			"existing_infrastructure_km": 0,
+			"planned_infrastructure_km": 4.2,
+			"implemented_from_plan_km": 0,
+			"plan_coverage_percentage": 0,
+			"by_type": {},
+			"last_updated": "2026-07-22T17:27:58.726Z"
+		},
+		{
+			"city_id": 2602902,
+			"city_name": "Cabo de Santo Agostinho",
+			"existing_infrastructure_km": 27.239,
+			"planned_infrastructure_km": 40.4,
+			"implemented_from_plan_km": 7.268,
+			"plan_coverage_percentage": 18,
+			"by_type": {},
+			"last_updated": "2026-07-22T17:27:58.726Z"
+		},
+		{
+			"city_id": 2603454,
+			"city_name": "Camaragibe",
+			"existing_infrastructure_km": 1.917,
+			"planned_infrastructure_km": 18.9,
+			"implemented_from_plan_km": 2.151,
+			"plan_coverage_percentage": 11.4,
+			"by_type": {},
+			"last_updated": "2026-07-22T17:27:58.726Z"
+		},
+		{
+			"city_id": 2606804,
+			"city_name": "Igarassu",
+			"existing_infrastructure_km": 0,
+			"planned_infrastructure_km": 25.1,
+			"implemented_from_plan_km": 0,
+			"plan_coverage_percentage": 0,
+			"by_type": {},
+			"last_updated": "2026-07-22T17:27:58.726Z"
+		},
+		{
+			"city_id": 2607604,
+			"city_name": "Ilha de Itamaracá",
+			"existing_infrastructure_km": 0,
+			"planned_infrastructure_km": 8.7,
+			"implemented_from_plan_km": 0,
+			"plan_coverage_percentage": 0,
+			"by_type": {},
+			"last_updated": "2026-07-22T17:27:58.726Z"
+		},
+		{
+			"city_id": 2607208,
+			"city_name": "Ipojuca",
+			"existing_infrastructure_km": 19.909,
+			"planned_infrastructure_km": 36.6,
+			"implemented_from_plan_km": 16.981,
+			"plan_coverage_percentage": 46.4,
+			"by_type": {},
+			"last_updated": "2026-07-22T17:27:58.726Z"
+		},
+		{
+			"city_id": 2607752,
+			"city_name": "Itapissuma",
+			"existing_infrastructure_km": 0,
+			"planned_infrastructure_km": 8.7,
+			"implemented_from_plan_km": 0,
+			"plan_coverage_percentage": 0,
+			"by_type": {},
+			"last_updated": "2026-07-22T17:27:58.726Z"
+		},
+		{
+			"city_id": 2607901,
+			"city_name": "Jaboatão dos Guararapes",
+			"existing_infrastructure_km": 16.84,
+			"planned_infrastructure_km": 122.8,
+			"implemented_from_plan_km": 11.998,
+			"plan_coverage_percentage": 9.8,
+			"by_type": {},
+			"last_updated": "2026-07-22T17:27:58.726Z"
+		},
+		{
+			"city_id": 2609402,
+			"city_name": "Moreno",
+			"existing_infrastructure_km": 0,
+			"planned_infrastructure_km": 7.7,
+			"implemented_from_plan_km": 1.346,
+			"plan_coverage_percentage": 17.5,
+			"by_type": {},
+			"last_updated": "2026-07-22T17:27:58.726Z"
+		},
+		{
+			"city_id": 2609600,
+			"city_name": "Olinda",
+			"existing_infrastructure_km": 10.59,
+			"planned_infrastructure_km": 76.8,
+			"implemented_from_plan_km": 18.611,
+			"plan_coverage_percentage": 24.2,
+			"by_type": {},
+			"last_updated": "2026-07-22T17:27:58.726Z"
+		},
+		{
+			"city_id": 2610707,
+			"city_name": "Paulista",
+			"existing_infrastructure_km": 7.726,
+			"planned_infrastructure_km": 61.7,
+			"implemented_from_plan_km": 12.279,
+			"plan_coverage_percentage": 19.9,
+			"by_type": {},
+			"last_updated": "2026-07-22T17:27:58.726Z"
+		},
+		{
+			"city_id": 2611606,
+			"city_name": "Recife",
+			"existing_infrastructure_km": 211.411,
+			"planned_infrastructure_km": 267.9,
+			"implemented_from_plan_km": 70.969,
+			"plan_coverage_percentage": 26.5,
+			"by_type": {},
+			"last_updated": "2026-07-22T17:27:58.726Z"
+		},
+		{
+			"city_id": 2613701,
+			"city_name": "São Lourenço da Mata",
+			"existing_infrastructure_km": 5.156,
+			"planned_infrastructure_km": 6.8,
+			"implemented_from_plan_km": 2.151,
+			"plan_coverage_percentage": 31.6,
+			"by_type": {},
+			"last_updated": "2026-07-22T17:27:58.726Z"
+		}
+	]
+}

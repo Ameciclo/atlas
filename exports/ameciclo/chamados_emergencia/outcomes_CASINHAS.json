@@ -1,0 +1,56 @@
+{
+	"city": "CASINHAS",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 4,
+			"Removido por Particulares": 1
+		},
+		"2019": {
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 27,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 8,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 43,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 7,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 4
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 20,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido pelos Bombeiros/CIODS": 2,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 32,
+			"Desistência da solicitação": 2,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 60,
+			"Desistência da solicitação": 2,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 3,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 11,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 12,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 4
+		}
+	}
+}

@@ -1,0 +1,35 @@
+{
+	"city": "ITAQUITINGA",
+	"outcomes_by_year": {
+		"2020": {
+			"Atendimento Concluído com Êxito": 7,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 8,
+			"Óbito no Local/Atendimento": 2
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 5,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 9,
+			"Outros Desfechos": 1,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 5,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 2
+		}
+	}
+}

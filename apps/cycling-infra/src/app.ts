@@ -7,8 +7,8 @@ import waysRoutes from "./routes/ways/index.js";
 
 const app = createApp()
 	.route("/", healthRoutes)
-	.route("/", infrastructureRoutes)
 	.route("/", summaryRoutes)
+	.route("/", infrastructureRoutes)
 	.route("/", relationsRoutes)
 	.route("/", waysRoutes);
 

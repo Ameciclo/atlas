@@ -1,0 +1,2332 @@
+{
+	"filters": {},
+	"total_locations": 40,
+	"locations": [
+		{
+			"coordinates": {
+				"lat": -8.0313,
+				"lon": -34.95573
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida Caxangá x Avenida Afonso Olindense",
+				"area": "Área 3 - Área Periférica",
+				"survey_year": "2021"
+			},
+			"statistics": {
+				"total_responses": "51",
+				"avg_age": 38.8,
+				"avg_days_per_week": 6.1,
+				"avg_trip_time_minutes": 31.7,
+				"gender_distribution": {
+					"male_percentage": 76.5,
+					"female_percentage": 23.5
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 11.8,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 25,
+					"É mais saudável": 9,
+					"É mais barato": 15,
+					"Outros": 1,
+					"É ambientalmente correto": 1
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 11,
+					"26-35": 10,
+					"36-45": 15,
+					"46-60": 11,
+					"60+": 4
+				},
+				"income_distribution": {
+					"até 1 Salário Mínimo": 17,
+					"de 2 a 5 Salários Mínimos": 18,
+					"de 1 a 2 Salários Mínimos": 15,
+					"acima de 5 Salários Mínimos": 1
+				},
+				"schooling_distribution": {
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 13,
+					"Ensino Médio (Segundo Grau)": 32,
+					"Ensino Superior (Faculdade)": 2,
+					"Pós-Graduação": 3,
+					"Sem instrução (nunca frequentou a escola ou primeira fase do ensino fundamental incompleto)": 1
+				},
+				"color_race_distribution": {
+					"Preta": 18,
+					"Indígena": 3,
+					"Parda": 21,
+					"Branca": 9
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.05263,
+				"lon": -34.88374
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Rua dos Palmares x Rua 13 de Maio",
+				"area": "Área 1 - Área Central",
+				"survey_year": "2021"
+			},
+			"statistics": {
+				"total_responses": "51",
+				"avg_age": 41,
+				"avg_days_per_week": 5.7,
+				"avg_trip_time_minutes": 23.8,
+				"gender_distribution": {
+					"male_percentage": 80.4,
+					"female_percentage": 19.6
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 15.7,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 20,
+					"Outros": 4,
+					"É mais saudável": 13,
+					"É ambientalmente correto": 3,
+					"É mais barato": 11
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 7,
+					"26-35": 13,
+					"36-45": 7,
+					"46-60": 20,
+					"60+": 2
+				},
+				"income_distribution": {
+					"acima de 5 Salários Mínimos": 17,
+					"de 1 a 2 Salários Mínimos": 7,
+					"de 2 a 5 Salários Mínimos": 20,
+					"até 1 Salário Mínimo": 7
+				},
+				"schooling_distribution": {
+					"Pós-Graduação": 10,
+					"Ensino Médio (Segundo Grau)": 20,
+					"Ensino Superior (Faculdade)": 13,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 8
+				},
+				"color_race_distribution": {
+					"Branca": 16,
+					"Parda": 23,
+					"Preta": 12
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.05351,
+				"lon": -34.92892
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida do Forte do Bom Jesus x Rua Gomes Taborda",
+				"area": "Área 2 - Área Intermediária",
+				"survey_year": "2021"
+			},
+			"statistics": {
+				"total_responses": "51",
+				"avg_age": 34.5,
+				"avg_days_per_week": 6,
+				"avg_trip_time_minutes": 27.8,
+				"gender_distribution": {
+					"male_percentage": 76.5,
+					"female_percentage": 23.5
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 27.5,
+				"top_motivation": "É mais barato",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais barato": 14,
+					"É mais rápido e prático": 14,
+					"É mais saudável": 14,
+					"Outros": 5,
+					"É ambientalmente correto": 4
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 17,
+					"26-35": 6,
+					"36-45": 10,
+					"46-60": 12,
+					"60+": 1
+				},
+				"income_distribution": {
+					"de 2 a 5 Salários Mínimos": 19,
+					"até 1 Salário Mínimo": 13,
+					"de 1 a 2 Salários Mínimos": 15,
+					"acima de 5 Salários Mínimos": 4
+				},
+				"schooling_distribution": {
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 22,
+					"Ensino Superior (Faculdade)": 8,
+					"Ensino Médio (Segundo Grau)": 21
+				},
+				"color_race_distribution": {
+					"Parda": 32,
+					"Preta": 11,
+					"Branca": 8
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.09803,
+				"lon": -34.91224
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida Arquiteto Luiz Nunes x Rua Engenheiro Alves de Souza",
+				"area": "Área 3 - Área Periférica",
+				"survey_year": "2018"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 28.8,
+				"avg_days_per_week": 6,
+				"avg_trip_time_minutes": 21.8,
+				"gender_distribution": {
+					"male_percentage": 80,
+					"female_percentage": 20
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 34,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "Falta de infraestrutura adequada (ciclovias, bicicletários, etc)",
+				"motivations": {
+					"É mais rápido e prático": 39,
+					"É mais barato": 11
+				},
+				"issues": {
+					"Falta de segurança no trânsito": 18,
+					"Falta de infraestrutura adequada (ciclovias, bicicletários, etc)": 26,
+					"Falta de segurança pública": 6
+				},
+				"age_ranges": {
+					"18-25": 19,
+					"26-35": 20,
+					"36-45": 7,
+					"46-60": 3,
+					"60+": 0
+				},
+				"income_distribution": {
+					"até 1 Salário Mínimo": 11,
+					"de 1 a 2 Salários Mínimos": 37,
+					"de 2 a 5 Salários Mínimos": 2
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 32,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 17,
+					"Ensino Superior (Faculdade)": 1
+				},
+				"color_race_distribution": {
+					"Preta": 23,
+					"Parda": 21,
+					"Branca": 6
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.09803,
+				"lon": -34.91224
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida Arquiteto Luiz Nunes x Rua Engenheiro Alves de Souza",
+				"area": "Área 3 - Área Periférica",
+				"survey_year": "2021"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 43.2,
+				"avg_days_per_week": 6.1,
+				"avg_trip_time_minutes": 35,
+				"gender_distribution": {
+					"male_percentage": 84,
+					"female_percentage": 16
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 16,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais barato": 13,
+					"É mais rápido e prático": 17,
+					"Outros": 8,
+					"É mais saudável": 11,
+					"É ambientalmente correto": 1
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 9,
+					"26-35": 6,
+					"36-45": 10,
+					"46-60": 17,
+					"60+": 7
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 21,
+					"de 2 a 5 Salários Mínimos": 15,
+					"acima de 5 Salários Mínimos": 3,
+					"até 1 Salário Mínimo": 11
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 31,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 14,
+					"Ensino Superior (Faculdade)": 5
+				},
+				"color_race_distribution": {
+					"Branca": 14,
+					"Preta": 17,
+					"Parda": 15,
+					"Sem resposta": 2,
+					"Amarela": 2
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.07701,
+				"lon": -34.90919
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Rua Cosme Viana x Rua Vinte e Um de Abril",
+				"area": "Área 3 - Área Periférica",
+				"survey_year": "2018"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 34.7,
+				"avg_days_per_week": 6.2,
+				"avg_trip_time_minutes": 16.4,
+				"gender_distribution": {
+					"male_percentage": 70,
+					"female_percentage": 30
+				},
+				"private_bike_percentage": 92,
+				"accidents_percentage": 24,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "Falta de segurança no trânsito",
+				"motivations": {
+					"É mais rápido e prático": 26,
+					"Outros": 5,
+					"É mais saudável": 3,
+					"É mais barato": 16
+				},
+				"issues": {
+					"Falta de infraestrutura adequada (ciclovias, bicicletários, etc)": 14,
+					"Falta de segurança pública": 5,
+					"Falta de segurança no trânsito": 29,
+					"Outros": 1,
+					"Sem resposta": 1
+				},
+				"age_ranges": {
+					"18-25": 10,
+					"26-35": 13,
+					"36-45": 12,
+					"46-60": 10,
+					"60+": 1
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 31,
+					"até 1 Salário Mínimo": 14,
+					"de 2 a 5 Salários Mínimos": 5
+				},
+				"schooling_distribution": {
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 22,
+					"Ensino Médio (Segundo Grau)": 24,
+					"Ensino Superior (Faculdade)": 4
+				},
+				"color_race_distribution": {
+					"Branca": 22,
+					"Parda": 17,
+					"Preta": 11
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.07701,
+				"lon": -34.90919
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Rua Cosme Viana x Rua Vinte e Um de Abril",
+				"area": "Área 2 - Área Intermediária",
+				"survey_year": "2021"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 33.3,
+				"avg_days_per_week": 6,
+				"avg_trip_time_minutes": 30.1,
+				"gender_distribution": {
+					"male_percentage": 76,
+					"female_percentage": 24
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 28,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais barato": 10,
+					"É mais rápido e prático": 33,
+					"É mais saudável": 7
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 17,
+					"26-35": 12,
+					"36-45": 15,
+					"46-60": 6,
+					"60+": 0
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 23,
+					"de 2 a 5 Salários Mínimos": 11,
+					"até 1 Salário Mínimo": 16
+				},
+				"schooling_distribution": {
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 11,
+					"Ensino Superior (Faculdade)": 3,
+					"Ensino Médio (Segundo Grau)": 36
+				},
+				"color_race_distribution": {
+					"Branca": 11,
+					"Preta": 8,
+					"Parda": 25,
+					"Amarela": 6
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.07701,
+				"lon": -34.90919
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Rua Cosme Viana x Rua Vinte e Um de Abril",
+				"area": "Área 2 - Área Intermediária",
+				"survey_year": "2024"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 37.6,
+				"avg_days_per_week": 6.3,
+				"avg_trip_time_minutes": 21.9,
+				"gender_distribution": {
+					"male_percentage": 70,
+					"female_percentage": 30
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 18,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 24,
+					"É mais saudável": 12,
+					"É mais barato": 10,
+					"Outros": 3,
+					"É ambientalmente correto": 1
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 12,
+					"26-35": 12,
+					"36-45": 11,
+					"46-60": 9,
+					"60+": 5
+				},
+				"income_distribution": {
+					"de 2 a 5 Salários Mínimos": 14,
+					"de 1 a 2 Salários Mínimos": 19,
+					"até 1 Salário Mínimo": 16,
+					"acima de 5 Salários Mínimos": 1
+				},
+				"schooling_distribution": {
+					"Ensino Superior (Faculdade)": 5,
+					"Ensino Médio (Segundo Grau)": 30,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 15
+				},
+				"color_race_distribution": {
+					"Branca": 6,
+					"Parda": 33,
+					"Preta": 9,
+					"Indígena": 1,
+					"Amarela": 1
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.06392,
+				"lon": -34.87848
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Av. Guararapes x Av. Dantas Barreto",
+				"area": "Área 1 - Área Central",
+				"survey_year": "2024"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 37.4,
+				"avg_days_per_week": 5.6,
+				"avg_trip_time_minutes": 34.6,
+				"gender_distribution": {
+					"male_percentage": 78,
+					"female_percentage": 22
+				},
+				"private_bike_percentage": 86,
+				"accidents_percentage": 52,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais barato": 14,
+					"É mais rápido e prático": 33,
+					"É mais saudável": 3
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 5,
+					"26-35": 21,
+					"36-45": 13,
+					"46-60": 9,
+					"60+": 2
+				},
+				"income_distribution": {
+					"de 2 a 5 Salários Mínimos": 11,
+					"de 1 a 2 Salários Mínimos": 31,
+					"até 1 Salário Mínimo": 7,
+					"acima de 5 Salários Mínimos": 1
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 43,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 5,
+					"Ensino Superior (Faculdade)": 1,
+					"Sem instrução (nunca frequentou a escola ou primeira fase do ensino fundamental incompleto)": 1
+				},
+				"color_race_distribution": {
+					"Parda": 23,
+					"Preta": 12,
+					"Branca": 15
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.06046,
+				"lon": -34.92576
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida General San Martin x Avenida Abdias de Carvalho",
+				"area": "Área 2 - Área Intermediária",
+				"survey_year": "2021"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 39.2,
+				"avg_days_per_week": 6.5,
+				"avg_trip_time_minutes": 33.5,
+				"gender_distribution": {
+					"male_percentage": 82,
+					"female_percentage": 18
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 14,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"Outros": 7,
+					"É mais rápido e prático": 30,
+					"É mais saudável": 7,
+					"É mais barato": 6
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 9,
+					"26-35": 9,
+					"36-45": 14,
+					"46-60": 16,
+					"60+": 1
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 24,
+					"de 2 a 5 Salários Mínimos": 11,
+					"acima de 5 Salários Mínimos": 1,
+					"até 1 Salário Mínimo": 14
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 33,
+					"Ensino Superior (Faculdade)": 2,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 15
+				},
+				"color_race_distribution": {
+					"Parda": 21,
+					"Preta": 12,
+					"Indígena": 3,
+					"Branca": 8,
+					"Sem resposta": 4,
+					"Amarela": 2
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.06046,
+				"lon": -34.92576
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida General San Martin x Avenida Abdias de Carvalho",
+				"area": "Área 3 - Área Periférica",
+				"survey_year": "2024"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 36.2,
+				"avg_days_per_week": 6,
+				"avg_trip_time_minutes": 23.5,
+				"gender_distribution": {
+					"male_percentage": 62,
+					"female_percentage": 38
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 12,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"Outros": 2,
+					"É mais rápido e prático": 29,
+					"É mais barato": 8,
+					"É mais saudável": 11
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 11,
+					"26-35": 12,
+					"36-45": 13,
+					"46-60": 9,
+					"60+": 3
+				},
+				"income_distribution": {
+					"até 1 Salário Mínimo": 12,
+					"de 2 a 5 Salários Mínimos": 14,
+					"de 1 a 2 Salários Mínimos": 24
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 30,
+					"Ensino Superior (Faculdade)": 9,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 10,
+					"Pós-Graduação": 1
+				},
+				"color_race_distribution": {
+					"Branca": 14,
+					"Parda": 19,
+					"Preta": 15,
+					"Indígena": 2
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.05661,
+				"lon": -34.89772
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida Governador Agamenon Magalhães x Praça do Derby",
+				"area": "Área 1 - Área Central",
+				"survey_year": "2021"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 31.3,
+				"avg_days_per_week": 6.1,
+				"avg_trip_time_minutes": 30,
+				"gender_distribution": {
+					"male_percentage": 82,
+					"female_percentage": 18
+				},
+				"private_bike_percentage": 96,
+				"accidents_percentage": 22,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 24,
+					"Outros": 9,
+					"É mais saudável": 8,
+					"É mais barato": 6,
+					"É ambientalmente correto": 3
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 18,
+					"26-35": 18,
+					"36-45": 7,
+					"46-60": 6,
+					"60+": 0
+				},
+				"income_distribution": {
+					"de 2 a 5 Salários Mínimos": 22,
+					"até 1 Salário Mínimo": 8,
+					"acima de 5 Salários Mínimos": 6,
+					"de 1 a 2 Salários Mínimos": 14
+				},
+				"schooling_distribution": {
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 6,
+					"Ensino Médio (Segundo Grau)": 35,
+					"Ensino Superior (Faculdade)": 7,
+					"Pós-Graduação": 2
+				},
+				"color_race_distribution": {
+					"Parda": 27,
+					"Branca": 6,
+					"Preta": 13,
+					"Indígena": 4
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.05508,
+				"lon": -34.88226
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida Visconde de Suassuna x Rua do Hospício",
+				"area": "Área 1 - Área Central",
+				"survey_year": "2021"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 37.4,
+				"avg_days_per_week": 6.2,
+				"avg_trip_time_minutes": 24.7,
+				"gender_distribution": {
+					"male_percentage": 82,
+					"female_percentage": 18
+				},
+				"private_bike_percentage": 98,
+				"accidents_percentage": 22,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais barato": 8,
+					"É mais rápido e prático": 35,
+					"É mais saudável": 7
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 11,
+					"26-35": 9,
+					"36-45": 10,
+					"46-60": 16,
+					"60+": 2
+				},
+				"income_distribution": {
+					"até 1 Salário Mínimo": 17,
+					"de 1 a 2 Salários Mínimos": 23,
+					"de 2 a 5 Salários Mínimos": 10
+				},
+				"schooling_distribution": {
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 12,
+					"Ensino Superior (Faculdade)": 5,
+					"Ensino Médio (Segundo Grau)": 33
+				},
+				"color_race_distribution": {
+					"Preta": 15,
+					"Parda": 27,
+					"Branca": 8
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.05351,
+				"lon": -34.92892
+			},
+			"location_info": {
+				"neighborhood": "750",
+				"street": "Avenida do Forte do Bom Jesus x Rua Gomes Taborda",
+				"area": "Área 3 - Área Periférica",
+				"survey_year": "2018"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 36.6,
+				"avg_days_per_week": 6.3,
+				"avg_trip_time_minutes": 22.6,
+				"gender_distribution": {
+					"male_percentage": 80,
+					"female_percentage": 20
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 14,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "Falta de segurança no trânsito",
+				"motivations": {
+					"Outros": 5,
+					"É mais saudável": 17,
+					"É mais barato": 4,
+					"É mais rápido e prático": 23,
+					"É ambientalmente correto": 1
+				},
+				"issues": {
+					"Falta de segurança no trânsito": 31,
+					"Falta de infraestrutura adequada (ciclovias, bicicletários, etc)": 13,
+					"Falta de segurança pública": 6
+				},
+				"age_ranges": {
+					"18-25": 8,
+					"26-35": 14,
+					"36-45": 9,
+					"46-60": 12,
+					"60+": 4
+				},
+				"income_distribution": {
+					"até 1 Salário Mínimo": 18,
+					"de 2 a 5 Salários Mínimos": 10,
+					"de 1 a 2 Salários Mínimos": 21,
+					"acima de 5 Salários Mínimos": 1
+				},
+				"schooling_distribution": {
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 18,
+					"Ensino Médio (Segundo Grau)": 23,
+					"Ensino Superior (Faculdade)": 8,
+					"Pós-Graduação": 1
+				},
+				"color_race_distribution": {
+					"Parda": 28,
+					"Branca": 9,
+					"Preta": 11,
+					"Amarela": 2
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.02676,
+				"lon": -34.91773
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Estrada do Arraial x Rua Padre Lemos",
+				"area": "Área 3 - Área Periférica",
+				"survey_year": "2024"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 29.4,
+				"avg_days_per_week": 5.5,
+				"avg_trip_time_minutes": 21.2,
+				"gender_distribution": {
+					"male_percentage": 72,
+					"female_percentage": 28
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 16,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 26,
+					"É mais barato": 20,
+					"É mais saudável": 3,
+					"É ambientalmente correto": 1
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 18,
+					"26-35": 21,
+					"36-45": 7,
+					"46-60": 3,
+					"60+": 0
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 34,
+					"até 1 Salário Mínimo": 14,
+					"de 2 a 5 Salários Mínimos": 2
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 34,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 15,
+					"Ensino Superior (Faculdade)": 1
+				},
+				"color_race_distribution": {
+					"Branca": 14,
+					"Preta": 20,
+					"Parda": 16
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.11574,
+				"lon": -34.89552
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida Engenheiro Domingos Ferreira x Rua Antônio Falcão",
+				"area": "Área 3 - Área Periférica",
+				"survey_year": "2021"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 41.1,
+				"avg_days_per_week": 6,
+				"avg_trip_time_minutes": 39.3,
+				"gender_distribution": {
+					"male_percentage": 78,
+					"female_percentage": 22
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 26,
+				"top_motivation": "É mais saudável",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 21,
+					"É mais saudável": 25,
+					"É mais barato": 4
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 4,
+					"26-35": 14,
+					"36-45": 13,
+					"46-60": 15,
+					"60+": 4
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 12,
+					"de 2 a 5 Salários Mínimos": 20,
+					"acima de 5 Salários Mínimos": 9,
+					"até 1 Salário Mínimo": 9
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 28,
+					"Ensino Superior (Faculdade)": 8,
+					"Pós-Graduação": 8,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 6
+				},
+				"color_race_distribution": {
+					"Parda": 27,
+					"Preta": 10,
+					"Branca": 10,
+					"Amarela": 1,
+					"Indígena": 2
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.10793,
+				"lon": -34.92706
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida Recife x Rua Pintor Antonio de Albuquerque",
+				"area": "Área 3 - Área Periférica",
+				"survey_year": "2021"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 35.7,
+				"avg_days_per_week": 6.2,
+				"avg_trip_time_minutes": 46.2,
+				"gender_distribution": {
+					"male_percentage": 86,
+					"female_percentage": 14
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 16,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 27,
+					"É mais barato": 9,
+					"Sem resposta": 1,
+					"Outros": 8,
+					"É mais saudável": 5
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 14,
+					"26-35": 12,
+					"36-45": 10,
+					"46-60": 11,
+					"60+": 2
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 21,
+					"até 1 Salário Mínimo": 16,
+					"de 2 a 5 Salários Mínimos": 13
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 33,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 15,
+					"Ensino Superior (Faculdade)": 2
+				},
+				"color_race_distribution": {
+					"Branca": 8,
+					"Preta": 7,
+					"Parda": 23,
+					"Amarela": 6,
+					"Sem resposta": 6
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.03216,
+				"lon": -34.88138
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Estrada de Belém x Rua Odorico Mendes",
+				"area": "Área 2 - Área Intermediária",
+				"survey_year": "2021"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 38.6,
+				"avg_days_per_week": 6.3,
+				"avg_trip_time_minutes": 21.4,
+				"gender_distribution": {
+					"male_percentage": 74,
+					"female_percentage": 26
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 24,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais saudável": 6,
+					"É mais rápido e prático": 27,
+					"Outros": 4,
+					"É mais barato": 13
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 7,
+					"26-35": 12,
+					"36-45": 11,
+					"46-60": 14,
+					"60+": 3
+				},
+				"income_distribution": {
+					"até 1 Salário Mínimo": 16,
+					"de 1 a 2 Salários Mínimos": 23,
+					"de 2 a 5 Salários Mínimos": 9,
+					"acima de 5 Salários Mínimos": 2
+				},
+				"schooling_distribution": {
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 14,
+					"Ensino Médio (Segundo Grau)": 29,
+					"Ensino Superior (Faculdade)": 7
+				},
+				"color_race_distribution": {
+					"Parda": 22,
+					"Amarela": 3,
+					"Branca": 9,
+					"Preta": 14,
+					"Indígena": 2
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.03216,
+				"lon": -34.88138
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Estrada de Belém x Rua Odorico Mendes",
+				"area": "Área 1 - Área Central",
+				"survey_year": "2024"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 36.6,
+				"avg_days_per_week": 6,
+				"avg_trip_time_minutes": 24.5,
+				"gender_distribution": {
+					"male_percentage": 64,
+					"female_percentage": 36
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 16,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 31,
+					"É mais saudável": 9,
+					"Outros": 4,
+					"É mais barato": 6
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 7,
+					"26-35": 11,
+					"36-45": 9,
+					"46-60": 13,
+					"60+": 3
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 23,
+					"até 1 Salário Mínimo": 11,
+					"de 2 a 5 Salários Mínimos": 14,
+					"acima de 5 Salários Mínimos": 2
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 21,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 24,
+					"Ensino Superior (Faculdade)": 4,
+					"Pós-Graduação": 1
+				},
+				"color_race_distribution": {
+					"Preta": 19,
+					"Parda": 24,
+					"Branca": 7
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.0313,
+				"lon": -34.95573
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida Caxangá x Avenida Afonso Olindense",
+				"area": "Área 3 - Área Periférica",
+				"survey_year": "2024"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 34.2,
+				"avg_days_per_week": 5.8,
+				"avg_trip_time_minutes": 24.2,
+				"gender_distribution": {
+					"male_percentage": 64,
+					"female_percentage": 36
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 16,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 23,
+					"É mais saudável": 13,
+					"É mais barato": 14
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 15,
+					"26-35": 9,
+					"36-45": 7,
+					"46-60": 11,
+					"60+": 3
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 12,
+					"de 2 a 5 Salários Mínimos": 13,
+					"até 1 Salário Mínimo": 25
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 39,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 6,
+					"Ensino Superior (Faculdade)": 5
+				},
+				"color_race_distribution": {
+					"Preta": 8,
+					"Parda": 28,
+					"Branca": 11,
+					"Amarela": 3
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.02793,
+				"lon": -34.89293
+			},
+			"location_info": {
+				"neighborhood": "1020",
+				"street": "Avenida Professor José dos Anjos x Avenida Beberibe",
+				"area": "Área 3 - Área Periférica",
+				"survey_year": "2018"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 33.9,
+				"avg_days_per_week": 5.7,
+				"avg_trip_time_minutes": 24.4,
+				"gender_distribution": {
+					"male_percentage": 84,
+					"female_percentage": 16
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 30,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "Falta de segurança no trânsito",
+				"motivations": {
+					"É mais barato": 16,
+					"É mais rápido e prático": 27,
+					"É mais saudável": 7
+				},
+				"issues": {
+					"Falta de segurança no trânsito": 27,
+					"Falta de segurança pública": 3,
+					"Falta de infraestrutura adequada (ciclovias, bicicletários, etc)": 19,
+					"Outros": 1
+				},
+				"age_ranges": {
+					"18-25": 12,
+					"26-35": 19,
+					"36-45": 6,
+					"46-60": 10,
+					"60+": 1
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 30,
+					"até 1 Salário Mínimo": 14,
+					"de 2 a 5 Salários Mínimos": 5,
+					"acima de 5 Salários Mínimos": 1
+				},
+				"schooling_distribution": {
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 22,
+					"Ensino Médio (Segundo Grau)": 25,
+					"Ensino Superior (Faculdade)": 3
+				},
+				"color_race_distribution": {
+					"Parda": 26,
+					"Preta": 14,
+					"Branca": 10
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.02793,
+				"lon": -34.89293
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida Professor José dos Anjos x Avenida Beberibe",
+				"area": "Área 2 - Área Intermediária",
+				"survey_year": "2024"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 29,
+				"avg_days_per_week": 5.6,
+				"avg_trip_time_minutes": 24.6,
+				"gender_distribution": {
+					"male_percentage": 70,
+					"female_percentage": 30
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 30,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 28,
+					"É mais saudável": 7,
+					"É mais barato": 15
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 14,
+					"26-35": 23,
+					"36-45": 6,
+					"46-60": 2,
+					"60+": 1
+				},
+				"income_distribution": {
+					"até 1 Salário Mínimo": 23,
+					"de 1 a 2 Salários Mínimos": 27
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 42,
+					"Ensino Superior (Faculdade)": 1,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 7
+				},
+				"color_race_distribution": {
+					"Preta": 21,
+					"Branca": 20,
+					"Parda": 9
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.02676,
+				"lon": -34.91773
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Estrada do Arraial x Rua Padre Lemos",
+				"area": "Área 2 - Área Intermediária",
+				"survey_year": "2018"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 33.5,
+				"avg_days_per_week": 6,
+				"avg_trip_time_minutes": 26.7,
+				"gender_distribution": {
+					"male_percentage": 80,
+					"female_percentage": 20
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 36,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "Falta de segurança no trânsito",
+				"motivations": {
+					"É mais rápido e prático": 23,
+					"É mais saudável": 14,
+					"É ambientalmente correto": 3,
+					"É mais barato": 8,
+					"Outros": 2
+				},
+				"issues": {
+					"Falta de infraestrutura adequada (ciclovias, bicicletários, etc)": 23,
+					"Falta de segurança no trânsito": 24,
+					"Falta de segurança pública": 3
+				},
+				"age_ranges": {
+					"18-25": 16,
+					"26-35": 15,
+					"36-45": 8,
+					"46-60": 9,
+					"60+": 2
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 23,
+					"até 1 Salário Mínimo": 21,
+					"acima de 5 Salários Mínimos": 3,
+					"de 2 a 5 Salários Mínimos": 3
+				},
+				"schooling_distribution": {
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 17,
+					"Ensino Médio (Segundo Grau)": 28,
+					"Pós-Graduação": 2,
+					"Ensino Superior (Faculdade)": 3
+				},
+				"color_race_distribution": {
+					"Parda": 15,
+					"Branca": 19,
+					"Preta": 16
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.11574,
+				"lon": -34.89552
+			},
+			"location_info": {
+				"neighborhood": "3003",
+				"street": "Avenida Engenheiro Domingos Ferreira x Rua Antônio Falcão",
+				"area": "Área 1 - Área Central",
+				"survey_year": "2018"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 37.3,
+				"avg_days_per_week": 5.8,
+				"avg_trip_time_minutes": 32.1,
+				"gender_distribution": {
+					"male_percentage": 76,
+					"female_percentage": 24
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 26,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "Falta de segurança no trânsito",
+				"motivations": {
+					"É mais rápido e prático": 28,
+					"É mais barato": 9,
+					"É mais saudável": 13
+				},
+				"issues": {
+					"Falta de infraestrutura adequada (ciclovias, bicicletários, etc)": 23,
+					"Falta de segurança no trânsito": 25,
+					"Falta de segurança pública": 2
+				},
+				"age_ranges": {
+					"18-25": 7,
+					"26-35": 14,
+					"36-45": 18,
+					"46-60": 10,
+					"60+": 0
+				},
+				"income_distribution": {
+					"de 2 a 5 Salários Mínimos": 11,
+					"de 1 a 2 Salários Mínimos": 24,
+					"até 1 Salário Mínimo": 11,
+					"acima de 5 Salários Mínimos": 4
+				},
+				"schooling_distribution": {
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 24,
+					"Ensino Médio (Segundo Grau)": 23,
+					"Ensino Superior (Faculdade)": 2,
+					"Pós-Graduação": 1
+				},
+				"color_race_distribution": {
+					"Branca": 17,
+					"Parda": 26,
+					"Preta": 7
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.05351,
+				"lon": -34.92892
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida do Forte do Bom Jesus x Rua Gomes Taborda",
+				"area": "Área 3 - Área Periférica",
+				"survey_year": "2024"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 39.4,
+				"avg_days_per_week": 6.1,
+				"avg_trip_time_minutes": 21,
+				"gender_distribution": {
+					"male_percentage": 68,
+					"female_percentage": 32
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 20,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 24,
+					"É mais saudável": 15,
+					"É mais barato": 8,
+					"É ambientalmente correto": 3
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 6,
+					"26-35": 11,
+					"36-45": 9,
+					"46-60": 14,
+					"60+": 5
+				},
+				"income_distribution": {
+					"até 1 Salário Mínimo": 23,
+					"de 1 a 2 Salários Mínimos": 17,
+					"de 2 a 5 Salários Mínimos": 10
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 35,
+					"Pós-Graduação": 1,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 11,
+					"Ensino Superior (Faculdade)": 3
+				},
+				"color_race_distribution": {
+					"Parda": 31,
+					"Preta": 8,
+					"Branca": 9,
+					"Indígena": 2
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.05263,
+				"lon": -34.88374
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Rua dos Palmares x Rua 13 de Maio",
+				"area": "Área 1 - Área Central",
+				"survey_year": "2024"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 31.2,
+				"avg_days_per_week": 5,
+				"avg_trip_time_minutes": 20.9,
+				"gender_distribution": {
+					"male_percentage": 66,
+					"female_percentage": 34
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 4,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais saudável": 7,
+					"É mais rápido e prático": 28,
+					"É mais barato": 13,
+					"É ambientalmente correto": 2
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 14,
+					"26-35": 23,
+					"36-45": 10,
+					"46-60": 3,
+					"60+": 0
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 32,
+					"até 1 Salário Mínimo": 12,
+					"de 2 a 5 Salários Mínimos": 6
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 30,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 10,
+					"Ensino Superior (Faculdade)": 10
+				},
+				"color_race_distribution": {
+					"Branca": 24,
+					"Preta": 18,
+					"Parda": 8
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.04756,
+				"lon": -34.87696
+			},
+			"location_info": {
+				"neighborhood": "923",
+				"street": "Avenida Cruz Cabugá x Avenida Norte Miguel Arraes de Alencar",
+				"area": "Área 2 - Área Intermediária",
+				"survey_year": "2018"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 38.3,
+				"avg_days_per_week": 6.3,
+				"avg_trip_time_minutes": 24.9,
+				"gender_distribution": {
+					"male_percentage": 94,
+					"female_percentage": 6
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 30,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "Falta de infraestrutura adequada (ciclovias, bicicletários, etc)",
+				"motivations": {
+					"É mais saudável": 15,
+					"É ambientalmente correto": 2,
+					"É mais rápido e prático": 21,
+					"É mais barato": 12
+				},
+				"issues": {
+					"Falta de infraestrutura adequada (ciclovias, bicicletários, etc)": 25,
+					"Falta de segurança no trânsito": 18,
+					"Falta de segurança pública": 6,
+					"Outros": 1
+				},
+				"age_ranges": {
+					"18-25": 11,
+					"26-35": 8,
+					"36-45": 17,
+					"46-60": 9,
+					"60+": 4
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 33,
+					"até 1 Salário Mínimo": 10,
+					"de 2 a 5 Salários Mínimos": 4,
+					"acima de 5 Salários Mínimos": 3
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 25,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 18,
+					"Ensino Superior (Faculdade)": 4,
+					"Pós-Graduação": 3
+				},
+				"color_race_distribution": {
+					"Amarela": 2,
+					"Parda": 21,
+					"Preta": 15,
+					"Branca": 10,
+					"Indígena": 2
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.04448,
+				"lon": -34.87489
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Av. Cruz Cabugá x Rua Dr. Jayme da Fonte",
+				"area": "Área 1 - Área Central",
+				"survey_year": "2024"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 38.3,
+				"avg_days_per_week": 6,
+				"avg_trip_time_minutes": 54.3,
+				"gender_distribution": {
+					"male_percentage": 74,
+					"female_percentage": 26
+				},
+				"private_bike_percentage": 74,
+				"accidents_percentage": 52,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 28,
+					"É mais barato": 10,
+					"É mais saudável": 11,
+					"Outros": 1
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 5,
+					"26-35": 19,
+					"36-45": 11,
+					"46-60": 13,
+					"60+": 1
+				},
+				"income_distribution": {
+					"até 1 Salário Mínimo": 10,
+					"acima de 5 Salários Mínimos": 1,
+					"de 1 a 2 Salários Mínimos": 28,
+					"de 2 a 5 Salários Mínimos": 11
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 38,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 10,
+					"Ensino Superior (Faculdade)": 2
+				},
+				"color_race_distribution": {
+					"Parda": 25,
+					"Branca": 12,
+					"Preta": 13
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.04425,
+				"lon": -34.91665
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "R. Souza Bandeira x R. Cantora Clara Nunes",
+				"area": "Área 2 - Área Intermediária",
+				"survey_year": "2024"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 44.2,
+				"avg_days_per_week": 6.1,
+				"avg_trip_time_minutes": 27.4,
+				"gender_distribution": {
+					"male_percentage": 76,
+					"female_percentage": 24
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 16,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 32,
+					"É mais saudável": 13,
+					"É ambientalmente correto": 3,
+					"É mais barato": 2
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 5,
+					"26-35": 8,
+					"36-45": 14,
+					"46-60": 18,
+					"60+": 5
+				},
+				"income_distribution": {
+					"até 1 Salário Mínimo": 21,
+					"de 1 a 2 Salários Mínimos": 18,
+					"de 2 a 5 Salários Mínimos": 9,
+					"acima de 5 Salários Mínimos": 2
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 37,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 7,
+					"Ensino Superior (Faculdade)": 3,
+					"Pós-Graduação": 3
+				},
+				"color_race_distribution": {
+					"Branca": 17,
+					"Parda": 22,
+					"Preta": 11
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.03876,
+				"lon": -34.90176
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Rua do Futuro x Avenida Dr. Malaquias",
+				"area": "Área 1 - Área Central",
+				"survey_year": "2018"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 36,
+				"avg_days_per_week": 5.8,
+				"avg_trip_time_minutes": 25.6,
+				"gender_distribution": {
+					"male_percentage": 84,
+					"female_percentage": 16
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 26,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "Falta de segurança no trânsito",
+				"motivations": {
+					"É mais rápido e prático": 37,
+					"É mais barato": 1,
+					"É mais saudável": 11,
+					"Outros": 1
+				},
+				"issues": {
+					"Falta de infraestrutura adequada (ciclovias, bicicletários, etc)": 21,
+					"Falta de segurança no trânsito": 27,
+					"Falta de segurança pública": 2
+				},
+				"age_ranges": {
+					"18-25": 10,
+					"26-35": 17,
+					"36-45": 7,
+					"46-60": 11,
+					"60+": 3
+				},
+				"income_distribution": {
+					"acima de 5 Salários Mínimos": 6,
+					"até 1 Salário Mínimo": 12,
+					"de 1 a 2 Salários Mínimos": 16,
+					"de 2 a 5 Salários Mínimos": 16
+				},
+				"schooling_distribution": {
+					"Ensino Superior (Faculdade)": 10,
+					"Ensino Médio (Segundo Grau)": 22,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 14,
+					"Pós-Graduação": 4
+				},
+				"color_race_distribution": {
+					"Branca": 23,
+					"Preta": 13,
+					"Parda": 14
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.03876,
+				"lon": -34.90176
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Rua do Futuro x Avenida Dr. Malaquias",
+				"area": "Área 1 - Área Central",
+				"survey_year": "2021"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 38.1,
+				"avg_days_per_week": 5.6,
+				"avg_trip_time_minutes": 29.6,
+				"gender_distribution": {
+					"male_percentage": 86,
+					"female_percentage": 14
+				},
+				"private_bike_percentage": 96,
+				"accidents_percentage": 18,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"Outros": 12,
+					"É mais rápido e prático": 25,
+					"É ambientalmente correto": 2,
+					"É mais saudável": 6,
+					"É mais barato": 5
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 8,
+					"26-35": 14,
+					"36-45": 13,
+					"46-60": 14,
+					"60+": 1
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 16,
+					"acima de 5 Salários Mínimos": 11,
+					"de 2 a 5 Salários Mínimos": 17,
+					"até 1 Salário Mínimo": 6
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 17,
+					"Pós-Graduação": 8,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 7,
+					"Ensino Superior (Faculdade)": 18
+				},
+				"color_race_distribution": {
+					"Preta": 10,
+					"Branca": 18,
+					"Parda": 17,
+					"Amarela": 3,
+					"Sem resposta": 2
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.03876,
+				"lon": -34.90176
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Rua do Futuro x Avenida Dr. Malaquias",
+				"area": "Área 2 - Área Intermediária",
+				"survey_year": "2024"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 36.7,
+				"avg_days_per_week": 5.3,
+				"avg_trip_time_minutes": 23.5,
+				"gender_distribution": {
+					"male_percentage": 82,
+					"female_percentage": 18
+				},
+				"private_bike_percentage": 76,
+				"accidents_percentage": 20,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 22,
+					"Outros": 2,
+					"É mais saudável": 16,
+					"É mais barato": 8,
+					"É ambientalmente correto": 2
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 11,
+					"26-35": 13,
+					"36-45": 15,
+					"46-60": 9,
+					"60+": 2
+				},
+				"income_distribution": {
+					"até 1 Salário Mínimo": 5,
+					"de 2 a 5 Salários Mínimos": 20,
+					"acima de 5 Salários Mínimos": 17,
+					"de 1 a 2 Salários Mínimos": 8
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 20,
+					"Pós-Graduação": 17,
+					"Ensino Superior (Faculdade)": 9,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 4
+				},
+				"color_race_distribution": {
+					"Parda": 25,
+					"Branca": 13,
+					"Preta": 11,
+					"Indígena": 1
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.03216,
+				"lon": -34.88138
+			},
+			"location_info": {
+				"neighborhood": "1177",
+				"street": "Estrada de Belém x Rua Odorico Mendes",
+				"area": "Área 2 - Área Intermediária",
+				"survey_year": "2018"
+			},
+			"statistics": {
+				"total_responses": "50",
+				"avg_age": 38.2,
+				"avg_days_per_week": 6.2,
+				"avg_trip_time_minutes": 24.7,
+				"gender_distribution": {
+					"male_percentage": 84,
+					"female_percentage": 16
+				},
+				"private_bike_percentage": 100,
+				"accidents_percentage": 44,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "Falta de infraestrutura adequada (ciclovias, bicicletários, etc)",
+				"motivations": {
+					"É mais barato": 11,
+					"É mais saudável": 12,
+					"É mais rápido e prático": 23,
+					"É ambientalmente correto": 2,
+					"Outros": 2
+				},
+				"issues": {
+					"Falta de segurança no trânsito": 20,
+					"Falta de segurança pública": 3,
+					"Falta de infraestrutura adequada (ciclovias, bicicletários, etc)": 26,
+					"Outros": 1
+				},
+				"age_ranges": {
+					"18-25": 6,
+					"26-35": 12,
+					"36-45": 12,
+					"46-60": 12,
+					"60+": 3
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 31,
+					"de 2 a 5 Salários Mínimos": 4,
+					"acima de 5 Salários Mínimos": 1,
+					"até 1 Salário Mínimo": 14
+				},
+				"schooling_distribution": {
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 29,
+					"Ensino Superior (Faculdade)": 3,
+					"Ensino Médio (Segundo Grau)": 18
+				},
+				"color_race_distribution": {
+					"Parda": 32,
+					"Preta": 12,
+					"Branca": 5,
+					"Amarela": 1
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.05664,
+				"lon": -34.89807
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida Governador Agamenon Magalhães x Praça do Derby",
+				"area": "Área 1 - Área Central",
+				"survey_year": "2024"
+			},
+			"statistics": {
+				"total_responses": "49",
+				"avg_age": 38.2,
+				"avg_days_per_week": 5.9,
+				"avg_trip_time_minutes": 29.4,
+				"gender_distribution": {
+					"male_percentage": 81.6,
+					"female_percentage": 18.4
+				},
+				"private_bike_percentage": 87.8,
+				"accidents_percentage": 26.5,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais barato": 10,
+					"É mais saudável": 18,
+					"É mais rápido e prático": 20,
+					"É ambientalmente correto": 1
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 7,
+					"26-35": 16,
+					"36-45": 10,
+					"46-60": 11,
+					"60+": 4
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 10,
+					"até 1 Salário Mínimo": 13,
+					"de 2 a 5 Salários Mínimos": 24,
+					"acima de 5 Salários Mínimos": 2
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 24,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 11,
+					"Ensino Superior (Faculdade)": 13,
+					"Pós-Graduação": 1
+				},
+				"color_race_distribution": {
+					"Parda": 21,
+					"Branca": 17,
+					"Preta": 10,
+					"Amarela": 1
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.02793,
+				"lon": -34.89293
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida Professor José dos Anjos x Avenida Beberibe",
+				"area": "Área 3 - Área Periférica",
+				"survey_year": "2021"
+			},
+			"statistics": {
+				"total_responses": "49",
+				"avg_age": 34.7,
+				"avg_days_per_week": 6.2,
+				"avg_trip_time_minutes": 25.9,
+				"gender_distribution": {
+					"male_percentage": 75.5,
+					"female_percentage": 24.5
+				},
+				"private_bike_percentage": 98,
+				"accidents_percentage": 12.2,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 30,
+					"É mais barato": 15,
+					"É mais saudável": 4
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 13,
+					"26-35": 11,
+					"36-45": 10,
+					"46-60": 10,
+					"60+": 2
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 18,
+					"de 2 a 5 Salários Mínimos": 12,
+					"até 1 Salário Mínimo": 17,
+					"acima de 5 Salários Mínimos": 2
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 32,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 14,
+					"Ensino Superior (Faculdade)": 2,
+					"Pós-Graduação": 1
+				},
+				"color_race_distribution": {
+					"Preta": 20,
+					"Branca": 3,
+					"Parda": 25,
+					"Indígena": 1
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.05263,
+				"lon": -34.88374
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Rua dos Palmares x Rua 13 de Maio",
+				"area": "Área 2 - Área Intermediária",
+				"survey_year": "2018"
+			},
+			"statistics": {
+				"total_responses": "49",
+				"avg_age": 28.3,
+				"avg_days_per_week": 5.7,
+				"avg_trip_time_minutes": 24.7,
+				"gender_distribution": {
+					"male_percentage": 69.4,
+					"female_percentage": 30.6
+				},
+				"private_bike_percentage": 95.9,
+				"accidents_percentage": 32.7,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "Falta de infraestrutura adequada (ciclovias, bicicletários, etc)",
+				"motivations": {
+					"É mais rápido e prático": 45,
+					"Outros": 2,
+					"É mais saudável": 1,
+					"É mais barato": 1
+				},
+				"issues": {
+					"Falta de segurança no trânsito": 18,
+					"Falta de infraestrutura adequada (ciclovias, bicicletários, etc)": 29,
+					"Falta de segurança pública": 2
+				},
+				"age_ranges": {
+					"18-25": 18,
+					"26-35": 25,
+					"36-45": 4,
+					"46-60": 2,
+					"60+": 0
+				},
+				"income_distribution": {
+					"de 2 a 5 Salários Mínimos": 10,
+					"até 1 Salário Mínimo": 12,
+					"de 1 a 2 Salários Mínimos": 27
+				},
+				"schooling_distribution": {
+					"Ensino Superior (Faculdade)": 10,
+					"Ensino Médio (Segundo Grau)": 32,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 6,
+					"Pós-Graduação": 1
+				},
+				"color_race_distribution": {
+					"Branca": 16,
+					"Parda": 18,
+					"Preta": 15
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.10793,
+				"lon": -34.92706
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida Recife x Rua Pintor Antônio de Albuquerque",
+				"area": "Área 3 - Área Periférica",
+				"survey_year": "2024"
+			},
+			"statistics": {
+				"total_responses": "49",
+				"avg_age": 35.6,
+				"avg_days_per_week": 5.7,
+				"avg_trip_time_minutes": 33.9,
+				"gender_distribution": {
+					"male_percentage": 73.5,
+					"female_percentage": 26.5
+				},
+				"private_bike_percentage": 71.4,
+				"accidents_percentage": 51,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais saudável": 9,
+					"É mais barato": 16,
+					"É mais rápido e prático": 22,
+					"É ambientalmente correto": 1,
+					"Outros": 1
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 8,
+					"26-35": 16,
+					"36-45": 13,
+					"46-60": 8,
+					"60+": 2
+				},
+				"income_distribution": {
+					"até 1 Salário Mínimo": 16,
+					"de 1 a 2 Salários Mínimos": 26,
+					"de 2 a 5 Salários Mínimos": 7
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 39,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 9,
+					"Sem instrução (nunca frequentou a escola ou primeira fase do ensino fundamental incompleto)": 1
+				},
+				"color_race_distribution": {
+					"Preta": 19,
+					"Parda": 23,
+					"Branca": 7
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.02676,
+				"lon": -34.91773
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Estrada do Arraial x Rua Padre Lemos",
+				"area": "Área 2 - Área Intermediária",
+				"survey_year": "2021"
+			},
+			"statistics": {
+				"total_responses": "49",
+				"avg_age": 40.6,
+				"avg_days_per_week": 6.2,
+				"avg_trip_time_minutes": 39.7,
+				"gender_distribution": {
+					"male_percentage": 89.8,
+					"female_percentage": 10.2
+				},
+				"private_bike_percentage": 98,
+				"accidents_percentage": 26.5,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais barato": 12,
+					"É mais rápido e prático": 30,
+					"É mais saudável": 6,
+					"É ambientalmente correto": 1
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 11,
+					"26-35": 7,
+					"36-45": 14,
+					"46-60": 10,
+					"60+": 6
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 23,
+					"de 2 a 5 Salários Mínimos": 4,
+					"até 1 Salário Mínimo": 19,
+					"acima de 5 Salários Mínimos": 3
+				},
+				"schooling_distribution": {
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 15,
+					"Ensino Médio (Segundo Grau)": 33,
+					"Pós-Graduação": 1
+				},
+				"color_race_distribution": {
+					"Parda": 23,
+					"Preta": 17,
+					"Branca": 9
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.05045,
+				"lon": -34.92105
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida Caxangá x Avenida General San Martin",
+				"area": "Área 2 - Área Intermediária",
+				"survey_year": "2021"
+			},
+			"statistics": {
+				"total_responses": "49",
+				"avg_age": 40.2,
+				"avg_days_per_week": 5.7,
+				"avg_trip_time_minutes": 28.5,
+				"gender_distribution": {
+					"male_percentage": 79.6,
+					"female_percentage": 20.4
+				},
+				"private_bike_percentage": 98,
+				"accidents_percentage": 14.3,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais rápido e prático": 22,
+					"Outros": 6,
+					"É mais saudável": 6,
+					"É mais barato": 12,
+					"Sem resposta": 3
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 5,
+					"26-35": 13,
+					"36-45": 12,
+					"46-60": 14,
+					"60+": 3
+				},
+				"income_distribution": {
+					"de 1 a 2 Salários Mínimos": 27,
+					"de 2 a 5 Salários Mínimos": 8,
+					"até 1 Salário Mínimo": 12,
+					"acima de 5 Salários Mínimos": 2
+				},
+				"schooling_distribution": {
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 16,
+					"Ensino Médio (Segundo Grau)": 32,
+					"Ensino Superior (Faculdade)": 1
+				},
+				"color_race_distribution": {
+					"Parda": 29,
+					"Branca": 4,
+					"Sem resposta": 5,
+					"Preta": 7,
+					"Amarela": 4
+				}
+			}
+		},
+		{
+			"coordinates": {
+				"lat": -8.11574,
+				"lon": -34.89552
+			},
+			"location_info": {
+				"neighborhood": "N/A",
+				"street": "Avenida Engenheiro Domingos Ferreira x Rua Antônio Falcão",
+				"area": "Área 2 - Área Intermediária",
+				"survey_year": "2024"
+			},
+			"statistics": {
+				"total_responses": "48",
+				"avg_age": 40.4,
+				"avg_days_per_week": 5.6,
+				"avg_trip_time_minutes": 32.2,
+				"gender_distribution": {
+					"male_percentage": 70.8,
+					"female_percentage": 29.2
+				},
+				"private_bike_percentage": 97.9,
+				"accidents_percentage": 16.7,
+				"top_motivation": "É mais rápido e prático",
+				"top_issue": "N/A",
+				"motivations": {
+					"É mais saudável": 19,
+					"É mais rápido e prático": 22,
+					"É ambientalmente correto": 1,
+					"É mais barato": 6
+				},
+				"issues": {},
+				"age_ranges": {
+					"18-25": 7,
+					"26-35": 10,
+					"36-45": 16,
+					"46-60": 7,
+					"60+": 7
+				},
+				"income_distribution": {
+					"até 1 Salário Mínimo": 26,
+					"de 1 a 2 Salários Mínimos": 13,
+					"de 2 a 5 Salários Mínimos": 9
+				},
+				"schooling_distribution": {
+					"Ensino Médio (Segundo Grau)": 32,
+					"Sem instrução (nunca frequentou a escola ou primeira fase do ensino fundamental incompleto)": 2,
+					"Ensino Fundamental (primário e ginásio, até a oitava série)": 9,
+					"Pós-Graduação": 1,
+					"Ensino Superior (Faculdade)": 4
+				},
+				"color_race_distribution": {
+					"Parda": 27,
+					"Sem resposta": 2,
+					"Branca": 12,
+					"Preta": 7
+				}
+			}
+		}
+	]
+}

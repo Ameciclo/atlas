@@ -1,0 +1,54 @@
+{
+	"city": "CATENDE",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 7,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido por Particulares": 1
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 4,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Removido por Particulares": 2
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 34,
+			"Óbito no Local/Atendimento": 2,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 40,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 4
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 28,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 35,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 6,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 29,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 9,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 11
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 16,
+			"Óbito no Local/Atendimento": 2,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		}
+	}
+}

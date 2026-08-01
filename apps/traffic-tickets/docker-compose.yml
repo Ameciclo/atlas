@@ -1,0 +1,89 @@
+services:
+  app:
+    image: atlas-traffic-tickets
+    build:
+      context: ../..
+      dockerfile: ./apps/traffic-tickets/Dockerfile
+    ports:
+      - "${PORT:-3044}:${PORT:-3044}"
+    environment:
+      - NODE_ENV=production
+      - LOG_LEVEL=info
+      - PORT=${PORT:-3044}
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=traffic_tickets
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/traffic_tickets
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      seed:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3044/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  migrate:
+    image: atlas-traffic-tickets
+    build:
+      context: ../..
+      dockerfile: ./apps/traffic-tickets/Dockerfile
+    command: node apps/traffic-tickets/dist/db/migrate.js
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=traffic_tickets
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/traffic_tickets
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: on-failure
+
+  seed:
+    image: atlas-traffic-tickets
+    build:
+      context: ../..
+      dockerfile: ./apps/traffic-tickets/Dockerfile
+    command: node apps/traffic-tickets/dist/db/seed.js
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=traffic_tickets
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/traffic_tickets
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: on-failure
+    profiles:
+      - with-seed
+
+  postgres:
+    image: postgis/postgis:16-3.4-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=traffic_tickets
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

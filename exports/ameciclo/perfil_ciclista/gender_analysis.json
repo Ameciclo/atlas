@@ -1,0 +1,49 @@
+{
+	"year": "all",
+	"usage_by_gender": [
+		{
+			"gender": "Masculino",
+			"avg_days_per_week": 6,
+			"total_responses": "1750"
+		},
+		{
+			"gender": "Feminino",
+			"avg_days_per_week": 5.7,
+			"total_responses": "495"
+		}
+	],
+	"motivations_by_gender": {
+		"Masculino": {
+			"É mais barato": "350",
+			"Outros": "92",
+			"É mais saudável": "367",
+			"É ambientalmente correto": "30",
+			"Sem resposta": "5",
+			"É mais rápido e prático": "906"
+		},
+		"Feminino": {
+			"É mais barato": "94",
+			"É mais rápido e prático": "291",
+			"Outros": "15",
+			"É ambientalmente correto": "14",
+			"É mais saudável": "81"
+		}
+	},
+	"issues_by_gender": {
+		"Masculino": {
+			"Outros": "3",
+			"Falta de segurança pública": "37",
+			"Falta de respeito dos condutores dos motorizados": "114",
+			"Sem resposta": "1",
+			"Falta de infraestrutura adequada (ciclovias, bicicletários, etc)": "229",
+			"Falta de segurança no trânsito": "229"
+		},
+		"Feminino": {
+			"Falta de segurança pública": "8",
+			"Outros": "1",
+			"Falta de segurança no trânsito": "52",
+			"Falta de infraestrutura adequada (ciclovias, bicicletários, etc)": "57",
+			"Falta de respeito dos condutores dos motorizados": "18"
+		}
+	}
+}

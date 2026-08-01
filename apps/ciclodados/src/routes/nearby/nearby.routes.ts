@@ -1,23 +1,47 @@
 import { createRoute, z } from "@hono/zod-openapi";
 
-const nearbyInputSchema = z.object({
-	lat: z
-		.string()
-		.transform(Number)
-		.pipe(z.number().min(-90).max(90))
-		.openapi({ example: "-8.0476" }),
-	lng: z
-		.string()
-		.transform(Number)
-		.pipe(z.number().min(-180).max(180))
-		.openapi({ example: "-34.8770" }),
+const nearbyInputSchema = z
+	.object({
+		lat: z
+			.string()
+			.transform(Number)
+			.pipe(z.number().min(-90).max(90))
+			.optional()
+			.openapi({ example: "-8.0476" }),
+		lng: z
+			.string()
+			.transform(Number)
+			.pipe(z.number().min(-180).max(180))
+			.optional()
+			.openapi({ example: "-34.8770" }),
+		street: z
+			.string()
+			.optional()
+			.openapi({
+				example: "9803",
+				description: "pcr_streets ID — searches along street geometry instead of a GPS point",
+			}),
 	radius: z
 		.string()
 		.transform(Number)
-		.pipe(z.number().min(100).max(5000))
-		.default("1000")
-		.openapi({ example: "1000" }),
-});
+		.pipe(z.number().min(1).max(5000))
+		.optional()
+		.openapi({ example: "10" }),
+	ticket_limit: z
+		.string()
+		.transform(Number)
+		.pipe(z.number().min(1).max(20))
+		.default("5")
+		.openapi({ example: "5" }),
+	})
+	.refine(
+		(data) =>
+			(data.lat !== undefined && data.lng !== undefined) ||
+			data.street !== undefined,
+		{
+			message: "Either (lat AND lng) OR street must be provided",
+		},
+	);
 
 const nearbyResponseSchema = z.object({
 	location: z.object({
@@ -25,12 +49,23 @@ const nearbyResponseSchema = z.object({
 		lng: z.number(),
 		nearest_street: z
 			.object({
+				id: z.number(),
 				name: z.string(),
 				official_name: z.string(),
+				clogra_codi: z.number(),
 				total_length_meters: z.number(),
 				distance_to_point_meters: z.number(),
 			})
 			.nullable(),
+		nearby_streets: z.array(
+			z.object({
+				id: z.number(),
+				clogra_codi: z.number(),
+				name: z.string(),
+				official_name: z.string(),
+				distance_meters: z.number(),
+			}),
+		),
 	}),
 	emergency_calls: z.object({
 		annual_history: z.array(
@@ -40,6 +75,12 @@ const nearbyResponseSchema = z.object({
 			}),
 		),
 		last_month_data: z
+			.object({
+				month: z.string(),
+				total_calls: z.number(),
+			})
+			.nullable(),
+		first_month_data: z
 			.object({
 				month: z.string(),
 				total_calls: z.number(),
@@ -146,6 +187,42 @@ const nearbyResponseSchema = z.object({
 				education_distribution: z.record(z.string(), z.number()),
 				income_distribution: z.record(z.string(), z.number()),
 				other_attributes: z.record(z.string(), z.number()),
+			}),
+		),
+	}),
+	traffic_tickets: z.object({
+		total_violations: z.number(),
+		last_month_data: z
+			.object({
+				month: z.string(),
+				total: z.number(),
+			})
+			.nullable(),
+		first_month_data: z
+			.object({
+				month: z.string(),
+				total: z.number(),
+			})
+			.nullable(),
+		by_year: z.array(
+			z.object({
+				year: z.number(),
+				total: z.number(),
+			}),
+		),
+		top_violations: z.array(
+			z.object({
+				law_code: z.string(),
+				description: z.string(),
+				count: z.number(),
+				percentage: z.number(),
+			}),
+		),
+		vulnerable_violations: z.array(
+			z.object({
+				law_code: z.string(),
+				description: z.string(),
+				count: z.number(),
 			}),
 		),
 	}),

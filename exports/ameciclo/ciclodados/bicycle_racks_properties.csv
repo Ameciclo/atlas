@@ -1,0 +1,5599 @@
+id,name,capacity,covered,access,operator,bicycle_parking
+1,Parque Moinhos de Vento,,,yes,,stands
+2,,10,yes,customers,Usina do Gasômetro,stands
+3,,15,,,,stands
+4,,15,,,,stands
+5,,100,,,,stands
+6,,,yes,permissive,Universidade Federal do Pará,
+7,Terminal Bandeiras,,,,Redemob Consórcio,yes
+8,,,,,,
+9,Bicicletário Estação USP Leste,270,yes,yes,CPTM,building
+10,Bicicletário Estação Primavera - Interlagos,226,yes,yes,CPTM,building
+11,Fórum Regional da Leopoldina,12,no,,,wall_hoops
+12,,,,private,,no
+13,,,,,,wall_loops
+14,Santana Parque Shopping,,yes,,,rack
+15,,,,,,
+16,,,yes,,,building
+17,,15,,,,stands
+18,,,,,,wall_loops
+19,,,yes,,,shed
+20,,,yes,,,shed
+21,,15,,,,stands
+22,,18,,,,stands
+23,,21,,,,stands
+24,,20,,,,
+25,,40,no,,,stands
+26,,6,,,,stands
+27,Bicicletaria do João Carlos,,,,,
+28,PUC-Rio,200,yes,,,stands
+29,Retiro,108,yes,,,stands
+30,Bicicletário Terminal Campo Limpo,64,yes,yes,Socicam,shed
+31,,5,no,,,
+32,,15,no,,,
+33,,10,no,,,stands
+34,,,,,,
+35,,,yes,,,
+36,,10,no,,,stands
+37,,,yes,,,stands
+38,,,,,,
+39,,,,,,
+40,,3,no,,,stands
+41,,3,,,,
+42,,6,,,,stands
+43,,6,,,,stands
+44,,,no,customers,,
+45,,,no,,,wall_loops
+46,,7,no,,,rack
+47,,,,,,
+48,,,,,,
+49,,,,,,
+50,,,,,,
+51,,,,,,
+52,,,,,,
+53,,,,,,
+54,,,,,,
+55,,,,,,
+56,,,,,,
+57,,,,,,
+58,,,,,,
+59,,,no,,,
+60,,,yes,private,,wall_loops
+61,,,yes,private,,wall_loops
+62,Bicicletário,,,,,
+63,Rua Félix Busso Asseburg,,,,,wave
+64,,12,no,,,
+65,,,no,yes,,ground_slots
+66,,,,private,,ground_slots
+67,Bicicletário Estação Butantã,149,yes,yes,ViaQuatro,building
+68,,30,,,,
+69,,10,no,yes,,wall_loops
+70,,7,yes,yes,Rede Top Supermercados,wall_loops
+71,,3,no,yes,Farmalan,ground_slots
+72,,,no,yes,Farmalan,ground_slots
+73,,20,,private,,anchors
+74,,,,,,ground_slots
+75,,47,yes,customers,Shopping Praia de Belas,wall_loops
+76,,20,yes,customers,Shopping Praia de Belas,wall_loops
+77,,11,no,customers,Moinhos Shopping,stands
+78,,,yes,private,Embraco,
+79,,12,no,yes,Casa de Cultura Mario Quintana,stands
+80,,,,,,
+81,,,,,,
+82,,17,,,,
+83,Bicicletário do Centro de Humanidades II,8,,,Universidade Federal do Ceará,stands
+84,,,no,permissive,,
+85,,,,yes,,
+86,,,,,,
+87,,,,,,
+88,,17,no,,,wall_loops
+89,,10,,yes,,
+90,,20,,yes,,
+91,,,,,,
+92,,12,,,,
+93,,,,,,floor
+94,,,,,,floor
+95,,12,no,,,stands
+96,,5,yes,customers,Parque Gigante,wall_loops
+97,,12,no,,,stands
+98,Bicicletário Municipal,150,yes,yes,Prefeitura,shed
+99,,100,no,,,stands
+100,,82,no,yes,Prefeitura,stands
+101,,,,,,
+102,Bicicletário Terminal Pinheiros,34,yes,yes,Socicam,shed
+103,,,,,,
+104,Bicicletário Estação Franco da Rocha,180,yes,yes,CPTM,building
+105,,,,,,
+106,Bicicletário Rústico,,no,,,ground_slots
+107,Bicicletário Rústico,,no,,,ground_slots
+108,,,no,private,,
+109,,,yes,yes,,stands
+110,,,yes,yes,,
+111,,,,,,
+112,,,,,,
+113,,,,,,
+114,,,yes,private,,
+115,,,yes,private,D.R.E,
+116,,12,no,yes,,stands
+117,,,no,,,wall_loops
+118,,6,no,yes,,
+119,,,,,,
+120,,,,,,
+121,,,yes,,,
+122,,,,,,
+123,,,,,,
+124,,,no,,,
+125,,,,,,ground_slots
+126,,30,yes,yes,Rede Top Supermercados,wall_loops
+127,,,,,,
+128,,,,,,
+129,,,,,,
+130,,,yes,,CCR Metrô Bahia,
+131,,,yes,,CCR Metrô Bahia,
+132,,,yes,,CCR Metrô Bahia,
+133,,,yes,,CCR Metrô Bahia,
+134,,,yes,,CCR Metrô Bahia,
+135,,,yes,,CCR Metrô Bahia,
+136,,108,yes,,CCR Metrô Bahia,
+137,,,yes,,CCR Metrô Bahia,
+138,,,yes,,CCR Metrô Bahia,stands
+139,,,yes,,CCR Metrô Bahia,stands
+140,,,yes,,CCR Metrô Bahia,stands
+141,,12,,,,
+142,,,,,,
+143,,,,,,
+144,,,yes,,CCR - Metrô Bahia,stands
+145,,,,,,
+146,,6,,,,
+147,,6,,,,
+148,,,,,,
+149,,,,,,
+150,,,,,,
+151,Bicicletário Terminal Varginha,26,yes,yes,Socicam,shed
+152,Bicicletário Terminal AE Carvalho,42,yes,yes,Socicam,shed
+153,,28,no,yes,,wall_loops
+154,,,,,,wall_loops
+155,,30,yes,yes,,wall_loops
+156,,,,,,
+157,,,,customers,Terminal Guaraituba,wall_loops
+158,,,no,yes,Sapiens Parque,handlebar_holder
+159,Bicicletário Estação Grajaú,178,yes,yes,Via Mobilidade,building
+160,,,,,,
+161,,,,,,
+162,,,,,,
+163,,,yes,private,,Bicicletário
+164,,,,,,pista_de_manobras
+165,,,yes,yes,,
+166,Bicicletário Terminal Pirituba,156,yes,yes,Socicam,shed
+167,,10,no,yes,,
+168,,,,,,
+169,,,,,,
+170,,,yes,,,building
+171,,,,,,
+172,,,,,,
+173,,,,,,
+174,,,,,,
+175,Bicicletário Terminal Água Espraiada,32,yes,yes,Socicam,stands
+176,Bicicletário Estação Campo Belo,144,yes,yes,ViaMobilidade,building
+177,,,,,,shed
+178,Bicicletário Estação Suzano,576,yes,yes,CPTM,building
+179,,10,no,yes,,stands
+180,,3,,,,
+181,,1,,,,
+182,,5,,,,
+183,Acesso Principal Ciclovia Marginal Pinheiros,,,,,
+184,,,yes,,CCR Metrô Bahia,
+185,,,,,,
+186,,,,,,
+187,,,,,,
+188,Bicicletário Estação Guilhermina Esperança,155,yes,yes,Metrô,building
+189,,,,,,
+190,,5,,,,
+191,Bicicletário,,yes,yes,,building
+192,,8,,,,
+193,,,,,,
+194,Bicicletário Terminal Metropolitano Santo André,334,yes,yes,EMTU,building
+195,Bicicletário Terminal Cidade Tiradentes,70,yes,yes,Tembici,building
+196,Bicicletário Estação Santa Cruz,80,yes,yes,ViaMobilidade,building
+197,,,,,,
+198,,,,,,
+199,,,,,,
+200,,,,yes,,
+201,,,,,,stands
+202,,,,,,
+203,,5,yes,,,wall_loops
+204,Bicicletário Estação Mendes,50,yes,,CPTM,stands
+205,,8,no,yes,,stands
+206,,,,,,
+207,,4,no,yes,,stands
+208,,,no,customers,Shopping Max&Flora,stands
+209,,50,yes,private,,
+210,,,,yes,,
+211,,,yes,yes,CCR Metrô Bahia,
+212,,8,no,,,stands
+213,,9,no,,,
+214,,,,,,
+215,,14,no,yes,,
+216,,,,,,
+217,,,,,,
+218,,,,,,
+219,Bicicletário Estação Mauá,1968,yes,customers,ASCOBIKE,building
+220,,,yes,yes,SME,building
+221,Bicicletário Estação Autódromo,261,yes,yes,Via Mobilidade,building
+222,,,no,,,
+223,Estacionamento de Bicicleta,18,,,,
+224,Estacionamento de Bicicleta,20,,,,
+225,,50,yes,yes,Grupo Big,stands
+226,,,yes,yes,,lockers
+227,,100,yes,,,wall_loops
+228,Estacionamento de Bicicleta,18,,,,
+229,,9,,,,
+230,,20,,private,,shed
+231,,15,no,,Shopping Tijuca,
+232,,1000,no,private,,stands
+233,,,,customers,,shed
+234,,50,,customers,Condaominio Amizade,shed
+235,,,,,,
+236,,,,,,
+237,,,,,,
+238,,,,,,
+239,,,,,,
+240,,,,,,
+241,,,,,,
+242,,,,,,
+243,,,,,,
+244,,,,,,
+245,,,,,,
+246,,250,yes,yes,ViaQuatro,
+247,,12,,,,
+248,Bicicletário Terminal São Miguel,64,yes,yes,Socicam,shed
+249,,,no,yes,,stands
+250,,,,yes,,
+251,Bicicletário Estação Comendador Ermelino,196,no,yes,CPTM,building
+252,Bicicletário Estação São Miguel Paulista,208,yes,yes,CPTM,building
+253,Bicicletário Estação Jardim Helena - Vila Mara,256,yes,yes,CPTM,building
+254,Bicicletário Estação Itaim Paulista,256,yes,yes,CPTM,building
+255,Bicicletário Estação Jardim Romano,240,yes,yes,CPTM,building
+256,Bicicletário Estação Engenheiro Goulart (Norte),200,yes,yes,CPTM,building
+257,Bicicletário Estação Engenheiro Goulart (Sul),74,yes,yes,CPTM,building
+258,Bicicletário Estação Guarulhos CECAP,192,yes,yes,CPTM,building
+259,Bicicletário Estação Aeroporto Guarulhos,100,yes,yes,CPTM,building
+260,Bicicletário Estação Ferraz de Vasconcelos,136,yes,yes,CPTM,building
+261,Bicicletário Estação Poá,60,yes,yes,CPTM,building
+262,Bicicletário Estação Calmon Viana,84,yes,yes,CPTM,building
+263,Bicicletário Estação Tamanduateí,164,yes,yes,CPTM,building
+264,Bicicletário Estação Jurubatuba,262,yes,yes,CPTM,building
+265,Bicicletário Estação Vila Olímpia,94,yes,yes,CPTM,building
+266,Bicicletário Estação Cidade Universitária,60,yes,yes,CPTM,building
+267,Bicicletário Estação Villa Lobos - Jaguaré,233,yes,yes,CPTM,building
+268,Bicicletário Estação Ceasa,144,yes,yes,CPTM,building
+269,Bicicletário Estação Osasco,166,yes,yes,CPTM,building
+270,Bicicletário Estação Carapicuíba,145,yes,yes,CPTM,building
+271,Bicicletário Estação Jardim Belval,117,yes,yes,CPTM,building
+272,Bicicletário Estação Jardim Silveira,279,yes,yes,CPTM,building
+273,Bicicletário Estação Jandira,279,yes,yes,CPTM,building
+274,Bicicletário Estação Engenheiro Cardoso,160,yes,yes,CPTM,building
+275,Bicicletário Estação Itapevi,480,yes,yes,CPTM,shed
+276,Bicicletário Estação Vila Aurora,144,yes,yes,CPTM,building
+277,Bicicletário Estação Caieiras,67,yes,yes,CPTM,building
+278,Bicicletário Terminal Metropolitano São Bernardo do Campo,68,yes,yes,EMTU,building
+279,Bicicletário Estação/Terminal Jabaquara,68,,yes,EMTU,building
+280,Bicicletário Estação/Terminal Itaquera,55,yes,yes,Metrô,building
+281,Bicicletário Estação Carrão,110,yes,yes,Metrô,building
+282,Bicicletário Estação Sé,20,yes,yes,Metrô,building
+283,Bicicletário Largo da Batata (Estação Faria Lima),100,yes,yes,Tembici,building
+284,,,,,,
+285,,,,,,
+286,,850,yes,yes,Prefeitura Municipal de Niterói,covered
+287,,16,yes,yes,BikePoint Floripa,lockers
+288,Bicicletário Estação Pinheiros,117,yes,yes,ViaQuatro,building
+289,Bicicletário Estação Morumbi,80,yes,yes,ViaQuatro,building
+290,Bicicletário Estação Hospital São Paulo,30,yes,private,ViaMobilidade,building
+291,Bicicletário Estação AACD Servidor,36,yes,yes,ViaMobilidade,building
+292,Bicicletário Estação Moema,68,yes,yes,ViaMobilidade,building
+293,Bicicletário Estação Eucaliptos,92,yes,yes,ViaMobilidade,building
+294,Bicicletário Estação Brooklin,30,yes,yes,ViaMobilidade,building
+295,Bicicletário Estação Borba Gato,84,yes,yes,ViaMobilidade,building
+296,Bicicletário Estação Alto da Boa Vista,126,yes,yes,ViaMobilidade,building
+297,Bicicletário Terminal Parelheiros,15,yes,yes,Socicam,
+298,Bicicletário Terminal Grajaú,50,yes,yes,Socicam,shed
+299,Bicicletário Terminal Jardim Ângela,12,no,yes,Socicam,shed
+300,Bicicletário Terminal Capelinha,106,yes,yes,Socicam,shed
+301,Bicicletário Terminal João Dias,72,yes,yes,Socicam,shed
+302,Bicicletário Terminal Santo Amaro,10,yes,yes,Socicam,shed
+303,Bicicletário Terminal Jardim Britânia,12,yes,yes,Socicam,stands
+409,,,,,,
+304,Bicicletário Terminal Lapa,74,yes,yes,Socicam,shed
+305,Bicicletário Terminal Vila Nova Cachoeirinha,24,yes,yes,Socicam,shed
+306,Bicicletário Terminal Casa Verde,7,yes,yes,Socicam,shed
+307,Bicicletário Terminal Vila Carrão,38,no,yes,Socicam,shed
+308,Bicicletário Terminal Penha,28,no,yes,Socicam,shed
+309,Bicicletário Terminal Aricanduva,54,yes,yes,Socicam,shed
+310,Bicicletário Terminal Amaral Gurgel,41,yes,yes,Socicam,shed
+311,Bicicletário Terminal Princesa Isabel,66,yes,yes,Socicam,shed
+312,Bicicletário Terminal Bandeira,22,no,yes,Socicam,shed
+313,Bicicletário Terminal Parque Dom Pedro II,156,yes,yes,Socicam,shed
+314,Bicicletário Terminal Mercado,58,no,yes,Socicam,shed
+315,Bicicletário Estação Pedro II (Oeste),40,yes,yes,Socicam,stands
+316,Bicicletário Estação Pedro II (Leste),50,no,yes,Socicam,stands
+317,Bicicletário Estação Ana Neri (Oeste),48,no,yes,Socicam,stands
+318,Bicicletário Estação Ana Neri (Leste),42,no,yes,Socicam,stands
+319,Bicicletário Estação Alberto Lion (Leste),16,no,yes,Socicam,stands
+320,Bicicletário Estação Alberto Lion (Oeste),14,no,yes,Socicam,stands
+321,Bicicletário Estação CA Ypiranga,42,no,yes,Socicam,stands
+322,Bicicletário Estação NS Aparecida (Oeste),24,no,yes,Socicam,stands
+323,Bicicletário Estação NS Aparecida (Leste),22,no,yes,Socicam,stands
+324,Bicicletário Estação Rua do Grito (Oeste),20,no,yes,Socicam,stands
+325,Bicicletário Estação Rua do Grito (Leste),62,no,yes,Socicam,stands
+326,Bicicletário Terminal Sacomã,146,yes,yes,Socicam,stands
+327,Bicicletário Terminal Vila Prudente,32,yes,yes,Socicam,building
+328,Bicicletário Terminal Sapopemba,42,no,yes,Socicam,stands
+329,,,,,,
+330,,,no,yes,,
+331,,12,no,customers,,stands
+332,,,,,,stands
+333,,,,,,stands
+334,,,,,,
+335,Bicicletário Terminal Cecap,130,yes,yes,EMTU - GDF,
+336,,,,,,
+337,,,,,,
+338,,,,,,
+339,,,,,,
+340,,,,,,
+341,,,,,,
+342,,,,,,
+343,,10,,yes,,stands
+344,,,,,,
+345,,,,private,,stands
+346,,,,,,
+347,,,,private,,
+348,,,,,,
+349,,,,,,
+350,,,,,,
+351,,,,,,
+352,,23,,customers,PUCG-UFF,surface
+353,,10,,customers,PUCG-UFF,surface
+354,,12,,customers,PUCG-UFF,surface
+355,,6,,yes,PUCG-UFF,informal
+356,,50,yes,permit,Correios,stands
+357,,12,,yes,PMCG,surface
+358,,,,private,,
+359,,,,private,,
+360,,10,,,,stands
+361,,15,,,,
+362,,,,customers,,shed
+363,,,no,private,Condomínio Completo Piedade,anchors
+364,,,,,,
+365,,,,,,
+366,,,,,,
+367,,27,no,yes,,stands
+368,,,no,yes,,
+369,Extra,,no,,,
+370,,,,,,
+371,Shopping Riomar,,,,,
+372,,,,,,
+373,,,no,,,
+374,,,,,,
+375,Bicicletário Aeroporo de Guarulhos,234,yes,yes,GRU Airport,wall_loops
+376,Bicicletário Terminal de Cargas - Aeroporto,202,yes,yes,GRU Airport,
+377,,10,,private,,stands
+378,,8,no,,,wall_loops
+379,,,no,yes,,
+380,,,,,,
+381,,,,,,
+382,,,,,,
+383,,11,,yes,,wall_loops
+384,,10,,yes,,wall_loops
+385,,,no,yes,,
+386,,,,,,
+387,,4,no,,,stands
+388,,20,,,,
+389,,20,no,yes,,wall_loops
+390,,10,no,yes,,wall_loops
+391,,,,,,
+392,,,,,,
+393,bicicletário da CHESF,30,no,permissive,,
+394,,,,,,
+395,,,,,,building
+396,,,,,Koch,wall_loops
+397,,,,,,
+398,,,,,,
+399,Estacionamento Teatro Municipal,,,,,
+400,,,yes,permissive,,shed
+401,,13,no,,,wall_loops
+402,,,yes,,,wall_loops
+403,,,,,,wall_loops
+404,,6,no,yes,,shed
+405,,0,,,,
+406,,,yes,customers,,shed
+407,,,yes,,,wall_loops
+408,Paragem Espaço Cerâmica,12,no,yes,,stands
+410,,,,,,
+411,,5,,,,
+412,,,,,,
+413,,,,,,
+414,,,,yes,,
+415,,,,,SOCICAM,shed
+416,,,,,,
+417,,,,,,
+418,Bicicletário de Visitantes,10,no,yes,IFMG Campus Betim,stands
+419,Bicicletário Superior,10,no,yes,IFMG Campus Betim,stands
+420,Bicicletario,,,,,
+421,,,,,,
+422,,,,,,
+423,,,,,,shed
+424,,22,yes,customers,,wall_loops
+425,,,,,,
+426,,,yes,,Bosch Rexroth,shed
+427,,16,no,yes,SMTT,
+428,,,yes,yes,,shed
+429,,20,no,private,,stands
+430,,10,no,yes,,wall_loops
+431,,,,,,
+432,,30,,,,
+433,,8,no,,,stands
+434,,4,,,,
+435,,8,no,,,stands
+436,,8,no,,,stands
+437,,3,no,,,bollard
+438,,4,no,,,stands
+439,,3,no,,,wall_loops
+440,,8,no,,,stands
+441,,8,no,,,stands
+442,,8,no,,,stands
+443,,13,,,,
+444,,6,,,,
+445,,3,,,,
+446,,6,,,,
+447,,8,,,,
+448,,3,,,,
+449,,3,,,,
+450,,3,,,,
+451,,3,,,,
+452,,,,yes,,lockers
+453,,,no,yes,Ternium,
+454,,,,,,building
+455,Bicicletário 99,,yes,yes,,building
+456,,,no,yes,,wall_loops
+457,,26,no,customers,,stands
+458,,14,yes,yes,,wall_loops
+459,,,,,,
+460,,,no,,,safe_loops
+461,,,,,,
+462,,7,no,,,wall_loops
+463,,,no,,,
+464,,,,,,
+465,,,,,,shed
+466,,,no,yes,,stands
+523,,,,,,ground_slots
+467,Bicicletário Terminal Pingo d'Água,600,yes,,,building
+468,,250,yes,,,building
+469,Bicicletário Terminal Mato Alto - Norte,250,yes,yes,,building
+470,Bicicletário Terminal Mato Alto - Sul,250,yes,yes,,building
+471,,,,,,
+472,,,,,,
+473,,,,,,
+474,Pedal Vitta,9,yes,,,stands
+475,,15,yes,private,Grupo JAL,shed
+476,,,no,,,stands
+477,,,,,,
+478,,,yes,yes,Supermercado Beira Rio,ground_slots
+479,,,no,,,
+480,,,,,,building
+481,,,,yes,GV Shoppimg,
+482,Bike Hotel,,,customers,,
+483,,,,,,
+484,,,,,,
+485,,,,,FACENS,wall_loops
+486,,10,,,,
+487,,100,no,private,My Style Jacarépaguá,stands
+488,,100,no,private,My Style Jacarépaguá,stands
+489,,10,no,private,My Style Jacarépaguá,stands
+490,,100,no,private,My Style Jacarépaguá,stands
+491,,100,no,private,My Style Jacarépaguá,stands
+492,,10,no,yes,,stands
+493,,24,no,yes,,stands
+494,,15,yes,permissive,Shopping Barra,stands
+495,,10,no,,,stands
+496,,2,,,,wall_loops
+497,,1,no,,,stands
+498,,10,no,,,stands
+499,,1,no,,,stands
+500,,6,no,,,rack
+501,,20,yes,,,
+502,,8,no,,,
+503,,70,,,,stands
+504,,20,no,yes,Casa de Cultura Laura Alvim,stands
+505,,9,no,,,
+506,,30,no,,,
+507,,8,no,,,
+508,,20,no,,,
+509,,9,no,,,
+510,,7,no,,,
+511,,36,no,,,
+512,,3,no,,,
+513,bicicletário do banco santander,,,,,
+514,,,,,,
+515,,20,no,,,
+516,Todo Dia,5,,,,
+517,,30,no,,,
+518,,7,no,,,
+519,,10,no,,,stands
+520,,10,,,,
+521,,6,yes,,,
+522,,12,no,,,
+524,,4,no,,,
+525,,,no,,,wall_loops
+526,,10,no,,,
+527,,12,no,,,
+528,Madereira Cerqueira,,,,,ground_slots
+529,,,no,yes,,stands
+530,,8,yes,yes,,wall_loops
+531,,,yes,yes,,stands
+532,,6,no,yes,,wall_hoops
+533,Academia Maciste,,no,,,
+534,,13,no,,,wave
+535,,5,yes,destination,Metrô Rio,
+536,,,,,,
+537,,,,,,
+538,,,,,,
+539,,,no,yes,,wall_loops
+540,MetrôRio Estação Pavuna,80,yes,,MetrôRio,rack
+541,,,,,,
+542,,,,,,
+543,,,,,,
+544,,,,,,
+545,,,,,,
+546,,,yes,,,
+547,,,,,,
+548,,,,,,
+549,,,,,,
+550,,,,,,
+551,,,,,,
+552,,,,,,
+553,,,,,,
+554,,,,,,
+555,,,,,,
+556,,,,,,
+557,,,,,,
+558,,,,,,
+559,,,,,,
+560,,,,,,
+561,,,,,,
+562,,,,,,
+563,,,,,,
+564,,,,,,
+565,,,,,,
+566,,,,,,
+567,Bicicletário CPTM,,yes,,,
+568,,,,,,
+569,,10,,,,stands
+570,,,yes,,,
+571,,,,,,
+572,,,no,,,stands
+573,,,no,,,
+574,,5,no,,,wall_loops
+575,,,,,,
+576,,23,no,,,
+577,,22,no,,,
+578,,6,no,,,
+579,,5,,,,
+580,Secretaria de Transportes,,yes,,,
+581,,16,,,,pórtico
+582,Tribunal de Justiça,25,,,,wall_hoops
+583,Atacadão,10,no,,,wall_loops
+584,Leroy Merlin,8,yes,,,stands
+585,,6,no,,,stands
+586,,5,no,,,stands
+587,,25,no,,Parque Lage,wall_loops
+588,,10,no,,Cobal do Humaitá,wall_hoops
+589,Adega do Cesare,20,no,,,stands
+590,,7,yes,,,stands
+591,,10,,,,stands
+592,,12,,,,pórtico
+593,,25,no,,Universidade Veiga de Almeida,wall_hoops
+594,,25,,,,stands
+595,,4,no,,,wall_hoops
+596,,4,no,,,wall_hoops
+597,,4,no,,,wall_hoops
+598,,30,no,,Governo do Estado,
+599,,10,no,,Mundial,wall_hoops
+600,,10,no,,Guanabara,wall_hoops
+601,,5,no,,,stands
+602,,10,,,,
+603,,37,no,,,
+604,,24,no,,Shopping Nova América,
+605,,40,yes,,Shopping Via Brasil,wall_hoops
+606,,,,,,
+607,,20,no,,Lagoon,
+608,,3,no,,,wall_hoops
+609,,10,no,,,wall_hoops
+610,,6,no,,,stands
+611,,6,no,,,stands
+612,,10,no,,,stands
+613,,30,yes,,,stands
+614,,6,yes,,Supermercado Mundial,
+615,,3,no,,,stands
+616,,,yes,,Supermercado Prezunic,
+617,,8,no,,,stands
+618,,3,no,,,wall_hoops
+619,,4,no,,,stands
+620,,10,no,,Centro Comercial Copacabana,wall_hoops
+621,,10,no,,Clube de Regatas Botafogo,wall_hoops
+622,Loteria,,no,,,stands
+623,Banco do Brasil,10,no,,,stands
+624,,10,no,,,wall_hoops
+625,,6,no,,,wall_hoops
+626,,28,yes,,Centro Empresarial Mourisco,anchors
+627,,2,no,,,stands
+628,,4,no,,,stands
+629,,,,,,
+630,,5,no,,,stands
+631,,3,no,,,stands
+632,,3,no,,,stands
+633,,3,no,,,stands
+634,,5,no,,,stands
+635,,5,no,,,stands
+636,,3,no,,,stands
+637,,3,no,,,stands
+638,,3,no,,,stands
+639,,3,no,,,stands
+640,,5,no,,,stands
+641,,3,no,,,stands
+642,,5,no,,,stands
+643,,5,no,,,stands
+644,,3,no,,,stands
+645,,3,no,,,stands
+646,,3,no,,,stands
+647,,5,no,,,stands
+648,,3,no,,,stands
+649,,5,no,,,stands
+650,,3,no,,,stands
+651,,5,no,,,stands
+652,,5,no,,,stands
+653,,3,no,,,stands
+654,,3,no,,,stands
+655,,3,no,,,stands
+656,,3,no,,,stands
+657,,3,no,,,stands
+658,,10,no,,,stands
+659,,5,no,,,stands
+660,,3,no,,,stands
+661,,5,no,,,stands
+662,,3,no,,,stands
+663,,3,no,,,stands
+664,,3,no,,,stands
+665,,3,no,,,stands
+666,,3,no,,,stands
+667,,3,no,,,stands
+668,,3,no,,,stands
+669,,5,no,,,stands
+670,,3,no,,,stands
+671,,3,no,,,stands
+672,,3,no,,,stands
+673,,5,no,,,stands
+674,,5,no,,,stands
+675,,3,no,,,stands
+676,,3,no,,,stands
+677,,5,no,,,stands
+678,,3,no,,,stands
+679,,6,no,,,wall_hoops
+680,,6,no,,,wall_hoops
+681,,28,no,,,wall_hoops
+682,,14,no,,,
+683,,14,no,,,
+684,,,,,,
+685,,15,yes,,Carioca Shopping,
+686,,12,yes,,São Conrado Fashion Mall,stands
+687,,5,no,,,wall_hoops
+688,,,,,,wall_loops
+689,,5,,,,
+690,,6,no,,,
+691,,5,,,,
+692,,10,,,,
+693,,13,,,,
+694,,5,,,,
+695,,5,no,,,
+696,,12,no,,Prefeitura do Rio de Janeiro,
+697,,,yes,,,
+698,,6,no,,,
+699,,6,no,,,
+700,,26,no,,,
+701,,5,no,,,
+702,,6,no,,,
+703,,10,no,,,
+704,,10,no,,,
+705,,4,no,,,
+706,,,,,,
+707,,,,,,
+708,,,,,,
+709,,,no,,,
+710,,4,no,customers,Copacabana Center,stands
+711,,,,,,
+712,,16,yes,,,
+713,,5,no,,,wall_hoops
+714,,10,no,,Intercontinental,wall_hoops
+715,,700,yes,,,
+716,,20,no,,Helisul,
+717,,11,no,,,
+718,,6,no,,,
+719,,12,no,,,
+720,,5,no,,,
+721,,30,no,,,stands
+722,,6,no,,,
+723,,5,no,,,
+724,,5,no,,,
+725,,5,no,,,
+726,,3,no,,,
+727,,10,no,,,
+728,,5,no,,,
+729,,10,no,,Banco do Brasil,stands
+730,,,,,,
+731,,15,no,,,rack
+732,,12,no,,,
+733,,10,no,,Centro de Convenções SulAmérica,wall_hoops
+734,Bicicletário CCAA,5,yes,,,
+735,,100,no,,PUC-Rio,
+736,,10,yes,,,
+737,,3,no,,,
+738,,4 vagas,no,,,stands
+739,Museu Nacional de Brasília,,no,,,
+740,,10,no,,,stands
+741,,,,,,
+742,,,,,,
+743,,,,,,
+744,,,,,,
+745,,,,,,
+746,,,,,,
+747,,8,no,,,stands
+748,,,,,,
+749,,,,,,
+750,,,no,,,stands
+751,,,,,,
+752,,12,no,,,wall_hoops
+753,,,no,,Prezunic,wall_hoops
+754,,11,no,,,stands
+755,,4,no,,,wall_hoops
+756,,6,no,,,
+757,,,no,,,
+758,,,no,,,
+759,,5,no,,,
+760,,,,,,
+761,,,,,,
+762,,,,,,
+763,,5,no,,,wall_loops
+764,,5,no,,,wall_loops
+765,,,,,,
+766,,,,,,
+767,,,,,,
+768,,4,no,,,stands
+769,,6,no,,,stands
+770,,2,no,,,stands
+771,,6,no,,,stands
+772,,5,no,,,stands
+773,,2,no,,,stands
+774,,5,no,,,stands
+775,,6,no,,,stands
+776,,6,no,,,stands
+777,,6,no,,,stands
+778,,6,no,,,stands
+779,,5,no,,,stands
+780,,6,no,,,stands
+781,,6,no,,,stands
+782,,,,,,
+783,,,,,,
+784,,,,,,
+785,,,,,,
+786,,8,,,,stands
+787,,12,no,,Leroy Merlin,wall_hoops
+788,,2,no,,,stands
+789,,6,no,,,stands
+790,,,no,,,
+791,,,,,,
+792,,6,no,,,ground_slots
+793,,5,,,,wall_loops
+794,,6,no,,,stands
+795,,100,no,,,stands
+796,,4,,,,
+797,,5,yes,,,wall_hoops
+798,,8,no,,,stands
+799,,12,no,,,
+800,,12,no,,,stands
+801,,,,yes,,
+802,,10,no,,Academia Zanco,wall_hoops
+803,,5,no,,Espaço de Desenvolvimento Infantil Deputado Pedro Fernandes,stands
+804,,4,no,,,wall_hoops
+805,,6,no,,,stands
+806,,7,no,,Academia Physical,
+807,,7,no,,Hortifruti,wall_hoops
+808,,128,no,,,stands
+809,,153,no,,,stands
+810,,8,no,,,wall_hoops
+811,,10,no,,,stands
+812,,36,no,,,stands
+813,,16,no,,,stands
+814,,18,no,,,wall_hoops
+815,,18,yes,,,wall_hoops
+816,,10,yes,no,,wall_hoops
+817,,5,no,,Academia DNA,wall_hoops
+818,,10,no,,,stands
+819,,4,no,,,wall_hoops
+820,,10,no,,,building
+821,,12,no,,,stands
+822,,13,yes,,Leroy Merlin,wall_hoops
+823,,24,yes,,ACM,anchors
+824,,15,no,,Petrobras,wall_hoops
+825,,6,no,,,stands
+826,,6,no,,,stands
+827,,8,no,,,stands
+828,,6,no,,,stands
+829,,10,no,,,stands
+830,,10,no,,,stands
+831,,10,no,,,stands
+832,,6,no,,,stands
+833,,6,no,,,stands
+834,,6,no,,,wall_hoops
+835,,5,no,,,wall_hoops
+836,,8,yes,customers,PUCRS,wall_loops
+837,,8,no,yes,PMPA,stands
+838,,12,no,,,stands
+839,,90,no,,,stands
+840,,16,,,,
+841,,24,no,,,stands
+842,,25,no,,,stands
+843,,6,no,,,stands
+844,,3,,,,stands
+845,,,,,,
+846,,50,no,,,stands
+847,,10,no,,,stands
+848,,5,no,,,stands
+849,,10,no,,,stands
+850,,4,no,yes,,rack
+851,,15,no,customers,Justiça do Trabalho,wall_loops
+852,,7,no,,,
+853,,36,,,,stands
+854,,8,no,,,stands
+855,,8,no,,,stands
+856,,8,no,,,stands
+857,,8,no,,,stands
+858,,8,no,,,stands
+859,,8,no,,,stands
+860,,7,no,,,wall_loops
+861,,8,no,,,stands
+862,,5,no,,,stands
+863,,18,no,,,rack
+864,,5,no,,,rack
+865,,5,no,,,rack
+866,,36,no,,,rack
+867,,18,no,,,
+868,,12,no,,,stands
+869,,5,no,,,
+870,,6,no,,,rack
+871,,5,no,,,wall_loops
+872,,16,yes,,MetrôRio,
+873,,10,yes,,,
+874,,5,yes,customers,Mercado Público,wall_loops
+875,,5,yes,customers,Mercado Público,wall_loops
+876,,5,yes,customers,Mercado Público,wall_loops
+877,,5,yes,customers,Mercado Público,wall_loops
+878,,,,,,
+879,,,,,,
+880,,20,yes,,,stands
+881,,10,no,,,stands
+882,,16,no,,,stands
+883,,14,no,,,stands
+884,,26,no,,,stands
+885,,9,,customers,,
+886,,10,no,,,rack
+887,,4,no,,,stands
+888,,4,no,,,stands
+889,,8,no,,,stands
+890,,4,,,,stands
+891,,12,,,,pórtico
+892,,12,,,,pórtico
+893,,5,no,,Academia Workout,wall_loops
+894,,12,no,,Farma Hall,rack
+895,,2,no,,,stands
+896,,2,no,,,stands
+897,,18,no,,Bar Lagoa,stands
+898,,5,no,,,stands
+899,,,yes,,,
+900,,6,no,,,stands
+901,Ressacada,200,,,Avaí Futebol Clube,
+902,Bicicletário Kebab Paris,,,,,
+903,,10,no,,Bradesco Seguros,stands
+904,,10,no,,,wall_loops
+905,,8,no,,,stands
+906,,8,no,,,stands
+907,,14,no,,,stands
+908,,2,no,,,stands
+909,,9,,,Iracema Pães e Doces,wall_hoops
+910,,5,,,,wall_loops
+911,,,,,,
+912,,10,no,,,stands
+913,,20,no,,,wall_loops
+914,,10,no,,,stands
+915,,,,,,ground_slots
+916,,10,no,yes,,stands
+917,,6,no,yes,,stands
+918,,6,no,yes,,stands
+919,,17,no,public,,anchors
+920,,5,no,yes,,rack
+921,,,no,yes,,informal
+922,,,,,,
+923,,4,no,yes,,stands
+924,,4,no,yes,,stands
+925,,6,no,yes,,rack
+926,,6,no,yes,,stands
+927,,12,no,yes,,stands
+928,,6,no,yes,,stands
+929,,7,no,yes,,wall_loops
+930,,8,no,yes,,wall_loops
+931,,20,,yes,,wall_loops
+932,,,no,yes,,rack
+933,,,,private,,wall_loops
+934,,5,,customers,,wall_loops
+935,,8,no,,,wall_loops
+936,,10,no,,,wall_loops
+937,,8,no,,,wall_loops
+938,,10,,,,wall_loops
+939,,10,no,,,wall_loops
+940,,,,,,
+941,,4,,,,wall_loops
+942,,9,,,,ground_slots
+943,,8,no,,,
+944,Paraciclo SGI,14,no,yes,Superintendência de Gestão da Informação,handlebar_holder
+945,,5,no,,,wall_loops
+946,,5,no,yes,,rack
+947,,10,yes,yes,,stands
+948,,10,no,,,wall_loops
+949,,10,no,yes,,rack
+950,,10,no,yes,,rack
+951,,8,no,yes,,stands
+952,,5,no,,,rack
+953,,5,no,,,wall_loops
+954,,5,no,,,wall_loops
+955,,20,no,yes,,stands
+956,,6,no,yes,,stands
+957,,6,no,,,stands
+958,,,,,,
+959,,,,,,
+960,,6,no,public,,stands
+961,,6,no,yes,,stands
+962,,6,no,yes,,stands
+963,,6,no,yes,,stands
+964,,6,no,yes,,stands
+965,,6,no,yes,,stands
+966,,6,no,public,,stands
+967,,6,no,yes,,stands
+968,,6,no,public,,stands
+969,,6,no,yes,,stands
+970,,6,no,yes,,stands
+971,,6,no,yes,,stands
+972,,6,no,yes,,stands
+973,,6,no,yes,,stands
+974,,6,no,yes,,stands
+975,,6,no,yes,,stands
+976,,6,no,yes,,stands
+977,,6,no,yes,,stands
+978,,6,no,,,stands
+979,,6,no,,,stands
+980,,15,no,,,stands
+981,,,,,,wall_loops
+982,,,,,,
+983,,,,,,wall_loops
+984,,5,no,,,wall_loops
+985,,2,no,,,ground_slots
+986,,2,no,,,ground_slots
+987,,2,no,,,ground_slots
+988,,5,no,,,wall_loops
+989,,40,no,yes,,stands
+990,,14,no,customers,,stands
+991,,8,no,customers,,rack
+992,,12,no,customers,,stands
+993,,6,,yes,,stands
+994,,5,no,yes,,wall_loops
+995,,10,no,public,,wall_loops
+996,,10,no,public,,wall_loops
+997,,10,no,public,,wall_loops
+998,,5,no,public,,wall_loops
+999,,5,no,public,,wall_loops
+1000,,10,no,public,,wall_loops
+1001,,10,no,yes,,wall_loops
+1002,,5,no,,,wall_loops
+1003,,10,no,yes,,wall_loops
+1004,,10,no,yes,,wall_loops
+1005,,5,no,yes,,wall_loops
+1006,,10,no,public,,wall_loops
+1007,,10,no,public,,wall_loops
+1008,,10,no,public,,wall_loops
+1009,,10,no,yes,,wall_loops
+1010,,5,no,yes,,wall_loops
+1011,,10,no,public,,wall_loops
+1012,,10,no,public,,wall_loops
+1013,,5,no,yes,,wall_loops
+1014,,10,no,yes,,wall_loops
+1015,,10,no,yes,,wall_loops
+1016,,5,no,yes,,wall_loops
+1017,,5,no,public,,wall_loops
+1018,,10,no,yes,,wall_loops
+1019,,5,no,yes,,wall_loops
+1020,,5,no,yes,,wall_loops
+1021,,10,no,,,wall_loops
+1022,,5,no,yes,,wall_loops
+1023,,5,no,yes,,wall_loops
+1024,,10,no,yes,,wall_loops
+1025,,5,no,yes,,wall_loops
+1026,,,no,,,rack
+1027,,,no,,,rack
+1028,,,no,,,rack
+1029,,,no,,,rack
+1030,,,no,,,rack
+1031,,,no,,,rack
+1032,,,no,,,rack
+1033,,3,no,,,wall_loops
+1034,,5,no,,,wall_loops
+1035,,7,no,,,ground_slots
+1036,,5,no,,,wall_loops
+1037,,5,no,,,wall_loops
+1038,,128,no,yes,,stands
+1039,,20,no,,,wall_loops
+1040,,20,no,public,PUC-Rio,rack
+1041,,20,yes,yes,,shed
+1042,,5,no,yes,,
+1043,,7,,,,
+1044,,5,no,,,wall_loops
+1045,,5,no,,,wall_loops
+1046,Bicicletário da LifeFit,10,no,customers,,wall_loops
+1047,,4,no,yes,,wall_loops
+1048,,10,no,yes,,wall_loops
+1049,,14,no,customers,Conspiração,wall_loops
+1050,,4,no,,,ground_slots
+1051,Faculdade Ruy Barbosa,5,yes,private,,stands
+1052,Fonte do Boi,7,no,yes,,wall_loops
+1053,Turma da Bike,15,no,,,stands
+1054,,8,,,,stands
+1055,Estacionamento UFBA Ondina,,no,permissive,,
+1056,Estacionamento Shopping Barra,15,yes,,,stands
+1057,Faculdade de Arquitetura - UFBA,8,no,permissive,,stands
+1058,,10,no,yes,,stands
+1059,Academia Tony Granjo,08,no,private,,informal
+1060,Faculdade Ruy Barbosa - Campus Rio Vermelho,5,,private,,stands
+1061,Bicicletário do Costa Verde Tênis Clube,5 -7,no,private,,
+1062,Shopping Itaigara,,yes,permissive,,informal
+1063,,6,no,permissive,Faculdade Ruy Barbosa - Campus Rio Vermelho,wall_loops
+1064,BICICLETARIO - SUPERMERCADO ATACADÃO,,no,permissive,,wall_loops
+1065,Bicicletário da Praça de Stela Maris,,no,yes,,
+1066,Bicicletário do Salvador Norte Shopping,,,permissive,,
+1067,,16,yes,private,,stands
+1068,Espaço Glauber Rocha,,,permissive,,informal
+1069,,12,,,,stands
+1070,,6,no,public,,wall_loops
+1071,,8,no,yes,,stands
+1072,,6,no,yes,,stands
+1073,,10,,,,wall_loops
+1074,Bicicletário do Pão Prosa,5,,,,stands
+1075,,6,no,public,,stands
+1076,,4,,,,stands
+1077,,4,,,,stands
+1078,,2,,,,stands
+1079,,2,,,,stands
+1080,,4,,,,stands
+1081,,,no,yes,,stands
+1082,Biblioteca Parque Estadual,40,,,,
+1083,,6,no,,,rack
+1084,,5,no,,,rack
+1085,,10,no,,,stands
+1086,,,,,,
+1087,,,,,,
+1088,,4,no,,,stands
+1089,,8,no,,,stands
+1090,,18,yes,,,stands
+1091,,20,yes,,Shopping Tijuca,stands
+1092,,5,no,,,rack
+1093,,,,,,
+1094,,8,no,,,wall_loops
+1095,,2,,,,stands
+1096,,26,no,customers,Clube Monte Líbano,rack
+1097,,18,no,customers,Clube Monte Líbano,rack
+1098,,4,no,,,stands
+1099,,8,no,,,stands
+1100,,4,no,,,stands
+1101,,8,no,,,stands
+1102,,8,no,,,stands
+1103,,12,no,,,stands
+1104,,8,no,,,stands
+1105,,8,no,,,stands
+1106,,4,no,,,stands
+1107,,4,no,,,stands
+1108,,4,no,,,stands
+1109,,4,no,,,stands
+1110,,4,no,,,stands
+1111,,4,no,,,stands
+1112,,4,no,,,stands
+1113,,4,no,,,stands
+1114,,4,no,,,stands
+1115,,4,no,,,stands
+1116,,4,no,,,stands
+1117,,4,no,,,stands
+1118,,4,no,,,stands
+1119,,4,no,,,stands
+1120,,4,no,,,stands
+1121,,4,no,,,stands
+1122,,4,no,,,stands
+1123,,4,no,,,stands
+1124,,4,no,,,stands
+1125,,4,no,,,stands
+1126,,4,no,,,stands
+1127,,4,no,,,stands
+1128,,4,no,,,stands
+1129,,4,no,,,stands
+1130,,8,no,,,stands
+1131,,4,no,,,stands
+1132,,4,no,,,stands
+1133,,4,no,,,stands
+1134,,4,no,,,stands
+1135,,4,no,,,stands
+1136,,4,no,,,stands
+1137,,4,no,,,stands
+1138,,8,no,,,stands
+1139,,8,no,,,stands
+1140,,4,no,,,stands
+1141,,4,no,,,stands
+1142,,4,no,,,stands
+1143,Boni's Gourmet Copacabana,4,no,,,stands
+1144,,4,no,,,stands
+1145,,8,no,,,stands
+1146,,8,no,,,stands
+1147,,8,no,,,stands
+1148,,8,no,,,stands
+1149,,4,no,,,stands
+1150,,4,no,,,stands
+1151,,4,no,,,stands
+1152,,4,no,,,stands
+1153,,4,no,,,stands
+1154,,4,no,,,stands
+1155,,4,no,,,stands
+1156,,4,no,,,stands
+1157,,8,no,,,stands
+1158,,4,no,,,stands
+1159,,4,no,,,stands
+1160,,4,no,,,stands
+1161,,4,no,,,stands
+1162,,4,no,,,stands
+1163,,4,no,,,stands
+1164,,8,no,,,stands
+1165,,10,yes,,,wall_loops
+1166,,10,yes,,,wall_loops
+1167,,,no,,,wall_loops
+1168,,,yes,,,rack
+1169,,8,no,,,stands
+1170,,21,no,,,stands
+1171,,10,yes,,,stands
+1172,,12,no,,,stands
+1173,,12,no,,,stands
+1174,,10,no,yes,Sociedade dos Engenheiros e Arquitetos do Estado do Rio de Janeiro,rack
+1175,,13,yes,,,rack
+1176,,225,yes,,Instituto Parada Vital,ground_slots
+1177,,8,,,Run Way,stands
+1178,,6,,,,stands
+1179,,10,no,,Banco do Brasil,stands
+1180,,6,no,,Banco do Brasil,rack
+1181,,16,no,,,stands
+1182,,,,,,wall_loops
+1183,,14,no,,,stands
+1184,,12,no,,Extra,stands
+1185,,5,yes,,Mundial,rack
+1186,,4,,,,stands
+1187,,2,,,,stands
+1188,,2,,,,stands
+1189,,2,,,,stands
+1190,,4,,,,stands
+1191,,6,,,,stands
+1192,,10,,,,stands
+1193,,16,no,,,rack
+1194,,4,,,,stands
+1195,,4,,,,stands
+1196,,4,no,,,rack
+1197,,22,,customers,Centro Educacional Alzira Bittencourt,shed
+1198,,20,,,,stands
+1199,,10,,,Caminho Niemayer,stands
+1200,,30,,,,pórtico
+1201,,6,no,,,wall_loops
+1202,,6,no,,,wall_loops
+1203,,7,no,,,wall_loops
+1204,,4,no,,Midtown,wall_loops
+1205,,10,no,,,stands
+1206,,24,no,,,wall_loops
+1207,,8,no,,,wall_loops
+1208,,8,no,,,wall_loops
+1209,,8,no,,,wall_loops
+1210,,8,no,,,wall_loops
+1211,,8,no,,,wall_loops
+1212,,20,no,,,stands
+1213,,24,no,,,wall_loops
+1214,,2,no,,,stands
+1215,,4,no,,,stands
+1216,,3,no,,,stands
+1217,,52,yes,,,stands
+1218,,25,no,,,rack
+1219,,4,no,yes,,stands
+1220,,6,no,,,stands
+1221,,6,no,yes,,anchors
+1222,,5,no,yes,,anchors
+1223,,6,no,,,stands
+1224,,30,no,,,stands
+1225,,30,no,,,stands
+1226,,30,no,,,stands
+1227,,20,no,,,stands
+1228,,40,no,,,stands
+1229,,20,no,,,stands
+1230,,20,no,,,stands
+1231,,20,no,,,stands
+1232,,20,no,,,stands
+1233,,20,no,,,stands
+1234,,20,no,,,stands
+1235,,20,no,,,stands
+1236,,20,no,,,stands
+1237,,20,no,,,stands
+1238,,20,no,,,stands
+1239,,7,,,,wall_loops
+1240,,8,,,,stands
+1241,Metrô - Estação Central,40,no,yes,Metrô DF,stands
+1242,,40,no,yes,,stands
+1243,,12,yes,,,wall_loops
+1244,,15,no,,ExpressoDF,stands
+1245,,10,no,,,rack
+1246,,10,no,,,rack
+1247,,10,no,,,rack
+1248,,10,,,,stands
+1249,,15,no,,,stands
+1250,,15,no,,ExpressoDF,stands
+1251,,15,no,,ExpressoDF,stands
+1252,,15,no,,ExpressoDF,stands
+1253,,15,no,,ExpressoDF,stands
+1254,,12,no,,,wall_loops
+1255,,,,,,
+1256,,,,,,
+1257,,10,,,Caminho Niemayer,stands
+1258,,,,,,
+1259,,10,,,,stands
+1260,,10,,,,stands
+1261,,,,,,
+1262,,,,,,
+1263,,10,,,,stands
+1264,,10,no,,,stands
+1265,,10,no,,,stands
+1266,,10,,,,stands
+1267,,10,no,,,stands
+1268,,10,,,,stands
+1269,,14,no,,,stands
+1270,,5,no,,Pão de Açúcar,anchors
+1271,,4,no,,,rack
+1272,,164,no,,,stands
+1273,,10,,,,stands
+1274,,12,no,,,stands
+1275,,5,no,,,anchors
+1276,,20,no,,,stands
+1277,,33,no,,,stands
+1278,,9,no,,,stands
+1279,,60,no,,,stands
+1280,,56,no,,,stands
+1281,,80,no,,,stands
+1282,,9,no,,,stands
+1283,,17,no,,,stands
+1284,,34,no,,,stands
+1285,,20,no,,,rack
+1286,,12,yes,,,anchors
+1287,,12,,,,wall_loops
+1288,Parque Olhos d'Água,,no,,,stands
+1289,,5,,,,wall_loops
+1290,,,no,permissive,Recreio Shopping,ground_slots
+1291,,,yes,yes,,building
+1292,,18,no,,,stands
+1293,,40,no,,Shopping Jardim Guadalupe,stands
+1294,,8,no,,,wall_loops
+1295,,12,no,,,wall_loops
+1296,,8,no,,,stands
+1297,,8,no,,,stands
+1298,,4,no,,,stands
+1299,,5,no,,,stands
+1300,,5,no,,,stands
+1301,,5,no,,,stands
+1302,,10,no,,,stands
+1303,,5,no,,,stands
+1304,,5,no,,,stands
+1305,,5,no,,,stands
+1306,,5,no,,,stands
+1307,,5,no,,,stands
+1308,,5,no,,,stands
+1309,,5,no,,,stands
+1310,,5,no,,,stands
+1311,,5,no,,,stands
+1312,,5,no,,,stands
+1313,,5,no,,,stands
+1314,,5,no,,,stands
+1315,,5,no,,,stands
+1316,,5,no,,,stands
+1317,,5,no,,,stands
+1318,,10,no,,,stands
+1319,,5,no,,,stands
+1320,,5,no,,,stands
+1321,,5,no,,,stands
+1322,,5,no,,,stands
+1323,,5,no,,,stands
+1324,,5,no,,,stands
+1325,,5,no,,,stands
+1326,,10,no,,,stands
+1327,,5,no,,,stands
+1328,,5,no,,,stands
+1329,,5,no,,,stands
+1330,,5,no,,,stands
+1331,,5,no,,,stands
+1332,,5,no,,,stands
+1333,,5,no,,,stands
+1334,,5,no,,,stands
+1335,,5,no,,,stands
+1336,,5,no,,,stands
+1337,,5,no,,,stands
+1338,,5,no,,,stands
+1339,,5,no,,,stands
+1340,,5,no,,,stands
+1341,,5,no,,,stands
+1342,,5,no,,,stands
+1343,,5,no,,,stands
+1344,,5,no,,,stands
+1345,,5,no,,,stands
+1346,,5,no,,,stands
+1347,,5,no,,,stands
+1348,,5,no,,,stands
+1349,,5,no,,,stands
+1350,,5,no,,,stands
+1351,,5,no,,,stands
+1352,,5,no,,,stands
+1353,,5,no,,,stands
+1354,,5,yes,,,stands
+1355,,5,no,,,stands
+1356,,5,no,,,stands
+1357,,5,no,,,stands
+1358,,5,no,,,stands
+1359,,5,no,,,stands
+1360,,5,no,,,stands
+1361,,5,no,,,stands
+1362,,5,no,,,stands
+1363,,5,no,,,stands
+1364,,5,no,,,stands
+1365,,5,no,,,stands
+1366,,5,no,,,stands
+1367,,10,no,,,stands
+1368,,5,no,,,stands
+1369,,5,no,,,stands
+1370,,5,no,,,stands
+1371,,5,no,,,stands
+1372,,5,no,,,stands
+1373,,13,no,,,stands
+1374,,13,no,,,stands
+1375,,5,no,,,stands
+1376,,5,no,,,stands
+1377,,5,no,,,stands
+1378,,5,no,,,stands
+1379,,5,no,,,stands
+1380,,5,no,,,stands
+1381,,5,no,,,stands
+1382,,3,no,,,stands
+1383,,5,no,,,stands
+1384,,10,no,,,stands
+1385,,5,no,,,stands
+1386,,5,no,,,stands
+1387,,5,no,,,stands
+1388,,5,no,,,stands
+1389,,5,no,,,stands
+1390,,5,no,,,stands
+1391,,5,no,,,wall_loops
+1392,,10,no,,,stands
+1393,,10,no,,,stands
+1394,,5,no,,,stands
+1395,,5,no,,,stands
+1396,,6,yes,,,wall_loops
+1397,,14,yes,,,rack
+1398,,4,no,,,stands
+1399,,84,yes,,,stands
+1400,,43,no,,,stands
+1401,,,yes,,,
+1402,,10,no,,,stands
+1403,,10,no,,,
+1404,,6,no,,,wall_loops
+1405,,5,no,,,stands
+1406,,3,no,,,stands
+1407,,5,no,,,stands
+1408,,5,no,,,stands
+1409,,5,no,,,stands
+1410,,5,no,,,stands
+1411,,5,no,,,stands
+1412,,5,no,,,stands
+1413,,5,no,,,stands
+1414,,5,no,,,stands
+1415,,5,no,,,stands
+1416,,5,no,,,stands
+1417,,5,no,,,stands
+1418,,5,no,,,stands
+1419,,5,no,,,stands
+1420,,5,no,,,stands
+1421,,5,no,,,stands
+1422,,5,no,,,stands
+1423,,5,no,,,stands
+1424,,5,no,,,stands
+1425,,10,no,,,stands
+1426,,5,no,,,stands
+1427,,5,no,,,stands
+1428,,5,no,,,stands
+1429,,5,no,,,stands
+1430,,5,no,,,stands
+1431,,5,no,,,stands
+1432,,5,no,,,stands
+1433,,5,no,,,stands
+1434,,5,no,,,stands
+1435,,5,no,,,stands
+1436,,5,no,,,stands
+1437,,5,no,,,stands
+1438,,5,no,,,stands
+1439,,5,no,,,stands
+1440,,5,no,,,stands
+1441,,5,no,,,stands
+1442,,5,no,,,stands
+1443,,5,no,,,stands
+1444,,5,no,,,stands
+1445,,5,no,,,stands
+1446,,10,no,,,stands
+1447,,5,no,,,stands
+1448,,5,no,,,stands
+1449,,5,no,,,stands
+1450,,5,no,,,stands
+1451,,5,no,,,stands
+1452,,5,no,,,stands
+1453,,5,no,,,stands
+1454,,5,no,,,stands
+1455,,5,no,,,stands
+1456,,5,no,,,stands
+1457,,5,no,,,stands
+1458,,5,no,,,stands
+1459,,5,no,,,stands
+1460,,5,no,,,stands
+1461,,5,no,,,stands
+1462,,5,no,,,stands
+1463,,5,no,,,stands
+1464,,5,no,,,stands
+1465,,5,no,,,stands
+1466,,5,no,,,stands
+1467,,10,no,,,stands
+1468,,5,no,,,stands
+1469,,10,no,,,stands
+1470,,24,no,,,stands
+1471,,20,no,,,stands
+1472,,10,no,,,stands
+1473,,36,no,,,stands
+1474,,5,yes,,,wall_loops
+1475,,,,,,wall_loops
+1476,,5,,,,wall_loops
+1477,,12,yes,,,wall_loops
+1478,,,,,,
+1479,,4,,,,
+1480,,4,no,,,rack
+1481,,4,no,,,rack
+1482,,9,no,,,rack
+1483,,5,,,,wall_loops
+1484,,95,no,,,wall_loops
+1485,,20,no,,,rack
+1486,,112,yes,,,stands
+1487,,72,yes,,,stands
+1488,,10,,,,rack
+1489,,60,no,,,wall_loops
+1490,,16,no,,,rack
+1491,,12,no,,,rack
+1492,,12,no,,,rack
+1493,,20,no,,,wall_loops
+1494,,10,no,,,stands
+1495,,12,no,,,wall_loops
+1496,,5,,,,wall_loops
+1497,,10,no,,Universidade Católica de Brasília,wall_loops
+1498,,15,no,,,stands
+1499,,10,no,,Brasília Shopping,stands
+1500,,5,,,,
+1501,SENAI,12,,yes,Bike Sampa,
+1502,,20,no,,,stands
+1503,,15,no,,,rack
+1504,,8,yes,,,rack
+1505,,6,no,,,stands
+1506,,20,no,,,stands
+1507,,5,no,,,stands
+1508,,52,no,,,stands
+1509,,20,no,,,stands
+1510,,36,no,,,stands
+1511,,10,no,,,stands
+1512,,32,no,,,stands
+1513,,,no,permissive,Recreio Shopping,ground_slots
+1514,,10,no,,,stands
+1515,,6,no,,,stands
+1516,,58,no,,,stands
+1517,,42,no,,,stands
+1518,,42,no,,,stands
+1519,,4,no,,,stands
+1520,,24,,,,wall_loops
+1521,,9,no,customers,Terminal Hidroviário de Porto Alegre,wall_loops
+1522,,5,no,,,wall_loops
+1523,,18,no,,Prezunic,wall_loops
+1524,,5,no,,,wall_loops
+1525,,4,no,,,wall_loops
+1526,Bicicletário SuperVia,500,yes,,SuperVia,shed
+1527,,24,no,,,stands
+1528,,20,no,,,stands
+2095,,20,no,,,
+1529,Bike Park,,yes,,,
+1530,,20,yes,,Terminal Garagem Menezes Côrtes,stands
+1531,,6,no,,,stands
+1532,,16,no,,,wall_loops
+1533,,8,no,,,stands
+1534,,30,no,,Santa Cruz Shopping,stands
+1535,,2,yes,,,wall_loops
+1536,Espaço Contraponto,,,,,informal
+1537,,,,,,
+1538,,6,yes,,MetrôRio,stands
+1539,,7,no,,Academia Evolution Fitness,rack
+1540,,10,no,,,stands
+1541,,10,yes,customers,ACRJ,wall_loops
+1542,,10,no,,,rack
+1543,,12,no,,Itaú,stands
+1544,,8,no,,O2 Corporate & Offices,stands
+1545,,8,no,,O2 Corporate & Offices,stands
+1546,,8,no,,O2 Corporate & Offices,stands
+1547,,10,no,,Redeconomia,rack
+1548,,10,no,,,rack
+1549,,14,no,,,rack
+1550,,3,yes,,,rack
+1551,,40,no,,,rack
+1552,,,,,,
+1553,Bicicletário do CIC/EST,,,,,wall_loops
+1554,,24,no,,,wall_loops
+1555,,,,,,
+1556,,,,,,
+1557,,,no,,,
+1558,,24,no,,,stands
+1559,,,,,,
+1560,,24,no,,,stands
+1561,,20,no,,,stands
+1562,,4,no,,,stands
+1563,,4,no,,,stands
+1564,,6,no,,,stands
+1565,,20,no,,,stands
+1566,,8,no,,O2 Corporate & Offices,stands
+1567,,8,no,,O2 Corporate & Offices,stands
+1568,,8,no,,O2 Corporate & Offices,stands
+1569,,8,no,,O2 Corporate & Offices,stands
+1570,Rodoviária Interestadual,,,,,stands
+1571,,,,,,wall_loops
+1572,,,,,,
+1573,,,,,,
+1574,,20,no,yes,,rack
+1575,,3,no,,,stands
+1576,,12,no,,,rack
+1577,,15,no,,Cultura Inglesa,rack
+1578,,20,no,,Bodytech,rack
+1579,,6,no,,,rack
+1580,,10,no,,,stands
+1581,,3,no,,,stands
+1582,,3,no,,,stands
+1583,,5,no,,,rack
+1584,,10,no,,,stands
+1585,,2,no,yes,,stands
+1586,,10,yes,,,stands
+1587,,10,no,,,stands
+1588,,20,no,,,
+1589,,20,no,,,stands
+1590,,10,yes,,Casa de Espinho,anchors
+1591,,10,no,,,rack
+1592,,10,no,,Prezunic,rack
+1593,,15,no,,Terminal de Integração Rodoviária José Ferreira da Silva,rack
+1594,,3,no,,,rack
+1595,,4,no,,BR,rack
+1596,,104,no,,Associação Educacional Dom Bosco,
+1597,,11,no,,Igreja do Cristo Ressuscitado,
+1598,,150,no,,,stands
+1599,,8,no,yes,,stands
+1600,,,,,,
+1601,,,,,,
+1602,,,,,,
+1603,,7,no,,,stands
+1604,,,,,,
+1605,,5,no,,,wall_loops
+1606,,,,,,
+1607,,,,,,wall_loops
+1608,,6,no,,Sebinho,wall_loops
+1609,,,,,,wall_loops
+1610,,,,customers,UniCEUB,wall_loops
+1611,,,,customers,UniCEUB,wall_loops
+1612,,,,customers,UniCEUB,wall_loops
+1613,,5,no,,,stands
+1614,,8,no,,,stands
+1615,,8,no,,,stands
+1616,,8,no,,,stands
+1617,,6,no,,,stands
+1618,,2,no,,,stands
+1619,,4,yes,,,wall_loops
+1620,,,,,,wall_loops
+1621,,10,no,,,wall_loops
+1622,,,,,,
+1623,,,,,,
+1624,,10,no,,Coisa de Carioca,stands
+1625,,10,no,,Coisa de Carioca,stands
+1626,,10,no,,Coisa de Carioca,stands
+1627,Posto Praia Skol 360,14,no,,,stands
+1628,,14,yes,customers,Botafogo Praia Shopping,shed
+1629,,10,no,,Rota 33,stands
+1630,,22,no,,,stands
+1631,,4,no,,Quiosque Chopp Brahma,stands
+1632,,2,no,,Quiosque Chopp Brahma,stands
+1633,,4,no,,Botequim Carioca,stands
+1634,,4,no,,Botequim Carioca,stands
+1635,,4,no,,Botequim Carioca,stands
+1636,,12,yes,,TopShopping,wall_loops
+1637,,6,no,,,stands
+1638,,2,no,,,stands
+1639,,20,no,,,stands
+1640,,8,no,,,stands
+1641,,8,no,,,stands
+1642,,14,no,,,stands
+1643,,7,no,,,rack
+1644,,8,no,,,stands
+1645,,8,no,,,stands
+1646,,6,no,,,stands
+1647,,2,no,,,stands
+1648,,3,no,,,stands
+1649,,10,no,,,stands
+1650,,10,no,,,stands
+1651,,40,yes,,,stands
+1652,,10,yes,,SESC Copacabana,rack
+1653,,8,no,,,stands
+1654,,12,no,customers,,rack
+1655,,7,no,permissive,Edifício General Caldwell,rack
+1656,,8,no,,,stands
+1657,,5,no,,Hospital Lourenço Jorge,rack
+1658,,5,no,,,rack
+1659,,6,no,yes,,rack
+1660,,8,no,,,rack
+1661,,20,no,customers,Country Clube Quintas do Rio,rack
+1662,,30,no,customers,Escola Britânica,stands
+1663,,10,no,,,wall_loops
+1664,,5,no,,,wall_loops
+1665,,10,no,,Senai,rack
+1666,,7,no,,Academia Physical,rack
+1667,,8,no,,,stands
+1668,,6,no,,,stands
+1669,,8,no,,,stands
+1670,,8,no,,,stands
+1671,,5,no,,Refúgio Hostel & Bistrô,rack
+1672,,6,no,,,stands
+1673,,6,no,,,stands
+1674,,4,no,,,stands
+1675,,8,no,,,stands
+1676,,8,no,,,stands
+1677,,5,no,,,stands
+1678,,6,no,,,stands
+1679,,10,no,,,stands
+1680,,10,no,,,stands
+1681,,3,no,yes,,
+1682,Bicicletário do SESC,8,no,permissive,,
+1683,,10,no,,,wall_loops
+1684,,6,no,,,stands
+1685,,4,no,,,stands
+1686,,6,no,,,stands
+1687,,4,no,yes,,stands
+1688,Bicicletário da Geografia,,yes,,,wall_loops
+1689,,10,no,,,stands
+1690,,,,,Club Fitness,stands
+1691,,,yes,,,
+1692,,7,no,,,wall_loops
+1693,,10,no,,,stands
+1694,,10,no,,,stands
+1695,,,,customers,,wall_loops
+1696,,20,yes,,,stands
+1697,,18,no,,,rack
+1698,,8,no,,,stands
+1699,,29,no,,,rack
+1700,,5,yes,,,rack
+1701,,,,,,
+1702,,5,no,,,rack
+1703,,,,,,stands
+1704,,2,,,,
+1705,,,,,,
+1706,,4,no,,,stands
+1707,,2,no,,,stands
+1708,,2,,,,
+1709,,3,no,yes,,stands
+1710,,,,,,
+1711,,,,,,
+1712,,,,,,
+1713,,2,,,,
+1714,,2,,,,
+1715,,,,,,
+1716,,,,,,
+1717,,,no,,,
+1718,,4,no,,,stands
+1719,,,,,,stands
+1720,,,,,,stands
+1721,,,,,,stands
+1722,,,,,,stands
+1723,,,,,,stands
+1724,,,,,,stands
+1725,,,,,,
+1726,,,,,,
+1727,,,,,,
+1728,,16,no,,,stands
+1729,,14,,,,stands
+1730,,20,,,,stands
+1731,Academia Chesf,10,,,,
+1732,,5,,,,
+1733,,11,no,,,rack
+1734,,10,no,,Banco do Brasil,stands
+1735,Paraciclo Centro de Cidadania,,no,,,
+1736,,8,no,,,stands
+1737,Turma da Bike,10,no,yes,,stands
+1738,Cais do Sertão,,no,permissive,,wall_loops
+1739,,,,,,wall_loops
+1740,,14,no,,,stands
+1741,,4,yes,,Laboratório Sabin,stands
+1742,,,yes,,,
+1743,,,no,,,
+1744,,,no,,,
+1745,,14,no,,,stands
+1746,,14,no,,,stands
+1747,,,,customers,,wall_loops
+1748,Bicicletário do Edf. Parnamirim,8,no,permissive,,stands
+1749,Bicicletário Alepe,8,,yes,,wall_loops
+1750,Bicicletário Fundarpe,10,,permissive,,wall_loops
+1751,Bicicletário Parque 13 de Maio,10,,yes,,stands
+1809,,6,no,,,stands
+1752,Bicicletário Prefeitura,20,,yes,,stands
+1753,Bicicletário TRT,14,no,permissive,,stands
+1754,,,no,,,wall_loops
+1755,Rio Bike Shop,,yes,,,rack
+1756,,10,no,,,stands
+1757,,10,no,,,stands
+1758,,6,no,,,stands
+1759,,6,no,,,stands
+1760,,10,no,,,stands
+1761,,10,no,,,stands
+1762,,4,no,,,stands
+1763,,8,no,,,stands
+1764,,12,no,,,stands
+1765,,6,no,,,stands
+1766,,6,no,,,stands
+1767,,14,no,,,stands
+1768,,40,no,,,stands
+1769,,4,no,,,stands
+1770,,8,no,,,stands
+1771,,4,no,,,stands
+1772,,4,no,,,stands
+1773,,6,no,,,rack
+1774,,8,no,,,rack
+1775,,10,,,,stands
+1776,,10,no,,,stands
+1777,,10,no,,,stands
+1778,,6,no,,,stands
+1779,,6,no,,,stands
+1780,,10,no,,,stands
+1781,,10,no,,,stands
+1782,,10,no,,,stands
+1783,,10,no,,,stands
+1784,,10,no,,,stands
+1785,,10,no,,,stands
+1786,,10,no,,,stands
+1787,,10,no,,,stands
+1788,,10,yes,,,stands
+1789,,10,no,,,stands
+1790,,10,no,,,stands
+1791,,10,no,,,stands
+1792,,§0,no,,,stands
+1793,,10,no,,,stands
+1794,,10,no,,,stands
+1795,,10,no,,,stands
+1796,,10,no,,,stands
+1797,,10,no,,,stands
+1798,,10,no,,,stands
+1799,,10,,,,stands
+1800,,10,no,,,stands
+1801,,10,no,,,stands
+1802,,10,no,,,stands
+1803,,10,no,,,stands
+1804,,10,no,,,stands
+1805,,10,no,,,stands
+1806,,10,no,,,stands
+1807,,12,no,,,stands
+1808,,6,no,,,stands
+1810,,10,no,,,stands
+1811,,10,no,,,stands
+1812,,8,no,,,stands
+1813,,10,no,,,stands
+1814,,10,no,,,stands
+1815,,10,no,,,stands
+1816,,10,no,,,stands
+1817,,10,no,,,stands
+1818,,10,no,,,stands
+1819,,10,no,,,stands
+1820,,6,no,,,stands
+1821,,10,no,,,stands
+1822,,10,no,,,stands
+1823,,10,no,,,stands
+1824,,10,no,,,stands
+1825,,6,no,,,stands
+1826,,10,no,,,stands
+1827,,6,no,,,stands
+1828,,10,no,,,stands
+1829,,7,no,,,rack
+1830,,6,no,,,stands
+1831,,6,no,,,stands
+1832,,10,no,,,stands
+1833,,10,no,,,stands
+1834,,10,no,,,stands
+1835,,6,no,,,stands
+1836,,6,no,,,stands
+1837,,6,no,,,stands
+1838,,3,no,,,stands
+1839,,6,no,,,stands
+1840,,6,no,,,stands
+1841,,2,no,,,stands
+1842,,6,no,,,stands
+1843,,10,no,,,stands
+1844,,6,no,,,stands
+1845,,72,yes,,,stands
+1846,,10,yes,private,,rack
+1847,,10,no,,,stands
+1848,,20,no,,,stands
+1849,,6,no,,,stands
+1850,,12,no,,,rack
+1851,,6,no,,,stands
+1852,,6,no,,,stands
+1853,,30,yes,,Prefeitura do Rio de Janeiro,wall_loops
+1854,,,no,,,rack
+1855,,,,,,
+1856,,30,no,,,
+1857,,30,no,,,
+1858,Praça do Ferreira,10,no,,,stands
+1859,,,,,,
+1860,,9,no,,,wall_loops
+1861,,,,,,
+1862,,,no,,,
+1863,,10,,,,stands
+1864,,10,,,Banco do Brasil,stands
+1865,,,,,,
+1866,,14,no,,,stands
+2094,,34,no,,,
+1867,,33,no,,Extra,rack
+1868,,6,no,,,stands
+1869,,4,no,,,stands
+1870,,4,no,,,stands
+1871,,4,no,,,stands
+1872,,4,no,,,stands
+1873,,4,no,,,stands
+1874,,4,no,,,stands
+1875,,4,no,,,stands
+1876,,4,no,,,stands
+1877,,4,no,,,stands
+1878,,6,no,,,stands
+1879,,12,,,,stands
+1880,,12,no,,,stands
+1881,,12,,,,stands
+1882,,12,,,,stands
+1883,,50,no,,,stands
+1884,,56,no,,,stands
+1885,Bicicletário Skina Center,8,no,,,stands
+1886,,8,no,,Pátio Dom Luís,stands
+1887,,8,no,,Le Pain Le Cafe,stands
+1888,,,,,,
+1889,,1,no,yes,,stands
+1890,,4,no,,,stands
+1891,,4,no,,,stands
+1892,,2,no,,,stands
+1893,,4,no,,,stands
+1894,,4,no,,,stands
+1895,,4,no,,,stands
+1896,,4,no,,,stands
+1897,,4,no,,,stands
+1898,,4,no,,,stands
+1899,,4,no,,,stands
+1900,,4,no,yes,,stands
+1901,,4,no,yes,,stands
+1902,,4,no,,,stands
+1903,,4,no,,,stands
+1904,,4,no,yes,,stands
+1905,,4,no,,,stands
+1906,,4,no,,,stands
+1907,,4,no,,,stands
+1908,,4,no,yes,,stands
+1909,,6,no,,,stands
+1910,,6,no,,,stands
+1911,,4,no,,,stands
+1912,,4,no,,,stands
+1913,,4,no,,,stands
+1914,,4,no,,,stands
+1915,,4,no,,,stands
+1916,,4,no,,,stands
+1917,,4,no,,,stands
+1918,,4,no,,,stands
+1919,,4,no,,,stands
+1920,,4,no,,,stands
+1921,,4,no,,,stands
+1922,,4,no,,,stands
+1923,,4,no,,,stands
+1924,,4,no,,,stands
+1925,,6,no,,,stands
+1926,,6,no,,,stands
+1927,,6,,,,stands
+1928,,14,no,,,stands
+1929,,10,no,customers,Centro Administrativo Sicredi,wall_loops
+1930,,3,,,,
+1931,,,,,,
+1932,,14,no,yes,,stands
+1933,,,,,,stands
+1934,,6,,,,
+1935,,6,,,,
+1936,,10,,,,stands
+1937,,8,no,,,stands
+1938,,6,,,Escola Municipal Altivo César,stands
+1939,,8,,,Escola Municipal Francisco Portugal Neves,stands
+1940,,10,,,Escola Municipal João Brazil,stands
+1941,,10,,,Escola Municipal Rachide da Gloria Salim Sacker,stands
+1942,,6,no,,Quiosque Coco Verde,stands
+1943,,8,no,,,stands
+1944,,8,no,,,stands
+1945,,8,no,,,stands
+1946,,8,no,,,stands
+1947,,8,no,,,stands
+1948,,8,no,,,stands
+1949,,8,no,,,stands
+1950,,8,no,,,stands
+1951,,8,no,,,stands
+1952,,8,no,,,stands
+1953,,4,no,,,stands
+1954,,8,no,,,stands
+1955,,8,no,,,stands
+1956,,8,no,,,stands
+1957,,8,no,,,stands
+1958,,8,no,,,stands
+1959,,8,no,,,stands
+1960,,5,no,,,stands
+1961,,4,no,,,stands
+1962,,8,no,,,stands
+1963,,8,no,,,stands
+1964,,8,no,,,stands
+1965,,8,no,,,stands
+1966,,8,no,,,stands
+1967,,8,no,,,stands
+1968,Engenharia Civil,14,yes,,,stands
+1969,Mercadinho São Luiz,12,no,permissive,,rack
+1970,Parque Pajeú,14,no,yes,,stands
+1971,,16,no,,,stands
+1972,,16,no,,,stands
+1973,,8,no,,,stands
+1974,,16,no,,,stands
+1975,,16,no,,,stands
+1976,,8,no,,,stands
+1977,,16,no,,,stands
+1978,,16,no,,,stands
+1979,,16,no,,,stands
+1980,,8,no,,,stands
+1981,,8,no,,,stands
+1982,,16,no,,,stands
+1983,,8,no,,,stands
+1984,,8,no,,,stands
+1985,,4,no,,,stands
+1986,,8,no,,,stands
+1987,,4,no,,,stands
+1988,,8,no,,,stands
+1989,,4,no,,,stands
+1990,,400,yes,,,stands
+1991,,4,no,,,stands
+1992,,32,no,,,wall_loops
+1993,,,no,,,wall_loops
+1994,Leroy Merlin,32,yes,permissive,,stands
+1995,Shopping Iguatemi,,yes,permissive,,
+1996,Canteiro Central,4,no,,,stands
+1997,Ayo Fitness Club,12,no,permissive,,stands
+1998,,,yes,yes,,
+1999,,,no,,,
+2000,,,,,,stands
+2001,Casa de Moá,4,no,customers,,stands
+2002,,,,,,
+2003,,,,,,stands
+2004,,2,no,,,stands
+2005,,12,yes,,Reserva Open Mall,stands
+2006,,12,no,,Mercadinhos São Luiz,stands
+2007,,6,no,,,stands
+2008,,6,no,,,stands
+2009,,5,,,,wall_loops
+2010,,20,no,,,stands
+2011,,30,no,,,stands
+2012,,,,,,stands
+2013,,9,no,,,stands
+2014,,9,no,,,stands
+2015,,9,no,,,stands
+2016,,9,no,,,stands
+2017,,9,no,,,stands
+2018,,9,no,,,stands
+2019,,10,no,,,stands
+2020,,8,no,,,stands
+2021,,10,no,,,stands
+2022,,10,no,,,stands
+2023,,20,no,,,stands
+2024,,12,no,permissive,,stands
+2025,,12,no,permissive,,stands
+2026,,12,no,permissive,,stands
+2027,,,,,,
+2028,,10,no,,,stands
+2029,,20,no,,,stands
+2030,,20,no,,,stands
+2031,,16,no,,,stands
+2032,,16,no,,,stands
+2033,,18,no,,,stands
+2034,,4,no,,,stands
+2035,,4,no,,,stands
+2036,,22,no,,,stands
+2037,,6,no,,,stands
+2038,,4,no,,,stands
+2039,,20,no,,,stands
+2040,,16,yes,,,stands
+2041,,40,no,,,stands
+2042,,6,no,,,stands
+2043,,8,no,,Galeria R1,rack
+2044,,6,no,,Centro de Operações Rio,stands
+2045,,4,no,,,stands
+2046,,52,no,yes,,stands
+2047,,,no,,,wall_loops
+2048,,2,no,yes,Boulevard Strip Center Assis Brasil,stands
+2049,,4,no,,,stands
+2050,,4,no,,,stands
+2051,,5,no,,,stands
+2052,,9,no,,,stands
+2053,,28,yes,,,stands
+2054,,28,yes,,,stands
+2055,,7,no,,,stands
+2056,,6,no,,,stands
+2057,,20,no,,,stands
+2058,,10,no,,,stands
+2059,,10,no,,,stands
+2060,,10,no,,,rack
+2061,,4,no,,,stands
+2062,,20,no,,,stands
+2063,,8,no,,,stands
+2064,,26,no,,,stands
+2065,,16,no,,,stands
+2066,,5,no,,,wall_loops
+2067,,,,,,
+2068,Bicicletário Del Paseo,30,no,permissive,,stands
+2069,Terminal Conjunto Ceará,40,yes,yes,Prefeitura Municipal de Fortaleza,shed
+2070,,10,no,,,stands
+2071,,24,no,,,stands
+2072,,20,no,,,stands
+2073,,4,no,,,stands
+2074,,4,no,,,stands
+2075,,4,no,,,stands
+2076,,4,no,,,stands
+2077,,4,no,,,stands
+2078,,6,no,,,stands
+2079,,4,no,,,stands
+2080,,6,no,,,stands
+2081,,4,no,,,stands
+2082,,6,no,,,stands
+2083,,6,no,,,stands
+2084,,4,no,,,stands
+2085,,10,no,,,stands
+2086,,6,no,,,stands
+2087,,,,,,
+2088,,5,,yes,,stands
+2089,,,,,,
+2090,,,,,,
+2091,,6,,,,wall_loops
+2092,,50,no,,,
+2093,,46,no,,,
+2096,Espaço Meireles,8,no,,,stands
+2097,,,,,,
+2098,Praça Portugal,6,no,yes,Prefeitura Municipal de Fortaleza,stands
+2099,,8,yes,customers,Colégio Mallet Soares,rack
+2100,Centro Empresarial Consorte,10,no,permissive,,stands
+2101,,12,no,,,wall_loops
+2102,,6,no,,,stands
+2103,,8,no,,,stands
+2104,,8,no,,,stands
+2105,,24,no,,,stands
+2106,,24,no,,,stands
+2107,,24,no,,,stands
+2108,,14,no,,,stands
+2109,,14,no,,,stands
+2110,,6,no,,,stands
+2111,,6,no,,Golden Center,rack
+2112,,38,no,,,stands
+2113,,26,no,,,stands
+2114,,8,no,,,stands
+2115,,10,no,,,stands
+2116,,12,no,,,stands
+2117,,6,no,,,stands
+2118,,2,no,,,stands
+2119,,8,no,,,stands
+2120,,4,no,,,stands
+2121,,9,no,,,stands
+2122,,4,no,,,stands
+2123,,4,no,,,stands
+2124,,4,no,,,stands
+2125,,4,no,,,stands
+2126,,4,no,,,stands
+2127,,4,no,,,stands
+2128,,6,no,customers,Hortifruti,rack
+2129,,4,no,,,stands
+2130,,4,no,,,stands
+2131,,2,no,,,stands
+2132,,2,no,,,stands
+2133,,4,no,,,stands
+2134,,4,no,,,stands
+2135,,4,no,,,stands
+2136,,4,no,,,stands
+2137,,4,no,,,stands
+2138,,2,no,,,stands
+2139,,4,no,,,stands
+2140,,4,no,,,stands
+2141,,4,no,,,stands
+2142,,4,no,,,stands
+2143,,4,no,,,stands
+2144,,,no,,,wall_loops
+2145,,,,,,
+2146,,,,,,
+2147,,10,no,yes,,stands
+2148,,10,no,yes,,stands
+2149,,6,no,,,stands
+2150,,12,,,,
+2151,,10,no,,,stands
+2152,,20,no,,,stands
+2153,,6,no,,,stands
+2154,,10,no,,,stands
+2155,,4,no,,,stands
+2156,,4,no,,,stands
+2157,,10,no,,,stands
+2158,,8,no,,,stands
+2159,,8,no,,,stands
+2160,,8,no,,,stands
+2161,,4,no,,,stands
+2162,Nova Acrópole,6,no,yes,,stands
+2163,,8,no,,,stands
+2164,,4,no,,,stands
+2165,,12,no,,http://www.itaucinemas.com.br/pag/rio-de-janeiro-botafogo,stands
+2166,,4,no,,,stands
+2167,,14,no,,Bossa Nova Mall,stands
+2168,,20,no,,,stands
+2169,,4,no,,,stands
+2170,,4,no,,,stands
+2171,,4,no,,,stands
+2172,,4,no,,,stands
+2173,,4,no,,,stands
+2174,,3,no,,,stands
+2175,,4,no,,,stands
+2176,,4,no,,,stands
+2177,,4,no,,,stands
+2178,,4,no,,,stands
+2179,,2,no,,,stands
+2180,,4,no,,,stands
+2181,,2,no,,,stands
+2182,,4,no,,,stands
+2183,,4,no,,,stands
+2184,,6,no,,,stands
+2185,,4,no,,,stands
+2186,,4,no,,,stands
+2187,,4,no,,,stands
+2188,,4,no,,,stands
+2189,,4,no,,,stands
+2190,,4,no,,,stands
+2191,,4,no,,,stands
+2192,,4,no,,,stands
+2193,,4,no,,,stands
+2194,,8,no,,,stands
+2195,,4,no,,,stands
+2196,,8,no,,,stands
+2197,,6,no,customers,,
+2198,,8,no,,Blue Atlantic Center,rack
+2199,,5,no,,,rack
+2200,,11,no,,Supermercado Atlântico,rack
+2201,,6,no,,,stands
+2202,,6,no,,,stands
+2203,,6,no,,,stands
+2204,,6,no,,,stands
+2205,,6,no,,,stands
+2206,,4,no,,,stands
+2207,,4,no,,,stands
+2208,,4,no,,,stands
+2209,,4,no,,,stands
+2210,,4,no,,,stands
+2211,,4,no,,,stands
+2212,,6,no,,,stands
+2213,,4,no,,,stands
+2214,,2,no,,,stands
+2215,,4,no,,,stands
+2216,,6,no,,,stands
+2217,,6,no,,,stands
+2218,,4,no,,,stands
+2219,Pista de Ciclismo,,,,,
+2220,,,,,,
+2221,,10,,,,rack
+2222,,8,no,,,stands
+2223,,4,no,,,stands
+2224,,6,no,,,stands
+2225,,4,no,,,stands
+2226,,4,no,,,stands
+2227,,2,no,,,stands
+2228,,4,no,,,stands
+2229,,2,no,,,stands
+2230,,10,no,,,stands
+2231,,4,no,,,stands
+2232,,4,no,,,stands
+2233,,16,no,,,stands
+2234,,18,no,,,stands
+2235,,20,no,,,stands
+2236,,8,no,,,stands
+2237,,4,,destination,,
+2238,,,,,,wall_loops
+2239,,6,no,,,wall_loops
+2240,,6,no,,,stands
+2241,,20,no,,,stands
+2242,,8,no,,,stands
+2243,,12,no,,,stands
+2244,,4,no,,,stands
+2245,,2,no,,,stands
+2246,,4,no,,,stands
+2247,,4,no,,,stands
+2248,,4,no,yes,,stands
+2249,,20,no,,,stands
+2250,,6,no,yes,,stands
+2251,,10,no,customers,Santa Casa de Misericórdia,wall_loops
+2252,,,,,,
+2253,,16,no,,,stands
+2254,,8,no,,,stands
+2255,,8,no,,,stands
+2256,Bicicletario,,,,,
+2257,,,,,,
+2258,Bicicletário Vale Sul Shopping,45,no,customers,Vale Sul Shopping,rack
+2259,,5,no,,DeRose Method Vila Mariana,wall_loops
+2260,,,,,,wall_loops
+2261,,,,,,wall_loops
+2262,,,,,,
+2263,,,,,,
+2264,,6,no,,,stands
+2265,,4,no,,,stands
+2266,,4,no,,,stands
+2267,,4,no,,,stands
+2268,,4,no,,,stands
+2269,,20,no,,,stands
+2270,,20,yes,,,stands
+2271,,4,no,,,stands
+2272,,4,no,,,stands
+2273,,4,,,,stands
+2274,Paraciclo - BB,5,no,,,stands
+2275,,16,no,yes,,stands
+2276,,,,,,floor
+2277,,,,,,
+2278,Bandeira Cabeleireiros,2,no,permissive,,stands
+2279,,10,no,permissive,,
+2280,,10,,,,
+2281,,10,,,,
+2282,,20,,,,
+2283,,20,no,,,
+2284,,,,,Entrada Cachoeira,
+2285,,20,no,,,stands
+2286,,6,,,,stands
+2287,,5,no,,Plaza D'España,rack
+2288,,4,no,,,stands
+2289,,4,no,,,stands
+2290,,6,no,,,stands
+2291,,40,no,,UFF,rack
+2292,,10,no,,,stands
+2293,,6,yes,,,rack
+2294,,6,no,,,stands
+2295,,5,yes,customers,,rack
+2296,,5,yes,customers,,rack
+2297,,5,yes,customers,,rack
+2298,,5,yes,customers,,rack
+2299,,5,yes,customers,,rack
+2300,,5,yes,customers,,rack
+2301,,5,yes,customers,,rack
+2302,,8,no,,,stands
+2303,,4,no,,,stands
+2304,,4,no,,,stands
+2305,,4,no,,,stands
+2306,,4,no,,,stands
+2307,,4,no,,,stands
+2308,,2,no,,,stands
+2309,,,,,,
+2310,,,,,,rack
+2311,,,no,private,Up Life,rack
+2312,,,,,,
+2313,,,,,,
+2314,,,,,,
+2315,Estação Bike Café,50,yes,customers,,stands
+2316,,10,no,,,
+2317,,10,no,,,stands
+2318,,10,no,,,
+2319,,10,,,,
+2320,,44,no,yes,Universidade Federal da Fronteira Sul,rack
+2321,,,no,,,wall_loops
+2322,,,yes,,,wall_loops
+2323,,,no,,,
+2324,,,,,,
+2325,,5,no,,,stands
+2326,,,no,,,
+2327,,8,no,,,
+2328,,,no,,,
+2329,Bicicletário Grupo Manga,6,no,,,stands
+2330,,5,no,yes,,wall_loops
+2331,,,,,,
+2332,,,,,,
+2333,,,no,yes,,wall_loops
+2334,,,yes,yes,,wall_loops
+2335,,,yes,yes,,wall_loops
+2336,,,,,,
+2337,,,no,yes,,ground_slots
+2338,,26,no,,,stands
+2339,,5,no,yes,,ground_slots
+2340,,3,no,customers,Paseo Zona Sul,stands
+2341,,5,no,,,stands
+2342,,,no,,,wall_loops
+2343,,,,,ASBAC,
+2344,,12,,,,
+2345,,6,no,customers,Lojas Colombo,wall_loops
+2346,,7,yes,customers,Foro Regional do 4º Distrito,wall_loops
+2347,,6,no,customers,Boulevard Deville,wall_loops
+2348,,35,no,customers,Bourbon Shopping Assis Brasil,wall_loops
+2349,,5,no,customers,Bourbon Shopping Assis Brasil,stands
+2350,,2,no,yes,Nacional,stands
+2351,,1,no,yes,Colégio Salesiano Dom Bosco,stands
+2352,,4,no,customers,UniSuper São Geraldo,wall_loops
+2353,,1,no,yes,Centro de Ensino Pastor Dohms Higienópolis,stands
+2354,,1,no,yes,,stands
+2355,,1,no,customers,Escola Técnica Irmão Pedro,stands
+2356,,1,no,customers,Panvel,stands
+2357,,1,no,yes,Studio Q,stands
+2358,,5,no,customers,Vila Velô,stands
+2359,,1,no,yes,Lav & Lev,stands
+2360,,4,no,customers,Panvel,wall_loops
+2361,,5,no,customers,Zaffari Cristóvão,stands
+2362,,5,no,customers,Porto Alegre Hostel Boutique,wall_loops
+2363,,1,no,yes,Panvel,stands
+2364,,3,no,customers,Zaffari Bordini,stands
+2365,,10,yes,customers,Estação Rodoviária,wall_loops
+2366,,1,no,yes,Colégio Estadual Piratini,stands
+2367,,1,no,yes,,stands
+2368,,1,no,yes,Panvel,stands
+2369,,4,no,customers,Panvel,stands
+2370,,1,no,yes,Sindiatacadistas,stands
+2371,,1,no,yes,,stands
+2372,,1,no,yes,Centro Profissional Padre Chagas,stands
+2373,,12,no,customers,Shopping Total,stands
+2374,,4,no,customers,Panvel,wall_loops
+2375,,2,no,yes,Departamento Municipal de Água e Esgotos,stands
+2376,,4,no,customers,Kevingston House,rack
+2377,,1,no,yes,Unisinos,stands
+2378,,4,no,customers,Viva Open Mall,bollard
+2379,,3,no,yes,Hospital Presidente Vargas,stands
+2380,,5,no,customers,Lola Bar,wall_loops
+2381,,3,no,customers,Lato Sensu,wall_loops
+2382,,1,no,yes,Mini Shopping Bom Fim,stands
+2383,,1,no,yes,Palavraria,stands
+2384,,5,no,customers,CAF Fisioterapia,wall_loops
+2385,,12,no,customers,Multipalco Theatro São Pedro,rack
+2386,,1,no,yes,Cartório de Registro Civil 4ª Zona,stands
+2387,,9,no,customers,Condomínio Centro Profissional Chanceler Osvaldo Aranha,wall_loops
+2388,,1,no,yes,Pastel com Borda Bom Fim,stands
+2389,,1,no,yes,Panvel,stands
+2390,,1,no,yes,,stands
+2391,,5,no,customers,Centro Profissional Arthur Rubinstein,wall_loops
+2392,,1,no,yes,Centro Profissional Arthur Rubinstein,stands
+2393,,2,no,yes,Condomínio Edifício Telmo,bollard
+2394,,3,no,customers,Tribunal Regional Eleitoral,wall_loops
+2395,,2,no,customers,Edel Trade Center,stands
+2396,,6,no,yes,Confeitaria Dá Gosto,wall_loops
+2397,,4,no,yes,PMPA,stands
+2398,,1,no,yes,Fome de Bolo,stands
+2399,,1,no,yes,Chocolates Prawer Bom Fim,stands
+2400,,1,no,yes,Maria Bolaria,stands
+2401,,2,no,yes,PMPA,stands
+2402,,10,no,yes,PMPA,stands
+2403,,1,no,yes,,stands
+2404,,3,no,customers,Café República,wall_loops
+2405,,3,no,yes,Via Sapiens,stands
+2406,,1,no,yes,,stands
+2407,,1,no,yes,,stands
+2408,,1,no,yes,Panvel,stands
+2409,,8,no,yes,PMPA,wall_loops
+2410,,10,no,yes,Colégio ACM Centro,wall_loops
+2411,,29,no,customers,Câmara Municipal,stands
+2412,,1,no,yes,Gaúcha Bike,stands
+2413,,5,no,customers,Preventiva,wall_loops
+2414,,2,no,yes,Casa Perky,stands
+2415,,6,no,yes,Sirius,wall_loops
+2416,,5,no,customers,Zaffari Lima e Silva,stands
+2417,,3,no,yes,Unidade Básica de Saúde Santa Cecília,stands
+2418,,2,no,yes,Condomínio Edifício Salomão Ioschpe,stands
+2419,,4,yes,customers,Farmácia Quíron Cidade Baixa,wall_loops
+2420,,1,no,yes,,stands
+2421,,1,no,yes,Aquavit,stands
+2422,,3,no,customers,Justiça Federal,stands
+2423,,4,no,yes,Casa Azul,wall_loops
+2424,,7,no,customers,Centro Profissional Farroupilha,wall_loops
+2425,,5,no,customers,Caixa Econômica Federal,wall_loops
+2426,,1,no,yes,Dirty Old Man,stands
+2427,,6,no,yes,MEME Santo de Casa Estação Cultural,wall_loops
+2428,,10,no,customers,UFRGS Campus Saúde,wall_loops
+2429,,7,no,customers,Boteco Imperial,wall_loops
+2430,,5,no,yes,Espaço 900,tree
+2431,,15,no,customers,UFRGS Campus Saúde,wall_loops
+2432,,7,yes,customers,Moinhos Fitness Venâncio,wall_loops
+2433,,5,no,customers,UFRGS Campus Saúde,bollard
+2434,,10,no,customers,UFRGS Campus Saúde,wall_loops
+2435,,6,no,customers,UFRGS Campus Saúde,wall_loops
+2436,,2,no,yes,Centro de Saúde Modelo,stands
+2437,,4,no,customers,Panvel,wall_loops
+2438,,4,no,customers,Premium Office,wall_loops
+2439,,3,no,yes,PMPA,stands
+2440,,4,yes,private,Borges 2233,wall_loops
+2441,,2,no,customers,Secretaria Municipal de Obras e Viação,stands
+2442,,6,no,private,Coordenação de Educação para Mobilidade,wall_loops
+2443,,5,no,customers,Pro Gym Fitness,wall_loops
+2444,,5,no,customers,Trend City Center,stands
+2445,,4,no,yes,Centro Municipal de Cultura,stands
+2446,,4,no,customers,Time Villeroy,stands
+2447,,4,no,yes,PMPA,stands
+2448,,20,no,private,Tribunal Regional do Trabalho,wall_loops
+2449,,5,no,private,Tribunal Regional do Trabalho,wall_loops
+2450,,1,no,yes,Sindicado Médico do Rio Grande do Sul,stands
+2451,,3,no,customers,Radicom,wall_loops
+2491,,,,,Greens,
+2452,,5,no,customers,Studio K,wall_loops
+2453,,18,yes,customers,Zaffari Menino Deus,wall_loops
+2454,,36,no,customers,Jardim Botânico,wall_loops
+2455,,3,no,yes,PMPA,stands
+2456,,2,no,customers,Maestro Carnes e Complementos,bollard
+2457,,4,no,customers,Panvel,wall_loops
+2458,,5,no,customers,Master Fitness Center,wall_loops
+2459,,5,no,customers,SafePark ESPM,wall_loops
+2460,,6,no,customers,Z Bikes,wall_loops
+2461,,3,no,customers,Oficina do Açaí Menino Deus,wall_loops
+2462,,8,no,private,Grêmio Náutico Gaúcho,tree
+2463,,4,no,customers,Farmácia Quíron Menino Deus,wall_loops
+2464,,4,no,customers,Farmácias São João,wall_loops
+2465,,5,no,customers,Hospital Mãe de Deus,wall_loops
+2466,,4,no,yes,Centro Profissional Genebra,wall_loops
+2467,,7,no,yes,PMPA,stands
+2468,,9,no,customers,Smart Fit Menino Deus,stands
+2469,,5,no,customers,Caixa Econômica Federal,wall_loops
+2470,,3,no,customers,CCAA Menino Deus,wall_loops
+2471,,5,yes,customers,Studio Posturale Menino Deus,wall_loops
+2472,,5,no,customers,Minds Menino Deus,wall_loops
+2473,,4,no,yes,PMPA,bollard
+2474,,5,no,customers,Banco do Brasil,stands
+2475,,4,no,customers,Panvel,wall_loops
+2476,,5,no,customers,Shopping Granville,wall_loops
+2477,,6,no,customers,Shopping Jardins da Praça,stands
+2478,,2,no,yes,Unidade Básica de Saúde Tristeza,stands
+2479,,10,no,customers,Clube do Professor Gaúcho,wall_loops
+2480,,4,no,customers,Companhia Riograndense de Mineração,wall_loops
+2481,,2,no,yes,Unidade Básica de Saúde Morro Santana,stands
+2482,,15,no,private,Justiça do Trabalho,wall_loops
+2483,,4,no,yes,Edifício San Sebastian,stands
+2484,,1,no,yes,Condomínio Edifício Île de France,stands
+2485,,4,no,yes,Centro Integrado de Passagem Escolar e Lotação,stands
+2486,,2,no,yes,Terminal Antônio de Carvalho,stands
+2487,,16,no,yes,Prato Verde,wall_loops
+2488,,2,no,customers,Mercado Ki Preço,wall_loops
+2489,,10,no,customers,Kiko Quiosque e Fruteira,wall_loops
+2490,,2,yes,yes,PMPA,stands
+2492,,2,yes,customers,Jardim Verde Shopping,bollard
+2493,,9,,,,wall_loops
+2494,Bicicletário da Drogaria Fortaleza,4,no,,,stands
+2495,,,,,,
+2496,,24,no,customers,Sport Club Internacional,stands
+2497,,12,no,customers,Sport Club Internacional,stands
+2498,,64,no,customers,Sport Club Internacional,stands
+2499,Bicicletário Patrícia Silva de Figueiredo,10,no,customers,UFRGS Campus Centro,bollard
+2500,Park Bike Indigo Center,14,no,customers,Indigo Center,stands
+2501,,5,no,customers,Pátio Ivo Rizzo,wall_loops
+2502,,4,no,customers,Panvel,wall_loops
+2503,,9,yes,yes,PMPA,stands
+2504,,8,no,yes,PMPA,wall_loops
+2505,,4,no,customers,5ª Avenida Center,stands
+2506,,3,no,yes,PMPA,stands
+2507,,4,no,yes,Santander Cultural,stands
+2508,,12,no,yes,Caixa Econômica Federal 7 de Setembro,stands
+2509,,12,no,customers,Universidade Federal de Ciências da Saúde,stands
+2510,,1,no,customers,Fundação de Economia e Estatística Siegfried Emanuel Heuser,stands
+2511,,4,no,customers,Bio Academia Ramiro,wall_loops
+2512,,14,no,customers,UFRGS Campus Centro,wall_loops
+2513,,10,no,customers,UFRGS Campus Centro,bollard
+2514,,5,no,customers,UFRGS Campus Centro,bollard
+2515,,9,no,customers,UFRGS Campus Centro,bollard
+2516,,5,no,customers,UFRGS Campus Centro,bollard
+2517,,1,no,yes,Usina do Gasômetro,stands
+2518,,7,no,yes,PMPA,stands
+2519,,2,no,customers,Graph Ideia,wall_loops
+2520,,1,no,yes,Academia DK1,stands
+2521,,7,no,yes,PMPA,stands
+2522,,3,no,customers,Zaffari Fernando Machado,stands
+2523,,10,yes,customers,Faculdade SENAC Campus I,wall_loops
+2524,,6,no,yes,PMPA,wall_loops
+2525,,4,no,customers,Panvel,wall_loops
+2526,,4,no,yes,PMPA,wall_loops
+2527,,8,no,customers,UFRGS Escola de Administração,wall_loops
+2528,,10,no,customers,Escola Técnica Estadual Parobé,wall_loops
+2529,,11,no,customers,Chocólatras Anônimos Cidade Baixa,wall_loops
+2530,,7,no,yes,PMPA,wall_loops
+2531,,9,no,customers,Hospital de Clínicas,stands
+2532,,10,no,customers,Companhia de Processamento Dados do Estado Rio Grande Sul,wall_loops
+2533,,2,no,customers,Shopping Nova Olaria,stands
+2857,,,,,,
+2534,,13,no,customers,Centro Administrativo Fernando Ferrari,wall_loops
+2535,,5,no,customers,Centro Administrativo Fernando Ferrari,wall_loops
+2536,,6,no,customers,Centro Administrativo Fernando Ferrari,wall_loops
+2537,,15,no,customers,Centro Administrativo Fernando Ferrari,wall_loops
+2538,,10,no,customers,UFRGS Campus Saúde,wall_loops
+2539,,10,no,customers,UFRGS Campus Saúde,wall_loops
+2540,,2,no,customers,Condomínio Edifício Atlântida,bollard
+2541,,21,no,customers,Foro Central Prédio II,wall_loops
+2542,,10,no,private,Companhia de Processamento de Dados do Município de Porto Alegre,wall_loops
+2543,,2,no,yes,Empresa Pública de Transporte e Circulação,stands
+2544,,17,no,customers,Centro Municipal de Cultura Lupicínio Rodrigues,stands
+2545,,13,no,customers,Empresa Pública de Transporte e Circulação,wall_loops
+2546,,4,no,yes,PMPA,stands
+2547,,12,no,private,PUCRS,wall_loops
+2548,,10,no,customers,PUCRS,wall_loops
+2549,,10,no,yes,CETE,wall_loops
+2550,,10,no,customers,PUCRS,wall_loops
+2551,,7,no,customers,PUCRS,wall_loops
+2552,,23,no,private,TecnoPUC,stands
+2553,,5,no,customers,UFRGS Campus do Vale,bollard
+2554,,5,no,customers,UFRGS Campus do Vale,wall_loops
+2555,,5,no,customers,UFRGS Campus do Vale,bollard
+2556,,5,no,customers,UFRGS Campus do Vale,wall_loops
+2557,,5,no,customers,UFRGS Campus do Vale,wall_loops
+2558,,5,no,customers,UFRGS Campus do Vale,wall_loops
+2559,,8,yes,customers,Nacional,wall_loops
+2560,,13,yes,customers,BarraShoppingSul,stands
+2561,,4,no,customers,Cristal Shop,wall_loops
+2562,,4,no,customers,Biológika,wall_loops
+2563,,5,yes,customers,Zaffari Otto Niemeyer,stands
+2564,,,,,,
+2565,,,,,,
+2566,,,,,,informal
+2567,,,,,,
+2568,,,,,,
+2569,,10,no,permissive,,
+2570,,1,no,yes,,stands
+2571,,2,no,yes,PMPA,stands
+2572,,12,,,,
+2573,,5,,customers,,
+2574,,10,no,yes,Prefeitura de Sorocaba,stands
+2575,,12,,,,
+2576,,10,,yes,,
+2577,,12,,,,
+2578,,,,,,wall_loops
+2579,,3,no,yes,,
+2580,,6,,yes,,
+2581,,10,no,yes,,
+2582,,11,no,yes,,
+2583,,,,,,stands
+2584,,4,no,yes,,wall_loops
+2585,,,,,,rack
+2586,,,,,,
+2587,,10,,,,wall_loops
+2588,,24,yes,customers,Grêmio Náutico União Moinhos de Vento,wall_loops
+2589,,,,,,
+2590,,6,yes,customers,Museu Joaquim José Felizardo,stands
+2591,,6,no,customers,Escola Infante Dom Henrique,wall_loops
+2592,,,,,,
+2593,,,,,,
+2594,,6,yes,customers,Fundação Iberê Camargo,stands
+2595,,5,no,private,Fundação Iberê Camargo,wall_loops
+2596,,10,no,customers,Arena do Grêmio,wall_loops
+2597,,10,no,customers,Arena do Grêmio,wall_loops
+2598,,25,no,customers,Arena do Grêmio,wall_loops
+2599,,10,no,customers,Arena do Grêmio,wall_loops
+2600,,10,no,customers,Arena do Grêmio,wall_loops
+2601,,10,no,customers,Arena do Grêmio,wall_loops
+2602,,10,no,customers,Arena do Grêmio,wall_loops
+2603,,6,no,customers,DC Shopping,stands
+2604,,4,yes,yes,PMPA,stands
+2605,,1,no,yes,Serviço Social do Comércio Unidade Navegantes,stands
+2606,,20,no,customers,Supper Rissul,wall_loops
+2607,,6,no,yes,Terreira da Tribo de Atuadores Ói Nóis Aqui Traveiz,bollard
+2608,,9,no,customers,Bourbon Shopping Wallig,stands
+2609,,7,no,customers,Instituto Porto Alegre Unidade Central,wall_loops
+2610,,3,yes,customers,Zaffari Cabral,stands
+2611,,4,no,yes,,wall_loops
+2612,,25,no,private,Tribunal Regional do Trabalho,wall_loops
+2613,,10,no,private,Justiça do Trabalho,wall_loops
+2614,,1,no,yes,Colégio Farroupilha,stands
+2615,,1,no,yes,Supermercado Bampi,stands
+2616,,8,no,customers,Bourbon Shopping Country,stands
+2617,,64,no,customers,Shopping Iguatemi,stands
+2618,,3,,,,wall_loops
+2619,,20,yes,customers,Ministério da Fazenda,wall_loops
+2620,,10,no,customers,Foro Central,wall_loops
+2621,,,,,,wall_loops
+2622,,6,yes,yes,,stands
+2623,,,,,manutenção de bicicletas,
+2624,,5,no,yes,Bife,wall_loops
+2625,,5,no,customers,Faculdade Porto-Alegrense,wall_loops
+2626,,10,no,customers,Maxxi Atacado Sarandi,wall_loops
+2627,,10,no,customers,Lojas TaQi Sarandi,wall_loops
+2628,,16,no,customers,Boulevard Strip Center Assis Brasil,wall_loops
+2629,,7,no,customers,Big Água Viva,wall_loops
+2630,,1,no,yes,Escola Chico Mendes,stands
+2631,,6,no,customers,Supermercado Brunetto,wall_loops
+2632,,5,no,customers,UFRGS Campus Olímpico,bollard
+2633,,9,no,customers,UFRGS Campus Olímpico,bollard
+2634,,5,no,customers,UFRGS Campus Olímpico,bollard
+2635,,10,no,customers,UFRGS Campus Olímpico,bollard
+2636,,16,no,customers,UFRGS Campus Olímpico,bollard
+2637,,5,no,customers,UFRGS Campus Olímpico,bollard
+2638,,13,no,customers,Escola Rainha do Brasil,wall_loops
+2639,,1,no,yes,Le Grand Burger,stands
+2640,,5,no,yes,Galeria Moinhos de Vento,wall_loops
+2641,,6,no,customers,Otto 2500 Shopping,stands
+2642,,4,yes,customers,Grêmio Náutico União Alto Petrópolis,wall_loops
+2643,,2,no,yes,PMPA,stands
+2644,,4,no,,,wall_loops
+2645,,5,,,,
+2646,,5,no,customers,Banco do Brasil Navegantes,stands
+2647,,3,no,yes,Temakeria Japesca Moinhos,wall_loops
+2648,,2,no,yes,PMPA,stands
+2649,,5,no,customers,Top Agência Produtora,wall_loops
+2650,,3,no,customers,,wall_loops
+2651,,3,no,yes,Raw,wall_loops
+2652,,10,no,customers,Fleming Medicina,wall_loops
+2653,,4,no,customers,Assembleia Legislativa,stands
+2654,,5,no,customers,Rubik Pré-Enem,wall_loops
+2655,,1,no,yes,Barber Hair King,stands
+2656,,5,no,customers,Winner Fight & Fitness,wall_loops
+2657,,3,no,customers,Armazém da Redenção,wall_loops
+2658,,10,no,customers,Caixa Econômica Federal,wall_loops
+2659,,3,no,customers,Germina,stands
+2660,,3,no,yes,Velho Tranquilo Barbearia,wall_loops
+2661,,2,no,customers,Farmácias Associadas,wall_loops
+2662,,2,no,yes,Fundação de Assistência Social e Cidadania,stands
+2663,,1,no,yes,PMPA,stands
+2664,,2,no,yes,Hospital Independência,stands
+2665,,3,no,yes,Ginásio de Esportes Lupi Martins,stands
+2666,,5,no,customers,UniRitter Campus Exclusivo,wall_loops
+2667,,4,no,customers,Positano Café,wall_loops
+2668,,3,no,customers,Lookbel,wall_loops
+2669,,2,no,customers,Casa do Estudante,wall_loops
+2670,,5,yes,yes,PMPA,stands
+2671,,3,no,customers,Unidade Básica de Saúde Cidade de Deus,stands
+2672,Terminal Antônio Bezerra,26,yes,,Prefeitura Municipal de Fortaleza,shed
+2673,,3,no,customers,Unidade Básica de Saúde Camaquã,stands
+2674,,5,no,customers,UFRGS Campus Saúde,wall_loops
+2675,,3,no,customers,La Rouge Bistrô,wall_loops
+2676,,5,no,customers,Tok&Stok Auxiliadora,wall_loops
+2677,,3,no,customers,Galeria Champs Elysees,wall_loops
+2678,,3,no,customers,Fit Academia,wall_loops
+2679,,10,no,customers,Shopping João Pessoa,wall_loops
+2680,,40,no,,Museu da Casa Brasileira,wall_loops
+2681,,44,no,yes,Universidade Federal da Fronteira Sul,rack
+2682,,2,no,yes,,ground_slots
+2683,,20,no,,,stands
+2684,,7,no,,,stands
+2685,,22,no,,,stands
+2686,,20,no,,,stands
+2687,,7,no,,,wall_loops
+2688,SCSP - Secretaria de Conservação e Serviços Públicos de Fortaleza,6,yes,permissive,,stands
+2689,,,no,,,wall_loops
+2690,Rua Compartilhada,10,no,permissive,,stands
+2691,,1,no,yes,Pandorga,stands
+2692,,7,no,customers,Opinião,wall_loops
+2693,,8,no,customers,Colégio Estadual Júlio de Castilhos,wall_loops
+2694,,8,no,customers,Dia Market,wall_loops
+2695,,4,no,yes,,bollard
+2696,,4,no,yes,,bollard
+2697,,8,no,customers,Empresa Pública de Transporte e Circulação,wall_loops
+2698,,2,no,yes,PMPA,stands
+2699,,2,no,yes,Unidade Básica de Saúde Sarandi,stands
+2700,,1,no,customers,Unidade Básica de Saúde Sarandi,stands
+2701,,3,no,customers,Centro de Saúde IAPI,stands
+2702,,2,no,yes,Unidade Básica de Saúde Vila Ipiranga,stands
+2703,,3,no,yes,SMAM,stands
+2704,,2,no,yes,PMPA,stands
+2705,Coffee Time Floricultura,6,yes,permissive,,stands
+2706,,4,no,yes,,stands
+2858,,,yes,yes,,
+2707,,2,no,yes,Asprocergs,wall_loops
+2708,,2,no,yes,BioStudio Cidade Baixa,wall_loops
+2709,,8,no,permissive,Floresta Bar,stands
+2710,,8,no,customers,Empório Delitália,stands
+2711,,5,no,customers,UniRitter Campus Zona Sul,wall_loops
+2712,,5,no,customers,IAB RS,wall_loops
+2713,,4,no,yes,Lusty Pole Dance Café,wall_loops
+2714,,6,no,,,stands
+2715,,,,,,
+2716,,5,no,customers,UFRGS Campus do Vale,wall_loops
+2717,,4,no,yes,,wall_loops
+2718,,3,no,yes,,ground_slots
+2719,,6,no,customers,DeRose Method Asa Norte,stands
+2720,,,,,,
+2721,,8,,,,
+2722,,17,,,,
+2723,,6,,customers,,ground_slots
+2724,,5,,permissive,,ground_slots
+2725,,6,,yes,,
+2726,,11,,yes,,
+2727,,2,,yes,,
+2728,,14,,yes,,
+2729,,5,,yes,,
+2730,,4,,,,
+2731,Centro Malachini Dias,,,,,
+2732,,7,,,,
+2733,,40,,,,stands
+2734,,9,,,,
+2735,,7,,,,
+2736,,7,,,,
+2737,,14,,,,
+2738,,3,,,,
+2739,,4,,,,
+2740,,11,,,,
+2741,,5,,,,
+2742,,4,,,,
+2743,,7,,,,
+2744,,2,,,,
+2745,,4,,,,
+2746,,,,,,wall_loops
+2747,,9,,,,
+2748,,,no,,,wall_loops
+2749,,,,,,
+2750,,,,,,
+2751,,,,,,
+2752,,,,,,
+2753,,,,,,
+2754,,,,,,
+2755,,3,no,,,ground_slots
+2756,,8,no,yes,,wall_loops
+2757,,8,no,yes,,stands
+2758,,,,,,
+2759,Caverna's Park,,,customers,,yes
+2760,,,,,,
+2761,,8,yes,private,ANTT,bollard
+2762,,,,,,
+2763,,9,no,customers,Terminal Hidroviário de Guaíba,wall_loops
+2764,,6,,customers,,stands
+2765,,6,no,permissive,,stands
+2766,,4,no,customers,Shopping Nova Olaria,stands
+2767,,3,no,customers,5ª Avenida Center,stands
+2768,,3,yes,private,Getúlio Vargas Prime Offices,stands
+2769,Estacionamento Shopping Barra,15,yes,,,stands
+2770,,5,no,yes,Centro Comercial Francisco Trein,wall_loops
+2771,,14,no,private,TecnoPUC,wall_loops
+2772,,5,no,yes,Centro Comercial Francisco Trein,wall_loops
+2773,,14,yes,customers,Aeroporto Internacional Salgado Filho,wall_loops
+2774,,5,no,customers,Colégio Marista Champagnat,wall_loops
+2775,,10,no,customers,Trend 24,stands
+2776,,3,no,customers,Complex Skatepark,wall_loops
+2777,,5,no,customers,Top One Barão do Amazonas,wall_loops
+2778,,8,no,customers,Igreja Evangélica Luterana do Brasil Centro Administrativo,wall_loops
+2779,,10,no,customers,Trend City Center,stands
+2780,,7,no,private,Edificio Itamogi,wall_loops
+2781,,5,no,yes,Mantra,wall_loops
+2782,,3,no,yes,Oi Gracia,wall_loops
+2783,,3,no,customers,Bio Express Parcão,wall_loops
+2784,,1,no,yes,Scarpazza,stands
+2785,,1,no,yes,Casa Catarinense,stands
+2786,,2,no,yes,Café República Cup,stands
+2787,,3,no,yes,Estética Nadya,wall_loops
+2788,,3,no,yes,Casa de Pelotas,tree
+2789,,5,no,customers,UFRGS Campus Centro,bollard
+2790,,7,no,customers,UFRGS Campus Centro,stands
+2791,,5,yes,customers,Praia de Belas Business Center,wall_loops
+2792,,40,yes,private,Estacionamento Fórum Central,stands
+2793,,5,no,customers,UFRGS Campus Saúde,wall_loops
+2794,,14,no,private,Escola Estadual Presidente Kennedy,wall_loops
+2795,,10,no,customers,Lupy Lan House,wall_loops
+2796,,15,,customers,,wall_loops
+2797,,15,no,yes,Prefeitura,bollard
+2798,,50,no,customers,ULBRA,bollard
+2799,,10,no,customers,Unilasalle,wall_loops
+2800,,5,no,customers,Asun,wall_loops
+2801,,8,no,customers,Caixa Econômica Federal,wall_loops
+2802,,2,no,customers,Farmácias Associadas,wall_loops
+2803,,,no,customers,Casa Thomas Jefferson,
+2804,,,,,,
+2805,,5,no,,,stands
+2806,,5,no,,,stands
+2807,,12,no,customers,,wall_loops
+2808,,4,no,yes,,wall_loops
+2809,Bourbon Hipermercado,11,no,customers,,wall_loops
+2810,Caixa Econômica Federal,10,no,customers,,wall_loops
+2811,Fundação Escola Técnica Liberato Salzano Vieira da Cunha,7,no,customers,,wall_loops
+2812,Trensurb,32,yes,yes,,wall_loops
+2813,Trensurb,50,yes,yes,,wall_loops
+2814,Trensurb,50,yes,yes,,wall_loops
+2815,,9,no,customers,Indigo Universidade Feevale,wall_loops
+2816,,2,no,customers,Lojas Lebes,wall_loops
+2817,,3,no,yes,Pãozeiro,wall_loops
+2818,,,,,,
+2819,Trensurb,35,yes,yes,,tree
+2820,,11,no,yes,,wall_loops
+2821,,24,no,yes,Prefeitura,bollard
+2822,,4,no,customers,Agafarma,wall_loops
+2823,,7,,,,
+2824,,7,,,,
+2825,,4,,,,
+2826,,5,no,yes,,wall_loops
+2827,,,,,,stands
+2828,,,,,,wall_loops
+2829,,10,no,,,stands
+2830,,10,no,yes,,wall_loops
+2831,,,,,,
+2832,,,,,,
+2833,,2,no,yes,,ground_slots
+2834,,5,,,,wall_loops
+2835,,6,,yes,,
+2836,,,,,,
+2837,,,,,,
+2838,,,,,,
+2839,,10,,,,stands
+2840,,10,,,,stands
+2841,,20,,,,stands
+2842,,9,,,,wall_loops
+2843,,,,,,wall_loops
+2844,,,,,,
+2845,,,,,,
+2846,,,,,,
+2847,,112,no,yes,Prefeitura Municipal de Campinas,stands
+2848,,,,,,
+2849,,4,no,customers,Panvel,wall_loops
+2850,,3,no,customers,Love It,wall_loops
+2851,,5,no,customers,Diego Andino Pâtisserie,wall_loops
+2852,,4,no,yes,I Love CB,wall_loops
+2853,,15,,customers,Clube do Comércio Sede Esportiva,wall_loops
+2854,,10,yes,,,wall_loops
+2855,,,no,yes,Ferroviário Futebol Clube,wall_loops
+2856,,18,no,,,wall_loops
+2859,,4,no,customers,PanVel,wall_loops
+2860,,10,no,yes,,wall_loops
+2861,,17,yes,customers,MED Gastro,wall_loops
+2862,,9,no,customers,Bourbon Shopping Ipiranga,stands
+2863,,4,no,customers,Panvel,wall_loops
+2864,,5,no,,,rack
+2865,,,,,,
+2866,,,,,,
+2867,,6,no,customers,Banco do Brasil,stands
+2868,,20,,,,rack
+2869,,10,no,yes,Prefeitura,stands
+2870,,4,no,customers,Água Doce Aquática e Fitness,ground_slots
+2871,,5,,,,
+2872,,,,,,
+2873,,8,no,yes,Supermercado Econômico,ground_slots
+2874,,,no,yes,Casa do Sono,ground_slots
+2875,,10,,,,
+2876,,,no,yes,,stands
+2877,,,,,,wall_loops
+2878,,6,,,,
+2879,,5,,,,
+2880,,8,no,customers,DeRose Method Lago Sul,stands
+2881,,5,,,,
+2882,,3,,yes,,ground_slots
+2883,,30,yes,yes,Prefeitura de Queimados,high_capacity
+2884,,,,,,
+2885,,,no,,,
+2886,,7,,,,
+2887,,4,,,,
+2888,,,no,yes,,wall_loops
+2889,,,,,,
+2890,,68,no,yes,,stands
+2891,,8,no,,,wall_loops
+2892,,5,no,,,wall_loops
+2893,,10,no,customers,Supermercado Marcon,tree
+2894,,,yes,private,Itatiaia Móveis,bicycle_parking
+2895,,3,,,,
+2896,,,,,TRE,
+2897,,,,customers,,ground_slots
+2898,,6,,,,
+2899,,10,,,,
+2900,,8,no,customers,UniSuper Humaitá,wall_loops
+2901,,4,no,yes,,wall_loops
+2902,,2,no,yes,,stands
+2903,,9,no,private,,wall_loops
+2904,,2,no,customers,La Tasca,wall_loops
+2905,,4,no,customers,Panvel,wall_loops
+2906,,1,no,yes,,stands
+2907,,4,no,yes,,tree
+2908,,8,,,,
+2909,,3,,,,
+2910,,4,,,,
+3016,,4,no,,,ground_slots
+2911,,2,no,yes,Centro de Estudos Budistas Bodisatva,stands
+2912,,5,yes,customers,EMATER,wall_loops
+2913,,4,no,customers,,ground_slots
+2914,,,no,yes,,wall_loops
+2915,,,no,customers,Banco do Brasil,stands
+2916,,,,,,stands
+2917,,,,,,stands
+2918,,,,,,stands
+2919,,15,,,,
+2920,,,no,,,wall_loops
+2921,,3,,,,
+2922,,10,no,,,
+2923,,,no,,,stands
+2924,,,,,,
+2925,,5,no,customers,Oficina do Pilates,wall_loops
+2926,,3,no,customers,Insecta Shoes,wall_loops
+2927,,10,no,customers,Tribunal Regional do Trabalho,wall_loops
+2928,,15,yes,yes,Instituto de Física da USP,stands
+2929,,20,no,yes,Instituto de Física da USP,stands
+2930,,30,no,private,IAG-USP,anchors
+2931,,15,yes,private,IO-USP,wall_loops
+2932,,20,no,yes,IFUSP,stands
+2933,,40,yes,yes,FAU-USP,stands
+2934,,50,yes,yes,FEA-USP,anchors
+2935,,6,no,yes,,stands
+2936,Bicicletário Estação Fradique Coutinho,86,yes,permissive,ViaQuatro,building
+2937,,,,,,
+2938,,4,no,,,stands
+2939,,4,no,customers,Cresol,ground_slots
+2940,,,,yes,,ground_slots
+2941,,,,,,
+2942,,16,no,yes,,
+2943,,15,yes,yes,Rede Top Supermercados,wall_loops
+2944,,8,no,yes,Rede Top Supermercados,wall_loops
+2945,,3,no,yes,,ground_slots
+2946,,,yes,private,,
+2947,,,,,,
+2948,,,,,,
+2949,,,,,,
+2950,,,,,,
+2951,,200,yes,yes,Supermercado Formosa,shed
+2952,,200,yes,yes,Preço Baixo,shed
+2953,,10,no,yes,Banco do Brasil,wall_hoops
+2954,,10,no,yes,Portugal,wall_hoops
+2955,,200,no,yes,Colégio Impacto,informal
+2956,,200,yes,yes,Assaí Atacadista,wall_loops
+2957,,16,no,yes,,wall_loops
+2958,,,,yes,,stands
+2959,,,no,yes,,stands
+2960,,,no,yes,,stands
+2961,,,,,,
+2962,,32,no,customers,,stands
+3853,,,,,,
+2963,,,no,private,Federação Espírita Brasileira,wall_loops
+2964,,,,,,
+2965,,6,,,,stands
+2966,,,yes,customers,Pão de Acúcar,stands
+2967,,5,no,,,wall_loops
+2968,,6,no,yes,,stands
+2969,,,,,,
+2970,,20,no,private,CEFET-MG Campus Nova Gameleira,wall_loops
+2971,,5,,,,
+2972,,8,,,,
+2973,,3,no,yes,,ground_slots
+2974,,,no,,,wall_loops
+2975,,5,no,,Forum da Comarca de Belford Roxo,rack
+2976,,14,no,yes,,front_wheel
+2977,,6,no,yes,,front_wheel
+2978,,10,no,yes,,front_wheel
+2979,,,no,yes,,ground_slots
+2980,,12,no,,,stands
+2981,,1,,,,
+2982,,1,,,,
+2983,,1,,,,
+2984,,6,no,yes,,stands
+2985,,12,no,,SESC,stands
+2986,,8,no,,LIFE Academia,wall_loops
+2987,,8,yes,permissive,,stands
+2988,,10,no,yes,,stands
+2989,,5,no,yes,,ground_slots
+2990,,,,,bicicletário,
+2991,,7,no,yes,,stands
+2992,,7,no,yes,,stands
+2993,,7,no,yes,,stands
+2994,,7,no,yes,,stands
+2995,,7,no,yes,,stands
+2996,,7,no,yes,,stands
+2997,,7,no,yes,,stands
+2998,,7,no,yes,,stands
+2999,,7,no,yes,,stands
+3000,,7,no,yes,,stands
+3001,,7,no,yes,,stands
+3002,,7,no,yes,,stands
+3003,,7,no,yes,,stands
+3004,,7,no,yes,,stands
+3005,,7,no,yes,,stands
+3006,,7,no,yes,,stands
+3007,,10,no,customers,,stands
+3008,"paraciclo ""U"" invertido",12,no,,,stands
+3009,,6,no,yes,,ground_slots
+3010,,5,no,customers,,ground_slots
+3011,,4,no,yes,,ground_slots
+3012,,,,yes,,wide_stands
+3013,,5,,,,
+3014,,,,,,stands
+3015,,8,no,customers,,stands
+3017,,,no,yes,,ground_slots
+3018,,1,no,yes,,stands
+3019,,28,yes,customers,Shopping Parangaba,stands
+3020,,,,,,
+3021,,,no,yes,,anchors
+3022,,,,,,ground_slots
+3023,,5,,,,
+3024,,3,,yes,,ground_slots
+3025,,4,no,customers,Farmácias São João,wall_loops
+3026,,,,,,
+3027,,,,,,
+3028,,,,,,rack
+3029,,,,,,rack
+3030,,,,,,rack
+3031,,1,no,yes,,stands
+3032,,,,yes,,ground_slots
+3033,,5,no,yes,,
+3034,,30,yes,yes,,
+3035,,10,yes,yes,,
+3036,,10,yes,yes,,
+3037,,4,no,yes,,wall_loops
+3038,,,,,,wall_loops
+3039,,8,,,,
+3040,,2,no,yes,,
+3041,,4,yes,yes,,
+3042,,10,,,,stands
+3043,,6,no,customers,Dolce Gusto,wall_loops
+3044,,,,,,wall_loops
+3045,,,,,,stands
+3046,,10,no,yes,,stands
+3047,,6,no,yes,,stands
+3048,,8,no,yes,,stands
+3049,,12,no,yes,,stands
+3050,,4,no,yes,,ground_slots
+3051,,4,,yes,,stands
+3052,,20,no,,,stands
+3053,,6,no,yes,,stands
+3054,,12,no,yes,,stands
+3055,,6,no,yes,,stands
+3056,,6,no,yes,,stands
+3057,,6,no,yes,,stands
+3058,,,,,Google Campus,
+3059,,,,,,
+3060,,,,,,
+3061,,3,no,,Fridas Café Bar,wall_loops
+3062,,,,,,
+3063,,,,,Comunidade da Resina,
+3064,,4,no,yes,,ground_slots
+3065,,10,no,,,stands
+3066,,28,yes,yes,,stands
+3067,,,,,McDonald's,
+3068,,2,no,customers,Museu de Arte Sacra,stands
+3069,,,no,,,
+3070,,,no,,,wall_loops
+3071,,,,,,
+3072,,,,yes,,wall_loops
+3073,,2,no,customers,Grützmacher Produtos Artesanais,ground_slots
+3074,,10,no,,,stands
+3075,,3,,yes,,ground_slots
+3076,,5,,yes,,anchors
+3077,,3,no,,,ground_slots
+3078,,,,,,wall_loops
+3079,,,,,,
+3080,,14,yes,yes,Villa Aymoré,stands
+3081,,8,no,yes,UFSCar,stands
+3082,,10,no,,Comunidade Evangélica em Testo Central,ground_slots
+3083,,,yes,,,wall_loops
+3084,,,no,,,stands
+3085,,,no,,,rack
+3086,,,,,,anchors
+3087,,5,no,customers,Academia Mind Fitness,ground_slots
+3088,,2,no,yes,,stands
+3089,,2,no,yes,,stands
+3090,,30,,yes,,stands
+3091,,,yes,customers,,stands
+3092,,8,no,,,stands
+3093,,10,,,,stands
+3094,,5,,,,anchors
+3095,,4,no,yes,Prefeitura Municipal de Laranjal Paulista,wall_loops
+3096,,,,yes,,
+3097,,,no,,,stands
+3098,,,yes,,,wall_loops
+3099,,4,no,,Selfit,stands
+3100,,,,,,
+3101,,15,,,,wall_loops
+3102,,,,,,
+3103,,,yes,customers,Mobike,
+3104,,3,,customers,,
+3105,,5,no,yes,,stands
+3106,,16,no,,,stands
+3107,,,yes,,,
+3108,,,no,yes,Coremma,wall_loops
+3109,,3,,customers,Unifique,ground_slots
+3110,,,,,,
+3111,,4,no,yes,,rack
+3112,,,,,,
+3113,,5,no,yes,Prefeitura Municipal de Curitiba,stands
+3114,,8,,,,shed
+3115,,,,,,stands
+3116,,10,no,yes,,stands
+3117,,,,,,
+3118,,,no,yes,,stands
+3119,,5,,,,stands
+3120,,3,,,,
+3121,,,,,,
+3122,,,,,,
+3123,,8,no,yes,,stands
+3124,,6,no,yes,,stands
+3125,,4,no,customers,,stands
+3126,,10,,permissive,,stands
+3127,,6,no,yes,,stands
+3128,,3,no,yes,,stands
+3129,,,,,,
+3130,,,,,,building
+3131,,,,,,building
+3132,,,,,,building
+3133,,,,,,building
+3134,,,,,,building
+3135,,,,,,building
+3136,,,,,,building
+3137,,,,,,building
+3138,,,,,,building
+3139,,,,,,building
+3140,,,,,,building
+3141,Vila Urbana,,,,,
+3142,,2,no,yes,,stands
+3143,,,,,,building
+3144,,2,no,yes,,
+3145,,5,no,yes,,stands
+3146,,1,no,yes,,
+3147,,1,no,yes,,
+3148,,,,,,building
+3149,,,,,,building
+3150,,,,,,
+3151,,,no,,Rice,wall_loops
+3152,,8,no,yes,,stands
+3153,praca dito bike,,,yes,,
+3154,,10,no,yes,,stands
+3155,,,no,yes,,
+3156,,6,no,,,ground_slots
+3157,,,yes,private,,
+3158,,1,no,customers,,wall_loops
+3159,,,,,,
+3160,,,,customers,Academia Movimento,ground_slots
+3161,,,,,,building
+3162,,,,,,building
+3163,,,,,,building
+3164,,,,,,
+3165,,,,,,
+3166,,,,,SmartFit,
+3167,,3,,,,wall_loops
+3168,,16,no,,,stands
+3169,,,,,,
+3170,,5,no,yes,Parque da Cidade,yes
+3171,,1,no,yes,,
+3172,,4,no,,,
+3173,,10,,,,
+3174,,4,no,yes,,stands
+3175,,8,no,yes,Parx,wall_loops
+3176,,5,,,,stands
+3177,,,,,,
+3178,Bicicletar Corporativo SDHDS,,,yes,Prefeitura de Fortaleza,
+3179,,,,,,
+3180,,,,,,
+3181,,10,no,,,stands
+3182,,,,,,
+3183,,,,,,
+3184,,10,no,,,stands
+3185,,10,no,,,stands
+3186,,10,no,,,stands
+3187,,6,no,,,stands
+3188,,,,,,
+3189,,16,no,yes,,wall_loops
+3190,,5,,,,wall_loops
+3191,,,,private,,
+3192,,5,,customers,Loja Marlou,ground_slots
+3193,,,,,,building
+3194,,,,,,building
+3195,,,,,,building
+3196,,,,,,shed
+3197,,,,,,lockers
+3198,,,,,,lockers
+3199,,,,,,
+3200,,,,,,
+3201,,,,,,
+3202,,,,,,building
+3203,,,,,,building
+3204,,,,,,building
+3205,,,no,yes,,stands
+3206,,,no,yes,,wall_loops
+3207,,,no,yes,,stands
+3208,,,,,,
+3209,,,no,yes,,wall_loops
+3210,,3,no,yes,,loops
+3211,,5,no,yes,,stands
+3212,,10,,,,stands
+3213,,12,no,customers,,wall_loops
+3214,,10,no,yes,Banco do Brasil,stands
+3215,Bicicletário do Terminal Integrado de Canasvieiras,20,no,yes,Prefeitura Municipal de Florianópolis,stands
+3216,Bicicletário do Terminal Integrado de Sto. Antônio de Lisboa,3,no,yes,Prefeitura Municipal de Florianópolis,stands
+3217,,,no,yes,,
+3218,Bicicletário da Beira Mar de São José,10,no,yes,,stands
+3219,,,no,customers,Shopping Itaguaçu,
+3220,Bicicletário 1 do Passeio Pedra Branca,12,no,yes,,stands
+3221,Bicicletário 2 do Passeio Pedra Branca,8,no,yes,,stands
+3222,Bicicletário 3 do Passeio Pedra Branca,10,no,yes,,stands
+3223,Bicicletário 4 do Passeio Pedra Branca,10,no,yes,,stands
+3224,Bicicletário 6 do Passeio Pedra Branca,20,no,yes,,stands
+3225,Bicicletário 6 do Passeio Pedra Branca,6,no,yes,,stands
+3226,Bicicletário do Centro Empresarial Pedra Branca,8,no,yes,,wall_loops
+3227,Bicicletário da Praia da Armação,10,no,yes,,stands
+3228,,6,no,,,stands
+3229,,6,no,,,stands
+3230,,4,no,,,stands
+3231,,4,no,,,stands
+3232,,6,no,,,stands
+3233,,10,no,,,stands
+3234,,10,no,,,stands
+3235,,10,no,,,stands
+3236,,10,no,,,stands
+3237,,10,no,,,stands
+3238,,2,no,customers,,ground_slots
+3239,,,no,,Smart Fit,
+3240,,,no,private,Centro de Convenções,
+3241,,,,,,
+3242,,30,no,,,wall_loops
+3243,,5,,yes,,building
+3244,,20,,,,stands
+3245,,20,,,,stands
+3246,,12,,,,stands
+3247,,12,no,,,stands
+3248,,10,,,,stands
+3249,,10,,,,stands
+3250,,10,,,,stands
+3251,,20,,,,stands
+3252,,10,,,,stands
+3253,,10,,,,stands
+3254,,10,,,,stands
+3255,,8,no,,,stands
+3256,,8,no,,,stands
+3257,,8,no,,,stands
+3258,,8,,,,stands
+3259,,8,,,,stands
+3260,,8,,,,stands
+3261,,8,no,,,stands
+3262,,8,no,,,stands
+3263,,2,,,,stands
+3264,,24,,,,stands
+3265,,16,,,,stands
+3266,,50,no,,,stands
+3267,,30,,,,stands
+3268,,,,,,
+3269,,16,no,yes,UFSCar,stands
+3270,,10,no,yes,UFSCar,stands
+3271,,6,no,yes,UFSCar,stands
+3272,,,,,,
+3273,Bicicletário Supermercado Pires,5,yes,yes,Supermercado Pires,rack
+3274,,,no,private,,
+3275,,16,,,,stands
+3276,,16,,,,stands
+3277,,20,,,,stands
+3278,,16,,,,stands
+3279,,8,no,,,stands
+3280,,10,,,,stands
+3281,,20,no,,,stands
+3282,,6,no,,,wall_loops
+3283,,,,,,
+3284,,12,no,yes,,stands
+3285,,,,,Subprefeitura Regional do Pirapitingui,
+3286,,10,,,,
+3287,,20,no,yes,,stands
+3288,,,,,,building
+3289,,,,,,building
+3290,,,,,,building
+3291,,,,,,building
+3292,,,,,,
+3293,,,,,,
+3294,,,,,,
+3295,,5,no,,,ground_slots
+3296,,,,,,
+3297,,4,no,customers,,
+3298,Bicicletário,,,,,yes
+3299,Bicicletário,,,,,yes
+3300,,,,,,
+3301,,,,,,
+3302,,10,,,,
+3303,,,,,,
+3304,,,,,,
+3305,,,yes,,,building
+3306,,,,,,building
+3307,,,,,,building
+3308,,,yes,customers,,stands
+3309,,14,no,yes,,stands
+3310,,8,no,yes,,stands
+3311,,3,no,,,wall_loops
+3312,,4,yes,,Colégio São Paulo,wall_loops
+3313,,,no,,SmartFit,wall_loops
+3314,,,,,,
+3315,,,no,customers,,stands
+3316,,1,,,,
+3317,Impacto Moto Bike,,,,,
+3318,,6,no,yes,Prefeitura Municipal de Laranjal Paulista,stands
+3319,,10,no,,,stands
+3320,,qppp,no,yes,,wall_loops
+3321,,44,yes,customers,,wall_loops
+3322,,18,,,,stands
+3323,,18,,,,stands
+3324,,18,,,,stands
+3325,,18,no,,,stands
+3326,,22,no,yes,,stands
+3327,,,no,customers,,
+3328,,2,no,,Drogasil,wall_loops
+3329,Loca,,,,,
+3330,,,,,,
+3331,,1,no,yes,,stands
+3332,,1,no,yes,,stands
+3333,,1,no,yes,,stands
+3334,,5,no,yes,Droga Raia,wall_loops
+3335,Bicecletário de Teresina,,yes,,PMT,building
+3336,,20,no,yes,,stands
+3337,,10,,,,stands
+3338,,30,no,,,stands
+3339,,4,no,customers,McDonald's,stands
+3340,,4,,customers,,ground_slots
+3341,,12,no,,,wall_loops
+3342,,3,no,,,stands
+3343,,18,yes,yes,,stands
+3344,,24,,,,stands
+3345,,39,yes,yes,,stands
+3346,,15,,yes,,stands
+3347,,18,yes,yes,,stands
+3348,,18,,,,stands
+3349,,10,yes,yes,,stands
+3350,,,yes,yes,,stands
+3351,,10,yes,permissive,,stands
+3352,,,,,,building
+3353,,,,,,building
+3354,,,,,,building
+3355,,,,,,building
+3356,,,,,,building
+3357,,,,,,building
+3358,,,,,,building
+3359,,,,,,building
+3360,,,,,,building
+3361,,,,,,building
+3362,,,,,,building
+3363,,,,,,building
+3364,,,,,,building
+3365,,,,,,building
+3366,,,,,,building
+3367,,,,,,building
+3368,,,,,,building
+3369,,,,,,building
+3370,,,,,,building
+3371,,,,,,building
+3372,,,,,,building
+3373,,,,,,building
+3374,,,,,,building
+3375,,,,,,building
+3376,,,,,,building
+3377,,,,,,building
+3378,,,,,,building
+3379,,,,,,building
+3380,,,,,,building
+3381,,,,,,building
+3382,,,,,,building
+3383,,,,,,building
+3384,,,,,,building
+3385,,,,,,building
+3386,,,,,,building
+3387,,,,,,building
+3388,,,,,,building
+3389,,,,,,building
+3390,,,,,,building
+3391,,,,,,building
+3392,,,,,,building
+3393,,,,,,building
+3394,,,,,,building
+3395,,,,,,building
+3396,,,,,,building
+3397,,,,,,building
+3398,,,,,,building
+3399,,,,,,building
+3400,,,,,,building
+3401,,,,,,building
+3402,,,,,,building
+3403,,,,,,building
+3404,,,,,,building
+3405,,,,,,building
+3406,,,,,,building
+3407,,,,,,building
+3408,,,,,,building
+3409,,,,,,building
+3410,,,,,,building
+3411,,,,,,building
+3412,,,,,,building
+3413,,,,,,building
+3414,,,,,,building
+3415,,,,,,building
+3416,,,,,,building
+3417,,,,,,building
+3418,,,,,,building
+3419,,,,,,building
+3420,,,,,,building
+3421,,,,,,building
+3422,,,,,,building
+3423,,,,,,building
+3424,,,,,,building
+3425,,,,,,building
+3426,,,,,,building
+3427,,,,,,building
+3428,,,,,,building
+3429,,,,,,building
+3430,,,,,,building
+3431,,,,,,building
+3432,,,,,,building
+3433,,,,,,building
+3434,,,,,,building
+3435,,,,,,building
+3436,,,,,,building
+3437,,,,,,building
+3438,,,,,,building
+3439,,,,,,building
+3440,,,,,,building
+3441,,,,,,building
+3442,,,,,,building
+3443,,,,,,building
+3444,,,,,,building
+3445,,,,,,building
+3446,,,,,,building
+3447,,,no,yes,,wall_loops
+3448,,1,no,,,stands
+3449,,,,,,building
+3450,,36,no,yes,,stands
+3451,,1,no,,,stands
+3452,,,,,,
+3453,,,,,,
+3454,,8,no,yes,,stands
+3455,,,,,,building
+3456,,,,,,
+3457,,5,no,,,wall_loops
+3458,,10,no,yes,,stands
+3459,,23,no,,Bike Itaú,streetpod
+3460,,2,no,,,stands
+3461,,,,,,
+3462,,7,no,,,wall_loops
+3463,,7,no,yes,,
+3464,,6,,yes,,
+3465,,,no,customers,,wall_loops
+3466,,5,,yes,Oferecido pelo Banco do Brasil - Agência Aldeota,
+3467,Paraciclo UBS Jardim Vera Cruz,4,no,yes,,stands
+3468,,10,no,yes,,wall_loops
+3469,,2,no,yes,,stands
+3470,,5,no,customers,Casa Esportiva,wall_loops
+3471,,,,,,
+3472,,,yes,,,
+3473,,,,,,
+3474,,2,no,yes,,stands
+3475,,8,no,yes,,stands
+3476,,2,no,yes,,stands
+3477,,2,no,yes,,stands
+3478,,2,no,yes,,stands
+3479,,,,,,
+3480,,,,,,
+3481,,2,no,yes,,stands
+3482,,,,,,
+3483,Paraciclo,10,,yes,,stands
+3484,,,,,,
+3485,,10,no,customers,Petz,stands
+3486,,,,,,
+3487,,3,no,customers,,wall_loops
+3488,,3,no,customers,,wall_loops
+3489,,,no,yes,,stands
+3490,,6,no,yes,,stands
+3491,,5,no,yes,,stands
+3492,,9,no,customers,,wall_loops
+3493,,40,no,yes,,wall_loops
+3494,,6,no,yes,,crossbar
+3495,,,,,,stands
+3496,,,yes,yes,,
+3497,,,,customers,,
+3498,,33,yes,,,wall_loops
+3499,,5,,,,stands
+3500,,,,,,
+3501,,2,,yes,,stands
+3502,,10,,yes,,stands
+3503,,16,no,customers,,wall_loops
+3504,,6,no,,,stands
+3505,,12,,permissive,,stands
+3506,,6,no,yes,,stands
+3507,,6,no,yes,,stands
+3508,,6,,yes,,stands
+3509,,6,no,yes,,stands
+3510,,,no,,,
+3511,,10,no,,,stands
+3512,,6,no,,,stands
+3513,,6,no,yes,,stands
+3514,,,yes,yes,Centro Executivo Beiramar,
+3515,,5,no,yes,,stands
+3516,,6,no,yes,,stands
+3517,,3,no,yes,,stands
+3518,,,,,,
+3519,,,no,yes,,stands
+3520,,11,no,yes,,stands
+3521,,,,,,
+3522,,4,no,,,wall_loops
+3523,,10,no,yes,,stands
+3524,,5,no,,,wall_loops
+3525,,8,no,yes,,stands
+3526,,,,,,
+3527,,20,,,,mac
+3528,,5,no,yes,,stands
+3529,,5,yes,customers,,wall_loops
+3530,,,,,,
+3531,,,no,,,
+3532,,,yes,,,stands
+3533,,,yes,,,
+3534,,5,no,yes,Banco do Brasil,stands
+3535,,8,no,yes,,stands
+3536,,5,no,yes,,wall_loops
+3537,,5,no,customers,Villa San Luigi,wall_loops
+3538,,,,yes,,
+3539,,10,no,yes,,stands
+3540,,20,no,yes,Bruno DERZE,
+3541,Paraciclo Mercadão Municipal,5,no,yes,Mercadão Municipal Antônio Valente,wall_loops
+3542,Paraciclo Shopping Bosque dos Ipês,50,no,customers,Shopping Bosque dos Ipês,stands
+3543,Paraciclo Shopping Campo Grande (Estacionamento Interno),20,yes,customers,Shopping Campo Grande,tree
+3544,Bicicletário Shopping Norte Sul Plaza,10,yes,yes,Shopping Norte Sul Plaza,wall_loops
+3545,Paraciclo Câmara Municipal de Campo Grande,10,no,permissive,Câmara Municipal de Campo Grande,wall_loops
+3546,Paraciclo Comper Ceará,10,yes,yes,Comper,wall_loops
+3547,Paraciclo Supermercado Comper,10,no,yes,Comper,wall_loops
+3548,Bicicletário da Feira Central,10,no,yes,Feira Central,stands
+3549,Bicicletário da Feira Central,10,no,yes,Feira Central,stands
+3550,Bicicletário da UCDB,10,no,yes,UCDB,handlebar_holder
+3551,Paraciclo Supermercado Mister Junior,7,yes,customers,Supermercado Mister Junior,wall_loops
+3552,Bicicletário Assaí Atacadista,40,yes,yes,Assaí Atacadista,stands
+3553,Paraciclo Mercado Pag Poko,5,no,yes,Mercado Pag Poko,wall_loops
+3554,,4,no,yes,,stands
+3555,,2,,yes,,stands
+3556,,4,no,yes,,ground_slots
+3557,,10,no,yes,,stands
+3558,,18,,yes,,stands
+3559,,18,,yes,,stands
+3560,,6,,yes,,stands
+3561,,2,no,yes,,stands
+3562,,2,no,yes,,stands
+3563,,4,no,yes,,stands
+3564,Paraciclo,4,no,yes,,stands
+3565,Paraciclo,4,no,yes,,stands
+3566,Paraciclo,4,no,yes,,stands
+3567,Paraciclo,4,no,yes,,stands
+3568,Paraciclo,4,no,yes,,stands
+3569,Paraciclo,4,no,yes,,stands
+3570,Paraciclo,4,no,yes,,stands
+3571,Paraciclo,4,no,yes,,stands
+3572,Paraciclo,4,no,yes,,stands
+3573,Paraciclo,4,no,yes,,stands
+3574,Paraciclo,4,no,yes,,stands
+3575,Paraciclo,4,no,yes,,stands
+3576,Paraciclo,4,no,yes,,stands
+3577,Paraciclo,4,no,yes,,stands
+3578,Paraciclo,4,no,yes,,stands
+3579,Paraciclo,4,no,yes,,stands
+3580,Paraciclo,4,no,yes,,stands
+3581,Paraciclo,4,no,yes,,stands
+3582,Paraciclo,4,no,yes,,stands
+3583,Paraciclo,4,no,yes,,stands
+3584,Paraciclo,4,no,yes,,stands
+3585,Paraciclo,4,no,yes,,stands
+3586,Paraciclo,4,no,yes,,stands
+3587,Paraciclo,4,no,yes,,stands
+3588,Paraciclo,4,no,yes,,stands
+3589,Paraciclo,4,no,yes,,stands
+3590,Paraciclo,4,no,yes,,stands
+3591,Paraciclo,4,no,yes,,stands
+3592,Paraciclo,4,no,yes,,stands
+3593,Paraciclo,4,no,yes,,stands
+3594,Paraciclo,4,no,yes,,stands
+3595,Paraciclo,4,no,yes,,stands
+3596,Paraciclo,4,no,yes,,stands
+3597,Paraciclo,4,no,yes,,stands
+3598,Paraciclo,4,no,yes,,stands
+3599,Paraciclo,4,no,yes,,stands
+3600,Paraciclo,4,no,yes,,stands
+3601,Paraciclo,4,no,yes,,stands
+3602,Paraciclo,4,no,yes,,stands
+3603,Paraciclo,4,no,yes,,stands
+3604,Paraciclo sede PEMS,30,no,customers,Parque Estadual Matas do Segredo,rack
+3605,Paraciclo Sicoob,7,no,yes,Banco Sicoob,rack
+3606,Paraciclo,6,no,yes,Farmácia Estrela Dalva,wall_loops
+3607,Paraciclo Supermercado Dourado,5,yes,yes,Supermercado Dourado,wall_loops
+3608,Paraciclo CRS Nova Bahia,10,no,yes,CRS Nova Bahia,wall_loops
+3609,Paraciclo Supermercado Dourado,6,no,yes,Supermercado Dourado,wall_loops
+3610,Paraciclo Mercado Silva,6,no,customers,Mercado Silva,rack
+3611,Paraciclo Parque do Sóter  (Entrada Norte),10,no,yes,Prefeitura,rack
+3612,Paraciclo Parque do Sóter (Entrada Sul),6,no,yes,Prefeitura,rack
+3613,Paraciclo Parque do Sóter (Entrada Leste),6,no,yes,Prefeitura,rack
+4183,,,,,,
+3614,Paraciclo Academia BS Trainer Studio,2,no,customers,BS Trainer Studio,rack
+3615,Paraciclo Mercado Santo Antônio,6,no,customers,Mercado Santo Antônio,handlebar_holder
+3616,Paracilo Mercado Santo Antonio,6,no,customers,Mercado Santo Antônio,handlebar_holder
+3617,Paraciclo Academia Saúde e Forma,13,,customers,Academia Saúde e Forma,wall_loops
+3618,Paraciclo Aacademia Kadas Fitness,2,no,customers,Academia Kadas Fitness,front_wheel
+3619,Paraciclo Academia Performance,8,no,customers,Academia Perormance,wall_loops
+3620,Paraciclo Leroy Merlin,5,no,customers,Leroy Merlin,stands
+3621,Paraciclo Alpha Academia,7,no,yes,Alpha Academia,wall_loops
+3622,Bicicletário UEMS,32,yes,yes,UEMS,stands
+3623,Paraciclo Karandá Shopping,5,no,yes,Karandá Shopping,handlebar_holder
+3624,Paraciclo Karandá Shopping,4,no,yes,Karandá Shopping,handlebar_holder
+3625,Bicicletário Sertão,12,no,yes,Sertão,handlebar_holder
+3626,Paraciclo Agência BB - Parque dos Poderes,10,no,yes,Banco do Brasil,stands
+3627,Bicicletário Agência Bradesco,5,no,yes,Bradesco,stands
+3628,Bicicletário Lotérica Cidade Morena,5,no,yes,Lotérica Cidade Morena,rack
+3629,Bicicletário Atacadão,12,no,yes,Atacadão,rack
+3630,,9,no,,operator=Rio Office Mall,
+3631,,2,,yes,,stands
+3632,,2,,yes,,stands
+3633,,3,,yes,,stands
+3634,,3,,yes,,stands
+3635,,3,,yes,,stands
+3636,,3,,yes,,stands
+3637,,3,,yes,,stands
+3638,,3,,yes,,stands
+3639,,4,,yes,,stands
+3640,,4,,yes,,stands
+3641,,6,no,yes,,stands
+3642,,2,,yes,,stands
+3643,,2,no,yes,,stands
+3644,,10,no,yes,,stands
+3645,,3,no,yes,,stands
+3646,,2,no,yes,,stands
+3647,,2,no,yes,,stands
+3648,,2,,yes,,stands
+3649,,2,,,,stands
+3650,,2,,yes,,stands
+3651,,2,,yes,,stands
+3652,,2,,yes,,stands
+3653,,2,,yes,,stands
+3654,,2,,yes,,stands
+3655,,2,,yes,,stands
+3656,,5,,yes,,stands
+3657,,2,,yes,,stands
+3658,,2,,yes,,stands
+3659,,2,,yes,,stands
+3660,,2,,yes,,stands
+3661,,2,,yes,,stands
+3662,,2,,yes,,stands
+3663,,2,,yes,,stands
+3664,,2,,yes,,stands
+3665,,2,,yes,,stands
+3666,,3,,yes,,stands
+3667,,2,,yes,,stands
+3668,Paraciclo Atacadão Costa e Silva,40,yes,yes,Atacadão,rack
+3669,Paraciclo Comper Tamandaré,20,no,yes,Supermercado Comper,wall_loops
+3670,Bicicletário Comper Tijuca,10,no,yes,Supermercado Comper,rack
+3671,,,,yes,,
+3672,,,,yes,,
+3673,,,,yes,,
+3674,,,,yes,,
+3675,,,,yes,,
+3676,,,,yes,,
+3677,,,,yes,,
+3678,,,,yes,,
+3679,,,,private,Partage Norte Shopping,
+3680,,,,yes,Prefeitura,
+3681,,,,private,,
+3682,,,,private,Nordestão,
+3683,,,,private,Shopping Midway Mall,
+3684,,,,private,Nordestão,
+3685,,,,,,stands
+3686,,,yes,yes,,
+3687,Paraciclo Instituto Guataverá,6,no,customers,Instituto Guapuverá,wall_loops
+3688,Paraciclo Panificadora Pão Dourado,5,no,yes,Panificadora Pão Dourado,wall_loops
+3689,Paraciclo Uniderp-Agrárias,15,no,customers,Uniderp Agrárias,wall_loops
+3690,Paraciclo Nutri + Coco Verde,5,yes,yes,Nutri + Coco Verde,wall_loops
+3691,Paraciclo do Colégio Militar,20,yes,customers,Colegio Militar,handlebar_holder
+3692,Paraciclo Lotéricas,6,no,yes,Lotéricas Supermercado Duarte,wall_loops
+3693,Paraciclo Supermercado Duarte,10,no,yes,Supermercado Duarte,wall_loops
+3694,Paraciclo USB Piratininga,6,no,yes,UBS Piratininga,wall_loops
+3695,Bicicletário Supermercado Guaicurus,20,no,yes,Supermercado Guaicurus,rack
+3696,Paraciclo Aeroporto (funcionários),30,no,yes,,handlebar_holder
+3697,Bicicletário Hortifruti Santa Rita,5,,yes,Hortifruti Santa Rita,rack
+3698,Bicicletário Campesino Supermercados,5,no,yes,Campesino Supermercados,rack
+3699,Bicicletário SUPERMERCADO ZAPE,6,no,yes,SUPERMERCADO ZAPE,handlebar_holder
+3700,,,,,,
+3701,Bicicletário Mercearia Rocha,10,yes,yes,Mercearia Rocha,front_wheel
+3702,Bicicletário UEMS,32,yes,yes,UEMS,stands
+3703,Bicicletário UEMS,32,yes,yes,UEMS,stands
+3704,Bicicletário UEMS,32,yes,yes,UEMS,stands
+3705,Bicicletário UEMS,32,yes,yes,UEMS,stands
+3706,Bicicletário UEMS,32,yes,yes,UEMS,stands
+3707,Bicicletário Hemosul,12,no,yes,Hemosul,front_wheel
+3708,Bicicletário Universidade Estácio de Sá,12,no,private,Universidade Estácio de Sá,stands
+3709,,6,no,customers,Supermercado Duarte,wall_loops
+3710,Bicicletário Real Supermercados,50,yes,yes,Real Supermercados,wall_loops
+3711,,10,no,yes,UBSF Jardim Los Angeles,front_wheel
+3754,Paraciclo,10,no,yes,,wall_loops
+3712,Paraciclo B - Shopping das Araras,15,no,yes,Shopping das Araras,wall_loops
+3713,Paraciclo A - Shopping das Araras,15,no,yes,Shopping das Araras,wall_loops
+3714,Paraciclo - Assaí Joaquim Murtinho,20,no,yes,Assaí Atacadista,stands
+3715,Paraciclo Mercado Bolando,8,no,yes,Mercado Bolando,rack
+3716,,7,no,yes,Igreja Missionária,handlebar_holder
+3717,Bicicletário Terminal Julho de Castillho,30,yes,yes,Terminal Julho de Castillho,front_wheel
+3718,Bicicletário Supermercado Nunes,4,yes,customers,Supermercado Nunes,handlebar_holder
+3719,Bicicletário Mercado Moreira,6,yes,customers,Mercado Moreira,front_wheel
+3720,Paraciclo Comper Rui Barbosa,6,yes,yes,Comper Rui Barbosa,rack
+3721,Paraciclo - Fort Tiradentes,11,no,yes,Fort Atacadista,handlebar_holder
+3722,Paraciclo Sul - Praça Belmar Fidalgo,8,no,yes,Prefeitura,rack
+3723,Paraciclo Norte - Praça Belmar Fidalgo,8,no,yes,Prefeitura,rack
+3724,,6,no,yes,Grupo Liderança,front_wheel
+3725,,20,no,yes,Banco do Brasil,stands
+3726,,6,no,customers,Supermercado do Produtor,handlebar_holder
+3727,Paraciclo Drogasil,1,no,customers,Drogasil,rack
+3728,Bicicletário Supermercado Comper,10,yes,yes,Supermercado Comper,wall_loops
+3729,Paraciclo Academia Hi-Power,10,no,yes,Academia Hi-Power,wall_loops
+3730,Paraciclo Loja Falantes & Cia.,4,no,yes,Loja Falantes & Cia.,wall_loops
+3731,Paraciclo Senai,9,no,customers,Senai,wall_loops
+3732,Paraciclo UPA Vila Almeida,6,no,yes,UPA Vila Almeida,wall_loops
+3733,Paraciclo Correios AC Guanandi,3,no,yes,Correios AC Guanandi,wall_loops
+3734,,8,no,yes,,wall_loops
+3735,Paraciclo em frente a Drogaria Pacheco,5,no,yes,,wall_loops
+3736,Paraciclo em frente a loja de utilidades,4,no,yes,,wall_loops
+3737,Paraciclo Drogaria Droga Mais,10,yes,yes,Drogaria Droga Mais,wall_loops
+3738,,5,,,,
+3739,Paraciclo Depósito Milênio,12,no,yes,Depósito Milênio,wall_loops
+3740,Paraciclo Casa & Cor,4,no,yes,Casa & Cor,wall_loops
+3741,Paraciclo Lotérica O Vitorioso,7,no,yes,Lotérica O Vitorioso,wall_loops
+3742,Paraciclo Barbearia El Shaday,5,no,yes,Barbearia El Shaday,wall_loops
+3743,Paraciclo Drogaria Nielly,5,no,customers,Drogaria Nielly,wall_loops
+3744,Paraciclo Loja Club Doopé,3,no,yes,Loja Club Doopé,wall_loops
+3745,Paraciclo Academia Power Fitness,5,no,yes,Academia Power Fitness,wall_loops
+3746,Paraciclo Nutri Pet,7,no,customers,Nutri Pet,wall_loops
+3747,Paraciclo Tabernáculo da Revelação,12,no,permissive,Tabernáculo,handlebar_holder
+3748,Paraciclo Drogaria Bem Viver,3,no,yes,Drogaria Bem Viver,wall_loops
+3749,Paraciclo Atletic Academia,14,no,yes,Atletic Academia,wall_loops
+3750,Paraciclo  Drogarias Farmais,3,no,yes,Rede de Drogarias Farmais,wall_loops
+3751,Paraciclo Academia Sports Center,8,yes,yes,Academia Sports Center,wall_loops
+3752,Paraciclo Ágape Multi Serviços,2,no,yes,Ágape Multi Serviços,wall_loops
+3753,Paraciclo Di Sapatus,4,no,yes,Di Sapatus,wall_loops
+3755,Paraciclo,7,yes,yes,,wall_loops
+3756,Paraciclo Supermercado Athenas,5,no,customers,Supermercado Athenas,wall_loops
+3757,Paraciclo,4,yes,yes,,wall_loops
+3758,,9,no,yes,Supermercado Pires,wall_loops
+3759,,5,yes,yes,Farmácia Popular Tijuca,wall_loops
+3760,Diel Cyber,8,yes,yes,Diel Cyber,wall_loops
+3761,Paraciclo Mercado Quitanda Maior,5,no,yes,Mercado Quitanda Maior,wall_loops
+3762,Paraciclo Supermercado Econômico,5,yes,yes,Supermercado Econômico,handlebar_holder
+3763,Paraciclo,3,no,yes,,wall_loops
+3764,Paraciclo Supermercado Maná,5,yes,yes,Supermercado Maná,wall_loops
+3765,Paraciclo Mercado Ouro Branco,5,yes,yes,Mercado Ouro Branco,wall_loops
+3766,Paraciclo Supermercado Trazzi,12,yes,yes,Supermercado Trazzi,wall_loops
+3767,Paraciclo Home Fight,5,no,yes,Home Fight,wall_loops
+3768,Grade do Terminal General Osório,,,yes,,informal
+3769,,,no,customers,Fort Atacadista,informal
+3770,Paraciclo Mercadão Municipal,5,no,yes,Mercadão Municipal Antônio Valente,wall_loops
+3771,Paraciclo Supermercado Pires,10,yes,customers,Supermercado Pires,wall_loops
+3772,Paraciclo Drogaria São Leopoldo,5,yes,yes,Drogaria São Leopoldo,wall_loops
+3773,Paraciclo Supermercado Lunardi,5,yes,yes,Supermercado Lunardi,wall_loops
+3774,Paraciclo,5,no,yes,,wall_loops
+3775,Paraciclo Souza Supermercado,8,no,yes,Souza Supermercado,wall_loops
+3776,,5,yes,yes,,wall_loops
+3777,Paraciclo Garoto Supermercado,20,no,yes,Garoto Supermercado,wall_loops
+3778,Paraciclo Drogasil,1,no,yes,Drogasil,wall_loops
+3779,Paraciclo Mercado Marquez,7,no,yes,Mercado Marquez,wall_loops
+3780,Paraciclo Academia Performance,6,no,yes,Academia Performance,wall_loops
+3781,Paraciclo Supermercado Pereira,8,yes,yes,Supermercado Pereira,wall_loops
+3782,Paraciclo Petz,7,no,yes,Estacionamento Petz,wall_loops
+3783,Paraciclo Mister João Supermercado,9,no,yes,Mister João Supermercado,wall_loops
+3784,Paraciclo Telesom Soluções Técnicas,4,no,yes,Telesom Soluções Técnicas,wall_loops
+3785,Paraciclo Supermercado Camila,9,yes,customers,Supermercado Camila,wall_loops
+3786,Paraciclo Supermercado Nunes,9,no,yes,Supermercado Nunes,wall_loops
+3787,Paraciclo Supermercado Barbosa,5,yes,yes,Supermercado Barbosa,wall_loops
+3788,Paraciclo Nunes Supermercado,10,yes,yes,Nunes Supermercado,wall_loops
+3789,Paraciclo Supermercado Dona Jandyra,5,yes,yes,Supermercado Dona Jandyra,wall_loops
+3790,,10,yes,yes,Supermercado Carioca II,wall_loops
+3791,Paraciclo Supermercado Carioca,7,no,yes,Supermercado Carioca,handlebar_holder
+3792,Paraciclco Odontoclinic,6,no,permissive,Odontoclinic,wall_loops
+3793,Paraciclo Marcio Cabelereiro,2,no,customers,Marcio Cabelereiro,wall_loops
+3794,Paraciclo Sr. Italo Barbearia,2,no,permissive,Sr. Italo Barbearia,wall_loops
+3795,Paraciclo espaço Itatiaia,4,no,customers,Espaço Itatiaia,wall_loops
+3796,Bicicletário Condomínio Aero Rancho CH7,18,yes,permissive,Condomínio Aero Rancho CH 7,stands
+3797,Paraciclo Havan,5,yes,customers,Havan,wall_loops
+3798,,35,yes,yes,Multiplan (ParkJacarepaguá),stands
+3799,,20,no,yes,,stands
+3800,,,no,yes,,
+3801,,,no,yes,,
+3802,,20,no,yes,,stands
+3803,,4,no,,,stands
+3804,,2,no,,,stands
+3805,,,no,yes,Supermercado Prezunic,
+3806,,2,no,yes,,stands
+3807,,4,no,yes,,stands
+3808,,2,no,yes,,stands
+3809,,5,no,yes,,stands
+3810,,5,no,yes,,stands
+3811,,4,no,yes,,stands
+3812,,´5,no,yes,,stands
+3813,,2,no,yes,,stands
+3814,,2,no,yes,,stands
+3815,,2,no,yes,,stands
+3816,,3,no,yes,,stands
+3817,,10,no,yes,,wall_loops
+3818,,8,no,yes,,wall_loops
+3819,,4,no,,,stands
+3820,,4,no,,,stands
+3821,,12,no,yes,,wall_loops
+3822,,4,no,yes,,wall_loops
+3823,,4,no,yes,,wall_loops
+3824,Paraciclo Bar Mr. Hoppy,5,no,customers,Mr. Hoppy Bar,wall_loops
+3825,,16,no,yes,,stands
+3826,,16,no,yes,,stands
+3827,,14,no,yes,,stands
+3828,,,no,yes,,
+3829,,,no,private,,wall_loops
+3830,,,yes,,,building
+3831,,,,,,
+3832,,,,,,
+3833,,,no,yes,,stands
+3834,,8,,,,
+3835,,,,,,paraciclo
+3836,,5,no,,,stands
+3837,,,,,Extra,shed
+3838,,,,,,
+3839,,,,,,
+3840,Bicicletário Shopping Internacional,40,yes,yes,Shopping Internacional Guarulhos,stands
+3841,,153,yes,yes,Serviço Social do Comércio,stands
+3842,,,,,,
+3843,,,,,,
+3844,,,,,,building
+3845,,6,,yes,,
+3846,,6,no,yes,,
+3847,,6,,,,stands
+3848,,,,,,
+3849,,6,no,permissive,,wall_loops
+3850,,,no,yes,Venâncio Shopping,
+3851,,10,no,yes,,stands
+3852,,4,no,yes,,wall_loops
+3854,,4,no,yes,,wall_loops
+3855,,10,no,yes,,stands
+3856,,5,no,yes,,wall_loops
+3857,,,,,,
+3858,,5,no,yes,,stands
+3859,Bicicletário Shopping Pátio Savassi (Entrada Rua Lavras),,yes,yes,Pátio Savassi,loops
+3860,Bicicletário Shopping Diamond Mall (Entrada Av. Olegário Maciel),,yes,yes,Diamond Mall,loops
+3861,,,,private,Paula Ramos Esporte Clube,wall_loops
+3862,,,,private,,
+3863,,,,yes,,wall_loops
+3864,,,,,,
+3865,,6,,customers,,
+3866,,,yes,yes,,wall_loops
+3867,,,,yes,,wall_loops
+3868,,10,no,yes,,stands
+3869,,,,,Faculdade Avantis,wall_loops
+3870,,,,yes,,stands
+3871,,,,yes,,stands
+3872,,,,yes,,stands
+3873,,,,yes,,stands
+3874,,,,yes,,stands
+3875,,,,yes,,stands
+3876,,,,yes,,stands
+3877,,,,yes,,stands
+3878,,,,yes,,stands
+3879,,,,yes,,stands
+3880,,8,no,yes,,
+3881,,,,,,stands
+3882,,8,,,Prefeitura do Campus USP da Capital,stands
+3883,,,,,,building
+3884,,,,yes,,wall_loops
+3885,,4,no,yes,,stands
+3886,,4,,yes,,stands
+3887,,,yes,yes,,stands
+3888,,,yes,yes,,building
+3889,,10,no,yes,,stands
+3890,,,,,,
+3891,,,,,,
+3892,,,,,,
+3893,,,,,,
+3894,,4,no,yes,,stands
+3895,,,,yes,,wall_loops
+3896,,8,,,,stands
+3897,,,yes,private,Círculo,building
+3898,,,,,,
+3899,,,,,,building
+3900,,4,,yes,,stands
+3901,,2,,yes,,stands
+3902,,2,,yes,,stands
+3903,,12,no,customers,,stands
+3904,,20,,,,
+3905,,20,,,,transoceânica
+3906,,,,,,
+3907,,5,no,customers,,stands
+3908,,10,,,,
+3909,,5,no,customers,CNA,wall_loops
+3910,,20,no,yes,Banco do Brasil,stands
+3911,,,no,permissive,,
+3912,,,,,,
+3913,,2,no,yes,,stands
+3914,,5,no,yes,,wall_loops
+3915,,10,,yes,,stands
+3916,,,,,,stands
+3917,,,yes,yes,,
+3918,,,,,,
+3919,Bicicletario interno e subterrâneo da Decathlon,,yes,customers,Decathlon,
+3920,,,,permissive,,stands
+3921,,4,no,yes,,stands
+3922,,4,no,yes,,stands
+3923,,4,no,yes,,stands
+3924,,4,no,yes,,stands
+3925,,4,no,yes,,stands
+3926,,4,no,yes,,stands
+3927,,4,no,yes,,stands
+3928,,4,no,yes,,stands
+3929,,,no,yes,,wall_loops
+3930,,10,yes,yes,,stands
+3931,,2,no,yes,Drogasil,wall_loops
+3932,,16,,yes,,stands
+3933,,,,,,building
+3934,,,,,,
+3935,,,,,,
+3936,,10,no,,Powergym,wall_loops
+3937,,,,,,wall_loops
+3938,,,,,,wall_loops
+3939,,,,,,wall_loops
+3940,,,,,,
+3941,,,,,,
+3942,,6,no,yes,,stands
+3943,,12,no,yes,,stands
+3944,,,,customers,SmartFit,wall_loops
+3945,,,,,,stands
+3946,,16,no,yes,,stands
+3947,,,yes,,,wall_loops
+3948,,,no,yes,,wall_loops
+3949,,,no,yes,,stands
+3950,,12,no,yes,,stands
+3951,,12,no,yes,,stands
+3952,,6,no,yes,,stands
+3953,,8,no,yes,,stands
+3954,,18,,yes,UniRios,rack
+3955,,3,no,yes,,ground_slots
+3956,,6,no,,,wall_loops
+3957,,,no,customers,,wall_loops
+3958,,10,no,yes,,stands
+3959,,10,no,yes,,stands
+3960,,,yes,yes,Shopping Butantã,wall_loops
+3961,,4,no,yes,,stands
+3962,,4,no,yes,,stands
+3963,,4,no,yes,,stands
+3964,,4,no,yes,,stands
+3965,,4,no,yes,,stands
+3966,,4,no,yes,,stands
+3967,,2,no,yes,,stands
+3968,,,no,yes,,wall_loops
+3969,,4,no,yes,,ground_slots
+3970,,,,,,
+3971,,,,,,
+3972,,,no,,,
+3973,,2,no,,,stands
+3974,,2,no,,,stands
+3975,,,,,,
+3976,,,,,,
+3977,,,,,,
+3978,,,,,,
+3979,,,,,,
+3980,,,,,,
+3981,,,,,,
+3982,,,,,,
+3983,,,,,,informal
+3984,,,,yes,,wall_loops
+3985,,10,yes,yes,,stands
+3986,,,no,yes,,stands
+3987,,6,no,yes,,wave
+3988,,10,yes,yes,,stands
+3989,,10,yes,yes,,stands
+3990,,10,no,yes,,stands
+3991,,,yes,,Bistek,shed
+3992,,,,,,building
+3993,,,,,,
+3994,,3,,,,
+3995,,6,no,yes,,stands
+3996,,5,no,yes,,wall_loops
+3997,1º Bicicletário da Biblioteca Central da Unifap,10,yes,yes,,rack
+3998,2º Bicicletário da Biblioteca Central da Unifap,10,no,yes,,rack
+3999,Bicicletário do Restaurante Universitário,10,no,yes,,rack
+4000,Bicicletário do Auditório da UNIFAP,10,,yes,,rack
+4001,Bicicletário do DERCA,10,no,yes,,rack
+4002,Bicicletário do DEPSEC,10,no,yes,,rack
+4003,Bicicletário do DEPLA,10,yes,yes,,rack
+4004,Bicicletário do DCET,10,yes,yes,,rack
+4005,,,no,yes,,
+4006,,0,no,yes,,
+4007,,,no,yes,,
+4008,,6,no,yes,,stands
+4009,,12,yes,yes,,stands
+4010,,6,no,yes,,stands
+4011,,5,no,yes,Droga Raia,wall_loops
+4012,,8,no,yes,,stands
+4013,,4,no,yes,,stands
+4014,,4,,yes,,stands
+4015,,10,no,yes,,stands
+4016,,10,,,,stands
+4017,,10,no,yes,,stands
+4018,,12,yes,yes,BRT Salvador,stands
+4019,,,,,,
+4020,,,,yes,,
+4021,,5,no,yes,,wall_loops
+4022,,5,no,yes,,stands
+4023,,3,no,yes,,stands
+4024,,10,no,yes,,rack
+4025,,12,no,yes,,stands
+4026,,12,no,yes,,stands
+4027,,12,no,yes,,stands
+4028,,12,no,yes,,stands
+4029,,12,no,yes,,stands
+4030,,12,no,yes,,stands
+4031,,12,no,yes,,stands
+4032,,12,no,yes,,stands
+4033,,12,no,yes,,stands
+4034,,12,no,yes,,stands
+4035,,12,no,yes,,stands
+4036,,12,no,yes,,stands
+4037,,12,no,yes,,stands
+4038,,12,no,yes,,stands
+4039,,2,no,yes,,stands
+4040,,12,no,yes,,stands
+4041,,12,no,yes,,stands
+4042,,12,no,yes,,stands
+4043,,12,no,yes,,stands
+4044,,12,no,yes,,stands
+4045,,12,no,yes,,stands
+4046,,12,no,yes,,stands
+4047,,12,no,yes,,stands
+4048,,12,no,yes,,stands
+4049,,12,no,yes,,stands
+4050,,12,no,yes,,stands
+4051,,12,no,yes,,stands
+4052,,12,no,yes,,stands
+4053,,4,no,customers,,wall_loops
+4054,,,,,,stands
+4055,,,,,,stands
+4056,,,,,,stands
+4057,,,yes,yes,Plaza Shopping Niterói,
+4058,,,no,permissive,Decathlon,stands
+4059,,14,,,,stands
+4060,,,,,,stands
+4061,,,,,,stands
+4062,,,,,,stands
+4063,,,,,,stands
+4064,,6,no,,,stands
+4065,,50,,,,
+4066,,,,,Mais Bike,wall_loops
+4067,,,,yes,,wall_loops
+4068,,4,no,customers,Droga Raia,wall_loops
+4069,,3,,,,
+4070,,2,no,private,Panvel,wall_loops
+4071,,,,,,
+4072,,12,no,yes,Milium,wall_loops
+4073,,4,,,,wall_loops
+4074,,12,no,yes,,stands
+4075,,,no,yes,,saddle_holder
+4076,,5,no,yes,,stands
+4077,,,,,,
+4078,,12,no,,,wall_loops
+4079,,10,no,,,stands
+4080,,4,,,,ground_slots
+4081,,15,,,,ground_slots
+4082,,4,,,,
+4083,,8,no,yes,,stands
+4084,,5,,,,stands
+4085,,6,no,yes,,wall_loops
+4086,,10,no,yes,,stands
+4087,,30,no,yes,,stands
+4088,,4,no,yes,,stands
+4089,,10,no,yes,,stands
+4090,,14,,yes,,stands
+4091,,5,no,yes,,wall_loops
+4092,,5,no,permissive,,wall_loops
+4093,,,,,,wall_loops
+4094,,,,private,,stands
+4095,,8,,yes,,
+4096,,12,no,,,stands
+4097,,,yes,private,,wall_loops
+4098,,10,,,,
+4099,,8,no,,,wall_loops
+4100,,,,,,
+4101,,6,,yes,,wall_loops
+4102,,50,yes,customers,,shed
+4103,,,,,,
+4104,,10,no,permissive,,stands
+4105,,4,,,,wall_loops
+4106,,8,no,yes,,stands
+4107,,6,no,permissive,,stands
+4108,,4,no,yes,,wall_loops
+4109,,5,no,yes,,stands
+4110,,,yes,customers,Golden Square Shopping,shed
+4111,,6,no,yes,Secretaria de Finanças de São Bernardo do Campo,wall_loops
+4112,,6,yes,customers,Supermercado Sonda/Decathlon,shed
+4113,,2,no,permissive,Prefeitura de São Bernardo do Campo,stands
+4114,,2,no,permissive,Prefeitura de São Bernardo do Campo,stands
+4115,,30,no,yes,,wall_loops
+4116,,14,no,yes,,stands
+4117,,12,no,yes,,transoceânica
+4118,,,,,,ground_slots
+4119,,5,,,,ground_slots
+4120,,4,no,permissive,,stands
+4121,,4,no,permissive,,stands
+4122,,24,no,yes,,stands
+4123,,36,no,yes,,stands
+4124,,,no,yes,,stands
+4125,,24,no,,,handlebar_holder
+4126,,,,,Shopping Neumarkt,building
+4127,,16,no,yes,,stands
+4128,,4,no,yes,,stands
+4129,,5,yes,customers,Hiperideal,wall_loops
+4130,,50,,,,building
+4131,,,no,,,stands
+4132,,8,no,,,stands
+4133,,6,no,,,stands
+4134,,,,,,wall_loops
+4135,,12,no,,,stands
+4136,,16,no,,,stands
+4137,,18,no,,,stands
+4138,,6,no,,,stands
+4139,,8,no,,,wall_loops
+4140,,4,no,,,stands
+4141,,9,no,,,stands
+4142,,,,,,
+4143,,,,,,
+4144,,,,,,
+4145,,,,,,
+4146,,,,,,
+4147,,,,,,
+4148,,10,,,,transoceânica
+4149,,10,,yes,,stands
+4150,,10,,yes,,stands
+4151,,,,,,stands
+4152,,,no,customers,Giassi Supermercados,wall_loops
+4153,,,,yes,,
+4154,,4,no,yes,,stands
+4155,,,no,yes,,stands
+4156,,16,no,yes,,stands
+4157,,8 vagas,no,yes,,stands
+4158,,8,no,yes,,stands
+4159,,5,,,,wall_loops
+4160,,,no,yes,,stands
+4161,,20,no,yes,,stands
+4162,,20,no,yes,,stands
+4163,,7,no,yes,,
+4164,,30,no,yes,,stands
+4165,,,,customers,,
+4166,,8,no,yes,,
+4167,,1,no,yes,,stands
+4168,,10,no,customers,,wall_loops
+4169,,8,no,,,stands
+4170,,6,no,yes,,stands
+4171,,,no,,,
+4172,,108,yes,,CCR Metrô Bahia,stands
+4173,,,yes,customers,,rack
+4174,,10,no,yes,McDonald's,stands
+4175,,20,yes,,,stands
+4176,,6,no,yes,,stands
+4177,,,,,,
+4178,,10,yes,,,wall_loops
+4179,,30,no,,,stands
+4180,,12,,yes,,stands
+4181,,5,no,yes,,stands
+4182,,12,no,yes,,stands
+4184,,,,,,
+4185,,,,,,
+4186,,6,,,,stands
+4187,,12,,,,pórtico
+4188,,8,,,,v
+4189,,4,,,,pórtico
+4190,,,,,,stands
+4191,,,,,,stands
+4192,,,yes,yes,,stands
+4193,,,,,,stands
+4194,,10,,,Museu Janete Costa,stands
+4195,,4,,,,stands
+4196,,4,,,,stands
+4197,,10,,,,stands
+4198,,10,,,,stands
+4199,,10,,,,stands
+4200,,10,,,,stands
+4201,,6,,,,stands
+4202,,10,,,,stands
+4203,,8,,,,stands
+4204,,10,,,,stands
+4205,,20,,,Museu de Arte Contemporânea de Niterói,stands
+4206,,8,no,,,stands
+4207,,10,,,,
+4208,,10,,,Horto do Fonseca,stands
+4209,,10,,,,stands
+4210,,2,,,,stands
+4211,,4,,,,stands
+4212,,4,,,,stands
+4213,,2,,,,stands
+4214,,10,,,Universidade Federal Fluminense,stands
+4215,,10,,,Universidade Federal Fluminense,stands
+4216,,10,,,Universidade Federal Fluminense,stands
+4217,,10,,,Universidade Federal Fluminense,stands
+4218,,2,,,,stands
+4219,,2,,,,stands
+4220,,4,,,,stands
+4221,,2,,,,stands
+4222,,2,,,,stands
+4223,,6,,,,stands
+4224,,10,,,,stands
+4225,,6,,,,stands
+4226,,6,,,,stands
+4227,,10,,,,stands
+4228,,10,,,,stands
+4229,,10,,,Museu do Ingá,stands
+4230,,4,,,,stands
+4231,,10,,,,stands
+4232,,10,,,,stands
+4233,,10,,,,stands
+4234,,10,,,,stands
+4235,,4,,,,stands
+4236,,8,,,,stands
+4237,,8,,,,stands
+4238,,6,,,,stands
+4239,,4,,,,stands
+4240,,6,,,,stands
+4241,,6,,,,stands
+4242,,6,,,,stands
+4243,,10,,,,stands
+4244,,10,,,,stands
+4245,,8,,,,stands
+4246,,4,,,,stands
+4247,,4,,,,stands
+4248,,6,,,,stands
+4249,,6,,,,stands
+4250,,6,,,,stands
+4251,,10,,,Complexo Esportivo do Barreto,stands
+4252,,6,,,,stands
+4253,,20,no,yes,,mac
+4254,,20,,,,mac
+4255,,20,,,,mac
+4256,,20,,,,mac
+4257,,10,,,,mac
+4258,,10,,,,mac
+4259,,20,,yes,,mac
+4260,,40,,,,mac
+4261,,80,no,yes,,stands
+4262,,10,,,,mac
+4263,,20,,,,mac
+4264,,20,,,,mac
+4265,,20,,,,mac
+4266,,20,,,,mac
+4267,,20,,,,mac
+4268,,20,,,,mac
+4269,,20,no,yes,,mac
+4270,,20,,,,mac
+4271,,20,,,,mac
+4272,,4,,,,stands
+4273,,4,,,,stands
+4274,,4,,,,stands
+4275,,4,,,,stands
+4276,,4,,,,stands
+4277,,2,,,,stands
+4278,,4,,,,stands
+4279,,4,,,,stands
+4280,,8,,,,stands
+4281,,4,,,,stands
+4282,,2,,,,stands
+4283,,4,,,,stands
+4284,,4,,,,stands
+4285,,4,,,,stands
+4286,,8,,,,stands
+4287,,8,,,,stands
+4288,,2,,,,stands
+4289,,4,,,,stands
+4290,,4,,,,stands
+4291,,10,,,,stands
+4292,,6,,,,stands
+4293,,4,,,,stands
+4294,,8,,,,stands
+4295,,4,,,,stands
+4296,,4,,,,stands
+4297,,4,,,,stands
+5590,,,,,,stands
+4298,,4,,,,stands
+4299,,4,,,,stands
+4300,,4,,,,stands
+4301,,4,,,,stands
+4302,,4,,,,stands
+4303,,4,,,,stands
+4304,,6,,,,stands
+4305,,4,,,,stands
+4306,,4,,,,stands
+4307,,6,,,,stands
+4308,,4,,,,stands
+4309,,4,,,,stands
+4310,,6,,,,stands
+4311,,8,,,,stands
+4312,,6  vagas,,,,stands
+4313,,4,,,,stands
+4314,,4,,,,stands
+4315,,2,,,,stands
+4316,,4,,,,stands
+4317,,4,,,,stands
+4318,,8,,,,stands
+4319,,4,,,,stands
+4320,,4,,,,stands
+4321,,4,,,,stands
+4322,,4,,,,stands
+4323,,4,,,,stands
+4324,,4,,,,stands
+4325,,2,,,,stands
+4326,,4,,,,stands
+4327,,4,,,,stands
+4328,,4,,,,stands
+4329,,4,,,,stands
+4330,,2,,,,stands
+4331,,10,,,,stands
+4332,,4,,,,stands
+4333,,50,yes,yes,,stands
+4334,,2,,,,stands
+4335,,10,,,,stands
+4336,,4,,,,stands
+4337,,6,,,,stands
+4338,,6,,,,stands
+4339,,4,,,,stands
+4340,,4,,,,stands
+4341,,4,,,,stands
+4342,,4,,,,stands
+4343,,,,,,
+4344,,4,,,,stands
+4345,,4,,,,stands
+4346,,4,,,,stands
+4347,,14,,,,stands
+4348,,,,,,
+4349,,4,,,,stands
+4350,,4,,,,stands
+4351,,8,,,,stands
+4352,,2,,,,stands
+4353,,4,,,,stands
+4354,,4,,,,stands
+4355,,4,,,,stands
+4356,,8,,,,stands
+4357,,4,,,,stands
+4358,,6,,,,stands
+4359,,4,,,,stands
+4360,,4,,,,stands
+4361,,6,,,,stands
+4362,,4,,,,stands
+4363,,4,,,,stands
+4364,,4,,,,stands
+4365,,4,,,,stands
+4366,,4,,,,stands
+4367,,8,no,yes,,transoceânica
+4368,,10,,,,transoceânica
+4369,,10,no,,,transoceânica
+4370,,4,,,,stands
+4371,,10,,,,transoceânica
+4372,,12,,,,transoceânica
+4373,,10,,,,transoceânica
+4374,,14,,,,stands
+4375,,10,,,,transoceânica
+4376,,4,,,,stands
+4377,,6,,,,stands
+4378,,4,,,,stands
+4379,,4,,,,stands
+4380,,6,,,,stands
+4381,,4,,,,stands
+4382,,4,,,,stands
+4383,,4,,,,stands
+4384,,4,,,,stands
+4385,,6,,,,stands
+4386,,4,,,,stands
+4387,,6,,,,stands
+4388,,20,,,,stands
+4389,,6,,,,stands
+4390,,12,,,,stands
+4391,,8,,,,stands
+4392,,10,,,,stands
+4393,,6,,,,stands
+4394,,4,,,,stands
+4395,,10,,,,stands
+4396,,18,,,,stands
+4397,,4,,,,stands
+4398,,6,,,,stands
+4399,,14,,,,stands
+4400,,4,,,,stands
+4401,,4,no,,,stands
+4402,,8,no,,,stands
+4403,,4,,,,stands
+4404,,4,,,,stands
+4405,,6,,,,stands
+4406,,4,,,,stands
+4407,,8,,,,stands
+4408,,4,,,,stands
+4409,,10,,,,stands
+4410,,4,,,,stands
+4411,,4,,,,stands
+4412,,4,,,,stands
+4413,,4,,,,stands
+4414,,4,,,,stands
+4415,,6,,,,stands
+4416,,4,,,,stands
+4417,,10,,,,stands
+4418,,4,,,,stands
+4419,,14,,,,stands
+4420,,2,,,,stands
+4421,,4,,,,stands
+4422,,14,,,,stands
+4423,,14,,,,stands
+4424,,6,,,,stands
+4425,,4,,,,stands
+4426,,16,no,yes,,stands
+4427,,10,no,yes,,stands
+4428,,10,no,yes,,stands
+4429,,10,,,,stands
+4430,,10,,,,stands
+4431,,10,,,,stands
+4432,,14,,,,stands
+4433,,8,,,,stands
+4434,,8,,,,stands
+4435,,10,,,,stands
+4436,,4,,,,stands
+4437,,20,no,yes,,stands
+4438,,6,,,,stands
+4439,,4,,,,stands
+4440,,4,,,,stands
+4441,,6,,,,stands
+4442,,4,,,,stands
+4443,,4,,,,stands
+4444,,4,,,,stands
+4445,,4,,,,stands
+4446,,6,,,,stands
+4447,,6,,,,stands
+4448,,6,,,,stands
+4449,,22,,,,stands
+4450,,6,,,,stands
+4451,,10,,,,stands
+4452,,20,,,,stands
+4453,,6,,,,stands
+4454,,24,yes,,,stands
+4455,,8,,,E.M. Aberto Torres,stands
+4456,,8,,,E.M.  Maestro H. Villa Lobos,stands
+4457,,,,,8,stands
+4458,,12,,,E.M. Paulo Freire,stands
+4459,,,,,,stands
+4460,,12,,,,stands
+4461,,12,,,E.M. Honorina de Carvalho,stands
+4462,,16,no,,E.M. Levi Carneiro,stands
+4463,,6,,,Escola Municipal João Brazil,stands
+4464,,8,,,E.M. Julia Cortines,stands
+4465,,8,,,E.M. Santos Dumont,stands
+4466,,2,,,,stands
+4467,,4,,,,stands
+4468,,20,,,Caminho Niemayer,stands
+4469,,10,,,,stands
+4470,,16,,,,stands
+4471,,6,,,,stands
+4472,,10,,,,transoceânica
+4473,,10,,,,stands
+4474,,12,,,,stands
+4475,,10,,,,stands
+4476,,10,,,,stands
+4477,,8,,,,stands
+4478,,20,,,,stands
+4479,,8,,,,stands
+4480,,6,,,,stands
+4481,,24,,,,stands
+4482,,24,,,,stands
+4483,,10,,,,stands
+4484,,10,,,,stands
+4485,,16,,,,stands
+4486,,8,,,,stands
+4487,,4,,,,stands
+4488,,8,no,yes,,stands
+4489,,8,,,,stands
+4490,,4,,,,stands
+4491,,8,,,,stands
+4492,,24,,,,stands
+4493,,8,no,yes,,stands
+4494,,10,,,,stands
+4495,,10,,,,stands
+4496,,4,,,,stands
+4497,,6,,,,stands
+4498,,8,,,,stands
+4499,,4,,,,stands
+4500,,8,,,,stands
+4501,,4,,,,stands
+4502,,6,,,,stands
+4503,,10,,,,stands
+4504,,10,,,,stands
+4505,,10,,,,stands
+4506,,4,,,,stands
+4507,,6,,,,stands
+4508,,6,,,,stands
+4509,,6,,,,stands
+4510,,6,,,,stands
+4511,,6,,,,stands
+4512,,10,,,,mac
+4513,,8,,,,stands
+4514,,18,,,,mac
+4515,,4,,,,stands
+4516,,6,,,,stands
+4517,,10,,,,stands
+4518,,4,,,,stands
+4519,,6,,,,stands
+4520,,4,,,,stands
+4521,,12,,,,stands
+4522,,10,,,,stands
+4523,,4,,,,stands
+4524,,10,,,,stands
+4525,,8,,,,stands
+4526,,8,,,,stands
+4527,,20,no,yes,,stands
+4528,,20,no,yes,,stands
+4529,,20,no,yes,,stands
+4530,,10,,,,stands
+4531,,,,,,
+4532,,,,,,
+4533,,,,,,
+4534,,,no,yes,,
+4535,,2,no,yes,Café República Cup,stands
+4536,,,,,,
+4537,,,,,,
+4538,,,,,,
+4539,,2,no,,,stands
+4540,,,,,,shed
+4541,,10,no,permit,,shed
+4542,,8,no,,,wall_loops
+4543,,4,no,,,stands
+4544,,20,no,,,stands
+4545,,6,no,,,stands
+4546,,18,no,,,stands
+4547,,3,no,,,stands
+4548,,4,no,,CEFET-MG Campus Divinópolis,stands
+4549,,10,no,yes,,wall_loops
+4550,,10,yes,permit,,wall_loops
+4551,,8,no,,,wall_loops
+4552,,20,yes,yes,,wall_loops
+4553,,10,yes,,,wall_loops
+4554,,20,,,,wall_loops
+4555,,12,,,,stands
+4556,,10,yes,,,stands
+4557,,5,no,permit,,wall_loops
+4558,,5,yes,,,wall_loops
+4559,,5,no,,,stands
+4560,,10,no,,,stands
+4561,,1,no,yes,,stands
+4562,,1,no,yes,,stands
+4563,,10,yes,yes,,stands
+4564,,2,no,yes,,stands
+4565,,2,no,yes,,stands
+4566,,6,no,yes,,stands
+4567,,10,no,yes,,wall_loops
+4568,,10,,yes,,stands
+4569,,2,no,,,stands
+4570,,3,,,,ground_slots
+4571,,6,,,,
+4572,,10,no,yes,,stands
+4573,,,,,,
+4574,,,yes,yes,,stands
+4575,,,,,,stands
+4576,,,,,,
+4577,,3,no,customers,,ground_slots
+4578,,,,,,
+4579,,,,,,
+4580,,3,no,customers,Ballet Cultura,ground_slots
+4581,,6,no,,Sicredi,ground_slots
+4582,,,,,,wall_loops
+4583,,8,no,yes,,
+4584,,,,,,ground_slots
+4585,,,,,,ground_slots
+4586,,5,no,yes,,
+4587,,,,,,
+4588,,,no,,,stands
+4589,,20,,,,stands
+4590,,,,,,stands
+4591,,,yes,,,
+4592,,,no,customers,,wall_loops
+4593,,20,,yes,,stands
+4594,,,,,,stands
+4595,,,,,,stands
+4596,,,,,,stands
+4597,,14,no,yes,,stands
+4598,,4,,,,stands
+4599,,2,,,,stands
+4600,,8,no,yes,,stands
+4601,,,,,,building
+4602,,10,no,yes,,stands
+4603,JP Bicicletário e Estacionamento,,,,,yes
+4604,,5,no,yes,,
+4605,,6,no,,,stands
+4606,,4,,,,stands
+4607,,4,,,,stands
+4608,Paraciclo Vanguard Home - Central de decorados,4,no,yes,Vanguard Decorações,stands
+4609,,3,,,,wall_loops
+4610,,,yes,,,wall_loops
+4611,,16,no,yes,,stands
+4612,,16,no,yes,,stands
+4613,,8,yes,yes,,stands
+4614,,3,,,,ground_slots
+4615,,4,,,,ground_slots
+4616,,8,no,,,stands
+4617,,2,no,yes,,stands
+4618,,10,no,yes,,stands
+4619,,4,no,yes,,wall_loops
+4620,,4,no,customers,Farmácia Preço Popular,wall_loops
+4621,,10,no,yes,Espaço Múltiplo Uso FIREBIKERS,stands
+4622,,12,yes,permissive,,wall_loops
+4623,,,,,,
+4624,,3,no,customers,,ground_slots
+4625,,,,,,
+4626,,,,,,
+4627,,2,no,customers,,wall_loops
+4628,,4,,,,stands
+4629,,5,,,,
+4630,,4 vagas,,,,stands
+4631,,6 vagas,,,,stands
+4632,,30 vagas,,,,stands
+4633,,4 vagas,,,,stands
+4634,,4 vagas,,,,stands
+4635,,14 vagas,,,,stands
+4636,,10 vagas,,,,stands
+4637,,2 vagas,,,,stands
+4638,,4 vagas,,,,stands
+4639,,8 vagas,,,,stands
+4640,,18 vagas,,,,stands
+4641,,2 vagas,,,,stands
+4642,,8 vagas,,,,stands
+4643,,6 vagas,,,,stands
+4644,,10 vagas,,,,stands
+4645,,10 vagas,,,,stands
+4646,,6 vagas,,,,stands
+4647,,6 vagas,,,,stands
+4648,,4 vagas,,,,stands
+4649,,6 vagas,,,,stands
+4650,,6 vagas,,,,stands
+4651,,10 vagas,,,,stands
+4652,,10 vagas,,,,stands
+4653,,4 vagas,,,,stands
+4654,,4 vagas,,,,stands
+4655,,20 vagas,,,,stands
+4656,,4 vagas,,,,stands
+4657,,10 vagas,,,,stands
+4658,,10 vagas,,,,stands
+4659,,2 vagas,,,,stands
+4660,,6 vagas,,,,stands
+4661,,2 vagas,,,,stands
+4662,,10 vagas,,,,stands
+4663,,6 vagas,,,,stands
+4664,,4 vagas,,,,stands
+4665,,4 vagas,,,,stands
+4666,,4 vagas,,,,stands
+4667,,4 vagas,,,,stands
+4668,,6 vagas,,,,stands
+4669,,6 vagas,,,,stands
+4670,,6 vagas,,,,stands
+4671,,4 vagas,,,,stands
+4672,,6 vagas,,,,stands
+4673,,6 vagas,,,,stands
+4674,,2 vagas,,,,stands
+4675,,2 vagas,,,,stands
+4676,,6 vagas,,,,stands
+4677,,2 vagas,,,,stands
+4678,,6 vagas,,,,stands
+4679,,4 vagas,,,,stands
+4680,,4 vagas,,,,stands
+4681,,6 vagas,,,,stands
+4682,,4 vagas,,,,stands
+4683,,4 vagas,,,,stands
+4684,,6 vagas,,,,stands
+4685,,2 vagas,,,,stands
+4686,,4 vagas,,,,stands
+4687,,18 vagas,,,,stands
+4688,,6 vagas,,,,stands
+4689,,6 vagas,,,,stands
+4690,,10 vagas,,,,stands
+4691,,6 vagas,,,,stands
+4692,,12 vagas,,,,stands
+4693,,12 vagas,,,,stands
+4694,,10 vagas,,,,stands
+4695,,6 vagas,,,,stands
+4696,,6 vagas,,,,stands
+4697,,6 vagas,,,,stands
+4698,,4 vagas,,,,stands
+4699,,2,,,,stands
+4700,,10 vagas,,,,stands
+4701,,6 vagas,,,,stands
+4702,,10 vagas,,,,stands
+4703,,4 vagas,,,,stands
+4704,,8 vagas,,,,stands
+4705,,10 vagas,,,,stands
+4706,,8 vagas,,,,stands
+4707,,4 vagas,,,,stands
+4708,,8 vagas,,,,stands
+4709,,10 vagas,,,,stands
+4710,,8 vagas,,,,stands
+4711,,4 vagas,,,,stands
+4712,,10 vagas,,,,stands
+4713,,10 vagas,,,,stands
+4714,,2 vagas,,,,stands
+4715,,4 vagas,,,,stands
+4716,,6,no,yes,,stands
+4717,,4,no,yes,,stands
+4718,,8,no,yes,,stands
+4719,,6,,,,stands
+4720,,,,,,
+4721,,,yes,customers,,
+4722,,44,yes,yes,,stands
+4723,,,,,,stands
+4724,,,,,,stands
+4725,,,,yes,,stands
+4726,,,no,,,
+4727,,,no,,,
+4728,,,yes,,,
+4729,,,,,,
+4730,,10,no,yes,,stands
+4731,,14,,yes,STTP,stands
+4732,,,,,,
+4733,,10,no,yes,,stands
+4734,,,,,,
+4735,,,,,,stands
+4736,,,,,,
+4737,,10,no,,,stands
+4738,,,yes,,,
+4739,,4,no,,,stands
+4740,,15,yes,yes,,wall_loops
+4741,,30,yes,,,wall_loops
+4742,,,,,,
+4743,,10,,,,
+4744,,10,yes,,,wall_loops
+4745,,16,no,,,stands
+4746,,8,no,yes,,stands
+4747,,6,,,,stands
+4748,,4,no,,,stands
+4749,,6,no,yes,,stands
+4750,,,,,,stands
+4751,,10,no,yes,,stands
+4752,,10,no,yes,,stands
+4753,,10,no,yes,,stands
+4754,,10,no,yes,,stands
+4755,,10,no,yes,,stands
+4756,,10,no,yes,,stands
+4757,,10,no,yes,,stands
+4758,,10,no,yes,,stands
+4759,,8,no,yes,,stands
+4760,,10,no,yes,,stands
+4761,,10,no,yes,,stands
+4762,,8,no,yes,,stands
+4763,,10,yes,,,wall_loops
+4764,,10,no,,,stands
+4765,,10,no,,,stands
+4766,,8,no,,,wall_loops
+4767,,10,no,,,wall_loops
+4768,,,no,,,wall_loops
+4769,,4,no,,,
+4770,,10,no,,,wall_loops
+4771,,20,no,private,,stands
+4772,,,,,,
+4773,,,,,,
+4774,,14,,,,
+4775,,20,,,,
+4776,,22,,,,
+4777,,,yes,permissive,,stands
+4778,,10,no,yes,,stands
+4779,,7,no,yes,,stands
+4780,,100,no,,,stands
+4781,,10,,,,
+4782,,5,no,yes,,ground_slots
+4783,,7,no,yes,,wall_loops
+4784,,16,no,yes,,wall_loops
+4785,,10,,,,
+4786,,10,no,yes,"VLóce Bike, Run & Foods",stands
+4787,,4,yes,customers,Farmácia São João,anchors
+4788,,5,no,,,stands
+4789,,7,no,yes,Faculdade de Direito,wall_loops
+4790,,10,no,permissive,,wall_loops
+4791,,100,yes,permissive,,shed
+4792,,68,yes,permissive,Goiânia Shopping,shed
+4793,,20,no,yes,,wall_loops
+4794,,6,no,,,wall_loops
+4795,,20,no,,,wall_loops
+4796,,6,no,,,stands
+4797,,5,no,customers,Autoescola Kath,ground_slots
+4798,,3,no,customers,,ground_slots
+4799,,,no,yes,,wall_loops
+4800,,5,no,,,stands
+4801,,,yes,customers,,
+4802,,3,no,customers,,ground_slots
+4803,,20,no,yes,,stands
+4804,,6,no,,,wall_loops
+4805,,6,no,yes,,stands
+4806,,5,,yes,CEIM Professora Dorotéa Hoeft Borchardt,ground_slots
+4807,,3,yes,yes,,ground_slots
+4808,,14,no,,,stands
+4809,,20,no,,,stands
+4810,,,,,,stands
+4811,,10,no,,,stands
+4812,,,,,,
+4813,,3,no,customers,,ground_slots
+4814,,4,no,yes,,stands
+4815,,8,no,yes,,stands
+4816,,8,no,yes,,stands
+4817,,5,no,yes,,wall_loops
+4818,,4,no,yes,,stands
+4819,,12,,,,stands
+4820,,11,,yes,,wall_loops
+4821,,1,,customers,Testo Notícias,ground_slots
+4822,,,,,,
+4823,,,,,,
+4824,,,,,,
+4825,,4,,yes,Hospital e Maternidade Rio do Testo,ground_slots
+4826,,,,,,stands
+4827,,,no,,Smart Fit,
+4828,,,no,,,wall_loops
+4829,,6,no,yes,,stands
+4830,,20,no,yes,,mac
+4831,,12,no,yes,,stands
+4832,,,,,,
+4833,,4,no,,,stands
+4834,,20,no,yes,,stands
+4835,,,no,yes,,stands
+4836,,2,,customers,,
+4837,,20,no,,,stands
+4838,,8,no,,,stands
+4839,,5,,customers,Dárien Bike Shop,ground_slots
+4840,,2,no,yes,,ground_slots
+4841,,12,,,,
+4842,,5,no,,,wall_loops
+4843,,,,,,
+4844,,,,,,
+4845,,4,no,,,stands
+4846,,,yes,,,stands
+4847,,,,,,
+4848,,26,no,yes,,stands
+4849,,4,no,yes,,stands
+4850,,6,no,yes,,stands
+4851,,,no,private,,
+4852,,3,no,yes,,ground_slots
+4853,,3,no,yes,,ground_slots
+4854,,4,no,yes,,ground_slots
+4855,,4,no,yes,,anchors
+4856,,6,no,yes,,anchors
+4857,,6,no,yes,,anchors
+4858,,8,no,unknown,,stands
+4859,,30,no,,,wall_loops
+4860,,10,yes,private,,shed
+4861,,4,yes,,,stands
+4862,,,yes,yes,,safe_loops
+4863,,6,no,,,stands
+4864,,,,,,
+4865,,,,,,
+4866,,,no,,,wall_loops
+4867,,,no,,,wall_loops
+4868,,,,,,
+4869,,,no,,,wall_loops
+4870,,,,,,stands
+4871,,,,,,
+4872,,,,,,stands
+4873,,,,,,
+4874,,,,,,stands
+4875,,,no,,,stands
+4876,,,no,,,stands
+4877,,,,,,stands
+4878,,,,,,stands
+4879,,,,,,
+4880,,,,,,
+4881,,,,,,
+4882,,,,,,
+4883,,24,no,yes,,stands
+4884,,24,no,yes,,stands
+4885,,,,,,
+4886,,,,,,
+4887,,3,no,,,wall_loops
+4888,,18,no,,,stands
+4889,,18,no,,,stands
+4890,,18,no,,,stands
+4891,,18,no,,,stands
+4892,,20,no,,,stands
+4893,,10,no,,,stands
+4894,,,,,,
+4895,,,,,,
+4896,,,,,,
+4897,,,,,,
+4898,,,,,,
+4899,,,,,,
+4900,,,no,,,wall_loops
+4901,,10,yes,,,wall_loops
+4902,,8,no,,,wall_loops
+4903,,,no,,,wall_loops
+4904,,,,,,
+4905,,10,no,,,wall_loops
+4906,,,no,,,wall_loops
+4907,,10,no,,,wall_loops
+4908,,10,no,,,wall_loops
+4909,,,no,,,wall_loops
+4910,,,no,,,wall_loops
+4911,,,no,,,wall_loops
+4912,,8,no,,,wall_loops
+4913,,10,yes,,,wall_loops
+4914,,,,,,
+4915,,,no,,,
+4916,,4,,,,
+4917,,6,,,,
+4918,,8,,,,
+4919,,,,,,
+4920,,2,no,customers,,ground_slots
+4921,,,no,customers,,ground_slots
+4922,,5,no,,,stands
+4923,,,yes,private,,building
+4924,,4,no,,,stands
+4925,,6,no,,,ground_slots
+4926,,,,,,wall_loops
+4927,,,,,,wall_loops
+4928,,4,no,,,stands
+4929,,8,,yes,,
+4930,,8,,yes,,
+4931,,4,,yes,,
+4932,,6,,yes,,
+4933,,3,,,,wall_loops
+4934,,3,,,,wall_loops
+4935,,3,,,,wall_loops
+4936,,5,no,yes,,ground_slots
+4937,,,,,,
+4938,,,,,,
+4939,,,,,,
+4940,,,,,,
+4941,,2,no,yes,,wall_loops
+4942,,,,,,
+4943,,,no,,,wall_loops
+4944,,,no,,,wall_loops
+4945,,2,no,,,stands
+4946,,,,,,
+4947,,3,no,,,stands
+4948,,6,no,yes,,stands
+4949,,,no,yes,,stands
+4950,CASA mix,,,,,
+4951,,,,,,
+4952,,6,,,,
+4953,,12,no,yes,,stands
+4954,,10,,yes,Ameciclo,stands
+4955,,10,no,yes,,stands
+4956,,10,no,yes,,wall_loops
+4957,,,,,,wall_loops
+4958,,,,,,
+4959,,6,no,yes,,
+4960,,4,no,yes,,stands
+4961,,4,no,yes,,stands
+4962,,10,no,,,wall_loops
+4963,,,no,,,
+4964,,3,no,,,wall_loops
+4965,,4,no,,,stands
+4966,,2,no,,,stands
+4967,,6,no,,,wall_loops
+4968,,,no,,,
+4969,,2,no,,,stands
+4970,,4,no,,,stands
+4971,,6,no,,,wall_loops
+4972,,,,,,
+4973,,2,no,,,stands
+4974,,2,no,,,stands
+4975,,12,no,,,wall_loops
+4976,,2,no,,,stands
+4977,,16,no,,,stands
+4978,,,,,,
+4979,,10,no,yes,,wall_loops
+4980,,20,no,yes,,stands
+4981,,10,no,yes,,stands
+4982,CICLISOUSA,,,,,
+4983,,18,no,yes,,stands
+4984,,10,no,yes,,stands
+4985,,10,no,yes,,stands
+4986,Biblioteca CCSA,5,yes,yes,,wall_loops
+4987,,,,,,
+4988,,,,,,
+4989,,,no,,,wall_loops
+4990,,,,,,
+4991,,6,,,,stands
+4992,,15,,,,wall_loops
+4993,,3,no,,,wall_loops
+4994,,5,no,,,stands
+4995,,,,,,stands
+4996,,,,,,
+4997,,,,,,
+4998,,,,,,
+4999,,,,,,
+5000,,,,,,shed
+5001,,,,,,
+5002,,4,no,,,stands
+5003,,5,no,,,stands
+5004,,4,no,,,stands
+5005,,5,no,,,stands
+5006,,5,no,,,stands
+5007,,5,no,,,stands
+5008,,,yes,,,
+5009,,,no,yes,,stands
+5010,,20,no,yes,,stands
+5011,,,,,,wall_loops
+5012,,10,,,,
+5013,,16,no,yes,,wall_loops
+5014,,16,yes,yes,,stands
+5015,,10,,,Itau,floor
+5016,,20,no,,,wall_loops
+5017,,,no,yes,,wall_loops
+5018,,,no,yes,,stands
+5019,,,no,yes,,stands
+5020,,,,,,
+5021,,,no,,,wall_loops
+5022,,,,,,stands
+5023,,,,,,stands
+5024,,18,,,,
+5025,,,no,,,stands
+5026,,4,no,,,stands
+5027,,,,,,
+5028,Bicicletário Assaí,,,,,
+5029,,,no,yes,,saddle_holder
+5030,,8,no,,,
+5031,,4,,,,
+5032,,4,,,,
+5033,,10,no,,,stands
+5034,,28,yes,,,stands
+5035,,10,no,yes,,wall_loops
+5036,,7,yes,customers,,wall_loops
+5037,,,yes,private,Farmalan,wall_loops
+5038,,10,no,,,wall_loops
+5039,,6,,,,
+5040,,,,,,
+5041,Bicicletário da Rodoviária Roberto Silveira,,no,,,
+5042,,20,no,,,stands
+5043,,9,,,,wall_loops
+5044,,20,yes,,,stands
+5045,,2,no,,,stands
+5046,,7,no,,,wall_loops
+5047,,6,no,,,stands
+5048,,7,no,,,wall_loops
+5049,,8,no,private,,stands
+5050,,12,yes,,,stands
+5051,,5,no,yes,,wall_loops
+5052,,10,no,yes,,stands
+5053,,2,no,,,stands
+5054,,8,,,,
+5055,,10,no,,,wall_loops
+5056,,,,,,
+5057,,,,,,
+5058,,,no,,,
+5059,,,,,,
+5060,,,,,,
+5061,,,,,,
+5062,,10,no,,,stands
+5063,,,,,,
+5064,,,no,,,stands
+5065,,,,,,
+5066,,,,,,
+5067,,,no,,,wall_loops
+5068,,,no,private,,wall_loops
+5069,,,,,,
+5070,,,no,yes,,wall_loops
+5071,Estação Werneck,10,no,yes,Prefeitura do Recife,stands
+5072,Creche Dorgiane dos Santos Xavier Souza,10,no,yes,Prefeitura do Recife,stands
+5073,Praça Maestro Milton Rodrigues,10,no,yes,Prefeitura do Recife,stands
+5074,Praça Cabipa,6,no,yes,Prefeitura do Recife,stands
+5075,Praça Juliete Moura,6,no,yes,Prefeitura do Recife,stands
+5076,Banco Bradesco,6,no,yes,Prefeitura do Recife,stands
+5077,Praça Maria Lucia,10,no,yes,Prefeitura do Recife,stands
+5078,Quadra Neópolis,10,no,yes,Prefeitura do Recife,stands
+5079,Praça da Truaca,6,no,yes,Prefeitura do Recife,stands
+5080,Praça Tempo de Crescer,10,no,yes,Prefeitura do Recife,stands
+5081,Praça Raízes,10,no,yes,Prefeitura do Recife,stands
+5082,Praça do Tamarindo,10,no,yes,Prefeitura do Recife,stands
+5083,Praça Três Marias,10,no,yes,Prefeitura do Recife,stands
+5084,Praça dos Iburenses,10,no,yes,Prefeitura do Recife,stands
+5085,IPHAN,10,no,yes,Prefeitura do Recife,stands
+5086,Praça Padre Romano Zufferey,10,no,yes,Prefeitura do Recife,stands
+5087,Praça de Joana Bezerra,10,no,yes,Prefeitura do Recife,stands
+5088,Praça José da Costa Porto,10,no,yes,Prefeitura do Recife,stands
+5089,Praça do Mangue,12,no,yes,Prefeitura do Recife,stands
+5090,Praça Marcantônio Vilaça,10,no,yes,Prefeitura do Recife,stands
+5091,Porto Terra Nova,14,no,yes,Prefeitura do Recife,stands
+5092,Praça Don Helder,6,no,yes,Prefeitura do Recife,stands
+5093,Praça João Vinte e Três,6,no,yes,Prefeitura do Recife,stands
+5094,2a Praça da Vila dos Bancários,6,no,yes,Prefeitura do Recife,stands
+5095,Praça Saberé,10,no,yes,Prefeitura do Recife,stands
+5096,Praça Mano Marlon Lins,10,no,yes,Prefeitura do Recife,stands
+5097,Escola Municipal Nova Morada,4,no,yes,Prefeitura do Recife,stands
+5098,Praça dos Ipês,16,no,yes,Prefeitura do Recife,stands
+5099,Quadra Sobral,10,no,yes,Prefeitura do Recife,stands
+5100,COMPAZ Miguel Arraes,20,no,yes,Prefeitura do Recife,stands
+5101,Praça Professor Calazans,10,no,yes,Prefeitura do Recife,stands
+5102,Creche Escola Municipal João Amazonas,6,no,yes,Prefeitura do Recife,stands
+5103,Escola Municipal Olindina Monteiro de Oliveira França,4,no,yes,Prefeitura do Recife,stands
+5104,Restaurante Pahu Poke,10,no,yes,Prefeitura do Recife,stands
+5105,Mercado Público de Nova Descoberta,10,no,yes,Prefeitura do Recife,stands
+5106,Campo de Singapura,10,no,yes,Prefeitura do Recife,stands
+5107,Escola Municipal Poeta Solano Trindade,4,no,yes,Prefeitura do Recife,stands
+5108,Escola Municipal Antônio Heráclio do Rego,6,no,yes,Prefeitura do Recife,stands
+5109,Praça da FEB,10,no,yes,Prefeitura do Recife,stands
+5110,Largo da Encruzilhada,10,no,yes,Prefeitura do Recife,stands
+5111,Praça do Rosarinho,10,no,yes,Prefeitura do Recife,stands
+5112,CRAS Dois Irmãos,10,no,yes,Prefeitura do Recife,stands
+5113,CRAS Alto do Mandu,10,no,yes,Prefeitura do Recife,stands
+5114,Baobá,10,no,yes,Prefeitura do Recife,stands
+5115,Estação La Greca,10,no,yes,Prefeitura do Recife,stands
+5116,Praça Miguel de Cervantes,10,no,yes,Prefeitura do Recife,stands
+5117,COMPAZ atriz Leda Alves,10,no,yes,Prefeitura do Recife,stands
+5118,Secretaria de Meio Ambiente,10,no,yes,Prefeitura do Recife,stands
+5119,Sá e Souza,10,no,yes,Prefeitura do Recife,stands
+5120,Praça Jardim América,10,no,yes,Prefeitura do Recife,stands
+5121,Quadra Imbiribeira,10,no,yes,Prefeitura do Recife,stands
+5122,Largura,10,no,yes,Prefeitura do Recife,stands
+5123,,,no,yes,Prefeitura do Recife,stands
+5124,,,no,yes,Prefeitura do Recife,stands
+5125,Praça José Sales Filho,10,no,yes,Prefeitura do Recife,stands
+5126,Orora,10,no,yes,Prefeitura do Recife,stands
+5127,Praça Dona Elizabeth,10,no,yes,Prefeitura do Recife,stands
+5128,Praça Adulccio Junior,10,no,yes,Prefeitura do Recife,stands
+5129,Praça Eduardo Campos (Ilha de Deus),10,no,yes,Prefeitura do Recife,stands
+5130,Polo Academia da Cidade - Jordão Baixo,10,no,yes,Prefeitura do Recife,stands
+5131,,,no,yes,Prefeitura do Recife,stands
+5132,,,no,yes,Prefeitura do Recife,stands
+5133,RM,10,no,yes,Prefeitura do Recife,stands
+5134,Feira agroecológia de Setubal,10,no,yes,Prefeitura do Recife,stands
+5135,Marco Zero da Ilha de Deus,10,no,yes,Prefeitura do Recife,stands
+5136,Praça do Tourão,10,no,yes,Prefeitura do Recife,stands
+5137,Praça Prof. Barreto Campelo,10,no,yes,Prefeitura do Recife,stands
+5138,Douro,10,no,yes,Prefeitura do Recife,stands
+5139,EREM Clotilde de Oliveira,10,no,yes,Prefeitura do Recife,stands
+5140,Escola Est. Professor Motta e Albuquerque,10,no,yes,Prefeitura do Recife,stands
+5141,Bacurau - Galo,10,no,yes,Prefeitura do Recife,stands
+5142,Conjunto Europa,10,no,yes,Prefeitura do Recife,stands
+5143,Procuradoria Geral do Estado,10,no,yes,Prefeitura do Recife,stands
+5144,Vapor,10,no,yes,Prefeitura do Recife,stands
+5145,Central CadÚnico,10,no,yes,Prefeitura do Recife,stands
+5146,Travessa Carapuceiro,10,no,yes,Prefeitura do Recife,stands
+5147,Lagoa do Araçá,10,no,yes,Prefeitura do Recife,stands
+5148,Lagoa do Araçá,10,no,yes,Prefeitura do Recife,stands
+5149,Borsoi,10,no,yes,Prefeitura do Recife,stands
+5150,Sindicato dos Contabilistas,10,no,yes,Prefeitura do Recife,stands
+5151,Praça da Infãncia Córrego do Morcego,10,no,yes,Prefeitura do Recife,stands
+5152,Parque Jardim do Poço,8,no,yes,Prefeitura do Recife,stands
+5153,Parque Jardim do Poço,8,no,yes,Prefeitura do Recife,stands
+5154,Parcão Sítio da Trindade,10,no,yes,Prefeitura do Recife,stands
+5155,Rua dos Arcos,10,no,yes,Prefeitura do Recife,stands
+5156,Dantas Barreto,10,no,yes,Prefeitura do Recife,stands
+5157,Praça João Pereira Borges,10,no,yes,Prefeitura do Recife,stands
+5158,UFRPE 2,8,no,yes,Prefeitura do Recife,stands
+5159,UFRPE,10,no,yes,Prefeitura do Recife,stands
+5160,Parque Santos Dumont 2,10,no,yes,Prefeitura do Recife,stands
+5161,Parque Santos Dumont 1,10,no,yes,Prefeitura do Recife,stands
+5162,Bruno Veloso,10,no,yes,Prefeitura do Recife,stands
+5163,Parque Ecológico Rio Azul,10,no,yes,Prefeitura do Recife,stands
+5164,Praça Walt Disney,10,no,yes,Prefeitura do Recife,stands
+5165,Praça Cidade do Porto,10,no,yes,Prefeitura do Recife,stands
+5166,Praça Comandante Alex,10,no,yes,Prefeitura do Recife,stands
+5167,Estação e metrô Antônio Falcão,10,no,yes,Prefeitura do Recife,stands
+5168,AACD,22,no,yes,Prefeitura do Recife,stands
+5169,Quadra de Jardim Planalto,6,no,yes,Prefeitura do Recife,stands
+5170,Escola Municipal de Tejipió,6,no,yes,Prefeitura do Recife,stands
+5171,Estação Coqueiral,10,no,yes,Prefeitura do Recife,stands
+5172,Praça do ABC,10,no,yes,Prefeitura do Recife,stands
+5173,Praça Irmã Douraci Joaguim,10,no,yes,Prefeitura do Recife,stands
+5174,Praça Zeppelin (Jiquiá),10,no,yes,Prefeitura do Recife,stands
+5175,Praça da Sudene,10,no,yes,Prefeitura do Recife,stands
+5176,Praça Aleixo de Oliveira,10,no,yes,Prefeitura do Recife,stands
+5177,Praça Vicente Antunes,10,no,yes,Prefeitura do Recife,stands
+5178,Praça da Lua,10,no,yes,Prefeitura do Recife,stands
+5179,Barraca de Pingo,10,no,yes,Prefeitura do Recife,stands
+5180,Praça do Sargento,10,no,yes,Prefeitura do Recife,stands
+5181,Praça Franco Gomes Coutinho,10,no,yes,Prefeitura do Recife,stands
+5182,Praça Nossa Senhora de Fátima,10,no,yes,Prefeitura do Recife,stands
+5183,Praça Zeppelin (San Martin),10,no,yes,Prefeitura do Recife,stands
+5184,Praça Professor Paulo Silveira do Nascimento,10,no,yes,Prefeitura do Recife,stands
+5185,Praça Sargento Max Wolf Filho,10,no,yes,Prefeitura do Recife,stands
+5186,TI Caxangá,6,no,yes,Prefeitura do Recife,stands
+5187,Orla de Brasilia Teimosa (Buraco da Véia),10,no,yes,Prefeitura do Recife,stands
+5188,Acad. da cidade – Polo Cafezópolis,10,no,yes,Prefeitura do Recife,stands
+5189,Academia da Cidade Polo Chão de estrelas,10,no,yes,Prefeitura do Recife,stands
+5190,Buriti,10,no,yes,Prefeitura do Recife,stands
+5191,CMEI Prof. FRANCISCO do Amaral Lopes,10,no,yes,Prefeitura do Recife,stands
+5192,Parque das Graças 03,20,no,yes,Prefeitura do Recife,stands
+5193,Parque das Graças 02,10,no,yes,Prefeitura do Recife,stands
+5194,Parque das Graças 01,12,no,yes,Prefeitura do Recife,stands
+5195,TI Getulio Vargas 02,20,no,yes,Prefeitura do Recife,stands
+5196,TI CDU,16,no,yes,Prefeitura do Recife,stands
+5197,Mercado de Casa Amarela 04,10,no,yes,Prefeitura do Recife,stands
+5198,Praça Maciel Pinheiro,10,no,yes,Prefeitura do Recife,stands
+5199,Praça Eça de Queiroz,10,no,yes,Prefeitura do Recife,stands
+5200,Dpt. Remo Do Sport Club Do Recife,10,no,yes,Prefeitura do Recife,stands
+5201,Simonesia,4,no,yes,Prefeitura do Recife,stands
+5202,,,no,yes,Prefeitura do Recife,stands
+5203,CRAS Campina do Barreto,10,no,yes,Prefeitura do Recife,stands
+5204,Praça do Burity,10,no,yes,Prefeitura do Recife,stands
+5205,Academia da Cidade Polo Simão Borba,6,no,yes,Prefeitura do Recife,stands
+5206,Praça Chora Menino,6,no,yes,Prefeitura do Recife,stands
+5207,Praça dos Taxistas,6,no,yes,Prefeitura do Recife,stands
+5208,Praça Dom Miguel Valverde 03,6,no,yes,Prefeitura do Recife,stands
+5209,Praça Dom Miguel Valverde 02,6,no,yes,Prefeitura do Recife,stands
+5210,Praça Dom Miguel Valverde 01,6,no,yes,Prefeitura do Recife,stands
+5211,Praça João Pessoa de Queiroz,10,no,yes,Prefeitura do Recife,stands
+5212,Praça Prof. Calazans,10,no,yes,Prefeitura do Recife,stands
+5213,Praça dos Iburenses - Academia Recife,10,no,yes,Prefeitura do Recife,stands
+5214,Escola Municipal Engenheiro Edinaldo Miranda de Oliveira,10,no,yes,Prefeitura do Recife,stands
+5215,Academia da Cidade Polo Ilha do Leite,10,no,yes,Prefeitura do Recife,stands
+5216,Praça Jardim América,10,no,yes,Prefeitura do Recife,stands
+5217,Praça do Bongi 02,6,no,yes,Prefeitura do Recife,stands
+5218,Estação Afogados 02,4,no,yes,Prefeitura do Recife,stands
+5219,Estação Afogados 01,6,no,yes,Prefeitura do Recife,stands
+5220,Praça da Vitória,10,no,yes,Prefeitura do Recife,stands
+5221,Praça Jornalista Anibal Fernandes,10,no,yes,Prefeitura do Recife,stands
+5222,Praça Manfredo Nigro,10,no,yes,Prefeitura do Recife,stands
+5223,Praça José Cecílio de Lira,10,no,yes,Prefeitura do Recife,stands
+5224,Praça São Braz,10,no,yes,Prefeitura do Recife,stands
+5225,Praça Eduardo Cardoso,10,no,yes,Prefeitura do Recife,stands
+5226,Praça 4 de Outubro,10,no,yes,Prefeitura do Recife,stands
+5227,Praça Nossa Senhora de Lourdes,10,no,yes,Prefeitura do Recife,stands
+5228,Mercado de Areias,10,no,yes,Prefeitura do Recife,stands
+5229,Praça da Lavadeira,10,no,yes,Prefeitura do Recife,stands
+5230,Campo de Areias,10,no,yes,Prefeitura do Recife,stands
+5231,Praça João Stanislau,10,no,yes,Prefeitura do Recife,stands
+5232,Hospital Eduardo Campos da Pessoa Idosa,10,no,yes,Prefeitura do Recife,stands
+5233,Hospital Otávio de Freitas,10,no,yes,Prefeitura do Recife,stands
+5234,Escola Municipal Professora Maria da Paz Brandão Alves,10,no,yes,Prefeitura do Recife,stands
+5235,Estação Tejipió,10,no,yes,Prefeitura do Recife,stands
+5236,Praça da Cavalaria 02,10,no,yes,Prefeitura do Recife,stands
+5237,Praça da Cavalaria 01,10,no,yes,Prefeitura do Recife,stands
+5238,EREM Professora Helena Pugó,20,no,yes,Prefeitura do Recife,stands
+5239,Praça de San Martin (Praça da Infância),10,no,yes,Prefeitura do Recife,stands
+5240,Praça do El Salvador,10,no,yes,Prefeitura do Recife,stands
+5241,Hospital da Mulher (Emergência),10,no,yes,Prefeitura do Recife,stands
+5242,Hospital da Mulher (Acesso Funcionários),10,no,yes,Prefeitura do Recife,stands
+5243,Hospital da Mulher (Administração),10,no,yes,Prefeitura do Recife,stands
+5244,T.I Largo da Paz,10,no,yes,Prefeitura do Recife,stands
+5245,Escola Municipal Professor Antônio de Brito Alves,10,no,yes,Prefeitura do Recife,stands
+5246,Maternidade Professor Bandeira Filho,10,no,yes,Prefeitura do Recife,stands
+5247,Mercado de Afogados,10,no,yes,Prefeitura do Recife,stands
+5248,Calçada do metrô de Afogados,10,no,yes,Prefeitura do Recife,stands
+5249,Calçada do Sport Clube do Recife,10,no,yes,Prefeitura do Recife,stands
+5250,Restaurante Universitário (UFPE),10,no,yes,Prefeitura do Recife,stands
+5251,Reitoria UFPE,10,no,yes,Prefeitura do Recife,stands
+5252,Cemitério da Várzea,10,no,yes,Prefeitura do Recife,stands
+5591,,20,yes,,,wall_loops
+5253,Praça da Várzea,10,no,yes,Prefeitura do Recife,stands
+5254,Praça Pinto Damásio,10,no,yes,Prefeitura do Recife,stands
+5255,Melhor Cantinho da Cidade,10,no,yes,Prefeitura do Recife,stands
+5256,Praça do Rosário,10,no,yes,Prefeitura do Recife,stands
+5257,Ascendino Neves,10,no,yes,Prefeitura do Recife,stands
+5258,Praça do Bom Pastor,10,no,yes,Prefeitura do Recife,stands
+5259,Praça Estevão Sá,10,no,yes,Prefeitura do Recife,stands
+5260,Praça Cosme Viana,10,no,yes,Prefeitura do Recife,stands
+5261,Escola Professor Leal de Barros,10,no,yes,Prefeitura do Recife,stands
+5262,Praça Luiz de Lacerda,10,no,yes,Prefeitura do Recife,stands
+5263,Praça Nova Esperança,10,no,yes,Prefeitura do Recife,stands
+5264,Praça Cordislândia,10,no,yes,Prefeitura do Recife,stands
+5265,Praça Professor Coelho de Almeida,10,no,yes,Prefeitura do Recife,stands
+5266,Praça do Berardo,10,no,yes,Prefeitura do Recife,stands
+5267,Praça da Chesf,10,no,yes,Prefeitura do Recife,stands
+5268,Praça Luiz Gonzaga,4,no,yes,Prefeitura do Recife,stands
+5269,Praça da Paz Arcebispo Dom Helder Câmara,10,no,yes,Prefeitura do Recife,stands
+5270,Praça da Fé,10,no,yes,Prefeitura do Recife,stands
+5271,COMPAZ Escritor Ariano Suassuna,10,no,yes,Prefeitura do Recife,stands
+5272,COMPAZ Escritor Ariano Suassuna,10,no,yes,Prefeitura do Recife,stands
+5273,COMPAZ Escritor Ariano Suassuna,10,no,yes,Prefeitura do Recife,stands
+5274,Praça Áureo Xavier,10,no,yes,Prefeitura do Recife,stands
+5275,Praça Dom José Pereira Alves,10,no,yes,Prefeitura do Recife,stands
+5276,Praça Batista da Silva,10,no,yes,Prefeitura do Recife,stands
+5277,Praça Gregório Bezerra,10,no,yes,Prefeitura do Recife,stands
+5278,Praça José da Mota Silveira,10,no,yes,Prefeitura do Recife,stands
+5279,Praça Domingos Giovanetti,10,no,yes,Prefeitura do Recife,stands
+5280,Praça Paulo Freire,10,no,yes,Prefeitura do Recife,stands
+5281,Estádio do Arruda,10,no,yes,Prefeitura do Recife,stands
+5282,Praça de Campo Grande,10,no,yes,Prefeitura do Recife,stands
+5283,Campo de Concentração de Treinamento de Futebol Internacional do Brasil,10,no,yes,Prefeitura do Recife,stands
+5284,Praça Augusto Rodrigues,10,no,yes,Prefeitura do Recife,stands
+5285,Quadra do Viaduto João Tude Melo,10,no,yes,Prefeitura do Recife,stands
+5286,Praça Dr. José Vilela 02,10,no,yes,Prefeitura do Recife,stands
+5287,Praça Dr. José Vilela 01,10,no,yes,Prefeitura do Recife,stands
+5288,Praça Maria José dos Santos,10,no,yes,Prefeitura do Recife,stands
+5289,Praça Newton Vaz,10,no,yes,Prefeitura do Recife,stands
+5290,Praça Maria da Conceição de Barros,10,no,yes,Prefeitura do Recife,stands
+5291,Escola Embaixador Gilberto Amado,10,no,yes,Prefeitura do Recife,stands
+5292,Praça de Apipucos,10,no,yes,Prefeitura do Recife,stands
+5293,Maternidade Professor Bandeira Filho,10,no,yes,Prefeitura do Recife,stands
+5294,Secretaria Executiva de Vigilência em Saúde SEVS,10,no,yes,Prefeitura do Recife,stands
+5295,Praça Josenildo Lins,10,no,yes,Prefeitura do Recife,stands
+5296,Praça Castro Alves,10,no,yes,Prefeitura do Recife,stands
+5297,Academia da Cidade Polo Torreão,10,no,yes,Prefeitura do Recife,stands
+5298,Praça de Vinte de Julho,10,no,yes,Prefeitura do Recife,stands
+5299,Campo Campina de Barreto,10,no,yes,Prefeitura do Recife,stands
+5300,USF Prof. Antônio Francisco Areias,10,no,yes,Prefeitura do Recife,stands
+5301,Praça Josélia,10,no,yes,Prefeitura do Recife,stands
+5302,Praça Desenhista Eulino Santos,10,no,yes,Prefeitura do Recife,stands
+5303,Calçada da Av. João de Barros,10,no,yes,Prefeitura do Recife,stands
+5304,Praça Deputado Fabio Correa,10,no,yes,Prefeitura do Recife,stands
+5305,Quadra do Vasco,10,no,yes,Prefeitura do Recife,stands
+5306,Praça do Monteiro,10,no,yes,Prefeitura do Recife,stands
+5307,Praça Jorn. Francisco Pessoa de Queiroz,10,no,yes,Prefeitura do Recife,stands
+5308,Praça Otávio de Freitas,10,no,yes,Prefeitura do Recife,stands
+5309,Mercado da Encruzilhada (Belém),18,no,yes,Prefeitura do Recife,stands
+5310,Praça Marcelino Champagnat,10,no,yes,Prefeitura do Recife,stands
+5311,Praça Elvira de Souza,10,no,yes,Prefeitura do Recife,stands
+5312,Praça Flor de Santana,10,no,yes,Prefeitura do Recife,stands
+5313,Praça Everaldo Bidou Lambbe,10,no,yes,Prefeitura do Recife,stands
+5314,Praça Compositor Antônio Maria,10,no,yes,Prefeitura do Recife,stands
+5315,Praça Vagner Love,10,no,yes,Prefeitura do Recife,stands
+5316,Escola Municipal da Mangabeira,10,no,yes,Prefeitura do Recife,stands
+5317,Canteiro Central da Avenida José Américo,10,no,yes,Prefeitura do Recife,stands
+5318,Praça Sr. Bartolomeu,10,no,yes,Prefeitura do Recife,stands
+5319,Centro de Saúde Dr. Luiz Wilson,10,no,yes,Prefeitura do Recife,stands
+5320,Largo Bomba do Hemetério,10,no,yes,Prefeitura do Recife,stands
+5321,Mercado da Encruzilhada,10,no,yes,Prefeitura do Recife,stands
+5322,Praça Marcos Bocoiô,10,no,yes,Prefeitura do Recife,stands
+5323,Praça Amaro Albino Pimentel,10,no,yes,Prefeitura do Recife,stands
+5324,Praça na Rua Alice Tibiriçá,10,no,yes,Prefeitura do Recife,stands
+5325,Praça André Antunes,10,no,yes,Prefeitura do Recife,stands
+5326,Praça USF Irmã Terezinha,10,no,yes,Prefeitura do Recife,stands
+5327,Praça do Fundão,10,no,yes,Prefeitura do Recife,stands
+5328,Escola Estadual Prof. José dos Anjos,10,no,yes,Prefeitura do Recife,stands
+5329,USF/ Praça Alto do Capitão,10,no,yes,Prefeitura do Recife,stands
+5330,Praça Canavial,10,no,yes,Prefeitura do Recife,stands
+5331,Praça Paulo Bernardo,10,no,yes,Prefeitura do Recife,stands
+5332,Praça Ulisses Leon de Oliveira,10,no,yes,Prefeitura do Recife,stands
+5333,Praça da rotatória,10,no,yes,Prefeitura do Recife,stands
+5334,Praça Sargento Pincel,10,no,yes,Prefeitura do Recife,stands
+5335,Praça do Lindomar,10,no,yes,Prefeitura do Recife,stands
+5336,Praça Dalceu,10,no,yes,Prefeitura do Recife,stands
+5337,Praça Márcio Condonga,10,no,yes,Prefeitura do Recife,stands
+5338,Canteiro Central da Rua Othon Paraíso,10,no,yes,Prefeitura do Recife,stands
+5339,Montreal,10,no,yes,Prefeitura do Recife,stands
+5340,Restaurante Ôge,10,no,yes,Prefeitura do Recife,stands
+5341,Parque de Esculturas,10,no,yes,Prefeitura do Recife,stands
+5342,Canteiro Central da Rua Othon Paraíso,10,no,yes,Prefeitura do Recife,stands
+5343,Le Parc 2,6,no,yes,Prefeitura do Recife,stands
+5344,Praça em frente a COMPESA,10,no,yes,Prefeitura do Recife,stands
+5345,Praça de Joana Bezerra,10,no,yes,Prefeitura do Recife,stands
+5346,Pontilhão da Paissandu,10,no,yes,Prefeitura do Recife,stands
+5347,Praça do Derby,10,no,yes,Prefeitura do Recife,stands
+5348,Catamaran,10,no,yes,Prefeitura do Recife,stands
+5349,Le Parc,6,no,yes,Prefeitura do Recife,stands
+5350,Rua da Carioca,10,no,yes,Prefeitura do Recife,stands
+5351,Forte das Cinco Pontas,10,no,yes,Prefeitura do Recife,stands
+5352,Praça dos Guerreiros,10,no,yes,Prefeitura do Recife,stands
+5353,Praça da UR5,10,no,yes,Prefeitura do Recife,stands
+5354,Campo Armador Antônio Moreno,10,no,yes,Prefeitura do Recife,stands
+5355,Capitão,10,no,yes,Prefeitura do Recife,stands
+5356,Museu Forte do Brum,10,no,yes,Prefeitura do Recife,stands
+5357,Bacurau - Galo,10,no,yes,Prefeitura do Recife,stands
+5358,Rua da Palma,4,no,yes,Prefeitura do Recife,stands
+5359,Igreja de Nossa Senhora das Fronteiras,10,no,yes,Prefeitura do Recife,stands
+5360,Rua Imperatriz Tereza Cristina (SECR),10,no,yes,Prefeitura do Recife,stands
+5361,Quadra da Praça Joana Bezerra,10,no,yes,Prefeitura do Recife,stands
+5362,Praça na Rua Velha,10,no,yes,Prefeitura do Recife,stands
+5363,Praça na Rua Ibiporã,10,no,yes,Prefeitura do Recife,stands
+5364,Praça Jenner de Souza,10,no,yes,Prefeitura do Recife,stands
+5365,Praça Dom Bosco 02,4,no,yes,Prefeitura do Recife,stands
+5366,Praça Cássia Kiss de Lima,10,no,yes,Prefeitura do Recife,stands
+5367,Praça na Rua Epaminondas de Melo 02,4,no,yes,Prefeitura do Recife,stands
+5368,Escola Municipal Novo Mangue,10,no,yes,Prefeitura do Recife,stands
+5369,Rua dos Amores,10,no,yes,Prefeitura do Recife,stands
+5370,Rua do Bom Jesus,10,no,yes,Prefeitura do Recife,stands
+5371,Quadra de Futsal da Aurora,10,no,yes,Prefeitura do Recife,stands
+5372,Praça Aurora,10,no,yes,Prefeitura do Recife,stands
+5373,Quadra Kássio Rinaldo,10,no,yes,Prefeitura do Recife,stands
+5374,Praça Agamenon (Ilha do Joaneiro),10,no,yes,Prefeitura do Recife,stands
+5375,Ministério do Trabalho e Emprego (MTE),10,no,yes,Prefeitura do Recife,stands
+5376,Igreja de Nossa Sra do Rosário dos Pretos,10,no,yes,Prefeitura do Recife,stands
+5377,Igreja de São Gonçalo,10,no,yes,Prefeitura do Recife,stands
+5378,CEHAB,10,no,yes,Prefeitura do Recife,stands
+5379,Casa da Cultura,10,no,yes,Prefeitura do Recife,stands
+5380,Campo do Onze,10,no,yes,Prefeitura do Recife,stands
+5381,Agência Caixa (Rua Dr. Leopoldo Lins),10,no,yes,Prefeitura do Recife,stands
+5382,Praça Otília,10,no,yes,Prefeitura do Recife,stands
+5383,Praça Numa Pompilho,10,no,yes,Prefeitura do Recife,stands
+5384,Praça do Campo Santo (UTEC),10,no,yes,Prefeitura do Recife,stands
+5385,INSS (Rua dos Palmares),10,no,yes,Prefeitura do Recife,stands
+5386,Rua João Fernandes Vieira,10,no,yes,Prefeitura do Recife,stands
+5387,Liceu/Nóbrega,10,no,yes,Prefeitura do Recife,stands
+5388,Rua Corredor do Bispo,10,no,yes,Prefeitura do Recife,stands
+5389,Rua Duque de Caxias,10,no,yes,Prefeitura do Recife,stands
+5390,Praça Nelson Ferreira,10,no,yes,Prefeitura do Recife,stands
+5391,Praça Sérgio Loreto,10,no,yes,Prefeitura do Recife,stands
+5392,ETE Almirante Soares Dutra,10,no,yes,Prefeitura do Recife,stands
+5393,Av. Dantas Barreto (Magno Equipamentos),10,no,yes,Prefeitura do Recife,stands
+5394,Av. Dantas Barreto (Armarinho Mundial),10,no,yes,Prefeitura do Recife,stands
+5395,Travessa do Arsenal da Guerra,10,no,yes,Prefeitura do Recife,stands
+5396,Teatro Santa Izabel,10,no,yes,Prefeitura do Recife,stands
+5397,Rua Sete de Setembro,10,no,yes,Prefeitura do Recife,stands
+5398,Rua Matias de Albuquerque,10,no,yes,Prefeitura do Recife,stands
+5399,Rua Imperatriz Tereza Cristina (UTEC),10,no,yes,Prefeitura do Recife,stands
+5400,Cais do Sertão 02,10,no,yes,Prefeitura do Recife,stands
+5401,Praça Prof. Agamenon Magalhães,10,no,yes,Prefeitura do Recife,stands
+5402,Praça Onze de Junho,10,no,yes,Prefeitura do Recife,stands
+5403,Praça do Pilar,10,no,yes,Prefeitura do Recife,stands
+5404,Praça Ascenso Ferreira,10,no,yes,Prefeitura do Recife,stands
+5405,Praça Dezessete,10,no,yes,Prefeitura do Recife,stands
+5406,Praça 13 de Maio,10,no,yes,Prefeitura do Recife,stands
+5407,Mercado Público Santo Amaro,10,no,yes,Prefeitura do Recife,stands
+5408,Escola Sizenando Silveira,10,no,yes,Prefeitura do Recife,stands
+5409,DER,10,no,yes,Prefeitura do Recife,stands
+5410,Centro POP,10,no,yes,Prefeitura do Recife,stands
+5411,Praça VDC,10,no,yes,Prefeitura do Recife,stands
+5412,Praça do Sena,10,no,yes,Prefeitura do Recife,stands
+5413,Praça Ministro João Gonçalves de Souza,10,no,yes,Prefeitura do Recife,stands
+5414,Praça Bom Partor,10,no,yes,Prefeitura do Recife,stands
+5415,Praça Brasilit (Praça do Caxito - Várzea),10,no,yes,Prefeitura do Recife,stands
+5416,Estação Santa Luzia,10,no,yes,Prefeitura do Recife,stands
+5417,Estação Ipiranga,10,no,yes,Prefeitura do Recife,stands
+5592,,3,no,,,stands
+5418,Estação Imbiribeira,10,no,yes,Prefeitura do Recife,stands
+5419,Praça Oswaldo Cruz,10,no,yes,Prefeitura do Recife,stands
+5420,Praça General Carlos Pinto (Tacaruna),10,no,yes,Prefeitura do Recife,stands
+5421,Praça Souto Filho,10,no,yes,Prefeitura do Recife,stands
+5422,Praça Parque Amorim,10,no,yes,Prefeitura do Recife,stands
+5423,Vila do Vintém,6,no,yes,Prefeitura do Recife,stands
+5424,Creche Escola Dep. Alcides Teixeira,6,no,yes,Prefeitura do Recife,stands
+5425,Terminal Engenho do Meio,10,no,yes,Prefeitura do Recife,stands
+5426,Academia da Cidade Polo Heróis da Restauração,10,no,yes,Prefeitura do Recife,stands
+5427,SESC de Santo Amaro,10,no,yes,Prefeitura do Recife,stands
+5428,COMPAZ Dom Helder Câmara,10,no,yes,Prefeitura do Recife,stands
+5429,COMPAZ Dom Helder Câmara,10,no,yes,Prefeitura do Recife,stands
+5430,Academia da Cidade Polo Jordão,4,no,yes,Prefeitura do Recife,stands
+5431,Praça Jordão Alto,10,no,yes,Prefeitura do Recife,stands
+5432,Academia Recife - Polo praça da Várzea,10,no,yes,Prefeitura do Recife,stands
+5433,Praça Jacarezinho,10,no,yes,Prefeitura do Recife,stands
+5434,Prefeitura do Recife,10,no,yes,Prefeitura do Recife,stands
+5435,Praça Caxito (san martin),10,no,yes,Prefeitura do Recife,stands
+5436,Orla de Brasília Teimosa 03,10,no,yes,Prefeitura do Recife,stands
+5437,Orla de Brasília Teimosa 02,10,no,yes,Prefeitura do Recife,stands
+5438,Orla de Brasília Teimosa 01,10,no,yes,Prefeitura do Recife,stands
+5439,Largo da Paz,10,no,yes,Prefeitura do Recife,stands
+5440,Praça Onildo Almeida,10,no,yes,Prefeitura do Recife,stands
+5441,Praça Capiba - Cajueiro,10,no,yes,Prefeitura do Recife,stands
+5442,Praça Mago Jefferson,10,no,yes,Prefeitura do Recife,stands
+5443,Praça do Sebo,10,no,yes,Prefeitura do Recife,stands
+5444,Rua do Livramento,10,no,yes,Prefeitura do Recife,stands
+5445,Academia da Cidade Polo Praça do Salgueiro,4,no,yes,Prefeitura do Recife,stands
+5446,PROCAPE,10,no,yes,Prefeitura do Recife,stands
+5447,Lagoa do Araçá,10,no,yes,Prefeitura do Recife,stands
+5448,Praça Jarbas Pernambucano,10,no,yes,Prefeitura do Recife,stands
+5449,Praça Santos Dumont,10,no,yes,Prefeitura do Recife,stands
+5450,Instituto Capibaribe,10,no,yes,Prefeitura do Recife,stands
+5451,Sítio da Trindade,10,no,yes,Prefeitura do Recife,stands
+5452,Largo Dom Luiz,10,no,yes,Prefeitura do Recife,stands
+5453,Academia da Cidade Polo Lavadeiras 02,4,no,yes,Prefeitura do Recife,stands
+5454,Academia Recife - Polo IPSEP,10,no,yes,Prefeitura do Recife,stands
+5455,Aurora 01,10,no,yes,Prefeitura do Recife,stands
+5456,Academia da Cidade Polo Vila Um Por Todos,4,no,yes,Prefeitura do Recife,stands
+5457,Campo do Quinze,10,no,yes,Prefeitura do Recife,stands
+5458,Parque Arraial Novo do Bom Jesus,10,no,yes,Prefeitura do Recife,stands
+5459,Creche Municipal Menino Jesus da Bomba Grande,10,no,yes,Prefeitura do Recife,stands
+5460,Academia da Cidade Polo Lagoa do Araçá,10,no,yes,Prefeitura do Recife,stands
+5461,Escola Municipal Engenheiro Umberto Gondim,10,no,yes,Prefeitura do Recife,stands
+5462,Colégio Apoio Recife,10,no,yes,Prefeitura do Recife,stands
+5463,Sudene / Lindolfo Color,8,no,yes,Prefeitura do Recife,stands
+5464,Academia da Cidade - Polo San Martin,10,no,yes,Prefeitura do Recife,stands
+5465,Joana Bezerra,10,no,yes,Prefeitura do Recife,stands
+5466,Morro da Conceição,10,no,yes,Prefeitura do Recife,stands
+5467,Encruzilhada / Av. Norte,10,no,yes,Prefeitura do Recife,stands
+5468,Frei Cassimiro 01,10,no,yes,Prefeitura do Recife,stands
+5469,Praça Melvin Jones,10,no,yes,Prefeitura do Recife,stands
+5470,Praça do Trabalho,10,no,yes,Prefeitura do Recife,stands
+5471,Praça de San Martin,10,no,yes,Prefeitura do Recife,stands
+5472,Praça Doutor Fernando Figueira,10,no,yes,Prefeitura do Recife,stands
+5473,Antônio Falcão,8,no,yes,Prefeitura do Recife,stands
+5474,Academia da Cidade Polo Praça do Poeta,10,no,yes,Prefeitura do Recife,stands
+5475,IFPE,10,no,yes,Prefeitura do Recife,stands
+5476,Academia Recife - Polo Engenho do Meio,10,no,yes,Prefeitura do Recife,stands
+5477,Geraldão,6,no,yes,Prefeitura do Recife,stands
+5478,Largo da Encruzilhada,10,no,yes,Prefeitura do Recife,stands
+5479,Academia Recife - Polo Lagoa do Araçá,4,no,yes,Prefeitura do Recife,stands
+5480,Academia da Cidade Polo Roda de Fogo,10,no,yes,Prefeitura do Recife,stands
+5481,Academia Recife - Polo Barro,10,no,yes,Prefeitura do Recife,stands
+5482,Praça do ABC 02,6,no,yes,Prefeitura do Recife,stands
+5483,Academia da Cidade - Polo Cajueiro,6,no,yes,Prefeitura do Recife,stands
+5484,Academia Recife - Polo Casa Amarela 02,4,no,yes,Prefeitura do Recife,stands
+5485,Academia Recife - Polo Água Fria,10,no,yes,Prefeitura do Recife,stands
+5486,Rua da Palma 02,4,no,yes,Prefeitura do Recife,stands
+5487,Academia Recife e da Cidade - Polo Coque,10,no,yes,Prefeitura do Recife,stands
+5488,Academia da Cidade - Polo Santo Amaro,10,no,yes,Prefeitura do Recife,stands
+5489,Academia Recife - Polo Santo Amaro,10,no,yes,Prefeitura do Recife,stands
+5490,USF Alto do Capitão/ Academia da Cidade 02,4,no,yes,Prefeitura do Recife,stands
+5491,Praça do Hipódromo/Academia Recife,10,no,yes,Prefeitura do Recife,stands
+5492,Pátio Santa Cruz,10,no,yes,Prefeitura do Recife,stands
+5493,Parque da Macaxeira,10,no,yes,Prefeitura do Recife,stands
+5494,Praça da Torre,10,no,yes,Prefeitura do Recife,stands
+5495,Canal do Cavouco 01,10,no,yes,Prefeitura do Recife,stands
+5496,Praça de Parnamirim,10,no,yes,Prefeitura do Recife,stands
+5497,UPE/Reitoria,10,no,yes,Prefeitura do Recife,stands
+5498,Teatro do Parque 02,4,no,yes,Prefeitura do Recife,stands
+5499,Avenida Guararapes 03 (Canteiro),10,no,yes,Prefeitura do Recife,stands
+5500,Avenida Guararapes 02 (Correios),4,no,yes,Prefeitura do Recife,stands
+5501,Upinha CHIÉ,10,no,yes,Prefeitura do Recife,stands
+5502,Soledade,10,no,yes,Prefeitura do Recife,stands
+5503,Praça do Derby,10,no,yes,Prefeitura do Recife,stands
+5504,Praça do Rosarinho,10,no,yes,Prefeitura do Recife,stands
+5505,Academia da Cidade de Campo Grande,8,no,yes,Prefeitura do Recife,stands
+5506,Praça do Engenho do Meio,10,no,yes,Prefeitura do Recife,stands
+5507,Praça de Jardim São Paulo 01,10,no,yes,Prefeitura do Recife,stands
+5508,EREM João Bezerra,20,no,yes,Prefeitura do Recife,stands
+5509,Redesenho - Rua das Oficinas,6,no,yes,Prefeitura do Recife,stands
+5510,Sede CTTU,10,no,yes,Prefeitura do Recife,stands
+5511,Parque 13 de Maio,8,no,yes,Prefeitura do Recife,stands
+5512,Cais do Imperador,14,no,yes,Prefeitura do Recife,stands
+5513,Fórum Desembargador Rodolfo Aureliano,20,no,yes,Prefeitura do Recife,stands
+5514,Centro Esportivo Santos Dumont,10,no,yes,Prefeitura do Recife,stands
+5515,COMPAZ Escritor Ariano Suassuna,4,no,yes,Prefeitura do Recife,stands
+5516,Rua da Aurora,20,no,yes,Prefeitura do Recife,stands
+5517,TI Getúlio Vargas 01,8,no,yes,Prefeitura do Recife,stands
+5518,Academia Recife - Praça do ABC,8,no,yes,Prefeitura do Recife,stands
+5519,Jardim Botânico do Recife,18,no,yes,Prefeitura do Recife,stands
+5520,Mercado da Encruzilhada,4,no,yes,Prefeitura do Recife,stands
+5521,Parque da Jaqueira,4,no,yes,Prefeitura do Recife,stands
+5522,Compaz Governador Eduardo Campos,10,no,yes,Prefeitura do Recife,stands
+5523,Praça Barão de Caiara,11,no,yes,Prefeitura do Recife,stands
+5524,Parque da Macaxeira,34,no,yes,Prefeitura do Recife,stands
+5525,ABRE,12,no,yes,Prefeitura do Recife,stands
+5526,Fafire,12,no,yes,Prefeitura do Recife,stands
+5527,Shopping Boa Vista,12,no,yes,Prefeitura do Recife,stands
+5528,Avenida Conde da Boa Vista,12,no,yes,Prefeitura do Recife,stands
+5529,Avenida Conde da Boa Vista,12,no,yes,Prefeitura do Recife,stands
+5530,Parque 13 de Maio,10,no,yes,Prefeitura do Recife,stands
+5531,Senai,52,no,yes,Prefeitura do Recife,stands
+5532,Mercado Madalena,10,no,yes,Prefeitura do Recife,stands
+5533,Rua Gen. José Semeão,10,no,yes,Prefeitura do Recife,stands
+5534,Paço Alfândega,12,no,yes,Prefeitura do Recife,stands
+5535,Parque Caiara,17,no,yes,Prefeitura do Recife,stands
+5536,Mercado do Cordeiro,28,no,yes,Prefeitura do Recife,stands
+5537,Mercado de Água Fria / Beberibe,26,no,yes,Prefeitura do Recife,stands
+5538,,,no,yes,Prefeitura do Recife,stands
+5539,Orla do Pina - JCPM,8,no,yes,Prefeitura do Recife,stands
+5540,Parque Dona Lindú 01,10,no,yes,Prefeitura do Recife,stands
+5541,Rua da Palma,2,no,yes,Prefeitura do Recife,stands
+5542,Pátio do Carmo,4,no,yes,Prefeitura do Recife,stands
+5543,Praça Noel Rodrigues,6,no,yes,Prefeitura do Recife,stands
+5544,Praça da Convenção,10,no,yes,Prefeitura do Recife,stands
+5545,Mercado da Boa Vista,4,no,yes,Prefeitura do Recife,stands
+5546,Praça Mauriceia,8,no,yes,Prefeitura do Recife,stands
+5547,Mercado de Afogados,10,no,yes,Prefeitura do Recife,stands
+5548,Praça da Várzea,8,no,yes,Prefeitura do Recife,stands
+5549,Escola Municipal Arraial Novo do Bom Jesus,4,no,yes,Prefeitura do Recife,stands
+5550,Orla de Brasília Teimosa,4,no,yes,Prefeitura do Recife,stands
+5551,Avenida Beberibe,8,no,yes,Prefeitura do Recife,stands
+5552,Escola Waldemar de Oliveira,4,no,yes,Prefeitura do Recife,stands
+5553,Praça Eça de Queiroz,2,no,yes,Prefeitura do Recife,stands
+5554,Mercado da Madalena,8,no,yes,Prefeitura do Recife,stands
+5555,Largo de Casa Amarela,4,no,yes,Prefeitura do Recife,stands
+5556,Mercado de Casa Amarela,8,no,yes,Prefeitura do Recife,stands
+5557,Rua Dona Ana Xavier,2,no,yes,Prefeitura do Recife,stands
+5558,Mercado da Encruzilhada,8,no,yes,Prefeitura do Recife,stands
+5559,Igreja da Santa Cruz,2,no,yes,Prefeitura do Recife,stands
+5560,Cinema São Luiz,2,no,yes,Prefeitura do Recife,stands
+5561,Parque Treze de Maio,2,no,yes,Prefeitura do Recife,stands
+5562,Praça Visconde de Mauá,2,no,yes,Prefeitura do Recife,stands
+5563,Praça Visconde de Mauá,4,no,yes,Prefeitura do Recife,stands
+5564,Praça Joaquim Nabuco,6,no,yes,Prefeitura do Recife,stands
+5565,Praça da Independência,10,no,yes,Prefeitura do Recife,stands
+5566,Avenida Rio Branco,10,no,yes,Prefeitura do Recife,stands
+5567,,,no,,,
+5568,,,,,,
+5569,,20,no,,,stands
+5570,,,no,,,wall_loops
+5571,,,,,,
+5572,,10,,yes,,stands
+5573,,10,no,yes,,stands
+5574,,2,yes,yes,,stands
+5575,,8,no,,,stands
+5576,,,,,,stands
+5577,,10,,yes,,stands
+5578,,,,,,
+5579,,,,,,
+5580,,,no,,,stands
+5581,,,no,,,wall_loops
+5582,,10,,private,,
+5583,,5,no,,,wall_loops
+5584,,10,no,,,wall_loops
+5585,,20,no,,,wall_loops
+5586,,,no,,,wall_loops
+5587,,,no,,,wall_loops
+5588,,6,no,,,wall_loops
+5589,,,,,,stands
+5593,,2,no,customers,Rádio Pomerode,ground_slots
+5594,,4,no,yes,,wall_loops
+5595,Terminal Santa Luzia,5,no,yes,Nova Mobi,stands
+5596,,,yes,yes,,wall_hoops
+5597,,,no,yes,Banco do Brasil,stands
+5598,,7,,yes,,wall_loops

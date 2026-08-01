@@ -1,0 +1,86 @@
+{
+	"city": "CARPINA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 22,
+			"Desistência da solicitação": 2,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Recusa de Remoção": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 10,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 16,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 6,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 138,
+			"Desistência da solicitação": 4,
+			"Inválido/Duplicado/Cancelado/Trote": 5,
+			"Óbito no Local/Atendimento": 3,
+			"Outros Desfechos": 2,
+			"Recusa de Remoção": 6,
+			"Removido pelos Bombeiros/CIODS": 24,
+			"Removido por Particulares": 37,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 38
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 133,
+			"Desistência da solicitação": 4,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Óbito no Local/Atendimento": 4,
+			"Outros Desfechos": 3,
+			"Recusa de Remoção": 2,
+			"Removido pelos Bombeiros/CIODS": 24,
+			"Removido por Particulares": 35,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 23
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 66,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 3,
+			"Removido pelos Bombeiros/CIODS": 17,
+			"Removido por Particulares": 22,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 20
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 133,
+			"Desistência da solicitação": 8,
+			"Inválido/Duplicado/Cancelado/Trote": 3,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 3,
+			"Outros Desfechos": 2,
+			"Recusa de Remoção": 4,
+			"Removido pelos Bombeiros/CIODS": 37,
+			"Removido por Particulares": 41,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 30
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 205,
+			"Desistência da solicitação": 8,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Óbito no Local/Atendimento": 2,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 8,
+			"Removido pelos Bombeiros/CIODS": 47,
+			"Removido por Particulares": 43,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 47
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 46,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido pelos Bombeiros/CIODS": 10,
+			"Removido por Particulares": 10,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 11
+		}
+	}
+}

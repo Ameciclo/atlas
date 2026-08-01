@@ -1,0 +1,59 @@
+{
+	"city": "FEIRA NOVA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 49,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 6,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 52,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 8,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 4
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 34,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 7,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 9
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 46,
+			"Desistência da solicitação": 2,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 3,
+			"Removido por Particulares": 6,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 4
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 63,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Óbito no Local/Atendimento": 3,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 7,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 4
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 16,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 1
+		}
+	}
+}

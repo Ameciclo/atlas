@@ -1,6 +1,6 @@
 {
-	"id": "c28cbcf7-f2fd-4083-a8ed-938e113d42a6",
-	"prevId": "c6e10caf-0b58-467e-af53-4f95dcc7a8bf",
+	"id": "e6f5eddc-23c7-42b6-8e11-e2829880fd13",
+	"prevId": "5bf79ad5-3be1-4628-89f7-665ca6e5a4f2",
 	"version": "7",
 	"dialect": "postgresql",
 	"tables": {
@@ -54,8 +54,8 @@
 			"uniqueConstraints": {
 				"bicycle_rack_cities_osm_id_unique": {
 					"name": "bicycle_rack_cities_osm_id_unique",
-					"columns": ["osm_id"],
-					"nullsNotDistinct": false
+					"nullsNotDistinct": false,
+					"columns": ["osm_id"]
 				}
 			},
 			"policies": {},
@@ -274,8 +274,8 @@
 			"uniqueConstraints": {
 				"bicycle_racks_osm_id_unique": {
 					"name": "bicycle_racks_osm_id_unique",
-					"columns": ["osm_id"],
-					"nullsNotDistinct": false
+					"nullsNotDistinct": false,
+					"columns": ["osm_id"]
 				}
 			},
 			"policies": {},
@@ -438,20 +438,20 @@
 				"cyclist_infra_relation_cities_relation_id_cyclist_infra_relations_id_fk": {
 					"name": "cyclist_infra_relation_cities_relation_id_cyclist_infra_relations_id_fk",
 					"tableFrom": "cyclist_infra_relation_cities",
-					"columnsFrom": ["relation_id"],
 					"tableTo": "cyclist_infra_relations",
+					"columnsFrom": ["relation_id"],
 					"columnsTo": ["id"],
-					"onUpdate": "no action",
-					"onDelete": "no action"
+					"onDelete": "no action",
+					"onUpdate": "no action"
 				},
 				"cyclist_infra_relation_cities_city_id_cities_id_fk": {
 					"name": "cyclist_infra_relation_cities_city_id_cities_id_fk",
 					"tableFrom": "cyclist_infra_relation_cities",
-					"columnsFrom": ["city_id"],
 					"tableTo": "cities",
+					"columnsFrom": ["city_id"],
 					"columnsTo": ["id"],
-					"onUpdate": "no action",
-					"onDelete": "no action"
+					"onDelete": "no action",
+					"onUpdate": "no action"
 				}
 			},
 			"compositePrimaryKeys": {},
@@ -619,11 +619,11 @@
 				"pdc_relation_ways_relation_id_cyclist_infra_relations_id_fk": {
 					"name": "pdc_relation_ways_relation_id_cyclist_infra_relations_id_fk",
 					"tableFrom": "pdc_relation_ways",
-					"columnsFrom": ["relation_id"],
 					"tableTo": "cyclist_infra_relations",
+					"columnsFrom": ["relation_id"],
 					"columnsTo": ["id"],
-					"onUpdate": "no action",
-					"onDelete": "no action"
+					"onDelete": "no action",
+					"onUpdate": "no action"
 				}
 			},
 			"compositePrimaryKeys": {},
@@ -712,11 +712,11 @@
 				"counting_events_location_id_counting_locations_id_fk": {
 					"name": "counting_events_location_id_counting_locations_id_fk",
 					"tableFrom": "counting_events",
-					"columnsFrom": ["location_id"],
 					"tableTo": "counting_locations",
+					"columnsFrom": ["location_id"],
 					"columnsTo": ["id"],
-					"onUpdate": "no action",
-					"onDelete": "cascade"
+					"onDelete": "cascade",
+					"onUpdate": "no action"
 				}
 			},
 			"compositePrimaryKeys": {},
@@ -861,11 +861,11 @@
 				"counting_sessions_event_id_counting_events_id_fk": {
 					"name": "counting_sessions_event_id_counting_events_id_fk",
 					"tableFrom": "counting_sessions",
-					"columnsFrom": ["event_id"],
 					"tableTo": "counting_events",
+					"columnsFrom": ["event_id"],
 					"columnsTo": ["id"],
-					"onUpdate": "no action",
-					"onDelete": "cascade"
+					"onDelete": "cascade",
+					"onUpdate": "no action"
 				}
 			},
 			"compositePrimaryKeys": {},
@@ -924,11 +924,11 @@
 				"session_movements_session_id_counting_sessions_id_fk": {
 					"name": "session_movements_session_id_counting_sessions_id_fk",
 					"tableFrom": "session_movements",
-					"columnsFrom": ["session_id"],
 					"tableTo": "counting_sessions",
+					"columnsFrom": ["session_id"],
 					"columnsTo": ["id"],
-					"onUpdate": "no action",
-					"onDelete": "cascade"
+					"onDelete": "cascade",
+					"onUpdate": "no action"
 				}
 			},
 			"compositePrimaryKeys": {},
@@ -958,6 +958,12 @@
 					"type": "jsonb",
 					"primaryKey": false,
 					"notNull": true
+				},
+				"coordinates": {
+					"name": "coordinates",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
 				},
 				"created_at": {
 					"name": "created_at",
@@ -1135,6 +1141,123 @@
 			"checkConstraints": {},
 			"isRLSEnabled": false
 		},
+		"public.pcr_streets": {
+			"name": "pcr_streets",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"object_id": {
+					"name": "object_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"clogra_codi": {
+					"name": "clogra_codi",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"nlogra_conc": {
+					"name": "nlogra_conc",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"nlgpav_ofic": {
+					"name": "nlgpav_ofic",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"nlgpav_resu": {
+					"name": "nlgpav_resu",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"flgpav_indp": {
+					"name": "flgpav_indp",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"indpav": {
+					"name": "indpav",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"ct": {
+					"name": "ct",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"nm_perimetr": {
+					"name": "nm_perimetr",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"nm_tp_via": {
+					"name": "nm_tp_via",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"trecho_sul": {
+					"name": "trecho_sul",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"db2gse_sde": {
+					"name": "db2gse_sde",
+					"type": "real",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"coordinates": {
+					"name": "coordinates",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {
+				"pcr_streets_object_id_unique": {
+					"name": "pcr_streets_object_id_unique",
+					"nullsNotDistinct": false,
+					"columns": ["object_id"]
+				}
+			},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
 		"public.shared_bike_stations": {
 			"name": "shared_bike_stations",
 			"schema": "",
@@ -1255,8 +1378,8 @@
 			"uniqueConstraints": {
 				"shared_bike_stations_osm_id_unique": {
 					"name": "shared_bike_stations_osm_id_unique",
-					"columns": ["osm_id"],
-					"nullsNotDistinct": false
+					"nullsNotDistinct": false,
+					"columns": ["osm_id"]
 				}
 			},
 			"policies": {},
@@ -1735,9 +1858,9 @@
 						}
 					],
 					"isUnique": false,
-					"with": {},
+					"concurrently": false,
 					"method": "btree",
-					"concurrently": false
+					"with": {}
 				},
 				"idx_codmunocor": {
 					"name": "idx_codmunocor",
@@ -1750,9 +1873,9 @@
 						}
 					],
 					"isUnique": false,
-					"with": {},
+					"concurrently": false,
 					"method": "btree",
-					"concurrently": false
+					"with": {}
 				},
 				"idx_codmunres": {
 					"name": "idx_codmunres",
@@ -1765,9 +1888,9 @@
 						}
 					],
 					"isUnique": false,
-					"with": {},
+					"concurrently": false,
 					"method": "btree",
-					"concurrently": false
+					"with": {}
 				},
 				"idx_causabas": {
 					"name": "idx_causabas",
@@ -1780,9 +1903,9 @@
 						}
 					],
 					"isUnique": false,
-					"with": {},
+					"concurrently": false,
 					"method": "btree",
-					"concurrently": false
+					"with": {}
 				},
 				"idx_data_year": {
 					"name": "idx_data_year",
@@ -1795,9 +1918,9 @@
 						}
 					],
 					"isUnique": false,
-					"with": {},
+					"concurrently": false,
 					"method": "btree",
-					"concurrently": false
+					"with": {}
 				},
 				"idx_year_munocor": {
 					"name": "idx_year_munocor",
@@ -1816,9 +1939,9 @@
 						}
 					],
 					"isUnique": false,
-					"with": {},
+					"concurrently": false,
 					"method": "btree",
-					"concurrently": false
+					"with": {}
 				}
 			},
 			"foreignKeys": {},
@@ -1874,32 +1997,6 @@
 					"primaryKey": false,
 					"notNull": false
 				},
-				"transport_corridor": {
-					"name": "transport_corridor",
-					"type": "boolean",
-					"primaryKey": false,
-					"notNull": false,
-					"default": false
-				},
-				"perimeter_road": {
-					"name": "perimeter_road",
-					"type": "boolean",
-					"primaryKey": false,
-					"notNull": false,
-					"default": false
-				},
-				"neighborhood_code": {
-					"name": "neighborhood_code",
-					"type": "integer",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"neighborhood_name": {
-					"name": "neighborhood_name",
-					"type": "text",
-					"primaryKey": false,
-					"notNull": false
-				},
 				"created_at": {
 					"name": "created_at",
 					"type": "timestamp with time zone",
@@ -1921,16 +2018,16 @@
 			"uniqueConstraints": {
 				"official_streets_code_unique": {
 					"name": "official_streets_code_unique",
-					"columns": ["code"],
-					"nullsNotDistinct": false
+					"nullsNotDistinct": false,
+					"columns": ["code"]
 				}
 			},
 			"policies": {},
 			"checkConstraints": {},
 			"isRLSEnabled": false
 		},
-		"public.traffic_violations": {
-			"name": "traffic_violations",
+		"public.traffic_tickets": {
+			"name": "traffic_tickets",
 			"schema": "",
 			"columns": {
 				"id": {
@@ -1951,57 +2048,21 @@
 					"primaryKey": false,
 					"notNull": true
 				},
-				"violation_type_id": {
-					"name": "violation_type_id",
-					"type": "integer",
-					"primaryKey": false,
-					"notNull": true
-				},
 				"location_id": {
 					"name": "location_id",
 					"type": "integer",
 					"primaryKey": false,
 					"notNull": true
 				},
-				"violation_code": {
-					"name": "violation_code",
+				"cttu_code": {
+					"name": "cttu_code",
 					"type": "text",
 					"primaryKey": false,
 					"notNull": true
 				},
-				"law_code": {
-					"name": "law_code",
-					"type": "text",
-					"primaryKey": false,
-					"notNull": true
-				},
-				"description": {
-					"name": "description",
-					"type": "text",
-					"primaryKey": false,
-					"notNull": true
-				},
-				"location_description": {
-					"name": "location_description",
-					"type": "text",
-					"primaryKey": false,
-					"notNull": true
-				},
-				"coordinates": {
-					"name": "coordinates",
-					"type": "text",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"street_code": {
-					"name": "street_code",
+				"violation_id": {
+					"name": "violation_id",
 					"type": "integer",
-					"primaryKey": false,
-					"notNull": false
-				},
-				"complementary_data": {
-					"name": "complementary_data",
-					"type": "jsonb",
 					"primaryKey": false,
 					"notNull": false
 				},
@@ -2022,18 +2083,292 @@
 			},
 			"indexes": {},
 			"foreignKeys": {
-				"traffic_violations_street_code_official_streets_code_fk": {
-					"name": "traffic_violations_street_code_official_streets_code_fk",
-					"tableFrom": "traffic_violations",
-					"columnsFrom": ["street_code"],
-					"tableTo": "official_streets",
-					"columnsTo": ["code"],
-					"onUpdate": "no action",
-					"onDelete": "no action"
+				"traffic_tickets_location_id_traffic_tickets_locations_location_id_fk": {
+					"name": "traffic_tickets_location_id_traffic_tickets_locations_location_id_fk",
+					"tableFrom": "traffic_tickets",
+					"tableTo": "traffic_tickets_locations",
+					"columnsFrom": ["location_id"],
+					"columnsTo": ["location_id"],
+					"onDelete": "no action",
+					"onUpdate": "no action"
+				},
+				"traffic_tickets_violation_id_traffic_tickets_catalog_id_fk": {
+					"name": "traffic_tickets_violation_id_traffic_tickets_catalog_id_fk",
+					"tableFrom": "traffic_tickets",
+					"tableTo": "traffic_tickets_catalog",
+					"columnsFrom": ["violation_id"],
+					"columnsTo": ["id"],
+					"onDelete": "no action",
+					"onUpdate": "no action"
 				}
 			},
 			"compositePrimaryKeys": {},
 			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.traffic_tickets_catalog": {
+			"name": "traffic_tickets_catalog",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"law_code": {
+					"name": "law_code",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"canonical_description": {
+					"name": "canonical_description",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"known_variants": {
+					"name": "known_variants",
+					"type": "text[]",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "'{}'"
+				},
+				"category": {
+					"name": "category",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"differentiation": {
+					"name": "differentiation",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {
+				"idx_ttc_category": {
+					"name": "idx_ttc_category",
+					"columns": [
+						{
+							"expression": "category",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"idx_ttc_variants": {
+					"name": "idx_ttc_variants",
+					"columns": [
+						{
+							"expression": "known_variants",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.traffic_tickets_locations": {
+			"name": "traffic_tickets_locations",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"location_id": {
+					"name": "location_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"raw_description": {
+					"name": "raw_description",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"extracted_street": {
+					"name": "extracted_street",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"street_type": {
+					"name": "street_type",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"street_code": {
+					"name": "street_code",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"semaphore_number": {
+					"name": "semaphore_number",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"address_number": {
+					"name": "address_number",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"reference_point": {
+					"name": "reference_point",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"direction": {
+					"name": "direction",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"is_new": {
+					"name": "is_new",
+					"type": "boolean",
+					"primaryKey": false,
+					"notNull": false,
+					"default": false
+				},
+				"source_year": {
+					"name": "source_year",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {
+				"idx_ttl_location_id": {
+					"name": "idx_ttl_location_id",
+					"columns": [
+						{
+							"expression": "location_id",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"idx_ttl_is_new": {
+					"name": "idx_ttl_is_new",
+					"columns": [
+						{
+							"expression": "is_new",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"idx_ttl_semaphore": {
+					"name": "idx_ttl_semaphore",
+					"columns": [
+						{
+							"expression": "semaphore_number",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				},
+				"idx_ttl_street_code": {
+					"name": "idx_ttl_street_code",
+					"columns": [
+						{
+							"expression": "street_code",
+							"isExpression": false,
+							"asc": true,
+							"nulls": "last"
+						}
+					],
+					"isUnique": false,
+					"concurrently": false,
+					"method": "btree",
+					"with": {}
+				}
+			},
+			"foreignKeys": {
+				"traffic_tickets_locations_street_code_official_streets_code_fk": {
+					"name": "traffic_tickets_locations_street_code_official_streets_code_fk",
+					"tableFrom": "traffic_tickets_locations",
+					"tableTo": "official_streets",
+					"columnsFrom": ["street_code"],
+					"columnsTo": ["code"],
+					"onDelete": "no action",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {
+				"traffic_tickets_locations_location_id_unique": {
+					"name": "traffic_tickets_locations_location_id_unique",
+					"nullsNotDistinct": false,
+					"columns": ["location_id"]
+				}
+			},
 			"policies": {},
 			"checkConstraints": {},
 			"isRLSEnabled": false
@@ -2046,11 +2381,347 @@
 			"values": ["north", "east", "south", "west"]
 		}
 	},
-	"schemas": {},
-	"views": {},
+	"schemas": {
+		"tv_mvs": "tv_mvs"
+	},
 	"sequences": {},
 	"roles": {},
 	"policies": {},
+	"views": {
+		"tv_mvs.agent_top_violations": {
+			"columns": {
+				"agent_id": {
+					"name": "agent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"law_code": {
+					"name": "law_code",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"description": {
+					"name": "description",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"count": {
+					"name": "count",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"definition": "\n  SELECT DISTINCT ON (agent_id)\n    agent_id,\n    law_code,\n    canonical_description AS description,\n    COUNT(*)::int AS count\n  FROM tv_mvs.violations_joined\n  GROUP BY agent_id, law_code, canonical_description\n  ORDER BY agent_id, count DESC\n",
+			"name": "agent_top_violations",
+			"schema": "tv_mvs",
+			"isExisting": false,
+			"materialized": true
+		},
+		"tv_mvs.agent_top_violations_yearly": {
+			"columns": {
+				"agent_id": {
+					"name": "agent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"year": {
+					"name": "year",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"law_code": {
+					"name": "law_code",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"description": {
+					"name": "description",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"count": {
+					"name": "count",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"definition": "\n  SELECT DISTINCT ON (agent_id, year)\n    agent_id,\n    year,\n    law_code,\n    canonical_description AS description,\n    COUNT(*)::int AS count\n  FROM tv_mvs.violations_joined\n  GROUP BY agent_id, year, law_code, canonical_description\n  ORDER BY agent_id, year, count DESC\n",
+			"name": "agent_top_violations_yearly",
+			"schema": "tv_mvs",
+			"isExisting": false,
+			"materialized": true
+		},
+		"tv_mvs.category_top_violations_yearly": {
+			"columns": {
+				"category": {
+					"name": "category",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"year": {
+					"name": "year",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"law_code": {
+					"name": "law_code",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"description": {
+					"name": "description",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"count": {
+					"name": "count",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"definition": "\n  SELECT DISTINCT ON (category, year)\n    category,\n    year,\n    law_code,\n    canonical_description AS description,\n    COUNT(*)::int AS count\n  FROM tv_mvs.violations_joined\n  WHERE category IS NOT NULL\n  GROUP BY category, year, law_code, canonical_description\n  ORDER BY category, year, count DESC\n",
+			"name": "category_top_violations_yearly",
+			"schema": "tv_mvs",
+			"isExisting": false,
+			"materialized": true
+		},
+		"tv_mvs.mv_spatial": {
+			"columns": {
+				"year": {
+					"name": "year",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"month": {
+					"name": "month",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"street_code": {
+					"name": "street_code",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"category": {
+					"name": "category",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"violation_id": {
+					"name": "violation_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"count": {
+					"name": "count",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"definition": "\n  SELECT\n    year,\n    month,\n    street_code,\n    category,\n    violation_id,\n    COUNT(*)::int AS count\n  FROM tv_mvs.violations_joined\n  WHERE street_code IS NOT NULL\n  GROUP BY\n    year, month, street_code, category, violation_id\n",
+			"name": "mv_spatial",
+			"schema": "tv_mvs",
+			"isExisting": false,
+			"materialized": true
+		},
+		"tv_mvs.mv_temporal": {
+			"columns": {
+				"year": {
+					"name": "year",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"month": {
+					"name": "month",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"weekday": {
+					"name": "weekday",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"hour": {
+					"name": "hour",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"category": {
+					"name": "category",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"violation_id": {
+					"name": "violation_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"count": {
+					"name": "count",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"definition": "\n  SELECT\n    year,\n    month,\n    weekday,\n    hour,\n    category,\n    violation_id,\n    COUNT(*)::int AS count\n  FROM tv_mvs.violations_joined\n  GROUP BY\n    year, month, weekday, hour, category, violation_id\n",
+			"name": "mv_temporal",
+			"schema": "tv_mvs",
+			"isExisting": false,
+			"materialized": true
+		},
+		"tv_mvs.street_top_violation": {
+			"columns": {
+				"street_code": {
+					"name": "street_code",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"description": {
+					"name": "description",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"violation_count": {
+					"name": "violation_count",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"percentage": {
+					"name": "percentage",
+					"type": "numeric",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"definition": "\n  SELECT DISTINCT ON (street_code)\n    street_code,\n    description,\n    violation_count,\n    ROUND((violation_count * 100.0) / SUM(violation_count) OVER (PARTITION BY street_code), 2) AS percentage\n  FROM (\n    SELECT street_code, canonical_description AS description, COUNT(*)::int AS violation_count\n    FROM tv_mvs.violations_joined\n    WHERE street_code IS NOT NULL\n    GROUP BY street_code, canonical_description\n  ) sub\n  ORDER BY street_code, violation_count DESC\n",
+			"name": "street_top_violation",
+			"schema": "tv_mvs",
+			"isExisting": false,
+			"materialized": true
+		},
+		"tv_mvs.violations_joined": {
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"violation_date": {
+					"name": "violation_date",
+					"type": "timestamp with time zone",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"year": {
+					"name": "year",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"month": {
+					"name": "month",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"weekday": {
+					"name": "weekday",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"hour": {
+					"name": "hour",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"agent_id": {
+					"name": "agent_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"location_id": {
+					"name": "location_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"street_code": {
+					"name": "street_code",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"violation_id": {
+					"name": "violation_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"cttu_code": {
+					"name": "cttu_code",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"law_code": {
+					"name": "law_code",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"canonical_description": {
+					"name": "canonical_description",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"category": {
+					"name": "category",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"definition": "\n  SELECT\n    tt.id,\n    tt.violation_date,\n    EXTRACT(YEAR  FROM tt.violation_date)::int AS year,\n    EXTRACT(MONTH FROM tt.violation_date)::int AS month,\n    EXTRACT(DOW   FROM tt.violation_date)::int AS weekday,\n    EXTRACT(HOUR  FROM tt.violation_date)::int AS hour,\n    tt.agent_id,\n    tt.location_id,\n    ttl.street_code,\n    tt.violation_id,\n    tt.cttu_code,\n    ttc.law_code,\n    ttc.canonical_description,\n    ttc.category\n  FROM traffic_tickets tt\n  JOIN traffic_tickets_catalog ttc ON tt.violation_id = ttc.id\n  LEFT JOIN traffic_tickets_locations ttl ON tt.location_id = ttl.location_id\n",
+			"name": "violations_joined",
+			"schema": "tv_mvs",
+			"isExisting": false,
+			"materialized": true
+		}
+	},
 	"_meta": {
 		"columns": {},
 		"schemas": {},

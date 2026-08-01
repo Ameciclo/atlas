@@ -1,0 +1,90 @@
+{
+	"city": "VITORIA DE SANTO ANTAO",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 72,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido pelos Bombeiros/CIODS": 3,
+			"Removido por Particulares": 8,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 10
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 37,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 7
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 340,
+			"Desistência da solicitação": 15,
+			"Inválido/Duplicado/Cancelado/Trote": 13,
+			"Não necessita/Sem Condições Clínicas": 2,
+			"Óbito no Local/Atendimento": 9,
+			"Outros Desfechos": 2,
+			"Recusa de Remoção": 11,
+			"Removido pelos Bombeiros/CIODS": 42,
+			"Removido por Particulares": 51,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 91
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 471,
+			"Desistência da solicitação": 11,
+			"Inválido/Duplicado/Cancelado/Trote": 3,
+			"Não necessita/Sem Condições Clínicas": 3,
+			"Óbito no Local/Atendimento": 13,
+			"Outros Desfechos": 2,
+			"Recusa de Remoção": 17,
+			"Removido pelos Bombeiros/CIODS": 23,
+			"Removido por Particulares": 38,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 68
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 236,
+			"Desistência da solicitação": 5,
+			"Inválido/Duplicado/Cancelado/Trote": 6,
+			"Óbito no Local/Atendimento": 3,
+			"Outros Desfechos": 2,
+			"Recusa de Remoção": 5,
+			"Removido pelos Bombeiros/CIODS": 19,
+			"Removido por Particulares": 27,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 44
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 426,
+			"Desistência da solicitação": 14,
+			"Inválido/Duplicado/Cancelado/Trote": 9,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 7,
+			"Outros Desfechos": 3,
+			"Recusa de Remoção": 23,
+			"Removido pelos Bombeiros/CIODS": 33,
+			"Removido por Particulares": 55,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 74
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 649,
+			"Desistência da solicitação": 21,
+			"Inválido/Duplicado/Cancelado/Trote": 13,
+			"Óbito no Local/Atendimento": 13,
+			"Outros Desfechos": 2,
+			"Recusa de Remoção": 23,
+			"Removido pelos Bombeiros/CIODS": 24,
+			"Removido por Particulares": 40,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 49
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 176,
+			"Desistência da solicitação": 2,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 4,
+			"Removido pelos Bombeiros/CIODS": 5,
+			"Removido por Particulares": 12,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 20
+		}
+	}
+}

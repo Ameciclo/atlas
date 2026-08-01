@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { db, ensureConnection } from "../../db/index.js";
+import { db } from "../../db/index.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
 	AccidentTypesRoute,
@@ -11,7 +11,6 @@ import type {
 export const municipalityStats: AppRouteHandler<
 	MunicipalityStatsRoute
 > = async (c) => {
-	await ensureConnection();
 	const result = await db.execute(sql`
 		SELECT 
 			municipality, 
@@ -26,7 +25,6 @@ export const municipalityStats: AppRouteHandler<
 };
 
 export const accidentTypes: AppRouteHandler<AccidentTypesRoute> = async (c) => {
-	await ensureConnection();
 	const result = await db.execute(sql`
 		SELECT 
 			subtype, 
@@ -43,7 +41,6 @@ export const accidentTypes: AppRouteHandler<AccidentTypesRoute> = async (c) => {
 export const genderDistribution: AppRouteHandler<
 	GenderDistributionRoute
 > = async (c) => {
-	await ensureConnection();
 	const result = await db.execute(sql`
 		SELECT 
 			gender, 
@@ -65,7 +62,6 @@ export const genderDistribution: AppRouteHandler<
 export const dangerousStreets: AppRouteHandler<DangerousStreetsRoute> = async (
 	c,
 ) => {
-	await ensureConnection();
 	const { sort_by, limit } = c.req.valid("query");
 
 	const orderBy =

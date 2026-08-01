@@ -2,6 +2,7 @@ import { createRoute, z } from "@hono/zod-openapi";
 import { createRouter } from "../lib/create-app.js";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { jsonContent } from "stoker/openapi/helpers";
+import { sql } from "drizzle-orm";
 import { db } from "../db/index.js";
 
 const healthSchema = z.object({
@@ -31,7 +32,7 @@ const healthHandler = async (c: any) => {
 
 	try {
 		// Simple database check
-		await db.execute("SELECT 1");
+		await db.execute(sql`SELECT 1`);
 	} catch (_error) {
 		dbStatus = "disconnected";
 		return c.json(

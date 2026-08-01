@@ -1,0 +1,67 @@
+{
+	"city": "ILHA DE ITAMARACA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 9,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 5,
+			"Recusa de Remoção": 2
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 50,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 61,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 3,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1,
+			"Removido pelos Bombeiros/CIODS": 4,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 50,
+			"Inválido/Duplicado/Cancelado/Trote": 4,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 3,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 8
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 62,
+			"Desistência da solicitação": 2,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Recusa de Remoção": 4,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 10
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 58,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Recusa de Remoção": 2,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 11,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 18
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 20,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		}
+	}
+}

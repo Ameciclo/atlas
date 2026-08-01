@@ -1,0 +1,599 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.90919,
+          -8.07701
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 2 - Área Intermediária",
+        "interviews_count": 111,
+        "women_percent": 27,
+        "collision_report_percent": 22.5,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.95573,
+          -8.0313
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 3 - Área Periférica",
+        "interviews_count": 101,
+        "women_percent": 29.7,
+        "collision_report_percent": 13.9,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.90176,
+          -8.03876
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 1 - Área Central",
+        "interviews_count": 100,
+        "women_percent": 15,
+        "collision_report_percent": 22,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.88374,
+          -8.05263
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 1 - Área Central",
+        "interviews_count": 100,
+        "women_percent": 26,
+        "collision_report_percent": 9,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.91224,
+          -8.09803
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 3 - Área Periférica",
+        "interviews_count": 99,
+        "women_percent": 18.2,
+        "collision_report_percent": 25.3,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.92706,
+          -8.10793
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 3 - Área Periférica",
+        "interviews_count": 99,
+        "women_percent": 20.2,
+        "collision_report_percent": 33.3,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.91773,
+          -8.02676
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 2 - Área Intermediária",
+        "interviews_count": 99,
+        "women_percent": 15.2,
+        "collision_report_percent": 31.3,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.92892,
+          -8.05351
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 2 - Área Intermediária",
+        "interviews_count": 51,
+        "women_percent": 23.5,
+        "collision_report_percent": 27.5,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.88138,
+          -8.03216
+        ]
+      },
+      "properties": {
+        "neighborhood": "1177",
+        "area": "Área 2 - Área Intermediária",
+        "interviews_count": 50,
+        "women_percent": 16,
+        "collision_report_percent": 44,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.92892,
+          -8.05351
+        ]
+      },
+      "properties": {
+        "neighborhood": "750",
+        "area": "Área 3 - Área Periférica",
+        "interviews_count": 50,
+        "women_percent": 20,
+        "collision_report_percent": 14,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.87489,
+          -8.04448
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 1 - Área Central",
+        "interviews_count": 50,
+        "women_percent": 26,
+        "collision_report_percent": 52,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.89552,
+          -8.11574
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 3 - Área Periférica",
+        "interviews_count": 50,
+        "women_percent": 22,
+        "collision_report_percent": 26,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.91665,
+          -8.04425
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 2 - Área Intermediária",
+        "interviews_count": 50,
+        "women_percent": 24,
+        "collision_report_percent": 16,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.92576,
+          -8.06046
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 3 - Área Periférica",
+        "interviews_count": 50,
+        "women_percent": 38,
+        "collision_report_percent": 12,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.88226,
+          -8.05508
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 1 - Área Central",
+        "interviews_count": 50,
+        "women_percent": 18,
+        "collision_report_percent": 22,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.88138,
+          -8.03216
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 2 - Área Intermediária",
+        "interviews_count": 50,
+        "women_percent": 26,
+        "collision_report_percent": 24,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.89293,
+          -8.02793
+        ]
+      },
+      "properties": {
+        "neighborhood": "1020",
+        "area": "Área 3 - Área Periférica",
+        "interviews_count": 50,
+        "women_percent": 16,
+        "collision_report_percent": 30,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.89293,
+          -8.02793
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 2 - Área Intermediária",
+        "interviews_count": 50,
+        "women_percent": 30,
+        "collision_report_percent": 30,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.88138,
+          -8.03216
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 1 - Área Central",
+        "interviews_count": 50,
+        "women_percent": 36,
+        "collision_report_percent": 16,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.87848,
+          -8.06392
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 1 - Área Central",
+        "interviews_count": 50,
+        "women_percent": 22,
+        "collision_report_percent": 52,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.92576,
+          -8.06046
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 2 - Área Intermediária",
+        "interviews_count": 50,
+        "women_percent": 18,
+        "collision_report_percent": 14,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.92892,
+          -8.05351
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 3 - Área Periférica",
+        "interviews_count": 50,
+        "women_percent": 32,
+        "collision_report_percent": 20,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.91773,
+          -8.02676
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 3 - Área Periférica",
+        "interviews_count": 50,
+        "women_percent": 28,
+        "collision_report_percent": 16,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.90176,
+          -8.03876
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 2 - Área Intermediária",
+        "interviews_count": 50,
+        "women_percent": 18,
+        "collision_report_percent": 20,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.89772,
+          -8.05661
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 1 - Área Central",
+        "interviews_count": 50,
+        "women_percent": 18,
+        "collision_report_percent": 22,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.92105,
+          -8.05045
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 2 - Área Intermediária",
+        "interviews_count": 49,
+        "women_percent": 20.4,
+        "collision_report_percent": 14.3,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.89293,
+          -8.02793
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 3 - Área Periférica",
+        "interviews_count": 49,
+        "women_percent": 24.5,
+        "collision_report_percent": 12.2,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.89807,
+          -8.05664
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 1 - Área Central",
+        "interviews_count": 49,
+        "women_percent": 18.4,
+        "collision_report_percent": 26.5,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.87696,
+          -8.04756
+        ]
+      },
+      "properties": {
+        "neighborhood": "923",
+        "area": "Área 2 - Área Intermediária",
+        "interviews_count": 49,
+        "women_percent": 6.1,
+        "collision_report_percent": 30.6,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.89552,
+          -8.11574
+        ]
+      },
+      "properties": {
+        "neighborhood": "3003",
+        "area": "Área 1 - Área Central",
+        "interviews_count": 48,
+        "women_percent": 22.9,
+        "collision_report_percent": 25,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.88374,
+          -8.05263
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 2 - Área Intermediária",
+        "interviews_count": 48,
+        "women_percent": 29.2,
+        "collision_report_percent": 33.3,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.89552,
+          -8.11574
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 2 - Área Intermediária",
+        "interviews_count": 48,
+        "women_percent": 29.2,
+        "collision_report_percent": 16.7,
+        "low_income_percent": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -34.90919,
+          -8.07701
+        ]
+      },
+      "properties": {
+        "neighborhood": "N/A",
+        "area": "Área 3 - Área Periférica",
+        "interviews_count": 39,
+        "women_percent": 30.8,
+        "collision_report_percent": 25.6,
+        "low_income_percent": 0
+      }
+    }
+  ]
+}

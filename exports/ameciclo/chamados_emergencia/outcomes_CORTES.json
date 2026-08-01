@@ -1,0 +1,43 @@
+{
+	"city": "CORTES",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 7,
+			"Removido por Particulares": 2
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 33,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 21,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Recusa de Remoção": 6,
+			"Removido por Particulares": 7,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 11,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 20,
+			"Desistência da solicitação": 1,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 15,
+			"Desistência da solicitação": 2,
+			"Óbito no Local/Atendimento": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 1
+		}
+	}
+}

@@ -1,0 +1,83 @@
+{
+	"city": "SAO LOURENCO DA MATA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 9,
+			"Desistência da solicitação": 2,
+			"Removido pelos Bombeiros/CIODS": 10,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 9
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 5,
+			"Desistência da solicitação": 1,
+			"Removido pelos Bombeiros/CIODS": 4,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 4
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 99,
+			"Desistência da solicitação": 7,
+			"Inválido/Duplicado/Cancelado/Trote": 4,
+			"Óbito no Local/Atendimento": 1,
+			"Outros Desfechos": 3,
+			"Recusa de Remoção": 4,
+			"Removido pelos Bombeiros/CIODS": 40,
+			"Removido por Particulares": 33,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 55
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 93,
+			"Desistência da solicitação": 12,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 3,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 3,
+			"Removido pelos Bombeiros/CIODS": 35,
+			"Removido por Particulares": 18,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 82
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 43,
+			"Desistência da solicitação": 3,
+			"Óbito no Local/Atendimento": 2,
+			"Outros Desfechos": 3,
+			"Recusa de Remoção": 3,
+			"Removido pelos Bombeiros/CIODS": 19,
+			"Removido por Particulares": 17,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 38
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 129,
+			"Desistência da solicitação": 18,
+			"Inválido/Duplicado/Cancelado/Trote": 8,
+			"Óbito no Local/Atendimento": 2,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 9,
+			"Removido pelos Bombeiros/CIODS": 31,
+			"Removido por Particulares": 31,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 64
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 156,
+			"Desistência da solicitação": 22,
+			"Inválido/Duplicado/Cancelado/Trote": 6,
+			"Óbito no Local/Atendimento": 6,
+			"Outros Desfechos": 2,
+			"Recusa de Remoção": 13,
+			"Removido pelos Bombeiros/CIODS": 79,
+			"Removido por Particulares": 44,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 81
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 41,
+			"Desistência da solicitação": 3,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 3,
+			"Removido pelos Bombeiros/CIODS": 12,
+			"Removido por Particulares": 13,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 14
+		}
+	}
+}

@@ -1,0 +1,58 @@
+{
+	"city": "AMARAJI",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 2,
+			"Desistência da solicitação": 1
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 6,
+			"Removido por Particulares": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 46,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 71,
+			"Desistência da solicitação": 3,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 4,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 8,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 12,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 6,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 39,
+			"Desistência da solicitação": 4,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Outros Desfechos": 1,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 4
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 58,
+			"Desistência da solicitação": 2,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 9,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 18,
+			"Removido por Particulares": 2
+		}
+	}
+}

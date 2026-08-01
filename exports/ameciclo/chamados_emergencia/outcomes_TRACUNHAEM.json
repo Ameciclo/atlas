@@ -1,0 +1,54 @@
+{
+	"city": "TRACUNHAEM",
+	"outcomes_by_year": {
+		"2018": {
+			"Removido por Particulares": 1
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 5,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido pelos Bombeiros/CIODS": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 11,
+			"Recusa de Remoção": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 19,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 10,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 15,
+			"Desistência da solicitação": 2,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 2,
+			"Removido pelos Bombeiros/CIODS": 2,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 10
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 15,
+			"Desistência da solicitação": 2,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido pelos Bombeiros/CIODS": 4,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 4
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 3,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1
+		}
+	}
+}

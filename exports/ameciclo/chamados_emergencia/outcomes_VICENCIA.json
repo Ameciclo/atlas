@@ -1,0 +1,50 @@
+{
+	"city": "VICENCIA",
+	"outcomes_by_year": {
+		"2020": {
+			"Atendimento Concluído com Êxito": 37,
+			"Óbito no Local/Atendimento": 2,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 43,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 3,
+			"Recusa de Remoção": 3,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 20,
+			"Desistência da solicitação": 1,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 8
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 49,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 12,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 11
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 59,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 4,
+			"Removido por Particulares": 12,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 8
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 17,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		}
+	}
+}

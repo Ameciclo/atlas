@@ -40,7 +40,7 @@
     "title": "Traffic Deaths API"
   },
   {
-    "url": "/openapi/traffic-violations.json",
-    "title": "Traffic Violations API"
+    "url": "/openapi/traffic-tickets.json",
+    "title": "Traffic Tickets API"
   }
 ]

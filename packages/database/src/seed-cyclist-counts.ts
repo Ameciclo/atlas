@@ -242,12 +242,21 @@ export async function seedCyclistCounts(config: DatabaseConfig = {}) {
 				},
 			};
 
-			// Check if location already exists
+			// Check if location already exists by coordinates
 			const existingLocation = await db
 				.select()
 				.from(cyclistCountsSchema.countingLocations)
 				.where(
-					eq(cyclistCountsSchema.countingLocations.name, locationData.name),
+					and(
+						eq(
+							cyclistCountsSchema.countingLocations.latitude,
+							locationData.latitude,
+						),
+						eq(
+							cyclistCountsSchema.countingLocations.longitude,
+							locationData.longitude,
+						),
+					),
 				)
 				.limit(1);
 

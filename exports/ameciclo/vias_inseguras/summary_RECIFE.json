@@ -1,0 +1,22 @@
+{
+	"city": "RECIFE",
+	"total_accidents": 36650,
+	"accidents_per_year": {
+		"2020": 5188,
+		"2021": 6151,
+		"2022": 3443,
+		"2023": 8121,
+		"2024": 11030,
+		"2025": 2717
+	},
+	"total_streets": 9794,
+	"extensaoTotalKm": 1526.42225,
+	"period": {
+		"start_year": 2020,
+		"end_year": 2025
+	},
+	"most_dangerous_street": {
+		"name": "ROD BR CENTO E UM",
+		"total_accidents": 1835
+	}
+}

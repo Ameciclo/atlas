@@ -1,0 +1,244 @@
+base_legal,artigo,inciso_alinea_paragrafo,gravidade,descricao,classificacao,observacoes
+Art. 162 Inc. I,Art. 162,Inc. I,gravíssima,"Dirigir sem possuir CNH, Permissão para Dirigir ou Autorização para Conduzir Ciclomotor.",Administrativas/documentais,Multa três vezes; retenção do veículo até apresentação de condutor habilitado.
+Art. 162 Inc. II,Art. 162,Inc. II,gravíssima,"Dirigir com CNH, Permissão para Dirigir ou ACC cassada ou com suspensão do direito de dirigir.",Administrativas/documentais,Multa três vezes; recolhimento do documento e retenção do veículo.
+Art. 162 Inc. III,Art. 162,Inc. III,gravíssima,Dirigir com CNH ou Permissão de categoria diferente da do veículo conduzido.,Administrativas/documentais,Multa duas vezes; retenção do veículo.
+Art. 162 Inc. V,Art. 162,Inc. V,gravíssima,Dirigir com CNH vencida há mais de 30 dias.,Administrativas/documentais,Retenção do veículo até apresentação de condutor habilitado.
+Art. 162 Inc. VI,Art. 162,Inc. VI,gravíssima,"Dirigir sem usar lentes corretoras, aparelho auxiliar, prótese física ou adaptação veicular exigida na habilitação.",Segurança viária,Retenção do veículo até sanar a irregularidade ou apresentar condutor habilitado.
+Art. 162 Inc. VII,Art. 162,Inc. VII,gravíssima,Dirigir sem possuir os cursos especializados ou específicos obrigatórios.,Administrativas/documentais,Retenção do veículo até apresentação de condutor habilitado.
+Art. 163,Art. 163,,variável,Entregar a direção do veículo a pessoa nas condições previstas no art. 162.,Administrativas/documentais,Gravidade e penalidade seguem o inciso correspondente do art. 162.
+Art. 164,Art. 164,,variável,Permitir que pessoa nas condições do art. 162 tome posse do veículo e passe a conduzi-lo na via.,Administrativas/documentais,Gravidade e penalidade seguem o inciso correspondente do art. 162.
+Art. 165,Art. 165,,gravíssima,Dirigir sob influência de álcool ou de substância psicoativa que determine dependência.,Segurança viária,Multa dez vezes e suspensão do direito de dirigir por 12 meses.
+Art. 165-A,Art. 165-A,,gravíssima,"Recusar teste, exame clínico, perícia ou outro procedimento para certificar influência de álcool ou substância psicoativa.",Segurança viária,Multa dez vezes e suspensão do direito de dirigir por 12 meses.
+Art. 165-B,Art. 165-B,,gravíssima,Dirigir veículo sem realizar o exame toxicológico previsto no art. 148-A.,Administrativas/documentais,Multa cinco vezes; reincidência pode gerar multa dez vezes e suspensão.
+Art. 165-C,Art. 165-C,,gravíssima,Dirigir veículo tendo obtido resultado positivo no exame toxicológico previsto no art. 148-A.,Segurança viária,Multa cinco vezes; reincidência pode gerar multa dez vezes e suspensão.
+Art. 165-D,Art. 165-D,,gravíssima,Deixar de realizar o exame toxicológico previsto no art. 148-A após 30 dias do vencimento do prazo.,Administrativas/documentais,Multa cinco vezes.
+Art. 166,Art. 166,,gravíssima,"Confiar ou entregar direção a pessoa que, mesmo habilitada, não esteja em condições físicas ou psíquicas de dirigir com segurança.",Segurança viária,
+Art. 167,Art. 167,,grave,Condutor ou passageiro deixar de usar cinto de segurança.,Segurança viária,Retenção do veículo até colocação do cinto.
+Art. 168,Art. 168,,gravíssima,Transportar crianças em veículo automotor sem observar normas especiais de segurança.,Segurança viária,Retenção do veículo até sanar a irregularidade.
+Art. 169,Art. 169,,leve,Dirigir sem atenção ou sem cuidados indispensáveis à segurança.,Segurança viária,
+Art. 170,Art. 170,,gravíssima,Dirigir ameaçando pedestres que estejam atravessando a via pública ou demais veículos.,Pedestres,Suspensão do direito de dirigir; retenção do veículo e recolhimento da habilitação.
+Art. 171,Art. 171,,média,Usar o veículo para arremessar água ou detritos sobre pedestres ou veículos.,Pedestres,
+Art. 172,Art. 172,,média,Atirar do veículo ou abandonar na via objetos ou substâncias.,Segurança viária,
+Art. 173,Art. 173,,gravíssima,Disputar corrida.,Segurança viária,Multa dez vezes; suspensão do direito de dirigir e remoção do veículo.
+Art. 174,Art. 174,,gravíssima,"Promover ou participar de competição, evento, exibição ou demonstração de perícia em via sem permissão da autoridade.",Segurança viária,Multa dez vezes; suspensão do direito de dirigir e remoção do veículo.
+Art. 175,Art. 175,,gravíssima,"Usar veículo para demonstrar ou exibir manobra perigosa, como arrancada brusca, derrapagem ou frenagem com arrastamento de pneus.",Segurança viária,Multa dez vezes; suspensão do direito de dirigir e remoção do veículo.
+Art. 176 Inc. I,Art. 176,Inc. I,gravíssima,"Condutor envolvido em sinistro com vítima deixar de prestar ou providenciar socorro à vítima, podendo fazê-lo.",Segurança viária,Multa cinco vezes e suspensão do direito de dirigir.
+Art. 176 Inc. II,Art. 176,Inc. II,gravíssima,Condutor envolvido em sinistro com vítima deixar de adotar providências para evitar perigo ao trânsito no local.,Segurança viária,Multa cinco vezes e suspensão do direito de dirigir.
+Art. 176 Inc. III,Art. 176,Inc. III,gravíssima,Condutor envolvido em sinistro com vítima deixar de preservar o local para trabalhos da polícia e perícia.,Segurança viária,Multa cinco vezes e suspensão do direito de dirigir.
+Art. 176 Inc. IV,Art. 176,Inc. IV,gravíssima,Condutor envolvido em sinistro com vítima deixar de remover o veículo quando determinado por policial ou agente.,Fluidez do trânsito,Multa cinco vezes e suspensão do direito de dirigir.
+Art. 176 Inc. V,Art. 176,Inc. V,gravíssima,Condutor envolvido em sinistro com vítima deixar de identificar-se ao policial e prestar informações para o boletim.,Administrativas/documentais,Multa cinco vezes e suspensão do direito de dirigir.
+Art. 177,Art. 177,,grave,Condutor deixar de prestar socorro à vítima de sinistro de trânsito quando solicitado pela autoridade ou seus agentes.,Segurança viária,
+Art. 178,Art. 178,,média,Condutor envolvido em sinistro sem vítima deixar de remover o veículo quando necessário para segurança e fluidez do trânsito.,Fluidez do trânsito,
+Art. 179 Inc. I,Art. 179,Inc. I,grave,"Fazer ou permitir reparo em veículo na pista de rolamento de rodovias ou vias de trânsito rápido, salvo impedimento absoluto e com sinalização.",Segurança viária,Remoção do veículo.
+Art. 179 Inc. II,Art. 179,Inc. II,leve,"Fazer ou permitir reparo em veículo nas demais vias, salvo impedimento absoluto e com sinalização.",Fluidez do trânsito,
+Art. 180,Art. 180,,média,Ter o veículo imobilizado na via por falta de combustível.,Fluidez do trânsito,Remoção do veículo.
+Art. 181 Inc. I,Art. 181,Inc. I,média,Estacionar nas esquinas e a menos de cinco metros do bordo do alinhamento da via transversal.,Estacionamento/uso da via,Remoção do veículo.
+Art. 181 Inc. II,Art. 181,Inc. II,leve,Estacionar afastado da guia da calçada de cinquenta centímetros a um metro.,Estacionamento/uso da via,Remoção do veículo.
+Art. 181 Inc. III,Art. 181,Inc. III,grave,Estacionar afastado da guia da calçada a mais de um metro.,Estacionamento/uso da via,Remoção do veículo.
+Art. 181 Inc. IV,Art. 181,Inc. IV,média,Estacionar em desacordo com as posições estabelecidas no CTB.,Estacionamento/uso da via,Remoção do veículo.
+Art. 181 Inc. V,Art. 181,Inc. V,gravíssima,"Estacionar na pista de rolamento de estradas, rodovias, vias de trânsito rápido e vias com acostamento.",Segurança viária,Remoção do veículo.
+Art. 181 Inc. VI,Art. 181,Inc. VI,média,"Estacionar junto ou sobre hidrantes, registro de água ou tampas de poços de visita identificados.",Estacionamento/uso da via,Remoção do veículo.
+Art. 181 Inc. VII,Art. 181,Inc. VII,leve,"Estacionar nos acostamentos, salvo motivo de força maior.",Estacionamento/uso da via,Remoção do veículo.
+Art. 181 Inc. VIII,Art. 181,Inc. VIII,grave,"Estacionar no passeio, sobre faixa de pedestre, ciclovia ou ciclofaixa, ilhas, refúgios, canteiros, marcas de canalização, gramados ou jardim público.",Pedestres,Remoção do veículo. Linha duplicada para separar recorte de pedestres/ciclistas no observatório.
+Art. 181 Inc. VIII,Art. 181,Inc. VIII,grave,"Estacionar no passeio, sobre faixa de pedestre, ciclovia ou ciclofaixa, ilhas, refúgios, canteiros, marcas de canalização, gramados ou jardim público.",Ciclistas,Remoção do veículo. Linha duplicada para separar recorte de pedestres/ciclistas no observatório.
+Art. 181 Inc. IX,Art. 181,Inc. IX,média,Estacionar onde houver guia de calçada rebaixada destinada à entrada ou saída de veículos.,Estacionamento/uso da via,Remoção do veículo.
+Art. 181 Inc. X,Art. 181,Inc. X,média,Estacionar impedindo a movimentação de outro veículo.,Estacionamento/uso da via,Remoção do veículo.
+Art. 181 Inc. XI,Art. 181,Inc. XI,grave,Estacionar ao lado de outro veículo em fila dupla.,Fluidez do trânsito,Remoção do veículo.
+Art. 181 Inc. XII,Art. 181,Inc. XII,grave,"Estacionar na área de cruzamento de vias, prejudicando a circulação de veículos e pedestres.",Fluidez do trânsito,Remoção do veículo.
+Art. 181 Inc. XIII,Art. 181,Inc. XIII,média,Estacionar em ponto de embarque/desembarque de transporte coletivo ou no intervalo de dez metros antes e depois do marco do ponto.,Transporte coletivo,Remoção do veículo.
+Art. 181 Inc. XIV,Art. 181,Inc. XIV,grave,"Estacionar nos viadutos, pontes e túneis.",Segurança viária,Remoção do veículo.
+Art. 181 Inc. XV,Art. 181,Inc. XV,média,Estacionar na contramão de direção.,Estacionamento/uso da via,
+Art. 181 Inc. XVI,Art. 181,Inc. XVI,grave,"Estacionar em aclive ou declive sem freio e sem calço de segurança, para veículo com peso bruto total superior a 3.500 kg.",Segurança viária,Remoção do veículo.
+Art. 181 Inc. XVII,Art. 181,Inc. XVII,grave,Estacionar em desacordo com condições regulamentadas pela sinalização de estacionamento regulamentado.,Estacionamento/uso da via,Remoção do veículo.
+Art. 181 Inc. XVIII,Art. 181,Inc. XVIII,média,Estacionar em locais e horários proibidos pela sinalização de Proibido Estacionar.,Estacionamento/uso da via,Remoção do veículo.
+Art. 181 Inc. XIX,Art. 181,Inc. XIX,grave,Estacionar em locais e horários de estacionamento e parada proibidos pela sinalização de Proibido Parar e Estacionar.,Estacionamento/uso da via,Remoção do veículo.
+Art. 181 Inc. XX,Art. 181,Inc. XX,gravíssima,Estacionar em vaga reservada a pessoa com deficiência ou idoso sem credencial.,Pedestres,Remoção do veículo.
+Art. 182 Inc. I,Art. 182,Inc. I,média,Parar nas esquinas e a menos de cinco metros do bordo do alinhamento da via transversal.,Estacionamento/uso da via,
+Art. 182 Inc. II,Art. 182,Inc. II,leve,Parar afastado da guia da calçada de cinquenta centímetros a um metro.,Estacionamento/uso da via,
+Art. 182 Inc. III,Art. 182,Inc. III,média,Parar afastado da guia da calçada a mais de um metro.,Estacionamento/uso da via,
+Art. 182 Inc. IV,Art. 182,Inc. IV,leve,Parar em desacordo com as posições estabelecidas no CTB.,Estacionamento/uso da via,
+Art. 182 Inc. V,Art. 182,Inc. V,grave,"Parar na pista de rolamento de estradas, rodovias, vias de trânsito rápido e demais vias dotadas de acostamento.",Segurança viária,
+Art. 182 Inc. VI,Art. 182,Inc. VI,leve,"Parar no passeio ou sobre faixa destinada a pedestres, ilhas, refúgios, canteiros centrais, divisores de pista e marcas de canalização.",Pedestres,
+Art. 182 Inc. VII,Art. 182,Inc. VII,média,"Parar na área de cruzamento de vias, prejudicando a circulação de veículos e pedestres.",Fluidez do trânsito,
+Art. 182 Inc. VIII,Art. 182,Inc. VIII,média,"Parar nos viadutos, pontes e túneis.",Segurança viária,
+Art. 182 Inc. IX,Art. 182,Inc. IX,média,Parar na contramão de direção.,Estacionamento/uso da via,
+Art. 182 Inc. X,Art. 182,Inc. X,média,Parar em local e horário proibidos pela sinalização de Proibido Parar.,Estacionamento/uso da via,
+Art. 182 Inc. XI,Art. 182,Inc. XI,grave,Parar sobre ciclovia ou ciclofaixa.,Ciclistas,
+Art. 183,Art. 183,,média,Parar o veículo sobre a faixa de pedestres na mudança de sinal luminoso.,Pedestres,
+Art. 184 Inc. I,Art. 184,Inc. I,leve,"Transitar na faixa ou pista da direita regulamentada como exclusiva para determinado tipo de veículo, exceto acesso a imóveis ou conversões à direita.",Fluidez do trânsito,
+Art. 184 Inc. II,Art. 184,Inc. II,grave,Transitar na faixa ou pista da esquerda regulamentada como exclusiva para determinado tipo de veículo.,Fluidez do trânsito,
+Art. 184 Inc. III,Art. 184,Inc. III,gravíssima,"Transitar em faixa ou via exclusiva destinada ao transporte público coletivo de passageiros, salvo força maior e autorização.",Transporte coletivo,Remoção do veículo.
+Art. 185 Inc. I,Art. 185,Inc. I,média,"Em movimento, deixar de conservar o veículo na faixa a ele destinada pela sinalização, exceto emergência.",Fluidez do trânsito,
+Art. 185 Inc. II,Art. 185,Inc. II,média,"Em movimento, deixar de conservar veículos lentos e de maior porte nas faixas da direita.",Fluidez do trânsito,
+Art. 186 Inc. I,Art. 186,Inc. I,grave,"Transitar pela contramão em via de duplo sentido, salvo ultrapassagem pelo tempo necessário e respeitada a preferência contrária.",Segurança viária,
+Art. 186 Inc. II,Art. 186,Inc. II,gravíssima,Transitar pela contramão em via com sinalização de sentido único.,Segurança viária,
+Art. 187 Inc. I,Art. 187,Inc. I,média,Transitar em locais e horários não permitidos pela regulamentação para todos os tipos de veículos.,Fluidez do trânsito,
+Art. 188,Art. 188,,média,"Transitar ao lado de outro veículo, interrompendo ou perturbando o trânsito.",Fluidez do trânsito,
+Art. 189,Art. 189,,gravíssima,"Deixar de dar passagem a veículos precedidos de batedores, de socorro, polícia, fiscalização de trânsito e ambulâncias em urgência identificada.",Segurança viária,
+Art. 190,Art. 190,,grave,Seguir veículo em serviço de urgência com prioridade de passagem identificada.,Segurança viária,
+Art. 191,Art. 191,,gravíssima,Forçar passagem entre veículos em sentidos opostos na iminência de passar um pelo outro durante ultrapassagem.,Segurança viária,Multa dez vezes e suspensão do direito de dirigir.
+Art. 192,Art. 192,,grave,Deixar de guardar distância de segurança lateral e frontal entre veículos e em relação ao bordo da pista.,Segurança viária,
+Art. 193,Art. 193,,gravíssima,"Transitar em calçadas, passeios, passarelas, ciclovias, ciclofaixas, ilhas, refúgios, canteiros, acostamentos, marcas de canalização, gramados e jardins.",Pedestres,Multa três vezes. Linha duplicada para separar recorte de pedestres/ciclistas no observatório.
+Art. 193,Art. 193,,gravíssima,"Transitar em calçadas, passeios, passarelas, ciclovias, ciclofaixas, ilhas, refúgios, canteiros, acostamentos, marcas de canalização, gramados e jardins.",Ciclistas,Multa três vezes. Linha duplicada para separar recorte de pedestres/ciclistas no observatório.
+Art. 194,Art. 194,,grave,"Transitar em marcha à ré, salvo pequena manobra, de forma a não causar riscos à segurança.",Segurança viária,
+Art. 195,Art. 195,,grave,Desobedecer ordens da autoridade competente de trânsito ou de seus agentes.,Administrativas/documentais,
+Art. 196,Art. 196,,grave,"Deixar de indicar com antecedência o início da marcha, parada, mudança de direção ou faixa, por gesto ou luz indicadora.",Segurança viária,
+Art. 197,Art. 197,,média,Deixar de deslocar com antecedência o veículo para a faixa adequada quando for manobrar para um dos lados.,Segurança viária,
+Art. 198,Art. 198,,média,Deixar de dar passagem pela esquerda quando solicitado.,Fluidez do trânsito,
+Art. 199,Art. 199,,média,"Ultrapassar pela direita, salvo quando o veículo da frente estiver na faixa apropriada e sinalizar entrada à esquerda.",Segurança viária,
+Art. 200,Art. 200,,gravíssima,"Ultrapassar pela direita veículo de transporte coletivo ou escolar parado para embarque/desembarque, salvo havendo refúgio de segurança para pedestre.",Pedestres,
+Art. 201,Art. 201,,média,"Deixar de guardar distância lateral de 1,5 metro ao passar ou ultrapassar bicicleta.",Ciclistas,
+Art. 202 Inc. I,Art. 202,Inc. I,gravíssima,Ultrapassar outro veículo pelo acostamento.,Segurança viária,Multa cinco vezes.
+Art. 202 Inc. II,Art. 202,Inc. II,gravíssima,Ultrapassar outro veículo em interseções e passagens de nível.,Segurança viária,Multa cinco vezes.
+Art. 203 Inc. I,Art. 203,Inc. I,gravíssima,"Ultrapassar pela contramão em curvas, aclives e declives sem visibilidade suficiente.",Segurança viária,Multa cinco vezes.
+Art. 203 Inc. II,Art. 203,Inc. II,gravíssima,Ultrapassar pela contramão nas faixas de pedestre.,Pedestres,Multa cinco vezes.
+Art. 203 Inc. III,Art. 203,Inc. III,gravíssima,"Ultrapassar pela contramão nas pontes, viadutos ou túneis.",Segurança viária,Multa cinco vezes.
+Art. 203 Inc. IV,Art. 203,Inc. IV,gravíssima,"Ultrapassar pela contramão veículo parado em fila junto a sinais luminosos, porteiras, cancelas, cruzamentos ou impedimentos.",Segurança viária,Multa cinco vezes.
+Art. 203 Inc. V,Art. 203,Inc. V,gravíssima,Ultrapassar pela contramão onde houver linha dupla contínua ou simples contínua amarela.,Segurança viária,Multa cinco vezes.
+Art. 204,Art. 204,,grave,Deixar de parar no acostamento à direita para aguardar oportunidade de cruzar a pista ou entrar à esquerda onde não houver local apropriado para retorno.,Segurança viária,
+Art. 205,Art. 205,,leve,"Ultrapassar veículo em movimento que integre cortejo, préstito, desfile ou formações militares sem autorização.",Fluidez do trânsito,
+Art. 206 Inc. I,Art. 206,Inc. I,gravíssima,Executar operação de retorno em locais proibidos pela sinalização.,Segurança viária,
+Art. 206 Inc. II,Art. 206,Inc. II,gravíssima,"Executar retorno em curvas, aclives, declives, pontes, viadutos e túneis.",Segurança viária,
+Art. 206 Inc. III,Art. 206,Inc. III,gravíssima,"Executar retorno passando por calçada, passeio, ilhas, ajardinamento, canteiros, refúgios, faixas de pedestres ou faixas de veículos não motorizados.",Pedestres,Linha duplicada para separar recorte de pedestres/ciclistas no observatório.
+Art. 206 Inc. III,Art. 206,Inc. III,gravíssima,"Executar retorno passando por calçada, passeio, ilhas, ajardinamento, canteiros, refúgios, faixas de pedestres ou faixas de veículos não motorizados.",Ciclistas,Linha duplicada para separar recorte de pedestres/ciclistas no observatório.
+Art. 206 Inc. IV,Art. 206,Inc. IV,gravíssima,"Executar retorno em interseções, entrando na contramão da via transversal.",Segurança viária,
+Art. 206 Inc. V,Art. 206,Inc. V,gravíssima,"Executar retorno com prejuízo da livre circulação ou da segurança, ainda que em local permitido.",Segurança viária,
+Art. 207,Art. 207,,grave,Executar conversão à direita ou à esquerda em locais proibidos pela sinalização.,Segurança viária,
+Art. 208,Art. 208,,gravíssima,"Avançar sinal vermelho do semáforo ou sinal de parada obrigatória, salvo livre conversão à direita sinalizada.",Segurança viária,
+Art. 209,Art. 209,,grave,"Transpor sem autorização bloqueio viário, com ou sem sinalização, ou deixar de adentrar área destinada à pesagem de veículos.",Administrativas/documentais,
+Art. 209-A,Art. 209-A,,grave,Evadir-se da cobrança pelo uso de rodovias e vias urbanas ou deixar de efetuar pagamento na forma estabelecida.,Administrativas/documentais,
+Art. 210,Art. 210,,gravíssima,Transpor sem autorização bloqueio viário policial.,Segurança viária,"Multa, apreensão do veículo e suspensão do direito de dirigir."
+Art. 211,Art. 211,,grave,"Ultrapassar veículos em fila parados por sinal luminoso, cancela, bloqueio parcial ou outro obstáculo, exceto veículos não motorizados.",Fluidez do trânsito,
+Art. 212,Art. 212,,gravíssima,Deixar de parar o veículo antes de transpor linha férrea.,Segurança viária,
+Art. 213 Inc. I,Art. 213,Inc. I,gravíssima,"Deixar de parar quando a marcha for interceptada por agrupamento de pessoas, como préstitos, passeatas, desfiles e outros.",Pedestres,
+Art. 213 Inc. II,Art. 213,Inc. II,grave,"Deixar de parar quando a marcha for interceptada por agrupamento de veículos, como cortejos e formações militares.",Fluidez do trânsito,
+Art. 214 Inc. I,Art. 214,Inc. I,gravíssima,Deixar de dar preferência de passagem a pedestre ou veículo não motorizado que esteja na faixa a ele destinada.,Pedestres,Linha duplicada para separar recorte de pedestres/ciclistas no observatório.
+Art. 214 Inc. I,Art. 214,Inc. I,gravíssima,Deixar de dar preferência de passagem a pedestre ou veículo não motorizado que esteja na faixa a ele destinada.,Ciclistas,Linha duplicada para separar recorte de pedestres/ciclistas no observatório.
+Art. 214 Inc. II,Art. 214,Inc. II,gravíssima,"Deixar de dar preferência a pedestre ou veículo não motorizado que não concluiu a travessia, mesmo com sinal verde para o veículo.",Pedestres,Linha duplicada para separar recorte de pedestres/ciclistas no observatório.
+Art. 214 Inc. II,Art. 214,Inc. II,gravíssima,"Deixar de dar preferência a pedestre ou veículo não motorizado que não concluiu a travessia, mesmo com sinal verde para o veículo.",Ciclistas,Linha duplicada para separar recorte de pedestres/ciclistas no observatório.
+Art. 214 Inc. III,Art. 214,Inc. III,gravíssima,"Deixar de dar preferência a pessoa com deficiência física, criança, idoso ou gestante.",Pedestres,
+Art. 214 Inc. IV,Art. 214,Inc. IV,grave,Deixar de dar preferência a pedestre ou veículo não motorizado que iniciou travessia mesmo sem sinalização destinada a ele.,Pedestres,Linha duplicada para separar recorte de pedestres/ciclistas no observatório.
+Art. 214 Inc. IV,Art. 214,Inc. IV,grave,Deixar de dar preferência a pedestre ou veículo não motorizado que iniciou travessia mesmo sem sinalização destinada a ele.,Ciclistas,Linha duplicada para separar recorte de pedestres/ciclistas no observatório.
+Art. 214 Inc. V,Art. 214,Inc. V,grave,Deixar de dar preferência a pedestre ou veículo não motorizado que esteja atravessando a via transversal para onde se dirige o veículo.,Pedestres,Linha duplicada para separar recorte de pedestres/ciclistas no observatório.
+Art. 214 Inc. V,Art. 214,Inc. V,grave,Deixar de dar preferência a pedestre ou veículo não motorizado que esteja atravessando a via transversal para onde se dirige o veículo.,Ciclistas,Linha duplicada para separar recorte de pedestres/ciclistas no observatório.
+Art. 215 Inc. I,Art. 215,Inc. I,grave,Deixar de dar preferência em interseção não sinalizada a veículo em rodovia/rotatória ou a veículo vindo da direita.,Segurança viária,
+Art. 215 Inc. II,Art. 215,Inc. II,grave,Deixar de dar preferência em interseção com sinalização de Dê a Preferência.,Segurança viária,
+Art. 216,Art. 216,,média,Entrar ou sair de áreas lindeiras sem posicionamento adequado e sem precauções com segurança de pedestres e outros veículos.,Pedestres,
+Art. 217,Art. 217,,média,Entrar ou sair de fila de veículos estacionados sem dar preferência a pedestres e outros veículos.,Pedestres,
+Art. 218 Inc. I,Art. 218,Inc. I,média,Transitar em velocidade superior à máxima permitida em até 20%.,Segurança viária,
+Art. 218 Inc. II,Art. 218,Inc. II,grave,Transitar em velocidade superior à máxima permitida em mais de 20% até 50%.,Segurança viária,
+Art. 218 Inc. III,Art. 218,Inc. III,gravíssima,Transitar em velocidade superior à máxima permitida em mais de 50%.,Segurança viária,Multa três vezes e suspensão do direito de dirigir.
+Art. 219,Art. 219,,média,"Transitar em velocidade inferior à metade da máxima da via, retardando ou obstruindo o trânsito, salvo condições justificadas ou faixa da direita.",Fluidez do trânsito,
+Art. 220 Inc. I,Art. 220,Inc. I,gravíssima,"Deixar de reduzir velocidade ao aproximar-se de passeatas, aglomerações, cortejos, préstitos e desfiles.",Pedestres,
+Art. 220 Inc. II,Art. 220,Inc. II,grave,Deixar de reduzir velocidade onde o trânsito esteja sendo controlado por agente mediante sinais sonoros ou gestos.,Segurança viária,
+Art. 220 Inc. III,Art. 220,Inc. III,grave,Deixar de reduzir velocidade ao aproximar-se da guia da calçada ou acostamento.,Segurança viária,
+Art. 220 Inc. IV,Art. 220,Inc. IV,grave,Deixar de reduzir velocidade ao aproximar-se de ou passar por interseção não sinalizada.,Segurança viária,
+Art. 220 Inc. V,Art. 220,Inc. V,grave,Deixar de reduzir velocidade em vias rurais cuja faixa de domínio não esteja cercada.,Segurança viária,
+Art. 220 Inc. VI,Art. 220,Inc. VI,grave,Deixar de reduzir velocidade em trechos em curva de pequeno raio.,Segurança viária,
+Art. 220 Inc. VII,Art. 220,Inc. VII,grave,Deixar de reduzir velocidade ao aproximar-se de locais sinalizados com advertência de obras ou trabalhadores na pista.,Segurança viária,
+Art. 220 Inc. VIII,Art. 220,Inc. VIII,grave,"Deixar de reduzir velocidade sob chuva, neblina, cerração ou ventos fortes.",Segurança viária,
+Art. 220 Inc. IX,Art. 220,Inc. IX,grave,Deixar de reduzir velocidade quando houver má visibilidade.,Segurança viária,
+Art. 220 Inc. X,Art. 220,Inc. X,grave,"Deixar de reduzir velocidade quando o pavimento estiver escorregadio, defeituoso ou avariado.",Segurança viária,
+Art. 220 Inc. XI,Art. 220,Inc. XI,grave,Deixar de reduzir velocidade à aproximação de animais na pista.,Segurança viária,
+Art. 220 Inc. XII,Art. 220,Inc. XII,grave,Deixar de reduzir velocidade em declive.,Segurança viária,
+Art. 220 Inc. XIII,Art. 220,Inc. XIII,gravíssima,Deixar de reduzir velocidade ao ultrapassar ciclista.,Ciclistas,
+Art. 220 Inc. XIV,Art. 220,Inc. XIV,gravíssima,"Deixar de reduzir velocidade nas proximidades de escolas, hospitais, estações de embarque/desembarque ou locais com intensa movimentação de pedestres.",Pedestres,
+Art. 221,Art. 221,,média,Portar no veículo placas de identificação em desacordo com especificações e modelos do CONTRAN.,Administrativas/documentais,Retenção do veículo e apreensão das placas irregulares.
+Art. 222,Art. 222,,média,"Veículos de emergência deixar de manter sistema de iluminação intermitente ligado em atendimento de emergência, ainda que parados.",Segurança viária,
+Art. 223,Art. 223,,grave,Transitar com farol desregulado ou luz alta perturbando a visão de outro condutor.,Segurança viária,Retenção do veículo para regularização.
+Art. 224,Art. 224,,leve,Fazer uso do facho de luz alta dos faróis em vias providas de iluminação pública.,Segurança viária,
+Art. 225 Inc. I,Art. 225,Inc. I,grave,Deixar de sinalizar a via ou manter luzes externas quando tiver de remover o veículo da pista ou permanecer no acostamento.,Segurança viária,
+Art. 225 Inc. II,Art. 225,Inc. II,grave,Deixar de sinalizar a via ou adotar providências quando carga for derramada sobre a via e não puder ser retirada imediatamente.,Segurança viária,
+Art. 226,Art. 226,,média,Deixar de retirar objeto utilizado para sinalização temporária da via.,Fluidez do trânsito,
+Art. 227 Inc. I,Art. 227,Inc. I,leve,Usar buzina fora da situação de simples toque breve como advertência a pedestre ou condutores.,Outras/não classificadas,
+Art. 227 Inc. II,Art. 227,Inc. II,leve,Usar buzina de forma prolongada e sucessiva a qualquer pretexto.,Outras/não classificadas,
+Art. 227 Inc. III,Art. 227,Inc. III,leve,Usar buzina entre 22h e 6h.,Outras/não classificadas,
+Art. 227 Inc. IV,Art. 227,Inc. IV,leve,Usar buzina em locais e horários proibidos pela sinalização.,Outras/não classificadas,
+Art. 227 Inc. V,Art. 227,Inc. V,leve,Usar buzina em desacordo com padrões e frequências do CONTRAN.,Outras/não classificadas,
+Art. 228,Art. 228,,grave,Usar equipamento de som em volume ou frequência não autorizados pelo CONTRAN.,Outras/não classificadas,Retenção do veículo para regularização.
+Art. 229,Art. 229,,média,"Usar indevidamente aparelho de alarme ou sons/ruídos que perturbem o sossego público, em desacordo com normas do CONTRAN.",Outras/não classificadas,Remoção do veículo.
+Art. 230 Inc. I,Art. 230,Inc. I,gravíssima,"Conduzir veículo com lacre, chassi, selo, placa ou outro elemento de identificação violado ou falsificado.",Administrativas/documentais,Remoção do veículo.
+Art. 230 Inc. II,Art. 230,Inc. II,gravíssima,"Conduzir veículo transportando passageiros em compartimento de carga, salvo motivo de força maior e permissão.",Segurança viária,Remoção do veículo.
+Art. 230 Inc. III,Art. 230,Inc. III,gravíssima,Conduzir veículo com dispositivo anti-radar.,Segurança viária,Remoção do veículo.
+Art. 230 Inc. IV,Art. 230,Inc. IV,gravíssima,Conduzir veículo sem qualquer uma das placas de identificação.,Administrativas/documentais,Remoção do veículo.
+Art. 230 Inc. V,Art. 230,Inc. V,gravíssima,Conduzir veículo que não esteja registrado e devidamente licenciado.,Administrativas/documentais,Remoção do veículo.
+Art. 230 Inc. VI,Art. 230,Inc. VI,gravíssima,Conduzir veículo com placa de identificação sem legibilidade e visibilidade.,Administrativas/documentais,Remoção do veículo.
+Art. 230 Inc. VII,Art. 230,Inc. VII,grave,Conduzir veículo com cor ou característica alterada.,Administrativas/documentais,Retenção do veículo para regularização.
+Art. 230 Inc. VIII,Art. 230,Inc. VIII,grave,Conduzir veículo sem inspeção de segurança veicular quando obrigatória.,Segurança viária,Retenção do veículo para regularização.
+Art. 230 Inc. IX,Art. 230,Inc. IX,grave,Conduzir veículo sem equipamento obrigatório ou com equipamento ineficiente/inoperante.,Segurança viária,Retenção do veículo para regularização.
+Art. 230 Inc. X,Art. 230,Inc. X,grave,Conduzir veículo com equipamento obrigatório em desacordo com o CONTRAN.,Segurança viária,Retenção do veículo para regularização.
+Art. 230 Inc. XI,Art. 230,Inc. XI,grave,"Conduzir veículo com descarga livre ou silenciador defeituoso, deficiente ou inoperante.",Outras/não classificadas,Retenção do veículo para regularização.
+Art. 230 Inc. XII,Art. 230,Inc. XII,grave,Conduzir veículo com equipamento ou acessório proibido.,Segurança viária,Retenção do veículo para regularização.
+Art. 230 Inc. XIII,Art. 230,Inc. XIII,grave,Conduzir veículo com sistema de iluminação e sinalização alterados.,Segurança viária,Retenção do veículo para regularização.
+Art. 230 Inc. XIV,Art. 230,Inc. XIV,grave,"Conduzir veículo com registrador instantâneo de velocidade e tempo viciado ou defeituoso, quando exigido.",Administrativas/documentais,Retenção do veículo para regularização.
+Art. 230 Inc. XV,Art. 230,Inc. XV,grave,Conduzir veículo com publicidade no para-brisa ou em toda a traseira fora das hipóteses permitidas.,Segurança viária,Retenção do veículo para regularização.
+Art. 230 Inc. XVI,Art. 230,Inc. XVI,grave,"Conduzir veículo com vidros cobertos por películas refletivas ou não, painéis decorativos ou pinturas em desacordo.",Segurança viária,Retenção do veículo para regularização.
+Art. 230 Inc. XVII,Art. 230,Inc. XVII,grave,Conduzir veículo com cortinas ou persianas fechadas não autorizadas.,Segurança viária,Retenção do veículo para regularização.
+Art. 230 Inc. XVIII,Art. 230,Inc. XVIII,grave,"Conduzir veículo em mau estado de conservação, comprometendo a segurança, ou reprovado em inspeção de segurança, emissão de poluentes e ruído.",Segurança viária,Retenção do veículo para regularização.
+Art. 230 Inc. XIX,Art. 230,Inc. XIX,grave,Conduzir veículo sem acionar limpador de para-brisa sob chuva.,Segurança viária,Retenção do veículo para regularização.
+Art. 230 Inc. XX,Art. 230,Inc. XX,gravíssima,Conduzir veículo sem autorização para condução de escolares.,Transporte coletivo,Multa cinco vezes; remoção do veículo.
+Art. 230 Inc. XXI,Art. 230,Inc. XXI,média,Conduzir veículo de carga sem inscrição da tara e demais inscrições previstas no CTB.,Administrativas/documentais,
+Art. 230 Inc. XXII,Art. 230,Inc. XXII,média,"Conduzir veículo com defeito no sistema de iluminação ou sinalização, ou com lâmpadas queimadas.",Segurança viária,
+Art. 230 Inc. XXIII,Art. 230,Inc. XXIII,média,Conduzir veículo de carga ou coletivo de passageiros em desacordo com regras de tempo ao volante e intervalos de descanso.,Segurança viária,Reincidência em 12 meses converte automaticamente em infração grave.
+Art. 231 Inc. I,Art. 231,Inc. I,gravíssima,"Transitar com veículo danificando a via, suas instalações ou equipamentos.",Segurança viária,Retenção do veículo para regularização.
+Art. 231 Inc. II,Art. 231,Inc. II,gravíssima,"Transitar derramando, lançando ou arrastando sobre a via carga, combustível, lubrificante ou objeto que possa acarretar risco de sinistro.",Segurança viária,Retenção do veículo para regularização.
+Art. 231 Inc. III,Art. 231,Inc. III,grave,"Transitar produzindo fumaça, gases ou partículas acima dos níveis fixados pelo CONTRAN.",Outras/não classificadas,Retenção do veículo para regularização.
+Art. 231 Inc. IV,Art. 231,Inc. IV,grave,"Transitar com dimensões do veículo ou da carga superiores aos limites legais ou sinalizados, sem autorização.",Segurança viária,Retenção do veículo para regularização.
+Art. 231 Inc. V,Art. 231,Inc. V,média,"Transitar com excesso de peso, admitida tolerância quando aferido por equipamento.",Segurança viária,Multa acrescida conforme excesso; retenção e transbordo da carga excedente.
+Art. 231 Inc. VI,Art. 231,Inc. VI,grave,Transitar em desacordo com autorização especial para dimensões excedentes ou com autorização vencida.,Administrativas/documentais,Remoção do veículo.
+Art. 231 Inc. VII,Art. 231,Inc. VII,gravíssima,Transitar com lotação excedente.,Segurança viária,Remoção do veículo.
+Art. 231 Inc. VIII,Art. 231,Inc. VIII,gravíssima,"Efetuar transporte remunerado de pessoas ou bens sem licenciamento para esse fim, salvo força maior ou permissão.",Administrativas/documentais,Remoção do veículo.
+Art. 231 Inc. IX,Art. 231,Inc. IX,média,Transitar com o veículo desligado ou desengrenado em declive.,Segurança viária,Retenção do veículo.
+Art. 231 Inc. X,Art. 231,Inc. X,variável,Transitar excedendo a capacidade máxima de tração.,Segurança viária,"Infração de média a gravíssima, conforme relação entre excesso e capacidade máxima de tração."
+Art. 232,Art. 232,,leve,Conduzir veículo sem documentos de porte obrigatório.,Administrativas/documentais,Retenção do veículo até apresentação do documento.
+Art. 233,Art. 233,,média,Deixar de efetuar registro de veículo no prazo de 30 dias nas hipóteses previstas no art. 123.,Administrativas/documentais,Remoção do veículo.
+Art. 234,Art. 234,,gravíssima,Falsificar ou adulterar documento de habilitação ou de identificação do veículo.,Administrativas/documentais,Remoção do veículo.
+Art. 235,Art. 235,,grave,"Conduzir pessoas, animais ou carga nas partes externas do veículo, salvo autorização.",Segurança viária,Retenção para transbordo.
+Art. 236,Art. 236,,média,"Rebocar outro veículo com cabo flexível ou corda, salvo emergência.",Segurança viária,
+Art. 237,Art. 237,,grave,Transitar com veículo em desacordo com especificações ou com falta de inscrição/simbologia exigidas.,Administrativas/documentais,Retenção do veículo para regularização.
+Art. 238,Art. 238,,gravíssima,"Recusar-se a entregar documentos de habilitação, registro, licenciamento e outros exigidos por lei para averiguação de autenticidade.",Administrativas/documentais,Remoção do veículo.
+Art. 239,Art. 239,,gravíssima,Retirar do local veículo legalmente retido para regularização sem permissão da autoridade ou agentes.,Administrativas/documentais,Remoção do veículo.
+Art. 240,Art. 240,,grave,Responsável deixar de promover baixa de registro de veículo irrecuperável ou definitivamente desmontado.,Administrativas/documentais,Recolhimento do CRV e CRLV.
+Art. 241,Art. 241,,leve,Deixar de atualizar cadastro de registro do veículo ou de habilitação do condutor.,Administrativas/documentais,
+Art. 242,Art. 242,,gravíssima,"Fazer falsa declaração de domicílio para registro, licenciamento ou habilitação.",Administrativas/documentais,
+Art. 243,Art. 243,,grave,Empresa seguradora deixar de comunicar perda total ao órgão de trânsito e devolver placas e documentos.,Administrativas/documentais,Recolhimento das placas e documentos.
+Art. 244 Inc. I,Art. 244,Inc. I,gravíssima,"Conduzir motocicleta, motoneta ou ciclomotor sem capacete de segurança ou vestuário conforme normas do CONTRAN.",Segurança viária,Suspensão do direito de dirigir; retenção até regularização.
+Art. 244 Inc. II,Art. 244,Inc. II,gravíssima,"Conduzir motocicleta, motoneta ou ciclomotor transportando passageiro sem capacete ou fora do assento suplementar/carro lateral.",Segurança viária,Suspensão do direito de dirigir; retenção até regularização.
+Art. 244 Inc. III,Art. 244,Inc. III,gravíssima,"Conduzir motocicleta, motoneta ou ciclomotor fazendo malabarismo ou equilibrando-se em uma roda.",Segurança viária,Suspensão do direito de dirigir; retenção até regularização.
+Art. 244 Inc. V,Art. 244,Inc. V,gravíssima,"Conduzir motocicleta, motoneta ou ciclomotor transportando criança menor de 10 anos ou sem condições de cuidar da própria segurança.",Segurança viária,Suspensão do direito de dirigir; retenção até regularização.
+Art. 244 Inc. VI,Art. 244,Inc. VI,grave,"Conduzir motocicleta, motoneta ou ciclomotor rebocando outro veículo.",Segurança viária,Apreensão do veículo para regularização.
+Art. 244 Inc. VII,Art. 244,Inc. VII,grave,"Conduzir motocicleta, motoneta ou ciclomotor sem segurar o guidom com ambas as mãos, salvo para indicação de manobra.",Segurança viária,Apreensão do veículo para regularização.
+Art. 244 Inc. VIII,Art. 244,Inc. VIII,grave,"Conduzir motocicleta, motoneta ou ciclomotor transportando carga incompatível ou em desacordo com regras aplicáveis.",Segurança viária,Apreensão do veículo para regularização.
+Art. 244 Inc. IX,Art. 244,Inc. IX,grave,"Conduzir motocicleta, motoneta ou ciclomotor efetuando transporte remunerado de mercadorias em desacordo com normas da atividade.",Administrativas/documentais,Apreensão do veículo para regularização.
+Art. 244 Inc. X,Art. 244,Inc. X,média,"Conduzir motocicleta, motoneta ou ciclomotor com capacete sem viseira/óculos de proteção ou em desacordo com regulamentação.",Segurança viária,Retenção do veículo até regularização.
+Art. 244 Inc. XI,Art. 244,Inc. XI,média,"Conduzir motocicleta, motoneta ou ciclomotor transportando passageiro com capacete sem viseira/óculos de proteção ou em desacordo com regulamentação.",Segurança viária,Retenção do veículo até regularização.
+Art. 244 §1º alínea a,Art. 244,§1º alínea a,média,Para ciclos: conduzir passageiro fora da garupa ou assento especial destinado.,Ciclistas,"Aplica-se também a ciclos, conforme §1º e §2º."
+Art. 244 §1º alínea b,Art. 244,§1º alínea b,média,"Para ciclos/ciclomotores: transitar em vias de trânsito rápido ou rodovias, salvo onde houver acostamento ou faixas próprias.",Ciclistas,Aplica-se também a ciclomotores conforme §2º.
+Art. 244 §1º alínea c,Art. 244,§1º alínea c,média,Para ciclos: transportar crianças que não tenham condições de cuidar da própria segurança.,Ciclistas,Aplica-se conforme §1º e §2º.
+Art. 245,Art. 245,,grave,"Utilizar a via para depósito de mercadorias, materiais ou equipamentos sem autorização do órgão de trânsito.",Estacionamento/uso da via,Remoção da mercadoria ou material.
+Art. 246,Art. 246,,gravíssima,"Deixar de sinalizar obstáculo à livre circulação ou à segurança de veículos e pedestres, ou obstaculizar a via indevidamente.",Segurança viária,Multa agravada em até cinco vezes conforme risco.
+Art. 247,Art. 247,,média,"Deixar de conduzir pelo bordo da pista, em fila única, veículos de tração/propulsão humana ou animal quando não houver acostamento ou faixa própria.",Ciclistas,
+Art. 248,Art. 248,,grave,"Transportar, em veículo destinado a passageiros, carga excedente em desacordo com o art. 109.",Segurança viária,Retenção para transbordo.
+Art. 249,Art. 249,,média,"Deixar de manter acesas, à noite, luzes de posição quando o veículo estiver parado para embarque/desembarque ou carga/descarga.",Segurança viária,
+Art. 250 Inc. I,Art. 250,Inc. I,média,"Em movimento, deixar de manter luz baixa acesa nas hipóteses previstas: noite, túneis, chuva/neblina/cerração, transporte coletivo em faixas próprias, motos/ciclomotores e rodovias de pista simples sem luz diurna.",Segurança viária,
+Art. 250 Inc. III,Art. 250,Inc. III,média,"Em movimento, deixar de manter a placa traseira iluminada à noite.",Administrativas/documentais,
+Art. 250 Inc. IV,Art. 250,Inc. IV,gravíssima,Veículo de transporte público coletivo ou escolar deixar de manter a porta fechada.,Transporte coletivo,Retenção do veículo até regularização.
+Art. 251 Inc. I,Art. 251,Inc. I,média,"Utilizar pisca-alerta, exceto em imobilizações ou situações de emergência.",Segurança viária,
+Art. 251 Inc. II,Art. 251,Inc. II,média,Utilizar luz baixa e alta de forma intermitente fora das hipóteses permitidas.,Segurança viária,
+Art. 252 Inc. I,Art. 252,Inc. I,média,Dirigir com o braço do lado de fora.,Segurança viária,
+Art. 252 Inc. II,Art. 252,Inc. II,média,"Dirigir transportando pessoas, animais ou volume à esquerda do condutor ou entre braços e pernas.",Segurança viária,
+Art. 252 Inc. III,Art. 252,Inc. III,média,Dirigir com incapacidade física ou mental temporária que comprometa a segurança.,Segurança viária,
+Art. 252 Inc. IV,Art. 252,Inc. IV,média,Dirigir usando calçado que não se firme nos pés ou comprometa o uso dos pedais.,Segurança viária,
+Art. 252 Inc. V,Art. 252,Inc. V,média,"Dirigir com apenas uma das mãos, exceto para sinais regulamentares, trocar marcha ou acionar equipamentos/acessórios.",Segurança viária,"Pode ser gravíssima se estiver segurando ou manuseando telefone celular, conforme parágrafo único."
+Art. 252 Inc. VI,Art. 252,Inc. VI,média,Dirigir usando fones nos ouvidos conectados a aparelho sonoro ou telefone celular.,Segurança viária,
+Art. 252 Inc. VII,Art. 252,Inc. VII,média,Dirigir realizando cobrança de tarifa com o veículo em movimento.,Transporte coletivo,
+Art. 252 Parágrafo único,Art. 252,Parágrafo único,gravíssima,Dirigir segurando ou manuseando telefone celular.,Segurança viária,Hipótese vinculada ao inciso V.
+Art. 253,Art. 253,,gravíssima,Bloquear a via com veículo.,Fluidez do trânsito,Remoção do veículo.
+Art. 253-A,Art. 253-A,,gravíssima,"Usar veículo deliberadamente para interromper, restringir ou perturbar circulação na via sem autorização.",Fluidez do trânsito,Multa vinte vezes e suspensão por 12 meses; agravamento para organizadores.
+Art. 254 Inc. I,Art. 254,Inc. I,leve,"Pedestre permanecer ou andar nas pistas de rolamento, exceto para cruzá-las onde permitido.",Pedestres,Multa em 50% do valor da infração leve.
+Art. 254 Inc. II,Art. 254,Inc. II,leve,"Pedestre cruzar pistas de rolamento em viadutos, pontes ou túneis, salvo onde exista permissão.",Pedestres,Multa em 50% do valor da infração leve.
+Art. 254 Inc. III,Art. 254,Inc. III,leve,"Pedestre atravessar a via dentro das áreas de cruzamento, salvo quando houver sinalização para esse fim.",Pedestres,Multa em 50% do valor da infração leve.
+Art. 254 Inc. IV,Art. 254,Inc. IV,leve,"Pedestre utilizar a via em agrupamentos capazes de perturbar o trânsito ou para folguedo, esporte, desfile e similares sem licença.",Pedestres,Multa em 50% do valor da infração leve.
+Art. 254 Inc. V,Art. 254,Inc. V,leve,"Pedestre andar fora da faixa própria, passarela, passagem aérea ou subterrânea.",Pedestres,Multa em 50% do valor da infração leve.
+Art. 254 Inc. VI,Art. 254,Inc. VI,leve,Pedestre desobedecer à sinalização de trânsito específica.,Pedestres,Multa em 50% do valor da infração leve.
+Art. 255,Art. 255,,média,Conduzir bicicleta em passeios onde não seja permitida a circulação ou de forma agressiva.,Ciclistas,Remoção da bicicleta mediante recibo para pagamento da multa.

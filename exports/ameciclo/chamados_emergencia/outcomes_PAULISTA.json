@@ -1,0 +1,95 @@
+{
+	"city": "PAULISTA",
+	"outcomes_by_year": {
+		"2018": {
+			"Desistência da solicitação": 5,
+			"Não necessita/Sem Condições Clínicas": 2,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Removido pelos Bombeiros/CIODS": 13,
+			"Recusa de Remoção": 6,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 18,
+			"Removido por Particulares": 11,
+			"Atendimento Concluído com Êxito": 70
+		},
+		"2019": {
+			"Removido pelos Bombeiros/CIODS": 13,
+			"Removido por Particulares": 8,
+			"Recusa de Remoção": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 17,
+			"Desistência da solicitação": 2,
+			"Óbito no Local/Atendimento": 1,
+			"Atendimento Concluído com Êxito": 37
+		},
+		"2020": {
+			"Removido por Particulares": 72,
+			"Inválido/Duplicado/Cancelado/Trote": 10,
+			"Recusa de Remoção": 22,
+			"Removido pelos Bombeiros/CIODS": 119,
+			"Atendimento Concluído com Êxito": 443,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 200,
+			"Outros Desfechos": 5,
+			"Desistência da solicitação": 24
+		},
+		"2021": {
+			"Desistência da solicitação": 22,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 266,
+			"Removido pelos Bombeiros/CIODS": 130,
+			"Atendimento Concluído com Êxito": 397,
+			"Inválido/Duplicado/Cancelado/Trote": 14,
+			"Removido por Particulares": 64,
+			"Outros Desfechos": 5,
+			"Recusa de Remoção": 30,
+			"Óbito no Local/Atendimento": 7
+		},
+		"2022": {
+			"Removido por Particulares": 31,
+			"Removido pelos Bombeiros/CIODS": 77,
+			"Outros Desfechos": 3,
+			"Atendimento Concluído com Êxito": 212,
+			"Óbito no Local/Atendimento": 9,
+			"Não necessita/Sem Condições Clínicas": 3,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 155,
+			"Recusa de Remoção": 23,
+			"Desistência da solicitação": 27
+		},
+		"2023": {
+			"Óbito no Local/Atendimento": 7,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 267,
+			"Outros Desfechos": 8,
+			"Atendimento Concluído com Êxito": 608,
+			"Removido por Particulares": 82,
+			"Desistência da solicitação": 39,
+			"Removido pelos Bombeiros/CIODS": 117,
+			"Inválido/Duplicado/Cancelado/Trote": 16,
+			"Recusa de Remoção": 45,
+			"Não necessita/Sem Condições Clínicas": 4
+		},
+		"2024": {
+			"Desistência da solicitação": 79,
+			"Óbito no Local/Atendimento": 9,
+			"Atendimento Concluído com Êxito": 776,
+			"Inválido/Duplicado/Cancelado/Trote": 28,
+			"Não necessita/Sem Condições Clínicas": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 282,
+			"Outros Desfechos": 6,
+			"Removido por Particulares": 125,
+			"Recusa de Remoção": 55,
+			"Removido pelos Bombeiros/CIODS": 168
+		},
+		"2025": {
+			"Outros Desfechos": 1,
+			"Desistência da solicitação": 17,
+			"Removido pelos Bombeiros/CIODS": 58,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 115,
+			"Inválido/Duplicado/Cancelado/Trote": 7,
+			"Óbito no Local/Atendimento": 2,
+			"Recusa de Remoção": 9,
+			"Removido por Particulares": 34,
+			"Atendimento Concluído com Êxito": 162
+		}
+	}
+}

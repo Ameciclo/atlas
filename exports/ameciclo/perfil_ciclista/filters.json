@@ -1,0 +1,331 @@
+{
+	"data": {
+		"years": [2015, 2018, 2021, 2024],
+		"areas": [
+			{
+				"code": "Área 2 - Área Intermediária",
+				"label": "Área 2 - Área Intermediária"
+			},
+			{
+				"code": "Área 3 - Área Periférica",
+				"label": "Área 3 - Área Periférica"
+			},
+			{
+				"code": "Área 1 - Área Central",
+				"label": "Área 1 - Área Central"
+			}
+		],
+		"genders": [
+			{
+				"code": "Masculino",
+				"label": "Masculino"
+			},
+			{
+				"code": "Feminino",
+				"label": "Feminino"
+			}
+		],
+		"race_colors": [
+			{
+				"code": "Parda",
+				"label": "Parda"
+			},
+			{
+				"code": "Preta",
+				"label": "Preta"
+			},
+			{
+				"code": "Branca",
+				"label": "Branca"
+			},
+			{
+				"code": "Amarela",
+				"label": "Amarela"
+			},
+			{
+				"code": "Indígena",
+				"label": "Indígena"
+			},
+			{
+				"code": "Sem resposta",
+				"label": "Sem resposta"
+			}
+		],
+		"age_categories": [
+			{
+				"code": "de 25 a 34 anos",
+				"label": "de 25 a 34 anos"
+			},
+			{
+				"code": "de 35 a 44 anos",
+				"label": "de 35 a 44 anos"
+			},
+			{
+				"code": "de 15 a 24 anos",
+				"label": "de 15 a 24 anos"
+			},
+			{
+				"code": "de 45 a 54 anos",
+				"label": "de 45 a 54 anos"
+			},
+			{
+				"code": "de 55 a 64 anos",
+				"label": "de 55 a 64 anos"
+			},
+			{
+				"code": "65 anos ou mais",
+				"label": "65 anos ou mais"
+			},
+			{
+				"code": "até 14 anos",
+				"label": "até 14 anos"
+			}
+		],
+		"schooling_levels": [
+			{
+				"code": "Ensino Médio (Segundo Grau)",
+				"label": "Ensino Médio (Segundo Grau)"
+			},
+			{
+				"code": "Ensino Fundamental (primário e ginásio, até a oitava série)",
+				"label": "Ensino Fundamental (primário e ginásio, até a oitava série)"
+			},
+			{
+				"code": "Ensino Superior (Faculdade)",
+				"label": "Ensino Superior (Faculdade)"
+			},
+			{
+				"code": "Pós-Graduação",
+				"label": "Pós-Graduação"
+			},
+			{
+				"code": "Sem instrução (nunca frequentou a escola ou primeira fase do ensino fundamental incompleto)",
+				"label": "Sem instrução (nunca frequentou a escola ou primeira fase do ensino fundamental incompleto)"
+			}
+		],
+		"income_ranges": [
+			{
+				"code": "de 1 a 2 Salários Mínimos",
+				"label": "de 1 a 2 Salários Mínimos"
+			},
+			{
+				"code": "até 1 Salário Mínimo",
+				"label": "até 1 Salário Mínimo"
+			},
+			{
+				"code": "de 2 a 5 Salários Mínimos",
+				"label": "de 2 a 5 Salários Mínimos"
+			},
+			{
+				"code": "acima de 5 Salários Mínimos",
+				"label": "acima de 5 Salários Mínimos"
+			}
+		],
+		"bike_types": [
+			{
+				"code": "Privada",
+				"label": "Privada"
+			},
+			{
+				"code": "Pública",
+				"label": "Pública"
+			}
+		],
+		"years_using_options": [
+			{
+				"code": "mais de 5 anos",
+				"label": "mais de 5 anos"
+			},
+			{
+				"code": "entre 2 e 5 anos",
+				"label": "entre 2 e 5 anos"
+			},
+			{
+				"code": "entre 1 e 2 anos",
+				"label": "entre 1 e 2 anos"
+			},
+			{
+				"code": "menos de 6 meses",
+				"label": "menos de 6 meses"
+			},
+			{
+				"code": "entre 6 meses e 1 ano",
+				"label": "entre 6 meses e 1 ano"
+			}
+		],
+		"issues": [
+			{
+				"code": "Falta de infraestrutura adequada (ciclovias, bicicletários, etc)",
+				"label": "Falta de infraestrutura adequada (ciclovias, bicicletários, etc)"
+			},
+			{
+				"code": "Falta de segurança no trânsito",
+				"label": "Falta de segurança no trânsito"
+			},
+			{
+				"code": "Falta de respeito dos condutores dos motorizados",
+				"label": "Falta de respeito dos condutores dos motorizados"
+			},
+			{
+				"code": "Falta de segurança pública",
+				"label": "Falta de segurança pública"
+			},
+			{
+				"code": "Outros",
+				"label": "Outros"
+			},
+			{
+				"code": "Sem resposta",
+				"label": "Sem resposta"
+			}
+		],
+		"needs": [
+			{
+				"code": "É mais rápido e prático",
+				"label": "É mais rápido e prático"
+			},
+			{
+				"code": "É mais saudável",
+				"label": "É mais saudável"
+			},
+			{
+				"code": "É mais barato",
+				"label": "É mais barato"
+			},
+			{
+				"code": "Outros",
+				"label": "Outros"
+			},
+			{
+				"code": "É ambientalmente correto",
+				"label": "É ambientalmente correto"
+			},
+			{
+				"code": "Sem resposta",
+				"label": "Sem resposta"
+			}
+		],
+		"motivations_start": [
+			{
+				"code": "É mais rápido e prático",
+				"label": "É mais rápido e prático"
+			},
+			{
+				"code": "É mais saudável",
+				"label": "É mais saudável"
+			},
+			{
+				"code": "É mais barato",
+				"label": "É mais barato"
+			},
+			{
+				"code": "Outros",
+				"label": "Outros"
+			},
+			{
+				"code": "É ambientalmente correto",
+				"label": "É ambientalmente correto"
+			}
+		],
+		"motivations_continue": [
+			{
+				"code": "É mais rápido e prático",
+				"label": "É mais rápido e prático"
+			},
+			{
+				"code": "É mais saudável",
+				"label": "É mais saudável"
+			},
+			{
+				"code": "É mais barato",
+				"label": "É mais barato"
+			},
+			{
+				"code": "Outros",
+				"label": "Outros"
+			},
+			{
+				"code": "É ambientalmente correto",
+				"label": "É ambientalmente correto"
+			},
+			{
+				"code": "Sem resposta",
+				"label": "Sem resposta"
+			}
+		],
+		"transport_modes": [],
+		"weekdays": [
+			{
+				"code": "terça-feira",
+				"label": "terça-feira"
+			},
+			{
+				"code": "quarta-feira",
+				"label": "quarta-feira"
+			},
+			{
+				"code": "sexta-feira",
+				"label": "sexta-feira"
+			},
+			{
+				"code": "segunda-feira",
+				"label": "segunda-feira"
+			},
+			{
+				"code": "quinta-feira",
+				"label": "quinta-feira"
+			}
+		],
+		"count_points": [
+			{
+				"code": "Boa Vista",
+				"label": "Boa Vista",
+				"lat": -8.056211509433961,
+				"lon": -34.8852037735849,
+				"count": "53",
+				"years": [2015, 2018, 2021, 2024]
+			},
+			{
+				"code": "750",
+				"label": "750",
+				"lat": -8.053510000000003,
+				"lon": -34.92892000000001,
+				"count": "50",
+				"years": [2015, 2018, 2021, 2024]
+			},
+			{
+				"code": "1020",
+				"label": "1020",
+				"lat": -8.027930000000008,
+				"lon": -34.892929999999986,
+				"count": "50",
+				"years": [2015, 2018, 2021, 2024]
+			},
+			{
+				"code": "3003",
+				"label": "3003",
+				"lat": -8.115740000000002,
+				"lon": -34.89552000000002,
+				"count": "50",
+				"years": [2015, 2018, 2021, 2024]
+			},
+			{
+				"code": "1177",
+				"label": "1177",
+				"lat": -8.032159999999994,
+				"lon": -34.88138000000002,
+				"count": "50",
+				"years": [2015, 2018, 2021, 2024]
+			},
+			{
+				"code": "923",
+				"label": "923",
+				"lat": -8.047559999999994,
+				"lon": -34.87696000000003,
+				"count": "49",
+				"years": [2015, 2018, 2021, 2024]
+			}
+		],
+		"total_interviews": 2245
+	}
+}

@@ -1,0 +1,92 @@
+{
+	"city": "IGARASSU",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 17,
+			"Desistência da solicitação": 2,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1,
+			"Removido pelos Bombeiros/CIODS": 7,
+			"Removido por Particulares": 6,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 7
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 19,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido pelos Bombeiros/CIODS": 3,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 208,
+			"Desistência da solicitação": 9,
+			"Inválido/Duplicado/Cancelado/Trote": 13,
+			"Não necessita/Sem Condições Clínicas": 2,
+			"Óbito no Local/Atendimento": 7,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 10,
+			"Removido pelos Bombeiros/CIODS": 35,
+			"Removido por Particulares": 31,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 37
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 228,
+			"Desistência da solicitação": 8,
+			"Inválido/Duplicado/Cancelado/Trote": 6,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 3,
+			"Outros Desfechos": 2,
+			"Recusa de Remoção": 14,
+			"Removido pelos Bombeiros/CIODS": 40,
+			"Removido por Particulares": 21,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 58
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 97,
+			"Desistência da solicitação": 5,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 7,
+			"Removido pelos Bombeiros/CIODS": 17,
+			"Removido por Particulares": 7,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 32
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 264,
+			"Desistência da solicitação": 12,
+			"Inválido/Duplicado/Cancelado/Trote": 8,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 7,
+			"Outros Desfechos": 2,
+			"Recusa de Remoção": 13,
+			"Removido pelos Bombeiros/CIODS": 38,
+			"Removido por Particulares": 42,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 73
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 300,
+			"Desistência da solicitação": 16,
+			"Inválido/Duplicado/Cancelado/Trote": 5,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 7,
+			"Outros Desfechos": 2,
+			"Recusa de Remoção": 17,
+			"Removido pelos Bombeiros/CIODS": 47,
+			"Removido por Particulares": 34,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 84
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 94,
+			"Desistência da solicitação": 4,
+			"Inválido/Duplicado/Cancelado/Trote": 3,
+			"Óbito no Local/Atendimento": 2,
+			"Recusa de Remoção": 4,
+			"Removido pelos Bombeiros/CIODS": 13,
+			"Removido por Particulares": 14,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 20
+		}
+	}
+}

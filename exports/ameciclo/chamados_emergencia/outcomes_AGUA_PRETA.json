@@ -1,0 +1,65 @@
+{
+	"city": "AGUA PRETA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 5,
+			"Óbito no Local/Atendimento": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 2
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 8,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 40,
+			"Desistência da solicitação": 3,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 55,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Outros Desfechos": 1,
+			"Removido por Particulares": 7,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 9
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 23,
+			"Desistência da solicitação": 2,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 38,
+			"Desistência da solicitação": 1,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 77,
+			"Desistência da solicitação": 1,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1,
+			"Removido pelos Bombeiros/CIODS": 4,
+			"Removido por Particulares": 18,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 7
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 17,
+			"Desistência da solicitação": 1,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		}
+	}
+}

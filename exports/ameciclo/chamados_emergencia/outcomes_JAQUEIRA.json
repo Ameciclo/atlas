@@ -1,0 +1,48 @@
+{
+	"city": "JAQUEIRA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 2,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido por Particulares": 2
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 18,
+			"Desistência da solicitação": 1,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 23,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 12,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 44,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 22,
+			"Óbito no Local/Atendimento": 3,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 9
+		}
+	}
+}

@@ -1,0 +1,1336 @@
+{
+	"counts": [
+		{
+			"id": 84,
+			"slug": "84-2013-03-25-av-rui-barbosa-x-r-amelia",
+			"name": "Av. Rui Barbosa x R. Amélia",
+			"date": "2013-03-25T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1431
+		},
+		{
+			"id": 85,
+			"slug": "85-2013-04-25-av-forte-do-bom-jesus-x-r-miguel-vieira",
+			"name": "Av. Forte do Bom Jesus x R. Miguel Vieira",
+			"date": "2013-04-25T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 3556
+		},
+		{
+			"id": 86,
+			"slug": "86-2013-04-25-av-beberibe-x-av-prof-jose-dos-anjos",
+			"name": "Av. Beberibe x Av. Prof. José dos Anjos",
+			"date": "2013-04-25T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 3723
+		},
+		{
+			"id": 87,
+			"slug": "87-2013-10-30-r-padre-lemos-x-estrada-do-arraial",
+			"name": "R. Padre Lemos x Estrada do Arraial",
+			"date": "2013-10-30T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 3070
+		},
+		{
+			"id": 88,
+			"slug": "88-2014-04-09-av-mascarenhas-de-moraes-x-r-eng-alves-de-souza",
+			"name": "Av. Mascarenhas de Moraes x R. Eng. Alves de Souza",
+			"date": "2014-04-09T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1386
+		},
+		{
+			"id": 89,
+			"slug": "89-2014-04-09-r-arquiteto-luiz-nunes-x-r-eng-alves-de-souza",
+			"name": "R. Arquiteto Luiz Nunes X R. Eng. Alves de Souza",
+			"date": "2014-04-09T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2282
+		},
+		{
+			"id": 90,
+			"slug": "90-2014-08-27-estrada-de-belem-x-r-odorico-mendes",
+			"name": "Estrada de Belém x R. Odorico Mendes",
+			"date": "2014-08-27T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2155
+		},
+		{
+			"id": 91,
+			"slug": "91-2015-03-18-av-rui-barbosa-x-av-dr-malaquias",
+			"name": "Av. Rui Barbosa x Av. Dr. Malaquias",
+			"date": "2015-03-18T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 795
+		},
+		{
+			"id": 92,
+			"slug": "92-2015-03-18-av-cons-rosa-e-silva-x-av-dr-malaquias",
+			"name": "Av. Cons. Rosa e Silva x Av. Dr. Malaquias",
+			"date": "2015-03-18T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 857
+		},
+		{
+			"id": 93,
+			"slug": "93-2015-03-18-r-do-futuro-x-av-dr-malaquias",
+			"name": "R. do Futuro x Av. Dr. Malaquias",
+			"date": "2015-03-18T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 894
+		},
+		{
+			"id": 94,
+			"slug": "94-2015-09-09-av-caxanga-x-av-gal-san-martin",
+			"name": "Av. Caxangá x Av. Gal. San Martin",
+			"date": "2015-09-09T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 3067
+		},
+		{
+			"id": 95,
+			"slug": "95-2016-02-24-av-visconde-de-suassuna-x-r-do-hospicio",
+			"name": "Av. Visconde de Suassuna x R. do Hospício",
+			"date": "2016-02-24T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1093
+		},
+		{
+			"id": 96,
+			"slug": "96-2016-02-24-r-dos-palmares-x-r-treze-de-maio",
+			"name": "R. dos Palmares x R. Treze de Maio",
+			"date": "2016-02-24T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1371
+		},
+		{
+			"id": 97,
+			"slug": "97-2016-05-25-av-cosme-viana-x-r-21-de-abril",
+			"name": "Av. Cosme Viana x R. 21 de Abril",
+			"date": "2016-05-25T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 3032
+		},
+		{
+			"id": 98,
+			"slug": "98-2016-09-15-av-gov-agamenon-magalhaes-x-praca-do-derby-pista-oeste",
+			"name": "Av. Gov. Agamenon Magalhães x Praça do Derby - Pista Oeste",
+			"date": "2016-09-15T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1292
+		},
+		{
+			"id": 99,
+			"slug": "99-2016-09-15-av-gov-agamenon-magalhaes-x-praca-do-derby-pista-leste",
+			"name": "Av. Gov. Agamenon Magalhães x Praça do Derby - Pista Leste",
+			"date": "2016-09-15T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1188
+		},
+		{
+			"id": 100,
+			"slug": "100-2016-11-29-av-abdias-de-carvalho-x-av-gal-san-martin",
+			"name": "Av. Abdias de Carvalho x Av. Gal. San Martin",
+			"date": "2016-11-29T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2354
+		},
+		{
+			"id": 101,
+			"slug": "101-2016-12-06-av-recife-x-r-pintor-antonio-de-albuquerque",
+			"name": "Av. Recife x R. Pintor Antonio de Albuquerque",
+			"date": "2016-12-06T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1694
+		},
+		{
+			"id": 102,
+			"slug": "102-2016-12-06-av-recife-x-r-sao-nicolau",
+			"name": "Av. Recife x R. São Nicolau",
+			"date": "2016-12-06T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1892
+		},
+		{
+			"id": 103,
+			"slug": "103-2017-11-23-av-domingos-ferreira-x-av-antonio-falcao",
+			"name": "Av. Domingos Ferreira x Av. Antônio Falcão",
+			"date": "2017-11-23T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1002
+		},
+		{
+			"id": 104,
+			"slug": "104-2018-09-12-varadouro-olinda",
+			"name": "Varadouro | Olinda",
+			"date": "2018-09-12T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1300
+		},
+		{
+			"id": 105,
+			"slug": "105-2018-09-20-ponte-do-janga",
+			"name": "Ponte do Janga",
+			"date": "2018-09-20T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1046
+		},
+		{
+			"id": 106,
+			"slug": "106-2019-02-20-r-dos-palmares-x-r-treze-de-maio",
+			"name": "R. dos Palmares x R. Treze de Maio",
+			"date": "2019-02-20T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1960
+		},
+		{
+			"id": 107,
+			"slug": "107-2019-02-20-av-visconde-de-suassuna-x-r-do-hospicio",
+			"name": "Av. Visconde de Suassuna x R. do Hospício",
+			"date": "2019-02-20T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1532
+		},
+		{
+			"id": 108,
+			"slug": "108-2019-03-13-r-do-futuro-x-av-dr-malaquias",
+			"name": "R. do Futuro x Av. Dr. Malaquias",
+			"date": "2019-03-13T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1106
+		},
+		{
+			"id": 109,
+			"slug": "109-2019-03-27-av-mascarenhas-de-moraes-x-r-eng-alves-de-souza",
+			"name": "Av. Mascarenhas de Moraes x R. Eng. Alves de Souza",
+			"date": "2019-03-27T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1403
+		},
+		{
+			"id": 110,
+			"slug": "110-2019-03-27-r-arquiteto-luiz-nunes-x-r-eng-alves-de-souza",
+			"name": "R. Arquiteto Luiz Nunes X R. Eng. Alves de Souza",
+			"date": "2019-03-27T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2529
+		},
+		{
+			"id": 111,
+			"slug": "111-2019-04-25-av-beberibe-x-av-prof-jose-dos-anjos",
+			"name": "Av. Beberibe x Av. Prof. José dos Anjos",
+			"date": "2019-04-25T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 3105
+		},
+		{
+			"id": 112,
+			"slug": "112-2019-05-08-av-rui-barbosa-x-av-dr-malaquias",
+			"name": "Av. Rui Barbosa x Av. Dr. Malaquias",
+			"date": "2019-05-08T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 796
+		},
+		{
+			"id": 113,
+			"slug": "113-2019-05-08-av-cons-rosa-e-silva-x-av-dr-malaquias",
+			"name": "Av. Cons. Rosa e Silva x Av. Dr. Malaquias",
+			"date": "2019-05-08T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1024
+		},
+		{
+			"id": 114,
+			"slug": "114-2019-05-22-av-cosme-viana-x-r-21-de-abril",
+			"name": "Av. Cosme Viana x R. 21 de Abril",
+			"date": "2019-05-22T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 4305
+		},
+		{
+			"id": 115,
+			"slug": "115-2019-08-28-estrada-de-belem-x-r-odorico-mendes",
+			"name": "Estrada de Belém x R. Odorico Mendes",
+			"date": "2019-08-28T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2542
+		},
+		{
+			"id": 116,
+			"slug": "116-2019-09-11-av-caxanga-x-av-gal-san-martin",
+			"name": "Av. Caxangá x Av. Gal. San Martin",
+			"date": "2019-09-11T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 3976
+		},
+		{
+			"id": 117,
+			"slug": "117-2019-09-18-av-gov-agamenon-magalhaes-x-praca-do-derby-pista-oeste",
+			"name": "Av. Gov. Agamenon Magalhães x Praça do Derby - Pista Oeste",
+			"date": "2019-09-18T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2262
+		},
+		{
+			"id": 118,
+			"slug": "118-2019-09-18-av-gov-agamenon-magalhaes-x-praca-do-derby-pista-leste",
+			"name": "Av. Gov. Agamenon Magalhães x Praça do Derby - Pista Leste",
+			"date": "2019-09-18T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2077
+		},
+		{
+			"id": 119,
+			"slug": "119-2019-10-30-r-padre-lemos-x-estrada-do-arraial",
+			"name": "R. Padre Lemos x Estrada do Arraial",
+			"date": "2019-10-30T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 3314
+		},
+		{
+			"id": 120,
+			"slug": "120-2019-11-28-av-domingos-ferreira-x-av-antonio-falcao",
+			"name": "Av. Domingos Ferreira x Av. Antônio Falcão",
+			"date": "2019-11-28T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1199
+		},
+		{
+			"id": 121,
+			"slug": "121-2019-12-05-av-recife-x-r-sao-nicolau",
+			"name": "Av. Recife x R. São Nicolau",
+			"date": "2019-12-05T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2183
+		},
+		{
+			"id": 122,
+			"slug": "122-2019-12-10-av-abdias-de-carvalho-x-av-gal-san-martin",
+			"name": "Av. Abdias de Carvalho x Av. Gal. San Martin",
+			"date": "2019-12-10T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2733
+		},
+		{
+			"id": 123,
+			"slug": "123-2020-09-23-av-caxanga-x-av-afonso-olindense",
+			"name": "Av. Caxangá x Av. Afonso Olindense",
+			"date": "2020-09-23T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 3890
+		},
+		{
+			"id": 124,
+			"slug": "124-2021-08-25-r-padre-roma-x-r-sebastiao-malta-arcoverde",
+			"name": "R. Padre Roma x R. Sebastião Malta Arcoverde",
+			"date": "2021-08-25T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2257
+		},
+		{
+			"id": 125,
+			"slug": "125-2021-09-08-varadouro-olinda",
+			"name": "Varadouro | Olinda",
+			"date": "2021-09-08T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2126
+		},
+		{
+			"id": 126,
+			"slug": "126-2021-09-23-ponte-do-janga",
+			"name": "Ponte do Janga",
+			"date": "2021-09-23T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1825
+		},
+		{
+			"id": 127,
+			"slug": "127-2021-10-13-av-pres-kennedy-x-av-antonio-da-costa-azevedo",
+			"name": "Av. Pres. Kennedy x Av. Antonio da Costa Azevedo",
+			"date": "2021-10-13T00:00:00.000Z",
+			"city": {
+				"id": 2609600,
+				"name": "Olinda",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 4845
+		},
+		{
+			"id": 128,
+			"slug": "128-2021-10-27-r-santo-elias-x-av-barreto-de-menezes-jaboatao",
+			"name": "R. Santo Elias x Av. Barreto de Menezes | Jaboatão",
+			"date": "2021-10-27T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 7086
+		},
+		{
+			"id": 129,
+			"slug": "129-2021-11-10-av-domingos-ferreira-x-av-antonio-falcao",
+			"name": "Av. Domingos Ferreira x Av. Antônio Falcão",
+			"date": "2021-11-10T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1441
+		},
+		{
+			"id": 130,
+			"slug": "130-2021-11-24-av-abdias-de-carvalho-x-av-gal-san-martin",
+			"name": "Av. Abdias de Carvalho x Av. Gal. San Martin",
+			"date": "2021-11-24T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 3706
+		},
+		{
+			"id": 131,
+			"slug": "131-2021-12-09-av-recife-x-r-pintor-antonio-de-albuquerque",
+			"name": "Av. Recife x R. Pintor Antonio de Albuquerque",
+			"date": "2021-12-09T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2292
+		},
+		{
+			"id": 132,
+			"slug": "132-2022-03-30-av-rui-barbosa-x-r-amelia",
+			"name": "Av. Rui Barbosa x R. Amélia",
+			"date": "2022-03-30T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2629
+		},
+		{
+			"id": 133,
+			"slug": "133-2022-04-27-av-forte-do-bom-jesus-x-r-miguel-vieira",
+			"name": "Av. Forte do Bom Jesus x R. Miguel Vieira",
+			"date": "2022-04-27T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 3961
+		},
+		{
+			"id": 134,
+			"slug": "134-2022-07-28-av-gov-agamenon-magalhaes-x-rua-do-paissandu",
+			"name": "Av. Gov. Agamenon Magalhães x Rua do Paissandu",
+			"date": "2022-07-28T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2074
+		},
+		{
+			"id": 135,
+			"slug": "135-2023-02-09-r-da-aurora-x-r-princesa-isabel",
+			"name": "R. da Aurora x R. Princesa Isabel",
+			"date": "2023-02-09T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 936
+		},
+		{
+			"id": 136,
+			"slug": "136-2023-03-02-av-cruz-cabuga-x-rua-dr-jayme-da-fonte",
+			"name": "Av. Cruz Cabugá x Rua Dr. Jayme da Fonte",
+			"date": "2023-03-02T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2527
+		},
+		{
+			"id": 137,
+			"slug": "137-2023-03-23-av-guararapes-x-av-dantas-barreto",
+			"name": "Av. Guararapes x Av. Dantas Barreto",
+			"date": "2023-03-23T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2046
+		},
+		{
+			"id": 138,
+			"slug": "138-2023-04-19-av-caxanga-x-av-afonso-olindense",
+			"name": "Av. Caxangá x Av. Afonso Olindense",
+			"date": "2023-04-19T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 3536
+		},
+		{
+			"id": 139,
+			"slug": "139-2023-05-11-av-cosme-viana-x-r-21-de-abril",
+			"name": "Av. Cosme Viana x R. 21 de Abril",
+			"date": "2023-05-11T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 4433
+		},
+		{
+			"id": 140,
+			"slug": "140-2023-08-10-r-souza-bandeira-x-r-cantora-clara-nunes",
+			"name": "R. Souza Bandeira x R. Cantora Clara Nunes",
+			"date": "2023-08-10T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 4484
+		},
+		{
+			"id": 141,
+			"slug": "141-2023-08-31-av-caxanga-x-av-gal-san-martin",
+			"name": "Av. Caxangá x Av. Gal. San Martin",
+			"date": "2023-08-31T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 4328
+		},
+		{
+			"id": 142,
+			"slug": "142-2023-10-03-av-pres-kennedy-x-av-antonio-da-costa-azevedo",
+			"name": "Av. Pres. Kennedy x Av. Antonio da Costa Azevedo",
+			"date": "2023-10-03T00:00:00.000Z",
+			"city": {
+				"id": 2609600,
+				"name": "Olinda",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 4911
+		},
+		{
+			"id": 143,
+			"slug": "143-2023-10-19-praca-de-camaragibe",
+			"name": "Praça de Camaragibe",
+			"date": "2023-10-19T00:00:00.000Z",
+			"city": {
+				"id": 2609600,
+				"name": "Olinda",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1663
+		},
+		{
+			"id": 144,
+			"slug": "144-2023-11-09-av-beberibe-x-av-prof-jose-dos-anjos",
+			"name": "Av. Beberibe x Av. Prof. José dos Anjos",
+			"date": "2023-11-09T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 3961
+		},
+		{
+			"id": 145,
+			"slug": "145-2026-03-25-av-dr-jose-rufino-x-r-jose-natario",
+			"name": "Av. Dr. José Rufino X R. José Natário",
+			"date": "2026-03-25T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1808
+		},
+		{
+			"id": 146,
+			"slug": "146-2026-04-30-rua-padre-machado-x-rua-hermenegildo-lima",
+			"name": "Rua Padre Machado x Rua Hermenegildo Lima",
+			"date": "2026-04-30T00:00:00.000Z",
+			"city": {
+				"id": 0,
+				"name": "Itamaracá",
+				"state": "PE"
+			},
+			"total_cyclists": 1631
+		},
+		{
+			"id": 147,
+			"slug": "147-2026-05-06-r-dr-antonio-de-souza-leao-x-av-historiador-pereira-da-costa",
+			"name": "R. Dr. Antônio de Souza Leão x Av. Historiador Pereira da Costa",
+			"date": "2026-05-06T00:00:00.000Z",
+			"city": {
+				"id": 0,
+				"name": "Cabo De Santo Agostinho",
+				"state": "PE"
+			},
+			"total_cyclists": 2421
+		},
+		{
+			"id": 148,
+			"slug": "148-2026-04-22-av-joao-pereira-de-oliveira-x-av-dr-claudio-jose-gueiros",
+			"name": "Av. João Pereira de Oliveira x Av. Dr. Cláudio José Gueiros",
+			"date": "2026-04-22T00:00:00.000Z",
+			"city": {
+				"id": 2610707,
+				"name": "Paulista",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1014
+		},
+		{
+			"id": 149,
+			"slug": "149-2026-04-15-av-dr-belminio-correia-x-rua-gerson-de-aquino-lucena",
+			"name": "Av. Dr. Belminio Correia x Rua Gérson de Aquino Lucena",
+			"date": "2026-04-15T00:00:00.000Z",
+			"city": {
+				"id": 2603454,
+				"name": "Camaragibe",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1017
+		},
+		{
+			"id": 150,
+			"slug": "150-2026-02-25-av-abdias-de-carvalho-x-av-gal-san-martin",
+			"name": "Av. Abdias de Carvalho x Av. Gal. San Martin",
+			"date": "2026-02-25T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 3003
+		},
+		{
+			"id": 151,
+			"slug": "151-2026-04-16-av-dr-luiz-correia-de-araujo-x-av-dr-francisco-correia",
+			"name": "Av. Dr. Luiz Correia de Araújo x Av. Dr. Francisco Correia",
+			"date": "2026-04-16T00:00:00.000Z",
+			"city": {
+				"id": 0,
+				"name": "São Lourenço",
+				"state": "PE"
+			},
+			"total_cyclists": 1244
+		},
+		{
+			"id": 152,
+			"slug": "152-2024-05-23-r-da-aurora-x-r-princesa-isabel",
+			"name": "R. da Aurora x R. Princesa Isabel",
+			"date": "2024-05-23T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1901
+		},
+		{
+			"id": 153,
+			"slug": "153-2026-03-11-r-do-futuro-x-av-dr-malaquias",
+			"name": "R. do Futuro x Av. Dr. Malaquias",
+			"date": "2026-03-11T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2979
+		},
+		{
+			"id": 154,
+			"slug": "154-2026-05-07-rodovia-tronco-pe-009-x-r-do-colegio",
+			"name": "Rodovia Tronco (PE 009) x R. do Colégio",
+			"date": "2026-05-07T00:00:00.000Z",
+			"city": {
+				"id": 2607208,
+				"name": "Ipojuca",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2416
+		},
+		{
+			"id": 155,
+			"slug": "155-2026-03-11-av-rui-barbosa-x-av-dr-malaquias",
+			"name": "Av. Rui Barbosa x Av. Dr. Malaquias",
+			"date": "2026-03-11T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1610
+		},
+		{
+			"id": 156,
+			"slug": "156-2026-04-09-av-pres-kennedy-x-av-antonio-da-costa-azevedo",
+			"name": "Av. Pres. Kennedy x Av. Antonio da Costa Azevedo",
+			"date": "2026-04-09T00:00:00.000Z",
+			"city": {
+				"id": 2609600,
+				"name": "Olinda",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 3968
+		},
+		{
+			"id": 157,
+			"slug": "157-2024-06-06-av-mascarenhas-de-moraes-x-r-eng-alves-de-souza",
+			"name": "Av. Mascarenhas de Moraes x R. Eng. Alves de Souza",
+			"date": "2024-06-06T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1708
+		},
+		{
+			"id": 158,
+			"slug": "158-2024-05-16-av-gov-agamenon-magalhaes-x-praca-do-derby-pista-leste",
+			"name": "Av. Gov. Agamenon Magalhães x Praça do Derby - Pista Leste",
+			"date": "2024-05-16T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2013
+		},
+		{
+			"id": 159,
+			"slug": "159-2024-05-16-av-gov-agamenon-magalhaes-x-praca-do-derby-pista-oeste",
+			"name": "Av. Gov. Agamenon Magalhães x Praça do Derby - Pista Oeste",
+			"date": "2024-05-16T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 2117
+		},
+		{
+			"id": 160,
+			"slug": "160-2026-04-29-rua-frei-serafim-x-rua-joao-pessoa",
+			"name": "Rua Frei Serafim x Rua João Pessoa",
+			"date": "2026-04-29T00:00:00.000Z",
+			"city": {
+				"id": 2607752,
+				"name": "Itapissuma",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1516
+		},
+		{
+			"id": 161,
+			"slug": "161-2026-04-28-rua-joaquim-nabuco-x-av-mario-melo",
+			"name": "Rua Joaquim Nabuco x Av. Mário Melo",
+			"date": "2026-04-28T00:00:00.000Z",
+			"city": {
+				"id": 2606804,
+				"name": "Igarassu",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1575
+		},
+		{
+			"id": 162,
+			"slug": "162-2026-03-11-av-cons-rosa-e-silva-x-av-dr-malaquias",
+			"name": "Av. Cons. Rosa e Silva x Av. Dr. Malaquias",
+			"date": "2026-03-11T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 448
+		},
+		{
+			"id": 163,
+			"slug": "163-2026-04-23-pe-007-x-pte-santa-maria",
+			"name": "PE 007 x Pte. Santa Maria",
+			"date": "2026-04-23T00:00:00.000Z",
+			"city": {
+				"id": 2609402,
+				"name": "Moreno",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 586
+		},
+		{
+			"id": 164,
+			"slug": "164-2026-04-27-rua-cap-jose-primo-x-br-101",
+			"name": "Rua Cap. José Primo x BR 101",
+			"date": "2026-04-27T00:00:00.000Z",
+			"city": {
+				"id": 0,
+				"name": "Abreu E Lima",
+				"state": "PE"
+			},
+			"total_cyclists": 989
+		},
+		{
+			"id": 165,
+			"slug": "165-2026-04-14-r-santo-elias-x-av-barreto-de-menezes-jaboatao",
+			"name": "R. Santo Elias x Av. Barreto de Menezes | Jaboatão",
+			"date": "2026-04-14T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 5071
+		},
+		{
+			"id": 166,
+			"slug": "166-2024-04-11-av17-de-agosto-x-rua-alfredo-fernandes",
+			"name": "Av.17 de Agosto x Rua Alfredo Fernandes",
+			"date": "2024-04-11T00:00:00.000Z",
+			"city": {
+				"id": 2611606,
+				"name": "Recife",
+				"state": "PE",
+				"full_state": "Pernambuco",
+				"rmr": true,
+				"created_at": "2026-07-02T22:07:45.012Z",
+				"updated_at": "2026-07-02T22:07:45.012Z"
+			},
+			"total_cyclists": 1698
+		}
+	],
+	"summary": {
+		"total_cyclists": 192216,
+		"number_counts": 83,
+		"different_counts_points": 44,
+		"where_max_count": {
+			"slug": "128-2021-10-27-r-santo-elias-x-av-barreto-de-menezes-jaboatao",
+			"total_cyclists": 7086,
+			"date": "2021-10-27"
+		},
+		"total_cargo": 34878,
+		"total_helmet": 9877,
+		"total_juveniles": 5547,
+		"total_motor": 948,
+		"total_ride": 10058,
+		"total_service": 13662,
+		"total_shared_bike": 3002,
+		"total_sidewalk": 16339,
+		"total_women": 18388,
+		"total_wrong_way": 31924
+	}
+}

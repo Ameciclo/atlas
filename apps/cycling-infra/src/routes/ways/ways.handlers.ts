@@ -1,6 +1,7 @@
 import { createConnectedDatabase } from "@atlas/database";
 import { pdcRelationWays } from "@atlas/database/schemas/cycling-infra";
 import env from "../../env.js";
+import { isRmrCity } from "../../lib/constants.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
 	ListRoute,
@@ -68,8 +69,7 @@ export const list = async (c: any) => {
 		const result = await db.execute(`
 			SELECT prw.*
 			FROM pdc_relation_ways prw
-			LEFT JOIN cyclist_infra_relation_cities circ ON prw.relation_id = circ.relation_id
-			WHERE COALESCE(circ.city_id, (prw.osm_properties->>'city_id')::int) = ${parseInt(city, 10)}
+			WHERE (prw.osm_properties->>'city_id')::int = ${parseInt(city, 10)}
 		`);
 		ways = result.rows as Record<string, unknown>[];
 	} else {
@@ -144,60 +144,56 @@ export const list = async (c: any) => {
 export const getSummary = async (c: any) => {
 	const db = await createConnectedDatabase();
 
-	// Debug: verificar dados disponíveis
-	const debugData = await db.execute(`
-		SELECT 
-			'pdc_relation_ways' as table_name,
-			COUNT(*) as total,
-			COUNT(relation_id) as with_relation_id
-		FROM pdc_relation_ways
-		UNION ALL
-		SELECT 
-			'cyclist_infra_relation_cities',
-			COUNT(*),
-			COUNT(relation_id)
-		FROM cyclist_infra_relation_cities
-		UNION ALL
-		SELECT 
-			'ciclomapa_infra',
-			COUNT(*),
-			COUNT(osm_id)
-		FROM ciclomapa_infra
-	`);
-
-	console.log("Debug data:", debugData.rows);
-
-	// Query ways com city_id correto via JOIN
+	// Query ways using osm_properties->>city_id directly — no LEFT JOIN with
+	// cyclist_infra_relation_cities to avoid row duplication when a relation
+	// is linked to multiple cities.
 	const waysData = await db.execute(`
-		SELECT 
+		SELECT
 			prw.id,
-			prw.osm_id,
 			prw.relation_id,
 			(prw.osm_properties->>'length')::float as length,
-			COALESCE(circ.city_id, (prw.osm_properties->>'city_id')::int, 2611606) as city_id,
 			(prw.osm_properties->>'has_cycleway')::boolean as has_cycleway,
 			prw.osm_properties->>'pdc_typology' as pdc_typology,
-			prw.osm_properties->>'cycleway_typology' as cycleway_typology
+			prw.osm_properties->>'cycleway_typology' as cycleway_typology,
+			(prw.osm_properties->>'city_id')::int as city_id
 		FROM pdc_relation_ways prw
-		LEFT JOIN cyclist_infra_relation_cities circ ON prw.relation_id = circ.relation_id
 		WHERE prw.osm_properties IS NOT NULL
 	`);
 
-	console.log("Total ways found:", waysData.rows.length);
-	console.log(
-		"Ways with relation_id:",
-		waysData.rows.filter((r) => r.relation_id).length,
-	);
-	console.log(
-		"Ways with city_id:",
-		waysData.rows.filter((r) => r.city_id).length,
-	);
-	console.log(
-		"Ways with cycleway:",
-		waysData.rows.filter((r) => r.has_cycleway).length,
-	);
-	console.log("Sample:", waysData.rows.slice(0, 3));
+	// Get official planned km from relations table (per city)
+	const pdcPlannedData = await db.execute(`
+		SELECT
+			circ.city_id,
+			SUM(cir.pdc_km)::float as pdc_total
+		FROM cyclist_infra_relations cir
+		INNER JOIN cyclist_infra_relation_cities circ ON cir.id = circ.relation_id
+		INNER JOIN cities c ON circ.city_id = c.id
+		WHERE c.rmr = true AND cir.pdc_km IS NOT NULL
+		GROUP BY circ.city_id
+	`);
 
+	// RMR-wide planned km (unique by relation, avoid double-count across cities)
+	const allPdcPlanned = await db.execute(`
+		SELECT SUM(cir.pdc_km)::float as pdc_total
+		FROM cyclist_infra_relations cir
+		WHERE EXISTS (
+			SELECT 1 FROM cyclist_infra_relation_cities circ
+			INNER JOIN cities c ON circ.city_id = c.id
+			WHERE circ.relation_id = cir.id AND c.rmr = true
+		) AND cir.pdc_km IS NOT NULL
+	`);
+
+	const pdcPlannedMap: Record<string, number> = {};
+	for (const row of pdcPlannedData.rows as unknown as {
+		city_id: number;
+		pdc_total: number;
+	}[]) {
+		pdcPlannedMap[row.city_id.toString()] = row.pdc_total || 0;
+	}
+	const allPdcTotal =
+		(allPdcPlanned.rows[0] as { pdc_total: number })?.pdc_total || 0;
+
+	// Group ways by city
 	const cities: {
 		[key: string]: Array<{
 			length: number;
@@ -209,7 +205,9 @@ export const getSummary = async (c: any) => {
 	} = {};
 
 	waysData.rows.forEach((row: Record<string, unknown>) => {
-		const cityId = row.city_id?.toString() || "2611606";
+		const rawCityId = row.city_id as number | null;
+		if (!rawCityId || !isRmrCity(rawCityId)) return;
+		const cityId = rawCityId.toString();
 		if (!cities[cityId]) {
 			cities[cityId] = [];
 		}
@@ -222,18 +220,7 @@ export const getSummary = async (c: any) => {
 		});
 	});
 
-	// Buscar todas as cidades que têm relações PDC
-	const allPdcCities = await db.execute(`
-		SELECT DISTINCT 
-			c.id as city_id,
-			c.name as city_name
-		FROM cities c
-		INNER JOIN cyclist_infra_relation_cities circ ON c.id = circ.city_id
-		ORDER BY c.name
-	`);
-
-	console.log("PDC Cities found:", allPdcCities.rows.length);
-
+	// Compute per-city summaries, using relations-based pdc_total
 	const summaryByCity: {
 		[key: string]: {
 			pdc_feito: number;
@@ -245,23 +232,38 @@ export const getSummary = async (c: any) => {
 		};
 	} = {};
 
-	// Processar cidades com dados
 	for (const city in cities) {
-		if (Object.hasOwn(cities, city) && city !== "0") {
-			const cityData = cities[city];
-			const citySummary = generateCitySummary(cityData || []);
-			summaryByCity[city] = citySummary;
+		if (Object.hasOwn(cities, city)) {
+			const waySummary = generateCitySummary(cities[city] || []);
+			const plannedFromRelations = pdcPlannedMap[city] || 0;
+			waySummary.pdc_total = plannedFromRelations;
+			waySummary.percent =
+				plannedFromRelations > 0
+					? waySummary.pdc_feito / plannedFromRelations
+					: 0;
+			summaryByCity[city] = waySummary;
 		}
 	}
 
-	// Adicionar cidades PDC sem dados (zeros)
+	// Include cities that have PDC relations but no way data yet
+	const allPdcCities = await db.execute(`
+		SELECT DISTINCT
+			c.id as city_id,
+			c.name as city_name
+		FROM cities c
+		INNER JOIN cyclist_infra_relation_cities circ ON c.id = circ.city_id
+		WHERE c.rmr = true
+		ORDER BY c.name
+	`);
+
 	allPdcCities.rows.forEach((cityRow: Record<string, unknown>) => {
 		const cityId = (cityRow.city_id as number).toString();
 		if (!summaryByCity[cityId]) {
+			const plannedFromRelations = pdcPlannedMap[cityId] || 0;
 			summaryByCity[cityId] = {
 				pdc_feito: 0,
 				out_pdc: 0,
-				pdc_total: 0,
+				pdc_total: plannedFromRelations,
 				real_pdc: 0,
 				percent: 0,
 				real_percent: 0,
@@ -269,10 +271,14 @@ export const getSummary = async (c: any) => {
 		}
 	});
 
+	// Aggregate all cities for the "all" entry
 	const allCityData = Object.values(cities).flat();
-	const allCitySummary = generateCitySummary(allCityData || []);
+	const allWaySummary = generateCitySummary(allCityData || []);
+	allWaySummary.pdc_total = allPdcTotal;
+	allWaySummary.percent =
+		allPdcTotal > 0 ? allWaySummary.pdc_feito / allPdcTotal : 0;
 
-	return c.json({ all: allCitySummary, byCity: summaryByCity });
+	return c.json({ all: allWaySummary, byCity: summaryByCity });
 };
 
 function generateCitySummary(
@@ -376,13 +382,12 @@ export const getAll = async (c: any) => {
 			prw.osm_properties->>'cycleway_typology' as cycleway_typology,
 			prw.relation_id,
 			(prw.osm_properties->>'length')::float as length,
-			COALESCE(circ.city_id, (prw.osm_properties->>'city_id')::int) as city_id
+			(prw.osm_properties->>'city_id')::int as city_id
 		FROM pdc_relation_ways prw
-		LEFT JOIN cyclist_infra_relation_cities circ ON prw.relation_id = circ.relation_id
 	`;
 
 	if (city) {
-		query += ` WHERE COALESCE(circ.city_id, (prw.osm_properties->>'city_id')::int) = ${parseInt(city, 10)}`;
+		query += ` WHERE (prw.osm_properties->>'city_id')::int = ${parseInt(city, 10)}`;
 	}
 
 	query += ` ORDER BY prw.id`;
@@ -404,67 +409,44 @@ export const getAll = async (c: any) => {
 		const hasCycleway = way.has_cycleway === "true";
 		const isNotOutPDC = ((way.relation_id as number) || 0) !== 0;
 		const length = parseFloat(String(way.length)) || 0;
+		const pdcTypology = way.pdc_typology as string;
+		const cyclewayTypology = way.cycleway_typology as string;
+		const rawCityId = (way.city_id as number) || 0;
 
-		if (isMinimal) {
-			// Determinar status exclusivo da via
-			let status_type: string;
-			let status_value: number;
+		let status_type: string;
 
-			// Verificar se a tipologia está correta (precisa dos dados do banco)
-			const pdcTypology = way.pdc_typology as string;
-			const cyclewayTypology = way.cycleway_typology as string;
-
-			if (hasCycleway && isNotOutPDC && pdcTypology === cyclewayTypology) {
-				// Realizado dentro do PDC com infra designada
-				status_type = "pdc_realizado_designado";
-				status_value = length;
-			} else if (
-				hasCycleway &&
-				isNotOutPDC &&
-				pdcTypology !== cyclewayTypology
-			) {
-				// Realizado dentro do PDC com infra não designada
-				status_type = "pdc_realizado_nao_designado";
-				status_value = length;
-			} else if (hasCycleway && !isNotOutPDC) {
-				// Realizado fora do PDC
-				status_type = "realizado_fora_pdc";
-				status_value = length;
-			} else if (!hasCycleway && isNotOutPDC) {
-				// PDC não realizado
-				status_type = "pdc_nao_realizado";
-				status_value = length;
-			} else {
-				// Não é PDC e não tem ciclovia
-				status_type = "unknown";
-				status_value = 0;
-			}
-
-			return {
-				type: "Feature" as const,
-				geometry: way.geometry ? JSON.parse(way.geometry as string) : null,
-				properties: {
-					id: way.id,
-					status_type,
-					status_value,
-					length,
-				},
-			};
+		if (hasCycleway && isNotOutPDC && pdcTypology === cyclewayTypology) {
+			status_type = "pdc_realizado_designado";
+		} else if (hasCycleway && isNotOutPDC && pdcTypology !== cyclewayTypology) {
+			status_type = "pdc_realizado_nao_designado";
+		} else if (hasCycleway && !isNotOutPDC) {
+			status_type = "realizado_fora_pdc";
+		} else if (!hasCycleway && isNotOutPDC) {
+			status_type = "pdc_nao_realizado";
 		} else {
-			const status = hasCycleway ? "Realizada" : "Projeto";
-
-			return {
-				type: "Feature" as const,
-				geometry: way.geometry ? JSON.parse(way.geometry as string) : null,
-				properties: {
-					STATUS: status,
-					id: way.id,
-					osm_id: way.osm_id,
-					name: way.name || null,
-					pdc_typology: way.pdc_typology || null,
-				},
-			};
+			status_type = "pdc_nao_realizado";
 		}
+
+		const props: Record<string, unknown> = {
+			id: way.id,
+			status_type,
+			status_value: length,
+			length,
+			city_id: rawCityId,
+		};
+
+		if (!isMinimal) {
+			props.osm_id = way.osm_id;
+			props.name = way.name || null;
+			props.pdc_typology = way.pdc_typology || null;
+			props.cycleway_typology = way.cycleway_typology || null;
+		}
+
+		return {
+			type: "Feature" as const,
+			geometry: way.geometry ? JSON.parse(way.geometry as string) : null,
+			properties: props,
+		};
 	});
 
 	if (city) {

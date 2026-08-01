@@ -1,0 +1,442 @@
+{
+	"cities": [
+		{
+			"ranking": 1,
+			"municipality": "RECIFE",
+			"total_calls": 38275,
+			"percentage": 37
+		},
+		{
+			"ranking": 2,
+			"municipality": "JABOATAO DOS GUARARAPES",
+			"total_calls": 9932,
+			"percentage": 9.6
+		},
+		{
+			"ranking": 3,
+			"municipality": "OLINDA",
+			"total_calls": 7343,
+			"percentage": 7.1
+		},
+		{
+			"ranking": 4,
+			"municipality": "PAULISTA",
+			"total_calls": 5710,
+			"percentage": 5.5
+		},
+		{
+			"ranking": 5,
+			"municipality": "CABO DE SANTO AGOSTINHO",
+			"total_calls": 3463,
+			"percentage": 3.3
+		},
+		{
+			"ranking": 6,
+			"municipality": "VITORIA DE SANTO ANTAO",
+			"total_calls": 3417,
+			"percentage": 3.3
+		},
+		{
+			"ranking": 7,
+			"municipality": "CAMARAGIBE",
+			"total_calls": 2688,
+			"percentage": 2.6
+		},
+		{
+			"ranking": 8,
+			"municipality": "IGARASSU",
+			"total_calls": 2098,
+			"percentage": 2
+		},
+		{
+			"ranking": 9,
+			"municipality": "GOIANA",
+			"total_calls": 1888,
+			"percentage": 1.8
+		},
+		{
+			"ranking": 10,
+			"municipality": "ABREU E LIMA",
+			"total_calls": 1886,
+			"percentage": 1.8
+		},
+		{
+			"ranking": 11,
+			"municipality": "IPOJUCA",
+			"total_calls": 1704,
+			"percentage": 1.6
+		},
+		{
+			"ranking": 12,
+			"municipality": "SAO LOURENCO DA MATA",
+			"total_calls": 1464,
+			"percentage": 1.4
+		},
+		{
+			"ranking": 13,
+			"municipality": "PALMARES",
+			"total_calls": 1420,
+			"percentage": 1.4
+		},
+		{
+			"ranking": 14,
+			"municipality": "CARPINA",
+			"total_calls": 1395,
+			"percentage": 1.3
+		},
+		{
+			"ranking": 15,
+			"municipality": "SURUBIM",
+			"total_calls": 1340,
+			"percentage": 1.3
+		},
+		{
+			"ranking": 16,
+			"municipality": "LIMOEIRO",
+			"total_calls": 1107,
+			"percentage": 1.1
+		},
+		{
+			"ranking": 17,
+			"municipality": "ESCADA",
+			"total_calls": 947,
+			"percentage": 0.9
+		},
+		{
+			"ranking": 18,
+			"municipality": "MORENO",
+			"total_calls": 887,
+			"percentage": 0.9
+		},
+		{
+			"ranking": 19,
+			"municipality": "TIMBAUBA",
+			"total_calls": 844,
+			"percentage": 0.8
+		},
+		{
+			"ranking": 20,
+			"municipality": "PAUDALHO",
+			"total_calls": 756,
+			"percentage": 0.7
+		},
+		{
+			"ranking": 21,
+			"municipality": "POMBOS",
+			"total_calls": 618,
+			"percentage": 0.6
+		},
+		{
+			"ranking": 22,
+			"municipality": "BOM JARDIM",
+			"total_calls": 578,
+			"percentage": 0.6
+		},
+		{
+			"ranking": 23,
+			"municipality": "ALIANCA",
+			"total_calls": 571,
+			"percentage": 0.6
+		},
+		{
+			"ranking": 24,
+			"municipality": "CONDADO",
+			"total_calls": 560,
+			"percentage": 0.5
+		},
+		{
+			"ranking": 25,
+			"municipality": "TAMANDARE",
+			"total_calls": 556,
+			"percentage": 0.5
+		},
+		{
+			"ranking": 26,
+			"municipality": "BARREIROS",
+			"total_calls": 534,
+			"percentage": 0.5
+		},
+		{
+			"ranking": 27,
+			"municipality": "SIRINHAEM",
+			"total_calls": 525,
+			"percentage": 0.5
+		},
+		{
+			"ranking": 28,
+			"municipality": "RIBEIRAO",
+			"total_calls": 504,
+			"percentage": 0.5
+		},
+		{
+			"ranking": 29,
+			"municipality": "GLORIA DO GOITA",
+			"total_calls": 474,
+			"percentage": 0.5
+		},
+		{
+			"ranking": 30,
+			"municipality": "NAZARE DA MATA",
+			"total_calls": 454,
+			"percentage": 0.4
+		},
+		{
+			"ranking": 31,
+			"municipality": "ILHA DE ITAMARACA",
+			"total_calls": 439,
+			"percentage": 0.4
+		},
+		{
+			"ranking": 32,
+			"municipality": "ITAMBE",
+			"total_calls": 437,
+			"percentage": 0.4
+		},
+		{
+			"ranking": 33,
+			"municipality": "CHA GRANDE",
+			"total_calls": 430,
+			"percentage": 0.4
+		},
+		{
+			"ranking": 34,
+			"municipality": "MACAPARANA",
+			"total_calls": 411,
+			"percentage": 0.4
+		},
+		{
+			"ranking": 35,
+			"municipality": "ITAPISSUMA",
+			"total_calls": 374,
+			"percentage": 0.4
+		},
+		{
+			"ranking": 36,
+			"municipality": "AGUA PRETA",
+			"total_calls": 366,
+			"percentage": 0.4
+		},
+		{
+			"ranking": 37,
+			"municipality": "FEIRA NOVA",
+			"total_calls": 353,
+			"percentage": 0.3
+		},
+		{
+			"ranking": 38,
+			"municipality": "SAO JOSE DA COROA GRANDE",
+			"total_calls": 338,
+			"percentage": 0.3
+		},
+		{
+			"ranking": 39,
+			"municipality": "PASSIRA",
+			"total_calls": 335,
+			"percentage": 0.3
+		},
+		{
+			"ranking": 40,
+			"municipality": "AMARAJI",
+			"total_calls": 333,
+			"percentage": 0.3
+		},
+		{
+			"ranking": 41,
+			"municipality": "VICENCIA",
+			"total_calls": 321,
+			"percentage": 0.3
+		},
+		{
+			"ranking": 42,
+			"municipality": "ARACOIABA",
+			"total_calls": 317,
+			"percentage": 0.3
+		},
+		{
+			"ranking": 43,
+			"municipality": "RIO FORMOSO",
+			"total_calls": 315,
+			"percentage": 0.3
+		},
+		{
+			"ranking": 44,
+			"municipality": "CHA DE ALEGRIA",
+			"total_calls": 303,
+			"percentage": 0.3
+		},
+		{
+			"ranking": 45,
+			"municipality": "OROBO",
+			"total_calls": 284,
+			"percentage": 0.3
+		},
+		{
+			"ranking": 46,
+			"municipality": "LAGOA DO CARRO",
+			"total_calls": 275,
+			"percentage": 0.3
+		},
+		{
+			"ranking": 47,
+			"municipality": "LAGOA DO ITAENGA",
+			"total_calls": 274,
+			"percentage": 0.3
+		},
+		{
+			"ranking": 48,
+			"municipality": "CATENDE",
+			"total_calls": 266,
+			"percentage": 0.3
+		},
+		{
+			"ranking": 49,
+			"municipality": "CASINHAS",
+			"total_calls": 265,
+			"percentage": 0.3
+		},
+		{
+			"ranking": 50,
+			"municipality": "PRIMAVERA",
+			"total_calls": 261,
+			"percentage": 0.3
+		},
+		{
+			"ranking": 51,
+			"municipality": "GAMELEIRA",
+			"total_calls": 260,
+			"percentage": 0.3
+		},
+		{
+			"ranking": 52,
+			"municipality": "SAO VICENTE FERRER",
+			"total_calls": 256,
+			"percentage": 0.2
+		},
+		{
+			"ranking": 53,
+			"municipality": "JOAO ALFREDO",
+			"total_calls": 248,
+			"percentage": 0.2
+		},
+		{
+			"ranking": 54,
+			"municipality": "LAGOA DOS GATOS",
+			"total_calls": 239,
+			"percentage": 0.2
+		},
+		{
+			"ranking": 55,
+			"municipality": "XEXEU",
+			"total_calls": 218,
+			"percentage": 0.2
+		},
+		{
+			"ranking": 56,
+			"municipality": "BUENOS AIRES",
+			"total_calls": 203,
+			"percentage": 0.2
+		},
+		{
+			"ranking": 57,
+			"municipality": "BELEM DE MARIA",
+			"total_calls": 187,
+			"percentage": 0.2
+		},
+		{
+			"ranking": 58,
+			"municipality": "JAQUEIRA",
+			"total_calls": 170,
+			"percentage": 0.2
+		},
+		{
+			"ranking": 59,
+			"municipality": "CORTES",
+			"total_calls": 141,
+			"percentage": 0.1
+		},
+		{
+			"ranking": 60,
+			"municipality": "QUIPAPA",
+			"total_calls": 140,
+			"percentage": 0.1
+		},
+		{
+			"ranking": 61,
+			"municipality": "CUMARU",
+			"total_calls": 137,
+			"percentage": 0.1
+		},
+		{
+			"ranking": 62,
+			"municipality": "TRACUNHAEM",
+			"total_calls": 137,
+			"percentage": 0.1
+		},
+		{
+			"ranking": 63,
+			"municipality": "FERNANDO DE NORONHA",
+			"total_calls": 125,
+			"percentage": 0.1
+		},
+		{
+			"ranking": 64,
+			"municipality": "CAMUTANGA",
+			"total_calls": 106,
+			"percentage": 0.1
+		},
+		{
+			"ranking": 65,
+			"municipality": "SAO BENEDITO DO SUL",
+			"total_calls": 97,
+			"percentage": 0.1
+		},
+		{
+			"ranking": 66,
+			"municipality": "JOAQUIM NABUCO",
+			"total_calls": 67,
+			"percentage": 0.1
+		},
+		{
+			"ranking": 67,
+			"municipality": "VERTENTE DO LERIO",
+			"total_calls": 59,
+			"percentage": 0.1
+		},
+		{
+			"ranking": 68,
+			"municipality": "ITAQUITINGA",
+			"total_calls": 59,
+			"percentage": 0.1
+		},
+		{
+			"ranking": 69,
+			"municipality": "FERREIROS",
+			"total_calls": 31,
+			"percentage": 0
+		},
+		{
+			"ranking": 70,
+			"municipality": "MACHADOS",
+			"total_calls": 22,
+			"percentage": 0
+		},
+		{
+			"ranking": 71,
+			"municipality": "MARAIAL",
+			"total_calls": 20,
+			"percentage": 0
+		},
+		{
+			"ranking": 72,
+			"municipality": null,
+			"total_calls": 17,
+			"percentage": 0
+		},
+		{
+			"ranking": 73,
+			"municipality": "SALGADINHO",
+			"total_calls": 10,
+			"percentage": 0
+		}
+	]
+}

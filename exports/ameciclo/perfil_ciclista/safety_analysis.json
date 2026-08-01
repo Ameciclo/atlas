@@ -1,0 +1,21 @@
+{
+	"year": "all",
+	"total_responses": "2245",
+	"accidents": {
+		"percentage_with_accidents": 23.7,
+		"by_gender": {
+			"Masculino": 23.5,
+			"Feminino": 24.6
+		}
+	},
+	"theft": {
+		"percentage_theft": 33.2
+	},
+	"harassment": {
+		"percentage_harassment": 33.2,
+		"by_gender": {
+			"Masculino": 30.5,
+			"Feminino": 43
+		}
+	}
+}

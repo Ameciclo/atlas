@@ -1,0 +1,65 @@
+{
+	"city": "ITAPISSUMA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 4,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 1
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 7
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 38,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 3,
+			"Removido pelos Bombeiros/CIODS": 5,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 10
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 38,
+			"Óbito no Local/Atendimento": 1,
+			"Removido pelos Bombeiros/CIODS": 3,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 9
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 12,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 62,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 3,
+			"Removido pelos Bombeiros/CIODS": 6,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 9
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 75,
+			"Desistência da solicitação": 3,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 10,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 9
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 28,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		}
+	}
+}

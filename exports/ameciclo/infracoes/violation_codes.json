@@ -1,0 +1,1690 @@
+{
+	"codes": [
+		{
+			"law_code": "Art. 218, Inc. I",
+			"description": "Transitar em velocidade superior à máxima permitida para o local, medida por instrumento ou equipamento hábil — quando a velocidade for superior à máxima em até 20% (vinte por cento).",
+			"category": "Velocidade",
+			"count": 2519141
+		},
+		{
+			"law_code": "Art. 181, Inc. XVIII",
+			"description": "Estacionar o veículo em locais e horários proibidos especificamente pela sinalização (placa — Proibido Estacionar).",
+			"category": "Parada e Estacionamento",
+			"count": 799174
+		},
+		{
+			"law_code": "Art. 181, Inc. XVII",
+			"description": "Estacionar o veículo em desacordo com as condições regulamentadas - estacionamento rotativo.",
+			"category": "Parada e Estacionamento",
+			"count": 672817
+		},
+		{
+			"law_code": "Art. 208",
+			"description": "Avançar o sinal vermelho do semáforo - fiscalização eletrônica.",
+			"category": "Regras de Circulação",
+			"count": 544515
+		},
+		{
+			"law_code": "Art. 252, §único",
+			"description": "Dirigir o veículo segurando ou manuseando telefone celular.",
+			"category": "Conduta do Condutor",
+			"count": 395171
+		},
+		{
+			"law_code": "Art. 218, Inc. II",
+			"description": "Transitar em velocidade superior à máxima permitida para o local, medida por instrumento ou equipamento hábil — quando a velocidade for superior à máxima em mais de 20% (vinte por cento) até 50% (cinquenta por cento).",
+			"category": "Velocidade",
+			"count": 339686
+		},
+		{
+			"law_code": "Art. 184, Inc. III",
+			"description": "Transitar com o veículo na faixa ou via de trânsito exclusivo, regulamentada com circulação destinada aos veículos de transporte público coletivo de passageiros, salvo casos de força maior e com autorização do poder público competente.",
+			"category": "Regras de Circulação",
+			"count": 320988
+		},
+		{
+			"law_code": "Art. 252, Inc. VI",
+			"description": "Dirigir o veículo utilizando-se de fones nos ouvidos conectados a aparelhagem sonora ou de telefone celular.",
+			"category": "Conduta do Condutor",
+			"count": 297697
+		},
+		{
+			"law_code": "Art. 187, Inc. I",
+			"description": "Transitar em locais e horários não permitidos pela regulamentação estabelecida pela autoridade competente — para todos os tipos de veículos.",
+			"category": "Regras de Circulação",
+			"count": 288718
+		},
+		{
+			"law_code": "Art. 181, Inc. VIII",
+			"description": "Estacionar o veículo no passeio.",
+			"category": "Risco a vulneráveis",
+			"count": 284138
+		},
+		{
+			"law_code": "Art. 207",
+			"description": "Executar operação de conversão à direita ou à esquerda em locais proibidos pela sinalização.",
+			"category": "Regras de Circulação",
+			"count": 234523
+		},
+		{
+			"law_code": "Art. 208",
+			"description": "Avançar o sinal vermelho do semáforo.",
+			"category": "Regras de Circulação",
+			"count": 138562
+		},
+		{
+			"law_code": "Art. 252, Inc. IV",
+			"description": "Dirigir o veículo usando calçado que não se firme nos pés ou que comprometa a utilização dos pedais.",
+			"category": "Conduta do Condutor",
+			"count": 123544
+		},
+		{
+			"law_code": "Art. 181, Inc. XVII",
+			"description": "Estacionar o veículo em desacordo com as condições regulamentadas especificamente pela sinalização (placa - Estacionamento Regulamentado).",
+			"category": "Parada e Estacionamento",
+			"count": 117042
+		},
+		{
+			"law_code": "Art. 167",
+			"description": "Deixar o condutor de usar o cinto de segurança, conforme o Art. 65, do CTB.",
+			"category": "Conduta do Condutor",
+			"count": 80938
+		},
+		{
+			"law_code": "Art. 181, Inc. XIX",
+			"description": "Estacionar o veículo em locais e horários de estacionamento e parada proibidos pela sinalização (placa — Proibido Parar e Estacionar).",
+			"category": "Parada e Estacionamento",
+			"count": 79727
+		},
+		{
+			"law_code": "Art. 208",
+			"description": "Avançar o sinal de parada obrigatória.",
+			"category": "Conduta do Condutor",
+			"count": 77747
+		},
+		{
+			"law_code": "Art. 181, Inc. XVII",
+			"description": "Estacionar o veículo em desacordo com as condições regulamentadas - vaga de carga/descarga.",
+			"category": "Parada e Estacionamento",
+			"count": 68414
+		},
+		{
+			"law_code": "Art. 183",
+			"description": "Parar o veículo sobre a faixa de pedestres na mudança de sinal luminoso.",
+			"category": "Risco a vulneráveis",
+			"count": 65103
+		},
+		{
+			"law_code": "Art. 169",
+			"description": "Dirigir sem atenção ou sem os cuidados indispensáveis à segurança.",
+			"category": "Conduta do Condutor",
+			"count": 64226
+		},
+		{
+			"law_code": "Art. 186, Inc. II",
+			"description": "Transitar pela contramão de direção em vias com sinalização de regulamentação de sentido único de circulação.",
+			"category": "Regras de Circulação",
+			"count": 47376
+		},
+		{
+			"law_code": "Art. 181, Inc. XI",
+			"description": "Estacionar o veículo ao lado de outro veículo em fila dupla.",
+			"category": "Parada e Estacionamento",
+			"count": 47121
+		},
+		{
+			"law_code": "Art. 230, Inc. V",
+			"description": "Conduzir o veículo que não esteja registrado e devidamente licenciado.",
+			"category": "Regularidade do veículo",
+			"count": 44662
+		},
+		{
+			"law_code": "Art. 244, Inc. I",
+			"description": "Conduzir motocicleta, motoneta ou ciclomotor sem usar capacete de segurança ou vestuário de acordo com as normas e as especificações aprovadas pelo CONTRAN.",
+			"category": "Conduta do Condutor",
+			"count": 39309
+		},
+		{
+			"law_code": "Art. 181, Inc. X",
+			"description": "Estacionar o veículo impedindo a movimentação de outro veículo.",
+			"category": "Parada e Estacionamento",
+			"count": 32254
+		},
+		{
+			"law_code": "Art. 181, Inc. VIII",
+			"description": "Estacionar o veículo ao lado ou sobre marcas de canalização.",
+			"category": "Parada e Estacionamento",
+			"count": 28268
+		},
+		{
+			"law_code": "Art. 182, Inc. VII",
+			"description": "Parar o veículo na área de cruzamento de vias, prejudicando a circulação de veículos e pedestres.",
+			"category": "Parada e Estacionamento",
+			"count": 27607
+		},
+		{
+			"law_code": "Art. 181, Inc. XVII",
+			"description": "Estacionar o veículo em desacordo com as condições regulamentadas - vaga de idoso.",
+			"category": "Parada e Estacionamento",
+			"count": 27165
+		},
+		{
+			"law_code": "Art. 218, Inc. III",
+			"description": "Transitar em velocidade superior à máxima permitida para o local, medida por instrumento ou equipamento hábil — quando a velocidade for superior à máxima em mais de 50% (cinquenta por cento).",
+			"category": "Velocidade",
+			"count": 26949
+		},
+		{
+			"law_code": "Art. 181, Inc. IX",
+			"description": "Estacionar o veículo onde houver guia de calçada (meio-fio) rebaixada destinada à entrada ou saída de veículos.",
+			"category": "Parada e Estacionamento",
+			"count": 26087
+		},
+		{
+			"law_code": "Art. 181, Inc. I",
+			"description": "Estacionar o veículo nas esquinas e a menos de cinco metros do bordo do alinhamento da via transversal.",
+			"category": "Parada e Estacionamento",
+			"count": 25419
+		},
+		{
+			"law_code": "Art. 181, Inc. XVII",
+			"description": "Estacionar o veículo em desacordo com as condições regulamentadas - ponto ou vaga de táxi.",
+			"category": "Parada e Estacionamento",
+			"count": 25323
+		},
+		{
+			"law_code": "Art. 197",
+			"description": "Deixar de deslocar, com antecedência, o veículo para a faixa mais à esquerda ou mais à direita, dentro da respectiva mão de direção, quando for manobrar para um desses lados.",
+			"category": "Regras de Circulação",
+			"count": 25271
+		},
+		{
+			"law_code": "Art. 181, Inc. XV",
+			"description": "Estacionar o veículo na contramão de direção.",
+			"category": "Parada e Estacionamento",
+			"count": 23542
+		},
+		{
+			"law_code": "Art. 167",
+			"description": "Deixar o passageiro de usar o cinto de segurança, conforme o Art. 65, do CTB.",
+			"category": "Conduta do Condutor",
+			"count": 22506
+		},
+		{
+			"law_code": "Art. 181, Inc. XX",
+			"description": "Estacionar o veículo nas vagas reservadas às pessoas com deficiência ou idosos, sem credencial que comprove tal condição.",
+			"category": "Parada e Estacionamento",
+			"count": 22191
+		},
+		{
+			"law_code": "Art. 184, Inc. II",
+			"description": "Transitar com o veículo na faixa ou pista da esquerda regulamentada como de circulação exclusiva para determinado tipo de veículo.",
+			"category": "Regras de Circulação",
+			"count": 18305
+		},
+		{
+			"law_code": "Art. 195",
+			"description": "Desobedecer às ordens emanadas da autoridade competente de trânsito ou de seus agentes.",
+			"category": "Outros deveres legais",
+			"count": 17999
+		},
+		{
+			"law_code": "Art. 181, Inc. VIII",
+			"description": "Estacionar o veículo ao lado ou sobre gramados ou jardim público.",
+			"category": "Parada e Estacionamento",
+			"count": 17399
+		},
+		{
+			"law_code": "Art. 252, Inc. V",
+			"description": "Dirigir o veículo com apenas uma das mãos, exceto quando deva fazer sinais regulamentares de braço, mudar a marcha do veículo, ou acionar equipamentos e acessórios do veículo.",
+			"category": "Conduta do Condutor",
+			"count": 15834
+		},
+		{
+			"law_code": "Art. 186, Inc. I",
+			"description": "Transitar pela contramão de direção em vias com duplo sentido de circulação, exceto para ultrapassar outro veículo e apenas pelo tempo necessário, respeitada a preferência do veículo que transitar em sentido contrário.",
+			"category": "Regras de Circulação",
+			"count": 15533
+		},
+		{
+			"law_code": "Art. 193",
+			"description": "Transitar com veículo em calçadas, passeios.",
+			"category": "Risco a vulneráveis",
+			"count": 15002
+		},
+		{
+			"law_code": "Art. 244, Inc. II",
+			"description": "Conduzir motocicleta, motoneta ou ciclomotor transportando passageiro sem o capacete de segurança ou fora do assento suplementar colocado atrás do condutor ou em carro lateral.",
+			"category": "Conduta do Condutor",
+			"count": 14767
+		},
+		{
+			"law_code": "Art. 181, Inc. XIII",
+			"description": "Estacionar o veículo onde houver sinalização horizontal delimitadora de ponto de embarque ou desembarque de passageiros de transporte coletivo ou, na inexistência desta sinalização, no intervalo compreendido entre dez metros antes e depois do marco do ponto.",
+			"category": "Parada e Estacionamento",
+			"count": 14722
+		},
+		{
+			"law_code": "Art. 162, Inc. I",
+			"description": "Dirigir veículo sem possuir Carteira Nacional de Habilitação, Permissão para Dirigir ou Autorização para Conduzir Ciclomotor.",
+			"category": "Outros deveres legais",
+			"count": 14126
+		},
+		{
+			"law_code": "Art. 193",
+			"description": "Transitar com veículo em marcas de canalização.",
+			"category": "Regras de Circulação",
+			"count": 13784
+		},
+		{
+			"law_code": "Art. 196",
+			"description": "Deixar de indicar com antecedência, mediante gesto regulamentar de braço ou luz indicadora de direção do veículo, o início da marcha, a realização da manobra de parar o veículo, a mudança de direção ou de faixa de circulação.",
+			"category": "Regras de Circulação",
+			"count": 13764
+		},
+		{
+			"law_code": "Art. 181, Inc. VIII",
+			"description": "Estacionar o veículo sobre faixa destinada a pedestre.",
+			"category": "Risco a vulneráveis",
+			"count": 13674
+		},
+		{
+			"law_code": "Art. 230, Inc. VI",
+			"description": "Conduzir o veículo com qualquer uma das placas de identificação sem condições de legibilidade e visibilidade.",
+			"category": "Regularidade do veículo",
+			"count": 12847
+		},
+		{
+			"law_code": "Art. 206, Inc. I",
+			"description": "Executar operação de retorno em locais proibidos pela sinalização.",
+			"category": "Regras de Circulação",
+			"count": 12609
+		},
+		{
+			"law_code": "Art. 193",
+			"description": "Transitar com veículo em canteiros centrais divisores de pista de rolamento.",
+			"category": "Regras de Circulação",
+			"count": 11656
+		},
+		{
+			"law_code": "Art. 244, Inc. X",
+			"description": "Conduzir motocicleta, motoneta ou ciclomotor com a utilização de capacete de segurança sem viseira ou óculos de proteção ou com viseira ou óculos de proteção em desacordo com a regulamentação do CONTRAN.",
+			"category": "Outros deveres legais",
+			"count": 10771
+		},
+		{
+			"law_code": "Art. 182, Inc. VI",
+			"description": "Parar o veículo sobre faixa destinada a pedestres.",
+			"category": "Risco a vulneráveis",
+			"count": 9911
+		},
+		{
+			"law_code": "Art. 181, Inc. VIII",
+			"description": "Estacionar o veículo no passeio ou sobre faixa destinada a pedestre, sobre ciclovia ou ciclofaixa, bem como nas ilhas, refúgios, ao lado ou sobre canteiros centrais, divisores de pista de rolamento, marcas de canalização, gramados ou jardim publico.",
+			"category": "Risco a vulneráveis",
+			"count": 9864
+		},
+		{
+			"law_code": "Art. 232",
+			"description": "Conduzir veículo sem os documentos de porte obrigatório referidos neste Código.",
+			"category": "Regularidade do veículo",
+			"count": 8736
+		},
+		{
+			"law_code": "Art. 181, Inc. VIII",
+			"description": "Estacionar o veículo sobre ciclovia ou ciclofaixa.",
+			"category": "Risco a vulneráveis",
+			"count": 8605
+		},
+		{
+			"law_code": "Art. 250, Inc. I",
+			"description": "Deixar de manter acesa a luz baixa durante a noite, de dia em túneis e sob chuva, neblina ou cerração, no caso de motocicletas, motonetas e ciclomotores, ou em rodovias de pista simples fora dos perímetros urbanos.",
+			"category": "Regras de Circulação",
+			"count": 8549
+		},
+		{
+			"law_code": "Art. 181, Inc. VIII",
+			"description": "Estacionar o veículo ao lado ou sobre canteiros centrais divisores de pista de rolamento.",
+			"category": "Parada e Estacionamento",
+			"count": 8487
+		},
+		{
+			"law_code": "Art. 184, Inc. I",
+			"description": "Transitar com o veículo na faixa ou pista da direita, regulamentada como de circulação exclusiva para determinado tipo de veículo, exceto para acesso a imóveis lindeiros ou conversões à direita.",
+			"category": "Regras de Circulação",
+			"count": 8247
+		},
+		{
+			"law_code": "Art. 185, Inc. I",
+			"description": "Deixar de conservar o veículo na faixa a ele destinada pela sinalização de regulamentação, exceto em situações de emergência.",
+			"category": "Regras de Circulação",
+			"count": 8134
+		},
+		{
+			"law_code": "Art. 181, Inc. IV",
+			"description": "Estacionar o veículo em desacordo com as posições estabelecidas neste Código.",
+			"category": "Parada e Estacionamento",
+			"count": 7870
+		},
+		{
+			"law_code": "Art. 230, Inc. IX",
+			"description": "Conduzir o veículo sem equipamento obrigatório ou estando este ineficiente ou inoperante.",
+			"category": "Regularidade do veículo",
+			"count": 7113
+		},
+		{
+			"law_code": "Art. 193",
+			"description": "Transitar com veículo em ciclovias, ciclofaixas.",
+			"category": "Risco a vulneráveis",
+			"count": 7100
+		},
+		{
+			"law_code": "Art. 182, Inc. X",
+			"description": "Parar o veículo em local e horário proibidos especificamente pela sinalização (placa — Proibido Parar).",
+			"category": "Parada e Estacionamento",
+			"count": 6617
+		},
+		{
+			"law_code": "Art. 182, Inc. VI",
+			"description": "Parar o veículo no passeio.",
+			"category": "Risco a vulneráveis",
+			"count": 6437
+		},
+		{
+			"law_code": "Art. 181, Inc. VIII",
+			"description": "Estacionar o veículo nas ilhas ou refúgios.",
+			"category": "Risco a vulneráveis",
+			"count": 5832
+		},
+		{
+			"law_code": "Art. 168",
+			"description": "Transportar crianças em veículo automotor sem observância das normas de segurança especiais estabelecidas neste Código.",
+			"category": "Conduta do Condutor",
+			"count": 5264
+		},
+		{
+			"law_code": "Art. 252, Inc. I",
+			"description": "Dirigir o veículo com o braço do lado de fora.",
+			"category": "Conduta do Condutor",
+			"count": 5188
+		},
+		{
+			"law_code": "Art. 230, Inc. XVIII",
+			"description": "Conduzir o veículo em mau estado de conservação, comprometendo a segurança.",
+			"category": "Regularidade do veículo",
+			"count": 4921
+		},
+		{
+			"law_code": "Art. 162, Inc. V",
+			"description": "Dirigir veículo com Carteira Nacional de Habilitação vencida há mais de 30 (trinta) dias.",
+			"category": "Outros deveres legais",
+			"count": 4772
+		},
+		{
+			"law_code": "Art. 206, Inc. V",
+			"description": "Executar operação de retorno com prejuízo da livre circulação ou da segurança, ainda que em locais permitidos.",
+			"category": "Regras de Circulação",
+			"count": 4588
+		},
+		{
+			"law_code": "Art. 206, Inc. III",
+			"description": "Executar operação de retorno passando por cima de canteiros de divisões de pista de rolamento.",
+			"category": "Regras de Circulação",
+			"count": 4216
+		},
+		{
+			"law_code": "Art. 227, Inc. II",
+			"description": "Usar buzina prolongada e sucessivamente a qualquer pretexto.",
+			"category": "Conduta do Condutor",
+			"count": 4078
+		},
+		{
+			"law_code": "Art. 230, Inc. XXII",
+			"description": "Conduzir o veículo com defeito no sistema de iluminação, de sinalização ou com lâmpadas queimadas.",
+			"category": "Regularidade do veículo",
+			"count": 3515
+		},
+		{
+			"law_code": "Art. 182, Inc. III",
+			"description": "Parar o veículo afastado da guia da calçada (meio-fio) a mais de um metro.",
+			"category": "Parada e Estacionamento",
+			"count": 3443
+		},
+		{
+			"law_code": "Art. 175",
+			"description": "Utilizar-se de veículo para demonstrar ou exibir manobra perigosa, mediante arrancada brusca, derrapagem ou frenagem com deslizamento ou arrastamento de pneus.",
+			"category": "Conduta do Condutor",
+			"count": 3248
+		},
+		{
+			"law_code": "Art. 244, Inc. IV",
+			"description": "Conduzir motocicleta, motoneta e ciclomotor com faróis apagados.",
+			"category": "Regras de Circulação",
+			"count": 2952
+		},
+		{
+			"law_code": "Art. 206, Inc. III",
+			"description": "Executar operação de retorno passando por cima de faixas de pedestres.",
+			"category": "Risco a vulneráveis",
+			"count": 2835
+		},
+		{
+			"law_code": "Art. 230, Inc. I",
+			"description": "Conduzir o veículo com o lacre, a inscrição do chassi, o selo, a placa ou qualquer outro elemento de identificação do veículo violado ou falsificado.",
+			"category": "Regularidade do veículo",
+			"count": 2786
+		},
+		{
+			"law_code": "Art. 214, Inc. I",
+			"description": "Deixar de dar preferência de passagem a pedestre e a veículo não motorizado que se encontre na faixa a ele destinada.",
+			"category": "Risco a vulneráveis",
+			"count": 2747
+		},
+		{
+			"law_code": "Art. 193",
+			"description": "Transitar com o veículo em calçadas, passeios, passarelas, ciclovias, ciclofaixas, ilhas, refúgios, ajardinamentos, canteiros centrais e divisores de pista de rolamento, acostamentos, marcas de canalização, gramados e jardins públicos.",
+			"category": "Regras de Circulação",
+			"count": 2542
+		},
+		{
+			"law_code": "Art. 221",
+			"description": "Portar no veículo placas de identificação em desacordo com as especificações e modelos estabelecidos pelo CONTRAN.",
+			"category": "Regularidade do veículo",
+			"count": 2427
+		},
+		{
+			"law_code": "Art. 206, Inc. IV",
+			"description": "Executar operação de retorno nas interseções, entrando na contramão de direção da via transversal.",
+			"category": "Regras de Circulação",
+			"count": 2332
+		},
+		{
+			"law_code": "Art. 209",
+			"description": "Transpor, sem autorização, bloqueio viário com ou sem sinalização ou dispositivos auxiliares, ou deixar de adentrar as áreas destinadas à pesagem de veículos.",
+			"category": "Regras de Circulação",
+			"count": 2310
+		},
+		{
+			"law_code": "Art. 230, Inc. XI",
+			"description": "Conduzir o veículo com descarga livre ou silenciador de motor de explosão defeituoso, deficiente ou inoperante.",
+			"category": "Regularidade do veículo",
+			"count": 2242
+		},
+		{
+			"law_code": "Art. 231, Inc. VII",
+			"description": "Transitar com o veículo com lotação excedente.",
+			"category": "Regularidade do veículo",
+			"count": 2192
+		},
+		{
+			"law_code": "Art. 165",
+			"description": "Dirigir sob a influência de álcool.",
+			"category": "Conduta do Condutor",
+			"count": 1905
+		},
+		{
+			"law_code": "Art. 227, Inc. I",
+			"description": "Usar buzina em situação que não a de simples toque breve como advertência ao pedestre ou a condutores de outros veículos.",
+			"category": "Conduta do Condutor",
+			"count": 1828
+		},
+		{
+			"law_code": "Art. 250, Inc. III",
+			"description": "Deixar de manter a placa traseira iluminada, à noite.",
+			"category": "Regularidade do veículo",
+			"count": 1803
+		},
+		{
+			"law_code": "Art. 230, Inc. II",
+			"description": "Conduzir o veículo transportando passageiros em compartimento de carga, salvo por motivo de força maior, com permissão da autoridade competente e na forma estabelecida pelo CONTRAN.",
+			"category": "Conduta do Condutor",
+			"count": 1770
+		},
+		{
+			"law_code": "Art. 252, Inc. II",
+			"description": "Dirigir o veículo transportando pessoas, animais ou volume à sua esquerda ou entre os braços e pernas.",
+			"category": "Conduta do Condutor",
+			"count": 1752
+		},
+		{
+			"law_code": "Art. 164",
+			"description": "Permitir posse/condução do veículo a pessoa com Carteira Nacional de Habilitação, Permissão para Dirigir ou Autorização para Conduzir Ciclomotor com suspensão do direito de dirigir.",
+			"category": "Outros deveres legais",
+			"count": 1696
+		},
+		{
+			"law_code": "Art. 238",
+			"description": "Recusar-se a entregar à autoridade de trânsito ou a seus agentes, mediante recibo, os documentos de habilitação, de registro, de licenciamento de veículo e outros exigidos por lei, para averiguação de sua autenticidade.",
+			"category": "Regularidade do veículo",
+			"count": 1689
+		},
+		{
+			"law_code": "Art. 170",
+			"description": "Dirigir ameaçando os pedestres que estejam atravessando a via pública.",
+			"category": "Risco a vulneráveis",
+			"count": 1554
+		},
+		{
+			"law_code": "Art. 203, Inc. V",
+			"description": "Ultrapassar pela contramão outro veículo onde houver marcação viária longitudinal de divisão de fluxos opostos do tipo linha dupla contínua ou simples contínua amarela.",
+			"category": "Regras de Circulação",
+			"count": 1475
+		},
+		{
+			"law_code": "Art. 230, Inc. VII",
+			"description": "Conduzir o veículo com a cor ou característica alterada.",
+			"category": "Regularidade do veículo",
+			"count": 1421
+		},
+		{
+			"law_code": "Art. 210",
+			"description": "Transpor, sem autorização, bloqueio viário policial.",
+			"category": "Regras de Circulação",
+			"count": 1412
+		},
+		{
+			"law_code": "Art. 182, Inc. XI",
+			"description": "Parar o veículo sobre ciclovia ou ciclofaixa.",
+			"category": "Risco a vulneráveis",
+			"count": 1362
+		},
+		{
+			"law_code": "Art. 172",
+			"description": "Atirar do veículo ou abandonar na via pública objetos ou substâncias.",
+			"category": "Outros deveres legais",
+			"count": 1331
+		},
+		{
+			"law_code": "Art. 203, Inc. IV",
+			"description": "Ultrapassar pela contramão outro veículo parado em fila junto a sinais luminosos, porteiras, cancelas, cruzamentos ou qualquer outro impedimento à livre circulação.",
+			"category": "Regras de Circulação",
+			"count": 1288
+		},
+		{
+			"law_code": "Art. 194",
+			"description": "Transitar em marcha à ré, salvo na distância necessária a pequenas manobras e de forma a não causar riscos à segurança.",
+			"category": "Regras de Circulação",
+			"count": 1252
+		},
+		{
+			"law_code": "Art. 214, Inc. II",
+			"description": "Deixar de dar preferência de passagem a pedestre e a veículo não motorizado que não haja concluído a travessia mesmo que ocorra sinal verde para o veículo.",
+			"category": "Risco a vulneráveis",
+			"count": 1210
+		},
+		{
+			"law_code": "Art. 216",
+			"description": "Entrar ou sair de áreas lindeiras sem estar adequadamente posicionado para ingresso na via e sem as precauções com a segurança de pedestres e de outros veículos.",
+			"category": "Risco a vulneráveis",
+			"count": 1208
+		},
+		{
+			"law_code": "Art. 206, Inc. III",
+			"description": "Executar operação de retorno passando por cima de calçada, passeio.",
+			"category": "Risco a vulneráveis",
+			"count": 1199
+		},
+		{
+			"law_code": "Art. 230, Inc. IV",
+			"description": "Conduzir o veículo sem qualquer uma das placas de identificação.",
+			"category": "Regularidade do veículo",
+			"count": 1175
+		},
+		{
+			"law_code": "Art. 189",
+			"description": "Deixar de dar passagem aos veículos precedidos de batedores, de socorro de incêndio e salvamento, de polícia, de operação e fiscalização de trânsito e às ambulâncias, quando em serviço de urgência e devidamente identificados por dispositivos regulamentados de alarme sonoro e iluminação intermitente.",
+			"category": "Regras de Circulação",
+			"count": 1123
+		},
+		{
+			"law_code": "Art. 182, Inc. VI",
+			"description": "Parar o veículo nas marcas de canalização.",
+			"category": "Parada e Estacionamento",
+			"count": 1055
+		},
+		{
+			"law_code": "Art. 230, Inc. X",
+			"description": "Conduzir o veículo com equipamento obrigatório em desacordo com o estabelecido pelo CONTRAN.",
+			"category": "Regularidade do veículo",
+			"count": 1048
+		},
+		{
+			"law_code": "Art. 170",
+			"description": "Dirigir ameaçando os demais veículos.",
+			"category": "Conduta do Condutor",
+			"count": 1012
+		},
+		{
+			"law_code": "Art. 211",
+			"description": "Ultrapassar veículos em fila, parados em razão de sinal luminoso, cancela, bloqueio viário parcial ou qualquer outro obstáculo, com exceção dos veículos não motorizados.",
+			"category": "Regras de Circulação",
+			"count": 904
+		},
+		{
+			"law_code": "Art. 163",
+			"description": "Entregar veículo a pessoa sem usar lentes corretoras de visão impostas por ocasião da concessão ou da renovação da licença para conduzir.",
+			"category": "Outros deveres legais",
+			"count": 891
+		},
+		{
+			"law_code": "Art. 181, Inc. XII",
+			"description": "Estacionar o veículo na área de cruzamento de vias, prejudicando a circulação de veículos e pedestres.",
+			"category": "Parada e Estacionamento",
+			"count": 873
+		},
+		{
+			"law_code": "Art. 230, Inc. VIII",
+			"description": "Conduzir o veículo sem ter sido submetido à inspeção de segurança veicular, quando obrigatória.",
+			"category": "Regularidade do veículo",
+			"count": 744
+		},
+		{
+			"law_code": "Art. 182, Inc. I",
+			"description": "Parar o veículo nas esquinas e a menos de cinco metros do bordo do alinhamento da via transversal.",
+			"category": "Parada e Estacionamento",
+			"count": 737
+		},
+		{
+			"law_code": "Art. 181, Inc. XIV",
+			"description": "Estacionar o veículo nos viadutos, pontes e túneis.",
+			"category": "Parada e Estacionamento",
+			"count": 730
+		},
+		{
+			"law_code": "Art. 182, Inc. VI",
+			"description": "Parar o veículo nos canteiros centrais e divisores de pista de rolamento.",
+			"category": "Parada e Estacionamento",
+			"count": 718
+		},
+		{
+			"law_code": "Art. 230, Inc. XII",
+			"description": "Conduzir o veículo com equipamento ou acessório proibido.",
+			"category": "Regularidade do veículo",
+			"count": 686
+		},
+		{
+			"law_code": "Art. 239",
+			"description": "Retirar do local veículo legalmente retido para regularização, sem permissão da autoridade competente ou de seus agentes.",
+			"category": "Regularidade do veículo",
+			"count": 668
+		},
+		{
+			"law_code": "Art. 253",
+			"description": "Bloquear a via com veículo.",
+			"category": "Outros deveres legais",
+			"count": 651
+		},
+		{
+			"law_code": "Art. 162, Inc. III",
+			"description": "Dirigir veículo com Carteira Nacional de Habilitação ou Permissão para Dirigir de categoria diferente da do veículo que esteja conduzindo.",
+			"category": "Outros deveres legais",
+			"count": 638
+		},
+		{
+			"law_code": "Art. 165-A",
+			"description": "Recusar-se a ser submetido a teste, exame clínico, perícia ou outro procedimento que permita certificar influência de álcool ou outra substância psicoativa.",
+			"category": "Conduta do Condutor",
+			"count": 593
+		},
+		{
+			"law_code": "Art. 193",
+			"description": "Transitar com veículo em ilhas, refúgios.",
+			"category": "Risco a vulneráveis",
+			"count": 582
+		},
+		{
+			"law_code": "Art. 162, Inc. II",
+			"description": "Dirigir veículo com Carteira Nacional de Habilitação, Permissão para Dirigir ou Autorização para Conduzir Ciclomotor cassada ou com suspensão do direito de dirigir.",
+			"category": "Outros deveres legais",
+			"count": 542
+		},
+		{
+			"law_code": "Art. 230, Inc. XIII",
+			"description": "Conduzir o veículo com o equipamento do sistema de iluminação e de sinalização alterados.",
+			"category": "Regularidade do veículo",
+			"count": 536
+		},
+		{
+			"law_code": "Art. 206, Inc. III",
+			"description": "Executar operação de retorno passando por cima de calcada, passeio, ilhas, ajardinamento ou canteiros de divisões de pista de rolamento, refúgios e faixas de pedestres e nas de veículos não motorizados.",
+			"category": "Regras de Circulação",
+			"count": 528
+		},
+		{
+			"law_code": "Art. 162, Inc. VI",
+			"description": "Dirigir veículo sem usar lentes corretoras de visão, aparelho auxiliar de audição, de prótese física ou as adaptações do veículo impostas por ocasião da concessão ou da renovação da licença para conduzir.",
+			"category": "Conduta do Condutor",
+			"count": 523
+		},
+		{
+			"law_code": "Art. 244, Inc. XI",
+			"description": "Conduzir motocicleta, motoneta ou ciclomotor transportando passageiro com o capacete de segurança sem viseira ou óculos de proteção ou em desacordo com a regulamentação do CONTRAN.",
+			"category": "Outros deveres legais",
+			"count": 517
+		},
+		{
+			"law_code": "Art. 191",
+			"description": "Forçar passagem entre veículos que, transitando em sentidos opostos, estejam na iminência de passar um pelo outro ao realizar operação de ultrapassagem.",
+			"category": "Regras de Circulação",
+			"count": 510
+		},
+		{
+			"law_code": "Art. 182, Inc. V",
+			"description": "Parar o veículo na pista de rolamento das estradas, das rodovias, das vias de trânsito rápido e das demais vias dotadas de acostamento.",
+			"category": "Parada e Estacionamento",
+			"count": 490
+		},
+		{
+			"law_code": "Art. 244, Inc. VII",
+			"description": "Conduzir motocicleta, motoneta ou ciclomotor sem segurar o guidom com ambas as mãos, salvo eventualmente para indicação de manobras.",
+			"category": "Conduta do Condutor",
+			"count": 455
+		},
+		{
+			"law_code": "Art. 244, Inc. III",
+			"description": "Conduzir motocicleta, motoneta ou ciclomotor fazendo malabarismo ou equilibrando-se apenas em uma roda.",
+			"category": "Conduta do Condutor",
+			"count": 453
+		},
+		{
+			"law_code": "Art. 181, Inc. III",
+			"description": "Estacionar o veículo afastado da guia da calçada (meio-fio) a mais de um metro.",
+			"category": "Parada e Estacionamento",
+			"count": 432
+		},
+		{
+			"law_code": "Art. 182, Inc. IV",
+			"description": "Parar o veículo em desacordo com as posições estabelecidas neste Código.",
+			"category": "Parada e Estacionamento",
+			"count": 416
+		},
+		{
+			"law_code": "Art. 193",
+			"description": "Transitar com veículo em passarelas.",
+			"category": "Risco a vulneráveis",
+			"count": 387
+		},
+		{
+			"law_code": "Art. 228",
+			"description": "Usar no veículo equipamento com som em volume ou frequência que não sejam autorizados pelo CONTRAN.",
+			"category": "Regularidade do veículo",
+			"count": 387
+		},
+		{
+			"law_code": "Art. 178",
+			"description": "Deixar o condutor envolvido em sinistro sem vítima de adotar providências para remover o veículo do local, quando necessária tal medida para assegurar a segurança e a fluidez do trânsito.",
+			"category": "Parada e Estacionamento",
+			"count": 371
+		},
+		{
+			"law_code": "Art. 251, Inc. I",
+			"description": "Utilizar as luzes do veículo, o pisca-alerta, exceto em imobilizações ou situações de emergência.",
+			"category": "Regularidade do veículo",
+			"count": 364
+		},
+		{
+			"law_code": "Art. 201",
+			"description": "Deixar de guardar a distância lateral de um metro e cinquenta centímetros ao passar ou ultrapassar bicicleta.",
+			"category": "Risco a vulneráveis",
+			"count": 355
+		},
+		{
+			"law_code": "Art. 206, Inc. II",
+			"description": "Executar operação de retorno nas curvas, aclives, declives, pontes, viadutos e túneis.",
+			"category": "Regras de Circulação",
+			"count": 343
+		},
+		{
+			"law_code": "Art. 182, Inc. II",
+			"description": "Parar o veículo afastado da guia da calçada (meio-fio) de cinquenta centímetros a um metro.",
+			"category": "Parada e Estacionamento",
+			"count": 336
+		},
+		{
+			"law_code": "Art. 182, Inc. IX",
+			"description": "Parar o veículo na contramão de direção.",
+			"category": "Parada e Estacionamento",
+			"count": 297
+		},
+		{
+			"law_code": "Art. 181, Inc. VI",
+			"description": "Estacionar o veículo junto ou sobre hidrantes de incêndio, registro de água ou tampas de poços de visita de galerias subterrâneas, desde que devidamente identificados.",
+			"category": "Parada e Estacionamento",
+			"count": 288
+		},
+		{
+			"law_code": "Art. 244, Inc. V",
+			"description": "Conduzir motocicleta, motoneta ou ciclomotor transportando criança menor de 10 (dez) anos de idade ou que não tenha, nas circunstâncias, condições de cuidar da própria segurança.",
+			"category": "Conduta do Condutor",
+			"count": 262
+		},
+		{
+			"law_code": "Art. 180",
+			"description": "Ter seu veículo imobilizado na via por falta de combustível.",
+			"category": "Regularidade do veículo",
+			"count": 253
+		},
+		{
+			"law_code": "Art. 193",
+			"description": "Transitar com veículo em ajardinamentos, gramados e jardins públicos.",
+			"category": "Regras de Circulação",
+			"count": 249
+		},
+		{
+			"law_code": "Art. 171",
+			"description": "Usar o veículo para arremessar, sobre os pedestres, água ou detritos.",
+			"category": "Risco a vulneráveis",
+			"count": 242
+		},
+		{
+			"law_code": "Art. 181, Inc. II",
+			"description": "Estacionar o veículo afastado da guia da calçada (meio-fio) de cinquenta centímetros a um metro.",
+			"category": "Parada e Estacionamento",
+			"count": 235
+		},
+		{
+			"law_code": "Art. 181, Inc. V",
+			"description": "Estacionar o veículo na pista de rolamento das estradas, das rodovias, das vias de trânsito rápido e das vias dotadas de acostamento.",
+			"category": "Parada e Estacionamento",
+			"count": 224
+		},
+		{
+			"law_code": "Art. 192",
+			"description": "Deixar de guardar distância de segurança lateral e frontal entre o seu veículo e os demais, bem como em relação ao bordo da pista, considerando-se, no momento, a velocidade, as condições climáticas do local da circulação e do veículo.",
+			"category": "Regras de Circulação",
+			"count": 214
+		},
+		{
+			"law_code": "Art. 182, Inc. VI",
+			"description": "Parar o veículo no passeio ou sobre faixa destinada a pedestres, nas ilhas, refúgios, canteiros centrais e divisores de pista de rolamento e marcas de canalização.",
+			"category": "Risco a vulneráveis",
+			"count": 207
+		},
+		{
+			"law_code": "Art. 214, Inc. V",
+			"description": "Deixar de dar preferência de passagem a pedestre que esteja atravessando a via transversal para onde se dirige o veículo.",
+			"category": "Risco a vulneráveis",
+			"count": 207
+		},
+		{
+			"law_code": "Art. 182, Inc. VI",
+			"description": "Parar o veículo nas ilhas ou refúgios.",
+			"category": "Risco a vulneráveis",
+			"count": 180
+		},
+		{
+			"law_code": "Art. 165",
+			"description": "Dirigir sob a influência de qualquer outra substância que determine dependência.",
+			"category": "Conduta do Condutor",
+			"count": 176
+		},
+		{
+			"law_code": "Art. 235",
+			"description": "Conduzir pessoas, animais ou carga nas partes externas do veículo, salvo nos casos devidamente autorizados.",
+			"category": "Regularidade do veículo",
+			"count": 176
+		},
+		{
+			"law_code": "Art. 176, Inc. I",
+			"description": "Deixar o condutor envolvido em acidente com vítima de prestar ou providenciar socorro à vítima, podendo fazê-lo.",
+			"category": "Outros deveres legais",
+			"count": 173
+		},
+		{
+			"law_code": "Art. 174",
+			"description": "Promover, na via, competição, eventos organizados, exibição e demonstração de perícia em manobra de veículo, sem permissão da autoridade de trânsito com circunscrição sobre a via.",
+			"category": "Velocidade",
+			"count": 161
+		},
+		{
+			"law_code": "Art. 199",
+			"description": "Ultrapassar pela direita, salvo quando o veículo da frente estiver colocado na faixa apropriada e der sinal de que vai entrar à esquerda.",
+			"category": "Regras de Circulação",
+			"count": 149
+		},
+		{
+			"law_code": "Art. 224",
+			"description": "Fazer uso do facho de luz alta dos faróis em vias providas de iluminação pública.",
+			"category": "Conduta do Condutor",
+			"count": 148
+		},
+		{
+			"law_code": "Art. 231, Inc. IV",
+			"description": "Transitar com o veículo com suas dimensões ou de sua carga superiores aos limites estabelecidos legalmente ou pela sinalização, sem autorização.",
+			"category": "Regularidade do veículo",
+			"count": 147
+		},
+		{
+			"law_code": "Art. 236",
+			"description": "Rebocar outro veículo com cabo flexível ou corda, salvo em casos de emergência.",
+			"category": "Regras de Circulação",
+			"count": 142
+		},
+		{
+			"law_code": "Art. 223",
+			"description": "Transitar com o farol desregulado ou com o facho de luz alta de forma a perturbar a visão de outro condutor.",
+			"category": "Regras de Circulação",
+			"count": 127
+		},
+		{
+			"law_code": "Art. 248",
+			"description": "Transportar em veículo destinado ao transporte de passageiros carga excedente em desacordo com o estabelecido no art. 109.",
+			"category": "Regularidade do veículo",
+			"count": 124
+		},
+		{
+			"law_code": "Art. 230, Inc. XVI",
+			"description": "Conduzir o veículo com vidros total ou parcialmente cobertos por películas refletivas ou não, painéis decorativos ou pinturas.",
+			"category": "Regularidade do veículo",
+			"count": 122
+		},
+		{
+			"law_code": "Art. 193",
+			"description": "Transitar com veículo em acostamentos.",
+			"category": "Risco a vulneráveis",
+			"count": 116
+		},
+		{
+			"law_code": "Art. 214, Inc. IV",
+			"description": "Deixar de dar preferência de passagem a pedestre quando houver iniciado a travessia mesmo que não haja sinalização a ele destinada.",
+			"category": "Risco a vulneráveis",
+			"count": 116
+		},
+		{
+			"law_code": "Art. 190",
+			"description": "Seguir veículo em serviço de urgência, estando este com prioridade de passagem devidamente identificada por dispositivos regulamentares de alarme sonoro e iluminação intermitente.",
+			"category": "Regras de Circulação",
+			"count": 112
+		},
+		{
+			"law_code": "Art. 171",
+			"description": "Usar o veículo para arremessar, sobre os veículos, água ou detritos.",
+			"category": "Conduta do Condutor",
+			"count": 110
+		},
+		{
+			"law_code": "Art. 231, Inc. II",
+			"description": "Transitar com o veículo derramando, lançando ou arrastando sobre a via carga que esteja transportando, combustível ou lubrificante que esteja utilizando, ou qualquer objeto que possa acarretar risco de sinistro.",
+			"category": "Regularidade do veículo",
+			"count": 109
+		},
+		{
+			"law_code": "Art. 220, Inc. XIV",
+			"description": "Deixar de reduzir a velocidade do veículo de forma compatível com a segurança do trânsito nas proximidades das escolas, hospitais, estações de embarque e desembarque de passageiros ou onde haja intensa movimentação de pedestres.",
+			"category": "Risco a vulneráveis",
+			"count": 106
+		},
+		{
+			"law_code": "Art. 220, Inc. II",
+			"description": "Deixar de reduzir a velocidade de forma compatível com a segurança do trânsito nos locais onde o trânsito esteja sendo controlado pelo agente da autoridade, mediante sinais sonoros ou gestos.",
+			"category": "Velocidade",
+			"count": 99
+		},
+		{
+			"law_code": "Art. 203, Inc. III",
+			"description": "Ultrapassar pela contramão outro veículo nas pontes, viadutos ou túneis.",
+			"category": "Regras de Circulação",
+			"count": 98
+		},
+		{
+			"law_code": "Art. 176, Inc. V",
+			"description": "Deixar o condutor envolvido em acidente com vítima de identificar-se ao policial e de lhe prestar informações necessárias à confecção do boletim de ocorrência.",
+			"category": "Outros deveres legais",
+			"count": 91
+		},
+		{
+			"law_code": "Art. 244, Inc. VIII",
+			"description": "Conduzir motocicleta, motoneta ou ciclomotor transportando carga incompatível com suas especificações ou em desacordo com o previsto no § 2º do art. 139-A.",
+			"category": "Regularidade do veículo",
+			"count": 85
+		},
+		{
+			"law_code": "Art. 181, Inc. VII",
+			"description": "Estacionar o veículo nos acostamentos, salvo motivo de força maior.",
+			"category": "Parada e Estacionamento",
+			"count": 83
+		},
+		{
+			"law_code": "Art. 188",
+			"description": "Transitar ao lado de outro veículo, interrompendo ou perturbando o trânsito.",
+			"category": "Regras de Circulação",
+			"count": 77
+		},
+		{
+			"law_code": "Art. 214, Inc. III",
+			"description": "Deixar de dar preferência de passagem a portadores de deficiência física, crianças, idosos e gestantes.",
+			"category": "Risco a vulneráveis",
+			"count": 77
+		},
+		{
+			"law_code": "Art. 230, Inc. XIV",
+			"description": "Conduzir o veículo com registrador instantâneo inalterável de velocidade e tempo viciado ou defeituoso, quando houver exigência desse aparelho.",
+			"category": "Regularidade do veículo",
+			"count": 75
+		},
+		{
+			"law_code": "Art. 231, Inc. VIII",
+			"description": "Transitar com o veículo efetuando transporte remunerado de pessoas ou bens, quando não for licenciado para esse fim, salvo casos de força maior ou com permissão da autoridade competente.",
+			"category": "Outros deveres legais",
+			"count": 72
+		},
+		{
+			"law_code": "Art. 278, §único",
+			"description": "Fugir o condutor à ação da autoridade de trânsito, transpondo bloqueio policial.",
+			"category": "Conduta do Condutor",
+			"count": 71
+		},
+		{
+			"law_code": "Art. 182, Inc. VIII",
+			"description": "Parar o veículo nos viadutos, pontes e túneis.",
+			"category": "Parada e Estacionamento",
+			"count": 67
+		},
+		{
+			"law_code": "Art. 229",
+			"description": "Usar indevidamente no veículo aparelho de alarme ou que produza sons e ruído que perturbem o sossego público, em desacordo com normas fixadas pelo CONTRAN.",
+			"category": "Regularidade do veículo",
+			"count": 67
+		},
+		{
+			"law_code": "Art. 215, Inc. I",
+			"description": "Deixar de dar preferência de passagem, em intersecção não sinalizada, a veículo que estiver circulando por rotatória.",
+			"category": "Regras de Circulação",
+			"count": 57
+		},
+		{
+			"law_code": "Art. 227, Inc. V",
+			"description": "Usar buzina em desacordo com os padrões e freqüências estabelecidas pelo CONTRAN.",
+			"category": "Conduta do Condutor",
+			"count": 56
+		},
+		{
+			"law_code": "Art. 244, Inc. III",
+			"description": "Conduzir ciclo fazendo malabarismo ou equilibrando-se em uma roda.",
+			"category": "Conduta de vulneráveis",
+			"count": 54
+		},
+		{
+			"law_code": "Art. 176, Inc. III",
+			"description": "Deixar o condutor envolvido em acidente com vítima de preservar o local, de forma a facilitar os trabalhos da polícia e da perícia.",
+			"category": "Outros deveres legais",
+			"count": 53
+		},
+		{
+			"law_code": "Art. 173",
+			"description": "Disputar corrida.",
+			"category": "Velocidade",
+			"count": 49
+		},
+		{
+			"law_code": "Art. 206, Inc. III",
+			"description": "Executar operação de retorno passando por cima de faixas de veículos não motorizados.",
+			"category": "Risco a vulneráveis",
+			"count": 46
+		},
+		{
+			"law_code": "Art. 244, §1º",
+			"description": "Conduzir ciclo transportando crianças sem condições de cuidar de sua própria segurança.",
+			"category": "Conduta de vulneráveis",
+			"count": 44
+		},
+		{
+			"law_code": "Art. 205",
+			"description": "Ultrapassar veículo em movimento que integre cortejo, préstito, desfile e formações militares, salvo com autorização da autoridade de trânsito ou de seus agentes.",
+			"category": "Regras de Circulação",
+			"count": 44
+		},
+		{
+			"law_code": "Art. 235",
+			"description": "Conduzir animais nas partes externas do veículo.",
+			"category": "Regularidade do veículo",
+			"count": 42
+		},
+		{
+			"law_code": "Art. 202, Inc. II",
+			"description": "Ultrapassar outro veículo em interseções.",
+			"category": "Regras de Circulação",
+			"count": 42
+		},
+		{
+			"law_code": "Art. 227, Inc. IV",
+			"description": "Usar buzina em locais e horários proibidos pela sinalização.",
+			"category": "Conduta do Condutor",
+			"count": 41
+		},
+		{
+			"law_code": "Art. 176, Inc. II",
+			"description": "Deixar o condutor envolvido em acidente com vítima de adotar providências, podendo fazê-lo, no sentido de evitar perigo para o trânsito local.",
+			"category": "Outros deveres legais",
+			"count": 36
+		},
+		{
+			"law_code": "Art. 244, Inc. VI",
+			"description": "Conduzir motocicleta, motoneta ou ciclomotor rebocando outro veículo.",
+			"category": "Regras de Circulação",
+			"count": 36
+		},
+		{
+			"law_code": "Art. 174",
+			"description": "Participar, na via, como condutor, de competição, eventos organizados, exibição e demonstração de perícia em manobra de veículo, sem permissão da autoridade de trânsito com circunscrição sobre a via.",
+			"category": "Conduta do Condutor",
+			"count": 35
+		},
+		{
+			"law_code": "Art. 230, Inc. XV",
+			"description": "Conduzir o veículo com inscrições, adesivos, legendas e símbolos de caráter publicitário afixados ou pintados no para-brisa e em toda a extensão da parte traseira do veículo.",
+			"category": "Regularidade do veículo",
+			"count": 35
+		},
+		{
+			"law_code": "Art. 185, Inc. II",
+			"description": "Deixar de conservar nas faixas da direita os veículos lentos e de maior porte.",
+			"category": "Regras de Circulação",
+			"count": 35
+		},
+		{
+			"law_code": "Art. 233",
+			"description": "Deixar de efetuar o registro de veículo no prazo de trinta dias, junto ao órgão executivo de trânsito.",
+			"category": "Regularidade do veículo",
+			"count": 33
+		},
+		{
+			"law_code": "Art. 231, Inc. I",
+			"description": "Transitar com o veículo danificando a via, suas instalações e equipamentos.",
+			"category": "Regularidade do veículo",
+			"count": 33
+		},
+		{
+			"law_code": "Art. 220, Inc. I",
+			"description": "Deixar de reduzir a velocidade do veiculo de forma compativel com a seguranca do trânsito quando se aproximar de passeatas, aglomeracões, cortejos, préstitos e desfiles.",
+			"category": "Velocidade",
+			"count": 29
+		},
+		{
+			"law_code": "Art. 252, Inc. III",
+			"description": "Dirigir o veículo com incapacidade física ou mental temporária que comprometa a segurança do trânsito.",
+			"category": "Conduta do Condutor",
+			"count": 28
+		},
+		{
+			"law_code": "Art. 172",
+			"description": "Abandonar na via objetos ou substâncias.",
+			"category": "Outros deveres legais",
+			"count": 27
+		},
+		{
+			"law_code": "Art. 203, Inc. II",
+			"description": "Ultrapassar pela contramão outro veículo nas faixas de pedestre.",
+			"category": "Risco a vulneráveis",
+			"count": 27
+		},
+		{
+			"law_code": "Art. 215, Inc. II",
+			"description": "Deixar de dar preferência de passagem nas interseções com sinalização de regulamentação - Dê a Preferência.",
+			"category": "Regras de Circulação",
+			"count": 26
+		},
+		{
+			"law_code": "Art. 277 §3º",
+			"description": "Condutor que se recusar a submeter-se a qualquer dos procedimentos previstos no art. 277 que permita certificar a influência de álcool ou outra substância psicoativa.",
+			"category": "Conduta do Condutor",
+			"count": 25
+		},
+		{
+			"law_code": "Art. 241",
+			"description": "Deixar de atualizar o cadastro de registro do veículo ou de habilitação do condutor.",
+			"category": "Regularidade do veículo",
+			"count": 25
+		},
+		{
+			"law_code": "Art. 244, Inc. VII",
+			"description": "Conduzir ciclo sem segurar o guidom com ambas as mãos.",
+			"category": "Conduta de vulneráveis",
+			"count": 23
+		},
+		{
+			"law_code": "Art. 220, Inc. XIII",
+			"description": "Deixar de reduzir a velocidade do veículo de forma compatível com a segurança do trânsito ao ultrapassar ciclista.",
+			"category": "Risco a vulneráveis",
+			"count": 22
+		},
+		{
+			"law_code": "Art. 230, Inc. III",
+			"description": "Conduzir o veículo com dispositivo anti-radar.",
+			"category": "Regularidade do veículo",
+			"count": 21
+		},
+		{
+			"law_code": "Art. 203, Inc. I",
+			"description": "Ultrapassar pela contramão outro veículo nas curvas, aclives e declives, sem visibilidade suficiente.",
+			"category": "Regras de Circulação",
+			"count": 19
+		},
+		{
+			"law_code": "Art. 254, Inc. VI",
+			"description": "É proibido ao pedestre desobedecer à sinalização de trânsito específica.",
+			"category": "Conduta de vulneráveis",
+			"count": 18
+		},
+		{
+			"law_code": "Art. 225, Inc. I",
+			"description": "Deixar de sinalizar a via, de forma a prevenir os demais condutores e, à noite, não manter acesas as luzes externas ou omitir-se quanto a providências necessárias para tornar visível o local, quando tiver de remover o veículo da pista de rolamento ou permanecer no acostamento.",
+			"category": "Parada e Estacionamento",
+			"count": 18
+		},
+		{
+			"law_code": "Art. 179, Inc. II",
+			"description": "Fazer ou deixar que se faça reparo em veículo na via pública, salvo nos casos de impedimento absoluto de sua remoção e em que o veículo esteja devidamente sinalizado — nas demais vias.",
+			"category": "Regularidade do veículo",
+			"count": 17
+		},
+		{
+			"law_code": "Art. 253-A",
+			"description": "Usar qualquer veículo para, deliberadamente, interromper, restringir ou perturbar a circulação na via sem autorização do órgão ou entidade de trânsito com circunscrição sobre ela.",
+			"category": "Outros deveres legais",
+			"count": 17
+		},
+		{
+			"law_code": "Art. 250, Inc. II",
+			"description": "Quando o veículo estiver em movimento deixar de manter acesas pelo menos as luzes de posição sob chuva forte, neblina ou cerração.",
+			"category": "Regras de Circulação",
+			"count": 16
+		},
+		{
+			"law_code": "Art. 235",
+			"description": "Conduzir carga nas partes externas do veículo.",
+			"category": "Regularidade do veículo",
+			"count": 16
+		},
+		{
+			"law_code": "Art. 206, Inc. III",
+			"description": "Executar operação de retorno passando por cima de ajardinamento.",
+			"category": "Regras de Circulação",
+			"count": 16
+		},
+		{
+			"law_code": "Art. 246",
+			"description": "Deixar de sinalizar qualquer obstáculo à livre circulação, à segurança \nde veículo e pedestres, tanto no leito da via terrestre como na calçada,\n ou obstaculizar a via indevidamente.",
+			"category": "Outros deveres legais",
+			"count": 15
+		},
+		{
+			"law_code": "Art. 181, Inc. XVI",
+			"description": "Estacionar o veículo em aclive ou declive, não estando devidamente freado e sem calço de segurança, quando se tratar de veículo com peso bruto total superior a três mil e quinhentos quilogramas.",
+			"category": "Parada e Estacionamento",
+			"count": 15
+		},
+		{
+			"law_code": "Art. 231, Inc. III",
+			"description": "Transitar com o veículo produzindo fumaça, gases ou partículas em níveis superiores aos fixados pelo CONTRAN.",
+			"category": "Regularidade do veículo",
+			"count": 13
+		},
+		{
+			"law_code": "Art. 251, Inc. II",
+			"description": "Utilizar as luzes do veículo, baixa e alta, de forma intermitente, exceto quando permitido pelo CTB.",
+			"category": "Regularidade do veículo",
+			"count": 13
+		},
+		{
+			"law_code": "Art. 227, Inc. III",
+			"description": "Usar buzina entre as vinte e duas e as seis horas.",
+			"category": "Conduta do Condutor",
+			"count": 12
+		},
+		{
+			"law_code": "Art. 220, Inc. III",
+			"description": "Deixar de reduzir a velocidade do veículo de forma compatível com a segurança do trânsito ao aproximar-se da guia da calçada(meio-fio).",
+			"category": "Risco a vulneráveis",
+			"count": 12
+		},
+		{
+			"law_code": "Art. 200",
+			"description": "Ultrapassar pela direita veículo de transporte coletivo ou de escolares, parado para embarque ou desembarque de passageiros, salvo quando houver refúgio de segurança para o pedestre.",
+			"category": "Risco a vulneráveis",
+			"count": 12
+		},
+		{
+			"law_code": "Art. 230, Inc. XIX",
+			"description": "Conduzir o veículo sem acionar o limpador de para-brisa sob chuva.",
+			"category": "Regularidade do veículo",
+			"count": 11
+		},
+		{
+			"law_code": "Art. 220, Inc. XI",
+			"description": "Deixar de reduzir a velocidade do veículo de forma compatível com a segurança do trânsito à aproximação de animais na pista.",
+			"category": "Velocidade",
+			"count": 11
+		},
+		{
+			"law_code": "Art. 213, Inc. I",
+			"description": "Deixar de parar o veículo sempre que a respectiva marcha for interceptada por agrupamento de pessoas, como préstitos, passeatas, desfiles e outros.",
+			"category": "Risco a vulneráveis",
+			"count": 10
+		},
+		{
+			"law_code": "Art. 249",
+			"description": "Deixar de manter acesas, à noite, as luzes de posição, quando o veículo estiver parado, para fins de embarque ou desembarque de passageiros e carga ou descarga de mercadorias.",
+			"category": "Parada e Estacionamento",
+			"count": 10
+		},
+		{
+			"law_code": "Art. 198",
+			"description": "Deixar de dar passagem pela esquerda, quando solicitado.",
+			"category": "Regras de Circulação",
+			"count": 9
+		},
+		{
+			"law_code": "Art. 221, §único",
+			"description": "Confeccionar, distribuir ou colocar, em veículo próprio ou de terceiros, placas de identificação não autorizadas pela regulamentação do CONTRAN.",
+			"category": "Regularidade do veículo",
+			"count": 9
+		},
+		{
+			"law_code": "Art. 244, Inc. VIII",
+			"description": "Conduzir ciclo transportando carga incompatível com suas especificações.",
+			"category": "Conduta de vulneráveis",
+			"count": 7
+		},
+		{
+			"law_code": "Art. 179, Inc. I",
+			"description": "Fazer ou deixar que se faça reparo em veículo na via pública, salvo nos casos de impedimento absoluto de sua remoção e em que o veículo esteja devidamente sinalizado — em pista de rolamento de rodovias e vias de trânsito rápido.",
+			"category": "Parada e Estacionamento",
+			"count": 7
+		},
+		{
+			"law_code": "Art. 230, Inc. XX",
+			"description": "Conduzir o veículo sem portar a autorização para condução de escolares, na forma estabelecida no art. 136.",
+			"category": "Regularidade do veículo",
+			"count": 7
+		},
+		{
+			"law_code": "Art. 176, Inc. IV",
+			"description": "Deixar o condutor envolvido em acidente com vítima de adotar providências para remover o veículo do local, quando determinadas por policial ou agente da autoridade de trânsito.",
+			"category": "Outros deveres legais",
+			"count": 6
+		},
+		{
+			"law_code": "Art. 220, Inc. VI",
+			"description": "Deixar de reduzir a velocidade do veículo de forma compatível com a segurança do trânsito nos trechos em curva de pequeno raio.",
+			"category": "Velocidade",
+			"count": 6
+		},
+		{
+			"law_code": "Art. 237",
+			"description": "Transitar com o veículo em desacordo com as especificações, e com falta de inscrição e simbologia necessárias à sua identificação, quando exigidas pela legislação.",
+			"category": "Regularidade do veículo",
+			"count": 6
+		},
+		{
+			"law_code": "Art. 202, Inc. I",
+			"description": "Ultrapassar outro veículo pelo acostamento.",
+			"category": "Risco a vulneráveis",
+			"count": 5
+		},
+		{
+			"law_code": "Art. 245",
+			"description": "Utilizar a via para depósito de mercadorias, materiais ou equipamentos, sem autorização do órgão ou entidade de trânsito com circunscrição sobre a via.",
+			"category": "Outros deveres legais",
+			"count": 5
+		},
+		{
+			"law_code": "Art. 217",
+			"description": "Entrar ou sair de fila de veículos estacionados sem dar preferência de passagem a pedestres e a outros veículos.",
+			"category": "Parada e Estacionamento",
+			"count": 5
+		},
+		{
+			"law_code": "Art. 222",
+			"description": "Deixar de manter ligado, nas situações de atendimento de emergência, o sistema de iluminação vermelha intermitente ainda que parados.",
+			"category": "Regularidade do veículo",
+			"count": 5
+		},
+		{
+			"law_code": "Art. 246",
+			"description": "Deixar de sinalizar qualquer obstáculo a livre circulação, à segurança de veículo e pedestres, tanto no leito da via terrestre como na calçada  - agravamento 5x.",
+			"category": "Parada e Estacionamento",
+			"count": 5
+		},
+		{
+			"law_code": "Art. 181, Inc. XVII",
+			"description": "Estacionar o veículo em desacordo com a regulamentação - vaga de curta duração.",
+			"category": "Parada e Estacionamento",
+			"count": 5
+		},
+		{
+			"law_code": "Art. 254, Inc. II",
+			"description": "É proibido ao pedestre cruzar pistas de rolamento nos viadutos, pontes ou túneis, salvo onde exista permissão.",
+			"category": "Conduta de vulneráveis",
+			"count": 5
+		},
+		{
+			"law_code": "Art. 177",
+			"description": "Deixar o condutor de prestar socorro à vítima de sinistro de trânsito quando solicitado pela autoridade e seus agentes.",
+			"category": "Outros deveres legais",
+			"count": 5
+		},
+		{
+			"law_code": "Art. 166",
+			"description": "Confiar ou entregar a direção de veículo a pessoa que, mesmo habilitada, por seu estado físico ou psíquico, não estiver em condições de dirigi-lo com segurança.",
+			"category": "Outros deveres legais",
+			"count": 5
+		},
+		{
+			"law_code": "Art. 204",
+			"description": "Deixar de parar o veículo no acostamento à direita, para aguardar a oportunidade de cruzar a pista ou entrar à esquerda, onde não houver local apropriado para operação de retorno.",
+			"category": "Parada e Estacionamento",
+			"count": 5
+		},
+		{
+			"law_code": "Art. 219",
+			"description": "Transitar com o veículo em velocidade inferior à metade da velocidade máxima estabelecida para a via, retardando ou obstruindo o trânsito.",
+			"category": "Velocidade",
+			"count": 4
+		},
+		{
+			"law_code": "Art. 234",
+			"description": "Falsificar ou adulterar documento de habilitação e de identificação do veículo.",
+			"category": "Regularidade do veículo",
+			"count": 4
+		},
+		{
+			"law_code": "Art. 243",
+			"description": "Deixar a empresa seguradora de comunicar ao órgão executivo de trânsito competente a ocorrência de perda total do veículo e de lhe devolver as respectivas placas e documentos.",
+			"category": "Regularidade do veículo",
+			"count": 3
+		},
+		{
+			"law_code": "Art. 231, Inc. IX",
+			"description": "Transitar com o veículo desengrenado em declive.",
+			"category": "Regras de Circulação",
+			"count": 2
+		},
+		{
+			"law_code": "Art. 231, Inc. X",
+			"description": "Transitar com o veículo excedendo a capacidade máxima de tração, entre 601 e 1.000 kg.",
+			"category": "Regularidade do veículo",
+			"count": 2
+		},
+		{
+			"law_code": "Art. 254, Inc. III",
+			"description": "É proibido ao pedestre atravessar a via dentro das áreas de cruzamento, exceto onde permitido pela s",
+			"category": "Conduta de vulneráveis",
+			"count": 2
+		},
+		{
+			"law_code": "Art. 230, Inc. XXIII",
+			"description": "Conduzir o veículo em desacordo com as condições estabelecidas no art. 67-C, relativamente ao tempo de permanência do condutor ao volante e aos intervalos para descanso.",
+			"category": "Conduta do Condutor",
+			"count": 2
+		},
+		{
+			"law_code": "Art. 253-A §1º",
+			"description": "Organizar a conduta prevista no caput do Art. 253-A.",
+			"category": "Outros deveres legais",
+			"count": 2
+		},
+		{
+			"law_code": "Art. 231, Inc. VI",
+			"description": "Transitar com o veículo em desacordo com a autorização especial expedida para transitar com dimensões excedentes.",
+			"category": "Regularidade do veículo",
+			"count": 2
+		},
+		{
+			"law_code": "Art. 230, Inc. XXI",
+			"description": "Conduzir veículo de carga, com falta de inscrição da tara e demais inscrições previstas neste Código.",
+			"category": "Regularidade do veículo",
+			"count": 2
+		},
+		{
+			"law_code": "Art. 220, Inc. VII",
+			"description": "Deixar de reduzir a velocidade do veículo de forma compatível com a segurança do trânsito ao aproximar-se de locais sinalizados com advertência de obras ou trabalhadores na pista.",
+			"category": "Velocidade",
+			"count": 2
+		},
+		{
+			"law_code": "Art. 162, Inc. VII",
+			"description": "Dirigir veículo sem possuir os cursos especializados ou específicos obrigatórios.",
+			"category": "Outros deveres legais",
+			"count": 1
+		},
+		{
+			"law_code": "Art. 220, Inc. XII",
+			"description": "Deixar de reduzir a velocidade do veículo de forma compatível com a segurança do trânsito em declive.",
+			"category": "Velocidade",
+			"count": 1
+		},
+		{
+			"law_code": "Art. 254, Inc. V",
+			"description": "É proibido ao pedestre andar fora da faixa própria.",
+			"category": "Conduta de vulneráveis",
+			"count": 1
+		},
+		{
+			"law_code": "Art. 226",
+			"description": "Deixar de retirar todo e qualquer objeto que tenha sido utilizado para sinalização temporária da via.",
+			"category": "Outros deveres legais",
+			"count": 1
+		},
+		{
+			"law_code": "Art. 244 §2º",
+			"description": "Conduzir ciclomotor em vias de trânsito rápido.",
+			"category": "Regras de Circulação",
+			"count": 1
+		},
+		{
+			"law_code": "Art. 213, Inc. II",
+			"description": "Deixar de parar o veículo sempre que a respectiva marcha for interceptada por agrupamento de veículos, como cortejos, formações militares e outros.",
+			"category": "Conduta do Condutor",
+			"count": 1
+		},
+		{
+			"law_code": "Art. 220, Inc. V",
+			"description": "Deixar de reduzir velocidade do veículo de forma compatível com a segurança do trânsito nas vias rurais cuja faixa de domínio não esteja cercada.",
+			"category": "Velocidade",
+			"count": 1
+		},
+		{
+			"law_code": "Art. 242",
+			"description": "Fazer falsa declaração de domicílio para fins de registro, licenciamento ou habilitação.",
+			"category": "Regularidade do veículo",
+			"count": 1
+		},
+		{
+			"law_code": "Art. 230, Inc. XVII",
+			"description": "Conduzir o veículo com cortinas ou persianas fechadas, não autorizadas pela legislação.",
+			"category": "Regularidade do veículo",
+			"count": 1
+		},
+		{
+			"law_code": "Art. 220",
+			"description": "Deixar de reduzir a velocidade do veículo de forma compatível com a segurança do trânsito.",
+			"category": "Velocidade",
+			"count": 0
+		},
+		{
+			"law_code": "Art. 255",
+			"description": "Conduzir bicicleta em passeios onde não seja permitida a circulação desta, ou de forma agressiva.",
+			"category": "Conduta de vulneráveis",
+			"count": 0
+		},
+		{
+			"law_code": "Art. 225, Inc. II",
+			"description": "Deixar de sinalizar a via, de forma a prevenir os demais condutores e, à noite, não manter acesas as luzes externas ou omitir-se quanto a providências necessárias para tornar visível o local, quando a carga for derramada sobre a via e não puder ser retirada imediatamente.",
+			"category": "Conduta do Condutor",
+			"count": 0
+		},
+		{
+			"law_code": "Art. 163, c/c Art. 162, Inc. III",
+			"description": "Entregar a direção do veículo a pessoa com Carteira Nacional de Habilitação ou Permissão para Dirigir de categoria diferente da do veículo que esteja conduzindo.",
+			"category": "Outros deveres legais",
+			"count": 0
+		},
+		{
+			"law_code": "Art. 202",
+			"description": "Ultrapassar outro veículo pelo acostamento ou em interseções e passagens de nível.",
+			"category": "Regras de Circulação",
+			"count": 0
+		},
+		{
+			"law_code": "Art. 230, Inc. XVIII",
+			"description": "Conduzir o veículo reprovado na avaliação de inspeção de segurança.",
+			"category": "Regularidade do veículo",
+			"count": 0
+		},
+		{
+			"law_code": "Art. 163, c/c Art. 162, Inc. II",
+			"description": "Entregar a direção do veículo a pessoa com Carteira Nacional de Habilitação, Permissão para Dirigir ou Autorização para Conduzir Ciclomotor cassada ou com suspensão do direito de dirigir.",
+			"category": "Outros deveres legais",
+			"count": 0
+		},
+		{
+			"law_code": "Art. 163, c/c Art. 162, Inc. I",
+			"description": "Entregar a direção do veículo a pessoa sem possuir Carteira Nacional de Habilitação, Permissão para Dirigir ou Autorização para Conduzir Ciclomotor.",
+			"category": "Outros deveres legais",
+			"count": 0
+		},
+		{
+			"law_code": "Art. 164, c/c Art. 162, Inc. V",
+			"description": "Permitir que pessoa com Carteira Nacional de Habilitação vencida há mais de 30 (trinta) dias tome posse do veículo automotor e passe a conduzi-lo na via.",
+			"category": "Outros deveres legais",
+			"count": 0
+		},
+		{
+			"law_code": "Art. 244, Inc. IX",
+			"description": "Conduzir motocicleta, motoneta ou ciclomotor efetuando transporte remunerado de mercadorias em desacordo com o previsto no art. 139-A ou com as normas que regem a atividade profissional dos mototaxistas.",
+			"category": "Outros deveres legais",
+			"count": 0
+		},
+		{
+			"law_code": "Art. 164, c/c Art. 162, Inc. II",
+			"description": "Permitir que pessoa com Carteira Nacional de Habilitação, Permissão para Dirigir ou Autorização para Conduzir Ciclomotor cassada ou com suspensão do direito de dirigir tome posse do veículo automotor e passe a conduzi-lo na via.",
+			"category": "Outros deveres legais",
+			"count": 0
+		},
+		{
+			"law_code": "Art. 163, c/c Art. 162, Inc. V",
+			"description": "Entregar a direção do veículo a pessoa com Carteira Nacional de Habilitação vencida há mais de 30 (trinta) dias.",
+			"category": "Outros deveres legais",
+			"count": 0
+		},
+		{
+			"law_code": "Art. 164, c/c Art. 162, Inc. III",
+			"description": "Permitir que pessoa com Carteira Nacional de Habilitação ou Permissão para Dirigir de categoria diferente da do veículo que esteja conduzindo tome posse do veículo automotor e passe a conduzi-lo na via.",
+			"category": "Outros deveres legais",
+			"count": 0
+		},
+		{
+			"law_code": "Art. 163, c/c Art. 162, Inc. VI",
+			"description": "Entregar a direção do veículo a pessoa sem usar lentes corretoras de visão, aparelho auxiliar de audição, de prótese física ou as adaptações do veículo impostas por ocasião da concessão ou da renovação da licença para conduzir.",
+			"category": "Outros deveres legais",
+			"count": 0
+		},
+		{
+			"law_code": "Art. 227",
+			"description": "Usar buzina em situação que não a de simples toque breve como advertência, ou prolongada e sucessivamente, ou entre as vinte e duas e as seis horas, ou em locais e horários proibidos.",
+			"category": "Conduta do Condutor",
+			"count": 0
+		}
+	]
+}

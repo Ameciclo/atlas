@@ -1,0 +1,26 @@
+{
+	"city": "MACHADOS",
+	"outcomes_by_year": {
+		"2020": {
+			"Atendimento Concluído com Êxito": 2,
+			"Desistência da solicitação": 1,
+			"Removido por Particulares": 1
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 1
+		},
+		"2022": {
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 4,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 6,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		}
+	}
+}

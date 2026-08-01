@@ -1,0 +1,1204 @@
+{
+	"dados": [
+		{
+			"top": 1,
+			"nome": "PE",
+			"sinistros": 7177,
+			"sinistros_acum": 7177,
+			"percentual": 100,
+			"percentual_acum": 100
+		},
+		{
+			"top": 2,
+			"nome": "BR",
+			"sinistros": 6237,
+			"sinistros_acum": 13414,
+			"percentual": 86.90260554549255,
+			"percentual_acum": 186.90260554549255
+		},
+		{
+			"top": 3,
+			"nome": "",
+			"sinistros": 2793,
+			"sinistros_acum": 16207,
+			"percentual": 38.91598160791417,
+			"percentual_acum": 225.81858715340672
+		},
+		{
+			"top": 4,
+			"nome": "BR 101 SENTIDO",
+			"sinistros": 1779,
+			"sinistros_acum": 17986,
+			"percentual": 24.78751567507315,
+			"percentual_acum": 250.6061028284799
+		},
+		{
+			"top": 5,
+			"nome": "AV",
+			"sinistros": 811,
+			"sinistros_acum": 18797,
+			"percentual": 11.299986066601644,
+			"percentual_acum": 261.9060888950815
+		},
+		{
+			"top": 6,
+			"nome": "AV AGAMENON MAGALHAES",
+			"sinistros": 638,
+			"sinistros_acum": 19435,
+			"percentual": 8.889508151038038,
+			"percentual_acum": 270.79559704611955
+		},
+		{
+			"top": 7,
+			"nome": "AV NORTE MIGUEL ARRAES DE ALENCAR",
+			"sinistros": 603,
+			"sinistros_acum": 20038,
+			"percentual": 8.401839208582974,
+			"percentual_acum": 279.1974362547025
+		},
+		{
+			"top": 8,
+			"nome": "AV MASCARENHAS DE MORAES",
+			"sinistros": 547,
+			"sinistros_acum": 20585,
+			"percentual": 7.62156890065487,
+			"percentual_acum": 286.8190051553574
+		},
+		{
+			"top": 9,
+			"nome": "AV CAXANGA",
+			"sinistros": 530,
+			"sinistros_acum": 21115,
+			"percentual": 7.3847011286052675,
+			"percentual_acum": 294.2037062839626
+		},
+		{
+			"top": 10,
+			"nome": "BR 232 SENTIDO",
+			"sinistros": 521,
+			"sinistros_acum": 21636,
+			"percentual": 7.259300543402536,
+			"percentual_acum": 301.4630068273652
+		},
+		{
+			"top": 11,
+			"nome": "AV BEBERIBE",
+			"sinistros": 496,
+			"sinistros_acum": 22132,
+			"percentual": 6.910965584506061,
+			"percentual_acum": 308.37397241187125
+		},
+		{
+			"top": 12,
+			"nome": "AV JOSE RUFINO",
+			"sinistros": 485,
+			"sinistros_acum": 22617,
+			"percentual": 6.757698202591612,
+			"percentual_acum": 315.13167061446285
+		},
+		{
+			"top": 13,
+			"nome": "AV RECIFE",
+			"sinistros": 474,
+			"sinistros_acum": 23091,
+			"percentual": 6.604430820677163,
+			"percentual_acum": 321.73610143514003
+		},
+		{
+			"top": 14,
+			"nome": "AV ABDIAS DE CARVALHO",
+			"sinistros": 431,
+			"sinistros_acum": 23522,
+			"percentual": 6.0052946913752265,
+			"percentual_acum": 327.74139612651527
+		},
+		{
+			"top": 15,
+			"nome": "AV CLAUDIO JOSE GUEIROS LEITE",
+			"sinistros": 401,
+			"sinistros_acum": 23923,
+			"percentual": 5.587292740699457,
+			"percentual_acum": 333.32868886721474
+		},
+		{
+			"top": 16,
+			"nome": "BR 101 SN",
+			"sinistros": 400,
+			"sinistros_acum": 24323,
+			"percentual": 5.573359342343598,
+			"percentual_acum": 338.9020482095583
+		},
+		{
+			"top": 17,
+			"nome": "AV HENRIQUE DE HOLANDA",
+			"sinistros": 372,
+			"sinistros_acum": 24695,
+			"percentual": 5.183224188379546,
+			"percentual_acum": 344.08527239793784
+		},
+		{
+			"top": 18,
+			"nome": "AV DOMINGOS FERREIRA",
+			"sinistros": 362,
+			"sinistros_acum": 25057,
+			"percentual": 5.043890204820956,
+			"percentual_acum": 349.1291626027588
+		},
+		{
+			"top": 19,
+			"nome": "AV BELMINIO CORREIA",
+			"sinistros": 330,
+			"sinistros_acum": 25387,
+			"percentual": 4.598021457433468,
+			"percentual_acum": 353.72718406019226
+		},
+		{
+			"top": 20,
+			"nome": "AV BERNARDO VIEIRA DE MELO",
+			"sinistros": 310,
+			"sinistros_acum": 25697,
+			"percentual": 4.3193534903162885,
+			"percentual_acum": 358.04653755050856
+		},
+		{
+			"top": 21,
+			"nome": "BR 408 SENTIDO",
+			"sinistros": 305,
+			"sinistros_acum": 26002,
+			"percentual": 4.2496864985369935,
+			"percentual_acum": 362.2962240490456
+		},
+		{
+			"top": 22,
+			"nome": "AV DOIS RIOS",
+			"sinistros": 298,
+			"sinistros_acum": 26300,
+			"percentual": 4.15215271004598,
+			"percentual_acum": 366.44837675909156
+		},
+		{
+			"top": 23,
+			"nome": "AV MANOEL RABELO",
+			"sinistros": 293,
+			"sinistros_acum": 26593,
+			"percentual": 4.082485718266685,
+			"percentual_acum": 370.5308624773582
+		},
+		{
+			"top": 24,
+			"nome": "ROD BR-101",
+			"sinistros": 293,
+			"sinistros_acum": 26886,
+			"percentual": 4.082485718266685,
+			"percentual_acum": 374.6133481956249
+		},
+		{
+			"top": 25,
+			"nome": "AV PAN NORDESTINA",
+			"sinistros": 282,
+			"sinistros_acum": 27168,
+			"percentual": 3.929218336352237,
+			"percentual_acum": 378.5425665319771
+		},
+		{
+			"top": 26,
+			"nome": "15 SENTIDO",
+			"sinistros": 250,
+			"sinistros_acum": 27418,
+			"percentual": 3.4833495889647486,
+			"percentual_acum": 382.0259161209419
+		},
+		{
+			"top": 27,
+			"nome": "AV CARLOS DE LIMA CAVALCANTE",
+			"sinistros": 241,
+			"sinistros_acum": 27659,
+			"percentual": 3.3579490037620174,
+			"percentual_acum": 385.3838651247039
+		},
+		{
+			"top": 28,
+			"nome": "AV CRUZ CABUGA",
+			"sinistros": 215,
+			"sinistros_acum": 27874,
+			"percentual": 2.9956806465096837,
+			"percentual_acum": 388.3795457712136
+		},
+		{
+			"top": 29,
+			"nome": "AV DEZESSETE DE AGOSTO",
+			"sinistros": 214,
+			"sinistros_acum": 28088,
+			"percentual": 2.981747248153825,
+			"percentual_acum": 391.3612930193674
+		},
+		{
+			"top": 30,
+			"nome": "AV BOA VIAGEM",
+			"sinistros": 210,
+			"sinistros_acum": 28298,
+			"percentual": 2.9260136547303888,
+			"percentual_acum": 394.2873066740978
+		},
+		{
+			"top": 31,
+			"nome": "60 SENTIDO",
+			"sinistros": 201,
+			"sinistros_acum": 28499,
+			"percentual": 2.8006130695276577,
+			"percentual_acum": 397.08791974362543
+		},
+		{
+			"top": 32,
+			"nome": "90 SENTIDO",
+			"sinistros": 188,
+			"sinistros_acum": 28687,
+			"percentual": 2.6194788909014908,
+			"percentual_acum": 399.70739863452695
+		},
+		{
+			"top": 33,
+			"nome": "BR 101 KM",
+			"sinistros": 188,
+			"sinistros_acum": 28875,
+			"percentual": 2.6194788909014908,
+			"percentual_acum": 402.3268775254285
+		},
+		{
+			"top": 34,
+			"nome": "ROD PE",
+			"sinistros": 172,
+			"sinistros_acum": 29047,
+			"percentual": 2.396544517207747,
+			"percentual_acum": 404.72342204263623
+		},
+		{
+			"top": 35,
+			"nome": "AV BRASIL",
+			"sinistros": 166,
+			"sinistros_acum": 29213,
+			"percentual": 2.312944127072593,
+			"percentual_acum": 407.0363661697088
+		},
+		{
+			"top": 36,
+			"nome": "AV KENNEDY",
+			"sinistros": 166,
+			"sinistros_acum": 29379,
+			"percentual": 2.312944127072593,
+			"percentual_acum": 409.34931029678137
+		},
+		{
+			"top": 37,
+			"nome": "AV SUL",
+			"sinistros": 164,
+			"sinistros_acum": 29543,
+			"percentual": 2.285077330360875,
+			"percentual_acum": 411.63438762714225
+		},
+		{
+			"top": 38,
+			"nome": "ESTRADA ALDEIA KM",
+			"sinistros": 159,
+			"sinistros_acum": 29702,
+			"percentual": 2.21541033858158,
+			"percentual_acum": 413.84979796572384
+		},
+		{
+			"top": 39,
+			"nome": "AV SAN MARTIN",
+			"sinistros": 155,
+			"sinistros_acum": 29857,
+			"percentual": 2.1596767451581442,
+			"percentual_acum": 416.009474710882
+		},
+		{
+			"top": 40,
+			"nome": "AV MAURICIO DE NASSAU",
+			"sinistros": 152,
+			"sinistros_acum": 30009,
+			"percentual": 2.117876550090567,
+			"percentual_acum": 418.12735126097255
+		},
+		{
+			"top": 41,
+			"nome": "AV BELMINO CORREIA",
+			"sinistros": 151,
+			"sinistros_acum": 30160,
+			"percentual": 2.1039431517347085,
+			"percentual_acum": 420.23129441270726
+		},
+		{
+			"top": 42,
+			"nome": "R VINTE E UM DE ABRIL",
+			"sinistros": 150,
+			"sinistros_acum": 30310,
+			"percentual": 2.0900097533788493,
+			"percentual_acum": 422.32130416608607
+		},
+		{
+			"top": 43,
+			"nome": "AV AYRTON SENNA DA SILVA",
+			"sinistros": 150,
+			"sinistros_acum": 30460,
+			"percentual": 2.0900097533788493,
+			"percentual_acum": 424.41131391946493
+		},
+		{
+			"top": 44,
+			"nome": "ESTRADA DE",
+			"sinistros": 147,
+			"sinistros_acum": 30607,
+			"percentual": 2.048209558311272,
+			"percentual_acum": 426.45952347777626
+		},
+		{
+			"top": 45,
+			"nome": "AV MARIA IRENE",
+			"sinistros": 145,
+			"sinistros_acum": 30752,
+			"percentual": 2.0203427615995544,
+			"percentual_acum": 428.4798662393758
+		},
+		{
+			"top": 46,
+			"nome": "AV AGUIAR",
+			"sinistros": 144,
+			"sinistros_acum": 30896,
+			"percentual": 2.0064093632436952,
+			"percentual_acum": 430.48627560261946
+		},
+		{
+			"top": 47,
+			"nome": "AVENIDA",
+			"sinistros": 144,
+			"sinistros_acum": 31040,
+			"percentual": 2.0064093632436952,
+			"percentual_acum": 432.4926849658632
+		},
+		{
+			"top": 48,
+			"nome": "BR-101 SENTIDO",
+			"sinistros": 143,
+			"sinistros_acum": 31183,
+			"percentual": 1.992475964887836,
+			"percentual_acum": 434.485160930751
+		},
+		{
+			"top": 49,
+			"nome": "R MIGUEL",
+			"sinistros": 134,
+			"sinistros_acum": 31317,
+			"percentual": 1.8670753796851052,
+			"percentual_acum": 436.3522363104361
+		},
+		{
+			"top": 50,
+			"nome": "AV JOSE DOS ANJOS",
+			"sinistros": 130,
+			"sinistros_acum": 31447,
+			"percentual": 1.8113417862616692,
+			"percentual_acum": 438.16357809669773
+		},
+		{
+			"top": 51,
+			"nome": "RUA",
+			"sinistros": 126,
+			"sinistros_acum": 31573,
+			"percentual": 1.7556081928382334,
+			"percentual_acum": 439.91918628953607
+		},
+		{
+			"top": 52,
+			"nome": "AV BARRETO DE MENEZES",
+			"sinistros": 126,
+			"sinistros_acum": 31699,
+			"percentual": 1.7556081928382334,
+			"percentual_acum": 441.6747944823743
+		},
+		{
+			"top": 53,
+			"nome": "AV RECIFE SN",
+			"sinistros": 123,
+			"sinistros_acum": 31822,
+			"percentual": 1.7138079977706562,
+			"percentual_acum": 443.3886024801449
+		},
+		{
+			"top": 54,
+			"nome": "EST DOS REMEDIOS",
+			"sinistros": 116,
+			"sinistros_acum": 31938,
+			"percentual": 1.6162742092796434,
+			"percentual_acum": 445.0048766894246
+		},
+		{
+			"top": 55,
+			"nome": "AV GETULIO VARGAS",
+			"sinistros": 116,
+			"sinistros_acum": 32054,
+			"percentual": 1.6162742092796434,
+			"percentual_acum": 446.62115089870423
+		},
+		{
+			"top": 56,
+			"nome": "AC BR-101",
+			"sinistros": 116,
+			"sinistros_acum": 32170,
+			"percentual": 1.6162742092796434,
+			"percentual_acum": 448.2374251079839
+		},
+		{
+			"top": 57,
+			"nome": "AV AGAMENON MAGALHAES SN",
+			"sinistros": 115,
+			"sinistros_acum": 32285,
+			"percentual": 1.6023408109237844,
+			"percentual_acum": 449.83976591890763
+		},
+		{
+			"top": 58,
+			"nome": "AGAMENON MAGALHAES",
+			"sinistros": 114,
+			"sinistros_acum": 32399,
+			"percentual": 1.5884074125679253,
+			"percentual_acum": 451.42817333147553
+		},
+		{
+			"top": 59,
+			"nome": "ESTRADA BATALHA",
+			"sinistros": 109,
+			"sinistros_acum": 32508,
+			"percentual": 1.5187404207886304,
+			"percentual_acum": 452.9469137522642
+		},
+		{
+			"top": 60,
+			"nome": "R IMPERIAL",
+			"sinistros": 109,
+			"sinistros_acum": 32617,
+			"percentual": 1.5187404207886304,
+			"percentual_acum": 454.46565417305277
+		},
+		{
+			"top": 61,
+			"nome": "AV OTACILIO AZEVEDO",
+			"sinistros": 109,
+			"sinistros_acum": 32726,
+			"percentual": 1.5187404207886304,
+			"percentual_acum": 455.98439459384144
+		},
+		{
+			"top": 62,
+			"nome": "BR 232 SN",
+			"sinistros": 106,
+			"sinistros_acum": 32832,
+			"percentual": 1.4769402257210533,
+			"percentual_acum": 457.46133481956247
+		},
+		{
+			"top": 63,
+			"nome": "AV LIBERDADE",
+			"sinistros": 105,
+			"sinistros_acum": 32937,
+			"percentual": 1.4630068273651944,
+			"percentual_acum": 458.92434164692764
+		},
+		{
+			"top": 64,
+			"nome": "AV DE JEQUITINHONHA",
+			"sinistros": 105,
+			"sinistros_acum": 33042,
+			"percentual": 1.4630068273651944,
+			"percentual_acum": 460.3873484742929
+		},
+		{
+			"top": 65,
+			"nome": "101 SENTIDO",
+			"sinistros": 103,
+			"sinistros_acum": 33145,
+			"percentual": 1.4351400306534763,
+			"percentual_acum": 461.82248850494636
+		},
+		{
+			"top": 66,
+			"nome": "ROD BR-232",
+			"sinistros": 102,
+			"sinistros_acum": 33247,
+			"percentual": 1.4212066322976173,
+			"percentual_acum": 463.24369513724395
+		},
+		{
+			"top": 67,
+			"nome": "AV BEIRA RIO",
+			"sinistros": 102,
+			"sinistros_acum": 33349,
+			"percentual": 1.4212066322976173,
+			"percentual_acum": 464.6649017695416
+		},
+		{
+			"top": 68,
+			"nome": "R GOMES TABORDA",
+			"sinistros": 101,
+			"sinistros_acum": 33450,
+			"percentual": 1.4072732339417584,
+			"percentual_acum": 466.0721750034834
+		},
+		{
+			"top": 69,
+			"nome": "15 SN",
+			"sinistros": 100,
+			"sinistros_acum": 33550,
+			"percentual": 1.3933398355858995,
+			"percentual_acum": 467.4655148390692
+		},
+		{
+			"top": 70,
+			"nome": "AV PE",
+			"sinistros": 97,
+			"sinistros_acum": 33647,
+			"percentual": 1.3515396405183224,
+			"percentual_acum": 468.81705447958757
+		},
+		{
+			"top": 71,
+			"nome": "EST DE BELEM",
+			"sinistros": 95,
+			"sinistros_acum": 33742,
+			"percentual": 1.3236728438066045,
+			"percentual_acum": 470.1407273233942
+		},
+		{
+			"top": 72,
+			"nome": "AV ANTONIO DE GOES",
+			"sinistros": 94,
+			"sinistros_acum": 33836,
+			"percentual": 1.3097394454507454,
+			"percentual_acum": 471.45046676884493
+		},
+		{
+			"top": 73,
+			"nome": "BR 101 SENTIDO CEASA",
+			"sinistros": 93,
+			"sinistros_acum": 33929,
+			"percentual": 1.2958060470948864,
+			"percentual_acum": 472.7462728159398
+		},
+		{
+			"top": 74,
+			"nome": "VD TEMUDO",
+			"sinistros": 93,
+			"sinistros_acum": 34022,
+			"percentual": 1.2958060470948864,
+			"percentual_acum": 474.0420788630347
+		},
+		{
+			"top": 75,
+			"nome": "BR 101 - SENTIDO",
+			"sinistros": 92,
+			"sinistros_acum": 34114,
+			"percentual": 1.2818726487390275,
+			"percentual_acum": 475.32395151177377
+		},
+		{
+			"top": 76,
+			"nome": "BR 101 SENTIDO ABREU E LIMA",
+			"sinistros": 90,
+			"sinistros_acum": 34204,
+			"percentual": 1.2540058520273094,
+			"percentual_acum": 476.57795736380103
+		},
+		{
+			"top": 77,
+			"nome": "AV CAXANGA SN",
+			"sinistros": 90,
+			"sinistros_acum": 34294,
+			"percentual": 1.2540058520273094,
+			"percentual_acum": 477.83196321582835
+		},
+		{
+			"top": 78,
+			"nome": "AV CLAUDIO GUEIROS LEITE",
+			"sinistros": 89,
+			"sinistros_acum": 34383,
+			"percentual": 1.2400724536714505,
+			"percentual_acum": 479.0720356694998
+		},
+		{
+			"top": 79,
+			"nome": "JOSE RUFINO",
+			"sinistros": 87,
+			"sinistros_acum": 34470,
+			"percentual": 1.2122056569597326,
+			"percentual_acum": 480.2842413264595
+		},
+		{
+			"top": 80,
+			"nome": "AV JOAO DE BARROS",
+			"sinistros": 87,
+			"sinistros_acum": 34557,
+			"percentual": 1.2122056569597326,
+			"percentual_acum": 481.4964469834193
+		},
+		{
+			"top": 81,
+			"nome": "AV JULIO MARANHAO",
+			"sinistros": 86,
+			"sinistros_acum": 34643,
+			"percentual": 1.1982722586038734,
+			"percentual_acum": 482.69471924202315
+		},
+		{
+			"top": 82,
+			"nome": "101 SN",
+			"sinistros": 86,
+			"sinistros_acum": 34729,
+			"percentual": 1.1982722586038734,
+			"percentual_acum": 483.89299150062703
+		},
+		{
+			"top": 83,
+			"nome": "AV HILDEBRANDO DE VASCONCELOS",
+			"sinistros": 85,
+			"sinistros_acum": 34814,
+			"percentual": 1.1843388602480145,
+			"percentual_acum": 485.077330360875
+		},
+		{
+			"top": 84,
+			"nome": "62 SENTIDO",
+			"sinistros": 85,
+			"sinistros_acum": 34899,
+			"percentual": 1.1843388602480145,
+			"percentual_acum": 486.26166922112304
+		},
+		{
+			"top": 85,
+			"nome": "R JOSE BONIFACIO",
+			"sinistros": 84,
+			"sinistros_acum": 34983,
+			"percentual": 1.1704054618921556,
+			"percentual_acum": 487.4320746830152
+		},
+		{
+			"top": 86,
+			"nome": "CLAUDIO GUEIROS LEITE",
+			"sinistros": 84,
+			"sinistros_acum": 35067,
+			"percentual": 1.1704054618921556,
+			"percentual_acum": 488.6024801449073
+		},
+		{
+			"top": 87,
+			"nome": "BELMIRO CORREIA",
+			"sinistros": 84,
+			"sinistros_acum": 35151,
+			"percentual": 1.1704054618921556,
+			"percentual_acum": 489.7728856067995
+		},
+		{
+			"top": 88,
+			"nome": "22 SENTIDO MARIA FARINHA",
+			"sinistros": 84,
+			"sinistros_acum": 35235,
+			"percentual": 1.1704054618921556,
+			"percentual_acum": 490.9432910686917
+		},
+		{
+			"top": 89,
+			"nome": "AV PAN NORDESTINA SN",
+			"sinistros": 83,
+			"sinistros_acum": 35318,
+			"percentual": 1.1564720635362964,
+			"percentual_acum": 492.09976313222796
+		},
+		{
+			"top": 90,
+			"nome": "EST DO ARRAIAL",
+			"sinistros": 81,
+			"sinistros_acum": 35399,
+			"percentual": 1.1286052668245785,
+			"percentual_acum": 493.22836839905256
+		},
+		{
+			"top": 91,
+			"nome": "R JOSE OSORIO",
+			"sinistros": 81,
+			"sinistros_acum": 35480,
+			"percentual": 1.1286052668245785,
+			"percentual_acum": 494.35697366587715
+		},
+		{
+			"top": 92,
+			"nome": "NORTE",
+			"sinistros": 81,
+			"sinistros_acum": 35561,
+			"percentual": 1.1286052668245785,
+			"percentual_acum": 495.4855789327016
+		},
+		{
+			"top": 93,
+			"nome": "R NOVA DESCOBERTA",
+			"sinistros": 80,
+			"sinistros_acum": 35641,
+			"percentual": 1.1146718684687196,
+			"percentual_acum": 496.60025080117043
+		},
+		{
+			"top": 94,
+			"nome": "R URIEL DE HOLANDA",
+			"sinistros": 79,
+			"sinistros_acum": 35720,
+			"percentual": 1.1007384701128604,
+			"percentual_acum": 497.7009892712832
+		},
+		{
+			"top": 95,
+			"nome": "AV ROSA E SILVA",
+			"sinistros": 78,
+			"sinistros_acum": 35798,
+			"percentual": 1.0868050717570017,
+			"percentual_acum": 498.7877943430402
+		},
+		{
+			"top": 96,
+			"nome": "R ODORICO MENDES",
+			"sinistros": 78,
+			"sinistros_acum": 35876,
+			"percentual": 1.0868050717570017,
+			"percentual_acum": 499.8745994147972
+		},
+		{
+			"top": 97,
+			"nome": "AV HENRIQUE DE HOLANDA SN",
+			"sinistros": 77,
+			"sinistros_acum": 35953,
+			"percentual": 1.0728716734011425,
+			"percentual_acum": 500.9474710881984
+		},
+		{
+			"top": 98,
+			"nome": "60 SN",
+			"sinistros": 76,
+			"sinistros_acum": 36029,
+			"percentual": 1.0589382750452836,
+			"percentual_acum": 502.0064093632437
+		},
+		{
+			"top": 99,
+			"nome": "AV BRASIL SN",
+			"sinistros": 76,
+			"sinistros_acum": 36105,
+			"percentual": 1.0589382750452836,
+			"percentual_acum": 503.065347638289
+		},
+		{
+			"top": 100,
+			"nome": "R JEAN EMILE FAVRE",
+			"sinistros": 75,
+			"sinistros_acum": 36180,
+			"percentual": 1.0450048766894247,
+			"percentual_acum": 504.1103525149784
+		},
+		{
+			"top": 101,
+			"nome": "VIA MANGUE",
+			"sinistros": 75,
+			"sinistros_acum": 36255,
+			"percentual": 1.0450048766894247,
+			"percentual_acum": 505.1553573916678
+		},
+		{
+			"top": 102,
+			"nome": "AV RUI BARBOSA",
+			"sinistros": 75,
+			"sinistros_acum": 36330,
+			"percentual": 1.0450048766894247,
+			"percentual_acum": 506.2003622683573
+		},
+		{
+			"top": 103,
+			"nome": "R BENFICA",
+			"sinistros": 75,
+			"sinistros_acum": 36405,
+			"percentual": 1.0450048766894247,
+			"percentual_acum": 507.2453671450467
+		},
+		{
+			"top": 104,
+			"nome": "AV HERCULANO BANDEIRA",
+			"sinistros": 74,
+			"sinistros_acum": 36479,
+			"percentual": 1.0310714783335655,
+			"percentual_acum": 508.2764386233802
+		},
+		{
+			"top": 105,
+			"nome": "R REAL DA TORRE",
+			"sinistros": 74,
+			"sinistros_acum": 36553,
+			"percentual": 1.0310714783335655,
+			"percentual_acum": 509.30751010171383
+		},
+		{
+			"top": 106,
+			"nome": "AV NORTE",
+			"sinistros": 74,
+			"sinistros_acum": 36627,
+			"percentual": 1.0310714783335655,
+			"percentual_acum": 510.3385815800474
+		},
+		{
+			"top": 107,
+			"nome": "PR DE BOA VIAGEM",
+			"sinistros": 74,
+			"sinistros_acum": 36701,
+			"percentual": 1.0310714783335655,
+			"percentual_acum": 511.369653058381
+		},
+		{
+			"top": 108,
+			"nome": "ROD BR",
+			"sinistros": 73,
+			"sinistros_acum": 36774,
+			"percentual": 1.0171380799777066,
+			"percentual_acum": 512.3867911383586
+		},
+		{
+			"top": 109,
+			"nome": "AV JOAO PESSOA GUERRA",
+			"sinistros": 73,
+			"sinistros_acum": 36847,
+			"percentual": 1.0171380799777066,
+			"percentual_acum": 513.4039292183363
+		},
+		{
+			"top": 110,
+			"nome": "AV NILO COELHO",
+			"sinistros": 73,
+			"sinistros_acum": 36920,
+			"percentual": 1.0171380799777066,
+			"percentual_acum": 514.421067298314
+		},
+		{
+			"top": 111,
+			"nome": "ESTRADA DA",
+			"sinistros": 72,
+			"sinistros_acum": 36992,
+			"percentual": 1.0032046816218476,
+			"percentual_acum": 515.4242719799358
+		},
+		{
+			"top": 112,
+			"nome": "AV AFONSO OLINDENSE",
+			"sinistros": 71,
+			"sinistros_acum": 37063,
+			"percentual": 0.9892712832659886,
+			"percentual_acum": 516.4135432632019
+		},
+		{
+			"top": 113,
+			"nome": "ROD ANTIGA BR-101",
+			"sinistros": 71,
+			"sinistros_acum": 37134,
+			"percentual": 0.9892712832659886,
+			"percentual_acum": 517.4028145464679
+		},
+		{
+			"top": 114,
+			"nome": "AV BELMINIO CORREIA SN",
+			"sinistros": 71,
+			"sinistros_acum": 37205,
+			"percentual": 0.9892712832659886,
+			"percentual_acum": 518.3920858297339
+		},
+		{
+			"top": 115,
+			"nome": "AV FAGUNDES VARELA",
+			"sinistros": 71,
+			"sinistros_acum": 37276,
+			"percentual": 0.9892712832659886,
+			"percentual_acum": 519.3813571129999
+		},
+		{
+			"top": 116,
+			"nome": "AV JOSE AUGUSTO MOREIRA",
+			"sinistros": 71,
+			"sinistros_acum": 37347,
+			"percentual": 0.9892712832659886,
+			"percentual_acum": 520.3706283962658
+		},
+		{
+			"top": 117,
+			"nome": "BR101",
+			"sinistros": 71,
+			"sinistros_acum": 37418,
+			"percentual": 0.9892712832659886,
+			"percentual_acum": 521.3598996795318
+		},
+		{
+			"top": 118,
+			"nome": "BR 101 SENTIDO JOAO PESSOA",
+			"sinistros": 70,
+			"sinistros_acum": 37488,
+			"percentual": 0.9753378849101296,
+			"percentual_acum": 522.335237564442
+		},
+		{
+			"top": 119,
+			"nome": "V MANGUE",
+			"sinistros": 70,
+			"sinistros_acum": 37558,
+			"percentual": 0.9753378849101296,
+			"percentual_acum": 523.3105754493521
+		},
+		{
+			"top": 120,
+			"nome": "R ANTONIO FALCAO",
+			"sinistros": 69,
+			"sinistros_acum": 37627,
+			"percentual": 0.9614044865542706,
+			"percentual_acum": 524.2719799359063
+		},
+		{
+			"top": 121,
+			"nome": "AV BELMIRO CORREIA SN",
+			"sinistros": 68,
+			"sinistros_acum": 37695,
+			"percentual": 0.9474710881984116,
+			"percentual_acum": 525.2194510241048
+		},
+		{
+			"top": 122,
+			"nome": "ESTRADA CURCURANA",
+			"sinistros": 68,
+			"sinistros_acum": 37763,
+			"percentual": 0.9474710881984116,
+			"percentual_acum": 526.1669221123033
+		},
+		{
+			"top": 123,
+			"nome": "R RIBEIRO DE BRITO",
+			"sinistros": 68,
+			"sinistros_acum": 37831,
+			"percentual": 0.9474710881984116,
+			"percentual_acum": 527.1143932005016
+		},
+		{
+			"top": 124,
+			"nome": "R",
+			"sinistros": 68,
+			"sinistros_acum": 37899,
+			"percentual": 0.9474710881984116,
+			"percentual_acum": 528.0618642887
+		},
+		{
+			"top": 125,
+			"nome": "AV DANTAS BARRETO",
+			"sinistros": 68,
+			"sinistros_acum": 37967,
+			"percentual": 0.9474710881984116,
+			"percentual_acum": 529.0093353768984
+		},
+		{
+			"top": 126,
+			"nome": "AV DA RECUPERACAO",
+			"sinistros": 68,
+			"sinistros_acum": 38035,
+			"percentual": 0.9474710881984116,
+			"percentual_acum": 529.9568064650967
+		},
+		{
+			"top": 127,
+			"nome": "75 SENTIDO",
+			"sinistros": 68,
+			"sinistros_acum": 38103,
+			"percentual": 0.9474710881984116,
+			"percentual_acum": 530.9042775532953
+		},
+		{
+			"top": 128,
+			"nome": "AV CHICO SCIENCE",
+			"sinistros": 67,
+			"sinistros_acum": 38170,
+			"percentual": 0.9335376898425526,
+			"percentual_acum": 531.8378152431378
+		},
+		{
+			"top": 129,
+			"nome": "AV BELMIRO CORREIA",
+			"sinistros": 66,
+			"sinistros_acum": 38236,
+			"percentual": 0.9196042914866935,
+			"percentual_acum": 532.7574195346245
+		},
+		{
+			"top": 130,
+			"nome": "ABDIAS DE CARVALHO",
+			"sinistros": 66,
+			"sinistros_acum": 38302,
+			"percentual": 0.9196042914866935,
+			"percentual_acum": 533.6770238261112
+		},
+		{
+			"top": 131,
+			"nome": "AV AGAMENOM MAGALHAES SN",
+			"sinistros": 64,
+			"sinistros_acum": 38366,
+			"percentual": 0.8917374947749755,
+			"percentual_acum": 534.5687613208861
+		},
+		{
+			"top": 132,
+			"nome": "ESTRADA DO FRIO",
+			"sinistros": 63,
+			"sinistros_acum": 38429,
+			"percentual": 0.8778040964191167,
+			"percentual_acum": 535.4465654173052
+		},
+		{
+			"top": 133,
+			"nome": "EST DA BATALHA",
+			"sinistros": 62,
+			"sinistros_acum": 38491,
+			"percentual": 0.8638706980632577,
+			"percentual_acum": 536.3104361153686
+		},
+		{
+			"top": 134,
+			"nome": "ROD PE-060",
+			"sinistros": 61,
+			"sinistros_acum": 38552,
+			"percentual": 0.8499372997073986,
+			"percentual_acum": 537.1603734150759
+		},
+		{
+			"top": 135,
+			"nome": "BR-101",
+			"sinistros": 61,
+			"sinistros_acum": 38613,
+			"percentual": 0.8499372997073986,
+			"percentual_acum": 538.0103107147834
+		},
+		{
+			"top": 136,
+			"nome": "AV GENERAL MANOEL RABELO",
+			"sinistros": 61,
+			"sinistros_acum": 38674,
+			"percentual": 0.8499372997073986,
+			"percentual_acum": 538.8602480144907
+		},
+		{
+			"top": 137,
+			"nome": "35 SENTIDO",
+			"sinistros": 61,
+			"sinistros_acum": 38735,
+			"percentual": 0.8499372997073986,
+			"percentual_acum": 539.7101853141982
+		},
+		{
+			"top": 138,
+			"nome": "R CONEGO BARATA",
+			"sinistros": 61,
+			"sinistros_acum": 38796,
+			"percentual": 0.8499372997073986,
+			"percentual_acum": 540.5601226139055
+		},
+		{
+			"top": 139,
+			"nome": "EST VELHA DE AGUA FRIA",
+			"sinistros": 60,
+			"sinistros_acum": 38856,
+			"percentual": 0.8360039013515397,
+			"percentual_acum": 541.396126515257
+		},
+		{
+			"top": 140,
+			"nome": "SAO MIGUEL",
+			"sinistros": 60,
+			"sinistros_acum": 38916,
+			"percentual": 0.8360039013515397,
+			"percentual_acum": 542.2321304166086
+		},
+		{
+			"top": 141,
+			"nome": "R JERONIMO VILELA",
+			"sinistros": 60,
+			"sinistros_acum": 38976,
+			"percentual": 0.8360039013515397,
+			"percentual_acum": 543.0681343179602
+		},
+		{
+			"top": 142,
+			"nome": "AV BEBERIBE SN",
+			"sinistros": 59,
+			"sinistros_acum": 39035,
+			"percentual": 0.8220705029956806,
+			"percentual_acum": 543.8902048209559
+		},
+		{
+			"top": 143,
+			"nome": "R LEMOS",
+			"sinistros": 59,
+			"sinistros_acum": 39094,
+			"percentual": 0.8220705029956806,
+			"percentual_acum": 544.7122753239515
+		},
+		{
+			"top": 144,
+			"nome": "R FRANCISCO VITORIANO",
+			"sinistros": 59,
+			"sinistros_acum": 39153,
+			"percentual": 0.8220705029956806,
+			"percentual_acum": 545.5343458269472
+		},
+		{
+			"top": 145,
+			"nome": "AV ANTONIO DA COSTA AZEVEDO",
+			"sinistros": 59,
+			"sinistros_acum": 39212,
+			"percentual": 0.8220705029956806,
+			"percentual_acum": 546.3564163299429
+		},
+		{
+			"top": 146,
+			"nome": "HENRIQUE DE HOLANDA",
+			"sinistros": 58,
+			"sinistros_acum": 39270,
+			"percentual": 0.8081371046398217,
+			"percentual_acum": 547.1645534345827
+		},
+		{
+			"top": 147,
+			"nome": "AV PRESIDENTE",
+			"sinistros": 58,
+			"sinistros_acum": 39328,
+			"percentual": 0.8081371046398217,
+			"percentual_acum": 547.9726905392225
+		},
+		{
+			"top": 148,
+			"nome": "R VASCO DA GAMA",
+			"sinistros": 58,
+			"sinistros_acum": 39386,
+			"percentual": 0.8081371046398217,
+			"percentual_acum": 548.7808276438624
+		},
+		{
+			"top": 149,
+			"nome": "AV NORTE SN",
+			"sinistros": 57,
+			"sinistros_acum": 39443,
+			"percentual": 0.7942037062839626,
+			"percentual_acum": 549.5750313501463
+		},
+		{
+			"top": 150,
+			"nome": "AV BARRETO DE MENEZES SN",
+			"sinistros": 57,
+			"sinistros_acum": 39500,
+			"percentual": 0.7942037062839626,
+			"percentual_acum": 550.3692350564303
+		}
+	]
+}

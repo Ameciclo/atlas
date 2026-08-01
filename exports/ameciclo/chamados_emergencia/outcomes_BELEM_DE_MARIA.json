@@ -1,0 +1,43 @@
+{
+	"city": "BELEM DE MARIA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 3
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 36,
+			"Removido por Particulares": 6,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 29
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 16
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 20,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 42,
+			"Desistência da solicitação": 3,
+			"Inválido/Duplicado/Cancelado/Trote": 3,
+			"Óbito no Local/Atendimento": 2,
+			"Recusa de Remoção": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 11,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 1
+		}
+	}
+}

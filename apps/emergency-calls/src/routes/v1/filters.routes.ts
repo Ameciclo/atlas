@@ -14,8 +14,8 @@ export const filters = createRoute({
 		query: z.object({
 			cityId: z.coerce.number().optional(),
 			municipio: z.string().optional(),
-			startYear: z.coerce.number().optional(),
-			anoInicio: z.coerce.number().optional(),
+			startYear: z.coerce.number().optional().default(2020),
+			anoInicio: z.coerce.number().optional().default(2020),
 			endYear: z.coerce.number().optional(),
 			anoFim: z.coerce.number().optional(),
 			gender: z.array(z.string()).optional(),

@@ -1,0 +1,56 @@
+{
+	"city": "GAMELEIRA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 1
+		},
+		"2019": {
+			"Recusa de Remoção": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 40,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 30,
+			"Desistência da solicitação": 1,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 6,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 7
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 18,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 32,
+			"Desistência da solicitação": 2,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 1,
+			"Removido pelos Bombeiros/CIODS": 2,
+			"Removido por Particulares": 7,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 40,
+			"Recusa de Remoção": 2,
+			"Removido pelos Bombeiros/CIODS": 2,
+			"Removido por Particulares": 8,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 9
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 12,
+			"Desistência da solicitação": 2,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		}
+	}
+}

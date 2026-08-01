@@ -1,0 +1,3569 @@
+{
+	"2600054": {
+		"city_id": 2600054,
+		"name": "Abreu e Lima",
+		"state": "PE",
+		"relations": [
+			{
+				"relation_id": 174,
+				"pdc_ref": "CCF07",
+				"name": "Av. Beira-Mar",
+				"cod_name": "(CCF07) Av. Beira-Mar",
+				"length": 0.477,
+				"has_cycleway_length": 0.477,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "Ciclovia: 0.5 km",
+				"typologies": {
+					"Ciclovia": 0.476941387683872
+				}
+			},
+			{
+				"relation_id": 213,
+				"pdc_ref": "CCR28",
+				"name": "Rua Jatici",
+				"cod_name": "(CCR28) Rua Jatici",
+				"length": 0.271,
+				"has_cycleway_length": 0.012,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.3 km | Ciclofaixa: 0 km",
+				"typologies": {
+					"none": 0.2581208540724399,
+					"Ciclofaixa": 0.012440040973727865
+				}
+			},
+			{
+				"relation_id": 214,
+				"pdc_ref": "CCR29",
+				"name": "Rua Quarenta/ Rua Quarenta e Um",
+				"cod_name": "(CCR29) Rua Quarenta/ Rua Quarenta e Um",
+				"length": 1.487,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 1.5 km",
+				"typologies": {
+					"none": 1.4871698242829168
+				}
+			},
+			{
+				"relation_id": 102,
+				"pdc_ref": "CCV57",
+				"name": "BR-101",
+				"cod_name": "(CCV57) BR-101",
+				"length": 4.635,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 4.6 km",
+				"typologies": {
+					"none": 4.6346324444891795
+				}
+			},
+			{
+				"relation_id": 134,
+				"pdc_ref": "CCV89",
+				"name": "Av. Central",
+				"cod_name": "(CCV89) Av. Central",
+				"length": 0.839,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.8 km",
+				"typologies": {
+					"none": 0.8385032939592117
+				}
+			},
+			{
+				"relation_id": 36,
+				"pdc_ref": "CM35",
+				"name": "PE-015",
+				"cod_name": "(CM35) PE-015",
+				"length": 20.199,
+				"has_cycleway_length": 9.654,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 10.5 km | Ciclovia: 9.7 km",
+				"typologies": {
+					"none": 10.54519404853855,
+					"Ciclovia": 9.653772324904047
+				}
+			},
+			{
+				"relation_id": 37,
+				"pdc_ref": "CM36",
+				"name": "BR-101",
+				"cod_name": "(CM36) BR-101",
+				"length": 1.505,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.5 km",
+				"typologies": {
+					"none": 1.505496702493605
+				}
+			}
+		]
+	},
+	"2601052": {
+		"city_id": 2601052,
+		"name": "Araçoiaba",
+		"state": "PE",
+		"relations": [
+			{
+				"relation_id": 224,
+				"pdc_ref": "CCR39",
+				"name": "Av. Agamenon Magalhães – Distrito de Bonança",
+				"cod_name": "(CCR39) Av. Agamenon Magalhães – Distrito de Bonança",
+				"length": 0.861,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.9 km",
+				"typologies": {
+					"none": 0.8613304729915379
+				}
+			},
+			{
+				"relation_id": 225,
+				"pdc_ref": "CCR40",
+				"name": "Av. Pres. Vargas",
+				"cod_name": "(CCR40) Av. Pres. Vargas",
+				"length": 0.758,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.8 km",
+				"typologies": {
+					"none": 0.7583052534182912
+				}
+			},
+			{
+				"relation_id": 226,
+				"pdc_ref": "CCR41",
+				"name": "Av. Brasil",
+				"cod_name": "(CCR41) Av. Brasil",
+				"length": 0.57,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.6 km",
+				"typologies": {
+					"none": 0.5696730397802073
+				}
+			},
+			{
+				"relation_id": 227,
+				"pdc_ref": "CCR42",
+				"name": "Av. Duque de Caxias/ Rua Antonio Carneiro",
+				"cod_name": "(CCR42) Av. Duque de Caxias/ Rua Antonio Carneiro",
+				"length": 0.792,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.8 km",
+				"typologies": {
+					"none": 0.7922478024240459
+				}
+			}
+		]
+	},
+	"2602902": {
+		"city_id": 2602902,
+		"name": "Cabo de Santo Agostinho",
+		"state": "PE",
+		"relations": [
+			{
+				"relation_id": 172,
+				"pdc_ref": "CCF05",
+				"name": "Rua Alberto Lundgren",
+				"cod_name": "(CCF05) Rua Alberto Lundgren",
+				"length": 0.773,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "none: 0.8 km",
+				"typologies": {
+					"none": 0.7726480953961176
+				}
+			},
+			{
+				"relation_id": 205,
+				"pdc_ref": "CCR20",
+				"name": "Rua São João",
+				"cod_name": "(CCR20) Rua São João",
+				"length": 0.745,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.7 km",
+				"typologies": {
+					"none": 0.7445808441645618
+				}
+			},
+			{
+				"relation_id": 207,
+				"pdc_ref": "CCR22",
+				"name": "Rua do Governador",
+				"cod_name": "(CCR22) Rua do Governador",
+				"length": 0.65,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.7 km",
+				"typologies": {
+					"none": 0.6500118283166205
+				}
+			},
+			{
+				"relation_id": 218,
+				"pdc_ref": "CCR33",
+				"name": "Acesso ao Terminal Barro",
+				"cod_name": "(CCR33) Acesso ao Terminal Barro",
+				"length": 0.284,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.3 km",
+				"typologies": {
+					"none": 0.28411041129857717
+				}
+			},
+			{
+				"relation_id": 111,
+				"pdc_ref": "CCV66",
+				"name": "Rio Beberibe",
+				"cod_name": "(CCV66) Rio Beberibe",
+				"length": 1.591,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.6 km",
+				"typologies": {
+					"none": 1.590720111313883
+				}
+			},
+			{
+				"relation_id": 112,
+				"pdc_ref": "CCV67",
+				"name": "Ciclovia do Paiva",
+				"cod_name": "(CCV67) Ciclovia do Paiva",
+				"length": 6.502,
+				"has_cycleway_length": 6.502,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclovia: 6.5 km",
+				"typologies": {
+					"Ciclovia": 6.501783637720073
+				}
+			},
+			{
+				"relation_id": 142,
+				"pdc_ref": "CCV97",
+				"name": "Av. Dois Rios/ Av. Dom Helder Camara",
+				"cod_name": "(CCV97) Av. Dois Rios/ Av. Dom Helder Camara",
+				"length": 2.163,
+				"has_cycleway_length": 0.766,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.4 km | Ciclofaixa: 0.8 km",
+				"typologies": {
+					"none": 1.396267012371204,
+					"Ciclofaixa": 0.7663210364550418
+				}
+			},
+			{
+				"relation_id": 3,
+				"pdc_ref": "CM02",
+				"name": "PE-038",
+				"cod_name": "(CM02) PE-038",
+				"length": 8.938,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 8.9 km",
+				"typologies": {
+					"none": 8.938044868103152
+				}
+			},
+			{
+				"relation_id": 4,
+				"pdc_ref": "CM03",
+				"name": "PE-060",
+				"cod_name": "(CM03) PE-060",
+				"length": 19.667,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 19.7 km",
+				"typologies": {
+					"none": 19.66703177638833
+				}
+			}
+		]
+	},
+	"2603454": {
+		"city_id": 2603454,
+		"name": "Camaragibe",
+		"state": "PE",
+		"relations": [
+			{
+				"relation_id": 120,
+				"pdc_ref": "CCV75",
+				"name": "Viaduto Capitão Temudo",
+				"cod_name": "(CCV75) Viaduto Capitão Temudo",
+				"length": 2.151,
+				"has_cycleway_length": 2.151,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclovia: 2.2 km",
+				"typologies": {
+					"Ciclovia": 2.1507733984937434
+				}
+			},
+			{
+				"relation_id": 21,
+				"pdc_ref": "CM20",
+				"name": "Av. Joaquim Ribeiro",
+				"cod_name": "(CM20) Av. Joaquim Ribeiro",
+				"length": 1.686,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.7 km",
+				"typologies": {
+					"none": 1.685871104690971
+				}
+			},
+			{
+				"relation_id": 22,
+				"pdc_ref": "CM21",
+				"name": "Av. Gen. Newton Cavalcante (PE027)",
+				"cod_name": "(CM21) Av. Gen. Newton Cavalcante (PE027)",
+				"length": 10.645,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 10.6 km",
+				"typologies": {
+					"none": 10.644738948574263
+				}
+			},
+			{
+				"relation_id": 23,
+				"pdc_ref": "CM22",
+				"name": "Av.Dr.BelmiroCorreia/RuaTelemaco Borba/ Rua Manoel Honorato da Costa",
+				"cod_name": "(CM22) Av.Dr.BelmiroCorreia/RuaTelemaco Borba/ Rua Manoel Honorato da Costa",
+				"length": 4.357,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 4.4 km",
+				"typologies": {
+					"none": 4.356818306957071
+				}
+			}
+		]
+	},
+	"2606804": {
+		"city_id": 2606804,
+		"name": "Igarassu",
+		"state": "PE",
+		"relations": [
+			{
+				"relation_id": 178,
+				"pdc_ref": "CCF11",
+				"name": "Av. Governador Carlos de Lima Cavalcante/ Rua São Miguel",
+				"cod_name": "(CCF11) Av. Governador Carlos de Lima Cavalcante/ Rua São Miguel",
+				"length": 1.713,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "none: 1.7 km",
+				"typologies": {
+					"none": 1.7128813361607595
+				}
+			},
+			{
+				"relation_id": 100,
+				"pdc_ref": "CCV55",
+				"name": "Rua General Castelo Branco/ Rua João Pereira de Oliveira",
+				"cod_name": "(CCV55) Rua General Castelo Branco/ Rua João Pereira de Oliveira",
+				"length": 3.249,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 3.2 km",
+				"typologies": {
+					"none": 3.248637795277978
+				}
+			},
+			{
+				"relation_id": 101,
+				"pdc_ref": "CCV56",
+				"name": "Estrada de Nova Cruz",
+				"cod_name": "(CCV56) Estrada de Nova Cruz",
+				"length": 10.633,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 10.6 km",
+				"typologies": {
+					"none": 10.633125432957597
+				}
+			},
+			{
+				"relation_id": 37,
+				"pdc_ref": "CM36",
+				"name": "BR-101",
+				"cod_name": "(CM36) BR-101",
+				"length": 1.505,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.5 km",
+				"typologies": {
+					"none": 1.505496702493605
+				}
+			},
+			{
+				"relation_id": 38,
+				"pdc_ref": "CM37",
+				"name": "BR-101",
+				"cod_name": "(CM37) BR-101",
+				"length": 8.79,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 8.8 km",
+				"typologies": {
+					"none": 8.790157378249988
+				}
+			}
+		]
+	},
+	"2607208": {
+		"city_id": 2607208,
+		"name": "Ipojuca",
+		"state": "PE",
+		"relations": [
+			{
+				"relation_id": 206,
+				"pdc_ref": "CCR21",
+				"name": "Rua Quatorze/ Rua Cinco",
+				"cod_name": "(CCR21) Rua Quatorze/ Rua Cinco",
+				"length": 1.209,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 1.2 km",
+				"typologies": {
+					"none": 1.2094824421472428
+				}
+			},
+			{
+				"relation_id": 208,
+				"pdc_ref": "CCR23",
+				"name": "Rua Santa Margarida",
+				"cod_name": "(CCR23) Rua Santa Margarida",
+				"length": 0.583,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.6 km",
+				"typologies": {
+					"none": 0.5832319272701934
+				}
+			},
+			{
+				"relation_id": 209,
+				"pdc_ref": "CCR24",
+				"name": "Rua do Cruzeiro/ Rua Cristovão de Souza Leão",
+				"cod_name": "(CCR24) Rua do Cruzeiro/ Rua Cristovão de Souza Leão",
+				"length": 0.669,
+				"has_cycleway_length": 0.187,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.5 km | Ciclofaixa: 0.2 km",
+				"typologies": {
+					"none": 0.4812599488559276,
+					"Ciclofaixa": 0.1874411078377864
+				}
+			},
+			{
+				"relation_id": 55,
+				"pdc_ref": "CCV10",
+				"name": "Av. Dr. Claudio José Gueiros Leite",
+				"cod_name": "(CCV10) Av. Dr. Claudio José Gueiros Leite",
+				"length": 2.221,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.2 km",
+				"typologies": {
+					"none": 2.220554060473698
+				}
+			},
+			{
+				"relation_id": 56,
+				"pdc_ref": "CCV11",
+				"name": "Rua da Macaíba/ Rua do Comércio",
+				"cod_name": "(CCV11) Rua da Macaíba/ Rua do Comércio",
+				"length": 0.448,
+				"has_cycleway_length": 0.065,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.4 km | Ciclofaixa: 0.1 km",
+				"typologies": {
+					"none": 0.3825269763988667,
+					"Ciclofaixa": 0.06518364867259206
+				}
+			},
+			{
+				"relation_id": 58,
+				"pdc_ref": "CCV13",
+				"name": "Rua Barão de Souza Leão",
+				"cod_name": "(CCV13) Rua Barão de Souza Leão",
+				"length": 0.458,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.5 km",
+				"typologies": {
+					"none": 0.45829632399741144
+				}
+			},
+			{
+				"relation_id": 90,
+				"pdc_ref": "CCV45",
+				"name": "Av. Ministro Marcos Freita/ Rua Beira-Mar",
+				"cod_name": "(CCV45) Av. Ministro Marcos Freita/ Rua Beira-Mar",
+				"length": 2.196,
+				"has_cycleway_length": 2.019,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.2 km | Ciclofaixa: 2 km",
+				"typologies": {
+					"none": 0.1768628686975386,
+					"Ciclofaixa": 2.0192387654276143
+				}
+			},
+			{
+				"relation_id": 97,
+				"pdc_ref": "CCV52",
+				"name": "Rua Taurino Batista",
+				"cod_name": "(CCV52) Rua Taurino Batista",
+				"length": 0.732,
+				"has_cycleway_length": 0.346,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.4 km | Ciclofaixa: 0.3 km",
+				"typologies": {
+					"none": 0.3857157571629236,
+					"Ciclofaixa": 0.3464137858059938
+				}
+			},
+			{
+				"relation_id": 98,
+				"pdc_ref": "CCV53",
+				"name": "Estrada de acesso a Serrambi",
+				"cod_name": "(CCV53) Estrada de acesso a Serrambi",
+				"length": 12.099,
+				"has_cycleway_length": 5.863,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 6.2 km | Ciclovia: 5.9 km",
+				"typologies": {
+					"none": 6.2359456887996,
+					"Ciclovia": 5.863485082521758
+				}
+			},
+			{
+				"relation_id": 2,
+				"pdc_ref": "CM01",
+				"name": "PE-009",
+				"cod_name": "(CM01) PE-009",
+				"length": 9.365,
+				"has_cycleway_length": 8.499,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.9 km | Ciclovia: 8.5 km",
+				"typologies": {
+					"none": 0.8657834784940738,
+					"Ciclovia": 8.498778167568434
+				}
+			},
+			{
+				"relation_id": 3,
+				"pdc_ref": "CM02",
+				"name": "PE-038",
+				"cod_name": "(CM02) PE-038",
+				"length": 8.938,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 8.9 km",
+				"typologies": {
+					"none": 8.938044868103152
+				}
+			},
+			{
+				"relation_id": 1,
+				"pdc_ref": "NOTPDC",
+				"name": "Não está no PDC-RMR",
+				"cod_name": "(NOTPDC) Não está no PDC-RMR",
+				"length": 0,
+				"has_cycleway_length": 0,
+				"pdc_typology": null,
+				"typologies_str": "none",
+				"typologies": {}
+			}
+		]
+	},
+	"2607604": {
+		"city_id": 2607604,
+		"name": "Ilha de Itamaracá",
+		"state": "PE",
+		"relations": [
+			{
+				"relation_id": 38,
+				"pdc_ref": "CM37",
+				"name": "BR-101",
+				"cod_name": "(CM37) BR-101",
+				"length": 8.79,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 8.8 km",
+				"typologies": {
+					"none": 8.790157378249988
+				}
+			}
+		]
+	},
+	"2607752": {
+		"city_id": 2607752,
+		"name": "Itapissuma",
+		"state": "PE",
+		"relations": [
+			{
+				"relation_id": 38,
+				"pdc_ref": "CM37",
+				"name": "BR-101",
+				"cod_name": "(CM37) BR-101",
+				"length": 8.79,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 8.8 km",
+				"typologies": {
+					"none": 8.790157378249988
+				}
+			}
+		]
+	},
+	"2607901": {
+		"city_id": 2607901,
+		"name": "Jaboatão dos Guararapes",
+		"state": "PE",
+		"relations": [
+			{
+				"relation_id": 173,
+				"pdc_ref": "CCF06",
+				"name": "Av. Historiador Pereira da Costa/ Rua Dr. Antonio de Souza Leão",
+				"cod_name": "(CCF06) Av. Historiador Pereira da Costa/ Rua Dr. Antonio de Souza Leão",
+				"length": 1.135,
+				"has_cycleway_length": 0.695,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "none: 0.4 km | Ciclofaixa: 0.7 km",
+				"typologies": {
+					"none": 0.4403877851836596,
+					"Ciclofaixa": 0.694651134913605
+				}
+			},
+			{
+				"relation_id": 187,
+				"pdc_ref": "CCR02",
+				"name": "Rua Ribeiro Pessoa/ Rua Manoel Simões/ Rua Dois Irmãos",
+				"cod_name": "(CCR02) Rua Ribeiro Pessoa/ Rua Manoel Simões/ Rua Dois Irmãos",
+				"length": 3.354,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 3.4 km",
+				"typologies": {
+					"none": 3.3538245060136167
+				}
+			},
+			{
+				"relation_id": 190,
+				"pdc_ref": "CCR05",
+				"name": "Rua Gregório Junior",
+				"cod_name": "(CCR05) Rua Gregório Junior",
+				"length": 0.559,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.6 km",
+				"typologies": {
+					"none": 0.558546678285108
+				}
+			},
+			{
+				"relation_id": 191,
+				"pdc_ref": "CCR06",
+				"name": "Rua Dr. Luis Regueira",
+				"cod_name": "(CCR06) Rua Dr. Luis Regueira",
+				"length": 1.766,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 1.8 km",
+				"typologies": {
+					"none": 1.7662645290368502
+				}
+			},
+			{
+				"relation_id": 192,
+				"pdc_ref": "CCR07",
+				"name": "Travessa Otávio Cruz",
+				"cod_name": "(CCR07) Travessa Otávio Cruz",
+				"length": 0.08,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.1 km",
+				"typologies": {
+					"none": 0.07962544294369234
+				}
+			},
+			{
+				"relation_id": 193,
+				"pdc_ref": "CCR08",
+				"name": "Av. Linha Férrea Sul/ Passarela de Transposição da linha férrea",
+				"cod_name": "(CCR08) Av. Linha Férrea Sul/ Passarela de Transposição da linha férrea",
+				"length": 0.4,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.4 km",
+				"typologies": {
+					"none": 0.40038583372076175
+				}
+			},
+			{
+				"relation_id": 211,
+				"pdc_ref": "CCR26",
+				"name": "Rua Bezerra de Palma",
+				"cod_name": "(CCR26) Rua Bezerra de Palma",
+				"length": 0.105,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.1 km",
+				"typologies": {
+					"none": 0.10500600270905397
+				}
+			},
+			{
+				"relation_id": 167,
+				"pdc_ref": "CCV122",
+				"name": "Margens do Rio Capibaribe",
+				"cod_name": "(CCV122) Margens do Rio Capibaribe",
+				"length": 1.546,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.5 km",
+				"typologies": {
+					"none": 1.5455215257274078
+				}
+			},
+			{
+				"relation_id": 59,
+				"pdc_ref": "CCV14",
+				"name": "Rua Cristóvão José da Silva / Av. Francisco Alves de Souza",
+				"cod_name": "(CCV14) Rua Cristóvão José da Silva / Av. Francisco Alves de Souza",
+				"length": 0.489,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.5 km",
+				"typologies": {
+					"none": 0.48894436874377156
+				}
+			},
+			{
+				"relation_id": 62,
+				"pdc_ref": "CCV17",
+				"name": "Rua Paula Batista/ Estrada das Ubaias",
+				"cod_name": "(CCV17) Rua Paula Batista/ Estrada das Ubaias",
+				"length": 0.528,
+				"has_cycleway_length": 0.528,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 0.5 km",
+				"typologies": {
+					"Ciclofaixa": 0.5279746644072533
+				}
+			},
+			{
+				"relation_id": 63,
+				"pdc_ref": "CCV18",
+				"name": "Av. Ulysses Montarroyos",
+				"cod_name": "(CCV18) Av. Ulysses Montarroyos",
+				"length": 0.476,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.5 km",
+				"typologies": {
+					"none": 0.47561546851299474
+				}
+			},
+			{
+				"relation_id": 65,
+				"pdc_ref": "CCV20",
+				"name": "Av. Beberibe/ Rua Castro Alves",
+				"cod_name": "(CCV20) Av. Beberibe/ Rua Castro Alves",
+				"length": 2.609,
+				"has_cycleway_length": 0.876,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.7 km | Ciclofaixa: 0.7 km | Ciclofaixa Compartilhada: 0.1 km",
+				"typologies": {
+					"none": 1.732810107409163,
+					"Ciclofaixa": 0.7395993556885553,
+					"Ciclofaixa Compartilhada": 0.1367614399299717
+				}
+			},
+			{
+				"relation_id": 76,
+				"pdc_ref": "CCV31",
+				"name": "Av. Eng. Abdias de Carvalho",
+				"cod_name": "(CCV31) Av. Eng. Abdias de Carvalho",
+				"length": 0.764,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.8 km",
+				"typologies": {
+					"none": 0.7636490184302605
+				}
+			},
+			{
+				"relation_id": 95,
+				"pdc_ref": "CCV50",
+				"name": "Acesso à Rodoviária",
+				"cod_name": "(CCV50) Acesso à Rodoviária",
+				"length": 0.471,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.5 km",
+				"typologies": {
+					"none": 0.4713140483128801
+				}
+			},
+			{
+				"relation_id": 113,
+				"pdc_ref": "CCV68",
+				"name": "Ponte do Paiva",
+				"cod_name": "(CCV68) Ponte do Paiva",
+				"length": 0.321,
+				"has_cycleway_length": 0.321,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclovia: 0.3 km",
+				"typologies": {
+					"Ciclovia": 0.3213034856786976
+				}
+			},
+			{
+				"relation_id": 142,
+				"pdc_ref": "CCV97",
+				"name": "Av. Dois Rios/ Av. Dom Helder Camara",
+				"cod_name": "(CCV97) Av. Dois Rios/ Av. Dom Helder Camara",
+				"length": 2.163,
+				"has_cycleway_length": 0.766,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.4 km | Ciclofaixa: 0.8 km",
+				"typologies": {
+					"none": 1.396267012371204,
+					"Ciclofaixa": 0.7663210364550418
+				}
+			},
+			{
+				"relation_id": 143,
+				"pdc_ref": "CCV98",
+				"name": "R. Capecurumirim/ Estrada de Curcurana",
+				"cod_name": "(CCV98) R. Capecurumirim/ Estrada de Curcurana",
+				"length": 4.024,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 4 km",
+				"typologies": {
+					"none": 4.023792191304345
+				}
+			},
+			{
+				"relation_id": 144,
+				"pdc_ref": "CCV99",
+				"name": "Rua Padre Nestor de Alencar",
+				"cod_name": "(CCV99) Rua Padre Nestor de Alencar",
+				"length": 0.465,
+				"has_cycleway_length": 0.465,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 0.5 km",
+				"typologies": {
+					"Ciclofaixa": 0.4653123704515679
+				}
+			},
+			{
+				"relation_id": 4,
+				"pdc_ref": "CM03",
+				"name": "PE-060",
+				"cod_name": "(CM03) PE-060",
+				"length": 19.667,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 19.7 km",
+				"typologies": {
+					"none": 19.66703177638833
+				}
+			},
+			{
+				"relation_id": 5,
+				"pdc_ref": "CM04",
+				"name": "BR-101 Sul",
+				"cod_name": "(CM04) BR-101 Sul",
+				"length": 17.122,
+				"has_cycleway_length": 0.97,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 16.2 km | Ciclovia: 1 km",
+				"typologies": {
+					"none": 16.15265482179229,
+					"Ciclovia": 0.9696138502919234
+				}
+			},
+			{
+				"relation_id": 6,
+				"pdc_ref": "CM05",
+				"name": "Av. Dr. Júlio Maranhão/ Estrada da Batalha",
+				"cod_name": "(CM05) Av. Dr. Júlio Maranhão/ Estrada da Batalha",
+				"length": 3.692,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 3.7 km",
+				"typologies": {
+					"none": 3.692487936354124
+				}
+			},
+			{
+				"relation_id": 7,
+				"pdc_ref": "CM06",
+				"name": "Av. Mal. Mascarenhas de Morais",
+				"cod_name": "(CM06) Av. Mal. Mascarenhas de Morais",
+				"length": 7.465,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 7.5 km",
+				"typologies": {
+					"none": 7.46532920656121
+				}
+			},
+			{
+				"relation_id": 8,
+				"pdc_ref": "CM07",
+				"name": "BR-101",
+				"cod_name": "(CM07) BR-101",
+				"length": 33.636,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 33.6 km",
+				"typologies": {
+					"none": 33.63625802435336
+				}
+			},
+			{
+				"relation_id": 9,
+				"pdc_ref": "CM08",
+				"name": "Av. Pres. Castelo Branco",
+				"cod_name": "(CM08) Av. Pres. Castelo Branco",
+				"length": 3.387,
+				"has_cycleway_length": 1.667,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.7 km | Ciclofaixa: 1.7 km",
+				"typologies": {
+					"none": 1.7208515216616114,
+					"Ciclofaixa": 1.6665678333602387
+				}
+			},
+			{
+				"relation_id": 10,
+				"pdc_ref": "CM09",
+				"name": "R. Padre Manoel da Cunha",
+				"cod_name": "(CM09) R. Padre Manoel da Cunha",
+				"length": 0.171,
+				"has_cycleway_length": 0.171,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 0.2 km",
+				"typologies": {
+					"Ciclofaixa": 0.17104648870354588
+				}
+			},
+			{
+				"relation_id": 11,
+				"pdc_ref": "CM10",
+				"name": "Av. Ayton Senna da Silva",
+				"cod_name": "(CM10) Av. Ayton Senna da Silva",
+				"length": 4.193,
+				"has_cycleway_length": 4.193,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 4.2 km",
+				"typologies": {
+					"Ciclofaixa": 4.192722846952568
+				}
+			},
+			{
+				"relation_id": 13,
+				"pdc_ref": "CM12",
+				"name": "Av. General Mac. Arthur",
+				"cod_name": "(CM12) Av. General Mac. Arthur",
+				"length": 1.346,
+				"has_cycleway_length": 1.346,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 1.3 km",
+				"typologies": {
+					"Ciclofaixa": 1.346486585077276
+				}
+			},
+			{
+				"relation_id": 14,
+				"pdc_ref": "CM13",
+				"name": "PE-007",
+				"cod_name": "(CM13) PE-007",
+				"length": 10.598,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 10.6 km",
+				"typologies": {
+					"none": 10.597917617541759
+				}
+			},
+			{
+				"relation_id": 15,
+				"pdc_ref": "CM14",
+				"name": "Rua Alto Barão de Lucena/ Av. Gen. Manoel Rabelo",
+				"cod_name": "(CM14) Rua Alto Barão de Lucena/ Av. Gen. Manoel Rabelo",
+				"length": 6.358,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 6.4 km",
+				"typologies": {
+					"none": 6.3583472687798235
+				}
+			},
+			{
+				"relation_id": 16,
+				"pdc_ref": "CM15",
+				"name": "Av. Gen. Manoel Rabelo",
+				"cod_name": "(CM15) Av. Gen. Manoel Rabelo",
+				"length": 1.134,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.1 km",
+				"typologies": {
+					"none": 1.1336037018827803
+				}
+			}
+		]
+	},
+	"2609402": {
+		"city_id": 2609402,
+		"name": "Moreno",
+		"state": "PE",
+		"relations": [
+			{
+				"relation_id": 219,
+				"pdc_ref": "CCR34",
+				"name": "Rua José Lins Teles/ Rua Trapiche/ Rua Vereador Volney da Costa Machado",
+				"cod_name": "(CCR34) Rua José Lins Teles/ Rua Trapiche/ Rua Vereador Volney da Costa Machado",
+				"length": 0.962,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 1 km",
+				"typologies": {
+					"none": 0.962347803506482
+				}
+			},
+			{
+				"relation_id": 220,
+				"pdc_ref": "CCR35",
+				"name": "Av. Tiradentes/ Rua do Progresso/ Rua Antonio Rêgo Araújo/ Rua Cel. Antônio",
+				"cod_name": "(CCR35) Av. Tiradentes/ Rua do Progresso/ Rua Antonio Rêgo Araújo/ Rua Cel. Antônio",
+				"length": 2.581,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 2.6 km",
+				"typologies": {
+					"none": 2.58080655382202
+				}
+			},
+			{
+				"relation_id": 221,
+				"pdc_ref": "CCR36",
+				"name": "Rua Treze de Novembro/ Av. Sofrônio Portela",
+				"cod_name": "(CCR36) Rua Treze de Novembro/ Av. Sofrônio Portela",
+				"length": 1.143,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 1.1 km",
+				"typologies": {
+					"none": 1.1432800655643098
+				}
+			},
+			{
+				"relation_id": 222,
+				"pdc_ref": "CCR37",
+				"name": "Praça da Bandeira",
+				"cod_name": "(CCR37) Praça da Bandeira",
+				"length": 0.198,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.2 km",
+				"typologies": {
+					"none": 0.197724206211977
+				}
+			},
+			{
+				"relation_id": 223,
+				"pdc_ref": "CCR38",
+				"name": "Av. Cleto Campelo/ Rua S. Antonio J C",
+				"cod_name": "(CCR38) Av. Cleto Campelo/ Rua S. Antonio J C",
+				"length": 5.496,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 5.5 km",
+				"typologies": {
+					"none": 5.495813532322578
+				}
+			},
+			{
+				"relation_id": 13,
+				"pdc_ref": "CM12",
+				"name": "Av. General Mac. Arthur",
+				"cod_name": "(CM12) Av. General Mac. Arthur",
+				"length": 1.346,
+				"has_cycleway_length": 1.346,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 1.3 km",
+				"typologies": {
+					"Ciclofaixa": 1.346486585077276
+				}
+			}
+		]
+	},
+	"2609600": {
+		"city_id": 2609600,
+		"name": "Olinda",
+		"state": "PE",
+		"relations": [
+			{
+				"relation_id": 169,
+				"pdc_ref": "CCF02",
+				"name": "Rua Dr. José Mariano/ Rua da Aurora",
+				"cod_name": "(CCF02) Rua Dr. José Mariano/ Rua da Aurora",
+				"length": 2.113,
+				"has_cycleway_length": 1.982,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "Ciclofaixa: 1.8 km | none: 0.1 km | Ciclofaixa Compartilhada: 0.2 km | Ciclovia: 0 km",
+				"typologies": {
+					"Ciclofaixa": 1.7694909789169093,
+					"none": 0.1309568964346304,
+					"Ciclofaixa Compartilhada": 0.18702440617760388,
+					"Ciclovia": 0.02544358996265175
+				}
+			},
+			{
+				"relation_id": 170,
+				"pdc_ref": "CCF03",
+				"name": "Estrada do Caenga",
+				"cod_name": "(CCF03) Estrada do Caenga",
+				"length": 0.58,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "none: 0.6 km",
+				"typologies": {
+					"none": 0.5800573007211607
+				}
+			},
+			{
+				"relation_id": 171,
+				"pdc_ref": "CCF04",
+				"name": "Av. Brasil/ Av. Cel. Frederico Lundgren",
+				"cod_name": "(CCF04) Av. Brasil/ Av. Cel. Frederico Lundgren",
+				"length": 2.83,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "none: 2.8 km",
+				"typologies": {
+					"none": 2.830491688970619
+				}
+			},
+			{
+				"relation_id": 175,
+				"pdc_ref": "CCF08",
+				"name": "Av. D",
+				"cod_name": "(CCF08) Av. D",
+				"length": 1.535,
+				"has_cycleway_length": 1.488,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "Ciclofaixa: 1.5 km | none: 0 km",
+				"typologies": {
+					"Ciclofaixa": 1.4884795602636702,
+					"none": 0.046415943860449865
+				}
+			},
+			{
+				"relation_id": 176,
+				"pdc_ref": "CCF09",
+				"name": "Rua Brasilia/ Av. Conselheiro Antônio Carlos Ferreira",
+				"cod_name": "(CCF09) Rua Brasilia/ Av. Conselheiro Antônio Carlos Ferreira",
+				"length": 1.414,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "none: 1.4 km",
+				"typologies": {
+					"none": 1.4139935534802885
+				}
+			},
+			{
+				"relation_id": 177,
+				"pdc_ref": "CCF10",
+				"name": "Av. Transamazônica",
+				"cod_name": "(CCF10) Av. Transamazônica",
+				"length": 1.23,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "none: 1.2 km",
+				"typologies": {
+					"none": 1.2297307807353255
+				}
+			},
+			{
+				"relation_id": 181,
+				"pdc_ref": "CCF14",
+				"name": "Avenida Colibri/ Rua Nelson Ferreira",
+				"cod_name": "(CCF14) Avenida Colibri/ Rua Nelson Ferreira",
+				"length": 2.099,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "none: 2.1 km",
+				"typologies": {
+					"none": 2.099301136274897
+				}
+			},
+			{
+				"relation_id": 182,
+				"pdc_ref": "CCF15",
+				"name": "Av. Jules Rimet/ Rua Fenelon Átila Leite/ Rua Um",
+				"cod_name": "(CCF15) Av. Jules Rimet/ Rua Fenelon Átila Leite/ Rua Um",
+				"length": 1.229,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "none: 1.2 km",
+				"typologies": {
+					"none": 1.228784421705024
+				}
+			},
+			{
+				"relation_id": 183,
+				"pdc_ref": "CCF16",
+				"name": "Marginal Rio Beberibe",
+				"cod_name": "(CCF16) Marginal Rio Beberibe",
+				"length": 3.156,
+				"has_cycleway_length": 1.427,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "none: 1.7 km | Ciclofaixa: 1.4 km",
+				"typologies": {
+					"none": 1.7283515499545081,
+					"Ciclofaixa": 1.4271828663256394
+				}
+			},
+			{
+				"relation_id": 184,
+				"pdc_ref": "CCF17",
+				"name": "Av. Leopoldino Canuto/ Estrada do Passarinho",
+				"cod_name": "(CCF17) Av. Leopoldino Canuto/ Estrada do Passarinho",
+				"length": 5.056,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "none: 5.1 km",
+				"typologies": {
+					"none": 5.055814061355151
+				}
+			},
+			{
+				"relation_id": 197,
+				"pdc_ref": "CCR12",
+				"name": "Rua Morais e Silva",
+				"cod_name": "(CCR12) Rua Morais e Silva",
+				"length": 0.564,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.6 km",
+				"typologies": {
+					"none": 0.5636959641845063
+				}
+			},
+			{
+				"relation_id": 198,
+				"pdc_ref": "CCR13",
+				"name": "Av. Joaquim Nabuco",
+				"cod_name": "(CCR13) Av. Joaquim Nabuco",
+				"length": 1.534,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 1.5 km",
+				"typologies": {
+					"none": 1.5343667953704245
+				}
+			},
+			{
+				"relation_id": 199,
+				"pdc_ref": "CCR14",
+				"name": "Rua Peixe Agulha / Rua Argentina Castelo Branco/ Av. Romeu Jacobino de Figueiredo",
+				"cod_name": "(CCR14) Rua Peixe Agulha / Rua Argentina Castelo Branco/ Av. Romeu Jacobino de Figueiredo",
+				"length": 2.552,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 2.6 km",
+				"typologies": {
+					"none": 2.551795393946334
+				}
+			},
+			{
+				"relation_id": 51,
+				"pdc_ref": "CCV06",
+				"name": "Av. Boa Viagem/ Av. Beira Mar",
+				"cod_name": "(CCV06) Av. Boa Viagem/ Av. Beira Mar",
+				"length": 8.125,
+				"has_cycleway_length": 8.125,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclovia: 8.1 km",
+				"typologies": {
+					"Ciclovia": 8.124816291804978
+				}
+			},
+			{
+				"relation_id": 52,
+				"pdc_ref": "CCV07",
+				"name": "Av. Beira-Mar",
+				"cod_name": "(CCV07) Av. Beira-Mar",
+				"length": 3.847,
+				"has_cycleway_length": 3.593,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 3.6 km | none: 0.3 km",
+				"typologies": {
+					"Ciclofaixa": 3.5928260534513154,
+					"none": 0.25454190830296336
+				}
+			},
+			{
+				"relation_id": 79,
+				"pdc_ref": "CCV34",
+				"name": "Rua da Liberdade/ Rua Onze de Agosto",
+				"cod_name": "(CCV34) Rua da Liberdade/ Rua Onze de Agosto",
+				"length": 3.113,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 3.1 km",
+				"typologies": {
+					"none": 3.113046857655596
+				}
+			},
+			{
+				"relation_id": 83,
+				"pdc_ref": "CCV38",
+				"name": "Ponte Agamenon Magalhães/ Av. Eng. Antonio de Goes",
+				"cod_name": "(CCV38) Ponte Agamenon Magalhães/ Av. Eng. Antonio de Goes",
+				"length": 1.874,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.9 km",
+				"typologies": {
+					"none": 1.8735318216505594
+				}
+			},
+			{
+				"relation_id": 89,
+				"pdc_ref": "CCV44",
+				"name": "Rua João Marques dos Anjos",
+				"cod_name": "(CCV44) Rua João Marques dos Anjos",
+				"length": 1.313,
+				"has_cycleway_length": 0.944,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.4 km | Ciclofaixa: 0.9 km",
+				"typologies": {
+					"none": 0.3695748509276689,
+					"Ciclofaixa": 0.9435224160521702
+				}
+			},
+			{
+				"relation_id": 92,
+				"pdc_ref": "CCV47",
+				"name": "Av. Recife",
+				"cod_name": "(CCV47) Av. Recife",
+				"length": 3.21,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 3.2 km",
+				"typologies": {
+					"none": 3.209811734200875
+				}
+			},
+			{
+				"relation_id": 109,
+				"pdc_ref": "CCV64",
+				"name": "Rua Dr. Elphego Jorge de Souza",
+				"cod_name": "(CCV64) Rua Dr. Elphego Jorge de Souza",
+				"length": 5.716,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 5.7 km",
+				"typologies": {
+					"none": 5.716465119660764
+				}
+			},
+			{
+				"relation_id": 110,
+				"pdc_ref": "CCV65",
+				"name": "Riacho Lava Tripa",
+				"cod_name": "(CCV65) Riacho Lava Tripa",
+				"length": 1.389,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.4 km",
+				"typologies": {
+					"none": 1.388746881900709
+				}
+			},
+			{
+				"relation_id": 123,
+				"pdc_ref": "CCV78",
+				"name": "Ramal da Copa",
+				"cod_name": "(CCV78) Ramal da Copa",
+				"length": 0.358,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.4 km",
+				"typologies": {
+					"none": 0.35833792860997865
+				}
+			},
+			{
+				"relation_id": 126,
+				"pdc_ref": "CCV81",
+				"name": "Rua Comendador Franco Ferreira",
+				"cod_name": "(CCV81) Rua Comendador Franco Ferreira",
+				"length": 0.647,
+				"has_cycleway_length": 0.385,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 0.4 km | none: 0.3 km",
+				"typologies": {
+					"Ciclofaixa": 0.38533486295480057,
+					"none": 0.26128515727334567
+				}
+			},
+			{
+				"relation_id": 127,
+				"pdc_ref": "CCV82",
+				"name": "Av. José Cariolando/ Rua Girafa/ Rua Austro Costa/ R. Dr Sérgio Loretto",
+				"cod_name": "(CCV82) Av. José Cariolando/ Rua Girafa/ Rua Austro Costa/ R. Dr Sérgio Loretto",
+				"length": 3.676,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 3.7 km",
+				"typologies": {
+					"none": 3.676022810039255
+				}
+			},
+			{
+				"relation_id": 25,
+				"pdc_ref": "CM24",
+				"name": "Rua Benfica/ Av. Doutor Severino Pinheiro / Praça Derby",
+				"cod_name": "(CM24) Rua Benfica/ Av. Doutor Severino Pinheiro / Praça Derby",
+				"length": 1.242,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.2 km",
+				"typologies": {
+					"none": 1.2419119359109487
+				}
+			},
+			{
+				"relation_id": 30,
+				"pdc_ref": "CM29",
+				"name": "Av. Beberibe",
+				"cod_name": "(CM29) Av. Beberibe",
+				"length": 1.219,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.2 km",
+				"typologies": {
+					"none": 1.219138079392321
+				}
+			},
+			{
+				"relation_id": 31,
+				"pdc_ref": "CM30",
+				"name": "Av. Cidade Monteiro",
+				"cod_name": "(CM30) Av. Cidade Monteiro",
+				"length": 0.925,
+				"has_cycleway_length": 0.297,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.6 km | Ciclofaixa: 0.3 km",
+				"typologies": {
+					"none": 0.6279103400890256,
+					"Ciclofaixa": 0.2973938237501288
+				}
+			},
+			{
+				"relation_id": 32,
+				"pdc_ref": "CM31",
+				"name": "Av. Senador Nilo Coelho",
+				"cod_name": "(CM31) Av. Senador Nilo Coelho",
+				"length": 1.632,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.6 km",
+				"typologies": {
+					"none": 1.631611187307083
+				}
+			},
+			{
+				"relation_id": 33,
+				"pdc_ref": "CM32",
+				"name": "Av. Senador Nilo Coelho",
+				"cod_name": "(CM32) Av. Senador Nilo Coelho",
+				"length": 2.759,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.8 km",
+				"typologies": {
+					"none": 2.759427344503747
+				}
+			},
+			{
+				"relation_id": 34,
+				"pdc_ref": "CM33",
+				"name": "PE-015 (Pan Nordestina)",
+				"cod_name": "(CM33) PE-015 (Pan Nordestina)",
+				"length": 1.574,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.6 km",
+				"typologies": {
+					"none": 1.5743586517951789
+				}
+			},
+			{
+				"relation_id": 35,
+				"pdc_ref": "CM34",
+				"name": "PE-015",
+				"cod_name": "(CM34) PE-015",
+				"length": 2.904,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.9 km",
+				"typologies": {
+					"none": 2.9042418777404038
+				}
+			},
+			{
+				"relation_id": 42,
+				"pdc_ref": "CM41",
+				"name": "Rua Santos Araújo/ Rua Cosme Viana/ Av. Prof. Trajano de Mendonça",
+				"cod_name": "(CM41) Rua Santos Araújo/ Rua Cosme Viana/ Av. Prof. Trajano de Mendonça",
+				"length": 4.313,
+				"has_cycleway_length": 0.369,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 3.9 km | Ciclofaixa: 0.4 km",
+				"typologies": {
+					"none": 3.944037529504179,
+					"Ciclofaixa": 0.36934369104450054
+				}
+			},
+			{
+				"relation_id": 43,
+				"pdc_ref": "CM42",
+				"name": "Bultrins/Fragoso",
+				"cod_name": "(CM42) Bultrins/Fragoso",
+				"length": 0,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none",
+				"typologies": {}
+			},
+			{
+				"relation_id": 44,
+				"pdc_ref": "CM43",
+				"name": "Bultrins/Fragoso",
+				"cod_name": "(CM43) Bultrins/Fragoso",
+				"length": 0,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none",
+				"typologies": {}
+			}
+		]
+	},
+	"2610707": {
+		"city_id": 2610707,
+		"name": "Paulista",
+		"state": "PE",
+		"relations": [
+			{
+				"relation_id": 179,
+				"pdc_ref": "CCF12",
+				"name": "Rua Vinte e Sete de Setembro/ Rua Dantas Barreto/ Rua São Sebastião/ PE-035",
+				"cod_name": "(CCF12) Rua Vinte e Sete de Setembro/ Rua Dantas Barreto/ Rua São Sebastião/ PE-035",
+				"length": 2.668,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "none: 2.7 km",
+				"typologies": {
+					"none": 2.668397016074962
+				}
+			},
+			{
+				"relation_id": 180,
+				"pdc_ref": "CCF13",
+				"name": "Avenida Brasil",
+				"cod_name": "(CCF13) Avenida Brasil",
+				"length": 2.581,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "none: 2.6 km",
+				"typologies": {
+					"none": 2.5811204154620806
+				}
+			},
+			{
+				"relation_id": 194,
+				"pdc_ref": "CCR09",
+				"name": "Rua Prof Nilo Peçanha",
+				"cod_name": "(CCR09) Rua Prof Nilo Peçanha",
+				"length": 0.718,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.7 km",
+				"typologies": {
+					"none": 0.7176571653900687
+				}
+			},
+			{
+				"relation_id": 200,
+				"pdc_ref": "CCR15",
+				"name": "Av. das Garças",
+				"cod_name": "(CCR15) Av. das Garças",
+				"length": 0.547,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.5 km",
+				"typologies": {
+					"none": 0.546630082514586
+				}
+			},
+			{
+				"relation_id": 201,
+				"pdc_ref": "CCR16",
+				"name": "Av. Paulista/ Av. Lindolfo Collor",
+				"cod_name": "(CCR16) Av. Paulista/ Av. Lindolfo Collor",
+				"length": 3.445,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 3.4 km",
+				"typologies": {
+					"none": 3.4448549789545115
+				}
+			},
+			{
+				"relation_id": 202,
+				"pdc_ref": "CCR17",
+				"name": "Av. B",
+				"cod_name": "(CCR17) Av. B",
+				"length": 0.365,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.4 km",
+				"typologies": {
+					"none": 0.36535288514599823
+				}
+			},
+			{
+				"relation_id": 203,
+				"pdc_ref": "CCR18",
+				"name": "Av. E",
+				"cod_name": "(CCR18) Av. E",
+				"length": 0.715,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.7 km",
+				"typologies": {
+					"none": 0.7153342103516429
+				}
+			},
+			{
+				"relation_id": 53,
+				"pdc_ref": "CCV08",
+				"name": "Av. Antonio da Costa Azevedo",
+				"cod_name": "(CCV08) Av. Antonio da Costa Azevedo",
+				"length": 1.492,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.5 km",
+				"typologies": {
+					"none": 1.4917893692740833
+				}
+			},
+			{
+				"relation_id": 54,
+				"pdc_ref": "CCV09",
+				"name": "Av. Dr. Claudio José Gueiros Leite",
+				"cod_name": "(CCV09) Av. Dr. Claudio José Gueiros Leite",
+				"length": 2.886,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.9 km",
+				"typologies": {
+					"none": 2.885583787480715
+				}
+			},
+			{
+				"relation_id": 69,
+				"pdc_ref": "CCV24",
+				"name": "Estrada do Bongi/ R. Dr. Severino Jatobá",
+				"cod_name": "(CCV24) Estrada do Bongi/ R. Dr. Severino Jatobá",
+				"length": 1.002,
+				"has_cycleway_length": 0.299,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.7 km | Ciclofaixa: 0.3 km",
+				"typologies": {
+					"none": 0.7031807426023412,
+					"Ciclofaixa": 0.2985695442968296
+				}
+			},
+			{
+				"relation_id": 71,
+				"pdc_ref": "CCV26",
+				"name": "Av. Beira-Rio/ R. Benfica",
+				"cod_name": "(CCV26) Av. Beira-Rio/ R. Benfica",
+				"length": 2.678,
+				"has_cycleway_length": 2.283,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 1.8 km | none: 0.4 km | Ciclovia: 0.5 km",
+				"typologies": {
+					"Ciclofaixa": 1.8307421608758128,
+					"none": 0.39517359913064465,
+					"Ciclovia": 0.45257742090224234
+				}
+			},
+			{
+				"relation_id": 99,
+				"pdc_ref": "CCV54",
+				"name": "Estrada de acesso a Camela – PE-051",
+				"cod_name": "(CCV54) Estrada de acesso a Camela – PE-051",
+				"length": 3.872,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 3.9 km",
+				"typologies": {
+					"none": 3.8724593823115008
+				}
+			},
+			{
+				"relation_id": 103,
+				"pdc_ref": "CCV58",
+				"name": "Av. A",
+				"cod_name": "(CCV58) Av. A",
+				"length": 1.978,
+				"has_cycleway_length": 0.044,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.9 km | Ciclofaixa: 0 km",
+				"typologies": {
+					"none": 1.934348791032329,
+					"Ciclofaixa": 0.043572701593090624
+				}
+			},
+			{
+				"relation_id": 7,
+				"pdc_ref": "CM06",
+				"name": "Av. Mal. Mascarenhas de Morais",
+				"cod_name": "(CM06) Av. Mal. Mascarenhas de Morais",
+				"length": 7.465,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 7.5 km",
+				"typologies": {
+					"none": 7.46532920656121
+				}
+			},
+			{
+				"relation_id": 35,
+				"pdc_ref": "CM34",
+				"name": "PE-015",
+				"cod_name": "(CM34) PE-015",
+				"length": 2.904,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.9 km",
+				"typologies": {
+					"none": 2.9042418777404038
+				}
+			},
+			{
+				"relation_id": 36,
+				"pdc_ref": "CM35",
+				"name": "PE-015",
+				"cod_name": "(CM35) PE-015",
+				"length": 20.199,
+				"has_cycleway_length": 9.654,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 10.5 km | Ciclovia: 9.7 km",
+				"typologies": {
+					"none": 10.54519404853855,
+					"Ciclovia": 9.653772324904047
+				}
+			},
+			{
+				"relation_id": 39,
+				"pdc_ref": "CM38",
+				"name": "PE-035",
+				"cod_name": "(CM38) PE-035",
+				"length": 15.125,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 15.1 km",
+				"typologies": {
+					"none": 15.124751797936447
+				}
+			},
+			{
+				"relation_id": 40,
+				"pdc_ref": "CM39",
+				"name": "Av. C (Antiga Estrada do Frio)",
+				"cod_name": "(CM39) Av. C (Antiga Estrada do Frio)",
+				"length": 4.226,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 4.2 km",
+				"typologies": {
+					"none": 4.22646691833785
+				}
+			}
+		]
+	},
+	"2611606": {
+		"city_id": 2611606,
+		"name": "Recife",
+		"state": "PE",
+		"relations": [
+			{
+				"relation_id": 168,
+				"pdc_ref": "CCF01",
+				"name": "Av. Beira-Mar",
+				"cod_name": "(CCF01) Av. Beira-Mar",
+				"length": 0.999,
+				"has_cycleway_length": 0.999,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "Ciclovia: 1 km",
+				"typologies": {
+					"Ciclovia": 0.9988747917538101
+				}
+			},
+			{
+				"relation_id": 183,
+				"pdc_ref": "CCF16",
+				"name": "Marginal Rio Beberibe",
+				"cod_name": "(CCF16) Marginal Rio Beberibe",
+				"length": 3.156,
+				"has_cycleway_length": 1.427,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "none: 1.7 km | Ciclofaixa: 1.4 km",
+				"typologies": {
+					"none": 1.7283515499545081,
+					"Ciclofaixa": 1.4271828663256394
+				}
+			},
+			{
+				"relation_id": 185,
+				"pdc_ref": "CCF18",
+				"name": "Rua Alcina Coelho Carvalho",
+				"cod_name": "(CCF18) Rua Alcina Coelho Carvalho",
+				"length": 0.744,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclofaixa",
+				"typologies_str": "none: 0.7 km",
+				"typologies": {
+					"none": 0.7437382059070392
+				}
+			},
+			{
+				"relation_id": 186,
+				"pdc_ref": "CCR01",
+				"name": "Rua do Futuro",
+				"cod_name": "(CCR01) Rua do Futuro",
+				"length": 1.547,
+				"has_cycleway_length": 1.501,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "Ciclofaixa: 1.5 km | none: 0 km",
+				"typologies": {
+					"Ciclofaixa": 1.5005731659594828,
+					"none": 0.0467264823714795
+				}
+			},
+			{
+				"relation_id": 187,
+				"pdc_ref": "CCR02",
+				"name": "Rua Ribeiro Pessoa/ Rua Manoel Simões/ Rua Dois Irmãos",
+				"cod_name": "(CCR02) Rua Ribeiro Pessoa/ Rua Manoel Simões/ Rua Dois Irmãos",
+				"length": 3.354,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 3.4 km",
+				"typologies": {
+					"none": 3.3538245060136167
+				}
+			},
+			{
+				"relation_id": 188,
+				"pdc_ref": "CCR03",
+				"name": "Av. Armindo Moura",
+				"cod_name": "(CCR03) Av. Armindo Moura",
+				"length": 1.269,
+				"has_cycleway_length": 0.734,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.5 km | Ciclofaixa: 0.7 km",
+				"typologies": {
+					"none": 0.5352537746743973,
+					"Ciclofaixa": 0.7341742078477915
+				}
+			},
+			{
+				"relation_id": 189,
+				"pdc_ref": "CCR04",
+				"name": "Acesso ao Terminal Coqueiral",
+				"cod_name": "(CCR04) Acesso ao Terminal Coqueiral",
+				"length": 0.34,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.3 km",
+				"typologies": {
+					"none": 0.3397849754795337
+				}
+			},
+			{
+				"relation_id": 195,
+				"pdc_ref": "CCR10",
+				"name": "Rua Oitenta e Quatro",
+				"cod_name": "(CCR10) Rua Oitenta e Quatro",
+				"length": 0.215,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.2 km",
+				"typologies": {
+					"none": 0.21473568472083127
+				}
+			},
+			{
+				"relation_id": 196,
+				"pdc_ref": "CCR11",
+				"name": "Rua Dr. João Elisio/ Av. Central/ Rua Jovelino Silva",
+				"cod_name": "(CCR11) Rua Dr. João Elisio/ Av. Central/ Rua Jovelino Silva",
+				"length": 0.595,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.6 km",
+				"typologies": {
+					"none": 0.5951648612627228
+				}
+			},
+			{
+				"relation_id": 204,
+				"pdc_ref": "CCR19",
+				"name": "Rua N. Sra. do Carmo do Jangá",
+				"cod_name": "(CCR19) Rua N. Sra. do Carmo do Jangá",
+				"length": 0.647,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.6 km",
+				"typologies": {
+					"none": 0.6466760690012825
+				}
+			},
+			{
+				"relation_id": 210,
+				"pdc_ref": "CCR25",
+				"name": "Rua Dezessete",
+				"cod_name": "(CCR25) Rua Dezessete",
+				"length": 0.767,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.8 km",
+				"typologies": {
+					"none": 0.7669038218266278
+				}
+			},
+			{
+				"relation_id": 212,
+				"pdc_ref": "CCR27",
+				"name": "Rua Bulhões Marques",
+				"cod_name": "(CCR27) Rua Bulhões Marques",
+				"length": 0.198,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.2 km",
+				"typologies": {
+					"none": 0.1975348279282972
+				}
+			},
+			{
+				"relation_id": 215,
+				"pdc_ref": "CCR30",
+				"name": "Rua do Eucalipto/ Rua Ananias Lacerda de Andrade / Rua Quartzo / Rua da Bidoca/ Rua Caruaru",
+				"cod_name": "(CCR30) Rua do Eucalipto/ Rua Ananias Lacerda de Andrade / Rua Quartzo / Rua da Bidoca/ Rua Caruaru",
+				"length": 1.658,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 1.7 km",
+				"typologies": {
+					"none": 1.6576265850846803
+				}
+			},
+			{
+				"relation_id": 216,
+				"pdc_ref": "CCR31",
+				"name": "Rua Carvalho de Mendonça",
+				"cod_name": "(CCR31) Rua Carvalho de Mendonça",
+				"length": 0.278,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.3 km",
+				"typologies": {
+					"none": 0.27817346196702586
+				}
+			},
+			{
+				"relation_id": 217,
+				"pdc_ref": "CCR32",
+				"name": "Rua Humberto de Campos/ Rua Santa Luzia",
+				"cod_name": "(CCR32) Rua Humberto de Campos/ Rua Santa Luzia",
+				"length": 0.143,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.1 km",
+				"typologies": {
+					"none": 0.14256682971081389
+				}
+			},
+			{
+				"relation_id": 228,
+				"pdc_ref": "CCR43",
+				"name": "Av. João Pessoa Guerra/ Rua João Felipe de Barros",
+				"cod_name": "(CCR43) Av. João Pessoa Guerra/ Rua João Felipe de Barros",
+				"length": 1.309,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 1.3 km",
+				"typologies": {
+					"none": 1.309278995566551
+				}
+			},
+			{
+				"relation_id": 229,
+				"pdc_ref": "CCR44",
+				"name": "Av. Manoel Borba/ Rua Dona Benvinda/ Av. Lins Petit/ R. Estado de Israel/ Pça Miguel de Cervantes",
+				"cod_name": "(CCR44) Av. Manoel Borba/ Rua Dona Benvinda/ Av. Lins Petit/ R. Estado de Israel/ Pça Miguel de Cervantes",
+				"length": 1.881,
+				"has_cycleway_length": 0.388,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "Ciclofaixa Compartilhada: 0.4 km | none: 1.5 km",
+				"typologies": {
+					"Ciclofaixa Compartilhada": 0.38805669818877636,
+					"none": 1.4933799173724047
+				}
+			},
+			{
+				"relation_id": 230,
+				"pdc_ref": "CCR45",
+				"name": "Rua Dr. Tavares Correia/ Av. Sen. Robert Kennedy/ Rua Alexandre Almeida/ Rua David Perneta/ Rua Padre Lima e Sá/ Av. Saldanha Marinho/ R. Pintor Antônio Albuquerque/ Rua Abdias Cabral de Moura",
+				"cod_name": "(CCR45) Rua Dr. Tavares Correia/ Av. Sen. Robert Kennedy/ Rua Alexandre Almeida/ Rua David Perneta/ Rua Padre Lima e Sá/ Av. Saldanha Marinho/ R. Pintor Antônio Albuquerque/ Rua Abdias Cabral de Moura",
+				"length": 3.018,
+				"has_cycleway_length": 0.789,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 2.2 km | Ciclofaixa Compartilhada: 0.8 km",
+				"typologies": {
+					"none": 2.228728923491907,
+					"Ciclofaixa Compartilhada": 0.7891463000702189
+				}
+			},
+			{
+				"relation_id": 231,
+				"pdc_ref": "CCR46",
+				"name": "Rua Alameda das Hortências",
+				"cod_name": "(CCR46) Rua Alameda das Hortências",
+				"length": 0.21,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.2 km",
+				"typologies": {
+					"none": 0.20991905766357297
+				}
+			},
+			{
+				"relation_id": 232,
+				"pdc_ref": "CCR47",
+				"name": "Rua Guarabira",
+				"cod_name": "(CCR47) Rua Guarabira",
+				"length": 0.181,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.2 km",
+				"typologies": {
+					"none": 0.18087611210874177
+				}
+			},
+			{
+				"relation_id": 233,
+				"pdc_ref": "CCR48",
+				"name": "Rua José da Silva Lucena",
+				"cod_name": "(CCR48) Rua José da Silva Lucena",
+				"length": 0.417,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.4 km",
+				"typologies": {
+					"none": 0.4166955425119856
+				}
+			},
+			{
+				"relation_id": 234,
+				"pdc_ref": "CCR49",
+				"name": "Rua José dos Santos",
+				"cod_name": "(CCR49) Rua José dos Santos",
+				"length": 0.37,
+				"has_cycleway_length": 0.37,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "Ciclofaixa: 0.4 km",
+				"typologies": {
+					"Ciclofaixa": 0.3697459444664084
+				}
+			},
+			{
+				"relation_id": 235,
+				"pdc_ref": "CCR50",
+				"name": "Rua Padre Ibiapina",
+				"cod_name": "(CCR50) Rua Padre Ibiapina",
+				"length": 1,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 1 km",
+				"typologies": {
+					"none": 1.0000678121507436
+				}
+			},
+			{
+				"relation_id": 236,
+				"pdc_ref": "CCR51",
+				"name": "Rua José Natário",
+				"cod_name": "(CCR51) Rua José Natário",
+				"length": 0.644,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.6 km",
+				"typologies": {
+					"none": 0.6440195358937005
+				}
+			},
+			{
+				"relation_id": 237,
+				"pdc_ref": "CCR52",
+				"name": "Rua Pacaembu",
+				"cod_name": "(CCR52) Rua Pacaembu",
+				"length": 0.192,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.2 km",
+				"typologies": {
+					"none": 0.19166583561141728
+				}
+			},
+			{
+				"relation_id": 238,
+				"pdc_ref": "CCR53",
+				"name": "Rua São Caetano",
+				"cod_name": "(CCR53) Rua São Caetano",
+				"length": 0.762,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclorrota",
+				"typologies_str": "none: 0.8 km",
+				"typologies": {
+					"none": 0.7621940014296043
+				}
+			},
+			{
+				"relation_id": 46,
+				"pdc_ref": "CCV01",
+				"name": "Av. João Cabral de Melo Neto/ R. Ten. Mindelo",
+				"cod_name": "(CCV01) Av. João Cabral de Melo Neto/ R. Ten. Mindelo",
+				"length": 1.394,
+				"has_cycleway_length": 0.675,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.7 km | Ciclofaixa: 0.7 km",
+				"typologies": {
+					"none": 0.7188026079272557,
+					"Ciclofaixa": 0.6749451515038486
+				}
+			},
+			{
+				"relation_id": 47,
+				"pdc_ref": "CCV02",
+				"name": "Av. Gen. San Martin",
+				"cod_name": "(CCV02) Av. Gen. San Martin",
+				"length": 2.538,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.5 km",
+				"typologies": {
+					"none": 2.5377763010715584
+				}
+			},
+			{
+				"relation_id": 48,
+				"pdc_ref": "CCV03",
+				"name": "Av. Eng. José Estelita/ Av. Sul/ Caminho da Alfândega/ Caminho do Apolo",
+				"cod_name": "(CCV03) Av. Eng. José Estelita/ Av. Sul/ Caminho da Alfândega/ Caminho do Apolo",
+				"length": 2.853,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.9 km",
+				"typologies": {
+					"none": 2.8531416352197994
+				}
+			},
+			{
+				"relation_id": 49,
+				"pdc_ref": "CCV04",
+				"name": "Rua José Luiz da S. Barros/ Rua Amélia",
+				"cod_name": "(CCV04) Rua José Luiz da S. Barros/ Rua Amélia",
+				"length": 2.032,
+				"has_cycleway_length": 0.945,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.1 km | Ciclofaixa: 0.9 km",
+				"typologies": {
+					"none": 1.087038553627175,
+					"Ciclofaixa": 0.9447626829627339
+				}
+			},
+			{
+				"relation_id": 50,
+				"pdc_ref": "CCV05",
+				"name": "Av. Eng. Agamenon Magalhães Melo",
+				"cod_name": "(CCV05) Av. Eng. Agamenon Magalhães Melo",
+				"length": 0.548,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.5 km",
+				"typologies": {
+					"none": 0.5481143019378395
+				}
+			},
+			{
+				"relation_id": 145,
+				"pdc_ref": "CCV100",
+				"name": "Rua Araguai/ Av. Pres. Kennedy/ Rua Cap. Med. Ozias",
+				"cod_name": "(CCV100) Rua Araguai/ Av. Pres. Kennedy/ Rua Cap. Med. Ozias",
+				"length": 0.605,
+				"has_cycleway_length": 0.605,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 0.6 km",
+				"typologies": {
+					"Ciclofaixa": 0.6054894164138449
+				}
+			},
+			{
+				"relation_id": 146,
+				"pdc_ref": "CCV101",
+				"name": "Rua S D 5367",
+				"cod_name": "(CCV101) Rua S D 5367",
+				"length": 0.728,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.7 km",
+				"typologies": {
+					"none": 0.7276103175956384
+				}
+			},
+			{
+				"relation_id": 147,
+				"pdc_ref": "CCV102",
+				"name": "Travessa Visconde de São Leopoldo",
+				"cod_name": "(CCV102) Travessa Visconde de São Leopoldo",
+				"length": 0,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none",
+				"typologies": {}
+			},
+			{
+				"relation_id": 148,
+				"pdc_ref": "CCV103",
+				"name": "Travessa Washington Duarte Espíndola",
+				"cod_name": "(CCV103) Travessa Washington Duarte Espíndola",
+				"length": 0.81,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.8 km",
+				"typologies": {
+					"none": 0.810031850287176
+				}
+			},
+			{
+				"relation_id": 149,
+				"pdc_ref": "CCV104",
+				"name": "1a Travessa Eng. Abdias de Carvalho",
+				"cod_name": "(CCV104) 1a Travessa Eng. Abdias de Carvalho",
+				"length": 1.394,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.4 km",
+				"typologies": {
+					"none": 1.3944078588513433
+				}
+			},
+			{
+				"relation_id": 150,
+				"pdc_ref": "CCV105",
+				"name": "Rua Dr. Flávio Ferreira da Silva Morojo",
+				"cod_name": "(CCV105) Rua Dr. Flávio Ferreira da Silva Morojo",
+				"length": 1.058,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.1 km",
+				"typologies": {
+					"none": 1.0578176687350525
+				}
+			},
+			{
+				"relation_id": 151,
+				"pdc_ref": "CCV106",
+				"name": "Rua Dom Bosco",
+				"cod_name": "(CCV106) Rua Dom Bosco",
+				"length": 0.692,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.7 km",
+				"typologies": {
+					"none": 0.6921997939675655
+				}
+			},
+			{
+				"relation_id": 152,
+				"pdc_ref": "CCV107",
+				"name": "Rua Gen. Joaquim Iquinácio",
+				"cod_name": "(CCV107) Rua Gen. Joaquim Iquinácio",
+				"length": 0.218,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.2 km",
+				"typologies": {
+					"none": 0.21807512106625435
+				}
+			},
+			{
+				"relation_id": 153,
+				"pdc_ref": "CCV108",
+				"name": "Rua S D 5366",
+				"cod_name": "(CCV108) Rua S D 5366",
+				"length": 0.26,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.3 km",
+				"typologies": {
+					"none": 0.26020568081938356
+				}
+			},
+			{
+				"relation_id": 154,
+				"pdc_ref": "CCV109",
+				"name": "Av. São Paulo",
+				"cod_name": "(CCV109) Av. São Paulo",
+				"length": 0.517,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.5 km",
+				"typologies": {
+					"none": 0.5171195913761717
+				}
+			},
+			{
+				"relation_id": 155,
+				"pdc_ref": "CCV110",
+				"name": "Av. Manoel Gonçalves da Luz",
+				"cod_name": "(CCV110) Av. Manoel Gonçalves da Luz",
+				"length": 1.153,
+				"has_cycleway_length": 1.153,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa Compartilhada: 1.2 km",
+				"typologies": {
+					"Ciclofaixa Compartilhada": 1.1534715306241397
+				}
+			},
+			{
+				"relation_id": 156,
+				"pdc_ref": "CCV111",
+				"name": "Rua Gomes Taborda/ Dr. Miguel Vieira Ferreira",
+				"cod_name": "(CCV111) Rua Gomes Taborda/ Dr. Miguel Vieira Ferreira",
+				"length": 1.976,
+				"has_cycleway_length": 1.976,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa Compartilhada: 2 km",
+				"typologies": {
+					"Ciclofaixa Compartilhada": 1.9764038495628509
+				}
+			},
+			{
+				"relation_id": 157,
+				"pdc_ref": "CCV112",
+				"name": "Rua Carlos Gomes",
+				"cod_name": "(CCV112) Rua Carlos Gomes",
+				"length": 0.731,
+				"has_cycleway_length": 0.731,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa Compartilhada: 0.3 km | Ciclofaixa: 0.4 km",
+				"typologies": {
+					"Ciclofaixa Compartilhada": 0.32090807336049454,
+					"Ciclofaixa": 0.4100583534453011
+				}
+			},
+			{
+				"relation_id": 158,
+				"pdc_ref": "CCV113",
+				"name": "Av. Mário Alves Pereira de Lira",
+				"cod_name": "(CCV113) Av. Mário Alves Pereira de Lira",
+				"length": 1.185,
+				"has_cycleway_length": 1.169,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 1.2 km | none: 0 km",
+				"typologies": {
+					"Ciclofaixa": 1.1689546259339023,
+					"none": 0.016087347250049556
+				}
+			},
+			{
+				"relation_id": 159,
+				"pdc_ref": "CCV114",
+				"name": "Rua Conselheiro Teodoro/ Rua Conde de Irajá",
+				"cod_name": "(CCV114) Rua Conselheiro Teodoro/ Rua Conde de Irajá",
+				"length": 1.489,
+				"has_cycleway_length": 0.867,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.6 km | Ciclofaixa Compartilhada: 0.4 km | Ciclofaixa: 0.4 km",
+				"typologies": {
+					"none": 0.6214253337219036,
+					"Ciclofaixa Compartilhada": 0.428531812517165,
+					"Ciclofaixa": 0.43862216151250677
+				}
+			},
+			{
+				"relation_id": 160,
+				"pdc_ref": "CCV115",
+				"name": "Rua Denh. Eulino Santos/ Rua da Regeneração",
+				"cod_name": "(CCV115) Rua Denh. Eulino Santos/ Rua da Regeneração",
+				"length": 1.863,
+				"has_cycleway_length": 0.101,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.8 km | Ciclofaixa: 0.1 km",
+				"typologies": {
+					"none": 1.761368553394969,
+					"Ciclofaixa": 0.10125689510551256
+				}
+			},
+			{
+				"relation_id": 161,
+				"pdc_ref": "CCV116",
+				"name": "Rua de Apipucos/ Rua Dois Irmãos",
+				"cod_name": "(CCV116) Rua de Apipucos/ Rua Dois Irmãos",
+				"length": 2.635,
+				"has_cycleway_length": 0.037,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 0 km | none: 2.6 km",
+				"typologies": {
+					"Ciclofaixa": 0.037475114975112536,
+					"none": 2.597522404338095
+				}
+			},
+			{
+				"relation_id": 162,
+				"pdc_ref": "CCV117",
+				"name": "Estrada do Arraial",
+				"cod_name": "(CCV117) Estrada do Arraial",
+				"length": 2.375,
+				"has_cycleway_length": 2.375,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 2.4 km",
+				"typologies": {
+					"Ciclofaixa": 2.3750396804498752
+				}
+			},
+			{
+				"relation_id": 163,
+				"pdc_ref": "CCV118",
+				"name": "Av. Dezessete de Agosto/ Rua São Matheus/ Estr. do Barbalho",
+				"cod_name": "(CCV118) Av. Dezessete de Agosto/ Rua São Matheus/ Estr. do Barbalho",
+				"length": 2.002,
+				"has_cycleway_length": 0.528,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.5 km | Ciclofaixa Compartilhada: 0.2 km | Ciclofaixa: 0.4 km",
+				"typologies": {
+					"none": 1.474210274323222,
+					"Ciclofaixa Compartilhada": 0.15117351230914577,
+					"Ciclofaixa": 0.37653717843266654
+				}
+			},
+			{
+				"relation_id": 164,
+				"pdc_ref": "CCV119",
+				"name": "Rua Barão de Souza Leão",
+				"cod_name": "(CCV119) Rua Barão de Souza Leão",
+				"length": 0.751,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.8 km",
+				"typologies": {
+					"none": 0.7512743033397229
+				}
+			},
+			{
+				"relation_id": 57,
+				"pdc_ref": "CCV12",
+				"name": "Rua Esperança",
+				"cod_name": "(CCV12) Rua Esperança",
+				"length": 0.771,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.8 km",
+				"typologies": {
+					"none": 0.7712505621631595
+				}
+			},
+			{
+				"relation_id": 165,
+				"pdc_ref": "CCV120",
+				"name": "Ponte do Monteiro - Parque do Santana",
+				"cod_name": "(CCV120) Ponte do Monteiro - Parque do Santana",
+				"length": 2.325,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.3 km",
+				"typologies": {
+					"none": 2.325151743235296
+				}
+			},
+			{
+				"relation_id": 166,
+				"pdc_ref": "CCV121",
+				"name": "Margens do Rio Capibaribe",
+				"cod_name": "(CCV121) Margens do Rio Capibaribe",
+				"length": 3.112,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 3.1 km",
+				"typologies": {
+					"none": 3.111560527364701
+				}
+			},
+			{
+				"relation_id": 59,
+				"pdc_ref": "CCV14",
+				"name": "Rua Cristóvão José da Silva / Av. Francisco Alves de Souza",
+				"cod_name": "(CCV14) Rua Cristóvão José da Silva / Av. Francisco Alves de Souza",
+				"length": 0.489,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.5 km",
+				"typologies": {
+					"none": 0.48894436874377156
+				}
+			},
+			{
+				"relation_id": 60,
+				"pdc_ref": "CCV15",
+				"name": "Av. Getúlio Vargas – BR232",
+				"cod_name": "(CCV15) Av. Getúlio Vargas – BR232",
+				"length": 11.363,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 11.4 km",
+				"typologies": {
+					"none": 11.363315104390814
+				}
+			},
+			{
+				"relation_id": 61,
+				"pdc_ref": "CCV16",
+				"name": "Rua Adolfo Faro/ Rua Landelino Câmara/ Rua Dr Conzaga Maranhão/ Rua Potengy/ Rua Pampulha",
+				"cod_name": "(CCV16) Rua Adolfo Faro/ Rua Landelino Câmara/ Rua Dr Conzaga Maranhão/ Rua Potengy/ Rua Pampulha",
+				"length": 1.765,
+				"has_cycleway_length": 0.07,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.7 km | Ciclofaixa: 0.1 km",
+				"typologies": {
+					"none": 1.694783800777134,
+					"Ciclofaixa": 0.07046323077829524
+				}
+			},
+			{
+				"relation_id": 64,
+				"pdc_ref": "CCV19",
+				"name": "Av. Ulysses Montarroyos",
+				"cod_name": "(CCV19) Av. Ulysses Montarroyos",
+				"length": 0.96,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1 km",
+				"typologies": {
+					"none": 0.9595846388098276
+				}
+			},
+			{
+				"relation_id": 65,
+				"pdc_ref": "CCV20",
+				"name": "Av. Beberibe/ Rua Castro Alves",
+				"cod_name": "(CCV20) Av. Beberibe/ Rua Castro Alves",
+				"length": 2.609,
+				"has_cycleway_length": 0.876,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.7 km | Ciclofaixa: 0.7 km | Ciclofaixa Compartilhada: 0.1 km",
+				"typologies": {
+					"none": 1.732810107409163,
+					"Ciclofaixa": 0.7395993556885553,
+					"Ciclofaixa Compartilhada": 0.1367614399299717
+				}
+			},
+			{
+				"relation_id": 66,
+				"pdc_ref": "CCV21",
+				"name": "Av. Quatro de Outubro",
+				"cod_name": "(CCV21) Av. Quatro de Outubro",
+				"length": 1.176,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.2 km",
+				"typologies": {
+					"none": 1.176080654257611
+				}
+			},
+			{
+				"relation_id": 67,
+				"pdc_ref": "CCV22",
+				"name": "Estr. do Encanamento/ Rua Padre Roma/ Rua Sebastião Alves",
+				"cod_name": "(CCV22) Estr. do Encanamento/ Rua Padre Roma/ Rua Sebastião Alves",
+				"length": 2.064,
+				"has_cycleway_length": 1.894,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.2 km | Ciclofaixa: 1.9 km",
+				"typologies": {
+					"none": 0.16997485421641395,
+					"Ciclofaixa": 1.89440248936918
+				}
+			},
+			{
+				"relation_id": 68,
+				"pdc_ref": "CCV23",
+				"name": "Av. Des. José Neves/ Av. Dom João VI",
+				"cod_name": "(CCV23) Av. Des. José Neves/ Av. Dom João VI",
+				"length": 3.053,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 3.1 km",
+				"typologies": {
+					"none": 3.053149764128026
+				}
+			},
+			{
+				"relation_id": 70,
+				"pdc_ref": "CCV25",
+				"name": "Av. Dr. Claudio José Gueiros Leite",
+				"cod_name": "(CCV25) Av. Dr. Claudio José Gueiros Leite",
+				"length": 4.802,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 4.8 km",
+				"typologies": {
+					"none": 4.802027454608848
+				}
+			},
+			{
+				"relation_id": 72,
+				"pdc_ref": "CCV27",
+				"name": "Av. A",
+				"cod_name": "(CCV27) Av. A",
+				"length": 1.319,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.3 km",
+				"typologies": {
+					"none": 1.3192788648833214
+				}
+			},
+			{
+				"relation_id": 73,
+				"pdc_ref": "CCV28",
+				"name": "Rua Senador Alberto Pasqualine/ Pça. Do Jardim São Paulo/ Rua Luís Carvalho de Castro/ Av. São Paulo/ R. Leandro Barreto",
+				"cod_name": "(CCV28) Rua Senador Alberto Pasqualine/ Pça. Do Jardim São Paulo/ Rua Luís Carvalho de Castro/ Av. São Paulo/ R. Leandro Barreto",
+				"length": 2.762,
+				"has_cycleway_length": 0.803,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2 km | Ciclofaixa: 0.8 km",
+				"typologies": {
+					"none": 1.9586344490860403,
+					"Ciclofaixa": 0.8028817932773813
+				}
+			},
+			{
+				"relation_id": 74,
+				"pdc_ref": "CCV29",
+				"name": "Rua Dez de Julho/ Rua Cap. Zuzinha/ Rua Dr. Vicente Gomes",
+				"cod_name": "(CCV29) Rua Dez de Julho/ Rua Cap. Zuzinha/ Rua Dr. Vicente Gomes",
+				"length": 2.035,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2 km",
+				"typologies": {
+					"none": 2.034862099655172
+				}
+			},
+			{
+				"relation_id": 75,
+				"pdc_ref": "CCV30",
+				"name": "Av. Prof. Luiz Freire",
+				"cod_name": "(CCV30) Av. Prof. Luiz Freire",
+				"length": 1.208,
+				"has_cycleway_length": 1.208,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 1.2 km",
+				"typologies": {
+					"Ciclofaixa": 1.2082277687709002
+				}
+			},
+			{
+				"relation_id": 77,
+				"pdc_ref": "CCV32",
+				"name": "Av. Gov. Agamenon Magalhães",
+				"cod_name": "(CCV32) Av. Gov. Agamenon Magalhães",
+				"length": 3.416,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 3.4 km",
+				"typologies": {
+					"none": 3.415845921790731
+				}
+			},
+			{
+				"relation_id": 78,
+				"pdc_ref": "CCV33",
+				"name": "Rua Francisco Alves/ Rua dos Coelhos/ Rua Dr. José Mariano",
+				"cod_name": "(CCV33) Rua Francisco Alves/ Rua dos Coelhos/ Rua Dr. José Mariano",
+				"length": 2.167,
+				"has_cycleway_length": 0.325,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.8 km | Ciclofaixa: 0.3 km",
+				"typologies": {
+					"none": 1.8414467443992384,
+					"Ciclofaixa": 0.32507345350402556
+				}
+			},
+			{
+				"relation_id": 80,
+				"pdc_ref": "CCV35",
+				"name": "Av. Chico Science",
+				"cod_name": "(CCV35) Av. Chico Science",
+				"length": 1.224,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.2 km",
+				"typologies": {
+					"none": 1.223939556396112
+				}
+			},
+			{
+				"relation_id": 81,
+				"pdc_ref": "CCV36",
+				"name": "Av. Norte",
+				"cod_name": "(CCV36) Av. Norte",
+				"length": 7.672,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 7.7 km",
+				"typologies": {
+					"none": 7.671901321092124
+				}
+			},
+			{
+				"relation_id": 82,
+				"pdc_ref": "CCV37",
+				"name": "Rua do Bom Pastor/ Rua Monoel Estevão da Costa/ Rua Antônio Curado",
+				"cod_name": "(CCV37) Rua do Bom Pastor/ Rua Monoel Estevão da Costa/ Rua Antônio Curado",
+				"length": 2.252,
+				"has_cycleway_length": 1.562,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.7 km | Ciclofaixa: 1.6 km",
+				"typologies": {
+					"none": 0.6895274141972882,
+					"Ciclofaixa": 1.5624878191868719
+				}
+			},
+			{
+				"relation_id": 83,
+				"pdc_ref": "CCV38",
+				"name": "Ponte Agamenon Magalhães/ Av. Eng. Antonio de Goes",
+				"cod_name": "(CCV38) Ponte Agamenon Magalhães/ Av. Eng. Antonio de Goes",
+				"length": 1.874,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.9 km",
+				"typologies": {
+					"none": 1.8735318216505594
+				}
+			},
+			{
+				"relation_id": 84,
+				"pdc_ref": "CCV39",
+				"name": "Av. Cruz Cabugá/ Av. Olinda/ Rua do Sol/ Av. Santos Dumont/ Av. Sigismundo Gonçalves/ R. Dr. Farias N. Sobrinho",
+				"cod_name": "(CCV39) Av. Cruz Cabugá/ Av. Olinda/ Rua do Sol/ Av. Santos Dumont/ Av. Sigismundo Gonçalves/ R. Dr. Farias N. Sobrinho",
+				"length": 5.903,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 5.9 km",
+				"typologies": {
+					"none": 5.902858262650331
+				}
+			},
+			{
+				"relation_id": 85,
+				"pdc_ref": "CCV40",
+				"name": "Av. Eng. Abdias de Carvalho",
+				"cod_name": "(CCV40) Av. Eng. Abdias de Carvalho",
+				"length": 2.034,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2 km",
+				"typologies": {
+					"none": 2.034412458941186
+				}
+			},
+			{
+				"relation_id": 86,
+				"pdc_ref": "CCV41",
+				"name": "Av. Prof. José dos Anjos",
+				"cod_name": "(CCV41) Av. Prof. José dos Anjos",
+				"length": 3.762,
+				"has_cycleway_length": 3.559,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 3.6 km | none: 0.2 km",
+				"typologies": {
+					"Ciclofaixa": 3.558647569825592,
+					"none": 0.20292554262998438
+				}
+			},
+			{
+				"relation_id": 87,
+				"pdc_ref": "CCV42",
+				"name": "Av. Recife",
+				"cod_name": "(CCV42) Av. Recife",
+				"length": 2.418,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.4 km",
+				"typologies": {
+					"none": 2.4180790774640593
+				}
+			},
+			{
+				"relation_id": 88,
+				"pdc_ref": "CCV43",
+				"name": "Av. Norte",
+				"cod_name": "(CCV43) Av. Norte",
+				"length": 1.457,
+				"has_cycleway_length": 1.457,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclovia: 1.5 km",
+				"typologies": {
+					"Ciclovia": 1.4572154448695864
+				}
+			},
+			{
+				"relation_id": 91,
+				"pdc_ref": "CCV46",
+				"name": "Estrada de Maracaípe",
+				"cod_name": "(CCV46) Estrada de Maracaípe",
+				"length": 2.646,
+				"has_cycleway_length": 2.646,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclovia: 2.6 km",
+				"typologies": {
+					"Ciclovia": 2.6456607147204436
+				}
+			},
+			{
+				"relation_id": 93,
+				"pdc_ref": "CCV48",
+				"name": "Rua Joana D'arc Sampaio",
+				"cod_name": "(CCV48) Rua Joana D'arc Sampaio",
+				"length": 0.087,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.1 km",
+				"typologies": {
+					"none": 0.08746886186694142
+				}
+			},
+			{
+				"relation_id": 94,
+				"pdc_ref": "CCV49",
+				"name": "Rua Dr. George Willian Butler",
+				"cod_name": "(CCV49) Rua Dr. George Willian Butler",
+				"length": 2.264,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.3 km",
+				"typologies": {
+					"none": 2.264088203484335
+				}
+			},
+			{
+				"relation_id": 96,
+				"pdc_ref": "CCV51",
+				"name": "Av. Barreto de Menezes",
+				"cod_name": "(CCV51) Av. Barreto de Menezes",
+				"length": 3.55,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 3.5 km",
+				"typologies": {
+					"none": 3.5495954547753836
+				}
+			},
+			{
+				"relation_id": 104,
+				"pdc_ref": "CCV59",
+				"name": "Rua Antônio Falcão",
+				"cod_name": "(CCV59) Rua Antônio Falcão",
+				"length": 0.898,
+				"has_cycleway_length": 0.898,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 0.8 km | Ciclofaixa Compartilhada: 0.1 km",
+				"typologies": {
+					"Ciclofaixa": 0.8194690377031948,
+					"Ciclofaixa Compartilhada": 0.07887031563534021
+				}
+			},
+			{
+				"relation_id": 105,
+				"pdc_ref": "CCV60",
+				"name": "Av. Bicentenário da Revolução Francesa",
+				"cod_name": "(CCV60) Av. Bicentenário da Revolução Francesa",
+				"length": 1.632,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.6 km",
+				"typologies": {
+					"none": 1.6321910886309143
+				}
+			},
+			{
+				"relation_id": 106,
+				"pdc_ref": "CCV61",
+				"name": "Rua Acadêmico Hélio Ramos/ Av. Prof. Artur de Sá",
+				"cod_name": "(CCV61) Rua Acadêmico Hélio Ramos/ Av. Prof. Artur de Sá",
+				"length": 2.122,
+				"has_cycleway_length": 2.122,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa Compartilhada: 1.2 km | Ciclofaixa: 1 km",
+				"typologies": {
+					"Ciclofaixa Compartilhada": 1.1570280133414892,
+					"Ciclofaixa": 0.9654163212868878
+				}
+			},
+			{
+				"relation_id": 107,
+				"pdc_ref": "CCV62",
+				"name": "Rua Gen. Polidoro",
+				"cod_name": "(CCV62) Rua Gen. Polidoro",
+				"length": 1.081,
+				"has_cycleway_length": 0.13,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 0.1 km | none: 1 km",
+				"typologies": {
+					"Ciclofaixa": 0.13048769258886125,
+					"none": 0.9503418272265696
+				}
+			},
+			{
+				"relation_id": 108,
+				"pdc_ref": "CCV63",
+				"name": "Estrada do Arraial",
+				"cod_name": "(CCV63) Estrada do Arraial",
+				"length": 0.523,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.5 km",
+				"typologies": {
+					"none": 0.5228548920770711
+				}
+			},
+			{
+				"relation_id": 114,
+				"pdc_ref": "CCV69",
+				"name": "Rua Nove/ Rua Soure",
+				"cod_name": "(CCV69) Rua Nove/ Rua Soure",
+				"length": 1.081,
+				"has_cycleway_length": 0.962,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 0.9 km | none: 0.1 km | Ciclovia: 0.1 km",
+				"typologies": {
+					"Ciclofaixa": 0.8762036938167592,
+					"none": 0.11939748860946817,
+					"Ciclovia": 0.08546322484512285
+				}
+			},
+			{
+				"relation_id": 115,
+				"pdc_ref": "CCV70",
+				"name": "Av. Conde da Boa Vista/ Av. dos Guararapes",
+				"cod_name": "(CCV70) Av. Conde da Boa Vista/ Av. dos Guararapes",
+				"length": 2.823,
+				"has_cycleway_length": 0.331,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.5 km | Ciclofaixa: 0.3 km",
+				"typologies": {
+					"none": 2.492367106566623,
+					"Ciclofaixa": 0.33057181783633166
+				}
+			},
+			{
+				"relation_id": 116,
+				"pdc_ref": "CCV71",
+				"name": "Av. Martins de Barros",
+				"cod_name": "(CCV71) Av. Martins de Barros",
+				"length": 0.818,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.8 km",
+				"typologies": {
+					"none": 0.8182832464187177
+				}
+			},
+			{
+				"relation_id": 117,
+				"pdc_ref": "CCV72",
+				"name": "Av. Prefeito Artur Lima Cavalcanti",
+				"cod_name": "(CCV72) Av. Prefeito Artur Lima Cavalcanti",
+				"length": 0.753,
+				"has_cycleway_length": 0.375,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 0.4 km | none: 0.4 km",
+				"typologies": {
+					"Ciclofaixa": 0.3745424116811067,
+					"none": 0.37815200910666424
+				}
+			},
+			{
+				"relation_id": 118,
+				"pdc_ref": "CCV73",
+				"name": "Av. Mário Melo/ Rua dos Palmares",
+				"cod_name": "(CCV73) Av. Mário Melo/ Rua dos Palmares",
+				"length": 1.678,
+				"has_cycleway_length": 1.678,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 0.4 km | Ciclovia: 1.3 km",
+				"typologies": {
+					"Ciclofaixa": 0.37746133287253336,
+					"Ciclovia": 1.300375890523407
+				}
+			},
+			{
+				"relation_id": 119,
+				"pdc_ref": "CCV74",
+				"name": "Av. João de Barros",
+				"cod_name": "(CCV74) Av. João de Barros",
+				"length": 3.732,
+				"has_cycleway_length": 1.312,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 1.2 km | none: 2.4 km | Ciclofaixa Compartilhada: 0 km | Ciclovia: 0 km",
+				"typologies": {
+					"Ciclofaixa": 1.230593826380384,
+					"none": 2.4203673774741077,
+					"Ciclofaixa Compartilhada": 0.04934083153340825,
+					"Ciclovia": 0.03156686765806314
+				}
+			},
+			{
+				"relation_id": 121,
+				"pdc_ref": "CCV76",
+				"name": "Ramal da Copa",
+				"cod_name": "(CCV76) Ramal da Copa",
+				"length": 6.136,
+				"has_cycleway_length": 4.615,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclovia: 3.8 km | none: 1.5 km | Ciclofaixa: 0.8 km",
+				"typologies": {
+					"Ciclovia": 3.786871010701633,
+					"none": 1.5208167839547202,
+					"Ciclofaixa": 0.8285765724163431
+				}
+			},
+			{
+				"relation_id": 122,
+				"pdc_ref": "CCV77",
+				"name": "Ramal da Copa",
+				"cod_name": "(CCV77) Ramal da Copa",
+				"length": 0.792,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.8 km",
+				"typologies": {
+					"none": 0.7923381065341285
+				}
+			},
+			{
+				"relation_id": 124,
+				"pdc_ref": "CCV79",
+				"name": "Via Projetada",
+				"cod_name": "(CCV79) Via Projetada",
+				"length": 1.251,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.3 km",
+				"typologies": {
+					"none": 1.251258712533551
+				}
+			},
+			{
+				"relation_id": 125,
+				"pdc_ref": "CCV80",
+				"name": "Via Mangue",
+				"cod_name": "(CCV80) Via Mangue",
+				"length": 5.039,
+				"has_cycleway_length": 3.794,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 3.8 km | none: 1.2 km",
+				"typologies": {
+					"Ciclofaixa": 3.7941817067207526,
+					"none": 1.2445627253147267
+				}
+			},
+			{
+				"relation_id": 128,
+				"pdc_ref": "CCV83",
+				"name": "Av. Antonio da Costa Azevedo",
+				"cod_name": "(CCV83) Av. Antonio da Costa Azevedo",
+				"length": 1.22,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.2 km",
+				"typologies": {
+					"none": 1.2202768434987765
+				}
+			},
+			{
+				"relation_id": 129,
+				"pdc_ref": "CCV84",
+				"name": "Ponte do Monteiro - Parque do Santana",
+				"cod_name": "(CCV84) Ponte do Monteiro - Parque do Santana",
+				"length": 5.25,
+				"has_cycleway_length": 0.75,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 4.5 km | Ciclofaixa Compartilhada: 0.2 km | Ciclofaixa: 0.6 km",
+				"typologies": {
+					"none": 4.499063730998123,
+					"Ciclofaixa Compartilhada": 0.18111397092868284,
+					"Ciclofaixa": 0.5693654112760226
+				}
+			},
+			{
+				"relation_id": 130,
+				"pdc_ref": "CCV85",
+				"name": "Av. Forte do Arraial Novo do Bom Jesus",
+				"cod_name": "(CCV85) Av. Forte do Arraial Novo do Bom Jesus",
+				"length": 1.797,
+				"has_cycleway_length": 1.797,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 1.8 km",
+				"typologies": {
+					"Ciclofaixa": 1.7970943012161569
+				}
+			},
+			{
+				"relation_id": 131,
+				"pdc_ref": "CCV86",
+				"name": "Rua 21 de Abril",
+				"cod_name": "(CCV86) Rua 21 de Abril",
+				"length": 3.134,
+				"has_cycleway_length": 2.082,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa Compartilhada: 2.1 km | none: 1.1 km",
+				"typologies": {
+					"Ciclofaixa Compartilhada": 2.0815687028288856,
+					"none": 1.0527629921055928
+				}
+			},
+			{
+				"relation_id": 132,
+				"pdc_ref": "CCV87",
+				"name": "Rua 21 de Abril",
+				"cod_name": "(CCV87) Rua 21 de Abril",
+				"length": 0.412,
+				"has_cycleway_length": 0.163,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.2 km | Ciclofaixa Compartilhada: 0.2 km",
+				"typologies": {
+					"none": 0.24854861786937527,
+					"Ciclofaixa Compartilhada": 0.16327905345002297
+				}
+			},
+			{
+				"relation_id": 133,
+				"pdc_ref": "CCV88",
+				"name": "Av. Central/ Av. Rio Capibaribe",
+				"cod_name": "(CCV88) Av. Central/ Av. Rio Capibaribe",
+				"length": 2.704,
+				"has_cycleway_length": 0.48,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.2 km | Ciclofaixa: 0.5 km",
+				"typologies": {
+					"none": 2.2241404781118366,
+					"Ciclofaixa": 0.48002923744798714
+				}
+			},
+			{
+				"relation_id": 135,
+				"pdc_ref": "CCV90",
+				"name": "Av. Assedipe/ Av. Gov. Nilo Coelho",
+				"cod_name": "(CCV90) Av. Assedipe/ Av. Gov. Nilo Coelho",
+				"length": 2.378,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.4 km",
+				"typologies": {
+					"none": 2.3783000186759415
+				}
+			},
+			{
+				"relation_id": 136,
+				"pdc_ref": "CCV91",
+				"name": "Rua Paulino Gomes de Souza/ Av. Santos Dumont",
+				"cod_name": "(CCV91) Rua Paulino Gomes de Souza/ Av. Santos Dumont",
+				"length": 1.287,
+				"has_cycleway_length": 0.274,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 0.2 km | none: 1 km | Ciclofaixa Compartilhada: 0.1 km",
+				"typologies": {
+					"Ciclofaixa": 0.20406124929751693,
+					"none": 1.0129592247652235,
+					"Ciclofaixa Compartilhada": 0.07039776005712998
+				}
+			},
+			{
+				"relation_id": 137,
+				"pdc_ref": "CCV92",
+				"name": "Rua José Alexandre Caçador/ Rua Mem de Sá",
+				"cod_name": "(CCV92) Rua José Alexandre Caçador/ Rua Mem de Sá",
+				"length": 0.25,
+				"has_cycleway_length": 0.25,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa Compartilhada: 0.2 km",
+				"typologies": {
+					"Ciclofaixa Compartilhada": 0.24998652651506062
+				}
+			},
+			{
+				"relation_id": 138,
+				"pdc_ref": "CCV93",
+				"name": "Praça da República/ Av. Rio Branco",
+				"cod_name": "(CCV93) Praça da República/ Av. Rio Branco",
+				"length": 0.829,
+				"has_cycleway_length": 0.389,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.4 km | Ciclofaixa: 0.4 km",
+				"typologies": {
+					"none": 0.43981615676782126,
+					"Ciclofaixa": 0.389057673856246
+				}
+			},
+			{
+				"relation_id": 139,
+				"pdc_ref": "CCV94",
+				"name": "Rua São Gonçalo/ Rua Santa Cruz /Rua Gervásio Pires",
+				"cod_name": "(CCV94) Rua São Gonçalo/ Rua Santa Cruz /Rua Gervásio Pires",
+				"length": 2.571,
+				"has_cycleway_length": 0.409,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.2 km | Ciclofaixa Compartilhada: 0.4 km",
+				"typologies": {
+					"none": 2.1623558900624102,
+					"Ciclofaixa Compartilhada": 0.4085119994859096
+				}
+			},
+			{
+				"relation_id": 140,
+				"pdc_ref": "CCV95",
+				"name": "Rua do Sol",
+				"cod_name": "(CCV95) Rua do Sol",
+				"length": 0.509,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.5 km",
+				"typologies": {
+					"none": 0.5092134573281963
+				}
+			},
+			{
+				"relation_id": 141,
+				"pdc_ref": "CCV96",
+				"name": "Rua Corinto / Rua Eduardo Jorge / Rua Mal. Hermes",
+				"cod_name": "(CCV96) Rua Corinto / Rua Eduardo Jorge / Rua Mal. Hermes",
+				"length": 0.368,
+				"has_cycleway_length": 0.368,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa Compartilhada: 0.3 km | Ciclofaixa: 0 km",
+				"typologies": {
+					"Ciclofaixa Compartilhada": 0.34476105845693206,
+					"Ciclofaixa": 0.023009800997109146
+				}
+			},
+			{
+				"relation_id": 6,
+				"pdc_ref": "CM05",
+				"name": "Av. Dr. Júlio Maranhão/ Estrada da Batalha",
+				"cod_name": "(CM05) Av. Dr. Júlio Maranhão/ Estrada da Batalha",
+				"length": 3.692,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 3.7 km",
+				"typologies": {
+					"none": 3.692487936354124
+				}
+			},
+			{
+				"relation_id": 7,
+				"pdc_ref": "CM06",
+				"name": "Av. Mal. Mascarenhas de Morais",
+				"cod_name": "(CM06) Av. Mal. Mascarenhas de Morais",
+				"length": 7.465,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 7.5 km",
+				"typologies": {
+					"none": 7.46532920656121
+				}
+			},
+			{
+				"relation_id": 11,
+				"pdc_ref": "CM10",
+				"name": "Av. Ayton Senna da Silva",
+				"cod_name": "(CM10) Av. Ayton Senna da Silva",
+				"length": 4.193,
+				"has_cycleway_length": 4.193,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 4.2 km",
+				"typologies": {
+					"Ciclofaixa": 4.192722846952568
+				}
+			},
+			{
+				"relation_id": 12,
+				"pdc_ref": "CM11",
+				"name": "Av. Visconde de Jequitinhonha/ Av. Fernando Simões Barbosa",
+				"cod_name": "(CM11) Av. Visconde de Jequitinhonha/ Av. Fernando Simões Barbosa",
+				"length": 5.434,
+				"has_cycleway_length": 1.894,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 3.5 km | Ciclofaixa Compartilhada: 0.2 km | Ciclofaixa: 1.7 km",
+				"typologies": {
+					"none": 3.5397009346152797,
+					"Ciclofaixa Compartilhada": 0.151848244850111,
+					"Ciclofaixa": 1.742159033735007
+				}
+			},
+			{
+				"relation_id": 16,
+				"pdc_ref": "CM15",
+				"name": "Av. Gen. Manoel Rabelo",
+				"cod_name": "(CM15) Av. Gen. Manoel Rabelo",
+				"length": 1.134,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.1 km",
+				"typologies": {
+					"none": 1.1336037018827803
+				}
+			},
+			{
+				"relation_id": 17,
+				"pdc_ref": "CM16",
+				"name": "Av. Falcão de Lacerda",
+				"cod_name": "(CM16) Av. Falcão de Lacerda",
+				"length": 2.839,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.8 km",
+				"typologies": {
+					"none": 2.8386452022859903
+				}
+			},
+			{
+				"relation_id": 18,
+				"pdc_ref": "CM17",
+				"name": "Av. Dr. José Rufino/ Rua São Miguel",
+				"cod_name": "(CM17) Av. Dr. José Rufino/ Rua São Miguel",
+				"length": 5.2,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 5.2 km",
+				"typologies": {
+					"none": 5.199782141596674
+				}
+			},
+			{
+				"relation_id": 19,
+				"pdc_ref": "CM18",
+				"name": "Estrada dos Remédios",
+				"cod_name": "(CM18) Estrada dos Remédios",
+				"length": 2.37,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 2.4 km",
+				"typologies": {
+					"none": 2.3700278829670394
+				}
+			},
+			{
+				"relation_id": 20,
+				"pdc_ref": "CM19",
+				"name": "Av. Caxangá",
+				"cod_name": "(CM19) Av. Caxangá",
+				"length": 6.464,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 6.5 km",
+				"typologies": {
+					"none": 6.463502677002042
+				}
+			},
+			{
+				"relation_id": 24,
+				"pdc_ref": "CM23",
+				"name": "BR-408",
+				"cod_name": "(CM23) BR-408",
+				"length": 7.401,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 7.4 km",
+				"typologies": {
+					"none": 7.401165439132662
+				}
+			},
+			{
+				"relation_id": 25,
+				"pdc_ref": "CM24",
+				"name": "Rua Benfica/ Av. Doutor Severino Pinheiro / Praça Derby",
+				"cod_name": "(CM24) Rua Benfica/ Av. Doutor Severino Pinheiro / Praça Derby",
+				"length": 1.242,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.2 km",
+				"typologies": {
+					"none": 1.2419119359109487
+				}
+			},
+			{
+				"relation_id": 26,
+				"pdc_ref": "CM25",
+				"name": "Av. Gov. Agamenon Magalhães",
+				"cod_name": "(CM25) Av. Gov. Agamenon Magalhães",
+				"length": 9.26,
+				"has_cycleway_length": 6.504,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclovia: 6.5 km | none: 2.8 km | Ciclofaixa: 0 km",
+				"typologies": {
+					"Ciclovia": 6.478918034566675,
+					"none": 2.7567100166021064,
+					"Ciclofaixa": 0.02479068913952373
+				}
+			},
+			{
+				"relation_id": 27,
+				"pdc_ref": "CM26",
+				"name": "Av. Visc. De Albuquerque/ Rua José Bonifácio",
+				"cod_name": "(CM26) Av. Visc. De Albuquerque/ Rua José Bonifácio",
+				"length": 1.436,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.4 km",
+				"typologies": {
+					"none": 1.4363431127138364
+				}
+			},
+			{
+				"relation_id": 28,
+				"pdc_ref": "CM27",
+				"name": "Rua José Bonifácio/ Rua João Tude de Melo/ Rua Pde. Roma/ Rua Cônego Barata",
+				"cod_name": "(CM27) Rua José Bonifácio/ Rua João Tude de Melo/ Rua Pde. Roma/ Rua Cônego Barata",
+				"length": 3.442,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 3.4 km",
+				"typologies": {
+					"none": 3.442347724274381
+				}
+			},
+			{
+				"relation_id": 29,
+				"pdc_ref": "CM28",
+				"name": "Estrada Velha da Água Fria/ Av. Beberibe",
+				"cod_name": "(CM28) Estrada Velha da Água Fria/ Av. Beberibe",
+				"length": 1.109,
+				"has_cycleway_length": 0.505,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 0.6 km | Ciclofaixa: 0.3 km | Ciclofaixa Compartilhada: 0.2 km",
+				"typologies": {
+					"none": 0.6032921505542832,
+					"Ciclofaixa": 0.30033208542794165,
+					"Ciclofaixa Compartilhada": 0.20508955702294418
+				}
+			},
+			{
+				"relation_id": 30,
+				"pdc_ref": "CM29",
+				"name": "Av. Beberibe",
+				"cod_name": "(CM29) Av. Beberibe",
+				"length": 1.219,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 1.2 km",
+				"typologies": {
+					"none": 1.219138079392321
+				}
+			},
+			{
+				"relation_id": 41,
+				"pdc_ref": "CM40",
+				"name": "PE-022",
+				"cod_name": "(CM40) PE-022",
+				"length": 11.368,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 11.4 km",
+				"typologies": {
+					"none": 11.368211583036603
+				}
+			},
+			{
+				"relation_id": 45,
+				"pdc_ref": "CM44",
+				"name": "Av. Arq. Luiz Nunes",
+				"cod_name": "(CM44) Av. Arq. Luiz Nunes",
+				"length": 3.331,
+				"has_cycleway_length": 2.921,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclofaixa: 2.9 km | none: 0.4 km",
+				"typologies": {
+					"Ciclofaixa": 2.92107355174057,
+					"none": 0.4100286605389855
+				}
+			}
+		]
+	},
+	"2613701": {
+		"city_id": 2613701,
+		"name": "São Lourenço da Mata",
+		"state": "PE",
+		"relations": [
+			{
+				"relation_id": 120,
+				"pdc_ref": "CCV75",
+				"name": "Viaduto Capitão Temudo",
+				"cod_name": "(CCV75) Viaduto Capitão Temudo",
+				"length": 2.151,
+				"has_cycleway_length": 2.151,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "Ciclovia: 2.2 km",
+				"typologies": {
+					"Ciclovia": 2.1507733984937434
+				}
+			},
+			{
+				"relation_id": 23,
+				"pdc_ref": "CM22",
+				"name": "Av.Dr.BelmiroCorreia/RuaTelemaco Borba/ Rua Manoel Honorato da Costa",
+				"cod_name": "(CM22) Av.Dr.BelmiroCorreia/RuaTelemaco Borba/ Rua Manoel Honorato da Costa",
+				"length": 4.357,
+				"has_cycleway_length": 0,
+				"pdc_typology": "Ciclovia",
+				"typologies_str": "none: 4.4 km",
+				"typologies": {
+					"none": 4.356818306957071
+				}
+			}
+		]
+	}
+}

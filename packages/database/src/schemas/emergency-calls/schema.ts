@@ -8,6 +8,7 @@ import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 export const emergencyCalls = pgTable("emergency_calls", {
 	id: serial("id").primaryKey(),
 	original_id: integer("original_id").notNull(),
+	pcr_street_id: integer("pcr_street_id"),
 	date: timestamp("date").notNull(),
 	time_minute: text("time_minute").notNull(),
 	municipality: text("municipality"),

@@ -1,0 +1,54 @@
+{
+	"city": "PRIMAVERA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 1,
+			"Desistência da solicitação": 2,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2019": {
+			"Removido por Particulares": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 49,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Óbito no Local/Atendimento": 3,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 23,
+			"Desistência da solicitação": 1,
+			"Removido por Particulares": 10,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 20,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 37,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 54,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 9
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 11,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido por Particulares": 1
+		}
+	}
+}

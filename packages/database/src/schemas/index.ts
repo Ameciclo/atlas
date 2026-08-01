@@ -5,4 +5,4 @@ export * from "./emergency-calls/index.js";
 export * from "./shared-bike/index.js";
 export * from "./traffic-calls/index.js";
 export * from "./traffic-deaths/index.js";
-export * from "./traffic-violations/index.js";
+export * from "./traffic-tickets/index.js";

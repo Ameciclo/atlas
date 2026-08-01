@@ -1,0 +1,61 @@
+{
+	"city": "SAO JOSE DA COROA GRANDE",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 8,
+			"Desistência da solicitação": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 2,
+			"Removido por Particulares": 2
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 32,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 6,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 46,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 35,
+			"Óbito no Local/Atendimento": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 4
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 51,
+			"Desistência da solicitação": 4,
+			"Óbito no Local/Atendimento": 2,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 49,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 11,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 15
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 19,
+			"Não necessita/Sem Condições Clínicas": 3,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 7
+		}
+	}
+}

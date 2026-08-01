@@ -1,0 +1,67 @@
+{
+	"city": "SIRINHAEM",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 6,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 4,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 39,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 3,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 65,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 17,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 52,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 3,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 68,
+			"Desistência da solicitação": 5,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 3,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 14,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 9
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 100,
+			"Desistência da solicitação": 3,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Óbito no Local/Atendimento": 2,
+			"Recusa de Remoção": 2,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 30,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 9
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 39,
+			"Desistência da solicitação": 3,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		}
+	}
+}

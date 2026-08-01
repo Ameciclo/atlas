@@ -1,0 +1,3170 @@
+[
+	{
+		"id": 47,
+		"name": "Av. Rui Barbosa x R. Amélia",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0451100",
+		"longitude": "-34.9020700",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Espinheiro",
+				"west": "Torre",
+				"north": "Parnamirim",
+				"south": "Centro"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:10.421Z",
+		"updated_at": "2026-07-22T00:51:10.421Z",
+		"counts": [
+			{
+				"id": 132,
+				"date": "2022-03-30",
+				"total_cyclists": 2629,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 290,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 282,
+					"helmet": 354,
+					"cargo": 288,
+					"motor": 53,
+					"ride": 67,
+					"rain": 0,
+					"sidewalk": 484,
+					"wrong_way": 114,
+					"juveniles": 23,
+					"service": 493,
+					"shared_bike": 277,
+					"other_behaviors": 1098,
+					"other_active_modes": 3,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 84,
+				"date": "2013-03-25",
+				"total_cyclists": 1431,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 222,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 76,
+					"helmet": 133,
+					"cargo": 210,
+					"motor": 0,
+					"ride": 31,
+					"rain": 20,
+					"sidewalk": 0,
+					"wrong_way": 363,
+					"juveniles": 0,
+					"service": 72,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 2,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 48,
+		"name": "Av. Forte do Bom Jesus x R. Miguel Vieira",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0535100",
+		"longitude": "-34.9289200",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Centro",
+				"west": "Abdias",
+				"north": "Caxangá",
+				"south": "Engenho"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:10.527Z",
+		"updated_at": "2026-07-22T00:51:10.527Z",
+		"counts": [
+			{
+				"id": 133,
+				"date": "2022-04-27",
+				"total_cyclists": 3961,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 439,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 641,
+					"helmet": 128,
+					"cargo": 612,
+					"motor": 19,
+					"ride": 242,
+					"rain": 0,
+					"sidewalk": 227,
+					"wrong_way": 230,
+					"juveniles": 149,
+					"service": 160,
+					"shared_bike": 3,
+					"other_behaviors": 1546,
+					"other_active_modes": 5,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 85,
+				"date": "2013-04-25",
+				"total_cyclists": 3556,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 464,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 447,
+					"helmet": 53,
+					"cargo": 367,
+					"motor": 1,
+					"ride": 257,
+					"rain": 40,
+					"sidewalk": 0,
+					"wrong_way": 149,
+					"juveniles": 33,
+					"service": 189,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 49,
+		"name": "Av. Beberibe x Av. Prof. José dos Anjos",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0279300",
+		"longitude": "-34.8929300",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Campo Grande",
+				"west": "Casa Amarela",
+				"north": "Água Fria",
+				"south": "Encruzilhada"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:10.593Z",
+		"updated_at": "2026-07-22T00:51:10.593Z",
+		"counts": [
+			{
+				"id": 144,
+				"date": "2023-11-09",
+				"total_cyclists": 3961,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 566,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 308,
+					"helmet": 157,
+					"cargo": 1188,
+					"motor": 16,
+					"ride": 270,
+					"rain": 0,
+					"sidewalk": 265,
+					"wrong_way": 610,
+					"juveniles": 37,
+					"service": 434,
+					"shared_bike": 85,
+					"other_behaviors": 1445,
+					"other_active_modes": 4,
+					"others": 2
+				},
+				"notes": null
+			},
+			{
+				"id": 111,
+				"date": "2019-04-25",
+				"total_cyclists": 3105,
+				"start_time": "05:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 377,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 232,
+					"helmet": 85,
+					"cargo": 444,
+					"motor": 1,
+					"ride": 143,
+					"rain": 0,
+					"sidewalk": 165,
+					"wrong_way": 224,
+					"juveniles": 20,
+					"service": 78,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 86,
+				"date": "2013-04-25",
+				"total_cyclists": 3723,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 490,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 215,
+					"helmet": 63,
+					"cargo": 373,
+					"motor": 0,
+					"ride": 166,
+					"rain": 60,
+					"sidewalk": 0,
+					"wrong_way": 292,
+					"juveniles": 12,
+					"service": 114,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 50,
+		"name": "R. Padre Lemos x Estrada do Arraial",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0267600",
+		"longitude": "-34.9177300",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Parnamirim",
+				"west": "Monteiro",
+				"north": "Vasco da Gama",
+				"south": "Casa Forte"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:10.651Z",
+		"updated_at": "2026-07-22T00:51:10.651Z",
+		"counts": [
+			{
+				"id": 119,
+				"date": "2019-10-30",
+				"total_cyclists": 3314,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 491,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 210,
+					"helmet": 131,
+					"cargo": 535,
+					"motor": 12,
+					"ride": 97,
+					"rain": 0,
+					"sidewalk": 34,
+					"wrong_way": 343,
+					"juveniles": 31,
+					"service": 239,
+					"shared_bike": 0,
+					"other_behaviors": 34,
+					"other_active_modes": 24,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 87,
+				"date": "2013-10-30",
+				"total_cyclists": 3070,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 343,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 141,
+					"helmet": 109,
+					"cargo": 417,
+					"motor": 0,
+					"ride": 92,
+					"rain": 0,
+					"sidewalk": 0,
+					"wrong_way": 345,
+					"juveniles": 0,
+					"service": 141,
+					"shared_bike": 0,
+					"other_behaviors": 466,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 51,
+		"name": "Av. Mascarenhas de Moraes x R. Eng. Alves de Souza",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0984500",
+		"longitude": "-34.9101900",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Boa Viagem",
+				"west": "Lagoa do Araçá",
+				"north": "Centro",
+				"south": "Jaboatão"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:10.712Z",
+		"updated_at": "2026-07-22T00:51:10.712Z",
+		"counts": [
+			{
+				"id": 157,
+				"date": "2024-06-06",
+				"total_cyclists": 1708,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 218,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 211,
+					"helmet": 51,
+					"cargo": 388,
+					"motor": 12,
+					"ride": 161,
+					"rain": 0,
+					"sidewalk": 544,
+					"wrong_way": 318,
+					"juveniles": 55,
+					"service": 84,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 35,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 109,
+				"date": "2019-03-27",
+				"total_cyclists": 1403,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 180,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 114,
+					"helmet": 66,
+					"cargo": 246,
+					"motor": 2,
+					"ride": 85,
+					"rain": 0,
+					"sidewalk": 247,
+					"wrong_way": 198,
+					"juveniles": 35,
+					"service": 50,
+					"shared_bike": 1,
+					"other_behaviors": 555,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 88,
+				"date": "2014-04-09",
+				"total_cyclists": 1386,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 199,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 87,
+					"helmet": 40,
+					"cargo": 233,
+					"motor": 0,
+					"ride": 76,
+					"rain": 0,
+					"sidewalk": 0,
+					"wrong_way": 217,
+					"juveniles": 0,
+					"service": 52,
+					"shared_bike": 0,
+					"other_behaviors": 510,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 52,
+		"name": "R. Arquiteto Luiz Nunes X R. Eng. Alves de Souza",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0980300",
+		"longitude": "-34.9122400",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Boa Viagem",
+				"west": "Lagoa do Araçá",
+				"north": "Centro",
+				"south": "Jaboatão"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:10.774Z",
+		"updated_at": "2026-07-22T00:51:10.774Z",
+		"counts": [
+			{
+				"id": 110,
+				"date": "2019-03-27",
+				"total_cyclists": 2529,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 316,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 285,
+					"helmet": 116,
+					"cargo": 485,
+					"motor": 1,
+					"ride": 139,
+					"rain": 0,
+					"sidewalk": 156,
+					"wrong_way": 299,
+					"juveniles": 62,
+					"service": 45,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 89,
+				"date": "2014-04-09",
+				"total_cyclists": 2282,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 282,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 180,
+					"helmet": 78,
+					"cargo": 471,
+					"motor": 0,
+					"ride": 132,
+					"rain": 0,
+					"sidewalk": 0,
+					"wrong_way": 558,
+					"juveniles": 0,
+					"service": 88,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 53,
+		"name": "Estrada de Belém x R. Odorico Mendes",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0321600",
+		"longitude": "-34.8813800",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Olinda",
+				"west": "Espinheiro",
+				"north": "Arruda",
+				"south": "Agamenon"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:10.838Z",
+		"updated_at": "2026-07-22T00:51:10.838Z",
+		"counts": [
+			{
+				"id": 115,
+				"date": "2019-08-28",
+				"total_cyclists": 2542,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 262,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 220,
+					"helmet": 77,
+					"cargo": 380,
+					"motor": 9,
+					"ride": 152,
+					"rain": 0,
+					"sidewalk": 112,
+					"wrong_way": 109,
+					"juveniles": 24,
+					"service": 85,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 90,
+				"date": "2014-08-27",
+				"total_cyclists": 2155,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 262,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 179,
+					"helmet": 70,
+					"cargo": 269,
+					"motor": 0,
+					"ride": 152,
+					"rain": 0,
+					"sidewalk": 0,
+					"wrong_way": 77,
+					"juveniles": 4,
+					"service": 73,
+					"shared_bike": 2,
+					"other_behaviors": 0,
+					"other_active_modes": 2,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 54,
+		"name": "Av. Rui Barbosa x Av. Dr. Malaquias",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0398900",
+		"longitude": "-34.9040100",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Rosarinho",
+				"north": "Jaqueira",
+				"south": "Graças"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:10.899Z",
+		"updated_at": "2026-07-22T00:51:10.899Z",
+		"counts": [
+			{
+				"id": 155,
+				"date": "2026-03-11",
+				"total_cyclists": 1610,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 853,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 152,
+					"helmet": 213,
+					"cargo": 47,
+					"motor": 0,
+					"ride": 24,
+					"rain": 0,
+					"sidewalk": 455,
+					"wrong_way": 132,
+					"juveniles": 90,
+					"service": 90,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 112,
+				"date": "2019-05-08",
+				"total_cyclists": 796,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 102,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 58,
+					"helmet": 43,
+					"cargo": 24,
+					"motor": 0,
+					"ride": 21,
+					"rain": 0,
+					"sidewalk": 125,
+					"wrong_way": 17,
+					"juveniles": 112,
+					"service": 11,
+					"shared_bike": 18,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 91,
+				"date": "2015-03-18",
+				"total_cyclists": 795,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 115,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 53,
+					"helmet": 133,
+					"cargo": 71,
+					"motor": 3,
+					"ride": 29,
+					"rain": 0,
+					"sidewalk": 119,
+					"wrong_way": 166,
+					"juveniles": 51,
+					"service": 233,
+					"shared_bike": 5,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 55,
+		"name": "Av. Cons. Rosa e Silva x Av. Dr. Malaquias",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0381200",
+		"longitude": "-34.9005700",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Rosarinho",
+				"west": "Rio Capibaribe",
+				"north": "Jaqueira",
+				"south": "Graças"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:10.958Z",
+		"updated_at": "2026-07-22T00:51:10.958Z",
+		"counts": [
+			{
+				"id": 162,
+				"date": "2026-03-11",
+				"total_cyclists": 448,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 129,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 27,
+					"helmet": 39,
+					"cargo": 32,
+					"motor": 0,
+					"ride": 7,
+					"rain": 0,
+					"sidewalk": 107,
+					"wrong_way": 47,
+					"juveniles": 11,
+					"service": 112,
+					"shared_bike": 16,
+					"other_behaviors": 0,
+					"other_active_modes": 7,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 113,
+				"date": "2019-05-08",
+				"total_cyclists": 1024,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 117,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 64,
+					"helmet": 141,
+					"cargo": 162,
+					"motor": 0,
+					"ride": 96,
+					"rain": 0,
+					"sidewalk": 60,
+					"wrong_way": 57,
+					"juveniles": 23,
+					"service": 49,
+					"shared_bike": 20,
+					"other_behaviors": 1240,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 92,
+				"date": "2015-03-18",
+				"total_cyclists": 857,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 103,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 48,
+					"helmet": 112,
+					"cargo": 133,
+					"motor": 4,
+					"ride": 13,
+					"rain": 0,
+					"sidewalk": 120,
+					"wrong_way": 124,
+					"juveniles": 33,
+					"service": 194,
+					"shared_bike": 6,
+					"other_behaviors": 0,
+					"other_active_modes": 4,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 56,
+		"name": "R. do Futuro x Av. Dr. Malaquias",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0387600",
+		"longitude": "-34.9017600",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Rosarinho",
+				"west": "Rio Capibaribe",
+				"north": "Jaqueira",
+				"south": "Graças"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:11.020Z",
+		"updated_at": "2026-07-22T00:51:11.020Z",
+		"counts": [
+			{
+				"id": 153,
+				"date": "2026-03-11",
+				"total_cyclists": 2979,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 313,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 271,
+					"helmet": 411,
+					"cargo": 259,
+					"motor": 100,
+					"ride": 52,
+					"rain": 0,
+					"sidewalk": 220,
+					"wrong_way": 126,
+					"juveniles": 82,
+					"service": 1108,
+					"shared_bike": 243,
+					"other_behaviors": 0,
+					"other_active_modes": 42,
+					"others": 82
+				},
+				"notes": null
+			},
+			{
+				"id": 108,
+				"date": "2019-03-13",
+				"total_cyclists": 1106,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 109,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 99,
+					"helmet": 119,
+					"cargo": 140,
+					"motor": 0,
+					"ride": 22,
+					"rain": 0,
+					"sidewalk": 247,
+					"wrong_way": 321,
+					"juveniles": 12,
+					"service": 220,
+					"shared_bike": 76,
+					"other_behaviors": 11,
+					"other_active_modes": 1,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 93,
+				"date": "2015-03-18",
+				"total_cyclists": 894,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 83,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 58,
+					"helmet": 134,
+					"cargo": 145,
+					"motor": 2,
+					"ride": 21,
+					"rain": 0,
+					"sidewalk": 178,
+					"wrong_way": 260,
+					"juveniles": 61,
+					"service": 192,
+					"shared_bike": 10,
+					"other_behaviors": 11,
+					"other_active_modes": 1,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 57,
+		"name": "Av. Caxangá x Av. Gal. San Martin",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0504500",
+		"longitude": "-34.9210500",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Derby",
+				"west": "Camaragibe",
+				"north": "Santana",
+				"south": "Estância"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:11.077Z",
+		"updated_at": "2026-07-22T00:51:11.077Z",
+		"counts": [
+			{
+				"id": 141,
+				"date": "2023-08-31",
+				"total_cyclists": 4328,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 556,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 385,
+					"helmet": 286,
+					"cargo": 1252,
+					"motor": 7,
+					"ride": 440,
+					"rain": 0,
+					"sidewalk": 331,
+					"wrong_way": 1318,
+					"juveniles": 57,
+					"service": 454,
+					"shared_bike": 65,
+					"other_behaviors": 1381,
+					"other_active_modes": 1,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 116,
+				"date": "2019-09-11",
+				"total_cyclists": 3976,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 490,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 445,
+					"helmet": 218,
+					"cargo": 528,
+					"motor": 13,
+					"ride": 205,
+					"rain": 21,
+					"sidewalk": 201,
+					"wrong_way": 482,
+					"juveniles": 58,
+					"service": 145,
+					"shared_bike": 20,
+					"other_behaviors": 793,
+					"other_active_modes": 10,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 94,
+				"date": "2015-09-09",
+				"total_cyclists": 3067,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 373,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 247,
+					"helmet": 121,
+					"cargo": 508,
+					"motor": 4,
+					"ride": 193,
+					"rain": 20,
+					"sidewalk": 239,
+					"wrong_way": 631,
+					"juveniles": 108,
+					"service": 766,
+					"shared_bike": 23,
+					"other_behaviors": 717,
+					"other_active_modes": 4,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 58,
+		"name": "Av. Visconde de Suassuna x R. do Hospício",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0550800",
+		"longitude": "-34.8822600",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Santo Amaro",
+				"west": "Boa Vista",
+				"north": "Espinheiro",
+				"south": "Aurora"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:11.137Z",
+		"updated_at": "2026-07-22T00:51:11.137Z",
+		"counts": [
+			{
+				"id": 107,
+				"date": "2019-02-20",
+				"total_cyclists": 1532,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 149,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 135,
+					"helmet": 74,
+					"cargo": 313,
+					"motor": 0,
+					"ride": 86,
+					"rain": 0,
+					"sidewalk": 84,
+					"wrong_way": 539,
+					"juveniles": 30,
+					"service": 101,
+					"shared_bike": 55,
+					"other_behaviors": 9,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 95,
+				"date": "2016-02-24",
+				"total_cyclists": 1093,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 106,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 72,
+					"helmet": 70,
+					"cargo": 262,
+					"motor": 2,
+					"ride": 61,
+					"rain": 36,
+					"sidewalk": 55,
+					"wrong_way": 366,
+					"juveniles": 25,
+					"service": 168,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 3,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 59,
+		"name": "R. dos Palmares x R. Treze de Maio",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0526300",
+		"longitude": "-34.8837400",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Aurora",
+				"west": "Espinheiro",
+				"north": "Santo Amaro",
+				"south": "Boa Vista"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:11.193Z",
+		"updated_at": "2026-07-22T00:51:11.193Z",
+		"counts": [
+			{
+				"id": 106,
+				"date": "2019-02-20",
+				"total_cyclists": 1960,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 223,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 233,
+					"helmet": 151,
+					"cargo": 371,
+					"motor": 5,
+					"ride": 122,
+					"rain": 0,
+					"sidewalk": 39,
+					"wrong_way": 387,
+					"juveniles": 10,
+					"service": 82,
+					"shared_bike": 236,
+					"other_behaviors": 5,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 96,
+				"date": "2016-02-24",
+				"total_cyclists": 1371,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 135,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 113,
+					"helmet": 121,
+					"cargo": 365,
+					"motor": 4,
+					"ride": 83,
+					"rain": 0,
+					"sidewalk": 18,
+					"wrong_way": 289,
+					"juveniles": 7,
+					"service": 264,
+					"shared_bike": 16,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 60,
+		"name": "Av. Cosme Viana x R. 21 de Abril",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0770100",
+		"longitude": "-34.9091900",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Afogados",
+				"west": "Mustardinha",
+				"north": "Bongi",
+				"south": "Imbiribeira"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:11.254Z",
+		"updated_at": "2026-07-22T00:51:11.254Z",
+		"counts": [
+			{
+				"id": 139,
+				"date": "2023-05-11",
+				"total_cyclists": 4433,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 502,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 447,
+					"helmet": 162,
+					"cargo": 725,
+					"motor": 23,
+					"ride": 207,
+					"rain": 0,
+					"sidewalk": 101,
+					"wrong_way": 1177,
+					"juveniles": 105,
+					"service": 148,
+					"shared_bike": 14,
+					"other_behaviors": 903,
+					"other_active_modes": 4,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 114,
+				"date": "2019-05-22",
+				"total_cyclists": 4305,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 471,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 349,
+					"helmet": 148,
+					"cargo": 806,
+					"motor": 11,
+					"ride": 290,
+					"rain": 0,
+					"sidewalk": 63,
+					"wrong_way": 1237,
+					"juveniles": 116,
+					"service": 148,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 2,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 97,
+				"date": "2016-05-25",
+				"total_cyclists": 3032,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 360,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 213,
+					"helmet": 64,
+					"cargo": 568,
+					"motor": 1,
+					"ride": 222,
+					"rain": 200,
+					"sidewalk": 71,
+					"wrong_way": 823,
+					"juveniles": 143,
+					"service": 300,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 61,
+		"name": "Av. Gov. Agamenon Magalhães x Praça do Derby - Pista Oeste",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0566400",
+		"longitude": "-34.8980700",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Boa Vista",
+				"west": "Benfica",
+				"north": "Olinda",
+				"south": "Boa Viagem"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:11.317Z",
+		"updated_at": "2026-07-22T00:51:11.317Z",
+		"counts": [
+			{
+				"id": 159,
+				"date": "2024-05-16",
+				"total_cyclists": 2117,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 272,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 149,
+					"helmet": 180,
+					"cargo": 146,
+					"motor": 29,
+					"ride": 18,
+					"rain": 0,
+					"sidewalk": 146,
+					"wrong_way": 120,
+					"juveniles": 9,
+					"service": 46,
+					"shared_bike": 183,
+					"other_behaviors": 0,
+					"other_active_modes": 10,
+					"others": 1
+				},
+				"notes": null
+			},
+			{
+				"id": 117,
+				"date": "2019-09-18",
+				"total_cyclists": 2262,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 208,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 193,
+					"helmet": 231,
+					"cargo": 308,
+					"motor": 5,
+					"ride": 32,
+					"rain": 0,
+					"sidewalk": 279,
+					"wrong_way": 188,
+					"juveniles": 12,
+					"service": 224,
+					"shared_bike": 257,
+					"other_behaviors": 0,
+					"other_active_modes": 2,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 98,
+				"date": "2016-09-15",
+				"total_cyclists": 1292,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 150,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 72,
+					"helmet": 156,
+					"cargo": 254,
+					"motor": 1,
+					"ride": 24,
+					"rain": 0,
+					"sidewalk": 185,
+					"wrong_way": 165,
+					"juveniles": 5,
+					"service": 74,
+					"shared_bike": 28,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 62,
+		"name": "Av. Gov. Agamenon Magalhães x Praça do Derby - Pista Leste",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0566100",
+		"longitude": "-34.8977200",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Boa Vista",
+				"west": "Benfica",
+				"north": "Olinda",
+				"south": "Boa Viagem"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:11.377Z",
+		"updated_at": "2026-07-22T00:51:11.377Z",
+		"counts": [
+			{
+				"id": 158,
+				"date": "2024-05-16",
+				"total_cyclists": 2013,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 311,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 156,
+					"helmet": 190,
+					"cargo": 114,
+					"motor": 37,
+					"ride": 35,
+					"rain": 0,
+					"sidewalk": 170,
+					"wrong_way": 112,
+					"juveniles": 14,
+					"service": 61,
+					"shared_bike": 197,
+					"other_behaviors": 0,
+					"other_active_modes": 8,
+					"others": 2
+				},
+				"notes": null
+			},
+			{
+				"id": 118,
+				"date": "2019-09-18",
+				"total_cyclists": 2077,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 237,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 190,
+					"helmet": 227,
+					"cargo": 263,
+					"motor": 7,
+					"ride": 31,
+					"rain": 0,
+					"sidewalk": 202,
+					"wrong_way": 132,
+					"juveniles": 25,
+					"service": 189,
+					"shared_bike": 252,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 99,
+				"date": "2016-09-15",
+				"total_cyclists": 1188,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 131,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 66,
+					"helmet": 127,
+					"cargo": 189,
+					"motor": 2,
+					"ride": 26,
+					"rain": 0,
+					"sidewalk": 93,
+					"wrong_way": 81,
+					"juveniles": 4,
+					"service": 110,
+					"shared_bike": 16,
+					"other_behaviors": 0,
+					"other_active_modes": 2,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 63,
+		"name": "Av. Abdias de Carvalho x Av. Gal. San Martin",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0604600",
+		"longitude": "-34.9257600",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Cordeiro",
+				"west": "Estância",
+				"north": "Curado",
+				"south": "Ilha do Retiro"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:11.433Z",
+		"updated_at": "2026-07-22T00:51:11.433Z",
+		"counts": [
+			{
+				"id": 150,
+				"date": "2026-02-25",
+				"total_cyclists": 3003,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 390,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 461,
+					"helmet": 106,
+					"cargo": 518,
+					"motor": 26,
+					"ride": 99,
+					"rain": 0,
+					"sidewalk": 653,
+					"wrong_way": 446,
+					"juveniles": 131,
+					"service": 195,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 80,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 130,
+				"date": "2021-11-24",
+				"total_cyclists": 3706,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 405,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 571,
+					"helmet": 180,
+					"cargo": 552,
+					"motor": 12,
+					"ride": 186,
+					"rain": 0,
+					"sidewalk": 665,
+					"wrong_way": 246,
+					"juveniles": 155,
+					"service": 95,
+					"shared_bike": 5,
+					"other_behaviors": 406,
+					"other_active_modes": 7,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 122,
+				"date": "2019-12-10",
+				"total_cyclists": 2733,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 312,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 342,
+					"helmet": 124,
+					"cargo": 415,
+					"motor": 10,
+					"ride": 172,
+					"rain": 0,
+					"sidewalk": 531,
+					"wrong_way": 618,
+					"juveniles": 159,
+					"service": 130,
+					"shared_bike": 0,
+					"other_behaviors": 13,
+					"other_active_modes": 2,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 100,
+				"date": "2016-11-29",
+				"total_cyclists": 2354,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 291,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 194,
+					"helmet": 121,
+					"cargo": 369,
+					"motor": 0,
+					"ride": 167,
+					"rain": 0,
+					"sidewalk": 320,
+					"wrong_way": 672,
+					"juveniles": 85,
+					"service": 110,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 64,
+		"name": "Av. Recife x R. Pintor Antonio de Albuquerque",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.1079300",
+		"longitude": "-34.9270600",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "IPSEP",
+				"west": "IBURA",
+				"north": "Estância ",
+				"south": "Boa Viagem"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:11.493Z",
+		"updated_at": "2026-07-22T00:51:11.493Z",
+		"counts": [
+			{
+				"id": 131,
+				"date": "2021-12-09",
+				"total_cyclists": 2292,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 312,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 145,
+					"helmet": 160,
+					"cargo": 431,
+					"motor": 9,
+					"ride": 88,
+					"rain": 0,
+					"sidewalk": 516,
+					"wrong_way": 187,
+					"juveniles": 46,
+					"service": 78,
+					"shared_bike": 15,
+					"other_behaviors": 183,
+					"other_active_modes": 3,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 101,
+				"date": "2016-12-06",
+				"total_cyclists": 1694,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 234,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 83,
+					"helmet": 75,
+					"cargo": 349,
+					"motor": 0,
+					"ride": 70,
+					"rain": 0,
+					"sidewalk": 403,
+					"wrong_way": 154,
+					"juveniles": 84,
+					"service": 86,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 65,
+		"name": "Av. Recife x R. São Nicolau",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.1069500",
+		"longitude": "-34.9272100",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Ibura",
+				"west": "IPSEP",
+				"north": "Estância",
+				"south": "Boa Viagem"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:11.554Z",
+		"updated_at": "2026-07-22T00:51:11.554Z",
+		"counts": [
+			{
+				"id": 121,
+				"date": "2019-12-05",
+				"total_cyclists": 2183,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 297,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 98,
+					"helmet": 89,
+					"cargo": 283,
+					"motor": 3,
+					"ride": 197,
+					"rain": 0,
+					"sidewalk": 106,
+					"wrong_way": 108,
+					"juveniles": 73,
+					"service": 129,
+					"shared_bike": 0,
+					"other_behaviors": 7,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 102,
+				"date": "2016-12-06",
+				"total_cyclists": 1892,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 248,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 54,
+					"helmet": 81,
+					"cargo": 395,
+					"motor": 0,
+					"ride": 52,
+					"rain": 0,
+					"sidewalk": 192,
+					"wrong_way": 276,
+					"juveniles": 69,
+					"service": 132,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 66,
+		"name": "Av. Domingos Ferreira x Av. Antônio Falcão",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.1157400",
+		"longitude": "-34.8955200",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Praia",
+				"west": "Imbiribeira",
+				"north": "Pina",
+				"south": "Piedade"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:11.614Z",
+		"updated_at": "2026-07-22T00:51:11.614Z",
+		"counts": [
+			{
+				"id": 129,
+				"date": "2021-11-10",
+				"total_cyclists": 1441,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 163,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 151,
+					"helmet": 83,
+					"cargo": 235,
+					"motor": 4,
+					"ride": 45,
+					"rain": 0,
+					"sidewalk": 82,
+					"wrong_way": 98,
+					"juveniles": 39,
+					"service": 283,
+					"shared_bike": 0,
+					"other_behaviors": 514,
+					"other_active_modes": 2,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 120,
+				"date": "2019-11-28",
+				"total_cyclists": 1199,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 157,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 86,
+					"helmet": 70,
+					"cargo": 251,
+					"motor": 4,
+					"ride": 23,
+					"rain": 0,
+					"sidewalk": 180,
+					"wrong_way": 286,
+					"juveniles": 15,
+					"service": 247,
+					"shared_bike": 0,
+					"other_behaviors": 6,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 103,
+				"date": "2017-11-23",
+				"total_cyclists": 1002,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 110,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 81,
+					"helmet": 66,
+					"cargo": 251,
+					"motor": 0,
+					"ride": 27,
+					"rain": 0,
+					"sidewalk": 147,
+					"wrong_way": 168,
+					"juveniles": 15,
+					"service": 218,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 67,
+		"name": "Varadouro | Olinda",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0201600",
+		"longitude": "-34.8558600",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Milagres",
+				"west": "Pan Nordestina",
+				"north": "Olinda",
+				"south": "Recife"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:11.671Z",
+		"updated_at": "2026-07-22T00:51:11.671Z",
+		"counts": [
+			{
+				"id": 125,
+				"date": "2021-09-08",
+				"total_cyclists": 2126,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 244,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 142,
+					"helmet": 175,
+					"cargo": 425,
+					"motor": 7,
+					"ride": 104,
+					"rain": 0,
+					"sidewalk": 278,
+					"wrong_way": 337,
+					"juveniles": 34,
+					"service": 64,
+					"shared_bike": 27,
+					"other_behaviors": 860,
+					"other_active_modes": 2,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 104,
+				"date": "2018-09-12",
+				"total_cyclists": 1300,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 124,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 84,
+					"helmet": 182,
+					"cargo": 266,
+					"motor": 0,
+					"ride": 74,
+					"rain": 0,
+					"sidewalk": 99,
+					"wrong_way": 158,
+					"juveniles": 0,
+					"service": 70,
+					"shared_bike": 39,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 68,
+		"name": "Ponte do Janga",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-7.9577400",
+		"longitude": "-34.8307900",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Orla Olinda",
+				"north": "Janga",
+				"south": "Rio Doce"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:11.724Z",
+		"updated_at": "2026-07-22T00:51:11.724Z",
+		"counts": [
+			{
+				"id": 126,
+				"date": "2021-09-23",
+				"total_cyclists": 1825,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 276,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 140,
+					"helmet": 203,
+					"cargo": 211,
+					"motor": 11,
+					"ride": 29,
+					"rain": 0,
+					"sidewalk": 737,
+					"wrong_way": 112,
+					"juveniles": 26,
+					"service": 12,
+					"shared_bike": 0,
+					"other_behaviors": 177,
+					"other_active_modes": 2,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 105,
+				"date": "2018-09-20",
+				"total_cyclists": 1046,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 166,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 70,
+					"helmet": 99,
+					"cargo": 158,
+					"motor": 0,
+					"ride": 35,
+					"rain": 0,
+					"sidewalk": 490,
+					"wrong_way": 136,
+					"juveniles": 0,
+					"service": 38,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 69,
+		"name": "Av. Caxangá x Av. Afonso Olindense",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0313000",
+		"longitude": "-34.9557300",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Dois Irmãos",
+				"west": "Várzea",
+				"north": "Camaragibe",
+				"south": "Centro"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:12.755Z",
+		"updated_at": "2026-07-22T00:51:12.755Z",
+		"counts": [
+			{
+				"id": 138,
+				"date": "2023-04-19",
+				"total_cyclists": 3536,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 388,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 347,
+					"helmet": 200,
+					"cargo": 669,
+					"motor": 19,
+					"ride": 182,
+					"rain": 0,
+					"sidewalk": 463,
+					"wrong_way": 409,
+					"juveniles": 122,
+					"service": 185,
+					"shared_bike": 0,
+					"other_behaviors": 232,
+					"other_active_modes": 3,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 123,
+				"date": "2020-09-23",
+				"total_cyclists": 3890,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 641,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 340,
+					"helmet": 248,
+					"cargo": 740,
+					"motor": 5,
+					"ride": 102,
+					"rain": 0,
+					"sidewalk": 416,
+					"wrong_way": 503,
+					"juveniles": 50,
+					"service": 215,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 2,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 70,
+		"name": "R. Padre Roma x R. Sebastião Malta Arcoverde",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0330900",
+		"longitude": "-34.9072900",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Parnamirim",
+				"west": "Jaqueira",
+				"north": "Rui Barbosa",
+				"south": "Padre Roma"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:12.811Z",
+		"updated_at": "2026-07-22T00:51:12.811Z",
+		"counts": [
+			{
+				"id": 124,
+				"date": "2021-08-25",
+				"total_cyclists": 2257,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 293,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 243,
+					"helmet": 242,
+					"cargo": 226,
+					"motor": 12,
+					"ride": 44,
+					"rain": 0,
+					"sidewalk": 51,
+					"wrong_way": 82,
+					"juveniles": 44,
+					"service": 266,
+					"shared_bike": 77,
+					"other_behaviors": 1074,
+					"other_active_modes": 2,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 71,
+		"name": "Av. Pres. Kennedy x Av. Antonio da Costa Azevedo",
+		"city": "Olinda",
+		"state": "PE",
+		"latitude": "-8.0131300",
+		"longitude": "-34.8724000",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Jardim Brasil",
+				"west": "Peixinhos",
+				"north": "Caixa D'água ",
+				"south": "Olinda"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2609600
+		},
+		"created_at": "2026-07-22T00:51:12.978Z",
+		"updated_at": "2026-07-22T00:51:12.978Z",
+		"counts": [
+			{
+				"id": 156,
+				"date": "2026-04-09",
+				"total_cyclists": 3968,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 504,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 359,
+					"helmet": 70,
+					"cargo": 928,
+					"motor": 57,
+					"ride": 174,
+					"rain": 0,
+					"sidewalk": 209,
+					"wrong_way": 722,
+					"juveniles": 204,
+					"service": 164,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 7,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 142,
+				"date": "2023-10-03",
+				"total_cyclists": 4911,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 572,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 419,
+					"helmet": 75,
+					"cargo": 2657,
+					"motor": 23,
+					"ride": 598,
+					"rain": 0,
+					"sidewalk": 460,
+					"wrong_way": 2290,
+					"juveniles": 45,
+					"service": 332,
+					"shared_bike": 1,
+					"other_behaviors": 203,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 127,
+				"date": "2021-10-13",
+				"total_cyclists": 4845,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 573,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 372,
+					"helmet": 90,
+					"cargo": 1142,
+					"motor": 23,
+					"ride": 236,
+					"rain": 0,
+					"sidewalk": 90,
+					"wrong_way": 1062,
+					"juveniles": 88,
+					"service": 125,
+					"shared_bike": 0,
+					"other_behaviors": 655,
+					"other_active_modes": 6,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 72,
+		"name": "R. Santo Elias x Av. Barreto de Menezes | Jaboatão",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.1633100",
+		"longitude": "-34.9249800",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Massangana",
+				"west": "Cajueiro Seco",
+				"north": "Prazeres",
+				"south": "Piedade"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:13.035Z",
+		"updated_at": "2026-07-22T00:51:13.035Z",
+		"counts": [
+			{
+				"id": 165,
+				"date": "2026-04-14",
+				"total_cyclists": 5071,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 452,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 879,
+					"helmet": 48,
+					"cargo": 981,
+					"motor": 70,
+					"ride": 272,
+					"rain": 0,
+					"sidewalk": 16,
+					"wrong_way": 1595,
+					"juveniles": 252,
+					"service": 409,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			},
+			{
+				"id": 128,
+				"date": "2021-10-27",
+				"total_cyclists": 7086,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 741,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 1105,
+					"helmet": 97,
+					"cargo": 1287,
+					"motor": 1,
+					"ride": 518,
+					"rain": 0,
+					"sidewalk": 9,
+					"wrong_way": 1846,
+					"juveniles": 138,
+					"service": 264,
+					"shared_bike": 1,
+					"other_behaviors": 33,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 73,
+		"name": "Av. Gov. Agamenon Magalhães x Rua do Paissandu",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0621900",
+		"longitude": "-34.8975700",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Ilha do Leite",
+				"west": "Abdias",
+				"north": "Olinda",
+				"south": "Ponte José B Lima"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:13.438Z",
+		"updated_at": "2026-07-22T00:51:13.438Z",
+		"counts": [
+			{
+				"id": 134,
+				"date": "2022-07-28",
+				"total_cyclists": 2074,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 281,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 122,
+					"helmet": 146,
+					"cargo": 350,
+					"motor": 18,
+					"ride": 52,
+					"rain": 0,
+					"sidewalk": 252,
+					"wrong_way": 535,
+					"juveniles": 8,
+					"service": 245,
+					"shared_bike": 50,
+					"other_behaviors": 49,
+					"other_active_modes": 4,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 74,
+		"name": "R. da Aurora x R. Princesa Isabel",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0596100",
+		"longitude": "-34.8799500",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Santo Antônio",
+				"west": "Boa Vista",
+				"north": "Santo Amaro",
+				"south": "Coelhos"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:13.490Z",
+		"updated_at": "2026-07-22T00:51:13.490Z",
+		"counts": [
+			{
+				"id": 152,
+				"date": "2024-05-23",
+				"total_cyclists": 1901,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 244,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 148,
+					"helmet": 204,
+					"cargo": 225,
+					"motor": 40,
+					"ride": 38,
+					"rain": 0,
+					"sidewalk": 481,
+					"wrong_way": 196,
+					"juveniles": 28,
+					"service": 24,
+					"shared_bike": 187,
+					"other_behaviors": 0,
+					"other_active_modes": 121,
+					"others": 13
+				},
+				"notes": null
+			},
+			{
+				"id": 135,
+				"date": "2023-02-09",
+				"total_cyclists": 936,
+				"start_time": "06:00:00",
+				"end_time": "13:00:00",
+				"max_hour_cyclists": 175,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 78,
+					"helmet": 80,
+					"cargo": 213,
+					"motor": 9,
+					"ride": 11,
+					"rain": 0,
+					"sidewalk": 422,
+					"wrong_way": 109,
+					"juveniles": 0,
+					"service": 58,
+					"shared_bike": 91,
+					"other_behaviors": 39,
+					"other_active_modes": 6,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 75,
+		"name": "Av. Cruz Cabugá x Rua Dr. Jayme da Fonte",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0444800",
+		"longitude": "-34.8748900",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Aurora",
+				"west": "Campo Grande",
+				"north": "Olinda",
+				"south": "Santo Amaro"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:13.516Z",
+		"updated_at": "2026-07-22T00:51:13.516Z",
+		"counts": [
+			{
+				"id": 136,
+				"date": "2023-03-02",
+				"total_cyclists": 2527,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 341,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 216,
+					"helmet": 164,
+					"cargo": 575,
+					"motor": 22,
+					"ride": 158,
+					"rain": 0,
+					"sidewalk": 63,
+					"wrong_way": 207,
+					"juveniles": 20,
+					"service": 116,
+					"shared_bike": 24,
+					"other_behaviors": 1444,
+					"other_active_modes": 7,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 76,
+		"name": "Av. Guararapes x Av. Dantas Barreto",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0639200",
+		"longitude": "-34.8784800",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Bairro Recife",
+				"west": "Boa Vista",
+				"north": "Praça da República",
+				"south": "São José"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:13.569Z",
+		"updated_at": "2026-07-22T00:51:13.569Z",
+		"counts": [
+			{
+				"id": 137,
+				"date": "2023-03-23",
+				"total_cyclists": 2046,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 213,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 124,
+					"helmet": 90,
+					"cargo": 518,
+					"motor": 21,
+					"ride": 42,
+					"rain": 0,
+					"sidewalk": 110,
+					"wrong_way": 737,
+					"juveniles": 12,
+					"service": 251,
+					"shared_bike": 182,
+					"other_behaviors": 24,
+					"other_active_modes": 19,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 77,
+		"name": "R. Souza Bandeira x R. Cantora Clara Nunes",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0442500",
+		"longitude": "-34.9166500",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Torre",
+				"west": "Cordeiro",
+				"north": "Santana",
+				"south": "San Martin"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:13.731Z",
+		"updated_at": "2026-07-22T00:51:13.731Z",
+		"counts": [
+			{
+				"id": 140,
+				"date": "2023-08-10",
+				"total_cyclists": 4484,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 575,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 700,
+					"helmet": 95,
+					"cargo": 1169,
+					"motor": 21,
+					"ride": 930,
+					"rain": 0,
+					"sidewalk": 10,
+					"wrong_way": 874,
+					"juveniles": 149,
+					"service": 480,
+					"shared_bike": 31,
+					"other_behaviors": 85,
+					"other_active_modes": 14,
+					"others": 1
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 78,
+		"name": "Praça de Camaragibe",
+		"city": "Olinda",
+		"state": "PE",
+		"latitude": "-8.0185200",
+		"longitude": "-34.9704300",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Varzea (L)",
+				"west": "São Lourenço / Centro",
+				"north": "Aldeia",
+				"south": "Varzea (S)"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2609600
+		},
+		"created_at": "2026-07-22T00:51:13.901Z",
+		"updated_at": "2026-07-22T00:51:13.901Z",
+		"counts": [
+			{
+				"id": 143,
+				"date": "2023-10-19",
+				"total_cyclists": 1663,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 227,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 68,
+					"helmet": 175,
+					"cargo": 610,
+					"motor": 14,
+					"ride": 50,
+					"rain": 0,
+					"sidewalk": 233,
+					"wrong_way": 296,
+					"juveniles": 24,
+					"service": 132,
+					"shared_bike": 7,
+					"other_behaviors": 210,
+					"other_active_modes": 1,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 79,
+		"name": "Av. Dr. José Rufino X R. José Natário",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0916900",
+		"longitude": "-34.9360600",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Estância",
+				"west": "Tejipió",
+				"north": "Jd. São Paulo",
+				"south": "Ibura"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:14.018Z",
+		"updated_at": "2026-07-22T00:51:14.018Z",
+		"counts": [
+			{
+				"id": 145,
+				"date": "2026-03-25",
+				"total_cyclists": 1808,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 226,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 118,
+					"helmet": 99,
+					"cargo": 273,
+					"motor": 30,
+					"ride": 48,
+					"rain": 0,
+					"sidewalk": 181,
+					"wrong_way": 104,
+					"juveniles": 86,
+					"service": 166,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 37,
+					"others": 133
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 80,
+		"name": "Rua Padre Machado x Rua Hermenegildo Lima",
+		"city": "Itamaracá",
+		"state": "PE",
+		"latitude": "-7.7477600",
+		"longitude": "-34.8246300",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Mar",
+				"west": "Biquinha",
+				"north": "Jaguaribe",
+				"south": "Forte Orange"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2607604
+		},
+		"created_at": "2026-07-22T00:51:14.074Z",
+		"updated_at": "2026-07-22T00:51:14.074Z",
+		"counts": [
+			{
+				"id": 146,
+				"date": "2026-04-30",
+				"total_cyclists": 1631,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 176,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 300,
+					"helmet": 5,
+					"cargo": 383,
+					"motor": 0,
+					"ride": 41,
+					"rain": 0,
+					"sidewalk": 106,
+					"wrong_way": 90,
+					"juveniles": 180,
+					"service": 9,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 94,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 81,
+		"name": "R. Dr. Antônio de Souza Leão x Av. Historiador Pereira da Costa",
+		"city": "Cabo De Santo Agostinho",
+		"state": "PE",
+		"latitude": "-8.2868210",
+		"longitude": "-35.0372670",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Malaquias",
+				"west": "Linha do trem",
+				"north": "Pte. dos Carvalhos",
+				"south": "Charneca"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2602902
+		},
+		"created_at": "2026-07-22T00:51:14.128Z",
+		"updated_at": "2026-07-22T00:51:14.128Z",
+		"counts": [
+			{
+				"id": 147,
+				"date": "2026-05-06",
+				"total_cyclists": 2421,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 237,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 296,
+					"helmet": 20,
+					"cargo": 414,
+					"motor": 23,
+					"ride": 111,
+					"rain": 0,
+					"sidewalk": 133,
+					"wrong_way": 390,
+					"juveniles": 327,
+					"service": 68,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 151,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 82,
+		"name": "Av. João Pereira de Oliveira x Av. Dr. Cláudio José Gueiros",
+		"city": "Paulista",
+		"state": "PE",
+		"latitude": "-7.9282100",
+		"longitude": "-34.8224600",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Maria Farinha",
+				"west": "Olinda",
+				"north": "Maranguape II",
+				"south": "Orla"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2610707
+		},
+		"created_at": "2026-07-22T00:51:14.180Z",
+		"updated_at": "2026-07-22T00:51:14.180Z",
+		"counts": [
+			{
+				"id": 148,
+				"date": "2026-04-22",
+				"total_cyclists": 1014,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 157,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 131,
+					"helmet": 68,
+					"cargo": 131,
+					"motor": 0,
+					"ride": 29,
+					"rain": 0,
+					"sidewalk": 62,
+					"wrong_way": 183,
+					"juveniles": 44,
+					"service": 92,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 32,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 83,
+		"name": "Av. Dr. Belminio Correia x Rua Gérson de Aquino Lucena",
+		"city": "Camaragibe",
+		"state": "PE",
+		"latitude": "-8.0232460",
+		"longitude": "-34.9945910",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "São Lourenço",
+				"west": "Recife",
+				"north": "Viana",
+				"south": "Timbi"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2603454
+		},
+		"created_at": "2026-07-22T00:51:14.233Z",
+		"updated_at": "2026-07-22T00:51:14.233Z",
+		"counts": [
+			{
+				"id": 149,
+				"date": "2026-04-15",
+				"total_cyclists": 1017,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 133,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 32,
+					"helmet": 71,
+					"cargo": 146,
+					"motor": 17,
+					"ride": 21,
+					"rain": 0,
+					"sidewalk": 233,
+					"wrong_way": 80,
+					"juveniles": 61,
+					"service": 98,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 0,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 84,
+		"name": "Av. Dr. Luiz Correia de Araújo x Av. Dr. Francisco Correia",
+		"city": "São Lourenço",
+		"state": "PE",
+		"latitude": "-7.9973700",
+		"longitude": "-35.0366300",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Recife",
+				"west": "Tiúma (indo)",
+				"north": "Rua sem saída",
+				"south": "Tiúma (vindo)"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2613701
+		},
+		"created_at": "2026-07-22T00:51:14.340Z",
+		"updated_at": "2026-07-22T00:51:14.340Z",
+		"counts": [
+			{
+				"id": 151,
+				"date": "2026-04-16",
+				"total_cyclists": 1244,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 154,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 53,
+					"helmet": 22,
+					"cargo": 210,
+					"motor": 0,
+					"ride": 36,
+					"rain": 0,
+					"sidewalk": 65,
+					"wrong_way": 568,
+					"juveniles": 81,
+					"service": 20,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 47,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 85,
+		"name": "Rodovia Tronco (PE 009) x R. do Colégio",
+		"city": "Ipojuca",
+		"state": "PE",
+		"latitude": "-8.4371420",
+		"longitude": "-35.0126460",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Porto de Galinhas",
+				"west": "Ipojuca",
+				"north": "Usina Salgado",
+				"south": "Rua do Colégio"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2607208
+		},
+		"created_at": "2026-07-22T00:51:14.509Z",
+		"updated_at": "2026-07-22T00:51:14.509Z",
+		"counts": [
+			{
+				"id": 154,
+				"date": "2026-05-07",
+				"total_cyclists": 2416,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 297,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 505,
+					"helmet": 21,
+					"cargo": 259,
+					"motor": 19,
+					"ride": 160,
+					"rain": 0,
+					"sidewalk": 288,
+					"wrong_way": 325,
+					"juveniles": 345,
+					"service": 15,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 47,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 86,
+		"name": "Rua Frei Serafim x Rua João Pessoa",
+		"city": "Itapissuma",
+		"state": "PE",
+		"latitude": "-7.7732500",
+		"longitude": "-34.8955900",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Itamaracá",
+				"west": "Igarassu",
+				"north": "Cajueiro",
+				"south": "Cidade Criança"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2607752
+		},
+		"created_at": "2026-07-22T00:51:14.824Z",
+		"updated_at": "2026-07-22T00:51:14.824Z",
+		"counts": [
+			{
+				"id": 160,
+				"date": "2026-04-29",
+				"total_cyclists": 1516,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 161,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 198,
+					"helmet": 17,
+					"cargo": 191,
+					"motor": 5,
+					"ride": 44,
+					"rain": 0,
+					"sidewalk": 2,
+					"wrong_way": 390,
+					"juveniles": 223,
+					"service": 56,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 70,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 87,
+		"name": "Rua Joaquim Nabuco x Av. Mário Melo",
+		"city": "Igarassu",
+		"state": "PE",
+		"latitude": "-7.8286900",
+		"longitude": "-34.9095800",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Santo Inácio",
+				"west": "Joaquim Nabuco",
+				"north": "Abreu e Lima",
+				"south": "Itapissuma"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2606804
+		},
+		"created_at": "2026-07-22T00:51:14.875Z",
+		"updated_at": "2026-07-22T00:51:14.875Z",
+		"counts": [
+			{
+				"id": 161,
+				"date": "2026-04-28",
+				"total_cyclists": 1575,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 152,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 169,
+					"helmet": 15,
+					"cargo": 298,
+					"motor": 0,
+					"ride": 61,
+					"rain": 0,
+					"sidewalk": 22,
+					"wrong_way": 294,
+					"juveniles": 140,
+					"service": 24,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 201,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 88,
+		"name": "PE 007 x Pte. Santa Maria",
+		"city": "Moreno",
+		"state": "PE",
+		"latitude": "-8.1188220",
+		"longitude": "-35.1058190",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Jaboatão",
+				"west": "Bonança",
+				"north": "Centro",
+				"south": "Alto da Liberdade"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2609402
+		},
+		"created_at": "2026-07-22T00:51:14.965Z",
+		"updated_at": "2026-07-22T00:51:14.965Z",
+		"counts": [
+			{
+				"id": 163,
+				"date": "2026-04-23",
+				"total_cyclists": 586,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 69,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 14,
+					"helmet": 14,
+					"cargo": 50,
+					"motor": 2,
+					"ride": 12,
+					"rain": 0,
+					"sidewalk": 124,
+					"wrong_way": 23,
+					"juveniles": 129,
+					"service": 0,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 24,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 89,
+		"name": "Rua Cap. José Primo x BR 101",
+		"city": "Abreu E Lima",
+		"state": "PE",
+		"latitude": "-7.9049500",
+		"longitude": "-34.9022500",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Fosfato",
+				"west": "Caetés Velho",
+				"north": "Igarassu",
+				"south": "Paulista"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2600054
+		},
+		"created_at": "2026-07-22T00:51:15.019Z",
+		"updated_at": "2026-07-22T00:51:15.019Z",
+		"counts": [
+			{
+				"id": 164,
+				"date": "2026-04-27",
+				"total_cyclists": 989,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 147,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 61,
+					"helmet": 40,
+					"cargo": 114,
+					"motor": 1,
+					"ride": 24,
+					"rain": 0,
+					"sidewalk": 138,
+					"wrong_way": 165,
+					"juveniles": 99,
+					"service": 21,
+					"shared_bike": 0,
+					"other_behaviors": 0,
+					"other_active_modes": 96,
+					"others": 0
+				},
+				"notes": null
+			}
+		]
+	},
+	{
+		"id": 90,
+		"name": "Av.17 de Agosto x Rua Alfredo Fernandes",
+		"city": "Recife",
+		"state": "PE",
+		"latitude": "-8.0365011",
+		"longitude": "-34.9142649",
+		"metadata": {
+			"is_rmr": true,
+			"directions": {
+				"east": "Parnamirim",
+				"west": "Casa Forte",
+				"north": "Alfredo Fernandes",
+				"south": "Vintém"
+			},
+			"state_full": "Pernambuco",
+			"ibge_city_id": 2611606
+		},
+		"created_at": "2026-07-22T00:51:15.120Z",
+		"updated_at": "2026-07-22T00:51:15.120Z",
+		"counts": [
+			{
+				"id": 166,
+				"date": "2024-04-11",
+				"total_cyclists": 1698,
+				"start_time": "06:00:00",
+				"end_time": "20:00:00",
+				"max_hour_cyclists": 203,
+				"weather_conditions": null,
+				"characteristics": {
+					"women": 166,
+					"helmet": 65,
+					"cargo": 119,
+					"motor": 24,
+					"ride": 74,
+					"rain": 0,
+					"sidewalk": 159,
+					"wrong_way": 104,
+					"juveniles": 29,
+					"service": 54,
+					"shared_bike": 141,
+					"other_behaviors": 0,
+					"other_active_modes": 32,
+					"others": 12
+				},
+				"notes": null
+			}
+		]
+	}
+]

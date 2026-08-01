@@ -1,0 +1,59 @@
+{
+	"city": "PASSIRA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 6,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 3
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 1,
+			"Removido por Particulares": 2
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 35,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Óbito no Local/Atendimento": 3,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 57,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 9,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 22,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 41,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 7,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 66,
+			"Desistência da solicitação": 3,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 5,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 11,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 10
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 12,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		}
+	}
+}

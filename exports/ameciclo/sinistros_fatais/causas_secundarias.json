@@ -1,0 +1,305 @@
+{
+	"causas": [
+		{
+			"codigo": "S069",
+			"descricao": "Traumatismo intracraniano",
+			"total": 81585,
+			"percentual": 26.4
+		},
+		{
+			"codigo": "T07X",
+			"descricao": "Traumatismos múltiplos",
+			"total": 70034,
+			"percentual": 22.7
+		},
+		{
+			"codigo": "T794",
+			"descricao": "Algumas complicações precoces dos traumatismos ",
+			"total": 28343,
+			"percentual": 9.2
+		},
+		{
+			"codigo": "T792",
+			"descricao": "Algumas complicações precoces dos traumatismos ",
+			"total": 22714,
+			"percentual": 7.4
+		},
+		{
+			"codigo": "S068",
+			"descricao": "Traumatismo intracraniano",
+			"total": 15190,
+			"percentual": 4.9
+		},
+		{
+			"codigo": "A419",
+			"descricao": "Outras septicemias",
+			"total": 7190,
+			"percentual": 2.3
+		},
+		{
+			"codigo": "S099",
+			"descricao": "Outros traumatismos da cabeças",
+			"total": 7064,
+			"percentual": 2.3
+		},
+		{
+			"codigo": "R571",
+			"descricao": "Choque não classificado em outra parte",
+			"total": 6871,
+			"percentual": 2.2
+		},
+		{
+			"codigo": "S062",
+			"descricao": "Traumatismo intracraniano",
+			"total": 4076,
+			"percentual": 1.3
+		},
+		{
+			"codigo": "R092",
+			"descricao": "Outros sintomas e sinais relativos aos aparelhos circulatório e respiratório",
+			"total": 3774,
+			"percentual": 1.2
+		},
+		{
+			"codigo": "S299",
+			"descricao": "Outros traumatismos do tórax",
+			"total": 3720,
+			"percentual": 1.2
+		},
+		{
+			"codigo": "T093",
+			"descricao": "Outros traumatismos de coluna e tronco, nível não especificado",
+			"total": 3498,
+			"percentual": 1.1
+		},
+		{
+			"codigo": "T798",
+			"descricao": "Algumas complicações precoces dos traumatismos ",
+			"total": 3126,
+			"percentual": 1
+		},
+		{
+			"codigo": "R58X",
+			"descricao": "Hemorragia não classificada em outra parte",
+			"total": 2802,
+			"percentual": 0.9
+		},
+		{
+			"codigo": "S061",
+			"descricao": "Traumatismo intracraniano",
+			"total": 2608,
+			"percentual": 0.8
+		},
+		{
+			"codigo": "T71X",
+			"descricao": "Asfixia",
+			"total": 2412,
+			"percentual": 0.8
+		},
+		{
+			"codigo": "R578",
+			"descricao": "Choque não classificado em outra parte",
+			"total": 2354,
+			"percentual": 0.8
+		},
+		{
+			"codigo": "V892",
+			"descricao": "Acidente com um veículo a motor ou não-motorizado, tipo(s) de veículo(s) não especificado(s)",
+			"total": 2136,
+			"percentual": 0.7
+		},
+		{
+			"codigo": "J960",
+			"descricao": "Insuficiência respiratória não classificada de outra parte",
+			"total": 1954,
+			"percentual": 0.6
+		},
+		{
+			"codigo": "S065",
+			"descricao": "Traumatismo intracraniano",
+			"total": 1891,
+			"percentual": 0.6
+		},
+		{
+			"codigo": "T793",
+			"descricao": "Algumas complicações precoces dos traumatismos ",
+			"total": 1826,
+			"percentual": 0.6
+		},
+		{
+			"codigo": "I269",
+			"descricao": "Embolia pulmonar",
+			"total": 1814,
+			"percentual": 0.6
+		},
+		{
+			"codigo": "V499",
+			"descricao": "Ocupante de um automóvel [carro] traumatizado em outro acidentes de transporte e em acidentes de transporte não especificados",
+			"total": 1791,
+			"percentual": 0.6
+		},
+		{
+			"codigo": "V299",
+			"descricao": "Motociclista traumatizado em outros acidentes de transporte e em acidentes de transporte não especificados",
+			"total": 1657,
+			"percentual": 0.5
+		},
+		{
+			"codigo": "S066",
+			"descricao": "Traumatismo intracraniano",
+			"total": 1598,
+			"percentual": 0.5
+		},
+		{
+			"codigo": "S029",
+			"descricao": "Fratura do crânio e dos ossos da face",
+			"total": 1533,
+			"percentual": 0.5
+		},
+		{
+			"codigo": "S141",
+			"descricao": "Traumatismo de nervos e da medula espinhal ao nível cervical",
+			"total": 1522,
+			"percentual": 0.5
+		},
+		{
+			"codigo": "V899",
+			"descricao": "Acidente com um veículo a motor ou não-motorizado, tipo(s) de veículo(s) não especificado(s)",
+			"total": 1514,
+			"percentual": 0.5
+		},
+		{
+			"codigo": "S271",
+			"descricao": "Traumatismo de outros órgãos intratorácicos",
+			"total": 1490,
+			"percentual": 0.5
+		},
+		{
+			"codigo": "V093",
+			"descricao": "Pedestre traumatizado em outros acidentes de transporte e em acidentes de transporte não especificados",
+			"total": 1468,
+			"percentual": 0.5
+		},
+		{
+			"codigo": "S129",
+			"descricao": "Fratura do pescoço",
+			"total": 1298,
+			"percentual": 0.4
+		},
+		{
+			"codigo": "J969",
+			"descricao": "Insuficiência respiratória não classificada de outra parte",
+			"total": 1275,
+			"percentual": 0.4
+		},
+		{
+			"codigo": "V234",
+			"descricao": "Motociclista traumatizado em colisão com um automóvel [carro], \"pick up\" ou caminhonete",
+			"total": 1230,
+			"percentual": 0.4
+		},
+		{
+			"codigo": "R579",
+			"descricao": "Choque não classificado em outra parte",
+			"total": 1208,
+			"percentual": 0.4
+		},
+		{
+			"codigo": "R688",
+			"descricao": "Outros sintomas e sinais gerais",
+			"total": 1156,
+			"percentual": 0.4
+		},
+		{
+			"codigo": "R570",
+			"descricao": "Choque não classificado em outra parte",
+			"total": 1145,
+			"percentual": 0.4
+		},
+		{
+			"codigo": "V031",
+			"descricao": "Pedestre traumatizado em colisão com um automóvel [carro], \"pick up\" ou caminhonete",
+			"total": 1114,
+			"percentual": 0.4
+		},
+		{
+			"codigo": "J80X",
+			"descricao": "Síndrome do desconforto respiratório do adulto",
+			"total": 1083,
+			"percentual": 0.4
+		},
+		{
+			"codigo": "S063",
+			"descricao": "Traumatismo intracraniano",
+			"total": 1026,
+			"percentual": 0.3
+		},
+		{
+			"codigo": "D62X",
+			"descricao": "Anemia aguda pós-hemorrágica",
+			"total": 1022,
+			"percentual": 0.3
+		},
+		{
+			"codigo": "I469",
+			"descricao": "Parada cardíaca",
+			"total": 1006,
+			"percentual": 0.3
+		},
+		{
+			"codigo": "S399",
+			"descricao": "Outros traumatismos do abdome, do dorso e da pelve",
+			"total": 954,
+			"percentual": 0.3
+		},
+		{
+			"codigo": "I619",
+			"descricao": "Hemorragia intracerebral",
+			"total": 920,
+			"percentual": 0.3
+		},
+		{
+			"codigo": "G932",
+			"descricao": "Outros transtornos do encéfalo",
+			"total": 837,
+			"percentual": 0.3
+		},
+		{
+			"codigo": "S071",
+			"descricao": "Lesões por esmagamento da cabeça",
+			"total": 756,
+			"percentual": 0.2
+		},
+		{
+			"codigo": "T145",
+			"descricao": "Traumatismo de região não especificada do corpo",
+			"total": 695,
+			"percentual": 0.2
+		},
+		{
+			"codigo": "V041",
+			"descricao": "Pedestre traumatizado em colisão com um veículo de transporte pesado ou com um ônibus",
+			"total": 690,
+			"percentual": 0.2
+		},
+		{
+			"codigo": "S097",
+			"descricao": "Outros traumatismos da cabeças",
+			"total": 688,
+			"percentual": 0.2
+		},
+		{
+			"codigo": "V284",
+			"descricao": "Motociclista traumatizado em um acidente de transporte sem colisão",
+			"total": 673,
+			"percentual": 0.2
+		},
+		{
+			"codigo": "V244",
+			"descricao": "Motociclista traumatizado em colisão com um veículo de transporte pesado ou um ônibus",
+			"total": 667,
+			"percentual": 0.2
+		}
+	],
+	"total": 308998
+}

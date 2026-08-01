@@ -1,0 +1,46 @@
+{
+	"city": "CHA DE ALEGRIA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 6,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 80,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 74,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 9,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 39,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Não necessita/Sem Condições Clínicas": 1,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 21,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 6,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 28,
+			"Removido por Particulares": 3
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 8,
+			"Desistência da solicitação": 1,
+			"Removido por Particulares": 1
+		}
+	}
+}

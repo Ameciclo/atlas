@@ -6,3 +6,5 @@ export {
 	emergencyCalls,
 	selectEmergencyCallSchema,
 } from "@atlas/database/schemas/emergency-calls";
+
+export { pcrStreets } from "@atlas/database/schemas/pcr-streets";

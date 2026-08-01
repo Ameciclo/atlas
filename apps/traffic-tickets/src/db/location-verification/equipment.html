@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Correcao de Equipamentos - Traffic Tickets</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .header {
+    background: #16213e;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #0f3460;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .header h1 { color: #e94560; font-size: 16px; }
+  .header a { color: #888; font-size: 12px; text-decoration: none; }
+  .header a:hover { color: #e94560; }
+
+  .tabs {
+    display: flex;
+    background: #16213e;
+    border-bottom: 1px solid #0f3460;
+    flex-shrink: 0;
+    padding: 0 20px;
+  }
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #888;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+  }
+  .tab:hover { color: #e0e0e0; }
+  .tab.active { color: #e94560; border-bottom-color: #e94560; }
+
+  .filters {
+    display: flex;
+    gap: 14px;
+    padding: 10px 20px;
+    background: #1a1a2e;
+    flex-shrink: 0;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #0f3460;
+  }
+  .filters label { font-size: 12px; color: #888; white-space: nowrap; }
+  .filters input[type="checkbox"] { margin-right: 4px; }
+  .filters input[type="text"] {
+    background: #0f3460;
+    border: 1px solid #e94560;
+    border-radius: 4px;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 12px;
+    width: 160px;
+  }
+  .filters input:focus { outline: none; border-color: #ff6b8a; }
+
+  .stats-line {
+    padding: 8px 20px;
+    color: #888;
+    font-size: 12px;
+    background: #1a1a2e;
+    flex-shrink: 0;
+  }
+
+  .table-wrap {
+    flex: 1;
+    overflow-y: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    position: sticky;
+    top: 0;
+    background: #16213e;
+    color: #888;
+    font-size: 11px;
+    text-transform: uppercase;
+    padding: 7px 8px;
+    text-align: left;
+    z-index: 1;
+  }
+  td { padding: 6px 8px; border-bottom: 1px solid #16213e; vertical-align: middle; }
+  tr:hover { background: #0f346020; }
+  tr.corrected { background: #2d6a4f15; }
+  tr.low-score td.score { color: #d4a013; font-weight: bold; }
+  tr.selected { background: #e9456020; }
+
+  .raw-loc { font-size: 12px; max-width: 250px; word-break: break-word; }
+  .street-name { font-weight: bold; }
+  .vio-count { color: #e94560; font-weight: bold; text-align: right; white-space: nowrap; }
+  .score-cell { text-align: center; }
+
+  .btn {
+    border: none;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-correct { background: #9b2226; color: white; }
+  .btn-ok { background: #2d6a4f; color: white; }
+  .btn-ok-outline { background: transparent; border: 1px solid #2d6a4f; color: #2d6a4f; }
+
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: #16213e;
+    border-radius: 12px;
+    padding: 24px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .modal h3 { margin-bottom: 12px; color: #e94560; }
+  .modal label { font-size: 12px; color: #888; display: block; margin-top: 8px; }
+  .modal label:first-of-type { margin-top: 0; }
+  .modal input[type="text"] {
+    width: 100%;
+    background: #0f3460;
+    border: 1px solid #e94560;
+    border-radius: 6px;
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  .modal .info-box {
+    background: #0f3460;
+    padding: 8px;
+    border-radius: 6px;
+    margin: 4px 0 8px;
+    font-size: 13px;
+    word-break: break-word;
+  }
+  .modal .current { border: 1px solid #9b2226; }
+
+  .search-wrap { position: relative; }
+  .search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 180px;
+    overflow-y: auto;
+    background: #0f3460;
+    border: 1px solid #e94560;
+    border-radius: 0 0 6px 6px;
+    z-index: 10;
+    display: none;
+  }
+  .search-results.active { display: block; }
+  .search-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    border-bottom: 1px solid #16213e;
+  }
+  .search-item:hover { background: #e94560; }
+  .search-item .code { color:#888; font-size:11px; margin-left:6px; }
+
+  .badge-sem { background:#d4a013;color:#000;padding:1px 6px;border-radius:8px;font-size:10px;font-weight:bold; }
+  .row-checkbox { width:16px; height:16px; accent-color:#e94560; cursor:pointer; margin:0; }
+  #select-all { width:16px; height:16px; accent-color:#e94560; cursor:pointer; margin:0; }
+  .batch-list { max-height:120px; overflow-y:auto; background:#0f3460; border-radius:6px; padding:8px; margin:4px 0 8px; font-size:12px; }
+  .batch-list .item { padding:2px 0; border-bottom:1px solid #16213e; }
+  .batch-list .item:last-child { border-bottom:none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Correcao de Mapas de Equipamento</h1>
+  <div>
+    <a href="/">Verificacao individual</a> &nbsp;
+    <a href="/streets">Verificacao por rua</a> &nbsp;
+    <a href="/limbo" style="color:#d4a013;">Limbo</a>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" id="tab-sem" onclick="switchTab('sem')">Semaforos</div>
+  <div class="tab" id="tab-post" onclick="switchTab('post')">Postes</div>
+</div>
+
+<div class="filters" id="filters">
+  <label><input type="checkbox" id="filt-low" checked onchange="renderTable()"> Baixa confianca (&lt;0.80)</label>
+  <label><input type="checkbox" id="filt-vio" checked onchange="renderTable()"> So com infracoes</label>
+  <label><input type="checkbox" id="filt-uncorrected" onchange="renderTable()"> So nao revisados</label>
+  <label>Buscar: <input type="text" id="filt-search" oninput="renderTable()" placeholder="nome da rua ou codigo..."></label>
+  <button class="btn btn-correct" id="batch-btn" onclick="openBatchCorrection()" style="display:none;">Corrigir selecionados (<span id="batch-count">0</span>)</button>
+  <button class="btn btn-ok-outline" id="batch-ok-btn" onclick="markOKBatch()" style="display:none;">OK selecionados (<span id="batch-ok-count">0</span>)</button>
+  <button class="btn btn-skip" id="range-btn" onclick="selectRange()" style="display:none;">Selecionar intervalo</button>
+</div>
+
+<div class="stats-line" id="stats-line">Carregando...</div>
+
+<div class="table-wrap">
+  <table id="data-table">
+    <thead>
+      <tr>
+        <th style="width:30px;padding:0 4px;"><input type="checkbox" id="select-all" onchange="toggleSelectAll()" title="Selecionar todos"></th>
+        <th onclick="setSort('id')" style="cursor:pointer;">ID <span id="sort-id"></span></th>
+        <th onclick="setSort('loc')" style="cursor:pointer;">Loc <span id="sort-loc"></span></th>
+        <th onclick="setSort('raw')" style="cursor:pointer;">Raw location <span id="sort-raw"></span></th>
+        <th onclick="setSort('street')" style="cursor:pointer;">Matched street <span id="sort-street"></span></th>
+        <th onclick="setSort('score')" style="cursor:pointer;">Score <span id="sort-score"></span></th>
+        <th onclick="setSort('vio')" style="cursor:pointer;">Infracoes <span id="sort-vio"></span></th>
+        <th onclick="setSort('corr')" style="cursor:pointer;">Corrigido? <span id="sort-corr"></span></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+    </tbody>
+  </table>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h3>Corrigir match de equipamento</h3>
+    <div id="modal-batch-info" style="display:none;">
+      <label>Itens selecionados (<span id="modal-batch-count">0</span>)</label>
+      <div class="batch-list" id="modal-batch-list"></div>
+    </div>
+    <p style="margin-bottom:6px;font-size:12px;color:#888;" id="modal-eq-id"></p>
+    <label>Raw location (dado original do equipamento)</label>
+    <div class="info-box" id="modal-raw"></div>
+    <label>Match atual (errado)</label>
+    <div class="info-box current" id="modal-current"></div>
+    <label>Buscar rua correta</label>
+    <div class="search-wrap">
+      <input type="text" id="modal-search" placeholder="Nome da rua...">
+      <div class="search-results" id="modal-search-results"></div>
+    </div>
+    <label>Corrected street</label>
+    <input type="text" id="modal-corrected-street" placeholder="Selecionado da busca..." readonly>
+    <label>Corrected code</label>
+    <input type="text" id="modal-corrected-code" placeholder="Selecionado da busca..." readonly>
+    <label>Notas</label>
+    <input type="text" id="modal-notes" placeholder="Opcional...">
+    <div style="display:flex;gap:8px;margin-top:12px;">
+      <button class="btn btn-correct" onclick="confirmCorrection()">Salvar correcao</button>
+      <button class="btn btn-ok" onclick="closeModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let activeTab = 'sem';
+let allSem = [];
+let allPost = [];
+let pendingCorrection = null;
+let searchTimer = null;
+let sortCol = 'vio';
+let sortDir = -1;  // -1 = desc, 1 = asc
+let lastCheckIdx = null;
+
+async function loadData() {
+  document.getElementById('stats-line').textContent = 'Carregando...';
+  const [sr, pr] = await Promise.all([
+    fetch('/api/equipment/semaphores'),
+    fetch('/api/equipment/posts'),
+  ]);
+  allSem = await sr.json();
+  allPost = await pr.json();
+  renderTable();
+}
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.getElementById('tab-sem').classList.toggle('active', tab === 'sem');
+  document.getElementById('tab-post').classList.toggle('active', tab === 'post');
+  renderTable();
+}
+
+function getFilteredData() {
+  const data = activeTab === 'sem' ? allSem : allPost;
+  const onlyLow = document.getElementById('filt-low').checked;
+  const onlyVio = document.getElementById('filt-vio').checked;
+  const onlyUncorrected = document.getElementById('filt-uncorrected').checked;
+  const search = (document.getElementById('filt-search').value || '').toLowerCase();
+
+  return data.filter(d => {
+    if (onlyLow) {
+      const score = parseFloat(d.score);
+      if (score >= 0.80) return false;
+    }
+    if (onlyVio && (d.violations || 0) === 0) return false;
+    if (onlyUncorrected && d.corrected_code) return false;
+    if (onlyUncorrected && d.verified === 'true') return false;
+    if (search) {
+      const street = (d.street_name || '').toLowerCase();
+      const corrName = (d.corrected_name || '').toLowerCase();
+      const code = (d.street_code || '').toLowerCase();
+      const raw = activeTab === 'sem' ? (d.raw_location || '').toLowerCase() : (d.raw_address || '').toLowerCase();
+      const sid = activeTab === 'sem' ? d.semaforo : d.post_code;
+      if (!street.includes(search) && !corrName.includes(search) && !code.includes(search) && !raw.includes(search) && !sid.includes(search)) return false;
+    }
+    return true;
+  });
+}
+
+function setSort(col) {
+  if (sortCol === col) {
+    sortDir = -sortDir;
+  } else {
+    sortCol = col;
+    sortDir = -1;
+  }
+  renderTable();
+}
+
+function updateSortIndicators() {
+  const cols = ['id', 'loc', 'raw', 'street', 'score', 'vio', 'corr'];
+  cols.forEach(c => {
+    const el = document.getElementById('sort-' + c);
+    if (!el) return;
+    if (c === sortCol) {
+      el.textContent = sortDir === -1 ? ' ▼' : ' ▲';
+    } else {
+      el.textContent = '';
+    }
+  });
+}
+
+function sortKey(d) {
+  switch (sortCol) {
+    case 'id': return activeTab === 'sem' ? parseInt(d.semaforo || 0) : (d.post_code || '');
+    case 'loc': return parseInt(d.location_index || 0);
+    case 'raw': return (activeTab === 'sem' ? (d.raw_location || '') : (d.raw_address || '')).toLowerCase();
+    case 'street': return (d.street_name || '').toLowerCase();
+    case 'score': return parseFloat(d.score || 0);
+    case 'vio': return parseInt(d.violations || 0);
+    case 'corr': return (d.corrected_code ? 1 : 0);
+    default: return 0;
+  }
+}
+
+function renderTable() {
+  let data = getFilteredData();
+
+  // Sort
+  data.sort((a, b) => {
+    const ka = sortKey(a), kb = sortKey(b);
+    if (ka < kb) return -sortDir;
+    if (ka > kb) return sortDir;
+    return 0;
+  });
+
+  updateSortIndicators();
+  const total = activeTab === 'sem' ? allSem.length : allPost.length;
+  const allData = activeTab === 'sem' ? allSem : allPost;
+  const corrected = allData.filter(d => d.corrected_code).length;
+  const verified = allData.filter(d => d.verified === 'true').length;
+
+  let shownByScore = { low: 0, ok: 0 };
+  data.forEach(d => { const s = parseFloat(d.score); (s < 0.80) ? shownByScore.low++ : shownByScore.ok++; });
+
+  document.getElementById('stats-line').textContent =
+    `Mostrando ${data.length} de ${total} | Corrigidos: ${corrected} | OK: ${verified} | Baixa confianca: ${shownByScore.low} | OK score: ${shownByScore.ok}`;
+
+  document.getElementById('table-body').innerHTML = data.map((d, idx) => {
+    let id, rawLabel;
+    if (activeTab === 'sem') {
+      id = `S${d.semaforo}${d.location_index ? '.' + d.location_index : ''}`;
+      rawLabel = esc(d.raw_location || '');
+    } else {
+      id = d.post_code;
+      rawLabel = esc(d.raw_address || '');
+    }
+
+    const score = parseFloat(d.score);
+    const scoreClass = score < 0.80 ? 'low-score' : '';
+    const isCorrected = d.corrected_code ? true : false;
+    const isVerified = d.verified === 'true';
+    const rowClass = (isCorrected || isVerified) ? 'corrected' : '';
+
+    let streetHtml;
+    if (isCorrected) {
+      streetHtml = `<span style="color:#2d6a4f;font-weight:bold;">${esc(d.corrected_name)}</span> <span style="color:#2d6a4f;font-size:10px;">[${d.corrected_code}]</span>`;
+      streetHtml += '<br><span style="color:#666;font-size:10px;text-decoration:line-through;">' + esc(d.street_name) + ' [' + d.street_code + ']</span>';
+    } else {
+      streetHtml = `<span class="street-name">${esc(d.street_name)}</span> <span style="color:#888;font-size:10px;">[${d.street_code}]</span>`;
+    }
+
+    let statusHtml;
+    if (isVerified) {
+      statusHtml = '<span style="color:#2d6a4f;font-size:11px;">OK</span>';
+    } else if (isCorrected) {
+      statusHtml = '<span style="color:#2d6a4f;font-size:11px;">Corrigido</span>';
+    } else {
+      statusHtml = '<span style="color:#888;font-size:11px;">-</span>';
+    }
+
+    return `<tr class="${rowClass}" data-filtered-idx="${idx}">
+      <td><input type="checkbox" class="row-checkbox" data-idx="${idx}" onchange="onCheckboxChange(event, ${idx})"></td>
+      <td>${id}</td>
+      <td>${activeTab === 'sem' ? `<span class="badge-sem">${d.location_index || '?'}</span>` : ''}</td>
+      <td class="raw-loc">${rawLabel}</td>
+      <td>${streetHtml}</td>
+      <td class="score-cell ${scoreClass}">${d.score}</td>
+      <td class="vio-count">${(d.violations || 0).toLocaleString()}</td>
+      <td>${statusHtml}</td>
+      <td>
+        <button class="btn btn-correct" onclick="openCorrection(${idx})">Corrigir</button>
+        ${!isVerified ? `<button class="btn btn-ok-outline" onclick="markOK(${idx})">OK</button>` : ''}
+      </td>
+    </tr>`;
+  }).join('');
+
+  window._filteredData = data;
+  document.getElementById('select-all').checked = false;
+  document.getElementById('batch-btn').style.display = 'none';
+  document.getElementById('batch-ok-btn').style.display = 'none';
+  document.getElementById('range-btn').style.display = 'none';
+  lastCheckIdx = null;
+}
+
+function openCorrection(idx) {
+  window._batchMode = false;
+  document.getElementById('modal-batch-info').style.display = 'none';
+
+  const d = window._filteredData[idx];
+  if (!d) return;
+
+  const equipType = activeTab;
+  const equipId = activeTab === 'sem' ? d.semaforo : d.post_code;
+  const locIndex = activeTab === 'sem' ? (d.location_index || '') : '';
+  const rawLoc = activeTab === 'sem' ? (d.raw_location || '') : (d.raw_address || '');
+
+  pendingCorrection = {
+    equip_type: equipType,
+    equip_id: equipId,
+    location_index: locIndex,
+    raw_loc: rawLoc,
+    current_name: d.street_name,
+    current_code: d.street_code,
+    data_ref: d,
+  };
+
+  document.getElementById('modal-eq-id').textContent = (equipType === 'sem' ? 'Semaforo ' : 'Poste ') + equipId;
+  document.getElementById('modal-raw').textContent = rawLoc;
+  document.getElementById('modal-current').textContent = d.street_name + ' [' + d.street_code + ']';
+  document.getElementById('modal-corrected-street').value = '';
+  document.getElementById('modal-corrected-code').value = '';
+  document.getElementById('modal-notes').value = '';
+  document.getElementById('modal-search').value = '';
+  document.getElementById('modal-search-results').innerHTML = '';
+  document.getElementById('modal-search-results').classList.remove('active');
+  document.getElementById('modal').classList.add('active');
+  document.getElementById('modal-search').focus();
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+  document.getElementById('modal-batch-info').style.display = 'none';
+  window._batchMode = false;
+}
+
+async function confirmCorrection() {
+  const correctedStreet = document.getElementById('modal-corrected-street').value;
+  const correctedCode = document.getElementById('modal-corrected-code').value;
+  const notes = document.getElementById('modal-notes').value;
+
+  if (window._batchMode) {
+    const items = getSelectedItems();
+    closeModal();
+    if (items.length === 0) return;
+
+    await fetch('/api/equipment/batch-correct', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        items: items.map(it => ({
+          equip_type: it.equip_type,
+          equip_id: it.equip_id,
+          location_index: it.location_index,
+        })),
+        corrected_code: correctedCode,
+        corrected_name: correctedStreet,
+        notes: notes,
+      }),
+    });
+
+    for (const it of items) {
+      it.data_ref.corrected_code = correctedCode;
+      it.data_ref.corrected_name = correctedStreet;
+    }
+    renderTable();
+    return;
+  }
+
+  closeModal();
+  if (!pendingCorrection) return;
+
+  await fetch('/api/equipment/correct', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      equip_type: pendingCorrection.equip_type,
+      equip_id: pendingCorrection.equip_id,
+      location_index: pendingCorrection.location_index,
+      corrected_code: correctedCode,
+      corrected_name: correctedStreet,
+      notes: notes,
+    }),
+  });
+
+  if (pendingCorrection.data_ref) {
+    pendingCorrection.data_ref.corrected_code = correctedCode;
+    pendingCorrection.data_ref.corrected_name = correctedStreet;
+  }
+  renderTable();
+}
+
+function toggleSelectAll() {
+  const checked = document.getElementById('select-all').checked;
+  const allCbs = document.querySelectorAll('.row-checkbox');
+  allCbs.forEach(cb => { cb.checked = checked; });
+  lastCheckIdx = null;
+  updateBatchButton();
+}
+
+function onCheckboxChange(event, idx) {
+  lastCheckIdx = idx;
+  updateBatchButton();
+}
+
+function updateBatchButton() {
+  const count = document.querySelectorAll('.row-checkbox:checked').length;
+  document.getElementById('batch-btn').style.display = count > 0 ? '' : 'none';
+  document.getElementById('batch-count').textContent = count;
+  document.getElementById('batch-ok-btn').style.display = count > 0 ? '' : 'none';
+  document.getElementById('batch-ok-count').textContent = count;
+  document.getElementById('range-btn').style.display = count >= 2 ? '' : 'none';
+
+  document.querySelectorAll('.row-checkbox').forEach(cb => {
+    const tr = cb.closest('tr');
+    if (tr) tr.classList.toggle('selected', cb.checked);
+  });
+}
+
+function selectRange() {
+  const cbs = Array.from(document.querySelectorAll('.row-checkbox'));
+  const checked = cbs.filter(cb => cb.checked);
+  if (checked.length < 2) return;
+
+  let minIdx = Infinity;
+  let maxIdx = -Infinity;
+  checked.forEach(cb => {
+    const idx = parseInt(cb.getAttribute('data-idx'));
+    if (idx < minIdx) minIdx = idx;
+    if (idx > maxIdx) maxIdx = idx;
+  });
+
+  cbs.forEach(cb => {
+    const idx = parseInt(cb.getAttribute('data-idx'));
+    if (idx >= minIdx && idx <= maxIdx) {
+      cb.checked = true;
+    }
+  });
+
+  updateBatchButton();
+}
+
+function getSelectedItems() {
+  const items = [];
+  document.querySelectorAll('.row-checkbox:checked').forEach(cb => {
+    const idx = parseInt(cb.getAttribute('data-idx'));
+    const d = window._filteredData[idx];
+    if (d) {
+      items.push({
+        equip_type: activeTab,
+        equip_id: activeTab === 'sem' ? d.semaforo : d.post_code,
+        location_index: activeTab === 'sem' ? (d.location_index || '') : '',
+        raw_loc: activeTab === 'sem' ? (d.raw_location || '') : (d.raw_address || ''),
+        current_name: d.street_name,
+        current_code: d.street_code,
+        data_ref: d,
+      });
+    }
+  });
+  return items;
+}
+
+function openBatchCorrection() {
+  const items = getSelectedItems();
+  if (items.length === 0) return;
+
+  window._batchMode = true;
+  pendingCorrection = null;
+
+  document.getElementById('modal-eq-id').textContent = '';
+  document.getElementById('modal-raw').textContent = '';
+  document.getElementById('modal-current').textContent = '';
+
+  document.getElementById('modal-batch-info').style.display = 'block';
+  document.getElementById('modal-batch-count').textContent = items.length;
+  document.getElementById('modal-batch-list').innerHTML = items.map(it => {
+    const id = activeTab === 'sem'
+      ? 'S' + it.equip_id + (it.location_index ? '.' + it.location_index : '')
+      : it.equip_id;
+    return `<div class="item">${esc(id)} - ${esc(it.current_name)} [${it.current_code}]</div>`;
+  }).join('');
+
+  document.getElementById('modal-corrected-street').value = '';
+  document.getElementById('modal-corrected-code').value = '';
+  document.getElementById('modal-notes').value = '';
+  document.getElementById('modal-search').value = '';
+  document.getElementById('modal-search-results').innerHTML = '';
+  document.getElementById('modal-search-results').classList.remove('active');
+  document.getElementById('modal').classList.add('active');
+  document.getElementById('modal-search').focus();
+}
+
+async function markOK(idx) {
+  const d = window._filteredData[idx];
+  if (!d) return;
+  const equipType = activeTab;
+  const equipId = activeTab === 'sem' ? d.semaforo : d.post_code;
+  const locIndex = activeTab === 'sem' ? (d.location_index || '') : '';
+
+  await fetch('/api/equipment/mark-ok', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      equip_type: equipType,
+      equip_id: equipId,
+      location_index: locIndex,
+    }),
+  });
+
+  d.verified = 'true';
+  d.corrected_code = '';
+  d.corrected_name = '';
+  renderTable();
+}
+
+async function markOKBatch() {
+  const items = getSelectedItems();
+  if (items.length === 0) return;
+  if (!confirm(`Marcar ${items.length} equipamentos como OK?`)) return;
+
+  await fetch('/api/equipment/mark-ok-batch', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      items: items.map(it => ({
+        equip_type: it.equip_type,
+        equip_id: it.equip_id,
+        location_index: it.location_index,
+      })),
+    }),
+  });
+
+  for (const it of items) {
+    it.data_ref.verified = 'true';
+    it.data_ref.corrected_code = '';
+    it.data_ref.corrected_name = '';
+  }
+  renderTable();
+}
+
+async function searchStreets(q) {
+  const resultsEl = document.getElementById('modal-search-results');
+  if (!q || q.length < 2) { resultsEl.classList.remove('active'); resultsEl.innerHTML = ''; return; }
+  const r = await fetch('/api/streets/search?q=' + encodeURIComponent(q));
+  const streets = await r.json();
+  resultsEl.innerHTML = streets.map(s =>
+    `<div class="search-item" onclick="selectStreet('${escAttr(s.official_name)}', '${s.code}')">${esc(s.official_name)}<span class="code">${s.code}</span></div>`
+  ).join('');
+  resultsEl.classList.add('active');
+}
+
+function selectStreet(name, code) {
+  document.getElementById('modal-corrected-street').value = name;
+  document.getElementById('modal-corrected-code').value = code;
+  document.getElementById('modal-search-results').classList.remove('active');
+  document.getElementById('modal-search-results').innerHTML = '';
+  document.getElementById('modal-search').value = name;
+}
+
+function esc(s) {
+  if (!s) return '';
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+function escAttr(s) {
+  if (!s) return '';
+  return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+document.getElementById('modal-search').addEventListener('input', function() {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => searchStreets(this.value), 250);
+});
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+loadData();
+</script>
+</body>
+</html>

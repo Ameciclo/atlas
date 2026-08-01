@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { sql } from "drizzle-orm";
 import type { DatabaseConfig } from "./connection.js";
 import { closeDatabase, createConnectedDatabase } from "./connection.js";
 import * as cyclingInfraSchema from "./schemas/cycling-infra/index.js";
@@ -119,11 +120,11 @@ function parseCSV(content: string): Record<string, string>[] {
 		});
 }
 
-export async function seedCyclingInfra(config: DatabaseConfig = {}) {
+export async function seedCyclingInfraStatic(config: DatabaseConfig = {}) {
 	const db = await createConnectedDatabase(config);
 
 	try {
-		console.log("🌱 Starting cycling infrastructure seed...\n");
+		console.log("🌱 Starting cycling infrastructure static seed...\n");
 
 		const dataPath = join(__dirname, "../../../apps/cycling-infra/src/db");
 
@@ -184,10 +185,22 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 		await db
 			.insert(cyclingInfraSchema.cyclistInfraRelations)
 			.values(relationsToInsert)
-			.onConflictDoNothing();
+			.onConflictDoUpdate({
+				target: [cyclingInfraSchema.cyclistInfraRelations.pdc_ref],
+				set: {
+					pdc_typology: sql`EXCLUDED.pdc_typology`,
+					name: sql`EXCLUDED.name`,
+					osm_id: sql`EXCLUDED.osm_id`,
+					pdc_stretch: sql`EXCLUDED.pdc_stretch`,
+					pdc_cities: sql`EXCLUDED.pdc_cities`,
+					pdc_notes: sql`EXCLUDED.pdc_notes`,
+					notes: sql`EXCLUDED.notes`,
+					pdc_km: sql`EXCLUDED.pdc_km`,
+				},
+			});
 		console.log(`✅ Inserted ${relationsToInsert.length} relations\n`);
 
-		// 2.5. Seed Relation-Cities relationships
+		// 3. Seed Relation-Cities relationships
 		console.log("🔗 Loading relation-cities...");
 		const relationCitiesContent = await readFile(
 			join(dataPath, "relations_cities.csv"),
@@ -200,7 +213,6 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 
 		const relationCitiesToInsert = relationCitiesData
 			.map((row) => {
-				// Clean up keys and values from \r characters
 				const cleanRow: Record<string, string> = {};
 				for (const [key, value] of Object.entries(row)) {
 					const cleanKey = key.replace(/\r/g, "");
@@ -232,13 +244,77 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 		await db
 			.insert(cyclingInfraSchema.cyclistInfraRelationCities)
 			.values(relationCitiesToInsert)
-			.onConflictDoNothing();
+			.onConflictDoNothing({
+				target: [
+					cyclingInfraSchema.cyclistInfraRelationCities.relation_id,
+					cyclingInfraSchema.cyclistInfraRelationCities.city_id,
+				],
+			});
 
 		console.log(
 			`✅ Inserted ${relationCitiesToInsert.length} relation-city relationships\n`,
 		);
 
-		// 3. Seed Ways (Processed OSM Data)
+		// 4. Seed City Boundaries (IBGE Municipal Limits)
+		console.log("🗺️ Loading city boundaries...");
+		const boundariesContent = await readFile(
+			join(dataPath, "pe_limites_municipais.geojson"),
+			"utf-8",
+		);
+		const boundariesData = JSON.parse(boundariesContent) as GeoJSONCollection;
+
+		console.log(`Found ${boundariesData.features.length} municipal boundaries`);
+
+		let insertedBoundaries = 0;
+		for (const feature of boundariesData.features) {
+			const cityId = parseInt(feature.properties.CD_MUN, 10);
+			const name = feature.properties.NM_MUN;
+
+			if (Number.isNaN(cityId) || !name) {
+				console.log(`  ⚠️ Skipping feature with invalid CD_MUN or NM_MUN`);
+				continue;
+			}
+
+			const geomJson = JSON.stringify(feature.geometry);
+
+			await db.execute(
+				sql`
+					INSERT INTO city_boundaries (city_id, name, boundary)
+					VALUES (${cityId}, ${name}, ST_GeomFromGeoJSON(${geomJson}))
+					ON CONFLICT (city_id) DO NOTHING
+				`,
+			);
+			insertedBoundaries++;
+		}
+		console.log(`✅ Inserted ${insertedBoundaries} municipal boundaries\n`);
+
+		console.log(
+			"✅ Cycling infrastructure static seed completed successfully!",
+		);
+
+		return {
+			cities: citiesToInsert.length,
+			relations: relationsToInsert.length,
+			relationCities: relationCitiesToInsert.length,
+			boundaries: insertedBoundaries,
+		};
+	} catch (error) {
+		console.error("❌ Error seeding cycling infrastructure static:", error);
+		throw error;
+	} finally {
+		await closeDatabase(db);
+	}
+}
+
+export async function seedCyclingInfra(config: DatabaseConfig = {}) {
+	const db = await createConnectedDatabase(config);
+
+	try {
+		console.log("🌱 Starting cycling infrastructure ways seed...\n");
+
+		const dataPath = join(__dirname, "../../../apps/cycling-infra/src/db");
+
+		// Carrega os dados em memória antes da transaction
 		console.log("🛣️ Loading processed ways...");
 		const waysContent = await readFile(
 			join(dataPath, "pdc_ways.json"),
@@ -246,9 +322,13 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 		);
 		const waysData = JSON.parse(waysContent);
 
-		console.log(`Found ${waysData.length} processed ways`);
+		console.log("🚴 Loading non-PDC ways...");
+		const nonPdcContent = await readFile(
+			join(dataPath, "non_pdc_ways.json"),
+			"utf-8",
+		);
+		const nonPdcData = JSON.parse(nonPdcContent);
 
-		// Get all relations to match relation_id
 		const allRelations = await db
 			.select()
 			.from(cyclingInfraSchema.cyclistInfraRelations);
@@ -270,21 +350,17 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 
 		const waysToInsert = waysData
 			.map((way: any) => {
-				// Parse GeoJSON from string (it's double-encoded)
 				const geojsonData = JSON.parse(way.geojson);
 				const geometry = geojsonData.features[0].geometry;
 
-				// Find relation by relation_id from JSON
 				let relationId = null;
 				if (
 					way.relation_id &&
 					way.relation_id !== 0 &&
 					way.relation_id !== "0"
 				) {
-					// Find relation by matching the relation_id from our processed data
 					relationId = relationMap.get(way.relation_id) || null;
 
-					// Debug first few
 					if (waysData.indexOf(way) < 3) {
 						console.log(
 							`Way ${way.osm_id}: relation_id=${way.relation_id} found=${relationId}`,
@@ -313,38 +389,13 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 			})
 			.filter((way: any) => way.coordinates !== null);
 
-		// Insert in batches
-		const batchSize = 1000;
-		for (let i = 0; i < waysToInsert.length; i += batchSize) {
-			const batch = waysToInsert.slice(i, i + batchSize);
-			await db
-				.insert(cyclingInfraSchema.pdcRelationWays)
-				.values(batch)
-				.onConflictDoNothing();
-			console.log(
-				`  ✓ Inserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(waysToInsert.length / batchSize)}`,
-			);
-		}
-		console.log(`✅ Inserted ${waysToInsert.length} ways\n`);
-
-		// 4. Seed Non-PDC Ways (existing cycling infrastructure)
-		console.log("🚴 Loading non-PDC ways...");
-		const nonPdcContent = await readFile(
-			join(dataPath, "non_pdc_ways.json"),
-			"utf-8",
-		);
-		const nonPdcData = JSON.parse(nonPdcContent);
-
-		console.log(`Found ${nonPdcData.length} non-PDC ways`);
-
 		const nonPdcToInsert = nonPdcData.map((way: any) => {
-			// Parse GeoJSON from string
 			const geojsonData = JSON.parse(way.geojson);
 			const geometry = geojsonData.features[0].geometry;
 
 			return {
 				osm_id: `way/${way.osm_id}`,
-				relation_id: null, // Non-PDC = null relation_id
+				relation_id: null,
 				name: way.name || null,
 				geometry_type: geometry?.type || "LineString",
 				coordinates: JSON.stringify(geometry),
@@ -362,103 +413,69 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 			};
 		});
 
-		// Insert in batches
-		for (let i = 0; i < nonPdcToInsert.length; i += batchSize) {
-			const batch = nonPdcToInsert.slice(i, i + batchSize);
-			await db
-				.insert(cyclingInfraSchema.pdcRelationWays)
-				.values(batch)
-				.onConflictDoNothing();
+		console.log(
+			`\n📦 Ready to seed: ${waysToInsert.length} PDC ways + ${nonPdcToInsert.length} non-PDC ways`,
+		);
+
+		// Safety net: remove non-PDC ways that duplicate PDC ways with has_cycleway=true.
+		// The Python ETL scripts should prevent this, but double-check at seed time.
+		const pdcOsmIds = new Set(
+			waysData
+				.filter(
+					(w: any) =>
+						w.has_cycleway === "True" ||
+						w.has_cycleway === true ||
+						w.has_cycleway === "true",
+				)
+				.map((w: any) => `way/${w.osm_id}`),
+		);
+		const dedupedNonPdc = nonPdcToInsert.filter(
+			(w: any) => !pdcOsmIds.has(w.osm_id),
+		);
+		if (dedupedNonPdc.length < nonPdcToInsert.length) {
 			console.log(
-				`  ✓ Inserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(nonPdcToInsert.length / batchSize)}`,
+				`\n⚠️  Removed ${nonPdcToInsert.length - dedupedNonPdc.length} non-PDC ways that overlap with PDC ways`,
 			);
 		}
-		console.log(`✅ Inserted ${nonPdcToInsert.length} non-PDC ways\n`);
 
-		// 5. Seed Ciclomapa Infrastructure
-		console.log("🚴 Loading ciclomapa data...");
-		const ciclomapaFiles = [
-			"ciclomapa-Recife, Pernambuco, Brasil.geojson",
-			"ciclomapa-Olinda, Pernambuco, Brasil.geojson",
-			"ciclomapa-Paulista, Pernambuco, Brasil.geojson",
-			"ciclomapa-Camaragibe, Pernambuco, Brasil.geojson",
-			"ciclomapa-São Lourenço da Mata, Pernambuco, Brasil.geojson",
-			"ciclomapa-Abreu e Lima, Pernambuco, Brasil.geojson",
-			"ciclomapa-Igarassu, Pernambuco, Brasil.geojson",
-			"ciclomapa-Cabo de Santo Agostinho, Pernambuco, Brasil.geojson",
-			"ciclomapa-Ipojuca, Pernambuco, Brasil.geojson",
-		];
+		// Transaction atômica: truncate + insert. Se algo falhar, rollback restaura dados antigos.
+		await db.transaction(async (tx) => {
+			console.log("\n🗑️ Truncating pdc_relation_ways...");
+			await tx.execute(sql`TRUNCATE TABLE pdc_relation_ways RESTART IDENTITY`);
+			console.log("✅ Truncated\n");
 
-		const cyclingTypes = [
-			"Ciclovia",
-			"Ciclofaixa",
-			"Ciclorrota",
-			"Calçada compartilhada",
-		];
-		const ciclomapaFeatures = [];
-		const osmIdsSeen = new Set();
-
-		for (const filename of ciclomapaFiles) {
-			try {
-				const filePath = join(dataPath, filename);
-				const content = await readFile(filePath, "utf-8");
-				const geojsonData = JSON.parse(content);
-
-				for (const feature of geojsonData.features) {
-					if (
-						feature.geometry?.type === "LineString" &&
-						cyclingTypes.includes(feature.properties?.type)
-					) {
-						const osmId = feature.id;
-						if (!osmId?.startsWith("way/") || osmIdsSeen.has(osmId)) {
-							continue;
-						}
-
-						osmIdsSeen.add(osmId);
-						ciclomapaFeatures.push({
-							osm_id: osmId,
-							name: feature.properties?.name || null,
-							infra_type: feature.properties.type,
-							coordinates: JSON.stringify(feature.geometry),
-							geojson: feature,
-						});
-					}
-				}
+			console.log(`🛣️ Inserting ${waysToInsert.length} PDC ways...`);
+			const batchSize = 1000;
+			for (let i = 0; i < waysToInsert.length; i += batchSize) {
+				const batch = waysToInsert.slice(i, i + batchSize);
+				await tx.insert(cyclingInfraSchema.pdcRelationWays).values(batch);
 				console.log(
-					`  ✓ Processed ${filename}: ${geojsonData.features.length} features`,
+					`  ✓ PDC batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(waysToInsert.length / batchSize)}`,
 				);
-			} catch (error) {
-				console.log(`  ⚠️ Skipped ${filename}: ${(error as Error).message}`);
 			}
-		}
+			console.log(`✅ Inserted ${waysToInsert.length} PDC ways`);
 
-		console.log(`Found ${ciclomapaFeatures.length} unique ciclomapa features`);
+			console.log(`\n🚴 Inserting ${dedupedNonPdc.length} non-PDC ways...`);
+			for (let i = 0; i < dedupedNonPdc.length; i += batchSize) {
+				const batch = dedupedNonPdc.slice(i, i + batchSize);
+				await tx.insert(cyclingInfraSchema.pdcRelationWays).values(batch);
+				console.log(
+					`  ✓ Non-PDC batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(dedupedNonPdc.length / batchSize)}`,
+				);
+			}
+			console.log(`✅ Inserted ${dedupedNonPdc.length} non-PDC ways`);
+		});
 
-		// Insert ciclomapa data in batches
-		for (let i = 0; i < ciclomapaFeatures.length; i += batchSize) {
-			const batch = ciclomapaFeatures.slice(i, i + batchSize);
-			await db
-				.insert(cyclingInfraSchema.ciclomapaInfra)
-				.values(batch)
-				.onConflictDoNothing();
-			console.log(
-				`  ✓ Inserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(ciclomapaFeatures.length / batchSize)}`,
-			);
-		}
-		console.log(`✅ Inserted ${ciclomapaFeatures.length} ciclomapa features\n`);
-
-		console.log("✅ Cycling infrastructure seed completed successfully!");
+		console.log(
+			"\n✅ Cycling infrastructure ways seed completed successfully!",
+		);
 
 		return {
-			cities: citiesToInsert.length,
-			relations: relationsToInsert.length,
-			relationCities: relationCitiesToInsert.length,
 			ways: waysToInsert.length,
-			nonPdcWays: nonPdcToInsert.length,
-			ciclomapa: ciclomapaFeatures.length,
+			nonPdcWays: dedupedNonPdc.length,
 		};
 	} catch (error) {
-		console.error("❌ Error seeding cycling infrastructure:", error);
+		console.error("❌ Error seeding cycling infrastructure ways:", error);
 		throw error;
 	} finally {
 		await closeDatabase(db);

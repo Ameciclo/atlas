@@ -1,0 +1,57 @@
+{
+	"city": "JOAO ALFREDO",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 6,
+			"Óbito no Local/Atendimento": 1
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 2,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 28,
+			"Desistência da solicitação": 1,
+			"Removido por Particulares": 10,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 45,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 7,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 8
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 26,
+			"Desistência da solicitação": 2,
+			"Óbito no Local/Atendimento": 1,
+			"Removido pelos Bombeiros/CIODS": 2,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 17,
+			"Desistência da solicitação": 5,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 14,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 17,
+			"Desistência da solicitação": 2,
+			"Recusa de Remoção": 3,
+			"Removido por Particulares": 12,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 2,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		}
+	}
+}

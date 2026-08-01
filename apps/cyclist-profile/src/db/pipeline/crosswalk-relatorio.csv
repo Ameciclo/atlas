@@ -1,0 +1,41 @@
+survey_year,survey_street,survey_total,survey_area,survey_hood,survey_lat,survey_lon,counting_name,counting_lat,counting_lon,distance_m,similarity,confidence,precisa_corrigir
+2018,Estrada de Belém x Rua Odorico Mendes,50,Área 2 - Área Intermediária,1177,-8.03216,-34.88138,Estrada de Belém x R. Odorico Mendes,-8.03216,-34.88138,0.0,1.0,exato,
+2021,Estrada de Belém x Rua Odorico Mendes,50,Área 2 - Área Intermediária,N/A,-8.03216,-34.88138,Estrada de Belém x R. Odorico Mendes,-8.03216,-34.88138,0.0,1.0,exato,
+2024,Av. Cruz Cabugá x Rua Dr. Jayme da Fonte,50,Área 1 - Área Central,N/A,-8,-34.9,Av. Cruz Cabugá x Rua Dr. Jayme da Fonte,-8.04448,-34.87489,5666.3,1.0,exato,SIM
+2024,Av. Guararapes x Av. Dantas Barreto,50,Área 1 - Área Central,N/A,-8,-34.9,Av. Guararapes x Av. Dantas Barreto,-8.06392,-34.87848,7492.1,1.0,exato,SIM
+2024,Estrada de Belém x Rua Odorico Mendes,50,Área 1 - Área Central,N/A,-8,-34.9,Estrada de Belém x R. Odorico Mendes,-8.03216,-34.88138,4122.1,1.0,exato,SIM
+2024,R. Souza Bandeira x R. Cantora Clara Nunes,50,Área 2 - Área Intermediária,N/A,-8,-34.9,R. Souza Bandeira x R. Cantora Clara Nunes,-8.04425,-34.91665,5250.8,1.0,exato,SIM
+2021,Avenida Arquiteto Luiz Nunes x Rua Engenheiro Alves de Souza,50,Área 3 - Área Periférica,N/A,-8.09803,-34.91224,R. Arquiteto Luiz Nunes X R. Eng. Alves de Souza,-8.09803,-34.91224,0.0,0.75,forte,
+2018,Avenida Arquiteto Luiz Nunes x Rua Engenheiro Alves de Souza,50,Área 3 - Área Periférica,N/A,-8.09803,-34.91224,R. Arquiteto Luiz Nunes X R. Eng. Alves de Souza,-8.09803,-34.91224,0.0,0.75,forte,
+2021,Avenida General San Martin x Avenida Abdias de Carvalho,50,Área 2 - Área Intermediária,N/A,-8.06046,-34.92576,Av. Abdias de Carvalho x Av. Gal. San Martin,-8.06046,-34.92576,0.0,0.75,forte,
+2021,Avenida Governador Agamenon Magalhães x Praça do Derby,50,Área 1 - Área Central,N/A,-8.05661,-34.89772,Av. Gov. Agamenon Magalhães x Praça do Derby - Pista Oeste,-8.05664,-34.89807,38.7,0.75,forte,
+2021,Avenida Visconde de Suassuna x Rua do Hospício,50,Área 1 - Área Central,N/A,-8.05508,-34.88226,Av. Visconde de Suassuna x R. do Hospício,-8.05508,-34.88226,0.0,0.75,forte,
+2024,Avenida General San Martin x Avenida Abdias de Carvalho,50,Área 3 - Área Periférica,N/A,-8,-34.9,Av. Abdias de Carvalho x Av. Gal. San Martin,-8.06046,-34.92576,7296.7,0.75,forte,SIM
+2024,Avenida Governador Agamenon Magalhães x Praça do Derby,49,Área 1 - Área Central,N/A,-8,-34.9,Av. Gov. Agamenon Magalhães x Praça do Derby - Pista Oeste,-8.05664,-34.89807,6301.7,0.75,forte,SIM
+2021,Rua dos Palmares x Rua 13 de Maio,51,Área 1 - Área Central,N/A,-8.04448,-34.87489,R. dos Palmares x R. Treze de Maio,-8.05263,-34.88374,1330.7,0.67,forte,SIM
+2018,Estrada do Arraial x Rua Padre Lemos,50,Área 2 - Área Intermediária,N/A,-8.04448,-34.87489,R. Padre Lemos x Estrada do Arraial,-8.02676,-34.91773,5111.8,0.67,forte,SIM
+2018,Rua do Futuro x Avenida Dr. Malaquias,50,Área 1 - Área Central,N/A,-8.04448,-34.87489,R. do Futuro x Av. Dr. Malaquias,-8.03876,-34.90176,3026.0,0.67,forte,SIM
+2021,Rua do Futuro x Avenida Dr. Malaquias,50,Área 1 - Área Central,N/A,-8.04448,-34.87489,R. do Futuro x Av. Dr. Malaquias,-8.03876,-34.90176,3026.0,0.67,forte,SIM
+2024,Estrada do Arraial x Rua Padre Lemos,50,Área 3 - Área Periférica,N/A,-8,-34.9,R. Padre Lemos x Estrada do Arraial,-8.02676,-34.91773,3558.8,0.67,forte,SIM
+2024,Rua do Futuro x Avenida Dr. Malaquias,50,Área 2 - Área Intermediária,N/A,-8,-34.9,R. do Futuro x Av. Dr. Malaquias,-8.03876,-34.90176,4314.3,0.67,forte,SIM
+2024,Rua dos Palmares x Rua 13 de Maio,50,Área 1 - Área Central,N/A,-8,-34.9,R. dos Palmares x R. Treze de Maio,-8.05263,-34.88374,6119.9,0.67,forte,SIM
+2021,Estrada do Arraial x Rua Padre Lemos,49,Área 2 - Área Intermediária,N/A,-8.04448,-34.87489,R. Padre Lemos x Estrada do Arraial,-8.02676,-34.91773,5111.8,0.67,forte,SIM
+2018,Rua dos Palmares x Rua 13 de Maio,49,Área 2 - Área Intermediária,N/A,-8.04448,-34.87489,R. dos Palmares x R. Treze de Maio,-8.05263,-34.88374,1330.7,0.67,forte,SIM
+2021,Avenida Caxangá x Avenida Afonso Olindense,51,Área 3 - Área Periférica,N/A,-8.0313,-34.95573,Av. Caxangá x Av. Afonso Olindense,-8.0313,-34.95573,0.0,0.5,forte,
+2021,Avenida Recife x Rua Pintor Antonio de Albuquerque,50,Área 3 - Área Periférica,N/A,-8.10793,-34.92706,Av. Recife x R. Pintor Antonio de Albuquerque,-8.10793,-34.92706,0.0,0.5,forte,
+2018,Rua Cosme Viana x Rua Vinte e Um de Abril,50,Área 3 - Área Periférica,N/A,-8.05661,-34.89772,Av. Cosme Viana x R. 21 de Abril,-8.07701,-34.90919,2596.2,0.5,forte,SIM
+2021,Rua Cosme Viana x Rua Vinte e Um de Abril,50,Área 2 - Área Intermediária,N/A,-8.05661,-34.89772,Av. Cosme Viana x R. 21 de Abril,-8.07701,-34.90919,2596.2,0.5,forte,SIM
+2018,Avenida Engenheiro Domingos Ferreira x Rua Antônio Falcão,50,Área 1 - Área Central,3003,-8.04448,-34.87489,Av. Domingos Ferreira x Av. Antônio Falcão,-8.11574,-34.89552,8242.8,0.5,forte,SIM
+2021,Avenida Engenheiro Domingos Ferreira x Rua Antônio Falcão,50,Área 3 - Área Periférica,N/A,-8.04448,-34.87489,Av. Domingos Ferreira x Av. Antônio Falcão,-8.11574,-34.89552,8242.8,0.5,forte,SIM
+2018,Avenida Professor José dos Anjos x Avenida Beberibe,50,Área 3 - Área Periférica,1020,-8.04448,-34.87489,Av. Beberibe x Av. Prof. José dos Anjos,-8.02793,-34.89293,2707.7,0.5,forte,SIM
+2024,Avenida Caxangá x Avenida Afonso Olindense,50,Área 3 - Área Periférica,N/A,-8,-34.9,Av. Caxangá x Av. Afonso Olindense,-8.0313,-34.95573,7054.6,0.5,forte,SIM
+2024,Avenida Professor José dos Anjos x Avenida Beberibe,50,Área 2 - Área Intermediária,N/A,-8,-34.9,Av. Beberibe x Av. Prof. José dos Anjos,-8.02793,-34.89293,3201.8,0.5,forte,SIM
+2024,Rua Cosme Viana x Rua Vinte e Um de Abril,50,Área 2 - Área Intermediária,N/A,-8,-34.9,Av. Cosme Viana x R. 21 de Abril,-8.07701,-34.90919,8622.7,0.5,forte,SIM
+2024,Avenida Recife x Rua Pintor Antônio de Albuquerque,49,Área 3 - Área Periférica,N/A,-8,-34.9,Av. Recife x R. Pintor Antonio de Albuquerque,-8.10793,-34.92706,12365.5,0.5,forte,SIM
+2021,Avenida Caxangá x Avenida General San Martin,49,Área 2 - Área Intermediária,N/A,-8.05045,-34.92105,Av. Caxangá x Av. Gal. San Martin,-8.05045,-34.92105,0.0,0.5,forte,
+2021,Avenida Professor José dos Anjos x Avenida Beberibe,49,Área 3 - Área Periférica,N/A,-8.04448,-34.87489,Av. Beberibe x Av. Prof. José dos Anjos,-8.02793,-34.89293,2707.7,0.5,forte,SIM
+2024,Avenida Engenheiro Domingos Ferreira x Rua Antônio Falcão,48,Área 2 - Área Intermediária,N/A,-8,-34.9,Av. Domingos Ferreira x Av. Antônio Falcão,-8.11574,-34.89552,12879.1,0.5,forte,SIM
+2018,Avenida Cruz Cabugá x Avenida Norte Miguel Arraes de Alencar,50,Área 2 - Área Intermediária,923,-8.04746,-34.87699,Av. Abdias de Carvalho x Av. Gal. San Martin,-8.06046,-34.92576,5560.7,0.17,fraco,
+2021,Avenida do Forte do Bom Jesus x Rua Gomes Taborda,51,Área 2 - Área Intermediária,N/A,-8.05661,-34.89772,Av. Forte do Bom Jesus x R. Miguel Vieira,-8.05351,-34.92892,3452.3,0.33,parcial,
+2018,Avenida do Forte do Bom Jesus x Rua Gomes Taborda,50,Área 3 - Área Periférica,750,-8.05661,-34.89772,Av. Forte do Bom Jesus x R. Miguel Vieira,-8.05351,-34.92892,3452.3,0.33,parcial,
+2024,Avenida do Forte do Bom Jesus x Rua Gomes Taborda,50,Área 3 - Área Periférica,N/A,-8,-34.9,Av. Forte do Bom Jesus x R. Miguel Vieira,-8.05351,-34.92892,6748.5,0.33,parcial,

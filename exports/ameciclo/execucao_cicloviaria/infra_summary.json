@@ -1,0 +1,34 @@
+{
+	"existing_infrastructure_km": 303,
+	"planned_infrastructure_km": 599,
+	"implemented_from_plan_km": 133.484,
+	"plan_coverage_percentage": 22.3,
+	"by_type": {
+		"Calçada compartilhada": {
+			"existing": 9,
+			"planned": 0,
+			"implemented": 0
+		},
+		"Ciclofaixa": {
+			"existing": 157,
+			"planned": 32,
+			"implemented": 63
+		},
+		"Ciclofaixa Compartilhada": {
+			"existing": 11,
+			"planned": 0,
+			"implemented": 10.7
+		},
+		"Ciclorrota": {
+			"existing": 30,
+			"planned": 51,
+			"implemented": 0
+		},
+		"Ciclovia": {
+			"existing": 96,
+			"planned": 516,
+			"implemented": 59.8
+		}
+	},
+	"last_updated": "2026-07-22T17:27:35.051Z"
+}

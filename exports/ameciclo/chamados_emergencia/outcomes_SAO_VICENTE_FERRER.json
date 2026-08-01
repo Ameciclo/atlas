@@ -1,0 +1,51 @@
+{
+	"city": "SAO VICENTE FERRER",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 14,
+			"Removido por Particulares": 1
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 7
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 46,
+			"Óbito no Local/Atendimento": 1,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 7
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 36,
+			"Desistência da solicitação": 1,
+			"Recusa de Remoção": 2,
+			"Removido por Particulares": 6,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 7
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 23,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 31,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 34,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 4,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 13,
+			"Removido por Particulares": 2,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		}
+	}
+}

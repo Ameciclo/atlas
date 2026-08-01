@@ -116,9 +116,10 @@ describe("Cycling Infrastructure API Integration Tests", () => {
 
 			if (data.length > 0) {
 				expect(data[0]).toMatchObject({
-					id: expect.any(Number),
-					osm_id: expect.any(String),
-					geometry_type: expect.any(String),
+					osmId: expect.any(Number),
+					name: expect.any(String),
+					length: expect.any(Number),
+					highway: expect.any(String),
 					geojson: expect.any(Object),
 				});
 			}
@@ -160,7 +161,9 @@ describe("Cycling Infrastructure API Integration Tests", () => {
 					type: "Feature",
 					geometry: expect.any(Object),
 					properties: expect.objectContaining({
-						STATUS: expect.stringMatching(/Realizada|Projeto|NotPDC/),
+						status_type: expect.stringMatching(
+							/pdc_realizado_designado|pdc_realizado_nao_designado|realizado_fora_pdc|pdc_nao_realizado/,
+						),
 					}),
 				});
 			}

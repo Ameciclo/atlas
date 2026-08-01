@@ -77,19 +77,30 @@ export async function seedCyclistProfiles(config: DatabaseConfig = {}) {
 			profilesData = JSON.parse(rawData);
 		}
 
-		console.log(`📊 Found ${profilesData.length} cyclist profiles to import`);
+		console.log(`📊 Found ${profilesData.length} cyclist profiles to import\n`);
+
+		// Group profiles by survey year for progress reporting
+		const byYear: Record<string, number> = {};
+		for (const p of profilesData) {
+			const y = String(p.metadata?.survey_year || "unknown");
+			byYear[y] = (byYear[y] || 0) + 1;
+		}
+		const sortedYears = Object.keys(byYear).sort();
+		console.log("   Por ano:");
+		for (const y of sortedYears) {
+			console.log(`     ${y}: ${byYear[y]} perfis`);
+		}
+		console.log();
 
 		let profilesCreated = 0;
 		let profilesSkipped = 0;
+		let lastYear = "";
 
 		for (const profileData of profilesData) {
 			// Extract profile ID for idempotency check (use top-level id field)
 			const profileId = profileData.id;
 
 			if (!profileId) {
-				console.warn(
-					`⚠️  Skipping profile without id: ${JSON.stringify(profileData).substring(0, 50)}...`,
-				);
 				profilesSkipped++;
 				continue;
 			}
@@ -105,7 +116,6 @@ export async function seedCyclistProfiles(config: DatabaseConfig = {}) {
 				.limit(1);
 
 			if (existingProfile.length > 0) {
-				console.log(`  ↪ Using existing profile (ID: ${profileId})`);
 				profilesSkipped++;
 				continue;
 			}
@@ -130,19 +140,7 @@ export async function seedCyclistProfiles(config: DatabaseConfig = {}) {
 					lon !== 0
 				) {
 					coordinatesWKT = `POINT(${lon} ${lat})`;
-					console.log(
-						`  📍 Coordinates for ID ${profileId}: ${coordinatesWKT}`,
-					);
-				} else {
-					console.log(
-						`  ⚠️  Invalid coordinates for ID ${profileId}: lat=${lat}, lon=${lon}`,
-					);
 				}
-			} else {
-				console.log(
-					`  ❌ No location data for ID ${profileId}:`,
-					JSON.stringify(location),
-				);
 			}
 
 			// Insert new profile with id stored in metadata for idempotency
@@ -165,7 +163,20 @@ export async function seedCyclistProfiles(config: DatabaseConfig = {}) {
 			}
 
 			profilesCreated++;
-			console.log(`  ✓ Created profile (ID: ${profileId})`);
+			const currentYear = String(
+				dataToInsert.metadata?.survey_year || "unknown",
+			);
+			const pct = Math.round((profilesCreated / profilesData.length) * 100);
+			if (
+				currentYear !== lastYear ||
+				profilesCreated % 100 === 0 ||
+				profilesCreated === profilesData.length
+			) {
+				console.log(
+					`  📍 ${profilesCreated}/${profilesData.length} (${pct}%) — ano ${currentYear}`,
+				);
+				lastYear = currentYear;
+			}
 		}
 
 		console.log("\n✅ Cyclist profiles seed completed successfully!");

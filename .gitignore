@@ -16,6 +16,7 @@ node_modules
 
 # Testing
 coverage
+temp-ciclomapa
 
 # Turbo
 .turbo
@@ -49,3 +50,20 @@ apps/test-*
 
 # ASDF version manager
 asdf-vm/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.db
+
+# Large seed data and exports (GitHub 100MB limit)
+packages/database/seed-data/traffic-tickets/location-descriptions.json
+packages/database/seed-data/traffic-tickets/location-descriptions.tsv
+packages/database/seed-data/traffic-tickets/traffic-tickets-compiled.tsv
+packages/database/seed-data/traffic-tickets/source-data/
+apps/traffic-tickets/src/db/location-verification/prepared_data.json
+exports/ameciclo/chamados_emergencia/calls_consolidated.json
+exports/ameciclo/chamados_emergencia/calls_consolidated.jsonl
+exports/ameciclo/chamados_emergencia/calls_consolidated.csv
+apps/traffic-deaths/src/db/pipeline/datasus-dbc/DOEXT24.dbf

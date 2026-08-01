@@ -1,0 +1,20 @@
+{
+	"data": {
+		"interviews_count": 2245,
+		"women_percent": 22,
+		"black_brown_percent": 64.1,
+		"low_income_percent": 0,
+		"collision_report_percent": 23.7,
+		"frequent_cyclist_percent": 87.6,
+		"transport_combination_percent": 100,
+		"distance_time_median": 20,
+		"age_median": 35,
+		"days_per_week_avg": 5.9
+	},
+	"meta": {
+		"year": "all",
+		"observed_or_estimated": "observed",
+		"data_basis": "profile_interviews",
+		"n_interviews": 2245
+	}
+}

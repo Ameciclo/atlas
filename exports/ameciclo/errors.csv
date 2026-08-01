@@ -1,0 +1,9 @@
+servico,endpoint,parametros,status_http,erro,tentativa_realizada
+emergency-calls,/v2/streets/history,{"via":"BOA VIAGEM"},404,"{""message"":""Street not found""}",2026-07-22T17:27:50.118Z
+ideciclo,/reviews,{},exception,"TypeError: fetch failed",2026-07-22T17:27:54.322Z
+ideciclo,/structures,{},exception,"TypeError: fetch failed",2026-07-22T17:27:54.328Z
+ideciclo,/forms,{},exception,"TypeError: fetch failed",2026-07-22T17:27:54.335Z
+strapi,/api/plataformas-de-dados,{},404,"{""data"":null,""error"":{""status"":404,""name"":""NotFoundError"",""message"":""Not Found"",""details"":{}}}",2026-07-22T17:27:58.389Z
+ciclodados,/v1/nearby,{"lat":"-8.0476","lng":"-34.8770"},500,"{""message"":""parse error - invalid geometry"",""stack"":""error: parse error - invalid geometry\n    at /home/dvalenca/code/atlas/node_modules/.pnpm/pg-pool@3.10.1_pg@8.16.3/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at asy",2026-07-22T17:27:58.671Z
+state-budget,/v1/budget/state,,N/A,"Serviço não implementado (skeleton app sem src/)",2026-07-22T17:28:28.720Z
+recife-budget,/v1/budget/recife,,N/A,"Serviço não encontrado (diretório apps/recife-budget/ não existe)",2026-07-22T17:28:28.720Z

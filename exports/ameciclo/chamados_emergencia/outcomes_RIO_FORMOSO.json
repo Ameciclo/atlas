@@ -1,0 +1,58 @@
+{
+	"city": "RIO FORMOSO",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 19,
+			"Removido por Particulares": 1
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 5,
+			"Removido por Particulares": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 23,
+			"Desistência da solicitação": 4,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 37,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 6,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 3
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 29,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Removido por Particulares": 7,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 43,
+			"Desistência da solicitação": 1,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 5
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 71,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 1,
+			"Recusa de Remoção": 1,
+			"Removido por Particulares": 5,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 24,
+			"Óbito no Local/Atendimento": 2,
+			"Outros Desfechos": 1,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 3
+		}
+	}
+}

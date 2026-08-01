@@ -6,42 +6,77 @@
 			"idx": 0,
 			"version": "7",
 			"when": 1762368052626,
-			"tag": "0000_new_silhouette",
+			"tag": "0000_shocking_centennial",
 			"breakpoints": true
 		},
 		{
 			"idx": 1,
 			"version": "7",
 			"when": 1762461943847,
-			"tag": "0001_magenta_owl",
+			"tag": "0001_tranquil_sprite",
 			"breakpoints": true
 		},
 		{
 			"idx": 2,
 			"version": "7",
 			"when": 1762478416174,
-			"tag": "0002_shiny_pestilence",
+			"tag": "0002_slim_random",
 			"breakpoints": true
 		},
 		{
 			"idx": 3,
 			"version": "7",
 			"when": 1762481937268,
-			"tag": "0003_stormy_sway",
+			"tag": "0003_fluffy_marvel_boy",
 			"breakpoints": true
 		},
 		{
-			"idx": 4,
+			"idx": 8,
 			"version": "7",
-			"when": 1762538952206,
-			"tag": "0004_outstanding_kid_colt",
+			"when": 1747850000000,
+			"tag": "0008_remove_ciclomapa",
 			"breakpoints": true
 		},
 		{
-			"idx": 5,
+			"idx": 9,
 			"version": "7",
-			"when": 1762539263151,
-			"tag": "0005_remarkable_inhumans",
+			"when": 1747860000000,
+			"tag": "0009_raving_goldbug",
+			"breakpoints": true
+		},
+		{
+			"idx": 10,
+			"version": "7",
+			"when": 1747870000000,
+			"tag": "0010_link_emergency_calls_pcr_streets",
+			"breakpoints": true
+		},
+		{
+			"idx": 11,
+			"version": "7",
+			"when": 1753113600000,
+			"tag": "0011_unique_cycling_infra",
+			"breakpoints": true
+		},
+		{
+			"idx": 12,
+			"version": "7",
+			"when": 1753113600000,
+			"tag": "0012_custom_postgis_pcr_streets",
+			"breakpoints": true
+		},
+		{
+			"idx": 13,
+			"version": "7",
+			"when": 1753113600000,
+			"tag": "0013_custom_postgis_pdc_ways",
+			"breakpoints": true
+		},
+		{
+			"idx": 14,
+			"version": "7",
+			"when": 1753113600000,
+			"tag": "0014_custom_postgis_cyclist_profiles",
 			"breakpoints": true
 		}
 	]

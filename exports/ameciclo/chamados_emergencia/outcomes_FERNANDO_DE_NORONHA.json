@@ -1,0 +1,35 @@
+{
+	"city": "FERNANDO DE NORONHA",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 6
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 3
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 9,
+			"Óbito no Local/Atendimento": 1
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 25,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 1
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 15,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 2
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 17
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 32,
+			"Óbito no Local/Atendimento": 2,
+			"Removido por Particulares": 1,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 6
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 5
+		}
+	}
+}

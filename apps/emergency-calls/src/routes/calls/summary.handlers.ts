@@ -1,5 +1,6 @@
 import { and, eq, gte, lte, count, sql } from "drizzle-orm";
-import { db, ensureConnection } from "../../db/index.js";
+import { normalizeCategories } from "../../lib/categories.js";
+import { db } from "../../db/index.js";
 import { emergencyCalls } from "../../db/schema.js";
 import type { AppRouteHandler } from "../../lib/types.js";
 import type {
@@ -11,8 +12,6 @@ import type {
 } from "./summary.routes.js";
 
 export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
-	await ensureConnection();
-
 	// Get total calls
 	const [totalResult] = await db
 		.select({ count: count() })
@@ -78,8 +77,6 @@ export const summary: AppRouteHandler<SummaryRoute> = async (c) => {
 };
 
 export const cities: AppRouteHandler<CitiesRoute> = async (c) => {
-	await ensureConnection();
-
 	// Get total calls for percentage calculation
 	const [totalResult] = await db
 		.select({ count: count() })
@@ -108,7 +105,6 @@ export const cities: AppRouteHandler<CitiesRoute> = async (c) => {
 };
 
 export const cityStats: AppRouteHandler<CityStatsRoute> = async (c) => {
-	await ensureConnection();
 	const { city } = c.req.valid("param");
 
 	// Get city ranking
@@ -151,7 +147,6 @@ export const cityStats: AppRouteHandler<CityStatsRoute> = async (c) => {
 };
 
 export const outcomes: AppRouteHandler<OutcomesRoute> = async (c) => {
-	await ensureConnection();
 	const { city } = c.req.valid("query");
 
 	// Get outcomes by year for the city
@@ -186,11 +181,39 @@ export const outcomes: AppRouteHandler<OutcomesRoute> = async (c) => {
 	});
 };
 
+function normalizeGender(raw: Record<string, number>): Record<string, number> {
+	const result: Record<string, number> = {
+		masculino: 0,
+		feminino: 0,
+		nao_informado: 0,
+	};
+	for (const [key, value] of Object.entries(raw)) {
+		const lower = key.toLowerCase();
+		if (lower === "masculino" || lower === "m") result.masculino += value || 0;
+		else if (lower === "feminino" || lower === "f")
+			result.feminino += value || 0;
+		else result.nao_informado += value || 0;
+	}
+	return result;
+}
+
+function normalizeAgeGroups(
+	raw: Record<string, number>,
+): Record<string, number> {
+	const unknown = Number(raw.unknown) || 0;
+	return {
+		"0_17_anos": Number(raw["0-17"]) || 0,
+		"18_29_anos": Number(raw["18-29"]) || 0,
+		"30_49_anos": Number(raw["30-49"]) || 0,
+		"50_64_anos": Number(raw["50-64"]) || 0,
+		"65_mais_anos": Number(raw["65+"]) || 0,
+		nao_informado: unknown,
+	};
+}
+
 export const profiles: AppRouteHandler<ProfilesRoute> = async (c) => {
-	await ensureConnection();
 	const { city, start_year, end_year } = c.req.valid("query");
 
-	// Build date conditions
 	const conditions = [eq(emergencyCalls.municipality, city)];
 
 	if (start_year) {
@@ -202,7 +225,6 @@ export const profiles: AppRouteHandler<ProfilesRoute> = async (c) => {
 
 	const whereClause = and(...conditions);
 
-	// Get gender distribution
 	const genderData = await db
 		.select({
 			gender: emergencyCalls.gender,
@@ -212,16 +234,16 @@ export const profiles: AppRouteHandler<ProfilesRoute> = async (c) => {
 		.where(whereClause)
 		.groupBy(emergencyCalls.gender);
 
-	// Get age group distribution
 	const ageData = await db
 		.select({
 			age_group: sql<string>`
-				CASE 
+				CASE
 					WHEN ${emergencyCalls.age} < 18 THEN '0-17'
 					WHEN ${emergencyCalls.age} BETWEEN 18 AND 29 THEN '18-29'
 					WHEN ${emergencyCalls.age} BETWEEN 30 AND 49 THEN '30-49'
 					WHEN ${emergencyCalls.age} BETWEEN 50 AND 64 THEN '50-64'
-					ELSE '65+'
+					WHEN ${emergencyCalls.age} >= 65 THEN '65+'
+					ELSE 'unknown'
 				END
 			`,
 			count: count(),
@@ -229,57 +251,52 @@ export const profiles: AppRouteHandler<ProfilesRoute> = async (c) => {
 		.from(emergencyCalls)
 		.where(whereClause)
 		.groupBy(sql`
-			CASE 
+			CASE
 				WHEN ${emergencyCalls.age} < 18 THEN '0-17'
 				WHEN ${emergencyCalls.age} BETWEEN 18 AND 29 THEN '18-29'
 				WHEN ${emergencyCalls.age} BETWEEN 30 AND 49 THEN '30-49'
 				WHEN ${emergencyCalls.age} BETWEEN 50 AND 64 THEN '50-64'
-				ELSE '65+'
+				WHEN ${emergencyCalls.age} >= 65 THEN '65+'
+				ELSE 'unknown'
 			END
 		`);
 
-	// Get type distribution
-	const transportData = await db
+	const categoryData = await db
 		.select({
-			type: emergencyCalls.type,
+			category: emergencyCalls.subtype,
 			count: count(),
 		})
 		.from(emergencyCalls)
 		.where(whereClause)
-		.groupBy(emergencyCalls.type);
+		.groupBy(emergencyCalls.subtype);
 
-	const byGender = genderData.reduce(
-		(acc, item) => {
-			acc[item.gender || "unknown"] = item.count;
+	const genderRaw = genderData.reduce(
+		(acc, r) => {
+			acc[r.gender || "null"] = r.count;
 			return acc;
 		},
 		{} as Record<string, number>,
 	);
 
-	const byAgeGroup = ageData.reduce(
-		(acc, item) => {
-			acc[item.age_group] = item.count;
+	const ageRaw = ageData.reduce(
+		(acc, r) => {
+			acc[r.age_group] = r.count;
 			return acc;
 		},
 		{} as Record<string, number>,
 	);
 
-	const byType = transportData.reduce(
-		(acc, item) => {
-			acc[item.type || "unknown"] = item.count;
+	const categoryRaw = categoryData.reduce(
+		(acc, r) => {
+			if (r.category) acc[r.category] = r.count;
 			return acc;
 		},
 		{} as Record<string, number>,
 	);
 
 	return c.json({
-		city,
-		period: {
-			start_year: start_year || new Date().getFullYear() - 5,
-			end_year: end_year || new Date().getFullYear(),
-		},
-		by_gender: byGender,
-		by_age_group: byAgeGroup,
-		by_type: byType,
+		por_sexo: normalizeGender(genderRaw),
+		por_faixa_etaria: normalizeAgeGroups(ageRaw),
+		por_categoria: normalizeCategories(categoryRaw),
 	});
 };

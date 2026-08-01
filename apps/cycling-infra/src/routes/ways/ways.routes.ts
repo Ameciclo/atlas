@@ -52,7 +52,17 @@ const GeoJSONFeatureSchema = z.object({
 	geometry: z.any(),
 	properties: z
 		.object({
-			STATUS: z.enum(["Realizada", "Projeto", "NotPDC"]),
+			id: z.union([z.number(), z.string()]).optional(),
+			status_type: z.enum([
+				"pdc_realizado_designado",
+				"pdc_realizado_nao_designado",
+				"realizado_fora_pdc",
+				"pdc_nao_realizado",
+			]),
+			status_value: z.number(),
+			length: z.number(),
+			city_id: z.number(),
+			cycleway_typology: z.string().nullable().optional(),
 		})
 		.and(z.record(z.any())),
 });

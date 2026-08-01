@@ -141,7 +141,7 @@ function parseDATASUSDate(dateStr: string | null): string | null {
 export async function seedTrafficDeaths(config: DatabaseConfig = {}) {
 	const db = await createConnectedDatabase(config);
 	const batchId = `seed-${new Date().toISOString()}`;
-	const years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
+	const years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
 	const useS3 = process.env.SEED_DATA_USE_S3 === "true";
 
 	try {

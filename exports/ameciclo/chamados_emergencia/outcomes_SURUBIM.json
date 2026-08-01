@@ -1,0 +1,81 @@
+{
+	"city": "SURUBIM",
+	"outcomes_by_year": {
+		"2018": {
+			"Atendimento Concluído com Êxito": 34,
+			"Desistência da solicitação": 1,
+			"Óbito no Local/Atendimento": 2,
+			"Removido pelos Bombeiros/CIODS": 1,
+			"Removido por Particulares": 3,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 4
+		},
+		"2019": {
+			"Atendimento Concluído com Êxito": 18,
+			"Desistência da solicitação": 1,
+			"Recusa de Remoção": 1,
+			"Removido pelos Bombeiros/CIODS": 1
+		},
+		"2020": {
+			"Atendimento Concluído com Êxito": 160,
+			"Desistência da solicitação": 6,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Óbito no Local/Atendimento": 4,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 4,
+			"Removido pelos Bombeiros/CIODS": 7,
+			"Removido por Particulares": 20,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 19
+		},
+		"2021": {
+			"Atendimento Concluído com Êxito": 182,
+			"Desistência da solicitação": 4,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Óbito no Local/Atendimento": 5,
+			"Recusa de Remoção": 1,
+			"Removido pelos Bombeiros/CIODS": 5,
+			"Removido por Particulares": 34,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 31
+		},
+		"2022": {
+			"Atendimento Concluído com Êxito": 96,
+			"Desistência da solicitação": 4,
+			"Inválido/Duplicado/Cancelado/Trote": 2,
+			"Óbito no Local/Atendimento": 2,
+			"Outros Desfechos": 2,
+			"Recusa de Remoção": 4,
+			"Removido pelos Bombeiros/CIODS": 8,
+			"Removido por Particulares": 19,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 13
+		},
+		"2023": {
+			"Atendimento Concluído com Êxito": 131,
+			"Desistência da solicitação": 5,
+			"Inválido/Duplicado/Cancelado/Trote": 3,
+			"Óbito no Local/Atendimento": 4,
+			"Outros Desfechos": 3,
+			"Recusa de Remoção": 2,
+			"Removido pelos Bombeiros/CIODS": 17,
+			"Removido por Particulares": 42,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 35
+		},
+		"2024": {
+			"Atendimento Concluído com Êxito": 152,
+			"Desistência da solicitação": 12,
+			"Inválido/Duplicado/Cancelado/Trote": 3,
+			"Óbito no Local/Atendimento": 8,
+			"Outros Desfechos": 1,
+			"Recusa de Remoção": 4,
+			"Removido pelos Bombeiros/CIODS": 28,
+			"Removido por Particulares": 39,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 47
+		},
+		"2025": {
+			"Atendimento Concluído com Êxito": 69,
+			"Desistência da solicitação": 3,
+			"Inválido/Duplicado/Cancelado/Trote": 1,
+			"Removido pelos Bombeiros/CIODS": 3,
+			"Removido por Particulares": 9,
+			"Sem Desfecho/Casa Fechada/Não há paciente": 17
+		}
+	}
+}

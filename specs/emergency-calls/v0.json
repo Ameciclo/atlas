@@ -119,416 +119,6 @@
         }
       }
     },
-    "/v1/calls": {
-      "get": {
-        "tags": [
-          "Emergency Calls"
-        ],
-        "summary": "List emergency calls",
-        "description": "Get emergency calls with optional filters and pagination",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "description": "Filter by municipality",
-              "example": "RECIFE"
-            },
-            "required": false,
-            "name": "municipality",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "string",
-              "description": "Filter by accident subtype",
-              "example": "ACIDENTMOTO"
-            },
-            "required": false,
-            "name": "subtype",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "string",
-              "format": "date",
-              "description": "Filter from this date (inclusive)",
-              "example": "2018-01-01"
-            },
-            "required": false,
-            "name": "start_date",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "string",
-              "format": "date",
-              "description": "Filter until this date (inclusive)",
-              "example": "2018-12-31"
-            },
-            "required": false,
-            "name": "end_date",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "exclusiveMinimum": true,
-              "maximum": 1000,
-              "default": 100,
-              "description": "Maximum number of results",
-              "example": 100
-            },
-            "required": false,
-            "name": "limit",
-            "in": "query"
-          },
-          {
-            "schema": {
-              "type": "integer",
-              "nullable": true,
-              "minimum": 0,
-              "default": 0,
-              "description": "Number of results to skip",
-              "example": 0
-            },
-            "required": false,
-            "name": "offset",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of emergency calls with pagination",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "integer",
-                            "minimum": -2147483648,
-                            "maximum": 2147483647
-                          },
-                          "original_id": {
-                            "type": "integer",
-                            "minimum": -2147483648,
-                            "maximum": 2147483647
-                          },
-                          "date": {
-                            "type": "string"
-                          },
-                          "time_minute": {
-                            "type": "string"
-                          },
-                          "municipality": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "neighborhood": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "address": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "call_origin": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "origin_type": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "subtype": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "gender": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "age": {
-                            "type": "integer",
-                            "nullable": true,
-                            "minimum": -2147483648,
-                            "maximum": 2147483647
-                          },
-                          "finalization_reason": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "outcome_reason": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "type": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "category": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "finalization_reason_normalized": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "outcome_reason_normalized": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "finalization_category": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "outcome_category": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "pcr_address": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "created_at": {
-                            "type": "string"
-                          },
-                          "updated_at": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "original_id",
-                          "date",
-                          "time_minute",
-                          "municipality",
-                          "neighborhood",
-                          "address",
-                          "call_origin",
-                          "origin_type",
-                          "subtype",
-                          "gender",
-                          "age",
-                          "finalization_reason",
-                          "outcome_reason",
-                          "type",
-                          "category",
-                          "finalization_reason_normalized",
-                          "outcome_reason_normalized",
-                          "finalization_category",
-                          "outcome_category",
-                          "pcr_address",
-                          "created_at",
-                          "updated_at"
-                        ]
-                      }
-                    },
-                    "total": {
-                      "type": "number"
-                    },
-                    "limit": {
-                      "type": "number"
-                    },
-                    "offset": {
-                      "type": "number"
-                    }
-                  },
-                  "required": [
-                    "data",
-                    "total",
-                    "limit",
-                    "offset"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/calls/{id}": {
-      "get": {
-        "tags": [
-          "Emergency Calls"
-        ],
-        "summary": "Get emergency call by ID",
-        "description": "Get a specific emergency call by its ID",
-        "parameters": [
-          {
-            "schema": {
-              "type": "number",
-              "nullable": true,
-              "required": [
-                "id"
-              ],
-              "example": 42
-            },
-            "required": true,
-            "name": "id",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Emergency call details",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "minimum": -2147483648,
-                      "maximum": 2147483647
-                    },
-                    "original_id": {
-                      "type": "integer",
-                      "minimum": -2147483648,
-                      "maximum": 2147483647
-                    },
-                    "date": {
-                      "type": "string"
-                    },
-                    "time_minute": {
-                      "type": "string"
-                    },
-                    "municipality": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "neighborhood": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "address": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "call_origin": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "origin_type": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "subtype": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "gender": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "age": {
-                      "type": "integer",
-                      "nullable": true,
-                      "minimum": -2147483648,
-                      "maximum": 2147483647
-                    },
-                    "finalization_reason": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "outcome_reason": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "type": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "category": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "finalization_reason_normalized": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "outcome_reason_normalized": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "finalization_category": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "outcome_category": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "pcr_address": {
-                      "type": "string",
-                      "nullable": true
-                    },
-                    "created_at": {
-                      "type": "string"
-                    },
-                    "updated_at": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "original_id",
-                    "date",
-                    "time_minute",
-                    "municipality",
-                    "neighborhood",
-                    "address",
-                    "call_origin",
-                    "origin_type",
-                    "subtype",
-                    "gender",
-                    "age",
-                    "finalization_reason",
-                    "outcome_reason",
-                    "type",
-                    "category",
-                    "finalization_reason_normalized",
-                    "outcome_reason_normalized",
-                    "finalization_category",
-                    "outcome_category",
-                    "pcr_address",
-                    "created_at",
-                    "updated_at"
-                  ]
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Call not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "message"
-                  ],
-                  "example": {
-                    "message": "Not Found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/v1/calls/summary": {
       "get": {
         "tags": [
@@ -779,7 +369,8 @@
             "schema": {
               "type": "integer",
               "nullable": true,
-              "description": "Start year",
+              "default": 2020,
+              "description": "Start year. Defaults to 2020",
               "example": 2020
             },
             "required": false,
@@ -806,37 +397,19 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "city": {
-                      "type": "string"
-                    },
-                    "period": {
-                      "type": "object",
-                      "properties": {
-                        "start_year": {
-                          "type": "number"
-                        },
-                        "end_year": {
-                          "type": "number"
-                        }
-                      },
-                      "required": [
-                        "start_year",
-                        "end_year"
-                      ]
-                    },
-                    "by_gender": {
+                    "por_sexo": {
                       "type": "object",
                       "additionalProperties": {
                         "type": "number"
                       }
                     },
-                    "by_age_group": {
+                    "por_faixa_etaria": {
                       "type": "object",
                       "additionalProperties": {
                         "type": "number"
                       }
                     },
-                    "by_type": {
+                    "por_categoria": {
                       "type": "object",
                       "additionalProperties": {
                         "type": "number"
@@ -844,12 +417,435 @@
                     }
                   },
                   "required": [
-                    "city",
-                    "period",
-                    "by_gender",
-                    "by_age_group",
-                    "by_type"
+                    "por_sexo",
+                    "por_faixa_etaria",
+                    "por_categoria"
                   ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/calls": {
+      "get": {
+        "tags": [
+          "Emergency Calls"
+        ],
+        "summary": "List emergency calls",
+        "description": "Get emergency calls with optional filters and pagination",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Filter by municipality",
+              "example": "RECIFE"
+            },
+            "required": false,
+            "name": "municipality",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Filter by accident subtype",
+              "example": "ACIDENTMOTO"
+            },
+            "required": false,
+            "name": "subtype",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": "2020-01-01",
+              "description": "Filter from this date (inclusive). Defaults to 2020-01-01",
+              "example": "2018-01-01"
+            },
+            "required": false,
+            "name": "start_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "description": "Filter until this date (inclusive)",
+              "example": "2018-12-31"
+            },
+            "required": false,
+            "name": "end_date",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "maximum": 1000,
+              "default": 100,
+              "description": "Maximum number of results",
+              "example": 100
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "minimum": 0,
+              "default": 0,
+              "description": "Number of results to skip",
+              "example": 0
+            },
+            "required": false,
+            "name": "offset",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of emergency calls with pagination",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
+                          },
+                          "original_id": {
+                            "type": "integer",
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
+                          },
+                          "pcr_street_id": {
+                            "type": "integer",
+                            "nullable": true,
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
+                          },
+                          "date": {
+                            "type": "string"
+                          },
+                          "time_minute": {
+                            "type": "string"
+                          },
+                          "municipality": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "neighborhood": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "address": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "call_origin": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "origin_type": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "subtype": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "gender": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "age": {
+                            "type": "integer",
+                            "nullable": true,
+                            "minimum": -2147483648,
+                            "maximum": 2147483647
+                          },
+                          "finalization_reason": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "outcome_reason": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "type": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "category": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "finalization_reason_normalized": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "outcome_reason_normalized": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "finalization_category": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "outcome_category": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "pcr_address": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "original_id",
+                          "pcr_street_id",
+                          "date",
+                          "time_minute",
+                          "municipality",
+                          "neighborhood",
+                          "address",
+                          "call_origin",
+                          "origin_type",
+                          "subtype",
+                          "gender",
+                          "age",
+                          "finalization_reason",
+                          "outcome_reason",
+                          "type",
+                          "category",
+                          "finalization_reason_normalized",
+                          "outcome_reason_normalized",
+                          "finalization_category",
+                          "outcome_category",
+                          "pcr_address",
+                          "created_at",
+                          "updated_at"
+                        ]
+                      }
+                    },
+                    "total": {
+                      "type": "number"
+                    },
+                    "limit": {
+                      "type": "number"
+                    },
+                    "offset": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "total",
+                    "limit",
+                    "offset"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/calls/{id}": {
+      "get": {
+        "tags": [
+          "Emergency Calls"
+        ],
+        "summary": "Get emergency call by ID",
+        "description": "Get a specific emergency call by its ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "required": [
+                "id"
+              ],
+              "example": 42
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Emergency call details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "original_id": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "pcr_street_id": {
+                      "type": "integer",
+                      "nullable": true,
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "date": {
+                      "type": "string"
+                    },
+                    "time_minute": {
+                      "type": "string"
+                    },
+                    "municipality": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "neighborhood": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "address": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "call_origin": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "origin_type": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "subtype": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "gender": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "age": {
+                      "type": "integer",
+                      "nullable": true,
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "finalization_reason": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "outcome_reason": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "type": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "category": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "finalization_reason_normalized": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "outcome_reason_normalized": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "finalization_category": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "outcome_category": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "pcr_address": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "original_id",
+                    "pcr_street_id",
+                    "date",
+                    "time_minute",
+                    "municipality",
+                    "neighborhood",
+                    "address",
+                    "call_origin",
+                    "origin_type",
+                    "subtype",
+                    "gender",
+                    "age",
+                    "finalization_reason",
+                    "outcome_reason",
+                    "type",
+                    "category",
+                    "finalization_reason_normalized",
+                    "outcome_reason_normalized",
+                    "finalization_category",
+                    "outcome_category",
+                    "pcr_address",
+                    "created_at",
+                    "updated_at"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Call not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "example": {
+                    "message": "Not Found"
+                  }
                 }
               }
             }
@@ -864,6 +860,31 @@
         ],
         "summary": "Get emergency calls summary",
         "description": "Get statistical summary of SAMU emergency calls",
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "default": 2020,
+              "description": "Start year (default: 2020)",
+              "example": 2020
+            },
+            "required": false,
+            "name": "start_year",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "description": "End year (optional)",
+              "example": 2024
+            },
+            "required": false,
+            "name": "end_year",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Emergency calls summary",
@@ -1085,7 +1106,8 @@
           {
             "schema": {
               "type": "number",
-              "nullable": true
+              "nullable": true,
+              "default": 2020
             },
             "required": false,
             "name": "startYear",
@@ -1094,7 +1116,8 @@
           {
             "schema": {
               "type": "number",
-              "nullable": true
+              "nullable": true,
+              "default": 2020
             },
             "required": false,
             "name": "anoInicio",
@@ -1556,12 +1579,6 @@
                     "totalVias": {
                       "type": "number"
                     },
-                    "extensaoTotalKm": {
-                      "type": "number"
-                    },
-                    "extensaoMediaKm": {
-                      "type": "number"
-                    },
                     "viaMaisPerigosa": {
                       "type": "object",
                       "properties": {
@@ -1573,16 +1590,12 @@
                         },
                         "percentual": {
                           "type": "number"
-                        },
-                        "extensao": {
-                          "type": "number"
                         }
                       },
                       "required": [
                         "nome",
                         "total",
-                        "percentual",
-                        "extensao"
+                        "percentual"
                       ]
                     }
                   },
@@ -1590,8 +1603,6 @@
                     "totalSinistros",
                     "totalViasIdentificadas",
                     "totalVias",
-                    "extensaoTotalKm",
-                    "extensaoMediaKm",
                     "viaMaisPerigosa"
                   ]
                 }
@@ -1636,22 +1647,13 @@
                           "top": {
                             "type": "number"
                           },
+                          "nome": {
+                            "type": "string"
+                          },
                           "sinistros": {
                             "type": "number"
                           },
                           "sinistros_acum": {
-                            "type": "number"
-                          },
-                          "km": {
-                            "type": "number"
-                          },
-                          "km_acum": {
-                            "type": "number"
-                          },
-                          "sinistros_por_km": {
-                            "type": "number"
-                          },
-                          "sinistros_por_km_acum": {
                             "type": "number"
                           },
                           "percentual": {
@@ -1663,12 +1665,9 @@
                         },
                         "required": [
                           "top",
+                          "nome",
                           "sinistros",
                           "sinistros_acum",
-                          "km",
-                          "km_acum",
-                          "sinistros_por_km",
-                          "sinistros_por_km_acum",
                           "percentual",
                           "percentual_acum"
                         ]
@@ -1699,8 +1698,18 @@
               "description": "Street name to search",
               "example": "Boa Viagem"
             },
-            "required": true,
+            "required": false,
             "name": "nome",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Street name to search (alias for frontend compatibility)",
+              "example": "Boa Viagem"
+            },
+            "required": false,
+            "name": "street",
             "in": "query"
           },
           {
@@ -1751,6 +1760,10 @@
                           "idade": {
                             "type": "number",
                             "nullable": true
+                          },
+                          "motivo_desf_cat": {
+                            "type": "string",
+                            "nullable": true
                           }
                         },
                         "required": [
@@ -1761,7 +1774,8 @@
                           "nome_oficial_logradouro",
                           "categoria",
                           "sexo",
-                          "idade"
+                          "idade",
+                          "motivo_desf_cat"
                         ]
                       }
                     },
@@ -1798,14 +1812,25 @@
               "description": "Street name",
               "example": "Avenida Boa Viagem"
             },
-            "required": true,
+            "required": false,
             "name": "nome",
             "in": "query"
           },
           {
             "schema": {
+              "type": "string",
+              "description": "Street name (alias for frontend compatibility)",
+              "example": "Avenida Boa Viagem"
+            },
+            "required": false,
+            "name": "via",
+            "in": "query"
+          },
+          {
+            "schema": {
               "type": "number",
-              "nullable": true
+              "nullable": true,
+              "default": 2020
             },
             "required": false,
             "name": "startYear",
@@ -1915,6 +1940,31 @@
         ],
         "summary": "Get cities with emergency calls data",
         "description": "List cities with SAMU data and detailed history",
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "default": 2020,
+              "description": "Start year (default: 2020)",
+              "example": 2020
+            },
+            "required": false,
+            "name": "start_year",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "description": "End year (optional)",
+              "example": 2024
+            },
+            "required": false,
+            "name": "end_year",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Cities with emergency calls data",
@@ -1934,9 +1984,6 @@
                           "count": {
                             "type": "number"
                           },
-                          "id": {
-                            "type": "number"
-                          },
                           "name": {
                             "type": "string"
                           },
@@ -1945,6 +1992,9 @@
                           },
                           "ranking": {
                             "type": "number"
+                          },
+                          "display_name": {
+                            "type": "string"
                           },
                           "historico_anual": {
                             "type": "array",
@@ -1957,7 +2007,7 @@
                                 "total_chamados": {
                                   "type": "number"
                                 },
-                                "projecao_total_chamados": {
+                                "total": {
                                   "type": "number"
                                 },
                                 "validos": {
@@ -1972,6 +2022,9 @@
                                     "removido_particulares": {
                                       "type": "number"
                                     },
+                                    "removido_bombeiros": {
+                                      "type": "number"
+                                    },
                                     "obito_local": {
                                       "type": "number"
                                     }
@@ -1980,6 +2033,7 @@
                                     "total",
                                     "atendimento_concluido",
                                     "removido_particulares",
+                                    "removido_bombeiros",
                                     "obito_local"
                                   ]
                                 },
@@ -2008,7 +2062,7 @@
                               "required": [
                                 "ano",
                                 "total_chamados",
-                                "projecao_total_chamados",
+                                "total",
                                 "validos",
                                 "invalidos",
                                 "por_sexo",
@@ -2021,10 +2075,10 @@
                         "required": [
                           "municipio_samu",
                           "count",
-                          "id",
                           "name",
                           "rmr",
                           "ranking",
+                          "display_name",
                           "historico_anual"
                         ]
                       }
@@ -2245,6 +2299,29 @@
             "required": true,
             "name": "city",
             "in": "path"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "default": 2020,
+              "description": "Start year",
+              "example": 2020
+            },
+            "required": false,
+            "name": "start_year",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "End year",
+              "example": 2022
+            },
+            "required": false,
+            "name": "end_year",
+            "in": "query"
           }
         ],
         "responses": {
@@ -2270,6 +2347,24 @@
                     "total_streets": {
                       "type": "number"
                     },
+                    "extensaoTotalKm": {
+                      "type": "number"
+                    },
+                    "period": {
+                      "type": "object",
+                      "properties": {
+                        "start_year": {
+                          "type": "number"
+                        },
+                        "end_year": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "start_year",
+                        "end_year"
+                      ]
+                    },
                     "most_dangerous_street": {
                       "type": "object",
                       "properties": {
@@ -2291,6 +2386,7 @@
                     "total_accidents",
                     "accidents_per_year",
                     "total_streets",
+                    "period",
                     "most_dangerous_street"
                   ]
                 }
@@ -2328,6 +2424,29 @@
             "required": false,
             "name": "interval",
             "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "default": 2020,
+              "description": "Start year",
+              "example": 2020
+            },
+            "required": false,
+            "name": "start_year",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "End year",
+              "example": 2022
+            },
+            "required": false,
+            "name": "end_year",
+            "in": "query"
           }
         ],
         "responses": {
@@ -2361,8 +2480,7 @@
                         },
                         "required": [
                           "ranking",
-                          "total_accidents",
-                          "street_extension_km"
+                          "total_accidents"
                         ]
                       }
                     }
@@ -2418,6 +2536,29 @@
             "required": false,
             "name": "ranking_to",
             "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "default": 2020,
+              "description": "Start year",
+              "example": 2020
+            },
+            "required": false,
+            "name": "start_year",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "End year",
+              "example": 2022
+            },
+            "required": false,
+            "name": "end_year",
+            "in": "query"
           }
         ],
         "responses": {
@@ -2452,18 +2593,11 @@
                                 "type": "string"
                               },
                               "coordinates": {
-                                "type": "array",
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "number"
-                                  }
-                                }
+                                "nullable": true
                               }
                             },
                             "required": [
-                              "type",
-                              "coordinates"
+                              "type"
                             ]
                           },
                           "properties": {
@@ -2472,20 +2606,26 @@
                               "accidents_count": {
                                 "type": "number"
                               },
-                              "ranking": {
-                                "type": "number"
+                              "accidents_by_category": {
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "number"
+                                }
                               },
-                              "extension_km": {
+                              "ranking": {
                                 "type": "number"
                               },
                               "street_name": {
                                 "type": "string"
+                              },
+                              "extension_km": {
+                                "type": "number"
                               }
                             },
                             "required": [
                               "accidents_count",
+                              "accidents_by_category",
                               "ranking",
-                              "extension_km",
                               "street_name"
                             ]
                           }
@@ -2565,8 +2705,7 @@
                   "required": [
                     "street_name",
                     "total_victims",
-                    "victims_per_year",
-                    "street_extension_km"
+                    "victims_per_year"
                   ]
                 }
               }
@@ -2716,18 +2855,11 @@
                                 "type": "string"
                               },
                               "coordinates": {
-                                "type": "array",
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "number"
-                                  }
-                                }
+                                "nullable": true
                               }
                             },
                             "required": [
-                              "type",
-                              "coordinates"
+                              "type"
                             ]
                           },
                           "properties": {
@@ -2737,6 +2869,9 @@
                                 "type": "string"
                               },
                               "accidents_count": {
+                                "type": "number"
+                              },
+                              "extension_km": {
                                 "type": "number"
                               }
                             },
@@ -2797,7 +2932,8 @@
             "schema": {
               "type": "number",
               "nullable": true,
-              "description": "Start year",
+              "default": 2020,
+              "description": "Start year. Defaults to 2020",
               "example": 2020
             },
             "required": false,
@@ -2965,6 +3101,184 @@
                     "street_name",
                     "records"
                   ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/streets/history": {
+      "get": {
+        "tags": [
+          "Streets History"
+        ],
+        "summary": "Get street accident history",
+        "description": "Get temporal history of accidents for a street by PCR street name",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "PCR street name (exact match on pcr_streets.nlogra_conc)",
+              "example": "ROD BR CENTO E UM"
+            },
+            "required": true,
+            "name": "via",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "todos",
+                "validos",
+                "invalidos"
+              ],
+              "default": "todos",
+              "description": "Outcome filter",
+              "example": "validos"
+            },
+            "required": false,
+            "name": "desfechos",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "default": 2020,
+              "description": "Start year",
+              "example": 2020
+            },
+            "required": false,
+            "name": "startYear",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "End year",
+              "example": 2024
+            },
+            "required": false,
+            "name": "endYear",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Street accident history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "via": {
+                      "type": "string"
+                    },
+                    "filtro_desfechos": {
+                      "type": "string"
+                    },
+                    "evolucao": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ano": {
+                            "type": "string"
+                          },
+                          "sinistros": {
+                            "type": "number"
+                          },
+                          "meses": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "number"
+                            }
+                          },
+                          "dias_com_dados": {
+                            "type": "number"
+                          },
+                          "dias_com_sinistros": {
+                            "type": "number"
+                          },
+                          "ultimo_dia": {
+                            "type": "string"
+                          },
+                          "dias_semana": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "number"
+                            }
+                          },
+                          "horarios": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "number"
+                            }
+                          },
+                          "por_sexo": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "number"
+                            }
+                          },
+                          "por_faixa_etaria": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "number"
+                            }
+                          },
+                          "por_categoria": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "number"
+                            }
+                          }
+                        },
+                        "required": [
+                          "ano",
+                          "sinistros",
+                          "meses",
+                          "dias_com_dados",
+                          "dias_com_sinistros",
+                          "ultimo_dia",
+                          "dias_semana",
+                          "horarios",
+                          "por_sexo",
+                          "por_faixa_etaria",
+                          "por_categoria"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "via",
+                    "filtro_desfechos",
+                    "evolucao"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Street not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "example": {
+                    "message": "Not Found"
+                  }
                 }
               }
             }
