@@ -363,46 +363,6 @@ erDiagram
     }
 ```
 
-### 9. Infrações de Trânsito (`traffic-violations`)
-
-```mermaid
-erDiagram
-    official_streets {
-        serial id PK
-        integer code UK
-        text name_concatenated
-        text official_name
-        text short_name
-        text pavement_code
-        text pavement_description
-        boolean transport_corridor
-        boolean perimeter_road
-        integer neighborhood_code
-        text neighborhood_name
-        timestamp created_at
-        timestamp updated_at
-    }
-    
-    traffic_violations {
-        serial id PK
-        timestamp violation_date
-        integer agent_id
-        integer violation_type_id
-        integer location_id
-        text violation_code
-        text law_code
-        text description
-        text location_description
-        text coordinates
-        integer street_code FK
-        jsonb complementary_data
-        timestamp created_at
-        timestamp updated_at
-    }
-    
-    official_streets ||--o{ traffic_violations : "street_code"
-```
-
 ## Enums e Tipos Especiais
 
 ### Direction Enum
@@ -428,7 +388,6 @@ Várias tabelas possuem campo `coordinates` como `text` que será migrado para P
 - `bicycle_racks.coordinates` → `geometry(Point, 4326)`
 - `shared_bike_stations.coordinates` → `geometry(Point, 4326)`
 - `traffic_calls.coordinates` → `geometry(Point, 4326)`
-- `traffic_violations.coordinates` → `geometry(Point, 4326)`
 - `ciclomapa_infra.coordinates` → `geometry(LineString, 4326)`
 - `pdc_relation_ways.coordinates` → `geometry` (tipo baseado em `geometry_type`)
 
@@ -439,7 +398,6 @@ Várias tabelas possuem campo `coordinates` como `text` que será migrado para P
 - `counting_events` → `counting_sessions`
 - `counting_sessions` → `session_movements`
 - `cyclist_infra_relations` → `pdc_relation_ways`
-- `official_streets` → `traffic_violations`
 
 ### N:N (Muitos para Muitos)
 - `cities` ↔ `cyclist_infra_relations` (via `cyclist_infra_relation_cities`)

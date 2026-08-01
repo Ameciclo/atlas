@@ -55,9 +55,8 @@
 ## 🚧 Próximos Passos
 
 ### Fase 3: Integração de Dados de Tráfego
-- [ ] Endpoint `/v1/streets/{streetId}/traffic-violations`
 - [ ] Endpoint `/v1/streets/{streetId}/traffic-crashes`
-- [ ] Integração com schemas `traffic_violations` e `traffic_crashes`
+- [ ] Integração com schemas `traffic_crashes`
 - [ ] Agregação de dados por nome de rua
 
 ### Fase 4: Dados de Ciclismo Próximos

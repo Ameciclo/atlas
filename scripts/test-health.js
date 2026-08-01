@@ -8,7 +8,6 @@ const services = [
 	{ name: "bicycle-racks", port: 3005 },
 	{ name: "cycling-infra", port: 3020 },
 	{ name: "emergency-calls", port: 3010 },
-	{ name: "traffic-violations", port: 3013 },
 	{ name: "traffic-calls", port: 3019 },
 ];
 

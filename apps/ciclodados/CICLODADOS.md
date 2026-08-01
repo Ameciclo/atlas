@@ -78,9 +78,6 @@ Get complete street information including geometry.
 
 ### Traffic Data Endpoints
 
-#### `GET /streets/{streetId}/traffic-violations`
-Get traffic violations for a specific street.
-
 #### `GET /streets/{streetId}/traffic-crashes`
 Get traffic crashes for a specific street.
 
