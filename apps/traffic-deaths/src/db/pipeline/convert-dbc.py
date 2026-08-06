@@ -10,7 +10,7 @@ Uso:
   # A partir de DBCs locais
   python3 convert-dbc.py --source-dir /caminho/dos/dbc/ --year 2024
 
-DATASUS FTP: ftp://ftp.datasus.gov.br/dissemin/publicos/SIM/CID10/DOFET/DOEXT{YY}.dbc
+DATASUS FTP: tenta CID10, com fallback para PRELIM (dados preliminares)
 
 Fluxo:
   1. (--download) Baixa DBCs do DATASUS FTP para source-dir
@@ -51,7 +51,10 @@ PROJECT_ROOT = SCRIPT_DIR.parent.parent.parent.parent.parent.parent
 DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "packages" / "database" / "seed-data" / "traffic-deaths"
 DEFAULT_SOURCE_DIR = SCRIPT_DIR / "datasus-dbc"
 
-DATASUS_FTP = "ftp://ftp.datasus.gov.br/dissemin/publicos/SIM/CID10/DOFET/DOEXT{yy}.dbc"
+DATASUS_FTPS = [
+    "ftp://ftp.datasus.gov.br/dissemin/publicos/SIM/CID10/DOFET/DOEXT{yy}.dbc",
+    "ftp://ftp.datasus.gov.br/dissemin/publicos/SIM/PRELIM/DOFET/DOEXT{yy}.dbc",
+]
 
 # Colunas do SIM que REALMENTE sao usadas pelo seed (schema traffic_deaths)
 USED_COLUMNS = {
@@ -91,15 +94,39 @@ def find_dbc_files(source_dir):
     return sorted(Path(source_dir).glob("*.dbc"))
 
 
+def _try_download(url, dest_file, year):
+    """Tenta baixar de uma URL. Retorna True se sucesso, False se falhou."""
+    print(f"  [{year}] Baixando {url} ...", end=" ", flush=True)
+    try:
+        subprocess.run(
+            ["wget", "-q", "--show-progress", "-O", str(dest_file), url],
+            check=True,
+            timeout=120,
+        )
+        size_mb = dest_file.stat().st_size / (1024 * 1024)
+        print(f"{size_mb:.1f} MB")
+        return True
+    except subprocess.CalledProcessError as e:
+        print(f"falhou (exit {e.returncode})")
+        if dest_file.exists():
+            dest_file.unlink()
+        return False
+    except subprocess.TimeoutExpired:
+        print("ERRO: timeout (120s)")
+        if dest_file.exists():
+            dest_file.unlink()
+        return False
+
+
 def download_datasus(years, dest_dir, dry_run=False):
-    """Baixa arquivos DBC do DATASUS FTP para o diretorio de destino."""
+    """Baixa arquivos DBC do DATASUS FTP para o diretorio de destino.
+    Tenta cada URL em DATASUS_FTPS em ordem (CID10, depois PRELIM como fallback)."""
     dest_dir = Path(dest_dir)
     dest_dir.mkdir(parents=True, exist_ok=True)
 
     downloaded = []
     for year in years:
         yy = str(year)[-2:]
-        url = DATASUS_FTP.format(yy=yy)
         dest_file = dest_dir / f"DOEXT{yy}.dbc"
 
         if dest_file.exists():
@@ -108,28 +135,21 @@ def download_datasus(years, dest_dir, dry_run=False):
             continue
 
         if dry_run:
+            url = DATASUS_FTPS[0].format(yy=yy)
             print(f"  [{year}] [DRY RUN] Baixaria: {url} -> {dest_file}")
             downloaded.append(dest_file)
             continue
 
-        print(f"  [{year}] Baixando {url} ...", end=" ", flush=True)
-        try:
-            subprocess.run(
-                ["wget", "-q", "--show-progress", "-O", str(dest_file), url],
-                check=True,
-                timeout=120,
-            )
-            size_mb = dest_file.stat().st_size / (1024 * 1024)
-            print(f"{size_mb:.1f} MB")
-            downloaded.append(dest_file)
-        except subprocess.CalledProcessError as e:
-            print(f"ERRO: falha no download ({e})")
-            if dest_file.exists():
-                dest_file.unlink()
-        except subprocess.TimeoutExpired:
-            print(f"ERRO: timeout (120s)")
-            if dest_file.exists():
-                dest_file.unlink()
+        success = False
+        for ftp_url in DATASUS_FTPS:
+            url = ftp_url.format(yy=yy)
+            if _try_download(url, dest_file, year):
+                downloaded.append(dest_file)
+                success = True
+                break
+
+        if not success:
+            print(f"  [{year}] ERRO: falha em todas as URLs tentadas para DOEXT{yy}.dbc")
 
     return downloaded
 
@@ -217,7 +237,7 @@ def main():
     parser = argparse.ArgumentParser(description="Converte DBC do DATASUS para CSV de mortes de transito")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--source-dir", type=str, help="Pasta com os arquivos .dbc")
-    group.add_argument("--download", type=str, help="Baixar anos do DATASUS FTP (ex: '2024' ou '2024,2025')")
+    group.add_argument("--download", type=str, help="Baixar anos do DATASUS FTP (ex: '2024,2025' ou '2016-2026')")
     parser.add_argument("--output-dir", type=str, default=str(DEFAULT_OUTPUT_DIR), help="Pasta de saida dos CSV")
     parser.add_argument("--include-y", action="store_true", help="Incluir sequelas Y85/Y86 alem de V%%")
     parser.add_argument("--strip-columns", action="store_true", help="Remover colunas nao usadas pelo seed")
@@ -230,11 +250,28 @@ def main():
         source_dir = Path(args.source_dir) if args.source_dir else DEFAULT_SOURCE_DIR
         years = []
         for part in args.download.split(","):
-            y = part.strip()
-            if y.isdigit() and len(y) == 4:
-                years.append(int(y))
+            part = part.strip()
+            if part.isdigit() and len(part) == 4:
+                years.append(int(part))
+            elif "-" in part:
+                parts = part.split("-")
+                if len(parts) == 2 and all(p.strip().isdigit() and len(p.strip()) >= 2 for p in parts):
+                    start = int(parts[0].strip())
+                    end_raw = parts[1].strip()
+                    if len(end_raw) == 2:
+                        # 2016-26 -> 2016 a 2026
+                        prefix = str(start)[:2]
+                        end = int(prefix + end_raw)
+                    else:
+                        end = int(end_raw)
+                    if start > end:
+                        start, end = end, start
+                    years.extend(range(start, end + 1))
+                else:
+                    print(f"ERRO: range invalido: '{part}'. Use AAAA-AAAA (ex: 2016-2026)", file=sys.stderr)
+                    return 1
             else:
-                print(f"ERRO: ano invalido: '{y}'. Use formato AAAA (ex: 2024)", file=sys.stderr)
+                print(f"ERRO: ano invalido: '{part}'. Use AAAA (ex: 2024) ou AAAA-AAAA (ex: 2016-2026)", file=sys.stderr)
                 return 1
         if not years:
             return 1

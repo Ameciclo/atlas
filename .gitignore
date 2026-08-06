@@ -57,11 +57,14 @@ __pycache__/
 *.pyo
 *.db
 
-# Large seed data and exports (GitHub 100MB limit)
-packages/database/seed-data/traffic-tickets/location-descriptions.json
-packages/database/seed-data/traffic-tickets/location-descriptions.tsv
+# Large seed data — split via scripts/split-data.sh, recompose via scripts/recompose-data.sh
+# .part* files go to GitHub; recompiled single-file artifacts are gitignored
 packages/database/seed-data/traffic-tickets/traffic-tickets-compiled.tsv
+packages/database/seed-data/traffic-tickets/location-descriptions.tsv
+packages/database/seed-data/traffic-tickets/location-descriptions.json
 packages/database/seed-data/traffic-tickets/source-data/
+# traffic-deaths: regenerado via pipeline (convert-dbc.py)
+packages/database/seed-data/traffic-deaths/
 apps/traffic-tickets/src/db/location-verification/prepared_data.json
 exports/ameciclo/chamados_emergencia/calls_consolidated.json
 exports/ameciclo/chamados_emergencia/calls_consolidated.jsonl
