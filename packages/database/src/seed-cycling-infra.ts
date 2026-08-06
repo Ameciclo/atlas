@@ -126,7 +126,7 @@ export async function seedCyclingInfraStatic(config: DatabaseConfig = {}) {
 	try {
 		console.log("🌱 Starting cycling infrastructure static seed...\n");
 
-		const dataPath = join(__dirname, "../../../apps/cycling-infra/src/db");
+		const dataPath = join(__dirname, "../seed-data/cycling-infra");
 
 		// 1. Seed Cities
 		console.log("📊 Loading cities...");
@@ -312,7 +312,7 @@ export async function seedCyclingInfra(config: DatabaseConfig = {}) {
 	try {
 		console.log("🌱 Starting cycling infrastructure ways seed...\n");
 
-		const dataPath = join(__dirname, "../../../apps/cycling-infra/src/db");
+		const dataPath = join(__dirname, "../seed-data/cycling-infra");
 
 		// Carrega os dados em memória antes da transaction
 		console.log("🛣️ Loading processed ways...");

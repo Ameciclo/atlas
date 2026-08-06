@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { createConnectedDatabase, closeDatabase } from "@atlas/database";
 import { emergencyCalls } from "@atlas/database/schemas/emergency-calls";
 
@@ -10,7 +11,7 @@ async function seed() {
 
 	try {
 		// Read the TSV file
-		const tsvPath = "./src/db/sinistros-samu-tudo-final-ruas-corrigidas.tsv";
+		const tsvPath = join(import.meta.dirname || __dirname, "../../../../packages/database/seed-data/emergency-calls/sinistros-samu-tudo-final-ruas-corrigidas.tsv");
 		const tsvContent = readFileSync(tsvPath, "utf-8");
 
 		// Parse TSV content

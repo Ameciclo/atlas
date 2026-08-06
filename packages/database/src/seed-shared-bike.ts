@@ -48,7 +48,7 @@ export async function seedSharedBike(config?: DatabaseConfig) {
 		// Read GeoJSON file
 		const geoJsonPath = join(
 			import.meta.dirname,
-			"../../../apps/shared-bike/src/db/bike-pe.geojson",
+			"../seed-data/shared-bike/bike-pe.geojson",
 		);
 		const geoJsonContent = await readFile(geoJsonPath, "utf-8");
 		const geoData: GeoJSONCollection = JSON.parse(geoJsonContent);

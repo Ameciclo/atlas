@@ -83,7 +83,7 @@ export async function seedTrafficCalls(config: DatabaseConfig = {}) {
 		// Load and parse CSV data
 		const dataPath = join(
 			import.meta.dirname,
-			"../../../apps/traffic-calls/src/db/sinistros-cttu-2016-2024-vias-corrigidas.csv",
+			"../seed-data/traffic-calls/sinistros-cttu-2016-2024-vias-corrigidas.csv",
 		);
 		const rawData = await readFile(dataPath, "utf-8");
 

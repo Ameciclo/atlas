@@ -69,7 +69,7 @@ async function seedBicycleRacksFromGeoJSON() {
 		// Lê o arquivo GeoJSON
 		const geojsonPath = join(
 			import.meta.dirname,
-			"../../../apps/bicycle-racks/src/db/bicicletarios-brasil.geojson",
+			"../seed-data/bicycle-racks/bicicletarios-brasil.geojson",
 		);
 		const geojsonData = readFileSync(geojsonPath, "utf-8");
 		const geojson: GeoJSONFeatureCollection = JSON.parse(geojsonData);
@@ -176,7 +176,7 @@ async function seedRecifeCities(
 		// Lê o arquivo GeoJSON do Recife
 		const recifeGeojsonPath = join(
 			import.meta.dirname,
-			"../../../apps/bicycle-racks/src/db/ciclomapa-Recife, Pernambuco, Brasil.geojson",
+			"../seed-data/bicycle-racks/ciclomapa-Recife, Pernambuco, Brasil.geojson",
 		);
 		const recifeData = readFileSync(recifeGeojsonPath, "utf-8");
 		const recifeGeojson = JSON.parse(recifeData);
