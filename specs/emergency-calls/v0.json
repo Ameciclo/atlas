@@ -2676,6 +2676,29 @@
             "required": false,
             "name": "city",
             "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "default": 2020,
+              "description": "Start year. Defaults to 2020",
+              "example": 2020
+            },
+            "required": false,
+            "name": "startYear",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "End year",
+              "example": 2025
+            },
+            "required": false,
+            "name": "endYear",
+            "in": "query"
           }
         ],
         "responses": {
@@ -3017,7 +3040,7 @@
           "Unsafe Streets"
         ],
         "summary": "Get street accident records",
-        "description": "Get individual accident records for a specific street",
+        "description": "Get individual accident records for a specific street, resolved to PCR street ids by exact case-insensitive name match",
         "parameters": [
           {
             "schema": {
@@ -3032,22 +3055,52 @@
           {
             "schema": {
               "type": "string",
-              "description": "City name for filtering",
-              "example": "RECIFE"
+              "enum": [
+                "todos",
+                "validos",
+                "invalidos"
+              ],
+              "default": "validos",
+              "description": "Outcome filter: 'validos' returns only the 4 valid outcomes, 'invalidos' returns all other outcomes, 'todos' returns everything",
+              "example": "validos"
             },
             "required": false,
-            "name": "city",
+            "name": "desfechos",
             "in": "query"
           },
           {
             "schema": {
               "type": "number",
               "nullable": true,
-              "description": "Year filter",
-              "example": 2022
+              "default": 100,
+              "description": "Max number of records to return (hard cap 5000)",
+              "example": 1000
             },
             "required": false,
-            "name": "year",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "default": 2020,
+              "description": "Start year. Defaults to 2020",
+              "example": 2020
+            },
+            "required": false,
+            "name": "startYear",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true,
+              "description": "End year",
+              "example": 2025
+            },
+            "required": false,
+            "name": "endYear",
             "in": "query"
           }
         ],
@@ -3062,7 +3115,16 @@
                     "street_name": {
                       "type": "string"
                     },
-                    "year": {
+                    "startYear": {
+                      "type": "number"
+                    },
+                    "endYear": {
+                      "type": "number"
+                    },
+                    "desfechos": {
+                      "type": "string"
+                    },
+                    "total": {
                       "type": "number"
                     },
                     "records": {
@@ -3099,8 +3161,31 @@
                   },
                   "required": [
                     "street_name",
+                    "desfechos",
+                    "total",
                     "records"
                   ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Street not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "example": {
+                    "message": "Not Found"
+                  }
                 }
               }
             }
@@ -3134,8 +3219,8 @@
                 "validos",
                 "invalidos"
               ],
-              "default": "todos",
-              "description": "Outcome filter",
+              "default": "validos",
+              "description": "Outcome filter: 'validos' = the 4 valid outcomes, 'invalidos' = all other outcomes, 'todos' = no filter",
               "example": "validos"
             },
             "required": false,

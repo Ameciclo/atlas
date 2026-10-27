@@ -1,6 +1,7 @@
 import { and, eq, count, sql } from "drizzle-orm";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { normalizeCategories } from "../../../../lib/categories.js";
+import { invalidOutcomes, validOutcomes } from "../../../../lib/outcomes.js";
 import { db } from "../../../../db/index.js";
 import { emergencyCalls, pcrStreets } from "../../../../db/schema.js";
 import type { AppRouteHandler } from "../../../../lib/types.js";
@@ -43,9 +44,9 @@ export const streetsHistory: AppRouteHandler<StreetsHistoryRoute> = async (
 	];
 
 	if (desfechos === "validos") {
-		conditions.push(sql`${emergencyCalls.outcome_category} IS NOT NULL`);
+		conditions.push(validOutcomes());
 	} else if (desfechos === "invalidos") {
-		conditions.push(sql`${emergencyCalls.outcome_category} IS NULL`);
+		conditions.push(invalidOutcomes());
 	}
 
 	if (startYear)

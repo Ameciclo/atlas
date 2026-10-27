@@ -150,8 +150,11 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
     ```
 
 ### Endpoints Unsafe Streets:
+
+> **Nota:** todos os endpoints desta seção contam apenas sinistros com desfechos válidos (`Atendimento Concluído com Êxito`, `Removido pelos Bombeiros/CIODS`, `Removido por Particulares`, `Óbito no Local/Atendimento`), com recorte padrão a partir de 2020.
+
 - ✅ `GET /unsafe-streets/cities/{city}/summary` - **NOVO** - Resumo de sinistros por cidade
-  - **Filtros:** `city` (obrigatório)
+  - **Filtros:** `city` (obrigatório), `start_year` (default 2020), `end_year`
   - **Resposta:**
     ```json
     {
@@ -168,7 +171,7 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
     }
     ```
 - 📝 `GET /unsafe-streets/cities/{city}/concentration` - **NOVO** - Concentração de sinistros
-  - **Filtros:** `city` (obrigatório), `interval` (1, 5, 10, 15, 20)
+  - **Filtros:** `city` (obrigatório), `interval` (1, 5, 10, 15, 20), `start_year` (default 2020), `end_year`
   - **Resposta:**
     ```json
     {
@@ -189,10 +192,10 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
     }
     ```
 - 📝 `GET /unsafe-streets/cities/{city}/geojson` - **NOVO** - Dados geoespaciais das vias
-  - **Filtros:** `city` (obrigatório), `ranking_from`, `ranking_to`
+  - **Filtros:** `city` (obrigatório), `ranking_from`, `ranking_to`, `start_year` (default 2020), `end_year`
   - **Resposta:** GeoJSON com propriedades: accidents_count, ranking, extension_km
 - ✅ `GET /unsafe-streets/streets/{street_name}/summary` - **NOVO** - Resumo por via específica
-  - **Filtros:** `street_name` (obrigatório), `city`
+  - **Filtros:** `street_name` (obrigatório), `city`, `startYear` (default 2020), `endYear`
   - **Resposta:**
     ```json
     {
@@ -240,23 +243,32 @@ Este documento mapeia todas as APIs existentes no projeto Atlas para facilitar o
     }
     ```
 - 📝 `GET /unsafe-streets/streets/{street_name}/records` - **NOVO** - Registros de sinistros da via
-  - **Filtros:** `street_name` (obrigatório), `city`, `year`
+  - **Resolução:** nome convertido em `pcr_street_id` via match exato case-insensitive em `pcr_streets.nlogra_conc`; busca por ID (sem ILIKE); 404 se a via não existir
+  - **Filtros:** `street_name` (obrigatório), `desfechos` (`validos` (default) = os 4 desfechos válidos, `invalidos` = os demais, `todos`), `limit` (default 100, teto 5000), `startYear` (default 2020), `endYear`
+  - **Ordenação:** mais recentes primeiro (`date DESC, time DESC`)
   - **Resposta:**
     ```json
     {
-      "street_name": "Av. Boa Viagem",
-      "year": 2022,
+      "street_name": "AV BOA VIAGEM",
+      "startYear": 2020,
+      "desfechos": "validos",
+      "total": 753,
       "records": [
         {
           "datetime": "2022-03-15T14:30:00Z",
-          "category": "COLISÃO",
-          "gender": "MASCULINO",
+          "category": "sinistro_moto",
+          "gender": "Masculino",
           "age": 35,
-          "outcome": "FERIDO"
+          "outcome": "Atendimento Concluído com Êxito"
         }
       ]
     }
     ```
+  - `total` = contagem real do conjunto filtrado (antes do `limit`), para o consumidor paginar
+- ✅ `GET /v2/streets/history` - Histórico temporal de sinistros por via
+  - **Resolução:** match exato (case-sensitive) em `pcr_streets.nlogra_conc`; 404 se a via não existir
+  - **Filtros:** `via` (obrigatório), `desfechos` (`validos` (default) = os 4 desfechos válidos, `invalidos` = os demais, `todos`), `startYear` (default 2020), `endYear`
+  - **Resposta:** `evolucao[]` com sinistros/meses/dias_semana/horarios/por_sexo/por_faixa_etaria/por_categoria por ano
 
 ---
 

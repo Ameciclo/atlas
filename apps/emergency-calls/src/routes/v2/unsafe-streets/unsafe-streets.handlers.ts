@@ -1,4 +1,5 @@
-import { and, eq, count, sql } from "drizzle-orm";
+import { and, count, desc, eq, inArray, sql } from "drizzle-orm";
+import * as HttpStatusCodes from "stoker/http-status-codes";
 import { db } from "../../../db/index.js";
 import { emergencyCalls, pcrStreets } from "../../../db/schema.js";
 import type { AppRouteHandler } from "../../../lib/types.js";
@@ -6,6 +7,7 @@ import {
 	normalizeCategories,
 	normalizeCategory,
 } from "../../../lib/categories.js";
+import { invalidOutcomes, validOutcomes } from "../../../lib/outcomes.js";
 import type {
 	CitySummaryRoute,
 	StreetSummaryRoute,
@@ -40,6 +42,7 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 
 	const cityConditions = [
 		eq(emergencyCalls.municipality, city),
+		validOutcomes(),
 		...buildYearConditions(start_year, end_year),
 	];
 	const cityWhere = and(...cityConditions);
@@ -69,6 +72,7 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 	const topStreetConditions = [
 		eq(emergencyCalls.municipality, city),
 		genericPcrFilter,
+		validOutcomes(),
 		...buildYearConditions(start_year, end_year),
 	];
 
@@ -144,12 +148,20 @@ export const citySummary: AppRouteHandler<CitySummaryRoute> = async (c) => {
 
 export const streetSummary: AppRouteHandler<StreetSummaryRoute> = async (c) => {
 	const { street_name } = c.req.valid("param");
-	const { city } = c.req.valid("query");
+	const { city, startYear, endYear } = c.req.valid("query");
 
 	// Build conditions
 	const conditions = [
 		sql`${emergencyCalls.pcr_address} ILIKE ${`%${street_name}%`}`,
+		validOutcomes(),
+		sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) >= ${startYear}`,
 	];
+
+	if (endYear) {
+		conditions.push(
+			sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) <= ${endYear}`,
+		);
+	}
 
 	if (city) {
 		conditions.push(eq(emergencyCalls.municipality, city));
@@ -224,6 +236,7 @@ export const cityConcentration: AppRouteHandler<
 	const topStreetConditions = [
 		eq(emergencyCalls.municipality, city),
 		genericPcrFilter,
+		validOutcomes(),
 		...buildYearConditions(start_year, end_year),
 	];
 
@@ -312,6 +325,7 @@ export const cityGeoJSON: AppRouteHandler<CityGeoJSONRoute> = async (c) => {
 	const topStreetConditions = [
 		eq(emergencyCalls.municipality, city),
 		genericPcrFilter,
+		validOutcomes(),
 		...buildYearConditions(start_year, end_year),
 	];
 
@@ -436,6 +450,7 @@ export const streetProfiles: AppRouteHandler<StreetProfilesRoute> = async (
 
 	const conditions = [
 		sql`${emergencyCalls.pcr_address} ILIKE ${`%${street_name}%`}`,
+		validOutcomes(),
 	];
 
 	if (city) {
@@ -532,6 +547,7 @@ export const streetGeoJSON: AppRouteHandler<StreetGeoJSONRoute> = async (c) => {
 
 	const conditions = [
 		sql`${emergencyCalls.pcr_address} ILIKE ${`%${street_name}%`}`,
+		validOutcomes(),
 	];
 
 	if (city) {
@@ -614,6 +630,7 @@ export const streetEvolution: AppRouteHandler<StreetEvolutionRoute> = async (
 
 	const conditions = [
 		sql`${emergencyCalls.pcr_address} ILIKE ${`%${street_name}%`}`,
+		validOutcomes(),
 		sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) >= ${start_year}`,
 		sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) <= ${end_year}`,
 	];
@@ -714,21 +731,49 @@ export const streetEvolution: AppRouteHandler<StreetEvolutionRoute> = async (
 
 export const streetRecords: AppRouteHandler<StreetRecordsRoute> = async (c) => {
 	const { street_name } = c.req.valid("param");
-	const { city, year } = c.req.valid("query");
+	const { desfechos, limit, startYear, endYear } = c.req.valid("query");
+	const effectiveLimit = Math.min(
+		Math.max(Math.trunc(limit) || 100, 1),
+		5000,
+	);
 
-	const conditions = [
-		sql`${emergencyCalls.pcr_address} ILIKE ${`%${street_name}%`}`,
-	];
+	const resolvedStreets = await db
+		.select({ id: pcrStreets.id, name: pcrStreets.nlogra_conc })
+		.from(pcrStreets)
+		.where(sql`UPPER(${pcrStreets.nlogra_conc}) = UPPER(${street_name})`);
 
-	if (city) {
-		conditions.push(eq(emergencyCalls.municipality, city));
+	if (resolvedStreets.length === 0) {
+		return c.json(
+			{ message: "Street not found" },
+			HttpStatusCodes.NOT_FOUND,
+		);
 	}
 
-	if (year) {
-		conditions.push(sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) = ${year}`);
+	const streetIds = resolvedStreets.map((street) => street.id);
+
+	const conditions: ReturnType<typeof sql>[] = [
+		inArray(emergencyCalls.pcr_street_id, streetIds),
+		sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) >= ${startYear}`,
+	];
+
+	if (endYear) {
+		conditions.push(
+			sql`EXTRACT(YEAR FROM ${emergencyCalls.date}) <= ${endYear}`,
+		);
+	}
+
+	if (desfechos === "validos") {
+		conditions.push(validOutcomes());
+	} else if (desfechos === "invalidos") {
+		conditions.push(invalidOutcomes());
 	}
 
 	const whereClause = and(...conditions);
+
+	const [totalResult] = await db
+		.select({ count: sql<number>`count(*)::int` })
+		.from(emergencyCalls)
+		.where(whereClause);
 
 	const records = await db
 		.select({
@@ -741,8 +786,11 @@ export const streetRecords: AppRouteHandler<StreetRecordsRoute> = async (c) => {
 		})
 		.from(emergencyCalls)
 		.where(whereClause)
-		.orderBy(emergencyCalls.date, emergencyCalls.time_minute)
-		.limit(100);
+		.orderBy(
+			desc(emergencyCalls.date),
+			sql`${emergencyCalls.time_minute}::time DESC`,
+		)
+		.limit(effectiveLimit);
 
 	const formattedRecords = records.map((record) => ({
 		datetime: `${record.date}T${record.time || "00:00:00"}Z`,
@@ -752,9 +800,15 @@ export const streetRecords: AppRouteHandler<StreetRecordsRoute> = async (c) => {
 		outcome: record.outcome || "NÃO INFORMADO",
 	}));
 
-	return c.json({
-		street_name,
-		year,
-		records: formattedRecords,
-	});
+	return c.json(
+		{
+			street_name: resolvedStreets[0].name,
+			startYear,
+			endYear,
+			desfechos,
+			total: Number(totalResult?.count || 0),
+			records: formattedRecords,
+		},
+		HttpStatusCodes.OK,
+	);
 };

@@ -1,6 +1,7 @@
 import { createRoute, z } from "@hono/zod-openapi";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { jsonContent } from "stoker/openapi/helpers";
+import { notFoundSchema } from "../../../lib/constants.js";
 
 const tags = ["Unsafe Streets"];
 
@@ -67,6 +68,14 @@ export const streetSummary = createRoute({
 			city: z.string().optional().openapi({
 				description: "City name for filtering",
 				example: "RECIFE",
+			}),
+			startYear: z.coerce.number().optional().default(2020).openapi({
+				description: "Start year. Defaults to 2020",
+				example: 2020,
+			}),
+			endYear: z.coerce.number().optional().openapi({
+				description: "End year",
+				example: 2025,
 			}),
 		}),
 	},
@@ -317,7 +326,8 @@ export const streetRecords = createRoute({
 	method: "get",
 	tags,
 	summary: "Get street accident records",
-	description: "Get individual accident records for a specific street",
+	description:
+		"Get individual accident records for a specific street, resolved to PCR street ids by exact case-insensitive name match",
 	request: {
 		params: z.object({
 			street_name: z.string().openapi({
@@ -326,13 +336,26 @@ export const streetRecords = createRoute({
 			}),
 		}),
 		query: z.object({
-			city: z.string().optional().openapi({
-				description: "City name for filtering",
-				example: "RECIFE",
+			desfechos: z
+				.enum(["todos", "validos", "invalidos"])
+				.optional()
+				.default("validos")
+				.openapi({
+					description:
+						"Outcome filter: 'validos' returns only the 4 valid outcomes, 'invalidos' returns all other outcomes, 'todos' returns everything",
+					example: "validos",
+				}),
+			limit: z.coerce.number().optional().default(100).openapi({
+				description: "Max number of records to return (hard cap 5000)",
+				example: 1000,
 			}),
-			year: z.coerce.number().optional().openapi({
-				description: "Year filter",
-				example: 2022,
+			startYear: z.coerce.number().optional().default(2020).openapi({
+				description: "Start year. Defaults to 2020",
+				example: 2020,
+			}),
+			endYear: z.coerce.number().optional().openapi({
+				description: "End year",
+				example: 2025,
 			}),
 		}),
 	},
@@ -340,7 +363,10 @@ export const streetRecords = createRoute({
 		[HttpStatusCodes.OK]: jsonContent(
 			z.object({
 				street_name: z.string(),
-				year: z.number().optional(),
+				startYear: z.number().optional(),
+				endYear: z.number().optional(),
+				desfechos: z.string(),
+				total: z.number(),
 				records: z.array(
 					z.object({
 						datetime: z.string(),
@@ -352,6 +378,10 @@ export const streetRecords = createRoute({
 				),
 			}),
 			"Street accident records",
+		),
+		[HttpStatusCodes.NOT_FOUND]: jsonContent(
+			notFoundSchema,
+			"Street not found",
 		),
 	},
 });

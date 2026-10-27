@@ -21,9 +21,10 @@ export const streetsHistory = createRoute({
 			desfechos: z
 				.enum(["todos", "validos", "invalidos"])
 				.optional()
-				.default("todos")
+				.default("validos")
 				.openapi({
-					description: "Outcome filter",
+					description:
+						"Outcome filter: 'validos' = the 4 valid outcomes, 'invalidos' = all other outcomes, 'todos' = no filter",
 					example: "validos",
 				}),
 			startYear: z.coerce.number().optional().default(2020).openapi({
